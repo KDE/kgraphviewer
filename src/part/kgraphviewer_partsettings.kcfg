@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
+<kcfg> 
+  <kcfgfile name="kgraphviewer_partrc"/> 
+  <group name="Notification Messages"> 
+    <entry name="birdsEyeViewEnabled" type="Bool"> 
+      <label>If true, the bird's eye view will be shown if needed.</label> 
+      <default>true</default>
+    </entry> 
+  </group> 
+</kcfg>

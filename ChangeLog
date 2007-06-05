@@ -1,0 +1,141 @@
+2006/07/02
+  * fixed a xdot parsing bug
+  * fixed a crash condition
+  * better handling of parse errors: shows a dialog 
+
+2006/05/27
+  * removed a bug appearing with graphviz 2.8
+
+2006/05/26
+  * addad in the menu bar the entries from contextual menu and reported this 
+    change in documentation
+  * added the possibility to disable the bird-eye view (menu, context menu, 
+    accel, toolbar) and reported this change in documentation
+  * check for memory leaks
+
+2006/05/25
+  * added a font cache to optimize a little bit
+
+2006/05/24
+  * changes in config dialog now change the status of Apply button
+  * make appear the bird-eye view even if it was not initialy appearent when 
+    zooming
+  * optimizations to be able to load and manipulate larger graphs (200+ linear 
+    graph OK)
+
+2006/05/23
+  * documentation
+
+2006/05/18
+  * corrected placing of window position indicator (red line) in bird eye view 
+    when zooming
+  * add tooltips and whatsthese everywhere
+  * corrected tooltips placement
+  * added French translation
+
+2006/05/17
+  * corrected drawing errors appearing when dragging after a zoom by updating
+    Qt to 3.3.6
+
+2006/05/16
+  * all graphviz example graphs are perfectly drawn
+  * corrected drawing of parallel edges
+  * corrected edges geometry definition (tips appear at wrong places)
+  * allow opening of multiple files at the same time
+
+2006/05/15
+  * corrected loading of edges bounds labels
+  * correct handling of record shaped nodes (see graphviz examples, compare with 
+    doted results)
+  * corrected handling of fonts (see graphviz examples, compare with 
+    doted results)
+  * corrected drawing of some undirected graphs in graphviz examples (compare with 
+    doted results)
+  * added support for main graph label
+
+2006/05/14
+  * corrected drawing of clusters (compared with doted results)
+  * hack to not freeze with huge graphs. Stop loading after N vertices or edges
+    (N currently set to 1000)
+
+2006/05/13
+  * maked the window position indicator to be still visible even when zooming a 
+    lot (min size or big bold point)
+
+2006/05/12
+  * added hard-coded min and max zoom factors
+  * scrolling with mouse wheel
+  * make minimum canvas size to window size
+  * reduce canvas size to graph size when its view becomes larger than itself
+
+2006/05/07
+  * better integration of printing (splitting in pages, etc.)
+  * change reload icon to a "recycling" icon
+
+2006/05/07
+  * printing on multiple pages or fited to one page
+  * applying the scaling factor to lines width (since more time but not logged)
+
+2006/05/05
+  * added print preview and setup (code reused from the koffice tool kexi)
+
+2006/04/15
+  * change mouse pointer to grabbing hand when scrolling
+
+2006/04/13
+  * Support for Graphviz 2.8
+
+2006/04/12
+  * Bug corrected: crash when closing last tab ;
+  * First implementation of support for the URL attribute: the focus follows the
+    mouse and clicking on it opens the default browse with the URL (only fully
+    qualified URLs are supported for now, not relative paths to files) ;
+  * Bug correction: the label is now drawn over the image if any ;
+
+2006/04/11
+  * added support for a new dot language attribut: shapefile (node defined by
+    an image)
+  
+2006/04/08
+  * session management (reload of previously opened files)
+  * context menu to use other layouting algorithms (twopi, fdp, etc.)
+  * added a toolbar entry to choose layouting program
+
+2006/03/31
+  * automatic reloading (with user confirmation or not) of (externaly)  
+    modified files ;
+
+2006/03/30
+  * open new instances as new tabs in the old one (should be configurable)
+
+2006/03/29
+  * menus and toolbars reorganisation
+  * empty file names no more stored in recent files list
+  * loading of parallel edges
+  * automaticaly choose dot for directed graphs and neato for undirected
+  * handling of comments in dot files
+
+2006/03/22
+  * important changes. A lot of graphs are now perfectly diplayed.
+  * UTF-8 chars in labels now correctly handled.
+  
+2005/05/20
+  * first step towards huge graphs loading. 800 (configurable in code)
+    nodes are displayed at max. A lot of work remains on this subject.
+
+2005/05/11
+  * add support to all nodes shapes ;
+  * correct fill color handling ;
+  * parsing without errors of all (?) valid dot files ;
+  * added boost/spirit (from boost 1.32) and helpers with appropriate 
+    copyright and licensing information in the project to avoid external 
+    dependencies
+
+2005/05/07
+  * nearly all dot examples load, some of them perfectly (remains 1 
+    encoding problem, 1 infinite loop and one graph not handled by dot)
+
+2005/04/28
+  * using Boost/Spirit parser generator for parsing dot output
+  * handling of fonts in labels
+

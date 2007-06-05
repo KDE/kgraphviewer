@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=kgraphviewerPart
+Name[da]=kgraphviewer-partprogram
+Name[de]=KGraphViewer-Komponente
+Name[is]=KGraphViewerPart
+Name[it]=Componente kgraphviewer
+Name[nds]=KGraphViewer-Komponent
+Name[sv]=kgraphviewer-delprogram
+MimeType=application/graphviz
+ServiceTypes=KParts/ReadOnlyPart
+X-KDE-Library=libkgraphviewerpart
+Type=Service

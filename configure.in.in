@@ -1,0 +1,29 @@
+dnl AM_INIT_AUTOMAKE(kgraphviewer, 1.0.3, kleag@free.fr)
+
+AC_C_BIGENDIAN
+AC_CHECK_KDEMAXPATHLEN
+
+########### Check for Boost
+
+  AC_MSG_CHECKING(for Boost)
+
+  safe_CPPFLAGS=$CPPFLAGS
+  CPPFLAGS="$CPPFLAGS $PACKAGE_CFLAGS $all_includes"
+  AC_LANG_SAVE
+  AC_LANG_CPLUSPLUS
+  AC_CHECK_HEADER([boost/version.hpp],,[
+     AC_MSG_WARN([You need Boost libraries])
+     DO_NOT_COMPILE="$DO_NOT_COMPILE kgraphviewer"
+  ])
+  CPPFLAGS=$safe_CPPFLAGS
+  AC_LANG_RESTORE
+
+########### Check for GraphViz
+
+AC_MSG_CHECKING(for GraphViz)
+  
+AC_CHECK_PROG(DOT,dot,yes,no)
+if test "x$DOT" != "xyes"; then
+  AC_MSG_WARN([GraphViz not found. You will need it at runtime])
+fi
+

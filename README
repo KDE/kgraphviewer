@@ -1,0 +1,53 @@
+KGraphViewer is a Graphviz dot graph file viewer for KDE.
+https://gna.org/projects/kgraphviewer/
+Copyright (C) 2005-2006 Gaël de Chalendar <kleag@free.fr>
+    
+    KGraphViewer is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation, version 2.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program; see the file COPYING.  If not, write to
+    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+
+
+I have created a dot graphs (Graphviz package, see http://www.graphviz.org/)
+for KDE. I used, in this program, code from the profiling tool kcachegrind
+ (http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex).
+For printing, I reused code from the KDE project koffice, namely Kexi, the
+database editor.
+
+The tool is not finished but already usable for not huge graphs (< 1000 nodes).
+Here are its currently implemented features:
+- clusters handling
+- zooming
+- loading of several graphs in tabs;
+- saving of the recent files list;
+- manual reload of files;
+- display of a bird-eye view of the graph;
+- moving of the graph by dragging;
+- simple graph printing with preview (no resizing nor cutting in pages);
+- closing of the tabs;
+- loading of nearly all graphviz example graphs;
+- nodes and edges colors and all node shapes are supported
+
+Kgraphviewer is using the boost/spirit library for graphs parsing. To avoid
+external dependencies, these Boost parts have been integrated in Kgraphviewer.
+
+See TODO in the distribution for planned features.
+
+Kgraphviewer is currently only available as source from its subversion
+repository. See https://gna.org/svn/?group=kgraphviewer for instructions.
+
+As usual, comments, bug reports and any help are very welcome !
+
+Please report bugs or install problems directly on the kgraphviewer homepage
+and not as comments here. Thanks.
+
+Kleag

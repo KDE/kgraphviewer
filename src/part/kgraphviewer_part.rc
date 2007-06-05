@@ -1,0 +1,41 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<kpartgui name="kgraphviewer_part" version="1">
+<MenuBar>
+  <Menu name="file">
+    <Action name="file_export"/>
+    <Separator/>
+    <Action name="file_close"/>
+    <Separator/>
+    <Action name="file_print"/>
+    <Action name="file_print_preview"/>
+    <Action name="file_page_setup"/>
+  </Menu>
+  <Menu name="view">
+    <Action name="view_redisplay"/>
+    <Separator/>
+    <Action name="view_layout_algo"/>
+    <Separator/>
+    <Action name="view_zoom_in"/>
+    <Action name="view_zoom_out"/>
+    <Separator/>
+    <Action name="view_bev_enabled"/>
+    <Action name="view_bev"/>
+  </Menu>
+</MenuBar>
+<ToolBar name="mainToolBar">
+  <Action name="file_print"/>
+  <Action name="file_print_preview"/>
+  <Action name="file_page_setup"/>
+</ToolBar>
+<ToolBar name="viewToolBar">
+  <Action name="view_redisplay"/>
+  <Separator/>
+  <Action name="view_layout_algo"/>
+  <Separator/>
+  <Action name="view_zoom_in"/>
+  <Action name="view_zoom_out"/>
+  <Separator/>
+  <Action name="view_bev_enabled"/>
+  <Action name="view_bev"/>
+</ToolBar>
+</kpartgui>

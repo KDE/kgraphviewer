@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
+<kcfg> 
+  <kcfgfile name="kgraphviewerrc"/> 
+  <group name="Notification Messages"> 
+    <entry name="reloadOnChangeMode" type="String"> 
+      <label>The answer to the question 'File modified, do you want to reload it'</label> 
+      <default>ask</default>
+    </entry> 
+    <entry name="openInExistingWindowMode" type="String"> 
+      <label>The answer to the question 'If another window already exist when launching kgraphviewer, should we open in it, open a new window or ask ?'</label> 
+      <default>ask</default>
+    </entry> 
+    <entry name="reopenPreviouslyOpenedFilesMode" type="String"> 
+      <label>The answer to the question 'Should the files that where opened in previous sessions be reopened at startup ?'</label> 
+      <default>ask</default>
+    </entry> 
+    <entry name="birdsEyeViewEnabled" type="Bool"> 
+      <label>If true, the bird's eye view will be shown if needed.</label> 
+      <default>true</default>
+    </entry> 
+    <entry name="PreviouslyOpenedFiles" type="StringList"> 
+      <label>The list of files that were opened in past instances of kgraphviewer</label> 
+    </entry> 
+  </group> 
+</kcfg>

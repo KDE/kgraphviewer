@@ -1,0 +1,24 @@
+URGENT (for 2.0)
+  * port to KDE 4
+  * use the Qanava library ?
+  * integration in kate and konqueror ;
+    (so a change in the kate view of the graph would relayout and reload the 
+    file)
+  * menu to open the file in kate OR to open a katepart inside the kgraphviewer 
+    window
+  * loading of big and huge graphes (currently, there is performance problems 
+    around 1000 nodes) ;
+  * progressive support of more and more dot attributes and values ;
+  * layout in background (thread to don't block the interface, with progress 
+    bar); and replace popen by QProcess
+  * define print zone with the mouse
+  * add a speed factor (speed vector) to dragging scroll as in ZGRViewer
+  * all configuration data stored for each file (zoom, position, page setup, 
+    layout program used, ...)
+  * more i18n
+  * more export options
+
+REALLY NEEDED ?
+  * graph editing facilities ;
+  * non-dot formats supported ;
+  * saving to dot format (regenerate the initial file or equivalent).
