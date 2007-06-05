@@ -15,7 +15,7 @@ endif (APPLE)
 find_package(KdepimLibs REQUIRED)
 #macro_optional_find_package(GraphViz)
 
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT3_SUPPORT -DHAVE_CONFIG_H=1)
+add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT3_SUPPORT)
 
 remove_definitions(-DQT_NO_STL) 
 
@@ -25,7 +25,7 @@ include_directories (${QDBUS_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DI
 
 
 include (ConfigureChecks.cmake)
-configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h )
+configure_file (config-kgraphviewer.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h )
 
 
 MESSAGE(STATUS "remember to port kgraphviewer (dbus)")

@@ -20,9 +20,7 @@
 #ifndef _KGRAPHVIEWER_H_
 #define _KGRAPHVIEWER_H_
 
-#ifdef HAVE_CONFIG_H
-//#include <config.h>
-#endif
+//#include <config-kgraphviewer.h>
 
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
