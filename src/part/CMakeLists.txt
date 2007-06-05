@@ -18,8 +18,6 @@ kde4_add_plugin(kgraphviewerpart ${kgraphviewerpart_PART_SRCS})
 
 target_link_libraries(kgraphviewerpart  ${QT_AND_KDECORE_LIBS} ${QT_QT_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KHTML_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KDEPRINT_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} ${KDE4_KDEFX_LIBS}  )
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} kgraphviewerpart )
-
 install( TARGETS kgraphviewerpart DESTINATION ${PLUGIN_INSTALL_DIR})
 
 

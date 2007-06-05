@@ -16,7 +16,8 @@ kde4_automoc(${kgraphviewer_SRCS})
 
 kde4_add_executable(kgraphviewer ${kgraphviewer_SRCS})
 
-target_link_libraries(kgraphviewer  ${QT_AND_KDECORE_LIBS} ${QT_QT_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KHTML_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KDEPRINT_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} ${KDE4_KDEFX_LIBS} )
+# I think that we can reduce number of lib to link :)
+target_link_libraries(kgraphviewer  ${QT_AND_KDECORE_LIBS} ${QT_QT_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KHTML_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KDEPRINT_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} ${KDE4_KDEFX_LIBS} )
 
 install( TARGETS kgraphviewer DESTINATION ${BIN_INSTALL_DIR})
 
@@ -24,6 +25,7 @@ install( TARGETS kgraphviewer DESTINATION ${BIN_INSTALL_DIR})
 
 kde4_install_icons( ${ICON_INSTALL_DIR} )
 
+#TODO move x-kgraphviewer mimetype to mime (ask to David Faure)
 install( FILES x-kgraphviewer.desktop DESTINATION ${MIME_INSTALL_DIR}/application )
 install( FILES kgraphviewersettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
 install( FILES kgraphviewerui.rc DESTINATION ${DATA_INSTALL_DIR}/kgraphviewer )
