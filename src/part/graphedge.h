@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -64,9 +65,9 @@ public:
   void setCallerNode(GraphNode* n) { _fromNode = n; }
   void setCallingNode(GraphNode* n) { _toNode = n; }
 
-  inline const QValueVector< QPair< float, float > >& edgePoints() const {return m_edgePoints;}
-  inline QValueVector< QPair< float, float > >& edgePoints() {return m_edgePoints;}
-  inline void edgePoints(const QValueVector< QPair< float, float > >& ep) {m_edgePoints = ep;}
+  inline const QVector< QPair< float, float > >& edgePoints() const {return m_edgePoints;}
+  inline QVector< QPair< float, float > >& edgePoints() {return m_edgePoints;}
+  inline void edgePoints(const QVector< QPair< float, float > >& ep) {m_edgePoints = ep;}
   
   inline const QStringList& colors() {return m_colors;}
   const QString color(uint i);
@@ -83,8 +84,8 @@ public:
   inline std::vector< DotRenderOp >&  arrowheads() {return m_arrowheads;}
   inline const std::vector< DotRenderOp >&  arrowheads() const {return m_arrowheads;}
 
-  void fontName(const std::string& theValue) {m_fontName = theValue;}
-  const std::string& fontName() const {return m_fontName;}
+  void fontName(const QString& theValue) {m_fontName = theValue;}
+  const QString& fontName() const {return m_fontName;}
 
   void fontSize(unsigned int theValue) {m_fontSize = theValue;}
   unsigned int fontSize() const {return m_fontSize;}
@@ -116,9 +117,9 @@ private:
   QStringList m_colors;
   QString m_dir;
   QString m_style;
-  QValueVector< QPair< float, float > > m_edgePoints;
+  QVector< QPair< float, float > > m_edgePoints;
   float m_labelX, m_labelY;
-  std::string m_fontName;
+  QString m_fontName;
   unsigned int m_fontSize;
   QString m_fontColor;
   unsigned int m_z;

@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -36,7 +37,7 @@
 #define DEFAULT_DETAILLEVEL  1
 #define DEFAULT_LAYOUT       GraphOptions::TopDown
 
-class KTempFile;
+class KTemporaryFile;
 
 
 /* Graph Options Storage */
@@ -47,12 +48,14 @@ public:
   
   GraphOptions() : _detailLevel(DEFAULT_DETAILLEVEL),_layout(DEFAULT_LAYOUT) {}
 
+  virtual ~GraphOptions() {}
+  
   // implementation of getters
   virtual int detailLevel() { return _detailLevel; }
   virtual Layout layout() { return _layout; }
 
   static QString layoutString(Layout);
-  static Layout layout(const QString&);
+  static Layout layout(QString);
 protected:
     int _detailLevel;
     Layout _layout;
@@ -67,10 +70,10 @@ protected:
 class GraphExporter: public GraphOptions
 {
 public:
-  GraphExporter(const QString& filename = QString::null);
+  GraphExporter(QString filename = QString::null);
   virtual ~GraphExporter();
 
-  void reset(const QString& filename = QString::null);
+  void reset(QString filename = QString::null);
 
   QString filename() { return _dotName; }
 
@@ -84,15 +87,10 @@ public:
   // calls createGraph before dumping of not already created
   void writeDot();
 
-  /* After CanvasEdges are attached to GraphEdges, we can
-   * sort the incoming and outgoing edges of all nodes
-   * regarding start/end points for keyboard navigation
-   */
-  void sortEdges();
 
 private:
   QString _dotName;
-  KTempFile* _tmpFile;
+  KTemporaryFile* _tmpFile;
   bool _graphCreated;
 
   GraphOptions* _go;

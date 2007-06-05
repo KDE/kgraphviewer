@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -40,50 +41,11 @@
 #include "dotdefaults.h"
 
 //
-// GraphEdgeList
-//
-
-GraphEdgeList::GraphEdgeList()
-    : _sortCallerPos(true)
-{}
-
-int GraphEdgeList::compareItems(Item item1, Item item2)
-{
-    CanvasEdge* e1 = ((GraphEdge*)item1)->canvasEdge();
-    CanvasEdge* e2 = ((GraphEdge*)item2)->canvasEdge();
-
-    // edges without arrow visualizations are sorted as low
-    if (!e1) return -1;
-    if (!e2) return 1;
-
-    int dx1, dy1, dx2, dy2;
-    int x, y;
-    if (_sortCallerPos) 
-    {
-//       e1->controlPoints().point(0,&x,&y);
-//       e2->controlPoints().point(0,&dx1,&dy1);
-      dx1 -= x; dy1 -= y;
-    }
-    else 
-    {
-//       QPointArray a1 = e1->controlPoints();
-//       QPointArray a2 = e2->controlPoints();
-//       a1.point(a1.count()-2,&x,&y);
-//       a2.point(a2.count()-1,&dx2,&dy2);
-      dx2 -= x; dy2 -= y;
-    }
-    double at1 = atan2(double(dx1), double(dy1));
-    double at2 = atan2(double(dx2), double(dy2));
-
-    return (at1 < at2) ? 1:-1;
-}
-
-//
 // GraphNode
 //
 
 GraphNode::GraphNode() :
-    m_id(""),
+    m_label(""), m_id(""),
     m_x(0), m_y(0), m_w(0), m_h(0),
     m_style(DOT_DEFAULT_STYLE), 
     m_shape(DOT_DEFAULT_SHAPE), 
@@ -92,26 +54,10 @@ GraphNode::GraphNode() :
     m_fontSize(DOT_DEFAULT_FONTSIZE),
     m_fontName(DOT_DEFAULT_FONTNAME),
     m_fontColor(DOT_DEFAULT_FONTCOLOR),
-    m_label(""), m_z(1),
+    m_z(1),
     m_shapeFile(""), m_url("")
 {
     m_visible = false;
-    _lastCallerIndex = _lastCallingIndex = -1;
-
-    callers.setSortCallerPos(false);
-    callings.setSortCallerPos(true);
-    _lastFromCaller = true;
 }
 
-void GraphNode::setCalling(GraphEdge* e)
-{
-    _lastCallingIndex = callings.findRef(e);
-    _lastFromCaller = false;
-}
-
-void GraphNode::setCaller(GraphEdge* e)
-{
-    _lastCallerIndex = callers.findRef(e);
-    _lastFromCaller = true;
-}
 

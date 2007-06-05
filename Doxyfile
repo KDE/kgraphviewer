@@ -4,7 +4,7 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 PROJECT_NAME           = kgraphviewer.kdevelop
-PROJECT_NUMBER         = 1.0.3
+PROJECT_NUMBER         = 1.0rc1
 OUTPUT_DIRECTORY       = 
 CREATE_SUBDIRS         = YES
 OUTPUT_LANGUAGE        = English

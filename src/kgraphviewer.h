@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 
@@ -20,15 +21,16 @@
 #define _KGRAPHVIEWER_H_
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include <config.h>
 #endif
 
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
 #include <ktabwidget.h>
 #include <kaction.h>
+#include <krecentfilesaction.h>
 
-#include "dcopkgraphvieweriface.h"
+//#include "dcopkgraphvieweriface.h"
 
 class KToggleAction;
 /**
@@ -38,25 +40,25 @@ class KToggleAction;
  * @short Application Shell
  * @author Gaël de Chalendar <kleag@free.fr>
  */
-class kgraphviewer : public KParts::MainWindow, virtual public DCOPKGraphViewerIface
+class KGraphViewer : public KParts::MainWindow //, virtual public DCOPKGraphViewerIface
 {
   Q_OBJECT
 public:
   /**
     * Default Constructor
     */
-  kgraphviewer();
+  KGraphViewer();
 
   /**
     * Default Destructor
     */
-  virtual ~kgraphviewer();
+  virtual ~KGraphViewer();
 
   /**
     * Use this method to load whatever file/URL you have
     */
-  void openURL(const KURL& url);
-
+  void openUrl(const KUrl& url);
+  
   void reloadPreviousFiles();
 
 protected:
@@ -67,6 +69,12 @@ signals:
   void hide(KParts::Part* part);
 
     
+public slots:
+  /**
+    * Use this method to load whatever file/URL you have
+    */
+  void openUrl(const QString& url) {openUrl(KUrl(url));}
+
 /*public slots:
   void reloadOnChangeMode_pressed(int value);
   void openInExistingWindowMode_pressed(int value);
@@ -77,7 +85,7 @@ private slots:
   void fileOpen();
   void close(QWidget* tab);
   void close();
-  void slotURLSelected(const KURL&);
+  void slotURLSelected(const KUrl&);
   void optionsShowToolbar();
   void optionsShowStatusbar();
   void optionsConfigureKeys();

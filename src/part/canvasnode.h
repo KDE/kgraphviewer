@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -30,11 +31,14 @@
 #ifndef CANVAS_NODE_H
 #define CANVAS_NODE_H
 
-#include <qcanvas.h>
-#include <qwidget.h>
-#include <qmap.h>
-#include <qfont.h>
-#include <qpen.h>
+#include <QGraphicsPolygonItem>
+#include <QGraphicsEllipseItem>
+#include <QWidget>
+#include <QMap>
+#include <QFont>
+#include <QPen>
+//Added by qt3to4:
+#include <QPolygonF>
 
 #include <khtml_part.h>
 #include <khtmlview.h>
@@ -53,13 +57,13 @@ public:
   
   GraphNode* node() { return m_node; }
 
-  virtual QRect rect() = 0;
+//   virtual QRect rect() = 0;
   
   static CanvasNode* dotShapedCanvasNode(const DotRenderOp& dro, 
                                   const DotRenderOpVec& dros,
                                   DotGraphView* v, 
                                   GraphNode* n,
-                                  QCanvas* c,
+                                  QGraphicsScene* c,
                                   double scaleX, double scaleY, 
                                          int xMargin, int yMargin, int gh,
                                          int wdhcf, int hdvcf);
@@ -68,7 +72,9 @@ public:
   inline void hasFocus(bool val) {m_hasFocus = val;}
   
 protected:
-  virtual void drawShape(QPainter&);
+  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
+QWidget *widget);
+
   virtual void update() {}
   
   double m_scaleX, m_scaleY; 
@@ -81,48 +87,49 @@ protected:
   QPen m_pen;
 };
 
-class CanvasPolygonalNode: public QCanvasPolygon, public CanvasNode
+class CanvasPolygonalNode: public QGraphicsPolygonItem, public CanvasNode
 {
 public:
-  CanvasPolygonalNode(DotGraphView* v,GraphNode* n, const QPointArray& points, QCanvas* c);
+  CanvasPolygonalNode(DotGraphView* v,GraphNode* n, const QPolygonF& points, QGraphicsScene* c);
   CanvasPolygonalNode(
               DotGraphView* v, 
               GraphNode* n,
               const DotRenderOp& dro,
               const DotRenderOpVec& dros,
-                       QCanvas* c,
+                       QGraphicsScene* c,
                        double scaleX, double scaleY, int xMargin, int yMargin, int gh,
                        int wdhcf, int hdvcf);
   virtual ~CanvasPolygonalNode() {}
   
-  QRect rect() {return QCanvasPolygon::boundingRect();}
-//   QPointArray areaPoints() const;
+//   QRect rect() {return QGraphicsPolygonItem::polygon().boundingRect().toRect();}
   virtual void update();
   
 protected:
-  virtual void drawShape(QPainter&);
+  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
+QWidget *widget);
 };
 
-class CanvasEllipseNode: public QCanvasEllipse, public CanvasNode
+class CanvasEllipseNode: public QGraphicsEllipseItem, public CanvasNode
 {
 public:
-  CanvasEllipseNode(DotGraphView* v,GraphNode* n, int x, int y, int w, int h, QCanvas* c);
+  CanvasEllipseNode(DotGraphView* v,GraphNode* n, int x, int y, int w, int h, QGraphicsScene* c);
   CanvasEllipseNode(
                     DotGraphView* v, 
                     GraphNode* n,
                     const DotRenderOp& dro,
                     const DotRenderOpVec& dros,
-                    QCanvas* c,
+                    QGraphicsScene* c,
                     double scaleX, double scaleY, int xMargin, int yMargin, int gh,
                     int wdhcf, int hdvcf);
   virtual ~CanvasEllipseNode() {}
   
-  QRect rect() {return QCanvasEllipse::boundingRect();}
+//   QRect rect() {return QGraphicsEllipseItem::rect().toRect();}
   
 //   QPointArray areaPoints() const;
     
 protected:
-  virtual void drawShape(QPainter&);
+  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
+  QWidget *widget);
 };
 
 class CanvasHtmlNode: public KHTMLPart, public CanvasNode
@@ -134,7 +141,7 @@ public:
                      GraphNode* n,
                      const DotRenderOp& dro,
                      const DotRenderOpVec& dros,
-                     QCanvas* c,
+                     QGraphicsScene* c,
                      double scaleX, double scaleY, int xMargin, int yMargin, int gh,
                      int wdhcf, int hdvcf);
   virtual ~CanvasHtmlNode();
@@ -142,7 +149,7 @@ public:
   QRect rect() {return view()->contentsRect();}
   
 protected:
-//   virtual void drawShape(QPainter&);
+//   virtual void paint(QPainter&);
 
 public slots:
   void move(int x, int y);

@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -31,37 +32,39 @@
 #ifndef PANNER_VIEW_H
 #define PANNER_VIEW_H
 
-#include <qcanvas.h>
-#include <qwidget.h>
+#include <QGraphicsView>
+#include <QWidget>
+//Added by qt3to4:
+#include <QMouseEvent>
 
 
 /**
- * A panner laid over a QCanvas
+ * A panner layed over a QCanvas
  */
-class PannerView: public QCanvasView
+class PannerView: public QGraphicsView
 {
   Q_OBJECT
 
 public:
   PannerView(QWidget * parent = 0, const char * name = 0);
 
-  void setZoomRect(QRect r);
+  void setZoomRect(QRectF r);
 
   inline void setDrawingEnabled(bool val) {m_drawContents = val;}
 
 signals:
-  void zoomRectMoved(int dx, int dy);
+  void zoomRectMovedTo(QPointF newPos);
   void zoomRectMoveFinished();
 
 protected:
-  void contentsMousePressEvent(QMouseEvent*);
-  void contentsMouseMoveEvent(QMouseEvent*);
-  void contentsMouseReleaseEvent(QMouseEvent*);
-  void drawContents(QPainter * p, int clipx, int clipy, int clipw, int cliph);
+  virtual void mousePressEvent(QMouseEvent*);
+  virtual void mouseMoveEvent(QMouseEvent*);
+  virtual void mouseReleaseEvent(QMouseEvent*);
+  virtual void drawForeground(QPainter * p, const QRectF & rect );
 
-  QRect _zoomRect;
-  bool _movingZoomRect;
-  QPoint _lastPos;
+  QRectF m_zoomRect;
+  bool m_movingZoomRect;
+  QPointF m_lastPos;
   bool m_drawContents;
 };
 

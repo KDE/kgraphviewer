@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /*
@@ -31,9 +32,12 @@
 #include <list>
 #include <string>
 #include <sstream>
-#include <qstring.h>
-#include <qpair.h>
-#include <qvaluevector.h>
+
+#include <QString>
+#include <QPair>
+#include <QVector>
+#include <QPoint>
+#include <QColor>
 
 class DotGraph;
 class GraphSubgraph;
@@ -87,7 +91,7 @@ void finalactions(char const* first, char const* last);
 bool parse_point(char const* str, QPoint& p);
 bool parse_real(char const* str, double& d);
 bool parse_integers(char const* str, std::vector<int>& v);
-bool parse_spline(char const* str, QValueVector< QPair< float, float > >& points);
+bool parse_spline(char const* str, QVector< QPair< float, float > >& points);
 void init_op();
 void valid_op(char const* first, char const* last);
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec);
@@ -113,7 +117,7 @@ struct DotGraphParsingHelper
   std::string attributed;
   std::string subgraphid;
   
-  uint only;
+  uint uniq;
   
   typedef std::map< std::string, std::string > AttributesMap;
   AttributesMap attributes;

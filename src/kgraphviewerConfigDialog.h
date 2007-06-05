@@ -11,26 +11,25 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 
 #ifndef _KGRAPHVIEWERCONFIGDIALOG_H_
 #define _KGRAPHVIEWERCONFIGDIALOG_H_
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <kconfigdialog.h>
 
+namespace Ui {
 class KGraphViewerPreferencesReloadWidget;
 class KGraphViewerPreferencesOpenInExistingWindowWidget;
 class KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget;
+}
 
 /**
- * This is the KGraphViewer configuration dialog
+ * This is the KGraphViewer configration dialog
  *
  * @short Configuration dialog
  * @author Gaël de Chalendar <kleag@free.fr>
@@ -39,9 +38,9 @@ class KgvConfigurationDialog : public KConfigDialog
 {
   Q_OBJECT
 public:
-   KgvConfigurationDialog (QWidget *parent, const char *name, KConfigSkeleton *config, 
-                  DialogType dialogType=IconList, 
-                  int dialogButtons=Default|Ok|Apply|Cancel|Help, 
+   KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config, 
+                     KPageDialog::FaceType dialogType,//=IconList, 
+                  ButtonCodes dialogButtons=Default|Ok|Apply|Cancel|Help, 
                   ButtonCode defaultButton=Ok, bool modal=false);
 
   virtual ~KgvConfigurationDialog ();
@@ -55,9 +54,9 @@ protected:
   virtual bool hasChanged();
 
   bool m_changed;
-  KGraphViewerPreferencesReloadWidget*  m_reloadWidget;
-  KGraphViewerPreferencesOpenInExistingWindowWidget* m_openingWidget;
-  KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget* m_reopeningWidget;
+  Ui::KGraphViewerPreferencesReloadWidget*  m_reloadWidget;
+  Ui::KGraphViewerPreferencesOpenInExistingWindowWidget* m_openingWidget;
+  Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget* m_reopeningWidget;
 };
 
 #endif

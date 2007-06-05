@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.cpp, part of KCachegrind.
@@ -31,21 +32,13 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include <qtooltip.h>
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qwhatsthis.h>
-#include <qcanvas.h>
-#include <qwmatrix.h>
-#include <qpair.h>
-#include <qpainter.h>
-#include <qpopupmenu.h>
-#include <qstyle.h>
+#include <QFile>
+#include <QTextStream>
 
 #include <kdebug.h>
 #include <klocale.h>
 #include <kconfig.h>
-#include <ktempfile.h>
+#include <ktemporaryfile.h>
 #include <kapplication.h>
 #include <kiconloader.h>
 #include <kfiledialog.h>
@@ -65,7 +58,7 @@ QString GraphOptions::layoutString(Layout l)
     return QString("TopDown");
 }
 
-GraphOptions::Layout GraphOptions::layout(const QString& s)
+GraphOptions::Layout GraphOptions::layout(QString s)
 {
     if (s == QString("Circular")) return Circular;
     if (s == QString("LeftRight")) return LeftRight;
@@ -78,7 +71,7 @@ GraphOptions::Layout GraphOptions::layout(const QString& s)
 // GraphExporter
 //
 
-GraphExporter::GraphExporter(const QString& filename)
+GraphExporter::GraphExporter(QString filename)
 {
     _go = this;
     _tmpFile = 0;
@@ -89,13 +82,12 @@ GraphExporter::GraphExporter(const QString& filename)
 GraphExporter::~GraphExporter()
 {
   if (_tmpFile) {
-    _tmpFile->unlink();
     delete _tmpFile;
   }
 }
 
 
-void GraphExporter::reset(const QString& filename)
+void GraphExporter::reset( QString filename)
 {
   _graphCreated = false;
   _nodeMap.clear();
@@ -103,13 +95,13 @@ void GraphExporter::reset(const QString& filename)
 
   if (_tmpFile) 
   {
-    _tmpFile->unlink();
     delete _tmpFile;
   }
 
   if (filename.isEmpty()) 
   {
-    _tmpFile = new KTempFile(QString::null, ".dot");
+    _tmpFile = new KTemporaryFile();
+    _tmpFile->setSuffix(".dot");
     _dotName = _tmpFile->name();
     _useBox = true;
   }
@@ -141,11 +133,11 @@ void GraphExporter::writeDot()
   QTextStream* stream = 0;
 
   if (_tmpFile)
-    stream = _tmpFile->textStream();
+    stream = new QTextStream(_tmpFile);
   else {
     file = new QFile(_dotName);
-    if ( !file->open( IO_WriteOnly ) ) {
-      kdError() << "Can't write dot file '" << _dotName << "'" << endl;
+    if ( !file->open( QIODevice::WriteOnly ) ) {
+      kError() << "Can't write dot file '" << _dotName << "'" << endl;
       return;
     }
     stream = new QTextStream(file);
@@ -198,10 +190,6 @@ void GraphExporter::writeDot()
     e->setCallerNode(&from);
     e->setCallingNode(&to);
 
-    // remove dumped edges from n.callers/n.callings
-//     from.callings.removeRef(&e);
-//     to.callers.removeRef(&e);
-
     *stream << QString("  F%1 -> F%2 [weight=1")
       .arg(from.label())
       .arg(to.label());
@@ -214,12 +202,10 @@ void GraphExporter::writeDot()
 
   // clear edges here completely.
   // Visible edges are inserted again on parsing in DotGraphView::refresh
-  for ( nit = _nodeMap.begin(); nit != _nodeMap.end(); ++nit ) 
-  {
-      GraphNode* n = *nit;
-      n->callers.clear();
-      n->callings.clear();
-  }
+//   for ( nit = _nodeMap.begin(); nit != _nodeMap.end(); ++nit ) 
+//   {
+//       GraphNode* n = *nit;
+//   }
 
   *stream << "}\n";
 
@@ -234,17 +220,4 @@ void GraphExporter::writeDot()
     delete stream;
   }
 }
-
-void GraphExporter::sortEdges()
-{
-  GraphNodeMap::Iterator nit;
-  for ( nit = _nodeMap.begin(); nit != _nodeMap.end(); ++nit ) 
-  {
-    GraphNode* n = *nit;
-    
-    n->callers.sort();
-    n->callings.sort();
-  }
-}
-
 

@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /*
@@ -22,7 +23,7 @@
 #ifndef CANVAS_SUBGRAPH_H
 #define CANVAS_SUBGRAPH_H
 
-#include <qcanvas.h>
+#include <QGraphicsPolygonItem>
 #include <qfont.h>
 #include <qpen.h>
 #include <qbrush.h>
@@ -31,25 +32,26 @@
 
 class GraphSubgraph;
 class DotGraphView;
+class QGraphicsScene;
 
-class CanvasSubgraph: public QCanvasPolygon
+class CanvasSubgraph: public QGraphicsPolygonItem
 {
 public:
-  explicit CanvasSubgraph(
+  CanvasSubgraph(
       DotGraphView* v, 
       GraphSubgraph* s,
-      QCanvas* c,
+      QGraphicsScene* c,
       double scaleX, double scaleY, int xMargin, int yMargin, int gh,
       int wdhcf, int hdvcf);
   virtual ~CanvasSubgraph() {}
   
   GraphSubgraph* subgraph() { return m_subgraph; }
 
-  QRect rect() {return QCanvasPolygon::boundingRect();}
+  QRectF rect() {return QGraphicsPolygonItem::boundingRect();}
   
     
 protected:
-  virtual void drawShape(QPainter&);
+  virtual void paint(QPainter&);
   
   double m_scaleX, m_scaleY; 
   int m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;

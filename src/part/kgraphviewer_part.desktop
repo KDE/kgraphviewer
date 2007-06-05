@@ -1,12 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=kgraphviewerPart
-Name[da]=kgraphviewer-partprogram
-Name[de]=KGraphViewer-Komponente
-Name[is]=KGraphViewerPart
-Name[it]=Componente kgraphviewer
-Name[nds]=KGraphViewer-Komponent
-Name[sv]=kgraphviewer-delprogram
+Name[et]=kgraphviewer komponent
+Name[ja]=kgraphviewer パート
+Name[pt_BR]=Parte kgraphviewer
+Name[sv]=kgraphviewer-del
+Name[ta]=kgraphviewerபாகம்
+Name[xx]=xxkgraphviewerPartxx
 MimeType=application/graphviz
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=libkgraphviewerpart

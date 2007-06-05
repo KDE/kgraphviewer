@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -32,12 +33,12 @@
 #define CALLGRAPHVIEW_H
 
 #include <kconfig.h>
+#include <kactioncollection.h>
 
-#include <qcanvas.h>
-#include <qwidget.h>
-#include <qmap.h>
+#include <QGraphicsView>
 
 #include <set>
+#include <kconfiggroup.h>
 
 #include "graphexporter.h"
 
@@ -48,130 +49,127 @@ class GraphNode;
 class PannerView;
 class DotGraph;
 class KGVSimplePrintingCommand;
-class CallGraphTip;
+class KSelectAction;
+class KToggleAction;
 
+class QMenu;
+class QAction;
+class QKeyEvent;
+class QMouseEvent;
+class QFocusEvent;
+class QResizeEvent;
+class QWheelEvent;
+class QContextMenuEvent;
+class QWidget;
 
 /**
  * A CanvasView showing a part of the call graph
  * and another zoomed out CanvasView in a border acting as
  * a panner to select to visible part (only if needed)
  */
-class DotGraphView: public QCanvasView, public GraphOptions
+class DotGraphView: public QGraphicsView, public GraphOptions
 {
  Q_OBJECT
 
 public:
  enum ZoomPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
 
-  /**
-   * Export menu items
-   */
-  enum { EXPORT_TO_IMAGE };
-
-  /**
-   * Popup menu items
-   */
-  enum { 
-      POPUP_BEV   = 100,
-      POPUP_BEV_ENABLED,
-      POPUP_BEV_TOPLEFT,
-      POPUP_BEV_TOPRIGTH,
-      POPUP_BEV_BOTTOMLEFT,
-      POPUP_BEV_BOTTOMRIGHT,
-      POPUP_BEV_AUTOMATIC,
-      POPUP_EXPORT = 200,
-      POPUP_EXPORT_IMAGE,
-      POPUP_LAYOUT = 300,
-      POPUP_LAYOUT_SPECIFY,
-      POPUP_LAYOUT_RESET,
-      POPUP_LAYOUT_DOT,
-      POPUP_LAYOUT_NEATO,
-      POPUP_LAYOUT_TWOPI,
-      POPUP_LAYOUT_FDP,
-      POPUP_LAYOUT_CIRCO
-  };
-  
-  DotGraphView(QWidget* parent=0, const char* name=0);
+  DotGraphView(KActionCollection* actions, QWidget* parent=0);
   virtual ~DotGraphView();
 
   void readViewConfig();
   void saveViewConfig();
 
   QWidget* widget() { return this; }
-  QString whatsThis() const;
 
   ZoomPosition zoomPos() const { return m_zoomPosition; }
-  static ZoomPosition zoomPos(const QString&);
+  static ZoomPosition zoomPos(QString);
   static QString zoomPosString(ZoomPosition);
   
-  static KConfigGroup* configGroup(KConfig*, const QString& prefix, const QString& postfix);
-  static void writeConfigEntry(KConfigBase*, const char* pKey, const QString& value,
-                               const char* def, bool bNLS = false);
-  static void writeConfigEntry(KConfigBase*, const char* pKey,
+  static KConfigGroup* configGroup(KConfig*, QString prefix, QString postfix);
+  static void writeConfigEntry(KConfigGroup*, const char* pKey, QString value,
+                               const char* def);
+  static void writeConfigEntry(KConfigGroup*, const char* pKey,
                                int value, int def);
-  static void writeConfigEntry(KConfigBase*, const char* pKey,
+  static void writeConfigEntry(KConfigGroup*, const char* pKey,
                                bool value, bool def);
-  static void writeConfigEntry(KConfigBase*, const char* pKey,
+  static void writeConfigEntry(KConfigGroup*, const char* pKey,
                                double value, double def);
   
   virtual void wheelEvent(QWheelEvent* e);
     
-  void zoomIn();
-  void zoomOut();  
   void applyZoom(double factor);
   
   void setLayoutCommand(const QString& command);
     
   const QString& dotFileName();
-    
+
   void hideToolsWindows();
   inline double zoom() const {return m_zoom;}
-  
+  inline KSelectAction* bevPopup() {return m_bevPopup;}
+
 signals:
   void zoomed(double factor);
   void sigViewBevEnabledToggled(bool value);
   void sigViewBevActivated(int newPos);
 
 public slots:
-  void contentsMovingSlot(int,int);
-  void zoomRectMoved(int,int);
+  void zoomIn();
+  void zoomOut();  
+  void zoomRectMovedTo(QPointF newZoomPos);
   void zoomRectMoveFinished();
   bool loadDot(const QString& dotFileName);
   bool reload();
   void dirty(const QString& dotFileName);
-	void pageSetup();
+  void pageSetup();
   void print();
   void printPreview();
-  void viewBevEnabledToggled(bool value);
   void viewBevActivated(int newPos);
-  void fileExportActivated(int value);
+  void slotExportImage();
+  void slotSelectLayoutAlgo(const QString& text);
+  void slotLayoutSpecify();
+  void slotLayoutReset();
+  void slotSelectLayoutDot();
+  void slotSelectLayoutNeato();
+  void slotSelectLayoutTwopi();
+  void slotSelectLayoutFdp();
+  void slotSelectLayoutCirco();
+  void slotBevEnabled();
+  void slotBevTopLeft();
+  void slotBevTopRight();
+  void slotBevBottomLeft();
+  void slotBevBottomRight();
+  void slotBevAutomatic();
+        
 
 protected:
   void resizeEvent(QResizeEvent*);
-  void contentsMousePressEvent(QMouseEvent*);
-  void contentsMouseMoveEvent(QMouseEvent*);
-  void contentsMouseReleaseEvent(QMouseEvent*);
-  void contentsMouseDoubleClickEvent(QMouseEvent*);
-  void contentsContextMenuEvent(QContextMenuEvent*);
+  void mousePressEvent(QMouseEvent*);
+  void mouseMoveEvent(QMouseEvent*);
+  void mouseReleaseEvent(QMouseEvent*);
+  void mouseDoubleClickEvent(QMouseEvent*);
+  void contextMenuEvent(QContextMenuEvent*);
   void keyPressEvent(QKeyEvent*);
   void focusInEvent(QFocusEvent*);
   void focusOutEvent(QFocusEvent*);
 
 private:
-  void updateSizes(QSize s = QSize(0,0));
+  void updateSizes(QSizeF s = QSizeF(0,0));
   void makeFrame(CanvasNode*, bool active);
   void setupPopup();
   void exportToImage();
-
-  std::set<QCanvasText*> m_labelViews;
-  QCanvas *m_canvas;
-  QPopupMenu* m_popup;
+  KActionCollection* actionCollection() {return m_actions;}
+  
+  std::set<QGraphicsSimpleTextItem*> m_labelViews;
+  QGraphicsScene* m_canvas;
+  QMenu* m_popup;
+  KSelectAction* m_bevPopup;
+  KSelectAction* m_layoutAlgoSelectAction;
   int m_xMargin, m_yMargin;
   PannerView *m_birdEyeView;
   double m_cvZoom;
-  QSize m_canvasNaturalSize;
+  QSizeF m_canvasNaturalSize;
   double m_zoom;
-  CallGraphTip* m_tip;
   bool m_isMoving;
   QPoint m_lastPos;
 
@@ -185,6 +183,9 @@ private:
   CanvasNode* m_focusedNode;
 
   KGVSimplePrintingCommand* m_printCommand;
+  
+  KToggleAction* m_bevEnabledAction;
+  KActionCollection* m_actions;
 };
 
 

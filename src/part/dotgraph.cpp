@@ -11,18 +11,18 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 #include <iostream>
-#include <fstream>
 #include <math.h>
 
 #include <kdebug.h>
-#include <qvaluevector.h>
-#include <qfile.h>
-#include <qpair.h>
+#include <QFile>
+#include <QPair>
+#include <QByteArray>
 
 
 #include "fdstream.hpp"
@@ -65,13 +65,13 @@ DotGraph::~DotGraph()
 
 QString DotGraph::chooseLayoutProgramForFile(const QString& str)
 {
-  if (m_layoutCommand.isEmpty())
+  if (m_layoutCommand == "")
   {
     QFile iFILE(str);
     
-    if (!iFILE.open(IO_ReadOnly))
+    if (!iFILE.open(QIODevice::ReadOnly))
     {
-      kdError() << "Can't test dot file. Will try to use the dot command" << str << endl;
+      kError() << "Can't test dot file. Will try to use the dot command on the file: '" << str << "'" << endl;
       return "dot -Txdot";
     }
     
@@ -84,7 +84,7 @@ QString DotGraph::chooseLayoutProgramForFile(const QString& str)
             !(keyword_p("strict")) >> (keyword_p("graph")[assign_a(cmd,"neato")])
           ), (space_p|comment_p("/*", "*/")) );
     
-    m_layoutCommand = (cmd + " -Txdot").c_str() ;
+    m_layoutCommand = QString::fromStdString(cmd) + " -Txdot" ;
   }
 //   std::cerr << "File " << str << " will be layouted by '" << m_layoutCommand << "'" << std::endl;
   return m_layoutCommand;
@@ -101,12 +101,12 @@ bool DotGraph::parseDot(const QString& str)
 //   std::cerr << "Building popencmd" << std::endl;
   popencmd = QString("%1 %2 2>/dev/null").arg(m_layoutCommand).arg(str);
   
-//   kdDebug() << "Running '" << popencmd << "'..." << endl;
+//   kDebug() << "Running '" << popencmd << "'..." << endl;
   
   FILE* file = popen(popencmd.ascii(), "r");
   if (file == 0) 
   {
-    kdError() << "Can't run dot!" << endl;
+    kError() << "Can't run dot!" << endl;
     return false;
   }
 
@@ -128,7 +128,7 @@ bool DotGraph::parseDot(const QString& str)
       oss << line;
     }
   }
-  
+ 
   std::string s =  oss.str();
 //   std::cerr << "std::string content is:" << std::endl << "'" << s << "'" << std::endl;
   if (phelper != 0)
@@ -140,7 +140,7 @@ bool DotGraph::parseDot(const QString& str)
   phelper->graph = this;
   phelper->z = 1;
   phelper->maxZ = 1;
-  phelper->only = 0;
+  phelper->uniq = 0;
   
   bool parsingResult = DotGraphParsingHelper::parse(s);
   if (parsingResult)
@@ -154,13 +154,13 @@ bool DotGraph::parseDot(const QString& str)
 
 unsigned int DotGraph::cellNumber(int x, int y)
 {
-/*  kdDebug() << "x= " << x << ", y= " << y << ", m_width= " << m_width << ", m_height= " << m_height << ", m_horizCellFactor= " << m_horizCellFactor << ", m_vertCellFactor= " << m_vertCellFactor  << ", m_wdhcf= " << m_wdhcf << ", m_hdvcf= " << m_hdvcf << endl;*/
+/*  kDebug() << "x= " << x << ", y= " << y << ", m_width= " << m_width << ", m_height= " << m_height << ", m_horizCellFactor= " << m_horizCellFactor << ", m_vertCellFactor= " << m_vertCellFactor  << ", m_wdhcf= " << m_wdhcf << ", m_hdvcf= " << m_hdvcf << endl;*/
   
   unsigned int nx = (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
   unsigned int ny = (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
-/*  kdDebug() << "nx = " << (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf) << endl;
-  kdDebug() << "ny = " << (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf) << endl;
-  kdDebug() << "res = " << ny * m_horizCellFactor + nx << endl;*/
+/*  kDebug() << "nx = " << (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf) << endl;
+  kDebug() << "ny = " << (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf) << endl;
+  kDebug() << "res = " << ny * m_horizCellFactor + nx << endl;*/
   
   unsigned int res = ny * m_horizCellFactor + nx;
   return res;
@@ -186,12 +186,12 @@ void DotGraph::computeCells()
     {
       GraphNode* gn = *it;
       int cellNum = cellNumber(int(gn->x()), int(gn->y()));
-//       kdDebug() << "Found cell number " << cellNum << endl;
+//       kDebug() << "Found cell number " << cellNum << endl;
       m_cells[cellNum].insert(gn);
       
       if ( m_cells[cellNum].size() > MAXCELLWEIGHT )
       {
-//         kdDebug() << "cell number " << cellNum  << " contains " << m_cells[cellNum].size() << " nodes" << endl;
+//         kDebug() << "cell number " << cellNum  << " contains " << m_cells[cellNum].size() << " nodes" << endl;
         if ((m_width/m_horizCellFactor) > (m_height/m_vertCellFactor))
         {
           m_horizCellFactor++;
@@ -202,7 +202,7 @@ void DotGraph::computeCells()
           m_vertCellFactor++;
           m_hdvcf = m_height / m_vertCellFactor;
         }
-//         kdDebug() << "cell factor is now " << m_horizCellFactor << " / " << m_vertCellFactor << endl;
+//         kDebug() << "cell factor is now " << m_horizCellFactor << " / " << m_vertCellFactor << endl;
         stop = false;
         break;
       }

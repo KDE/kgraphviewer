@@ -1,6 +1,6 @@
 Begin3
 Title:          kgraphviewer -- Some description
-Version:        1.0
+Version:        1.0rc1
 Entered-date:   
 Description:    
 Keywords:       KDE Qt
@@ -9,8 +9,8 @@ Maintained-by:  Gaël de Chalendar <Gael.de-Chalendar@cea.fr>
 Home-page:      
 Alternate-site: 
 Primary-site:   http://download.gna.org/kgraphviewer/
-                xxxxxx  kgraphviewer-1.0.tar.bz2
-                xxx     kgraphviewer-1.0.lsm
+                xxxxxx  kgraphviewer-1.0rc1.tar.bz2
+                xxx     kgraphviewer-1.0rc1.lsm
 Platform:       Linux. Needs KDE
 Copying-policy: GPL
 End

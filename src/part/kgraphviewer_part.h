@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 #ifndef _KGRAPHVIEWERPART_H_
@@ -28,7 +29,7 @@
 
 class QWidget;
 class QPainter;
-class KURL;
+class KUrl;
 class KSelectAction;
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -44,8 +45,7 @@ public:
     /**
      * Default constructor
      */
-    kgraphviewerPart(QWidget *parentWidget, const char *widgetName,
-                     QObject *parent, const char *name/*, const QStringList &args*/);
+    kgraphviewerPart(QWidget *parentWidget, QObject *parent);
 
     
     /**
@@ -65,24 +65,13 @@ protected:
      */
     virtual bool openFile();
 
-
-protected slots:
-  void print();
-  void printPreview();
-  void slotPageSetup();
-  void reload();
-  void slotZoomIn();
-  void slotZoomOut();
-  void slotSelectLayoutAlgo();
-
 private:
   DotGraphView *m_widget;
   KDirWatch* m_watch;
-  KSelectAction* m_layoutAlgoSelectAction;
-  KSelectAction* m_view_bevMenu;
+  QString m_file;
 };
 
-class KInstance;
+class KComponentData;
 class KAboutData;
 
 class kgraphviewerPartFactory : public KParts::Factory
@@ -91,13 +80,13 @@ class kgraphviewerPartFactory : public KParts::Factory
 public:
     kgraphviewerPartFactory();
     virtual ~kgraphviewerPartFactory();
-    virtual KParts::Part* createPartObject( QWidget *parentWidget, const char *widgetName,
-                                            QObject *parent, const char *name,
+    virtual KParts::Part* createPartObject( QWidget *parentWidget, 
+                                            QObject *parent, 
                                             const char *classname, const QStringList &args );
-    static KInstance* instance();
+    static KComponentData componentData();
  
 private:
-    static KInstance* s_instance;
+    static KComponentData s_instance;
     static KAboutData* s_about;
 };
 

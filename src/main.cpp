@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 
@@ -23,15 +24,18 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kdebug.h>
-#include <dcopclient.h>
 #include <iostream>
-#include <qurl.h>
 #include <qdir.h>
+#include <QByteArray>
+#include <QDBusInterface>
+#include <QDBusConnection>
+#include <QDBusConnectionInterface>
+#include <QDBusReply>
 
 static const char description[] =
 I18N_NOOP("A Graphviz dot graph viewer for KDE");
 
-static const char version[] = "1.0.3";
+static const char version[] = "1.0";
 
 static KCmdLineOptions options[] =
 {
@@ -49,31 +53,26 @@ int main(int argc, char **argv)
   KApplication app;
   
 // see if we are starting with session management
-  if (app.isRestored())
+  if (app.isSessionRestored())
   {
-      RESTORE(kgraphviewer);
+      RESTORE(KGraphViewer);
   }
   else
   {
       // no session.. just start up normally
       KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-      kgraphviewer *widget = 0;
+      KGraphViewer *widget = 0;
       if ( args->count() == 0 )
       {
-      widget = new kgraphviewer;
-      widget->show();
+        widget = new KGraphViewer;
+        widget->show();
       }
       else
       {
-        QCString remApp, remObj, remFun, foundApp, foundObj;
-        QByteArray data;
-        DCOPClient* client = new DCOPClient();;
-        client->attach();
-  
-        remApp = "kgraphviewer*";
-        remObj = "DCOPKGraphViewerIface";
-        bool instanceExists =  (client->findObject(remApp, remObj, remFun, data, foundApp, foundObj));
+        QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered( "org.kde.kgraphviewer" );
+      
+        bool instanceExists = reply.value();
   
         for (int i = 0; i < args->count(); i++ )
         {
@@ -85,23 +84,35 @@ int main(int argc, char **argv)
                                              KGuiItem("Open in new window"),
                                              "openInNewWindowMode"   ) == KMessageBox::Yes) )
           {
-            QByteArray data;
-            QDataStream arg(data, IO_WriteOnly);
+            QByteArray tosenddata;
+            QDataStream arg(&tosenddata, QIODevice::WriteOnly);
             QString strarg = args->arg(i);
-            KURL url;
+            KUrl url;
             if (strarg.left(1) == "/")
-              url = KURL(QUrl(strarg));
-            else url = KURL(QDir::currentDirPath() +'/' + strarg);
+              url = KUrl(strarg);
+            else url = KUrl(QDir::currentDirPath() +"/" + strarg);
             arg << url;
-//             kdError() << "Sending openURL " << url << " to " << foundApp << " / " << foundObj << endl;
-            client->send(foundApp,foundObj,"openURL(KURL)",data);
+            QDBusInterface iface("org.kde.kgraphviewer", "/", "", QDBusConnection::sessionBus());
+            if (iface.isValid()) 
+            {
+              QDBusReply<void> reply = iface.call("openUrl", url.pathOrUrl());
+              if (reply.isValid()) 
+              {
+                kDebug() << "Reply was valid" << endl;
+                return 0;
+              }
+
+              kError() << "Call failed: " << reply.error().message() << endl;
+              return 1;
+            }
+            kError() << "Invalid interface" << endl;
             exit(0);
           }
           else
           {
-            widget = new kgraphviewer;
+            widget = new KGraphViewer;
             widget->show();
-            widget->openURL( args->url( i ) );
+            widget->openUrl( args->url( i ) );
           }
         }
       }
@@ -112,6 +123,5 @@ int main(int argc, char **argv)
     }
     
   }
-
   return app.exec();
 }

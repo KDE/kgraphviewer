@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 
@@ -43,7 +44,7 @@ QFont* FontsCache::fromName(const QString& fontName)
 {
   if (m_namesToFonts.find(fontName) == m_namesToFonts.end())
   {
-    QFont font(Dot2QtConsts::instance().qtFont(fontName));
+    QFont font(Dot2QtConsts::componentData().qtFont(fontName));
     m_namesToFonts[fontName] = cachedFont(font);
   }
   return m_namesToFonts[fontName];

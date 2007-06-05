@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -31,10 +32,12 @@
 #ifndef CANVAS_EDGE_H
 #define CANVAS_EDGE_H
 
-#include <qcanvas.h>
-#include <qwidget.h>
-#include <qmap.h>
-#include <qfont.h>
+#include <QGraphicsScene>
+#include <QGraphicsPathItem>
+#include <QAbstractGraphicsShapeItem>
+#include <QWidget>
+#include <QMap>
+#include <QFont>
 
 #include "graphexporter.h"
 
@@ -55,26 +58,31 @@ class DotGraphView;
  */
 
 
-class CanvasEdge : public QCanvasPolygonalItem
+class CanvasEdge : public QAbstractGraphicsShapeItem
 {
 public:
-  CanvasEdge(GraphEdge*, QCanvas*,
+  CanvasEdge(GraphEdge*, QGraphicsScene*,
              double scaleX, double scaleY, 
              int xMargin, int yMargin, int gh,
              int wdhcf, int hdvcf);
 
-  void drawShape(QPainter&);
+  void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
+        QWidget *widget);
 
+  QRectF boundingRect() const
+  {
+    return m_points.boundingRect();
+  }
+  
   GraphEdge* edge() { return _edge; }
   
-  QPointArray areaPoints() const;
     
 
   private:
   double m_scaleX, m_scaleY; 
   int m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
   GraphEdge* _edge;
-  QPointArray m_points;
+  QPolygonF m_points;
   QFont* m_font;
 };
 

@@ -1,26 +1,6 @@
 [Desktop Entry]
 Comment=Graphviz dot graph file viewed by KGraphViewer
-Comment[bg]=Файл с Graphviz-графика за програмата KGraphViewer
-Comment[ca]=Fitxer de gràfic de punts Graphviz visualitzat pel KGraphViewer
-Comment[da]=Graphviz dot grafikfil vist af Kgraphviewer
-Comment[de]=Mit KGraphViewer angezeigte Graphviz-Graph-Datei
-Comment[el]=Το αρχείο γραφικών Graphviz προβάλλεται με το KGraphViewer
-Comment[en_GB]=Graphviz dot-graph file viewed in KGraphViewer
-Comment[es]=Archivo de gráfico puntual de Graphviz visto por KGraphViewer
-Comment[et]=KGraphVieweri näidatud Graphviz dot-graafik
-Comment[ga]=Comhad poncghraif Graphviz mar taispeánta ag KGraphViewer
-Comment[gl]=Ficheiro de Graphviz mostrado por KGraphViewer
-Comment[is]=Graphviz dot línurit skoðað með KGraphViewer
-Comment[it]=Un file dot di GraphViz visualizzato da KGraphViewer
-Comment[ja]=KGraphViewer で表示する Graphviz ドットグラフファイル
-Comment[ka]=Graphviz-ის dot გრაფიკი KGraphViewer-ის საშუალებით
-Comment[nds]=Vun KGraphViewer wiest GraphViz-Dot-Diagrammdatei
-Comment[nl]=Graphviz puntgrafiek bekeken met KGraphViewer
-Comment[pa]=ਕੇ-ਗਰਾਫ਼ਦਰਸ਼ਕ ਨਾਲ Graphviz ਡਾਟ ਗਰਾਫ਼ ਫਾਇਲ ਵੇਖੋ
-Comment[pt]=Ficheiro de grafo pontual do Graphviz visto pelo KGraphViewer
-Comment[sk]=KGraphViewer Graphviz dot graph súbor
-Comment[sv]=Graphviz dot grafikfil visad av Kgraphviewer
-Comment[uk]=Перегляд файлів графіків Graphviz в KGraphViewer
+Comment[fr]=Fichier de graphe au format dot de Graphviz visualisé par KGraphViewer
 Encoding=UTF-8
 Icon=kgraphviewer
 MimeType=application/kgraphviewer

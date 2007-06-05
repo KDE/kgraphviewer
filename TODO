@@ -1,4 +1,15 @@
-URGENT (for 2.0)
+KDE4 Porting:
+  * WhatsThis pb (kdelibs bug ?)
+  * zooming centering (currently places at top left)
+  * port printing API
+    * remove QT3/KDE3 classes
+    * check dialogs
+
+Before 2.0
+  * Complete port to KDE4
+  * Wait for KDE4.0 release
+
+URGENT (for 2.x)
   * port to KDE 4
   * use the Qanava library ?
   * integration in kate and konqueror ;
@@ -10,7 +21,7 @@ URGENT (for 2.0)
     around 1000 nodes) ;
   * progressive support of more and more dot attributes and values ;
   * layout in background (thread to don't block the interface, with progress 
-    bar); and replace popen by QProcess
+    bar)
   * define print zone with the mouse
   * add a speed factor (speed vector) to dragging scroll as in ZGRViewer
   * all configuration data stored for each file (zoom, position, page setup, 

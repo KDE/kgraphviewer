@@ -12,15 +12,17 @@
  *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
  *   GNU General Public License for more details.                          *
  *                                                                         *
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #ifndef DOT2QTCONSTS_H
 #define DOT2QTCONSTS_H
 
 #include <map>
 #include <qstring.h>
+#include <qfont.h>
 
 /**
 @author Gaël de Chalendar
@@ -28,8 +30,8 @@
 class Dot2QtConsts
 {
 public:
-  static Dot2QtConsts& changeable() {return *m_instance;}
-  static const Dot2QtConsts& instance() {return *m_instance;}
+  static Dot2QtConsts& changeable() {return *m_componentData;}
+  static const Dot2QtConsts& componentData() {return *m_componentData;}
   
   QColor qtColor(const QString& dotColor) const;
   Qt::PenStyle qtPenStyle(const QString& dotLineStyle) const;
@@ -40,10 +42,11 @@ private:
 
     ~Dot2QtConsts();
 
-  static Dot2QtConsts* m_instance;
+  static Dot2QtConsts* m_componentData;
   
   std::map< QString, Qt::PenStyle > m_penStyles;
   std::map< QString, QString > m_colors;
+  std::map< QString, QColor > m_qcolors;
   std::map< QString, QFont > m_psFonts;
   
 };

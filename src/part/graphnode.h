@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -31,31 +32,14 @@
 #ifndef GRAPH_NODE_H
 #define GRAPH_NODE_H
 
-#include <vector>
-#include <qptrlist.h>
-#include <qmap.h>
+#include <QVector>
+#include <QList>
+#include <QMap>
 
 #include "dotgrammar.h"
 
 class CanvasNode;
 class GraphEdge;
-
-// sorts according start/end position of a call arc
-// this depends on attached CanvasEdge's !
-class GraphEdgeList: public QPtrList<GraphEdge>
-{
- public:
-    GraphEdgeList();
-    void setSortCallerPos(bool b) { _sortCallerPos = b; }
-
- protected:
-    int compareItems ( Item item1, Item item2 );
-
- private:
-    bool _sortCallerPos;
-};
-
-
 
 /**
  * Colors and styles are dot names
@@ -110,12 +94,6 @@ public:
   inline unsigned int z() const {return m_z;}
   inline void z(unsigned int thez) {m_z = thez;}
   
-  // keyboard navigation
-  void setCalling(GraphEdge*);
-  void setCaller(GraphEdge*);
-
-  GraphEdgeList callers, callings;
-
   inline const QString& shapeFile() const {return m_shapeFile;}
   inline void shapeFile(const QString& sf) {m_shapeFile = sf;}
   
@@ -124,14 +102,9 @@ public:
   
   
 private:
-  std::vector< CanvasNode* > m_cn;
+  QVector< CanvasNode* > m_cn;
   bool m_visible;
 
-  // for keyboard navigation
-  int _lastCallerIndex, _lastCallingIndex;
-  bool _lastFromCaller;
-  
-  
   QString m_label;
   
   QString m_id;

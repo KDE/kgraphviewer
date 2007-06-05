@@ -1,10 +1,12 @@
 <?xml version = '1.0'?>
 <kdevelop>
   <general>
+  <projectmanagement>KDevCustomProject</projectmanagement>
+  <projectdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</projectdirectory>
+  <absoluteprojectpath>true</absoluteprojectpath>
     <author>Kleag</author>
     <email>kleag@free.fr</email>
-    <version>1.0.3</version>
-    <projectmanagement>KDevKDEAutoProject</projectmanagement>
+    <version>1.0rc1</version>
     <primarylanguage>C++</primarylanguage>
     <keywords>
       <keyword>C++</keyword>
@@ -12,8 +14,6 @@
       <keyword>Qt</keyword>
       <keyword>KDE</keyword>
     </keywords>
-    <projectdirectory>.</projectdirectory>
-    <absoluteprojectpath>false</absoluteprojectpath>
     <description/>
     <ignoreparts>
       <part>kdevclassview</part>
@@ -30,9 +30,14 @@
       <part>kdevtools</part>
     </ignoreparts>
     <versioncontrol>kdevsubversion</versioncontrol>
+    <projectname>kgraphviewer</projectname>
+    <defaultencoding/>
   </general>
   <kdevautoproject>
     <general>
+  <projectmanagement>KDevCustomProject</projectmanagement>
+  <projectdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</projectdirectory>
+  <absoluteprojectpath>true</absoluteprojectpath>
       <activetarget>src/kgraphviewer</activetarget>
       <useconfiguration>debug</useconfiguration>
     </general>
@@ -53,7 +58,6 @@
     </make>
     <configurations>
       <optimized>
-        <builddir>optimized</builddir>
         <ccompiler>kdevgccoptions</ccompiler>
         <cxxcompiler>kdevgppoptions</cxxcompiler>
         <f77compiler>kdevg77options</f77compiler>
@@ -61,7 +65,6 @@
       </optimized>
       <debug>
         <configargs>--enable-debug=full</configargs>
-        <builddir>debug</builddir>
         <ccompiler>kdevgccoptions</ccompiler>
         <cxxcompiler>kdevgppoptions</cxxcompiler>
         <f77compiler>kdevg77options</f77compiler>
@@ -123,6 +126,9 @@
   </kdevdoctreeview>
   <kdevdebugger>
     <general>
+  <projectmanagement>KDevCustomProject</projectmanagement>
+  <projectdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</projectdirectory>
+  <absoluteprojectpath>true</absoluteprojectpath>
       <dbgshell>libtool</dbgshell>
       <programargs/>
       <gdbpath/>
@@ -175,8 +181,9 @@
   </kdevclassview>
   <kdevdocumentation>
     <projectdoc>
-      <docsystem>Doxygen Documentation Collection</docsystem>
+      <docsystem>Collection de documentation Doxygen</docsystem>
       <docurl>kgraphviewer2.tag</docurl>
+      <usermanualurl>/home/kde4/Developpements/C++/kgraphviewer-kde4/doc/en/index.docbook</usermanualurl>
     </projectdoc>
   </kdevdocumentation>
   <substmap>
@@ -193,18 +200,35 @@
     <dest>/home/gael/Developpements/C++/kgraphviewer</dest>
   </substmap>
   <kdevcppsupport>
-    <references/>
+    <references>
+      <pcs>STL</pcs>
+    </references>
     <codecompletion>
       <includeGlobalFunctions>false</includeGlobalFunctions>
       <includeTypes>false</includeTypes>
       <includeEnums>false</includeEnums>
       <includeTypedefs>false</includeTypedefs>
-      <automaticCodeCompletion>false</automaticCodeCompletion>
-      <automaticArgumentsHint>false</automaticArgumentsHint>
+      <automaticCodeCompletion>true</automaticCodeCompletion>
+      <automaticArgumentsHint>true</automaticArgumentsHint>
       <automaticHeaderCompletion>true</automaticHeaderCompletion>
       <codeCompletionDelay>250</codeCompletionDelay>
       <argumentsHintDelay>400</argumentsHintDelay>
       <headerCompletionDelay>250</headerCompletionDelay>
+      <showOnlyAccessibleItems>false</showOnlyAccessibleItems>
+      <completionBoxItemOrder>0</completionBoxItemOrder>
+      <howEvaluationContextMenu>true</howEvaluationContextMenu>
+      <showCommentWithArgumentHint>true</showCommentWithArgumentHint>
+      <statusBarTypeEvaluation>false</statusBarTypeEvaluation>
+      <namespaceAliases>std=_GLIBCXX_STD;__gnu_cxx=std</namespaceAliases>
+      <processPrimaryTypes>true</processPrimaryTypes>
+      <processFunctionArguments>false</processFunctionArguments>
+      <preProcessAllHeaders>false</preProcessAllHeaders>
+      <parseMissingHeaders>false</parseMissingHeaders>
+      <resolveIncludePaths>true</resolveIncludePaths>
+      <alwaysParseInBackground>true</alwaysParseInBackground>
+      <usePermanentCaching>true</usePermanentCaching>
+      <alwaysIncludeNamespaces>false</alwaysIncludeNamespaces>
+      <includePaths>.;</includePaths>
     </codecompletion>
     <designerintegration>
       <qtdesigner>
@@ -212,9 +236,13 @@
       </qtdesigner>
     </designerintegration>
     <qt>
-      <used>false</used>
-      <version>3</version>
+      <used>true</used>
+      <version>4</version>
       <root>/usr/lib/qt3/</root>
+      <includestyle>4</includestyle>
+      <designerintegration>ExternalDesigner</designerintegration>
+      <qmake>/usr/lib/qt3//bin/qmake</qmake>
+      <designer>/usr/bin/designer-qt3</designer>
     </qt>
     <creategettersetter>
       <prefixGet/>
@@ -224,5 +252,47 @@
       <inlineGet>true</inlineGet>
       <inlineSet>true</inlineSet>
     </creategettersetter>
+    <splitheadersource>
+      <enabled>false</enabled>
+      <synchronize>true</synchronize>
+      <orientation>Vertical</orientation>
+    </splitheadersource>
   </kdevcppsupport>
+  <kdevcustomproject>
+    <filelistdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</filelistdirectory>
+    <run>
+      <directoryradio>executable</directoryradio>
+      <mainprogram>/home/kde4/Developpements/C++/kgraphviewer-kde4/build/src/kgraphviewer</mainprogram>
+      <programargs/>
+      <globaldebugarguments/>
+      <useglobalprogram>false</useglobalprogram>
+      <terminal>false</terminal>
+      <autocompile>true</autocompile>
+      <autoinstall>false</autoinstall>
+      <autokdesu>false</autokdesu>
+      <envvars/>
+    </run>
+    <build>
+      <buildtool>make</buildtool>
+      <builddir>/home/kde4/Developpements/C++/kgraphviewer-kde4</builddir>
+    </build>
+    <make>
+      <abortonerror>true</abortonerror>
+      <numberofjobs>2</numberofjobs>
+      <prio>0</prio>
+      <dontact>false</dontact>
+      <makebin/>
+      <defaulttarget/>
+      <makeoptions/>
+      <selectedenvironment>default</selectedenvironment>
+      <environments>
+        <default/>
+      </environments>
+    </make>
+  </kdevcustomproject>
+  <ctagspart>
+    <customArguments/>
+    <customTagfilePath>/home/kde4/Developpements/C++/kgraphviewer-kde4/tags</customTagfilePath>
+    <activeTagsFiles/>
+  </ctagspart>
 </kdevelop>

@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.cpp, part of KCachegrind.
@@ -32,21 +33,14 @@
 #include <math.h>
 #include <iostream>
 
-#include <qtooltip.h>
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qwhatsthis.h>
-#include <qcanvas.h>
-#include <qwmatrix.h>
-#include <qpair.h>
-#include <qpainter.h>
-#include <qpopupmenu.h>
-#include <qstyle.h>
+#include <QGraphicsScene>
+#include <QPainter>
+#include <QMouseEvent>
 
 #include <kdebug.h>
 #include <klocale.h>
 #include <kconfig.h>
-#include <ktempfile.h>
+//#include <ktempfile.h>
 #include <kapplication.h>
 #include <kiconloader.h>
 #include <kfiledialog.h>
@@ -57,106 +51,110 @@
 // PannerView
 //
 PannerView::PannerView(QWidget * parent, const char * name)
-  : QCanvasView(parent, name), m_drawContents(true)
+  : QGraphicsView(parent), m_drawContents(true)
 {
-  _movingZoomRect = false;
+  m_movingZoomRect = false;
 
   // why doesn't this avoid flicker ?
   // viewport()->setBackgroundMode(Qt::NoBackground);
   setBackgroundMode(Qt::NoBackground);
 
-  QToolTip::add(this, i18n("View of The complete graph. Click and drag to move this visible part."));
-  QWhatsThis::add(this, i18n("<h1>View of The complete graph</h1>"
+  setToolTip(i18n("View of The complete graph. Click and drag to move this visible part."));
+  setWhatsThis(i18n("<h1>View of The complete graph</h1>"
     "<p>Single click out of the red square to move the center of his one at the "
     "mouse position.</p><p>Click in the red square and drag the mouse and the "
     "red square will follow the movement.</p>"));
 }
 
-void PannerView::setZoomRect(QRect r)
+void PannerView::setZoomRect(QRectF r)
 {
-  QRect oldRect = _zoomRect;
-  _zoomRect = r;
-  if (!_zoomRect.isValid() || _zoomRect.width() < 15 || _zoomRect.height() < 15) 
+  kDebug() << "PannerView::setZoomRect " << r << endl;
+  QRectF oldRect = m_zoomRect;
+  m_zoomRect = r;
+  qreal q = mapToScene(15,0).x();
+  qreal d = mapToScene(10,0).x();
+  if (!m_zoomRect.isValid() || m_zoomRect.width() < q || m_zoomRect.height() < q) 
   {
-    double factor = ((double)_zoomRect.width())/_zoomRect.height();
-    uint newWidth, newHeight;
+    double factor = ((double)m_zoomRect.width())/m_zoomRect.height();
+    qreal newWidth, newHeight;
     if (factor > 1.0)
     {
-      newWidth = 15;
-      newHeight = (uint)ceil(newWidth/factor);
-      if (newHeight < 10) newHeight = 10;
+      newWidth = q;
+      newHeight = newWidth/factor;
+      if (newHeight < d) newHeight = d;
     }
     else
     {
-      newHeight = 15;
-      newWidth = (uint)ceil(newHeight*factor);
-      if (newWidth < 10) newWidth = 10;
+      newHeight = q;
+      newWidth = newHeight*factor;
+      if (newWidth < d) newWidth = d;
     }
-    QRect newRect = _zoomRect;
-    int newXPos = newRect.x() + (newRect.width()/2) - newWidth/2;
+    QRectF newRect = m_zoomRect;
+    qreal newXPos = newRect.x() + (newRect.width()/2) - newWidth/2;
     newXPos = (newXPos<0)?0:newXPos;
     newRect.setX(newXPos);
-    int newYPos = newRect.y() + (newRect.height()/2) -newHeight/2;
+    qreal newYPos = newRect.y() + (newRect.height()/2) -newHeight/2;
     newYPos = (newYPos<0)?0:newYPos;
     newRect.setY(newYPos);
     newRect.setWidth(newWidth);
     newRect.setHeight(newHeight);
-    _zoomRect = newRect;
+    m_zoomRect = newRect;
   }
-  updateContents(oldRect);
-  updateContents(_zoomRect);
+  updateSceneRect(oldRect);
+  updateSceneRect(m_zoomRect);
 }
 
-void PannerView::drawContents(QPainter * p, int clipx, int clipy, int clipw, int cliph)
+void PannerView::drawForeground(QPainter * p, const QRectF & rect )
 {
-  // save/restore around QCanvasView::drawContents seems to be needed
-  // for QT 3.0 to get the red rectangle drawn correctly
-  if (m_drawContents)
+  kDebug() << "PannerView::drawForeground " << rect << endl;
+  if (m_zoomRect.isValid()) 
   {
     p->save();
-    QCanvasView::drawContents(p,clipx,clipy,clipw,cliph);
-    p->restore();
-  }
-  if (_zoomRect.isValid()) 
-  {
-    p->save();
-    p->setPen(red);
-    if (_zoomRect.width() > 10 && _zoomRect.height() > 10)
+    p->setPen(Qt::red);
+    if (m_zoomRect.width() > 10 && m_zoomRect.height() > 10)
     {
-      p->drawRect(_zoomRect);
+      p->drawRect(m_zoomRect);
     }
     else
     {
-      QBrush brush(red);
-      p->fillRect(_zoomRect.x(), _zoomRect.y(), _zoomRect.width(), _zoomRect.height(), brush);
+      QBrush brush(Qt::red);
+      p->fillRect(m_zoomRect, brush);
     }
     p->restore();
   }
 }
 
-void PannerView::contentsMousePressEvent(QMouseEvent* e)
+void PannerView::mousePressEvent(QMouseEvent* e)
 {
-  if (_zoomRect.isValid()) {
-    if (!_zoomRect.contains(e->pos()))
-      emit zoomRectMoved(e->pos().x() - _zoomRect.center().x(),
-                         e->pos().y() - _zoomRect.center().y());
+/*  kDebug() << "PannerView::mousePressEvent " 
+              << mapToScene(e->pos()) << " / " << m_zoomRect << " / " << m_zoomRect.center() <<endl;*/
+  QPointF pos = mapToScene(e->pos());
+  if (m_zoomRect.isValid()) 
+  {
+//     if (!m_zoomRect.contains(pos))
+      emit zoomRectMovedTo(pos);
 
-    _movingZoomRect = true;
-    _lastPos = e->pos();
+    m_movingZoomRect = true;
+    m_lastPos = pos;
   }
 }
 
-void PannerView::contentsMouseMoveEvent(QMouseEvent* e)
+void PannerView::mouseMoveEvent(QMouseEvent* e)
 {
-  if (_movingZoomRect) {
-    emit zoomRectMoved(e->pos().x() - _lastPos.x(), e->pos().y() - _lastPos.y());
-    _lastPos = e->pos();
+  QPointF pos = mapToScene(e->pos());
+//   kDebug() << "PannerView::mouseMoveEvent " << pos << endl;
+  if (m_movingZoomRect) {
+    emit zoomRectMovedTo(pos);
+    m_lastPos = pos;
   }
 }
 
-void PannerView::contentsMouseReleaseEvent(QMouseEvent*)
+void PannerView::mouseReleaseEvent(QMouseEvent* e)
 {
-    _movingZoomRect = false;
-    emit zoomRectMoveFinished();
+  QPointF pos = mapToScene(e->pos());
+//   kDebug() << "PannerView::mouseReleaseEvent " << pos << endl;
+  m_movingZoomRect = false;
+  emit zoomRectMoveFinished();
 }
 
+#include "pannerview.moc"

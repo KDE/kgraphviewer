@@ -1,0 +1,39 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<kpartgui name="kgraphviewer" version="4">
+  <MenuBar noMerge="1" >
+  <Menu name="file"><text>&amp;File</text>
+    <Action name="file_open"/>
+    <Action name="file_open_recent"/>
+    <DefineGroup name="open_merge" />
+    <Separator/>
+    <Action name="file_quit"/>
+  </Menu>
+  <Menu name="view"><text>&amp;View</text>
+    <DefineGroup name="view_merge"/>
+  </Menu>
+  <Menu name="settings"><text>&amp;Settings</text>
+    <Action name="options_show_toolbar"/>
+    <Action name="options_show_statusbar"/>
+    <DefineGroup name="show_merge"/>
+    <Separator/>
+    <Action name="options_configure_keybinding"/>
+    <Action name="options_configure_toolbars"/>
+    <Action name="options_configure"/>
+    <DefineGroup name="configure_merge"/>
+    <Separator/>
+  </Menu>
+</MenuBar>
+<ToolBar noMerge="1" name="mainToolBar"><text>Main Toolbar</text>
+  <Action name="file_open"/>
+  <Action name="file_open_recent"/>
+  <Merge/>
+</ToolBar>
+<ToolBar noMerge="2" name="viewToolBar"><text>View Toolbar</text>
+  <Merge/>
+</ToolBar>
+<ToolBar noMerge="3" name="helpToolBar" align="right"><text>Help Toolbar</text>
+  <Action name="help_whats_this"/>
+  <Action name="help"/>
+  <Merge/>
+</ToolBar>
+</kpartgui>

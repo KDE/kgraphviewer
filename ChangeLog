@@ -1,3 +1,20 @@
+2006/09/20
+  * X11 colors names now unsupported by Qt are harcoded in KGraphViewer
+
+2006/09/18
+  * dcop -> dbus port finished (thanks to the help on #kde4-devel)
+
+2006/09/17
+  * graph tips (on nodes and edges)
+
+2006/09/16
+  * KSelectActions now work as before
+  
+2006/09/14
+  * asked and obtained the removing of -D QT_NO_STL from default compile flags
+  * solved with help from IRC the kintnuminput.h -> knuminput.h problem in file 
+    generated from ui
+
 2006/07/02
   * fixed a xdot parsing bug
   * fixed a crash condition

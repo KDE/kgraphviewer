@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 
@@ -20,21 +21,13 @@
 #include <math.h>
 #include <iostream>
 
-#include <qtooltip.h>
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qwhatsthis.h>
-#include <qcanvas.h>
-#include <qwmatrix.h>
-#include <qpair.h>
-#include <qpainter.h>
-#include <qpopupmenu.h>
-#include <qstyle.h>
+#include <QPainter>
+#include <QGraphicsScene>
 
 #include <kdebug.h>
 #include <klocale.h>
 #include <kconfig.h>
-#include <ktempfile.h>
+//#include <ktempfile.h>
 #include <kapplication.h>
 #include <kiconloader.h>
 #include <kfiledialog.h>
@@ -55,20 +48,22 @@
 CanvasSubgraph::CanvasSubgraph(
                                           DotGraphView* v, 
                                           GraphSubgraph* gsubgraph,
-                                          QCanvas* c,
+                                          QGraphicsScene* c,
                                           double scaleX, double scaleY, 
                                           int xMargin, int yMargin, int gh,
                                           int wdhcf, int hdvcf
                                         )
-  : QCanvasPolygon(c), m_view(v),m_subgraph(gsubgraph), m_scaleX(scaleX), 
-m_scaleY(scaleY), m_xMargin(xMargin), m_yMargin(yMargin), 
-m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf), 
-m_font(0),
-m_pen(Dot2QtConsts::instance().qtColor(gsubgraph->fontColor()))
+  : QGraphicsPolygonItem(0,c), 
+    m_scaleX(scaleX), m_scaleY(scaleY), 
+    m_xMargin(xMargin), m_yMargin(yMargin), 
+    m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf), 
+    m_subgraph(gsubgraph), m_view(v), 
+    m_font(0),
+    m_pen(Dot2QtConsts::componentData().qtColor(gsubgraph->fontColor()))
 {
   m_font = FontsCache::changeable().fromName(gsubgraph->fontName());
-/*  kdDebug() << "Creating CanvasSubgraph for "<<gsubgraph->id()<< endl;
-  kdDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
+/*  kDebug() << "Creating CanvasSubgraph for "<<gsubgraph->id()<< endl;
+  kDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
     << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
   
   if (subgraph()->style() == "bold")
@@ -78,7 +73,7 @@ m_pen(Dot2QtConsts::instance().qtColor(gsubgraph->fontColor()))
   }
   else if (subgraph()->style() != "filled")
   {
-    m_pen.setStyle(Dot2QtConsts::instance().qtPenStyle(m_subgraph->style()));
+    m_pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(m_subgraph->style()));
     m_pen.setWidth(int((m_scaleX+m_scaleY)/2));
     if (subgraph()->style().left(12) == "setlinewidth")
     {
@@ -89,12 +84,12 @@ m_pen(Dot2QtConsts::instance().qtColor(gsubgraph->fontColor()))
   }
   if (m_subgraph->style() == "filled")
   {
-    m_brush = Dot2QtConsts::instance().qtColor(subgraph()->backColor());
+    m_brush = Dot2QtConsts::componentData().qtColor(subgraph()->backColor());
 //     QCanvasPolygon::drawShape(p);
   }
   else
   {
-    m_brush = c->backgroundColor();
+    m_brush = c->backgroundBrush();
   }
   
   DotRenderOpVec::const_iterator it, it_end;
@@ -104,10 +99,10 @@ m_pen(Dot2QtConsts::instance().qtColor(gsubgraph->fontColor()))
     if ((*it).renderop != "T")
     {
       gsubgraph->setCanvasSubgraph(this);
-      setZ(gsubgraph->z());
+      setZValue(gsubgraph->z());
     
       const DotRenderOp& dro = (*it);
-      QPointArray points(dro.integers[0]);
+      QPolygonF polygon(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
       {
         int x,y;
@@ -116,15 +111,15 @@ m_pen(Dot2QtConsts::instance().qtColor(gsubgraph->fontColor()))
         {
       
         }
-        QPoint p(
-            int(x*scaleX) +xMargin,
-        int((gh-y)*scaleY) + yMargin
+        QPointF p(
+            x*scaleX +xMargin,
+        (gh-y)*scaleY + yMargin
                 );
-/*        kdDebug() << "    point: (" << dro.integers[2*i+1] << ","
+/*        kDebug() << "    point: (" << dro.integers[2*i+1] << ","
             <<dro.integers[2*i+2]<< ") -> " << p << endl;*/
-        points[i] = p;
+        polygon[i] = p;
       }
-      setPoints(points);
+      setPolygon(polygon);
     }
     break;
   }
@@ -134,7 +129,7 @@ m_pen(Dot2QtConsts::instance().qtColor(gsubgraph->fontColor()))
 /** @todo handle multiple comma separated styles 
  * @todo implement styles diagonals, rounded
  */
-void CanvasSubgraph::drawShape(QPainter& p)
+void CanvasSubgraph::paint(QPainter& p)
 {
 /*  std::cerr << "CanvasSubgraph "<<subgraph()->id()<<" drawShape with style "
     << subgraph()->style() << ", brush color " << subgraph()->backColor() 
@@ -143,8 +138,8 @@ void CanvasSubgraph::drawShape(QPainter& p)
   p.setPen(m_pen);
   p.setBrush(m_brush);
 
-//   kdError() << "subgraph()->style().left(12): " << subgraph()->style().left(12) << endl;
-  p.drawPolygon(points());
+//   kError() << "subgraph()->style().left(12): " << subgraph()->style().left(12) << endl;
+  p.drawPolygon(polygon());
   
   DotRenderOpVec::const_iterator it, it_end;
   it = subgraph()->renderOperations().begin(); 

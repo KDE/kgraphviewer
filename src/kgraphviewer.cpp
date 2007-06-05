@@ -11,65 +11,73 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 
 #include "kgraphviewer.h"
 #include "kgraphviewerConfigDialog.h"
 #include "kgraphviewersettings.h"
-#include "preferencesReload.h"
-#include "preferencesOpenInExistingWindow.h"
-#include "preferencesReopenPreviouslyOpenedFiles.h"
+#include "ui_preferencesReload.h"
+#include "ui_preferencesOpenInExistingWindow.h"
+#include "ui_preferencesReopenPreviouslyOpenedFiles.h"
 
-#include <kkeydialog.h>
+#include <kshortcutsdialog.h>
 #include <kfiledialog.h>
 #include <kconfig.h>
 #include <kurl.h>
 #include <ktabwidget.h>
 #include <kparts/partmanager.h>
 #include <kedittoolbar.h>
-#include <kaccel.h>
 #include <kdebug.h>
 #include <kstandarddirs.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
+#include <ktoggleaction.h>
 #include <klibloader.h>
 #include <kmessagebox.h>
 #include <kstatusbar.h>
 #include <klocale.h>
 #include <kconfigdialog.h>
 #include <kiconloader.h>
-#include <kapp.h>
-#include <dcopclient.h>
+//#include <kapp.h>
+//#include <dcopclient.h>
+#include <krecentfilesaction.h>
+#include <ktoolbar.h>
+#include <KActionCollection>
 
-#include <qbuttongroup.h>
+#include <QtDBus/QtDBus>
+
 #include <iostream>
 
 using namespace KGraphViewer;
 
-kgraphviewer::kgraphviewer()
-    : KParts::MainWindow( 0L, "kgraphviewer" ),
-    DCOPObject("DCOPKGraphViewerIface")
+KGraphViewer::KGraphViewer()
+    : KParts::MainWindow()//,
+//    DCOPObject("DCOPKGraphViewerIface")
 {
+  // set the shell's ui resource file
+  setXMLFile("kgraphviewer.rc");
+
 //   std::cerr << "Creating tab widget" << std::endl;
-  m_widget = new KTabWidget(this,"CentralTabWidget");
+  m_widget = new KTabWidget(this);
   m_widget->setHoverCloseButton(true);
   connect(m_widget, SIGNAL(closeRequest(QWidget*)), this, SLOT(close(QWidget*)));
   connect(m_widget, SIGNAL(currentChanged(QWidget*)), this, SLOT(newTabSelectedSlot(QWidget*)));
   
   setCentralWidget(m_widget);
   
-  // Register with DCOP
-  if ( !kapp->dcopClient()->isRegistered() ) 
+  if (QDBusConnection::sessionBus().registerService( "org.kde.kgraphviewer" ))
   {
-    kapp->dcopClient()->registerAs( "dcopkgraphviewer" );
-    kapp->dcopClient()->setDefaultObject( objId() );
+    kDebug() << "Service Registered successfuly" << endl;
+    QDBusConnection::sessionBus().registerObject("/", this, QDBusConnection::ExportAllSlots);
+    
   }
-  
-  
-  // set the shell's ui resource file
-  setXMLFile("kgraphviewer_shell.rc");
+  else
+  {
+    kDebug() << "Failed to register service..." << endl;
+  }
 
   // then, setup our actions
   setupActions();
@@ -91,68 +99,59 @@ kgraphviewer::kgraphviewer()
     
   // Creates the GUI with a null part to make appear the main app menus and tools
   createGUI(0);
-  
+  setupGUI();  
   // apply the saved mainwindow settings, if any, and ask the mainwindow
   // to automatically save settings if changed: window size, toolbar
   // position, icon size, etc.
   setAutoSaveSettings();
-  
 }
 
-kgraphviewer::~kgraphviewer()
+KGraphViewer::~KGraphViewer()
 {
-  m_rfa->saveEntries(KGlobal::config());
+  m_rfa->saveEntries(KGlobal::config()->group("kgraphviewer"));
 }
 
-void kgraphviewer::reloadPreviousFiles()
+void KGraphViewer::reloadPreviousFiles()
 {
   QStringList previouslyOpenedFiles = KGraphViewerSettings::previouslyOpenedFiles();
   if ( (previouslyOpenedFiles.empty() == false) 
        && (KMessageBox::questionYesNo(this, 
               i18n("Do you want to reload files from previous session ?"),
               i18n("Reload Confirmation"),
-              KStdGuiItem::yes(),
-              KStdGuiItem::no(),
+              KStandardGuiItem::yes(),
+              KStandardGuiItem::no(),
               "reopenPreviouslyOpenedFilesMode"   ) == KMessageBox::Yes) )
   {
     QStringList::const_iterator it, it_end;
     it = previouslyOpenedFiles.begin(); it_end = previouslyOpenedFiles.end();
     for (; it != it_end; it++)
     {
-      openURL(*it);
+      openUrl(*it);
     }
   }
   
 }
 
-void kgraphviewer::openURL(const KURL& url)
+void KGraphViewer::openUrl(const KUrl& url)
 {
-//   std::cerr << "kgraphviewer::openURL" << std::endl;
-  KLibFactory *factory = KLibLoader::self()->factory("libkgraphviewerpart");
+  kDebug() << "KGraphViewer::openURL " << url << endl;
+  KLibFactory *factory = KLibLoader::self()->factory("kgraphviewerpart");
   if (factory)
   {
-    KParts::ReadOnlyPart* part = static_cast<KParts::ReadOnlyPart*>(factory->create(this, "kgraphviewer_part", 
-      "KParts::ReadOnlyPart" ));
+    KParts::ReadOnlyPart* part = static_cast<KParts::ReadOnlyPart*>(factory->create(this, "kgraphviewerpart"));
     
     if (part)
     {
       QString label = url.url().section('/',-1,-1);
-      bool loaded = part->openURL( url );
-      if (loaded)
-      {
-        createGUI(part);
-        m_openedFiles.push_back(url.url());
-        m_manager->addPart( part, true );
-        m_widget-> insertTab(part->widget(), QIconSet( KIconLoader().loadIcon("kgraphviewer", KIcon::NoGroup) ), label);
-        m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
-        m_tabsPartsMap[m_widget->currentPage()] = part;
-        m_tabsFilesMap[m_widget->currentPage()] = url.url();
-        connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
-      }
-      else 
-      {
-        delete part;
-      }
+      m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), label);
+      m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
+      createGUI(part);
+      part->openUrl( url );
+      m_openedFiles.push_back(url.url());
+      m_manager->addPart( part, true );
+      m_tabsPartsMap[m_widget->currentPage()] = part;
+      m_tabsFilesMap[m_widget->currentPage()] = url.url();
+      connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
     }
   }
   else
@@ -167,13 +166,13 @@ void kgraphviewer::openURL(const KURL& url)
   }
 }
 
-void kgraphviewer::fileOpen()
+void KGraphViewer::fileOpen()
 {
-//   std::cerr << "kgraphviewer::fileOpen" << std::endl;
+  kDebug() << "KGraphViewer::fileOpen" << endl;
   // this slot is called whenever the File->Open menu is selected,
   // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
   // button is clicked
-  QStringList file_names = KFileDialog::getOpenFileNames(QString::null, "*.dot");
+  QStringList file_names = KFileDialog::getOpenFileNames(KUrl(QString::null), QString("*.dot"), 0, QString::null);
   
   if (!file_names.empty())
   {
@@ -183,56 +182,65 @@ void kgraphviewer::fileOpen()
     {
       if (m_rfa != 0)
       {
-        m_rfa->addURL(*it);
+        m_rfa->addUrl(*it);
       }
-      openURL(*it);
+      openUrl(*it);
     }
   }
 }
 
 
-void kgraphviewer::setupActions()
+void KGraphViewer::setupActions()
 {
   // create our actions
-  KStdAction::openNew(this, SLOT(fileNew()), actionCollection());
+//   KStandardAction::openNew(this, SLOT(fileNew()), this);
   
-  KStdAction::open(this, SLOT(fileOpen()), actionCollection());
-  m_rfa = KStdAction::openRecent(this, SLOT(slotURLSelected(const KURL&)), actionCollection());
-  m_rfa->loadEntries(KGlobal::config());
+  actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT( fileOpen() ) );
+//   KStandardAction::open(this, SLOT(fileOpen()), this);
+//   m_rfa = KStandardAction::openRecent(this, SLOT(slotURLSelected(const KUrl&)), this);
+  m_rfa = (KRecentFilesAction*) actionCollection()->addAction(KStandardAction::OpenRecent, "file_open_recent", this, SLOT( fileOpen() ) );
+  m_rfa->loadEntries(KGlobal::config()->group("kgraphviewer"));
   
-  KStdAction::close(this, SLOT(close()), actionCollection());
+/*  KStandardAction::close(this, SLOT(close()), actionCollection());
   KAccel *close_accel = new KAccel( this, "CloseAccel" );
-  close_accel->insert( "Close", i18n("Close"), "", CTRL+Key_W, 
+  close_accel->insert( "Close", i18n("Close"), "", Qt::CTRL+Qt::Key_W, 
                        this, SLOT( close() ) );
-  close_accel->readSettings();
+  close_accel->readSettings();*/
   
-  KStdAction::quit(kapp, SLOT(quit()), actionCollection());
+  actionCollection()->addAction( KStandardAction::Quit, "file_quit", this, SLOT( quit() ) );
+//   KStandardAction::quit(kapp, SLOT(quit()), this);
 
-  m_statusbarAction = KStdAction::showStatusbar(this, SLOT(optionsShowStatusbar()), actionCollection());
+  m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
 
-  KStdAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
-  KStdAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
-  KStdAction::preferences(this, SLOT(optionsConfigure()), actionCollection());
+  actionCollection()->addAction( KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT( optionsConfigureKeys() ) );
+//   KStandardAction::keyBindings(this, SLOT(optionsConfigureKeys()), this);
+  actionCollection()->addAction( KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT( optionsConfigureToolbars() ) );
+//   KStandardAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), this);
+  actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT( optionsConfigure() ) );
+//   KStandardAction::preferences(this, SLOT(optionsConfigure()), this);
 }
 
-bool kgraphviewer::queryExit()
+bool KGraphViewer::queryExit()
 {
 //   std::cerr << "queryExit" << std::endl;
   KGraphViewerSettings::setPreviouslyOpenedFiles(m_openedFiles);
-  KGraphViewerSettings::writeConfig();
+  // 
+  //@TODO to port
+  //KGraphViewerSettings::writeConfig();
+  return true;
 }
 
-void kgraphviewer::fileNew()
+void KGraphViewer::fileNew()
 {
   // this slot is called whenever the File->New menu is selected,
   // the New shortcut is pressed (usually CTRL+N) or the New toolbar
   // button is clicked
 
-  (new kgraphviewer)->show();
+  (new KGraphViewer)->show();
 }
 
 
-void kgraphviewer::optionsShowToolbar()
+void KGraphViewer::optionsShowToolbar()
 {
   // this is all very cut and paste code for showing/hiding the
   // toolbar
@@ -242,7 +250,7 @@ void kgraphviewer::optionsShowToolbar()
       toolBar()->hide();
 }
 
-void kgraphviewer::optionsShowStatusbar()
+void KGraphViewer::optionsShowStatusbar()
 {
   // this is all very cut and paste code for showing/hiding the
   // statusbar
@@ -252,31 +260,23 @@ void kgraphviewer::optionsShowStatusbar()
       statusBar()->hide();
 }
 
-void kgraphviewer::optionsConfigureKeys()
+void KGraphViewer::optionsConfigureKeys()
 {
-  KKeyDialog::configure(actionCollection());
+  KShortcutsDialog::configure(actionCollection());
 }
 
-void kgraphviewer::optionsConfigureToolbars()
+void KGraphViewer::optionsConfigureToolbars()
 {
-#if defined(KDE_MAKE_VERSION)
-# if KDE_VERSION >= KDE_MAKE_VERSION(3,1,0)
-    saveMainWindowSettings(KGlobal::config(), autoSaveGroup());
-# else
-    saveMainWindowSettings(KGlobal::config() );
-# endif
-#else
-    saveMainWindowSettings(KGlobal::config() );
-#endif
+    saveMainWindowSettings(KGlobal::config()->group("kgraphviewer") );
 
   // use the standard toolbar editor
-  KEditToolbar dlg(factory());
+  KEditToolBar dlg(factory());
   connect(&dlg, SIGNAL(newToolbarConfig()),
           this, SLOT(applyNewToolbarConfig()));
   dlg.exec();
 }
 
-void kgraphviewer::optionsConfigure()
+void KGraphViewer::optionsConfigure()
 {
   //An instance of your dialog could be already created and could be cached, 
   //in which case you want to display the cached dialog instead of creating 
@@ -285,8 +285,9 @@ void kgraphviewer::optionsConfigure()
     return; 
  
   //KConfigDialog didn't find an instance of this dialog, so lets create it : 
+  KPageDialog::FaceType ft = KPageDialog::Auto;
   KgvConfigurationDialog* dialog = new KgvConfigurationDialog( this, "settings", 
-                                             KGraphViewerSettings::self() ); 
+                                             KGraphViewerSettings::self(),ft ); 
   
 /*  KGraphViewerPreferencesReloadWidget*  reloadWidget =  
       new KGraphViewerPreferencesReloadWidget( 0, "KGraphViewer Settings" );
@@ -350,20 +351,12 @@ void kgraphviewer::optionsConfigure()
   dialog->show();
 }
 
-void kgraphviewer::applyNewToolbarConfig()
+void KGraphViewer::applyNewToolbarConfig()
 {
-#if defined(KDE_MAKE_VERSION)
-# if KDE_VERSION >= KDE_MAKE_VERSION(3,1,0)
-    applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
-# else
-    applyMainWindowSettings(KGlobal::config());
-# endif
-#else
-    applyMainWindowSettings(KGlobal::config());
-#endif
+  applyMainWindowSettings(KGlobal::config()->group("kgraphviewer"));
 }
 
-// void kgraphviewer::reloadOnChangeMode_pressed(int value)
+// void KGraphViewer::reloadOnChangeMode_pressed(int value)
 // {
 //   std::cerr << "reloadOnChangeMode_pressed " << value << std::endl;
 //   switch (value)
@@ -378,7 +371,7 @@ void kgraphviewer::applyNewToolbarConfig()
 //     KGraphViewerSettings::setReloadOnChangeMode("ask");
 //     break;
 //   default:
-//   kdError() << "Invalid reload on change mode value: " << value << endl;
+//   kError() << "Invalid reload on change mode value: " << value << endl;
 //     return;
 //   }
 //   std::cerr << "emiting" << std::endl;
@@ -386,7 +379,7 @@ void kgraphviewer::applyNewToolbarConfig()
 //   KGraphViewerSettings::writeConfig();
 // }
 // 
-// void kgraphviewer::openInExistingWindowMode_pressed(int value)
+// void KGraphViewer::openInExistingWindowMode_pressed(int value)
 // {
 //   std::cerr << "openInExistingWindowMode_pressed " << value << std::endl;
 //   switch (value)
@@ -401,7 +394,7 @@ void kgraphviewer::applyNewToolbarConfig()
 //     KGraphViewerSettings::setOpenInExistingWindowMode("ask");
 //     break;
 //   default:
-//   kdError() << "Invalid OpenInExistingWindow value: " << value << endl;
+//   kError() << "Invalid OpenInExistingWindow value: " << value << endl;
 //     return;
 //   }
 // 
@@ -410,7 +403,7 @@ void kgraphviewer::applyNewToolbarConfig()
 //   KGraphViewerSettings::writeConfig();
 // }
 // 
-// void kgraphviewer::reopenPreviouslyOpenedFilesMode_pressed(int value)
+// void KGraphViewer::reopenPreviouslyOpenedFilesMode_pressed(int value)
 // {
 //   std::cerr << "reopenPreviouslyOpenedFilesMode_pressed " << value << std::endl;
 //   switch (value)
@@ -425,7 +418,7 @@ void kgraphviewer::applyNewToolbarConfig()
 //     KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("ask");
 //     break;
 //   default:
-//   kdError() << "Invalid ReopenPreviouslyOpenedFilesMode value: " << value << endl;
+//   kError() << "Invalid ReopenPreviouslyOpenedFilesMode value: " << value << endl;
 //     return;
 //   }
 // 
@@ -435,12 +428,12 @@ void kgraphviewer::applyNewToolbarConfig()
 // }
 
 
-void kgraphviewer::slotURLSelected(const KURL& url)
+void KGraphViewer::slotURLSelected(const KUrl& url)
 {
-  openURL(url);
+  openUrl(url);
 }
 
-void kgraphviewer::close(QWidget* tab)
+void KGraphViewer::close(QWidget* tab)
 {
   m_openedFiles.remove(m_tabsFilesMap[tab]);
   m_widget->removePage(tab);
@@ -454,7 +447,7 @@ void kgraphviewer::close(QWidget* tab)
   tab = 0;*/
 }
 
-void kgraphviewer::close()
+void KGraphViewer::close()
 {
   QWidget* currentPage = m_widget->currentPage();
   if (currentPage != 0)
@@ -463,7 +456,7 @@ void kgraphviewer::close()
   }
 }
 
-void kgraphviewer::newTabSelectedSlot(QWidget* tab)
+void KGraphViewer::newTabSelectedSlot(QWidget* tab)
 {
 //   std::cerr << "newTabSelectedSlot " << tab << std::endl;
   emit(hide((KParts::Part*)(m_manager->activePart())));

@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.cpp, part of KCachegrind.
@@ -29,7 +30,7 @@
  */
 
 #include <iostream>
-#include <qpainter.h>
+#include <QPainter>
 
 #include "canvasedge.h"
 #include "dotdefaults.h"
@@ -40,16 +41,16 @@
 // CanvasEdge
 //
 
-CanvasEdge::CanvasEdge(GraphEdge* e, QCanvas* c,
+CanvasEdge::CanvasEdge(GraphEdge* e, QGraphicsScene* c,
                        double scaleX, double scaleY, 
                        int xMargin, int yMargin, int gh,
                        int wdhcf, int hdvcf)
-  : QCanvasPolygonalItem(c),  _edge(e), m_scaleX(scaleX),
+                       : QAbstractGraphicsShapeItem(0,c),  _edge(e), m_scaleX(scaleX),
     m_scaleY(scaleY), m_xMargin(xMargin), m_yMargin(yMargin),
     m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf),
     m_font(0)
 {
-  m_font = FontsCache::changeable().fromName(e->fontName().c_str());
+  m_font = FontsCache::changeable().fromName(e->fontName());
 
 //   std::cerr << "edge "  << e->fromNode()->id() << "->"  << e->toNode()->id() << std::endl;
   DotRenderOpVec::const_iterator it, it_end;
@@ -85,7 +86,7 @@ CanvasEdge::CanvasEdge(GraphEdge* e, QCanvas* c,
     if (m_points[i].x() > maxX) maxX = m_points[i].x();
     if (m_points[i].y() > maxY) maxY = m_points[i].y();
   }
-  QPointArray a = m_points.copy(),  b = m_points.copy();
+  QPolygonF a = m_points,  b = m_points;
   a.translate(-1, -1);
   b.translate(1, 1);
   a.resize(2*len);
@@ -95,12 +96,17 @@ CanvasEdge::CanvasEdge(GraphEdge* e, QCanvas* c,
   }
 
   m_points = a;;
+
+  QString tipStr = i18n("%1 -> %2\nlabel='%3'",
+      e->fromNode()->id(),e->toNode()->id(),e->label());
+  setToolTip(tipStr);
 } 
 
-void CanvasEdge::drawShape(QPainter& p)
+void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
+                   QWidget *widget)
 {
   /// computes the scaling of line width
-  int widthScaleFactor = int((m_scaleX+m_scaleY)/2);
+  qreal widthScaleFactor = (m_scaleX+m_scaleY)/2;
   if (widthScaleFactor < 1)
   {
     widthScaleFactor = 1;
@@ -116,7 +122,7 @@ void CanvasEdge::drawShape(QPainter& p)
     {
       QString str = QString::fromUtf8((*it).str.c_str());
     
-      int stringWidthGoal = int((*it).integers[3] * m_scaleX);
+      qreal stringWidthGoal = (*it).integers[3] * m_scaleX;
       int fontSize = edge()->fontSize();
       m_font->setPointSize(fontSize);
       QFontMetrics fm(*m_font);
@@ -126,46 +132,46 @@ void CanvasEdge::drawShape(QPainter& p)
         m_font->setPointSize(fontSize);
         fm = QFontMetrics(*m_font);
       }
-      p.save();
-      p.setFont(*m_font);
+      p->save();
+      p->setFont(*m_font);
       
-      p.setPen(Dot2QtConsts::instance().qtColor(edge()->fontColor()));
-      p.drawText(
+      p->setPen(Dot2QtConsts::componentData().qtColor(edge()->fontColor()));
+      p->drawText(
           int((m_scaleX * 
-          (
-          ((*it).integers[0]) 
-          + ((((*it).integers[2])*((*it).integers[3]))/2)
-          - ( ((*it).integers[3])/2 )
-          )
-              )
-          + m_xMargin ),
-      int(((m_gh - ((*it).integers[1]))*m_scaleY)+ m_yMargin),
+            (
+            ((*it).integers[0]) 
+            + ((((*it).integers[2])*((*it).integers[3]))/2)
+            - ( ((*it).integers[3])/2 )
+            )
+                )
+            + m_xMargin) ,
+          int(((m_gh - ((*it).integers[1]))*m_scaleY + m_yMargin)),
       str);
-      p.restore();
+      p->restore();
     }      
     else if (( (*it).renderop == "p" ) || ((*it).renderop == "P" ))
     {
-      QPointArray points((*it).integers[0]);
+      QPolygonF polygon((*it).integers[0]);
       for (int i = 0; i < (*it).integers[0]; i++)
       {
-        QPoint p(
-            int(((*it).integers[2*i+1]%m_wdhcf)*m_scaleX) +m_xMargin,
-        int((m_gh-(*it).integers[2*i+2]%m_hdvcf)*m_scaleY) + m_yMargin
+        QPointF point(
+            (int((*it).integers[2*i+1])%m_wdhcf)*m_scaleX +m_xMargin,
+            (int(m_gh-(*it).integers[2*i+2])%m_hdvcf)*m_scaleY + m_yMargin
                 );
-        points[i] = p;
+        polygon[i] = point;
       }
       if ((*it).renderop == "P" )
       {
-        p.save();
-        p.setBrush(Dot2QtConsts::instance().qtColor(edge()->color(0)));
-        p.drawPolygon(points);
-        p.restore();
+        p->save();
+        p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
+        p->drawPolygon(polygon);
+        p->restore();
       }
       else
       {
-        p.setBrush(Dot2QtConsts::instance().qtColor("white"));
+        p->setBrush(Dot2QtConsts::componentData().qtColor("white"));
       }
-      QPen pen(Dot2QtConsts::instance().qtColor(edge()->color(0)));
+      QPen pen(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
       if (edge()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
@@ -174,12 +180,12 @@ void CanvasEdge::drawShape(QPainter& p)
       else
       {
         pen.setWidth(1 * widthScaleFactor);
-        pen.setStyle(Dot2QtConsts::instance().qtPenStyle(edge()->style()));
+        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(edge()->style()));
       }
-      p.save();
-      p.setPen(pen);
-      p.drawPolyline(points);
-      p.restore();
+      p->save();
+      p->setPen(pen);
+      p->drawPolyline(polygon);
+      p->restore();
     }
     else if (( (*it).renderop == "e" ) || ((*it).renderop == "E" ))
     {
@@ -187,16 +193,16 @@ void CanvasEdge::drawShape(QPainter& p)
       double h = m_scaleY *  (*it).integers[3] * 2;
       double x = (m_xMargin + ((*it).integers[0]%m_wdhcf)*m_scaleX) - w/2;
       double y = ((m_gh -  (*it).integers[1]%m_hdvcf)*m_scaleY + m_yMargin) - h/2;
-      p.save();
+      p->save();
       if ((*it).renderop == "E" )
       {
-        p.setBrush(Dot2QtConsts::instance().qtColor(edge()->color(0)));
+        p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
       }
       else
       {
-        p.setBrush(Dot2QtConsts::instance().qtColor("white"));
+        p->setBrush(Dot2QtConsts::componentData().qtColor("white"));
       }
-      QPen pen(Dot2QtConsts::instance().qtColor(edge()->color(0)));
+      QPen pen(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
       if (edge()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
@@ -205,11 +211,11 @@ void CanvasEdge::drawShape(QPainter& p)
       else
       {
         pen.setWidth(1 * widthScaleFactor);
-        pen.setStyle(Dot2QtConsts::instance().qtPenStyle(edge()->style()));
+        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(edge()->style()));
       }
-      p.setPen(pen);
-      p.drawEllipse(int(x),int(y),int(w),int(h));
-      p.restore();
+      p->setPen(pen);
+      p->drawEllipse(int(x),int(y),int(w),int(h));
+      p->restore();
     }
     else if ( (*it).renderop == "B" )
     {
@@ -222,7 +228,7 @@ void CanvasEdge::drawShape(QPainter& p)
       }
       else if (edge()->style() != "filled")
       {
-        pen.setStyle(Dot2QtConsts::instance().qtPenStyle(edge()->style()));
+        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(edge()->style()));
       }
       if (edge()->style().left(12) == "setlinewidth")
       {
@@ -232,12 +238,12 @@ void CanvasEdge::drawShape(QPainter& p)
       }
       for (uint splineNum = 0; splineNum < edge()->colors().count() || (splineNum==0 && edge()->colors().count()==0); splineNum++)
       {
-        QPointArray points((*it).integers[0]);
+        QPolygonF points((*it).integers[0]);
         for (int i = 0; i < (*it).integers[0]; i++)
         {
-          int nom = ((*it).integers[2*(*it).integers[0]]-(*it).integers[2]);
-          int denom = ((*it).integers[2*(*it).integers[0]-1]-(*it).integers[1]);
-          int diffX, diffY;
+          qreal nom = ((*it).integers[2*(*it).integers[0]]-(*it).integers[2]);
+          qreal denom = ((*it).integers[2*(*it).integers[0]-1]-(*it).integers[1]);
+          qreal diffX, diffY;
           if (nom == 0)
           {
             diffX = 0;
@@ -250,7 +256,7 @@ void CanvasEdge::drawShape(QPainter& p)
           }
           else
           {
-            double pente = ((double)nom)/denom;
+            double pente = nom/denom;
             if (pente < 0)
             {
               diffX = 2*(edge()->colors().count()/2 - splineNum);
@@ -262,29 +268,28 @@ void CanvasEdge::drawShape(QPainter& p)
               diffY = 2*(edge()->colors().count()/2 - splineNum);
             }
           }
-          QPoint p(
-              int(((*it).integers[2*i+1]%m_wdhcf)*m_scaleX) +m_xMargin + diffX,
-              int((m_gh-(*it).integers[2*i+2]%m_hdvcf)*m_scaleY) + m_yMargin + diffY
+          QPointF p(
+              ((*it).integers[2*i+1]%m_wdhcf*m_scaleX) +m_xMargin + diffX,
+              (m_gh-(*it).integers[2*i+2]%m_hdvcf)*m_scaleY + m_yMargin + diffY
                   );
           points[i] = p;
         }
-        pen.setColor(Dot2QtConsts::instance().qtColor(edge()->color(splineNum)));
-        p.save();
-//         p.setBrush(Dot2QtConsts::instance().qtColor(edge()->color(0)));
-        p.setPen(pen);
-        for (uint j = 0; j < points.size()/3; j++)
+        pen.setColor(Dot2QtConsts::componentData().qtColor(edge()->color(splineNum)));
+        p->save();
+//         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
+        p->setBrush(Qt::NoBrush);
+        p->setPen(pen);
+        QPainterPath path;
+        path.moveTo(points[0]);
+        for (uint j = 0; j < (points.size()-1)/3; j++)
         {
-          p.drawCubicBezier(points, 3*j);
+          path.cubicTo(points[3*j + 1],points[3*j+1 + 1], points[3*j+2 + 1]);
         }
-        p.restore();
+        p->drawPath(path);
+        p->restore();
       }
     }      
   }
 }
 
-
-QPointArray CanvasEdge::areaPoints() const
-{
-  return m_points;
-}
 

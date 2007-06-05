@@ -11,18 +11,24 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 #include <iostream>
 
 #include <kdebug.h>
-#include <qfile.h>
-#include <qvaluevector.h>
-#include <qpair.h>
+    
+#include <QFile>
 
 #include <boost/spirit/utility/confix.hpp>
+#include <boost/throw_exception.hpp> 
+namespace boost
+{
+  void throw_exception(std::exception const & e) {};
+}
+
 
 #include "dotgrammar.h"
 #include "dotgraph.h"
@@ -35,7 +41,7 @@ using namespace std;
 using namespace boost;
 using namespace boost::spirit;
 
-#define KGV_MAX_ITEMS_TO_LOAD 1000
+#define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<size_t>::max()
 
 DotGraphParsingHelper* phelper = 0;
 
@@ -57,7 +63,7 @@ struct DotGrammar : public boost::spirit::grammar<DotGrammar>
           ( ( alpha_p | '_' ) >> *(alnum_p | '_'))
           | real_p
           | ( '"' >>  *( (ch_p('\\') >> '"') | (anychar_p - '"') ) >>  '"' )
-	  | ( ch_p('<') >>  *( anychar_p  - '<' - '>' | tag ) >>  '>' )
+          | ( ch_p('<') >>  *( anychar_p  - '<' - '>' | tag ) >>  '>' )
            );
       tag = ('<' >> *( anychar_p  - '>') >> '>');
       stmt_list  =  stmt >> !(ch_p(';')) >> !( stmt_list ) ;
@@ -129,7 +135,7 @@ void decrz(char const first)
 void dump(char const* first, char const* last)
 {
   std::string str(first, last);
-  kdError() << ">>>> " << str.c_str() << " <<<<" << endl;
+  kError() << ">>>> " << QString::fromStdString(str) << " <<<<" << endl;
 }
 
 void strict(char const* first, char const* last)
@@ -139,19 +145,19 @@ void strict(char const* first, char const* last)
 
 void undigraph(char const* first, char const* last)
 {
-//   std::cerr << "Setting graph as undirected" << std::endl;
+  std::cerr << "Setting graph as undirected" << std::endl;
   if (phelper) phelper->graph->directed(false);
 }
 
 void digraph(char const* first, char const* last)
 {
-//    std::cerr << "Setting graph as directed" << std::endl;
+   std::cerr << "Setting graph as directed" << std::endl;
   if (phelper) phelper->graph->directed(true);
 }
 
 void graphid(char const* first, char const* last)
 {
-  if (phelper) phelper->graph->id(std::string(first,last));
+  if (phelper) phelper->graph->id(QString::fromStdString(std::string(first,last)));
 }
 
 void attrid(char const* first, char const* last)
@@ -163,7 +169,7 @@ void attrid(char const* first, char const* last)
     if (id.size()>0 && id[id.size()-1] == '"') id = id.substr(0,id.size()-1);
     phelper->attrid = id;
     phelper->valid = "";
-//     std::cerr << "Got attr ID  = '"<<phelper->attrid<<"'"<< std::endl;
+    std::cerr << "Got attr ID  = '"<<phelper->attrid<<"'"<< std::endl;
   }
 }
 
@@ -175,7 +181,7 @@ void subgraphid(char const* first, char const* last)
     if (id.size()>0 && id[0] == '"') id = id.substr(1);
     if (id.size()>0 && id[id.size()-1] == '"') id = id.substr(0,id.size()-1);
     phelper->subgraphid = id;
-//     std::cerr << "Got attr ID  = '"<<phelper->attrid<<"'"<< std::endl;
+    std::cerr << "Got attr ID  = '"<<phelper->attrid<<"'"<< std::endl;
   }
 }
 
@@ -187,7 +193,7 @@ void valid(char const* first, char const* last)
     if (id.size()>0 && id[0] == '"') id = id.substr(1);
     if (id.size()>0 && id[id.size()-1] == '"') id = id.substr(0,id.size()-1);
     phelper->valid = id;
-//     std::cerr << "Got attr val = '"<<phelper->valid<<"'"<< std::endl;
+    std::cerr << "Got attr val = '"<<phelper->valid<<"'"<< std::endl;
   }
 }
 
@@ -206,7 +212,7 @@ void pushAttrListC(char const c)
 
 void pushAttrList(char const* first, char const* last)
 {
-//   std::cerr << "Pushing attributes" << std::endl;
+  std::cerr << "Pushing attributes" << std::endl;
   if (phelper) 
   {
     phelper->graphAttributesStack.push_back(phelper->graphAttributes);
@@ -222,7 +228,7 @@ void popAttrListC(char const c)
 
 void popAttrList(char const* first, char const* last)
 {
-//   std::cerr << "Poping attributes" << std::endl;
+  std::cerr << "Poping attributes" << std::endl;
   if (phelper) 
   {
     phelper->graphAttributes = phelper->graphAttributesStack.back();
@@ -255,7 +261,7 @@ void createsubgraph(char const c)
 
 void setgraphattributes(char const* first, char const* last)
 {
-//   std::cerr << "setgraphattributes with z = " << phelper->z << std::endl;
+  std::cerr << "setgraphattributes with z = " << phelper->z << std::endl;
   if (phelper) 
   {
     if (phelper->z == 1) // main graph
@@ -271,7 +277,7 @@ void setgraphattributes(char const* first, char const* last)
 
 void setnodeattributes(char const* first, char const* last)
 {
-//   std::cerr << "setnodeattributes with z = " << phelper->z << std::endl;
+  std::cerr << "setnodeattributes with z = " << phelper->z << std::endl;
   if (phelper) 
   {
     phelper->setnodeattributes();
@@ -295,14 +301,13 @@ void checkedgeop(char const* first, char const* last)
       ( (!phelper->graph->directed()) && (str == "--") ) )
       return;
     
-      kdError() << "Error !! uncoherent relation : directed = '" << phelper->graph->directed()
-              << "' and op = '" << str.c_str() << "'" << endl;
+    kError() << "Error !! uncoherent relation : directed = '" << phelper->graph->directed() << "' and op = '" << QString::fromStdString(str) << "'" << endl;
   }
 }
 
 void edgebound(char const* first, char const* last)
 {
-  //std::cerr << "edgebound: " << std::string(first,last) << std::endl;
+  std::cerr << "edgebound: " << std::string(first,last) << std::endl;
   if (phelper) 
   {
     std::string id(first,last);
@@ -400,9 +405,9 @@ bool parse_integers(char const* str, std::vector<int>& v)
                space_p).full;
 }
 
-bool parse_spline(char const* str, QValueVector< QPair< float, float > >& points)
+bool parse_spline(char const* str, QVector< QPair< float, float > >& points)
 {
-  //std::cerr << "Parsing spline..." << str << std::endl;
+  std::cerr << "Parsing spline..." << str << std::endl;
   char e = 'n', s = 'n';
   int sx,sy,ex,ey;
   QPair< float, float > p;
@@ -423,8 +428,8 @@ bool parse_spline(char const* str, QValueVector< QPair< float, float > >& points
   if (!res) return false;
   if (s == 's')
   {
-/*    std::cerr << "inserting the s point" << std::endl;
-    points.insert(points.begin(), qMakePair(float(sx),float(sy)));*/
+   std::cerr << "inserting the s point" << std::endl;
+    points.insert(points.begin(), qMakePair(float(sx),float(sy)));
   }
   if (e == 'e')
   {
@@ -445,7 +450,7 @@ void init_op()
 void valid_op(char const* first, char const* last)
 {
   std::string s(first, last);
-//   std::cerr << "Validating render operation "<<s<<": '"<<renderop.renderop<<"/"<<renderop.str<<"'" << std::endl;
+  std::cerr << "Validating render operation "<<s<<": '"<<renderop.renderop<<"/"<<renderop.str<<"'" << std::endl;
   renderopvec->push_back(renderop);
   renderop.renderop = "";
   renderop.integers = std::vector<int>();
@@ -454,7 +459,7 @@ void valid_op(char const* first, char const* last)
 
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
 {
-  if (str.size() == 0)
+  if (str == "")
   {
     return false;
   }
@@ -504,18 +509,18 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
              ).full;
   if (res ==false)
   {
-//     std::cerr << "Parsing render operation '"<<str<<"'" << std::endl;
-    kdError() << "parse_renderop failed on '"<<str.c_str()<<"'. Last renderop is '"<< renderop.renderop.c_str()<<"'. Its string is '"<<QString::fromUtf8(renderop.str.c_str())<<"'" << endl;
+    std::cerr << "Parsing render operation '"<<str<<"'" << std::endl;
+    kError() << "parse_renderop failed on '"<<QString::fromStdString(str)<<"'. Last renderop string is '"<<QString::fromUtf8(renderop.str.c_str())<<"'" << endl;
   }
 //   delete renderop; renderop = 0;
   
   return res;
 }
 
-void boost::throw_exception(std::exception const & e)
-{
+// void boost::throw_exception(std::exception const & e)
+// {
   //  throw e;
-}
+// }
 
 void DotGraphParsingHelper::setgraphattributes()
 {
@@ -523,17 +528,17 @@ void DotGraphParsingHelper::setgraphattributes()
   attributed = "graph";
   setattributedlist();*/
   
-//   std::cerr << "Attributes for graph are : "  << std::endl;
+  std::cerr << "Attributes for graph are : "  << std::endl;
   AttributesMap::const_iterator it, it_end;
   it = graphAttributes.begin(); it_end = graphAttributes.end();
   for (; it != it_end; it++)
   {
-//     std::cerr << "    " << (*it).first << "\t=\t'" << (*it).second <<"'"<< std::endl;
+    std::cerr << "    " << (*it).first << "\t=\t'" << (*it).second <<"'"<< std::endl;
   }
   
   if (graphAttributes.find("color") != graphAttributes.end())
   {
-    graph->color(graphAttributes["color"].c_str());
+    graph->color(QString::fromStdString(graphAttributes["color"]));
   }
   else
   {
@@ -541,7 +546,7 @@ void DotGraphParsingHelper::setgraphattributes()
   }
   if (graphAttributes.find("bgcolor") != graphAttributes.end())
   {
-  graph->backgroundColor(graphAttributes["bgcolor"].c_str());
+    graph->backgroundColor(QString::fromStdString(graphAttributes["bgcolor"]));
   }
   else 
   {
@@ -549,7 +554,7 @@ void DotGraphParsingHelper::setgraphattributes()
   }
   if (graphAttributes.find("fontcolor") != graphAttributes.end())
   {
-  graph->fontColor(graphAttributes["fontcolor"].c_str());
+    graph->fontColor(QString::fromStdString(graphAttributes["fontcolor"]));
   }
   else
   {
@@ -567,7 +572,7 @@ void DotGraphParsingHelper::setgraphattributes()
   }
   if (graphAttributes.find("fontname") != graphAttributes.end())
   {
-  graph->fontName(graphAttributes["fontname"].c_str());
+    graph->fontName(QString::fromStdString(graphAttributes["fontname"]));
   }
   else
   {
@@ -592,7 +597,7 @@ void DotGraphParsingHelper::setgraphattributes()
   }
   if (graphAttributes.find("_ldraw_") != graphAttributes.end())
   {
-//   std::cerr << "Calling parse of _ldraw_: '"<<graphAttributes["_ldraw_"]<<"'" << std::endl;
+  std::cerr << "Calling parse of _ldraw_: '"<<graphAttributes["_ldraw_"]<<"'" << std::endl;
     parse_renderop(graphAttributes["_ldraw_"], graph->renderOperations());
   }
 //   popAttrList('a');
@@ -604,21 +609,21 @@ void DotGraphParsingHelper::setsubgraphattributes()
   attributed = "graph";
   setattributedlist();*/
   
-/*   std::cerr << "Attributes for graph are : "  << std::endl;
+  std::cerr << "Attributes for graph are : "  << std::endl;
   AttributesMap::const_iterator it, it_end;
   it = graphAttributes.begin(); it_end = graphAttributes.end();
   for (; it != it_end; it++)
   {
      std::cerr << "    " << (*it).first << "\t=\t'" << (*it).second <<"'"<< std::endl;
-  }*/
+  }
   
   if (graphAttributes.find("style") != graphAttributes.end())
   {
-  gs->style(graphAttributes["style"].c_str());
+    gs->style(QString::fromStdString(graphAttributes["style"]));
   }
   if (graphAttributes.find("color") != graphAttributes.end())
   {
-  gs->lineColor(graphAttributes["color"].c_str());
+    gs->lineColor(QString::fromStdString(graphAttributes["color"]));
 //     gs->backColor(graphAttributes["color"]);
   }
   else
@@ -628,13 +633,13 @@ void DotGraphParsingHelper::setsubgraphattributes()
   }
   if (graphAttributes.find("bgcolor") != graphAttributes.end())
   {
-  gs->backColor(graphAttributes["bgcolor"].c_str());
+    gs->backColor(QString::fromStdString(graphAttributes["bgcolor"]));
   }
   else if ((graphAttributes.find("style") != graphAttributes.end())
       && (graphAttributes["style"] == "filled") 
       && (graphAttributes.find("color") != graphAttributes.end()))
   {
-  gs->backColor(graphAttributes["color"].c_str());
+    gs->backColor(QString::fromStdString(graphAttributes["color"]));
   }
   else
   {
@@ -644,11 +649,11 @@ void DotGraphParsingHelper::setsubgraphattributes()
       && (graphAttributes["style"] == "filled") 
       && (graphAttributes.find("fillcolor") != graphAttributes.end()))
   {
-  gs->backColor(graphAttributes["fillcolor"].c_str());
+    gs->backColor(QString::fromStdString(graphAttributes["fillcolor"]));
   }  
   if (graphAttributes.find("fontcolor") != graphAttributes.end())
   {
-  gs->fontColor(graphAttributes["fontcolor"].c_str());
+    gs->fontColor(QString::fromStdString(graphAttributes["fontcolor"]));
   }
   else
   {
@@ -666,7 +671,7 @@ void DotGraphParsingHelper::setsubgraphattributes()
   }
   if (graphAttributes.find("fontname") != graphAttributes.end())
   {
-  gs->fontName(graphAttributes["fontname"].c_str());
+    gs->fontName(QString::fromStdString(graphAttributes["fontname"]));
   }
   else
   {
@@ -691,7 +696,7 @@ void DotGraphParsingHelper::setsubgraphattributes()
   }
   if (graphAttributes.find("_ldraw_") != graphAttributes.end())
   {
-//   std::cerr << "Calling parse of _ldraw_: '"<<graphAttributes["_ldraw_"]<<"'" << std::endl;
+  std::cerr << "Calling parse of _ldraw_: '"<<graphAttributes["_ldraw_"]<<"'" << std::endl;
     parse_renderop(graphAttributes["_ldraw_"], gs->renderOperations());
   }
 //   popAttrList('a');
@@ -699,48 +704,48 @@ void DotGraphParsingHelper::setsubgraphattributes()
 
 void DotGraphParsingHelper::setnodeattributes()
 {
-//   std::cerr << "setnodeattributes with z = " << z << std::endl;
+  std::cerr << "setnodeattributes with z = " << z << std::endl;
 /*  pushAttrList('a');
   attributed = "node";
   setattributedlist();*/
   
-// std::cerr << "Attributes for node " << gn->id() << " are : "  << std::endl;
   if (gn == 0)
   {
     return;
   }
+  std::cerr << "Attributes for node " << gn->id().toStdString() << " are : "  << std::endl;
   AttributesMap::const_iterator it, it_end;
   it = nodesAttributes.begin(); it_end = nodesAttributes.end();
   for (; it != it_end; it++)
   {
-//     std::cerr << "    " << (*it).first << "\t=\t'" << (*it).second <<"'"<< std::endl;
+    std::cerr << "    " << (*it).first << "\t=\t'" << (*it).second <<"'"<< std::endl;
   }
   
   gn->z(z);
   if (nodesAttributes.find("style") != nodesAttributes.end())
   {
-    gn->style(nodesAttributes["style"].c_str());
+    gn->style(QString::fromStdString(nodesAttributes["style"]));
   }
   if (nodesAttributes.find("shape") != nodesAttributes.end())
   {
-  gn->shape(nodesAttributes["shape"].c_str());
+    gn->shape(QString::fromStdString(nodesAttributes["shape"]));
   }
   if (nodesAttributes.find("color") != nodesAttributes.end())
   {
-  gn->lineColor(nodesAttributes["color"].c_str());
+    gn->lineColor(QString::fromStdString(nodesAttributes["color"]));
   }
   if (nodesAttributes.find("fontcolor") != nodesAttributes.end())
   {
-  gn->fontColor(nodesAttributes["fontcolor"].c_str());
+    gn->fontColor(QString::fromStdString(nodesAttributes["fontcolor"]));
   }
   if (nodesAttributes.find("fillcolor") != nodesAttributes.end())
   {
-  gn->backColor(nodesAttributes["fillcolor"].c_str());
+    gn->backColor(QString::fromStdString(nodesAttributes["fillcolor"]));
   }
   else if ( (nodesAttributes.find("color") != nodesAttributes.end())
           && (gn->style() == "filled") )
   {
-  gn->backColor(nodesAttributes["color"].c_str());
+    gn->backColor(QString::fromStdString(nodesAttributes["color"]));
   }
   else
   {
@@ -754,11 +759,11 @@ void DotGraphParsingHelper::setnodeattributes()
   }
   if (nodesAttributes.find("fontname") != nodesAttributes.end())
   {
-  gn->fontName(nodesAttributes["fontname"].c_str());
+    gn->fontName(QString::fromStdString(nodesAttributes["fontname"]));
   }
   else
   {
-  gn->fontName(graph->fontName().c_str());
+    gn->fontName(graph->fontName());
   }
   if (nodesAttributes.find("fontsize") != nodesAttributes.end())
   {
@@ -784,7 +789,7 @@ void DotGraphParsingHelper::setnodeattributes()
   }
   if (nodesAttributes.find("pos") != nodesAttributes.end())
   {
-    //std::cerr << "node position: '" << nodesAttributes["pos"] << "'" << std::endl;
+    std::cerr << "node position: '" << nodesAttributes["pos"] << "'" << std::endl;
     std::string pos= nodesAttributes["pos"];
     QPoint p;
     parse_point(pos.c_str(), p);
@@ -793,7 +798,7 @@ void DotGraphParsingHelper::setnodeattributes()
   }
   if (nodesAttributes.find("width") != nodesAttributes.end())
   {
-    //  std::cerr << "node width: '" << nodesAttributes["width"] << "'" << std::endl;
+     std::cerr << "node width: '" << nodesAttributes["width"] << "'" << std::endl;
     std::string width= nodesAttributes["width"];
     double w;
     parse_real(width.c_str(), w);
@@ -801,7 +806,7 @@ void DotGraphParsingHelper::setnodeattributes()
   }
   if (nodesAttributes.find("height") != nodesAttributes.end())
   {
-    //  std::cerr << "node height: '" << nodesAttributes["height"] << "'" << std::endl;
+     std::cerr << "node height: '" << nodesAttributes["height"] << "'" << std::endl;
     std::string height = nodesAttributes["height"];
     double h;
     parse_real(height.c_str(), h);
@@ -809,12 +814,12 @@ void DotGraphParsingHelper::setnodeattributes()
   }
   if (nodesAttributes.find("shapefile") != nodesAttributes.end())
   {
-    //  std::cerr << "node height: '" << nodesAttributes["height"] << "'" << std::endl;
-    gn->shapeFile(nodesAttributes["shapefile"].c_str());
+     std::cerr << "node height: '" << nodesAttributes["height"] << "'" << std::endl;
+    gn->shapeFile(QString::fromStdString(nodesAttributes["shapefile"]));
   }
   if (nodesAttributes.find("URL") != nodesAttributes.end())
   {
-  gn->url(nodesAttributes["URL"].c_str());
+    gn->url(QString::fromStdString(nodesAttributes["URL"]));
   }
   if (nodesAttributes.find("_draw_") != nodesAttributes.end())
   {
@@ -822,7 +827,7 @@ void DotGraphParsingHelper::setnodeattributes()
   }
   if (nodesAttributes.find("_ldraw_") != nodesAttributes.end())
   {
-//   std::cerr << "Calling parse of _ldraw_: '"<<nodesAttributes["_ldraw_"]<<"'" << std::endl;
+  std::cerr << "Calling parse of _ldraw_: '"<<nodesAttributes["_ldraw_"]<<"'" << std::endl;
     parse_renderop(nodesAttributes["_ldraw_"], gn->renderOperations());
   }
 //   popAttrList('a');
@@ -830,17 +835,17 @@ void DotGraphParsingHelper::setnodeattributes()
 
 void DotGraphParsingHelper::setedgeattributes()
 {
-//   std::cerr << "setedgeattributeswith z = " << z << std::endl;
+  std::cerr << "setedgeattributeswith z = " << z << std::endl;
 /*  pushAttrList('a');
   attributed = "edge";
   setattributedlist();*/
   
-//   std::cerr << "Attributes for edge " << ge->fromNode()->id() << "->" << ge->toNode()->id()<< " are : "  << std::endl;
+  std::cerr << "Attributes for edge " << ge->fromNode()->id().toStdString() << "->" << ge->toNode()->id().toStdString() << " are : "  << std::endl;
   AttributesMap::const_iterator it, it_end;
   it = edgesAttributes.begin(); it_end = edgesAttributes.end();
   for (; it != it_end; it++)
   {
-//     std::cerr << "    " << (*it).first << "\t=\t'" << (*it).second << "'" << std::endl;
+    std::cerr << "    " << (*it).first << "\t=\t'" << (*it).second << "'" << std::endl;
   }
   
   ge->z(z);
@@ -852,7 +857,7 @@ void DotGraphParsingHelper::setedgeattributes()
   }
   if (edgesAttributes.find("fontname") != edgesAttributes.end())
   {
-    ge->fontName(edgesAttributes["fontname"].c_str());
+    ge->fontName(QString::fromStdString(edgesAttributes["fontname"]));
   }
   else
   {
@@ -882,7 +887,7 @@ void DotGraphParsingHelper::setedgeattributes()
   }
   if (edgesAttributes.find("fontcolor") != edgesAttributes.end())
   {
-  ge->fontColor(edgesAttributes["fontcolor"].c_str());
+    ge->fontColor(QString::fromStdString(edgesAttributes["fontcolor"]));
   }
   else
   {
@@ -891,12 +896,12 @@ void DotGraphParsingHelper::setedgeattributes()
   
   if (edgesAttributes.find("color") != edgesAttributes.end())
   {
-  ge->colors(edgesAttributes["color"].c_str());
+    ge->colors(QString::fromStdString(edgesAttributes["color"]));
   }
   if (edgesAttributes.find("style") != edgesAttributes.end())
   {
-//     std::cerr << "setting edge style to " << edgesAttributes["style"] << std::endl;
-    ge->style(edgesAttributes["style"].c_str());
+    std::cerr << "setting edge style to " << edgesAttributes["style"] << std::endl;
+    ge->style(QString::fromStdString(edgesAttributes["style"]));
   }
   else
   {
@@ -907,11 +912,11 @@ void DotGraphParsingHelper::setedgeattributes()
     std::string dir = edgesAttributes["dir"];
     if ( (dir == "forward") || (dir == "back") || (dir == "both") || (dir == "none") )
     {
-      ge->dir(dir.c_str());
+      ge->dir(QString::fromStdString(dir));
     }
     else
     {
-    kdError() << "Invalid edge dir: " << dir.c_str() << endl;
+      kError() << "Invalid edge dir: " << QString::fromStdString(dir) << endl;
     }
   }
   
@@ -919,7 +924,7 @@ void DotGraphParsingHelper::setedgeattributes()
   {
     if (parse_spline(edgesAttributes["pos"].c_str(), ge->edgePoints()) == false)
     {
-//       std::cerr << "Parsing spline failed ! (" << edgesAttributes["pos"] << ")" << std::endl;
+      std::cerr << "Parsing spline failed ! (" << edgesAttributes["pos"] << ")" << std::endl;
     }
   }
   if (edgesAttributes.find("lp") != edgesAttributes.end())
@@ -966,7 +971,7 @@ void DotGraphParsingHelper::setedgeattributes()
 
 void DotGraphParsingHelper::setattributedlist()
 {
-//    std::cerr << "Setting attributes list for " << attributed << std::endl;
+   std::cerr << "Setting attributes list for " << attributed << std::endl;
   if (attributed == "graph") 
   {
     if (attributes.find("bb") != attributes.end())
@@ -983,7 +988,7 @@ void DotGraphParsingHelper::setattributedlist()
     it = attributes.begin(); it_end = attributes.end();
     for (; it != it_end; it++)
     {
-//       std::cerr << "    " << (*it).first << " = " <<  (*it).second << std::endl;
+      std::cerr << "    " << (*it).first << " = " <<  (*it).second << std::endl;
       graphAttributes[(*it).first] = (*it).second;
     }
   }
@@ -993,7 +998,7 @@ void DotGraphParsingHelper::setattributedlist()
     it = attributes.begin(); it_end = attributes.end();
     for (; it != it_end; it++)
     {
-//       std::cerr << "    " << (*it).first << " = " <<  (*it).second << std::endl;
+      std::cerr << "    " << (*it).first << " = " <<  (*it).second << std::endl;
       nodesAttributes[(*it).first] = (*it).second;
     }
   }
@@ -1003,7 +1008,7 @@ void DotGraphParsingHelper::setattributedlist()
     it = attributes.begin(); it_end = attributes.end();
     for (; it != it_end; it++)
     {
-//       std::cerr << "    " << (*it).first << " = " <<  (*it).second << std::endl;
+      std::cerr << "    " << (*it).first << " = " <<  (*it).second << std::endl;
       edgesAttributes[(*it).first] = (*it).second;
     }
   }
@@ -1012,13 +1017,13 @@ void DotGraphParsingHelper::setattributedlist()
 
 void DotGraphParsingHelper::createnode(const std::string& nodeid)
 {
-  //  std::cerr << "DotGraphParsingHelper::createnode " << nodeid << std::endl;
-                                                                     if (graph->nodes().find(nodeid.c_str()) == graph->nodes().end() && graph->nodes().size() < KGV_MAX_ITEMS_TO_LOAD)
+   std::cerr << "DotGraphParsingHelper::createnode " << nodeid << std::endl;
+  if (graph->nodes().find(QString::fromStdString(nodeid)) == graph->nodes().end() && graph->nodes().size() < KGV_MAX_ITEMS_TO_LOAD)
   {
     gn = new GraphNode();
-    gn->id(nodeid.c_str()); 
-    gn->label(nodeid.c_str()); 
-    graph->nodes()[nodeid.c_str()] = gn;
+    gn->id(QString::fromStdString(nodeid)); 
+    gn->label(QString::fromStdString(nodeid)); 
+    graph->nodes()[QString::fromStdString(nodeid)] = gn;
   }
   else
   {
@@ -1035,16 +1040,16 @@ void DotGraphParsingHelper::createsubgraph()
     if (str.empty())
     {
       std::ostringstream oss;
-      oss << "kgv_id_" << phelper->only++;
+      oss << "kgv_id_" << phelper->uniq++;
       str = oss.str();
     }
-//     std::cerr << "DotGraphParsingHelper::createsubgraph " << str << std::endl;
-    if (graph->subgraphs().find(str.c_str()) == graph->subgraphs().end())
+    std::cerr << "DotGraphParsingHelper::createsubgraph " << str << std::endl;
+    if (graph->subgraphs().find(QString::fromStdString(str)) == graph->subgraphs().end())
     {
       gs = new GraphSubgraph();
-      gs->id(str.c_str()); 
-            gs->label(str.c_str()); 
-            graph->subgraphs()[str.c_str()] = gs;
+      gs->id(QString::fromStdString(str)); 
+      gs->label(QString::fromStdString(str)); 
+      graph->subgraphs()[QString::fromStdString(str)] = gs;
     }
     phelper->subgraphid = "";
   }
@@ -1064,26 +1069,23 @@ void DotGraphParsingHelper::createedges()
     {
       return;
     }
-    //    std::cerr << "DotGraphParsingHelper::createedges(" << node1Name << ", " << node2Name << ")" << std::endl;
+       std::cerr << "DotGraphParsingHelper::createedges(" << node1Name << ", " << node2Name << ")" << std::endl;
     ge = new GraphEdge();
-    if (!graph->nodes().contains(node1Name.c_str()))
+    if (!graph->nodes().contains(QString::fromStdString(node1Name)))
     {
       GraphNode* gn1 = new GraphNode();
-      gn1->id(node1Name.c_str());
-                            graph->nodes()[node1Name.c_str()] = gn1;
+      gn1->id(QString::fromStdString(node1Name));
+      graph->nodes()[QString::fromStdString(node1Name)] = gn1;
     }
-    if (!graph->nodes().contains(node2Name.c_str()))
+    if (!graph->nodes().contains(QString::fromStdString(node2Name)))
     {
       GraphNode* gn2 = new GraphNode();
-      gn2->id(node2Name.c_str());
-                            graph->nodes()[node2Name.c_str()] = gn2;
+      gn2->id(QString::fromStdString(node2Name));
+      graph->nodes()[QString::fromStdString(node2Name)] = gn2;
     }
-    ge->setCallerNode(graph->nodes()[node1Name.c_str()]);
-                                                    ge->setCallingNode(graph->nodes()[node2Name.c_str()]);
-                                                    graph->edges().insert(std::make_pair(qMakePair(graph->nodes()[node1Name.c_str()],graph->nodes()[node2Name.c_str()]), ge));
-
-    if (ge->fromNode()) ge->fromNode()->callings.append(ge);
-    if (ge->toNode()) ge->toNode()->callers.append(ge);
+    ge->setCallerNode(graph->nodes()[QString::fromStdString(node1Name)]);
+    ge->setCallingNode(graph->nodes()[QString::fromStdString(node2Name)]);
+    graph->edges().insert(std::make_pair(qMakePair(graph->nodes()[QString::fromStdString(node1Name)],graph->nodes()[QString::fromStdString(node2Name)]), ge));
 
     setedgeattributes();
 

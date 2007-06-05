@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /* This file was callgraphview.cpp, part of KCachegrind.
@@ -32,21 +33,17 @@
 #include <math.h>
 #include <iostream>
 
-#include <qtooltip.h>
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qwhatsthis.h>
-#include <qcanvas.h>
-#include <qwmatrix.h>
-#include <qpair.h>
-#include <qpainter.h>
-#include <qpopupmenu.h>
-#include <qstyle.h>
+#include <QGraphicsScene>
+#include <QMatrix>
+#include <QPainter>
+#include <QStyle>
+#include <QPolygonF>
+#include <QPixmap>
 
 #include <kdebug.h>
 #include <klocale.h>
 #include <kconfig.h>
-#include <ktempfile.h>
+//#include <ktempfile.h>
 #include <kapplication.h>
 #include <kiconloader.h>
 #include <kfiledialog.h>
@@ -65,7 +62,7 @@
 CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n)
 : m_node(n), m_view(v), m_hasFocus(false), 
   m_font(0),
-  m_pen(Dot2QtConsts::instance().qtColor(n->fontColor()))
+  m_pen(Dot2QtConsts::componentData().qtColor(n->fontColor()))
 
 {
   m_font = FontsCache::changeable().fromName(n->fontName());
@@ -75,13 +72,13 @@ CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro,
                                             const DotRenderOpVec& dros,
                                             DotGraphView* v, 
                                             GraphNode* n,
-                                            QCanvas* c,
+                                            QGraphicsScene* c,
                                             double scaleX, double scaleY, int xMargin, int yMargin, int gh,
                                             int wdhcf, int hdvcf)
 {
   CanvasNode* res = 0;
-/*  std::cerr << "dotShapedCanvasNode: creating node for " << n->label() 
-            << " ; dro = " << dro.renderop << std::endl;*/
+  std::cerr << "dotShapedCanvasNode: creating node for " << n->label().toStdString()
+            << " ; dro = " << dro.renderop << std::endl;
   if (n->label()[0] == '<' && n->shape() != "record")
   {
 //     std::cerr << "dotShapedCanvasNode: creating CanvasHtmlNode" << std::endl;
@@ -91,7 +88,7 @@ CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro,
   }
   else if (dro.renderop == "e" || dro.renderop == "E")
   {
-//   kdDebug() << "dotShapedCanvasNode: creating CanvasEllipseNode" << endl;
+//   kDebug() << "dotShapedCanvasNode: creating CanvasEllipseNode" << endl;
     res = new CanvasEllipseNode(v, n, dro, dros, c,
                                 scaleX, scaleY, xMargin, yMargin, gh,
                                 wdhcf, hdvcf);
@@ -105,20 +102,20 @@ CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro,
   }
   else if (dro.renderop == "L" || dro.renderop == "B"  || dro.renderop == "b")
   {
-    kdWarning() << "xdot render operation '" << QString(dro.renderop.c_str()) << "' is currently "
+    kWarning() << "xdot render operation '" << QString::fromStdString(dro.renderop) << "' is currently "
       "not supported (ignored)." << endl;
   }
   else if (
              dro.renderop == "C" || dro.renderop == "c" 
           || dro.renderop == "F" || dro.renderop == "S")
   {
-    kdWarning() << "xdot render operation '" << QString(dro.renderop.c_str()) << "' is currently "
+    kWarning() << "xdot render operation '" << QString::fromStdString(dro.renderop) << "' is currently "
       "not supported (ignored).\nUsually its value is handled through"
       " standard attributes." << endl;
   }
   else 
   {
-    kdError() << "Error ! Unknown node shape '" << QString(dro.renderop.c_str()) << "' ; ignoring it." << endl;
+    kError() << "Error ! Unknown node shape '" << QString::fromStdString(dro.renderop) << "' ; ignoring it." << endl;
     //    res = new CanvasPolygonalNode(v, n, dro, c);
   }
   if (res != 0)
@@ -134,7 +131,8 @@ CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro,
   return res;
 }
 
-void CanvasNode::drawShape(QPainter& p)
+void CanvasNode::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
+QWidget *widget)
 {
   DotRenderOpVec::const_reverse_iterator it, it_end;
   it = node()->renderOperations().rbegin(); 
@@ -148,16 +146,16 @@ void CanvasNode::drawShape(QPainter& p)
       int h = int(m_scaleY * dro.integers[3]) * 2;
       int x = m_xMargin + int((dro.integers[0]%m_wdhcf)*m_scaleX) - w/2;
       int y = int((m_gh - dro.integers[1]%m_hdvcf)*m_scaleY) + m_yMargin - h/2;
-      p.save();
-      p.setBrush(Dot2QtConsts::instance().qtColor(node()->backColor()));
-      p.setPen(Dot2QtConsts::instance().qtColor(node()->lineColor()));
-      p.drawEllipse(x, y, w, h);
-      p.restore();
+      p->save();
+      p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
+      p->setPen(Dot2QtConsts::componentData().qtColor(node()->lineColor()));
+      p->drawEllipse(x, y, w, h);
+      p->restore();
     }
     else if(dro.renderop == "p" || dro.renderop == "P")
     {
 //       std::cerr << "Drawing polygon for node '"<<node()->id()<<"': ";
-      QPointArray points(dro.integers[0]);
+      QPolygonF points(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
       {
         int x,y;
@@ -171,8 +169,8 @@ void CanvasNode::drawShape(QPainter& p)
                   << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf << std::endl;*/
         points[i] = p;
       }
-      p.save();
-      QPen pen(Dot2QtConsts::instance().qtColor(node()->lineColor()));
+      p->save();
+      QPen pen(Dot2QtConsts::componentData().qtColor(node()->lineColor()));
       if (node()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
@@ -180,7 +178,7 @@ void CanvasNode::drawShape(QPainter& p)
       }
       else if (node()->style() != "filled")
       {
-        pen.setStyle(Dot2QtConsts::instance().qtPenStyle(node()->style()));
+        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(node()->style()));
       }
       if (node()->style().left(12) == "setlinewidth")
       {
@@ -188,25 +186,25 @@ void CanvasNode::drawShape(QPainter& p)
         uint lineWidth = node()->style().mid(12, node()->style().length()-1-12).toInt(&ok);
         pen.setWidth(lineWidth);
       }
-      p.setPen(pen);
-      p.setBrush(Dot2QtConsts::instance().qtColor(node()->backColor()));
+      p->setPen(pen);
+      p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
 /*      if (node()->style() == "filled")
       {
-        p.setBrush(Dot2QtConsts::instance().qtColor(node()->backColor()));
-    //     QCanvasPolygon::drawShape(p);
+        p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
+    //     QCanvasPolygon::paint(p);
       }
       else
       {
-        p.setBrush(canvas()->backgroundColor());
+        p->setBrush(canvas()->backgroundColor());
       }*/
-      p.drawPolygon(points);
-      p.restore();
+      p->drawPolygon(points);
+      p->restore();
       if (!node()->shapeFile().isEmpty())
       {
         QPixmap pix(node()->shapeFile());
         if (!pix.isNull())
         {
-          p.drawPixmap(points.boundingRect().left(), points.boundingRect().top(), pix);
+          p->drawPixmap(int(points.boundingRect().left()), int(points.boundingRect().top()), pix);
         }
       }
     }
@@ -220,7 +218,7 @@ void CanvasNode::drawShape(QPainter& p)
     const DotRenderOp& dro = (*it);
     if ( (*it).renderop == "L" )
     {
-      QPointArray points(dro.integers[0]);
+      QPolygonF points(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
       {
         int x,y;
@@ -232,8 +230,8 @@ void CanvasNode::drawShape(QPainter& p)
                 );
         points[i] = p;
       }
-      p.save();
-      QPen pen(Dot2QtConsts::instance().qtColor(node()->lineColor()));
+      p->save();
+      QPen pen(Dot2QtConsts::componentData().qtColor(node()->lineColor()));
       if (node()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
@@ -241,11 +239,11 @@ void CanvasNode::drawShape(QPainter& p)
       }
       else if (node()->style() != "filled")
       {
-        pen.setStyle(Dot2QtConsts::instance().qtPenStyle(node()->style()));
+        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(node()->style()));
       }
-      p.setPen(pen);
-      p.drawPolyline(points);
-      p.restore();
+      p->setPen(pen);
+      p->drawPolyline(points);
+      p->restore();
     }
   }
 
@@ -276,10 +274,10 @@ void CanvasNode::drawShape(QPainter& p)
         m_font->setPointSize(fontSize);
         fm = QFontMetrics(*m_font);
       }
-      p.save();
-      p.setFont(*m_font);
-      p.setPen(m_pen);
-      p.drawText(
+      p->save();
+      p->setFont(*m_font);
+      p->setPen(m_pen);
+      p->drawText(
                   int((m_scaleX * 
                        (
                          (dro.integers[0]) 
@@ -290,16 +288,16 @@ void CanvasNode::drawShape(QPainter& p)
                       + m_xMargin ),
                   int(((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin),
                   str);
-      p.restore();
+      p->restore();
     }
   }
 
 }
 
-CanvasPolygonalNode::CanvasPolygonalNode(DotGraphView* v,GraphNode* n, const QPointArray& points, QCanvas* c)
-: QCanvasPolygon(c), CanvasNode(v, n)
+CanvasPolygonalNode::CanvasPolygonalNode(DotGraphView* v,GraphNode* n, const QPolygonF& points, QGraphicsScene* c)
+: QGraphicsPolygonItem(0,c), CanvasNode(v, n)
 {
-  setPoints(points);
+//   setPoints(points);
 }
 
 CanvasPolygonalNode::CanvasPolygonalNode(
@@ -307,71 +305,85 @@ CanvasPolygonalNode::CanvasPolygonalNode(
                                           GraphNode* n,
                                           const DotRenderOp& dro,
                                           const DotRenderOpVec& dros,
-                                          QCanvas* c,
+                                          QGraphicsScene* c,
                                           double scaleX, double scaleY, 
                                           int xMargin, int yMargin, int gh,
                                           int wdhcf, int hdvcf
                                         )
-: QCanvasPolygon(c), CanvasNode(v, n)
+: QGraphicsPolygonItem(0,c), CanvasNode(v, n)
 {
+  setFlag(QGraphicsItem::ItemIsMovable, true);
   m_renderOperations = dros;
 
-// // /*  kdDebug() << "Creating CanvasPolygonalNode for "<<n->id()<<" with " << dro.integers[0] << " points." << endl;
-// //   kdDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
+// // /*  kDebug() << "Creating CanvasPolygonalNode for "<<n->id()<<" with " << dro.integers[0] << " points." << endl;
+// //   kDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
 // //     << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
   m_scaleX = scaleX; m_scaleY = scaleY;
   m_xMargin = xMargin; m_yMargin = yMargin;
   m_gh = gh; m_wdhcf = wdhcf; m_hdvcf = hdvcf;
-  QPointArray points(dro.integers[0]);
+  QPolygonF polygon(dro.integers[0]);
   for (int i = 0; i < dro.integers[0]; i++)
   {
-    int x,y;
+    qreal x,y;
     x = (dro.integers[2*i+1] == wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]%wdhcf;
     y = (dro.integers[2*i+2] == hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]%hdvcf;
     {
       
     }
-    QPoint p(
-              int(x*scaleX) +xMargin,
-              int((gh-y)*scaleY) + yMargin
+    QPointF p(
+              x*scaleX +xMargin,
+              (gh-y)*scaleY + yMargin
             );
-/*  kdDebug() << "    point: (" << dro.integers[2*i+1] << ","
+/*  kDebug() << "    point: (" << dro.integers[2*i+1] << ","
       <<dro.integers[2*i+2]<< ") -> " << p << endl;*/
-    points[i] = p;
+    polygon[i] = p;
   }
-  setPoints(points);
+  setPolygon(polygon);
+  
+  QString tipStr;
+  QString id = n->id();
+  QString label = n->label();
+  tipStr = i18n("id='%1'\nlabel='%2'",id,label);
+  setToolTip(tipStr);
 }
 
 /** @todo handle multiple comma separated styles 
  * @todo implement styles diagonals, rounded
  */
-void CanvasPolygonalNode::drawShape(QPainter& p)
+void CanvasPolygonalNode::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
+ QWidget *widget)
 {
-  CanvasNode::drawShape(p);
+  CanvasNode::paint(p,option,widget);
   
   // drawing of a colored line around the node if it has focus
-/*  if (m_hasFocus)
+  if (m_hasFocus)
   {
-    p.save();
-    QPen pen(Dot2QtConsts::instance().qtColor("blue"));
+    p->save();
+    QPen pen(Dot2QtConsts::componentData().qtColor("blue"));
     pen.setStyle(Qt::SolidLine);
     pen.setWidth(2);
-    p.setPen(pen);
-    p.drawPolyline(points());
-    p.restore();
-  }*/
+    p->setPen(pen);
+    p->drawPolyline(polygon());
+    p->restore();
+  }
 }
 
 void CanvasPolygonalNode::update()
 {
-  QCanvasPolygon::update();
+  QGraphicsPolygonItem::update();
 }
 
 CanvasEllipseNode::CanvasEllipseNode(DotGraphView* v, GraphNode* n,
-                                             int x, int y, int w, int h, QCanvas* c)
-: QCanvasEllipse(w,h,c), CanvasNode(v, n)
+                                             int x, int y, int w, int h, QGraphicsScene* c)
+                                             : QGraphicsEllipseItem(x,y,w,h,0,c), CanvasNode(v, n)
 {
-  QCanvasEllipse::setX(x+w/2); QCanvasEllipse::setY(y+h/2);
+  setFlag(QGraphicsItem::ItemIsMovable, true);
+  QString tipStr;
+  QString id = n->id();
+  QString label = n->label();
+  tipStr = i18n("id='%1'\nlabel='%2'",id,label);
+  kDebug() << "CanvasEllipseNode setToolTip " << tipStr << endl;
+  setToolTip(tipStr);
 }
 
 CanvasEllipseNode::CanvasEllipseNode(
@@ -379,12 +391,12 @@ CanvasEllipseNode::CanvasEllipseNode(
                    GraphNode* n,
                    const DotRenderOp& dro,
                    const DotRenderOpVec& dros,
-                   QCanvas* c,
+                   QGraphicsScene* c,
                    double scaleX, double scaleY, int xMargin, int yMargin, int gh,
                                       int wdhcf, int hdvcf)
-: QCanvasEllipse(c), CanvasNode(v, n)
+: QGraphicsEllipseItem(0,c), CanvasNode(v, n)
 {
-/*  kdDebug() << "CanvasEllipseNode " << dro.integers.size() << " / " 
+/*  kDebug() << "CanvasEllipseNode " << dro.integers.size() << " / " 
     << dro.integers[0] << " / " << dro.integers[1] << " / " 
     << dro.integers[2] << " / " << dro.integers[3] << endl; */
   m_renderOperations = dros;
@@ -393,16 +405,23 @@ CanvasEllipseNode::CanvasEllipseNode(
   m_gh = gh; m_wdhcf = wdhcf; m_hdvcf = hdvcf;
   int w = int(scaleX * dro.integers[2]) * 2;
   int h = int(scaleY * dro.integers[3]) * 2;
-  setSize(w,h);
   int x = xMargin + int((dro.integers[0]%wdhcf)*scaleX);
   int y = int((gh - dro.integers[1]%hdvcf)*scaleY) + yMargin;
-  QCanvasEllipse::setX(x); QCanvasEllipse::setY(y);
+  setRect(x,y,w,h);
+
+  QString tipStr;
+  QString id = n->id();
+  QString label = n->label();
+  tipStr = i18n("id='%1'\nlabel='%2'",id,label);
+  kDebug() << "CanvasEllipseNode setToolTip " << tipStr << endl;
+  setToolTip(tipStr);
 }
 
-void CanvasEllipseNode::drawShape(QPainter& p)
+void CanvasEllipseNode::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
+QWidget *widget)
 {
   
-  CanvasNode::drawShape(p);
+  CanvasNode::paint(p,option,widget);
 }
 
 CanvasHtmlNode::CanvasHtmlNode(
@@ -410,7 +429,7 @@ CanvasHtmlNode::CanvasHtmlNode(
                                           GraphNode* n,
                                           const DotRenderOp& dro,
                                           const DotRenderOpVec& dros,
-                                          QCanvas* c,
+                                          QGraphicsScene* c,
                                           double scaleX, double scaleY, 
                                           int xMargin, int yMargin, int gh,
                                           int wdhcf, int hdvcf
@@ -424,18 +443,18 @@ CanvasHtmlNode::CanvasHtmlNode(
   QString myHTMLCode = n->label();
   myHTMLCode = myHTMLCode.mid(1, myHTMLCode.length() - 2);
 //   std::cerr << "HTML = " << myHTMLCode << std::endl;
-  begin(KURL(QString("file:") + QDir::currentDirPath() + "/index.html"));
+  begin(KUrl(QString("file:") + QDir::currentDirPath() + "/index.html"));
   setAutoloadImages(true);
   write(myHTMLCode);
-  kdDebug() << "HTML written." << endl;
+  kDebug() << "HTML written." << endl;
   end();
   setStatusMessagesEnabled (false);
 //   view()->setFrameShape ( QFrame::NoFrame );
 //   view()->setFrameShadow ( QFrame::Plain );
 //   view()->setLineWidth ( 0 );
 //   view()->setMidLineWidth ( 0 );
-  view()->setHScrollBarMode ( QScrollView::AlwaysOff );
-  view()->setVScrollBarMode ( QScrollView::AlwaysOff );
+//   view()->setHScrollBarMode ( Q3ScrollView::AlwaysOff );
+//   view()->setVScrollBarMode ( Q3ScrollView::AlwaysOff );
   view()->setMarginWidth(0);
   view()->setMarginHeight(0);
   m_zoomFactor = m_view->zoom();
@@ -454,7 +473,7 @@ CanvasHtmlNode::~CanvasHtmlNode()
   KHTMLPart::hide();
 }
 
-// void CanvasHtmlNode::drawShape(QPainter& p)
+// void CanvasHtmlNode::paint(QPainter& p)
 // {
 //   view()->drawContents(&p);
 // }
@@ -476,3 +495,5 @@ void CanvasHtmlNode::zoomed(double factor)
   view()->setMaximumSize(int(node()->w()*m_scaleX*m_zoomFactor),int(node()->h()*m_scaleY*m_zoomFactor));
   view()->adjustSize();
 }
+
+#include "canvasnode.moc"

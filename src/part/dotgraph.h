@@ -11,8 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   along with this program; see the file COPYING.  If not, write to
+   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 */
 
 /*
@@ -55,13 +56,13 @@ public:
   
   inline void strict(bool s) {m_strict = s;}
   inline void directed(bool d) {m_directed = d;}
-  inline void id(const std::string& id) {m_id = id;}
+  inline void id(const QString& id) {m_id = id;}
   inline bool strict() const {return m_strict;}
   inline bool directed() const {return m_directed;}
-  inline const std::string& id() const {return m_id;}
+  inline const QString& id() const {return m_id;}
 
-  inline void fontName(const std::string& theValue) {m_fontName = theValue;}
-  inline const std::string& fontName() const {return m_fontName;}
+  inline void fontName(const QString& theValue) {m_fontName = theValue;}
+  inline const QString& fontName() const {return m_fontName;}
 
   inline void fontSize(unsigned int theValue) {m_fontSize = theValue;}
   inline unsigned int fontSize() const {return m_fontSize;}
@@ -108,8 +109,8 @@ private:
   double m_scale;
   bool m_directed;
   bool m_strict;
-  std::string m_id;
-  std::string m_fontName;
+  QString m_id;
+  QString m_fontName;
   unsigned int m_fontSize;
   QString m_color;
   QString m_fontColor;
