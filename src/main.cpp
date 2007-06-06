@@ -32,6 +32,8 @@
 #include <QDBusConnectionInterface>
 #include <QDBusReply>
 
+#include "kgraphvieweradaptor.h"
+
 static const char description[] =
 I18N_NOOP("A Graphviz dot graph viewer for KDE");
 
@@ -66,6 +68,8 @@ int main(int argc, char **argv)
       if ( args->count() == 0 )
       {
         widget = new KGraphViewer;
+	new KgraphviewerAdaptor(widget);
+	QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
         widget->show();
       }
       else
@@ -92,7 +96,7 @@ int main(int argc, char **argv)
               url = KUrl(strarg);
             else url = KUrl(QDir::currentDirPath() +"/" + strarg);
             arg << url;
-            QDBusInterface iface("org.kde.kgraphviewer", "/", "", QDBusConnection::sessionBus());
+            QDBusInterface iface("org.kde.kgraphviewer", "/KGraphViewer", "", QDBusConnection::sessionBus());
             if (iface.isValid()) 
             {
               QDBusReply<void> reply = iface.call("openUrl", url.pathOrUrl());
@@ -111,6 +115,8 @@ int main(int argc, char **argv)
           else
           {
             widget = new KGraphViewer;
+            new KgraphviewerAdaptor(widget);
+            QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
             widget->show();
             widget->openUrl( args->url( i ) );
           }

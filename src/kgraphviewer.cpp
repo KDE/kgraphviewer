@@ -41,8 +41,6 @@
 #include <klocale.h>
 #include <kconfigdialog.h>
 #include <kiconloader.h>
-//#include <kapp.h>
-//#include <dcopclient.h>
 #include <krecentfilesaction.h>
 #include <ktoolbar.h>
 #include <KActionCollection>
@@ -54,8 +52,7 @@
 using namespace KGraphViewer;
 
 KGraphViewer::KGraphViewer()
-    : KParts::MainWindow()//,
-//    DCOPObject("DCOPKGraphViewerIface")
+    : KParts::MainWindow()
 {
   // set the shell's ui resource file
   setXMLFile("kgraphviewer.rc");

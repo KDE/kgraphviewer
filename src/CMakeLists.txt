@@ -6,7 +6,9 @@ include_directories( ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/src/part ${CMAK
 
 ########### next target ###############
 
-set(kgraphviewer_SRCS main.cpp kgraphviewer.cpp kgraphviewerConfigDialog.cpp dcopkgraphvieweriface.h)
+set(kgraphviewer_SRCS main.cpp kgraphviewer.cpp kgraphviewerConfigDialog.cpp)
+
+qt4_add_dbus_adaptor(kgraphviewer_SRCS org.kde.kgraphviewer.xml kgraphviewer.h KGraphViewer)
 
 kde4_add_kcfg_files( kgraphviewer_SRCS kgraphviewersettings.kcfgc )
 

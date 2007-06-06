@@ -28,7 +28,6 @@
 #include <kaction.h>
 #include <krecentfilesaction.h>
 
-//#include "dcopkgraphvieweriface.h"
 
 class KToggleAction;
 /**
@@ -38,7 +37,7 @@ class KToggleAction;
  * @short Application Shell
  * @author Gaël de Chalendar <kleag@free.fr>
  */
-class KGraphViewer : public KParts::MainWindow //, virtual public DCOPKGraphViewerIface
+class KGraphViewer : public KParts::MainWindow 
 {
   Q_OBJECT
 public:
@@ -56,7 +55,7 @@ public:
     * Use this method to load whatever file/URL you have
     */
   void openUrl(const KUrl& url);
-  
+ 
   void reloadPreviousFiles();
 
 protected:
