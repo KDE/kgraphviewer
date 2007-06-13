@@ -39,7 +39,6 @@
 #include "dotgrammar.h"
 
 class CanvasNode;
-class GraphEdge;
 
 /**
  * Colors and styles are dot names

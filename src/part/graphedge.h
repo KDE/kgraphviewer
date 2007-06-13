@@ -38,7 +38,6 @@
 #include "qstringlist.h"
 
 class CanvasEdge;
-class CanvasNode;
 class GraphNode;
 
 class GraphEdge

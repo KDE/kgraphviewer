@@ -34,7 +34,6 @@ class KGVSimplePrintingPageSetupBase;
 }
 class KGVSimplePrintingCommand;
 class KgvPageLayoutSize;
-class KGVSimplePrintPreviewWindow;
 
 #include "simpleprintingengine.h"
 #include <QButtonGroup>

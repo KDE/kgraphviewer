@@ -34,11 +34,7 @@
 #include <kdialogbase.h>
 #include <KgvPageLayout.h>
 
-class QButtonGroup;
-class QComboBox;
 class QLineEdit;
-class QCheckBox;
-class KgvUnitDoubleSpinBox;
 class KgvPageLayoutColumns;
 class KgvPageLayoutSize;
 class KgvPageLayoutHeader;

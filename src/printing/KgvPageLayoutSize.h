@@ -36,7 +36,6 @@
 
 class QComboBox;
 class KgvUnitDoubleSpinBox;
-class KgvPageLayoutColumns;
 
 /**
  * This class is a widget that shows the KgvPageLayout data structure and allows the user to change it.

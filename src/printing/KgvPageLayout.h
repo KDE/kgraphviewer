@@ -29,7 +29,6 @@
 
 #include <KgvGenStyles.h>
 #include <qstringlist.h>
-class QDomElement;
 
 /**
  * @brief Represents the paper format a document shall be printed on.

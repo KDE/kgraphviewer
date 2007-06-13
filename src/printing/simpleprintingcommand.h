@@ -31,8 +31,6 @@
 #include <dotgraphview.h>
 #include <kgraphviewer_part.h>
 
-class KGVSimplePrintingPageSetupBase;
-class KgvPageLayoutSize;
 class KGVSimplePrintPreviewWindow;
 
 /*! @short A command for simple printing and print preview. 

@@ -28,9 +28,6 @@
 #include "dotgraphview.h"
 
 class QWidget;
-class QPainter;
-class KUrl;
-class KSelectAction;
 /**
  * This is a "Part".  It that does all the real work in a KPart
  * application.

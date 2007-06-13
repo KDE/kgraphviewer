@@ -42,11 +42,9 @@
 #include "graphexporter.h"
 
 
-class KTempFile;
 class CanvasNode;
 class CanvasEdge;
 class GraphEdge;
-class DotGraphView;
 
 
 /*

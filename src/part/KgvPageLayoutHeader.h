@@ -34,7 +34,6 @@
 
 class QWidget;
 class KgvUnitDoubleSpinBox;
-class KgvPagePreview;
 
 /**
  * This class is a widget that shows the KgvKWHeaderFooter data structure and allows the user to change it.

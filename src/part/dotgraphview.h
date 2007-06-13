@@ -44,8 +44,6 @@
 
 
 class CanvasNode;
-class GraphEdge;
-class GraphNode;
 class PannerView;
 class DotGraph;
 class KGVSimplePrintingCommand;
@@ -53,7 +51,6 @@ class KSelectAction;
 class KToggleAction;
 
 class QMenu;
-class QAction;
 class QKeyEvent;
 class QMouseEvent;
 class QFocusEvent;
