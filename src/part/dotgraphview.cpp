@@ -572,7 +572,7 @@ void DotGraphView::wheelEvent(QWheelEvent* e)
     return;
   }
   e->accept();
-  if (e->state() == Qt::ShiftButton)
+  if (e->state() == Qt::ShiftModifier)
   {
     // move canvas...
     if (e->delta() < 0)

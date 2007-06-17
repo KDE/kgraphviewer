@@ -188,7 +188,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 			m_pageHeight, Qt::AlignLeft|Qt::TextWordWrap, m_headerText);
 		m_headerTextRect.setRight(m_headerTextRect.right()+10);
 		m_headerTextRect.setWidth(
-			QMIN(int(m_pageWidth - m_dateTimeWidth), m_headerTextRect.width()));
+			qMin(int(m_pageWidth - m_dateTimeWidth), m_headerTextRect.width()));
 
 		painter.setFont(m_mainFont);
   }

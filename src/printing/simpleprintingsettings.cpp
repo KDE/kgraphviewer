@@ -80,7 +80,7 @@ KGVSimplePrintingSettings KGVSimplePrintingSettings::load()
 	if (config->hasKey("pageFormat"))
 		settings.pageLayout.format = KgvPageFormat::formatFromString( 
 			config->readEntry("pageFormat" ) );
-	if (config->readEntry("pageOrientation", "portrait").lower()=="landscape")
+	if (config->readEntry("pageOrientation", "portrait").toLower()=="landscape")
 		settings.pageLayout.orientation = PG_LANDSCAPE;
 	else
 		settings.pageLayout.orientation = PG_PORTRAIT;

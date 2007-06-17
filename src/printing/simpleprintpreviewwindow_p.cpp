@@ -86,8 +86,8 @@ void KGVSimplePrintPreviewScrollView::resizeEvent( QResizeEvent *re )
   if (re->size().width() > (widget->width()+2*KGVSimplePrintPreviewScrollView_MARGIN)
     || re->size().height() > (widget->height()+2*KGVSimplePrintPreviewScrollView_MARGIN)) {
     resizeContents(
-      QMAX(re->size().width(), widget->width()+2*KGVSimplePrintPreviewScrollView_MARGIN),
-      QMAX(re->size().height(), widget->height()+2*KGVSimplePrintPreviewScrollView_MARGIN));
+      qMax(re->size().width(), widget->width()+2*KGVSimplePrintPreviewScrollView_MARGIN),
+      qMax(re->size().height(), widget->height()+2*KGVSimplePrintPreviewScrollView_MARGIN));
     int vscrbarWidth = verticalScrollBar()->isVisible() ? verticalScrollBar()->width() : 0;
     moveChild(widget, (contentsWidth() - vscrbarWidth - widget->width())/2, 
       (contentsHeight() - widget->height())/2);
@@ -106,7 +106,7 @@ void KGVSimplePrintPreviewScrollView::setFullWidth()
 //  int constantWidth = m_window->width()- KGVSimplePrintPreviewScrollView_MARGIN*6;
   double constantWidth = width()- KGVSimplePrintPreviewScrollView_MARGIN*6;
   double heightForWidth = constantWidth * heightMM / widthMM;
-//  heightForWidth = QMIN(kapp->desktop()->height()*4/5, heightForWidth);
+//  heightForWidth = qMin(kapp->desktop()->height()*4/5, heightForWidth);
   constantWidth = heightForWidth * widthMM / heightMM;
   widget->resize((int)constantWidth, (int)heightForWidth); //keep aspect
   resizeContents(int(widget->width() + 2*KGVSimplePrintPreviewScrollView_MARGIN), 

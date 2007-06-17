@@ -443,7 +443,7 @@ CanvasHtmlNode::CanvasHtmlNode(
   QString myHTMLCode = n->label();
   myHTMLCode = myHTMLCode.mid(1, myHTMLCode.length() - 2);
 //   std::cerr << "HTML = " << myHTMLCode << std::endl;
-  begin(KUrl(QString("file:") + QDir::currentDirPath() + "/index.html"));
+  begin(KUrl(QString("file:") + QDir::currentPath() + "/index.html"));
   setAutoloadImages(true);
   write(myHTMLCode);
   kDebug() << "HTML written." << endl;

@@ -152,7 +152,7 @@ double KgvUnit::fromUserValue( const QString& value, Unit unit, bool* ok )
 
 double KgvUnit::parseValue( QString value, double defaultVal )
 {
-    value.simplifyWhiteSpace();
+    value.simplified();
     value.remove( ' ' );
 
     if( value.isEmpty() )

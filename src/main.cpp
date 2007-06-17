@@ -94,7 +94,7 @@ int main(int argc, char **argv)
             KUrl url;
             if (strarg.left(1) == "/")
               url = KUrl(strarg);
-            else url = KUrl(QDir::currentDirPath() +"/" + strarg);
+            else url = KUrl(QDir::currentPath() +"/" + strarg);
             arg << url;
             QDBusInterface iface("org.kde.kgraphviewer", "/KGraphViewer", "", QDBusConnection::sessionBus());
             if (iface.isValid()) 

@@ -86,7 +86,7 @@ bool KGVSimplePrintingCommand::init(const QString& aTitleText)
     m_previewEngine = new KGVSimplePrintingEngine(m_settings, this);
 
   bool backToPage0 = true;
-  QString titleText(aTitleText.stripWhiteSpace());
+  QString titleText(aTitleText.trimmed());
   if (!m_previewWindow) 
   {
     backToPage0 = false;

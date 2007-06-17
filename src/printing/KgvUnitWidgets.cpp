@@ -59,9 +59,9 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
         return Intermediate;
     }
 
-    // ### TODO: are all the QString::stripWhiteSpace really necessary?
-    const QString number ( s.left( res ).stripWhiteSpace() );
-    const QString unitName ( regexp.cap( 1 ).stripWhiteSpace().lower() );
+    // ### TODO: are all the QString::trimmed really necessary?
+    const QString number ( s.left( res ).trimmed() );
+    const QString unitName ( regexp.cap( 1 ).trimmed().toLower() );
 
     kdDebug(30004) << "Split:" << number << ":" << unitName << ":" << endl;
 

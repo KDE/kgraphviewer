@@ -186,10 +186,10 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 		m_headerTextRect = painter.fontMetrics().boundingRect(
 			(int)leftMargin, (int)topMargin,
 			m_pageWidth - m_dateTimeWidth,
-			m_pageHeight, Qt::AlignAuto|Qt::WordBreak, m_headerText);
+			m_pageHeight, Qt::AlignLeft|Qt::WordBreak, m_headerText);
 		m_headerTextRect.setRight(m_headerTextRect.right()+10);
 		m_headerTextRect.setWidth(
-			QMIN(int(m_pageWidth - m_dateTimeWidth), m_headerTextRect.width()));
+			qMin(int(m_pageWidth - m_dateTimeWidth), m_headerTextRect.width()));
 
 		painter.setFont(m_mainFont);
   }
@@ -203,7 +203,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
   painter.setFont(m_mainFont);
   if (paint) 
   {
-    painter.drawText(m_headerTextRect, Qt::AlignAuto|Qt::WordBreak, m_headerText);
+    painter.drawText(m_headerTextRect, Qt::AlignLeft|Qt::WordBreak, m_headerText);
   }
   painter.setFont(m_mainFont);
   if (paint) 
