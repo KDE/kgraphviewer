@@ -342,7 +342,7 @@ bool parse_point(char const* str, QPoint& p)
                 int_p[assign_a(x)] >> ',' >> int_p[assign_a(y)]
               )
               ,
-              space_p).full;
+              +space_p).full;
   if (!res) return false;
   p = QPoint(x,y);
   return true;
@@ -363,7 +363,7 @@ bool parse_numeric_color(char const* str, QColor& c)
                 !hex2digits_p[assign_a(a)]
               )
               ,
-              space_p).full;
+              +space_p).full;
   if (res)
   {
     c.setRgb(r,g,b);
@@ -376,7 +376,7 @@ bool parse_numeric_color(char const* str, QColor& c)
                 real_p[assign_a(h)] >> !ch_p(',') >> real_p[assign_a(s)] >> !ch_p(',') >> real_p[assign_a(v)]
               )
               ,
-              space_p).full;
+              +space_p).full;
   if (res)
   {
     c.setHsv(int(255*h),int(255*s),int(255*v));
@@ -392,7 +392,7 @@ bool parse_real(char const* str, double& d)
                  real_p[assign_a(d)]
                )
                ,
-               space_p).full;
+               +space_p).full;
 }
 
 bool parse_integers(char const* str, std::vector<int>& v)
@@ -402,7 +402,7 @@ bool parse_integers(char const* str, std::vector<int>& v)
                  int_p[push_back_a(v)] >> *(',' >> int_p[push_back_a(v)])
                )
                ,
-               space_p).full;
+               +space_p).full;
 }
 
 bool parse_spline(char const* str, QVector< QPair< float, float > >& points)
@@ -424,7 +424,7 @@ bool parse_spline(char const* str, QVector< QPair< float, float > >& points)
                     )
               )
               ,
-              space_p).full;
+              +space_p).full;
   if (!res) return false;
   if (s == 's')
   {
@@ -472,44 +472,43 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
               (
                 +(
                    (
-                     (ch_p('E')|ch_p('e'))[assign_a(renderop.renderop)] >> space_p >> 
-                     repeat_p(4)[int_p[push_back_a(renderop.integers)] >> space_p]
+                     (ch_p('E')|ch_p('e'))[assign_a(renderop.renderop)] >> +space_p >>
+                     repeat_p(4)[int_p[push_back_a(renderop.integers)] >> +space_p]
                    )[&valid_op] 
                    | (
-                       (ch_p('P')|ch_p('p')|ch_p('L')|ch_p('B')|ch_p('b'))[assign_a(renderop.renderop)] >> space_p >> 
-                       int_p[assign_a(c)][push_back_a(renderop.integers)] >> space_p >> 
+                       (ch_p('P')|ch_p('p')|ch_p('L')|ch_p('B')|ch_p('b'))[assign_a(renderop.renderop)] >> +space_p >> 
+                       int_p[assign_a(c)][push_back_a(renderop.integers)] >> +space_p >> 
                        repeat_p(boost::ref(c))[
-                                                int_p[push_back_a(renderop.integers)] >> space_p >> 
-                                                int_p[push_back_a(renderop.integers)] >> space_p
+                                                int_p[push_back_a(renderop.integers)] >> +space_p >> 
+                                                int_p[push_back_a(renderop.integers)] >> +space_p
                                               ] 
                      )[&valid_op]
   // "T 1537 228 0 40 9 -#1 (== 0) T 1537 217 0 90 19 -MAIN:./main/main.pl "
                    | (
-                       ch_p('T')[assign_a(renderop.renderop)] >> space_p >> 
-                       int_p[push_back_a(renderop.integers)] >> space_p >> 
-                       int_p[push_back_a(renderop.integers)] >> space_p >> 
-                       int_p[push_back_a(renderop.integers)] >> space_p >> 
-                       int_p[push_back_a(renderop.integers)] >> space_p >> 
-                       int_p[assign_a(c)] >> space_p >> '-' >> 
-                       (repeat_p(boost::ref(c))[anychar_p])[assign_a(renderop.str)] >> space_p
+                       ch_p('T')[assign_a(renderop.renderop)] >> +space_p >> 
+                       int_p[push_back_a(renderop.integers)] >> +space_p >> 
+                       int_p[push_back_a(renderop.integers)] >> +space_p >> 
+                       int_p[push_back_a(renderop.integers)] >> +space_p >> 
+                       int_p[push_back_a(renderop.integers)] >> +space_p >> 
+                       int_p[assign_a(c)] >> +space_p >> '-' >> 
+                       (repeat_p(boost::ref(c))[anychar_p])[assign_a(renderop.str)] >> +space_p
                      )[&valid_op]
                    | (
-                       (ch_p('C')|ch_p('c')|ch_p('S'))[assign_a(renderop.renderop)] >> space_p >> 
-                       int_p[assign_a(c)] >> space_p >> '-' >> 
-                       (repeat_p(boost::ref(c))[anychar_p])[assign_a(renderop.str)] >> space_p
+                       (ch_p('C')|ch_p('c')|ch_p('S'))[assign_a(renderop.renderop)] >> +space_p >> 
+                       int_p[assign_a(c)] >> +space_p >> '-' >> 
+                       (repeat_p(boost::ref(c))[anychar_p])[assign_a(renderop.str)] >> +space_p
                      )[&valid_op] 
                    | ( 
-                       ch_p('F')[assign_a(renderop.renderop)] >> space_p >> 
-                       real_p[push_back_a(renderop.integers)] >> space_p >> 
-                       int_p[assign_a(c)] >> space_p >> '-' >> 
-                       (repeat_p(boost::ref(c))[anychar_p])[assign_a(renderop.str)] >> space_p
+                       ch_p('F')[assign_a(renderop.renderop)] >> +space_p >> 
+                       real_p[push_back_a(renderop.integers)] >> +space_p >> 
+                       int_p[assign_a(c)] >> +space_p >> '-' >> 
+                       (repeat_p(boost::ref(c))[anychar_p])[assign_a(renderop.str)] >> +space_p
                      )[&valid_op]
                  )
               )
              ).full;
   if (res ==false)
   {
-    std::cerr << "Parsing render operation '"<<str<<"'" << std::endl;
     kError() << "parse_renderop failed on '"<<QString::fromStdString(str)<<"'. Last renderop string is '"<<QString::fromUtf8(renderop.str.c_str())<<"'" << endl;
   }
 //   delete renderop; renderop = 0;
@@ -585,7 +584,7 @@ void DotGraphParsingHelper::setgraphattributes()
     bool res = boost::spirit::parse(graphAttributes["fontsize"].c_str(),
                                     (int_p[assign_a(fontSize)])
                                     ,
-                                    space_p).full;
+                                    +space_p).full;
     if (res)
     {
       graph->fontSize(fontSize);
@@ -684,7 +683,7 @@ void DotGraphParsingHelper::setsubgraphattributes()
     bool res = boost::spirit::parse(graphAttributes["fontsize"].c_str(),
                                     (int_p[assign_a(fontSize)])
                                         ,
-                                    space_p).full;
+                                    +space_p).full;
     if (res)
     {
       gs->fontSize(fontSize);
@@ -773,7 +772,7 @@ void DotGraphParsingHelper::setnodeattributes()
                                       int_p[assign_a(fontSize)]
                                     )
                                     ,
-                                    space_p).full;
+                                    +space_p).full;
     if (res)
     {
       gn->fontSize(fontSize);
@@ -871,7 +870,7 @@ void DotGraphParsingHelper::setedgeattributes()
                                         int_p[assign_a(fontSize)]
                                     )
                                         ,
-                                    space_p).full;
+                                    +space_p).full;
     if (res)
     {
       ge->fontSize(fontSize);
@@ -1097,7 +1096,7 @@ void DotGraphParsingHelper::createedges()
 bool DotGraphParsingHelper::parse(const std::string& str)
 {
   DotGrammar g;
-  return boost::spirit::parse(str.c_str(), g, (space_p|comment_p("/*", "*/"))).full;
+  return boost::spirit::parse(str.c_str(), g, (+space_p|comment_p("/*", "*/"))).full;
 }
 
 void DotGraphParsingHelper::finalactions()

@@ -35,7 +35,7 @@ class KToggleAction;
  * statusbar but relies on the "Part" to do all the real work.
  *
  * @short Application Shell
- * @author Gaël de Chalendar <kleag@free.fr>
+ * @author Gael de Chalendar <kleag@free.fr>
  */
 class KGraphViewer : public KParts::MainWindow 
 {

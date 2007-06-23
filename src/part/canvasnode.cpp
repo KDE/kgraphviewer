@@ -396,7 +396,7 @@ CanvasEllipseNode::CanvasEllipseNode(
                                       int wdhcf, int hdvcf)
 : QGraphicsEllipseItem(0,c), CanvasNode(v, n)
 {
-/*  kDebug() << "CanvasEllipseNode " << dro.integers.size() << " / " 
+/*  kDebug() << "CanvasEllipseNode " << dro.integers.size() << " / "
     << dro.integers[0] << " / " << dro.integers[1] << " / " 
     << dro.integers[2] << " / " << dro.integers[3] << endl; */
   m_renderOperations = dros;
