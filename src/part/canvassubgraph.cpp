@@ -102,6 +102,16 @@ CanvasSubgraph::CanvasSubgraph(
       setZValue(gsubgraph->z());
     
       const DotRenderOp& dro = (*it);
+      if (dro.integers.empty())
+      {
+        kError() << "Invalid empty render operations integers vector" << endl;
+        break;
+      }
+      else if ( (dro.integers[0]-1)*2+2 >= dro.integers.size() )
+      {
+        kError() << "Invalid render operations vector. Says " << dro.integers[0] << "points but size is "<< dro.integers.size() << endl;
+        break;
+      }
       QPolygonF polygon(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
       {
