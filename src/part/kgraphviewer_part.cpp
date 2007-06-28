@@ -98,7 +98,7 @@ kgraphviewerPart::~kgraphviewerPart()
 
 bool kgraphviewerPart::openFile()
 {
-  kDebug() << "kgraphviewerPart::openFile" << localFilePath() << endl;
+  kDebug() << k_funcinfo << " " << localFilePath() << endl;
 //    m_widget->loadedDot( localFilePath() );
   if (!m_widget->loadDot(localFilePath()))
     return false;

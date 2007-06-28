@@ -545,11 +545,11 @@ void DotGraphParsingHelper::setgraphattributes()
   }
   if (graphAttributes.find("bgcolor") != graphAttributes.end())
   {
-    graph->backgroundColor(QString::fromStdString(graphAttributes["bgcolor"]));
+    graph->backColor(QString::fromStdString(graphAttributes["bgcolor"]));
   }
   else 
   {
-    graph->backgroundColor(DOT_DEFAULT_BACKCOLOR);
+    graph->backColor(DOT_DEFAULT_BACKCOLOR);
   }
   if (graphAttributes.find("fontcolor") != graphAttributes.end())
   {

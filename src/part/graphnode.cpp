@@ -45,19 +45,17 @@
 //
 
 GraphNode::GraphNode() :
-    m_label(""), m_id(""),
-    m_x(0), m_y(0), m_w(0), m_h(0),
-    m_style(DOT_DEFAULT_STYLE), 
-    m_shape(DOT_DEFAULT_SHAPE), 
-    m_lineColor(DOT_DEFAULT_LINECOLOR), 
-    m_backColor(DOT_DEFAULT_BACKCOLOR),
-    m_fontSize(DOT_DEFAULT_FONTSIZE),
-    m_fontName(DOT_DEFAULT_FONTNAME),
-    m_fontColor(DOT_DEFAULT_FONTCOLOR),
-    m_z(1),
-    m_shapeFile(""), m_url("")
+    GraphElement(),
+    m_cn(), m_visible(false),
+    m_x(0), m_y(0), m_w(0), m_h(0)
 {
-    m_visible = false;
 }
 
 
+QTextStream& operator<<(QTextStream& s, const GraphNode& n)
+{
+  s << n.id() << "  ["
+    << dynamic_cast<const GraphElement&>(n)
+    <<"];"<<endl;
+  return s;
+}

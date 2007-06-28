@@ -33,22 +33,21 @@
 #define GRAPH_EDGE_H
 
 #include "canvasnode.h"
+#include "graphelement.h"
 #include "dotgrammar.h"
+#include "dotrenderop.h"
 
 #include "qstringlist.h"
 
 class CanvasEdge;
 class GraphNode;
 
-class GraphEdge
+class GraphEdge : public GraphElement
 {
 public:
   GraphEdge();
   ~GraphEdge();
 
-  inline const QString& label() {return m_label;}
-  inline void label(const QString& label) {m_label = label;}
-  
   CanvasEdge* canvasEdge() { return _ce; }
   void setCanvasEdge(CanvasEdge* ce) { _ce = ce; }
 
@@ -57,6 +56,8 @@ public:
 
   GraphNode* fromNode() { return _fromNode; }
   GraphNode* toNode() { return _toNode; }
+  const GraphNode* fromNode() const { return _fromNode; }
+  const GraphNode* toNode() const { return _toNode; }
 
   // has special cases for collapsed edges
   QString prettyName();
@@ -68,7 +69,7 @@ public:
   inline QVector< QPair< float, float > >& edgePoints() {return m_edgePoints;}
   inline void edgePoints(const QVector< QPair< float, float > >& ep) {m_edgePoints = ep;}
   
-  inline const QStringList& colors() {return m_colors;}
+  inline const QStringList& colors() const {return m_colors;}
   const QString color(uint i);
   void colors(const QString& cs); 
   
@@ -83,26 +84,6 @@ public:
   inline std::vector< DotRenderOp >&  arrowheads() {return m_arrowheads;}
   inline const std::vector< DotRenderOp >&  arrowheads() const {return m_arrowheads;}
 
-  void fontName(const QString& theValue) {m_fontName = theValue;}
-  const QString& fontName() const {return m_fontName;}
-
-  void fontSize(unsigned int theValue) {m_fontSize = theValue;}
-  unsigned int fontSize() const {return m_fontSize;}
-  
-  inline const QString& fontColor() const {return m_fontColor;}
-  inline void fontColor(const QString& fontColor) {m_fontColor = fontColor;}
-  
-  void z(unsigned int theValue) {m_z = theValue;}
-  unsigned int z() const {return m_z;}
-  
-  inline const QString& style() const {return m_style;}
-  inline void style(const QString& s) {m_style = s;}
-  
-  inline DotRenderOpVec& renderOperations() {return m_renderOperations;};
-  inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
-  inline void renderOperations(DotRenderOpVec& drov) {m_renderOperations = drov;};
-  
-  
 private:
   // we have a _ce *and* _from/_to because for collapsed edges,
   // only _to or _from will be unequal NULL
@@ -111,26 +92,18 @@ private:
   bool _visible;
   // for keyboard navigation: have we last reached this edge via a caller?
   bool _lastFromCaller;
-  QString m_label;
-  QString m_type;
   QStringList m_colors;
   QString m_dir;
-  QString m_style;
   QVector< QPair< float, float > > m_edgePoints;
   float m_labelX, m_labelY;
-  QString m_fontName;
-  unsigned int m_fontSize;
-  QString m_fontColor;
-  unsigned int m_z;
   
   std::vector< DotRenderOp > m_arrowheads;
-  
-  DotRenderOpVec m_renderOperations;
-  
 };
 
 
 typedef std::multimap<QPair<GraphNode*, GraphNode*>, GraphEdge*> GraphEdgeMap;
+
+QTextStream& operator<<(QTextStream& s, const GraphEdge& e);
 
 #endif
 

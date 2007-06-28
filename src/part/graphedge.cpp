@@ -27,6 +27,7 @@
 #include <kconfig.h>
 
 #include "graphedge.h"
+#include "graphnode.h"
 #include "canvasnode.h"
 #include "dotdefaults.h"
 
@@ -37,16 +38,15 @@
  */
 
 GraphEdge::GraphEdge() : 
-m_type(DOT_DEFAULT_EDGE_STYLE), 
-m_colors(), 
-m_dir(DOT_DEFAULT_EDGE_DIR),
-m_z(1)
+    GraphElement(),
+    m_colors(),
+    m_dir(DOT_DEFAULT_EDGE_DIR)
 {
-    _fromNode = _toNode = 0;
-    _ce = 0;
+  _fromNode = _toNode = 0;
+  _ce = 0;
 
-    _visible = true;
-    _lastFromCaller = true;
+  _visible = true;
+  _lastFromCaller = true;
 }
 
 GraphEdge::~GraphEdge()
@@ -67,7 +67,7 @@ void GraphEdge::colors(const QString& cs)
 
 const QString GraphEdge::color(uint i) 
 {
-  if (i < m_colors.count())
+  if (i < (uint)m_colors.count())
   {
 //     std::cerr << "edge color " << i << " is " << m_colors[i] << std::endl;
     return m_colors[i];
@@ -77,4 +77,12 @@ const QString GraphEdge::color(uint i)
 //     std::cerr << "no edge color " << i << ". returning " << DOT_DEFAULT_EDGE_COLOR << std::endl;
     return DOT_DEFAULT_EDGE_COLOR;
   }
+}
+
+QTextStream& operator<<(QTextStream& s, const GraphEdge& e)
+{
+  s << e.fromNode()->id() << " -> " << e.toNode()->id() << "  ["
+    << dynamic_cast<const GraphElement&>(e) << "];" << endl;
+
+  return s;
 }

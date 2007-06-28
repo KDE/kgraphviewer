@@ -131,7 +131,7 @@ void KGraphViewer::reloadPreviousFiles()
 
 void KGraphViewer::openUrl(const KUrl& url)
 {
-  kDebug() << "KGraphViewer::openURL " << url << endl;
+  kDebug() << k_funcinfo << url << endl;
   KLibFactory *factory = KLibLoader::self()->factory("kgraphviewerpart");
   if (factory)
   {
@@ -165,7 +165,7 @@ void KGraphViewer::openUrl(const KUrl& url)
 
 void KGraphViewer::fileOpen()
 {
-  kDebug() << "KGraphViewer::fileOpen" << endl;
+  kDebug() << k_funcinfo << endl;
   // this slot is called whenever the File->Open menu is selected,
   // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
   // button is clicked

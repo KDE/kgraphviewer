@@ -59,12 +59,13 @@ class QWheelEvent;
 class QContextMenuEvent;
 class QWidget;
 
+#define DEFAULT_DETAILLEVEL 1
 /**
  * A CanvasView showing a part of the call graph
  * and another zoomed out CanvasView in a border acting as
  * a panner to select to visible part (only if needed)
  */
-class DotGraphView: public QGraphicsView, public GraphOptions
+class DotGraphView: public QGraphicsView
 {
  Q_OBJECT
 
@@ -183,6 +184,8 @@ private:
   
   KToggleAction* m_bevEnabledAction;
   KActionCollection* m_actions;
+
+  int m_detailLevel;
 };
 
 

@@ -25,55 +25,18 @@
 */
 
 
-/*
- * Callgraph View
- */
-
-#include <stdlib.h>
-#include <math.h>
-
 #include <QFile>
 #include <QTextStream>
 
 #include <kdebug.h>
-#include <klocale.h>
-#include <kconfig.h>
 #include <ktemporaryfile.h>
 #include <kapplication.h>
-#include <kiconloader.h>
-#include <kfiledialog.h>
 
-#include "dotgraphview.h"
-#include "pannerview.h"
-#include "canvasedge.h"
-
-//
-// GraphOptions
-//
-
-QString GraphOptions::layoutString(Layout l)
-{
-    if (l == Circular) return QString("Circular");
-    if (l == LeftRight) return QString("LeftRight");
-    return QString("TopDown");
-}
-
-GraphOptions::Layout GraphOptions::layout(QString s)
-{
-    if (s == QString("Circular")) return Circular;
-    if (s == QString("LeftRight")) return LeftRight;
-    return TopDown;
-}
-
-
-
-//
-// GraphExporter
-//
+#include "graphexporter.h"
+#include "dotgraph.h"
 
 GraphExporter::GraphExporter(QString filename)
 {
-    _go = this;
     _tmpFile = 0;
   reset(filename);
 }
@@ -89,9 +52,7 @@ GraphExporter::~GraphExporter()
 
 void GraphExporter::reset( QString filename)
 {
-  _graphCreated = false;
-  _nodeMap.clear();
-  _edgeMap.clear();
+  kDebug() << k_funcinfo << filename << endl;
 
   if (_tmpFile) 
   {
@@ -103,32 +64,19 @@ void GraphExporter::reset( QString filename)
     _tmpFile = new KTemporaryFile();
     _tmpFile->setSuffix(".dot");
     _dotName = _tmpFile->name();
-    _useBox = true;
   }
   else 
   {
     _tmpFile = 0;
     _dotName = filename;
-    _useBox = false;
   }
 }
 
 
 
-void GraphExporter::setGraphOptions(GraphOptions* go)
+void GraphExporter::writeDot(const DotGraph* graph)
 {
-    if (go == 0) go = this;
-    _go = go;
-}
-
-void GraphExporter::createGraph()
-{
-  //  buildGraph(f, 0, true, 1.0); // down to callings
-}
-
-void GraphExporter::writeDot()
-{
-
+  kDebug() << k_funcinfo << endl;
   QFile* file = 0;
   QTextStream* stream = 0;
 
@@ -143,69 +91,40 @@ void GraphExporter::writeDot()
     stream = new QTextStream(file);
   }
 
-  if (!_graphCreated) createGraph();
 
-  /* Generate dot format...
-   * When used for the DotGraphView (in contrast to "Export Callgraph..."),
-   * the labels are only dummy placeholders to reserve space for our own
-   * drawings.
-   */
+  *stream << "digraph \""<<graph->id()<<"\" {\n";
 
-  *stream << "digraph \"callgraph\" {\n";
+  *stream << "graph [" << *graph <<"]" << endl;
 
-  if (_go->layout() == LeftRight) {
-      *stream << QString("  rankdir=LR;\n");
-  }
-  else if (_go->layout() == Circular) {
-    *stream << QString("  overlap=false;\n  splines=true;\n");
-  }
-
-  GraphNodeMap::Iterator nit;
-  for ( nit = _nodeMap.begin();
-        nit != _nodeMap.end(); ++nit ) 
+  /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
+  /// possible to save them back as needed: to be changed !
+  GraphSubgraphMap::const_iterator sit;
+  for ( sit = graph->subgraphs().begin();
+  sit != graph->subgraphs().end(); ++sit )
   {
-    GraphNode* n = *nit;
-
-
-    *stream << n->label();
-    if (_useBox) 
-    {
-      // make label 3 lines for DotGraphView
-      *stream << QString("shape=box,label=\"%1\"];\n")
-        .arg(n->label());
-    }
-    else
-      *stream << QString("label=\"%1\"];\n")
-      .arg(n->label());
+    const GraphSubgraph& s = **sit;
+    
+    (*stream) << s;
   }
-
-  GraphEdgeMap::iterator eit;
-  for ( eit = _edgeMap.begin(); eit != _edgeMap.end(); ++eit ) 
+  
+  GraphNodeMap::const_iterator nit;
+  for ( nit = graph->nodes().begin();
+        nit != graph->nodes().end(); ++nit )
   {
-    GraphEdge* e = (*eit).second;
+    const GraphNode& n = **nit;
 
-    GraphNode& from = *(e->fromNode());
-    GraphNode& to   = *(e->toNode());
-
-    e->setCallerNode(&from);
-    e->setCallingNode(&to);
-
-    *stream << QString("  F%1 -> F%2 [weight=1")
-      .arg(from.label())
-      .arg(to.label());
-
-    *stream << QString(",label=\"%1\"").arg(e->label());
-
-    *stream << QString("];\n");
-
+    (*stream) << n;
   }
 
-  // clear edges here completely.
-  // Visible edges are inserted again on parsing in DotGraphView::refresh
-//   for ( nit = _nodeMap.begin(); nit != _nodeMap.end(); ++nit ) 
-//   {
-//       GraphNode* n = *nit;
-//   }
+  GraphEdgeMap::const_iterator eit;
+  for ( eit = graph->edges().begin();
+        eit != graph->edges().end(); ++eit )
+  {
+    const GraphEdge& e = *((*eit).second);
+
+    *stream << e;
+
+  }
 
   *stream << "}\n";
 

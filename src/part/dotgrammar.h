@@ -23,6 +23,8 @@
 #ifndef DOT_GRAMMAR_H
 #define DOT_GRAMMAR_H
 
+#include "dotrenderop.h"
+
 #include <boost/throw_exception.hpp>
 #include <boost/spirit/core.hpp>
 #include <boost/spirit/utility/distinct.hpp>
@@ -41,24 +43,6 @@
 
 class DotGraph;
 class GraphSubgraph;
-class GraphNode;
-class GraphEdge;
-
-
-/** 
-  * members are interpreted in function of render operations definitions given at:
- * @URL http://www.graphviz.org/cvs/doc/info/output.html#d:dot 
- */
-struct DotRenderOp
-{
-  std::string renderop;
-  std::vector< int > integers;
-  std::string str;
-};
-
-typedef std::vector< DotRenderOp > DotRenderOpVec;
-
-class DotGraph;
 class GraphNode;
 class GraphEdge;
 

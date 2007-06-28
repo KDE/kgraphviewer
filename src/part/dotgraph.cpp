@@ -37,11 +37,10 @@ extern DotGraphParsingHelper* phelper;
 
 const distinct_parser<> keyword_p("0-9a-zA-Z_");
 
-DotGraph::DotGraph(const QString& command, const QString& fileName) : 
+DotGraph::DotGraph(const QString& command, const QString& fileName) :
+  GraphElement(),
   m_dotFileName(fileName),m_width(0.0), m_height(0.0),m_scale(1.0),
   m_directed(true),m_strict(false),
-  m_fontName(DOT_DEFAULT_FONTNAME),
-  m_fontSize(DOT_DEFAULT_FONTSIZE),
   m_layoutCommand(command)
 { 
 }

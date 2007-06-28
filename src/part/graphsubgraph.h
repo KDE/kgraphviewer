@@ -24,30 +24,23 @@
 #define GRAPH_SUBGRAPH_H
 
 #include <QMap>
+#include <QTextStream>
 
 #include "dotgrammar.h"
+#include "graphelement.h"
+#include "dotrenderop.h"
 
 class CanvasSubgraph;
 
 /**
  * Colors and styles are dot names
  */
-class GraphSubgraph
+class GraphSubgraph : public GraphElement
 {
 public:
   GraphSubgraph();
   
   virtual ~GraphSubgraph() {}  
-  
-  inline void id(const QString& id) {m_id = id;}
-  inline void style(const QString& ls) {m_style = ls;}
-  inline void lineColor(const QString& nt) {m_lineColor = nt;}
-  inline void backColor(const QString& nc) {m_backColor = nc;}
-  
-  inline const QString& id() const {return m_id;}
-  inline const QString& style() const {return m_style;}
-  inline const QString& lineColor() const {return m_lineColor;}
-  inline const QString& backColor() const {return m_backColor;}
   
   CanvasSubgraph* canvasSubgraph() { return m_cs; }
   void setCanvasSubgraph(CanvasSubgraph* cs) { m_cs = cs; }
@@ -55,43 +48,15 @@ public:
   bool isVisible() const { return m_visible; }
   void setVisible(bool v) { m_visible = v; }
 
-  inline void label(const QString& label) {m_label = label;}
-  inline const QString& label() const {return m_label;}
-
-  inline unsigned int fontSize() const {return m_fontSize;}
-  inline void fontSize(unsigned int fs) {m_fontSize = fs;}
-  inline const QString& fontName() const {return m_fontName;}
-  inline void fontName(const QString& fn) {m_fontName = fn;}
-  inline const QString& fontColor() const {return m_fontColor;}
-  inline void fontColor(const QString& fc) {m_fontColor = fc;}
-  
-  inline DotRenderOpVec& renderOperations() {return m_renderOperations;};
-  inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
-  inline void renderOperations(DotRenderOpVec& drov) {m_renderOperations = drov;};
-  
-  inline unsigned int z() const {return m_z;}
-  inline void z(unsigned int thez) {m_z = thez;}
-  
  private:
   CanvasSubgraph* m_cs;
   bool m_visible;
 
-  QString m_label;
-  
-  QString m_id;
-  QString m_style;
-  QString m_lineColor;
-  QString m_backColor;
-  unsigned int m_fontSize;
-  QString m_fontName;
-  QString m_fontColor;
-  unsigned int m_z;
-  
-  DotRenderOpVec m_renderOperations;
 };
 
 typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;
 
+QTextStream& operator<<(QTextStream& s, const GraphSubgraph& s);
 
 #endif
 

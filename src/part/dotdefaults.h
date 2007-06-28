@@ -26,7 +26,7 @@
 #define DOT_DEFAULT_EDGE_DIR "forward"
 #define DOT_DEFAULT_EDGE_COLOR "black"
 #define DOT_DEFAULT_STYLE "solid"
-#define DOT_DEFAULT_SHAPE "box"
+#define DOT_DEFAULT_SHAPE "ellipse"
 #define DOT_DEFAULT_LINECOLOR "black"
 #define DOT_DEFAULT_NODE_BACKCOLOR "lightgrey"
 #define DOT_DEFAULT_BACKCOLOR "white"

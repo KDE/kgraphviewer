@@ -35,94 +35,50 @@
 #include <QVector>
 #include <QList>
 #include <QMap>
+#include <QtCore/QTextStream>
 
+#include "dotrenderop.h"
 #include "dotgrammar.h"
+#include "graphelement.h"
 
 class CanvasNode;
 
 /**
  * Colors and styles are dot names
  */
-class GraphNode
+class GraphNode : public GraphElement
 {
 public:
   GraphNode();
   
   virtual ~GraphNode() {}  
   
-  inline void id(const QString& id) {m_id = id;}
   inline void x(double x) {m_x = x;}
   inline void y(double y) {m_y = y;}
   inline void w(double w) {m_w = w;}
   inline void h(double h) {m_h = h;}
-  inline void style(const QString& ls) {m_style = ls;}
-  inline void shape(const QString& lc) {m_shape= lc;}
-  inline void lineColor(const QString& nt) {m_lineColor = nt;}
-  inline void backColor(const QString& nc) {m_backColor = nc;}
-  
-  inline const QString& id() const {return m_id;}
+
   inline double x() const {return m_x;}
   inline double y() const {return m_y;}
   inline double w() const {return m_w;}
   inline double h() const {return m_h;}
-  inline const QString& style() const {return m_style;}
-  inline const QString& shape() const {return m_shape;}
-  inline const QString& lineColor() const {return m_lineColor;}
-  inline const QString& backColor() const {return m_backColor;}
-  
+
   CanvasNode* canvasNode() { return m_cn[0]; }
   void setCanvasNode(CanvasNode* cn) { m_cn.push_back(cn); }
 
   bool isVisible() const { return m_visible; }
   void setVisible(bool v) { m_visible = v; }
 
-  inline void label(const QString& label) {m_label = label;}
-  inline const QString& label() const {return m_label;}
-
-  inline unsigned int fontSize() const {return m_fontSize;}
-  inline void fontSize(unsigned int fs) {m_fontSize = fs;}
-  inline const QString& fontName() const {return m_fontName;}
-  inline void fontName(const QString& fn) {m_fontName = fn;}
-  inline const QString& fontColor() const {return m_fontColor;}
-  inline void fontColor(const QString& fc) {m_fontColor = fc;}
-  
-  inline DotRenderOpVec& renderOperations() {return m_renderOperations;};
-  inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
-  inline void renderOperations(DotRenderOpVec& drov) {m_renderOperations = drov;};
-  
-  inline unsigned int z() const {return m_z;}
-  inline void z(unsigned int thez) {m_z = thez;}
-  
-  inline const QString& shapeFile() const {return m_shapeFile;}
-  inline void shapeFile(const QString& sf) {m_shapeFile = sf;}
-  
-  inline const QString& url() const {return m_url;}
-  inline void url(const QString& theUrl) {m_url = theUrl;}
-  
-  
 private:
   QVector< CanvasNode* > m_cn;
   bool m_visible;
 
-  QString m_label;
-  
-  QString m_id;
   double m_x, m_y, m_w, m_h;
-  QString m_style;
-  QString m_shape;
-  QString m_lineColor;
-  QString m_backColor;
-  unsigned int m_fontSize;
-  QString m_fontName;
-  QString m_fontColor;
-  unsigned int m_z;
-  QString m_shapeFile;
-  QString m_url;
-  
-  DotRenderOpVec m_renderOperations;
 };
 
 typedef QMap<QString, GraphNode*> GraphNodeMap;
+
+QTextStream& operator<<(QTextStream& s, const GraphNode& n);
 
 #endif
 

@@ -100,14 +100,13 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
     m_graph(0),
     m_focusedNode(0),
     m_printCommand(0),
-    m_actions(actions)
+    m_actions(actions),
+    m_detailLevel(DEFAULT_DETAILLEVEL)
 {
   m_canvas = 0;
   m_xMargin = m_yMargin = 0;
   m_birdEyeView = new PannerView(this);
   m_cvZoom = 1;
-
-  m_exporter.setGraphOptions(this);
 
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -184,7 +183,7 @@ DotGraphView::~DotGraphView()
 
 bool DotGraphView::loadDot(const QString& dotFileName)
 {
-  kDebug() << "DotGraphView::loadDot '" << dotFileName << "'" << endl;
+  kDebug() << k_funcinfo << "'" << dotFileName << "'" << endl;
   hide();
 //   disconnect(m_canvas,SIGNAL(changed()),m_birdEyeView,SLOT(updateScene()));
   m_birdEyeView->setScene(0);
@@ -210,7 +209,9 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 //   std::cerr << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand() << std::endl;
   if (m_graph->parseDot(m_graph->dotFileName()))
   {
-//     kDebug() << "Successfully parsed!" << endl;
+    kDebug() << k_funcinfo << "exporting" << endl;
+    m_exporter.reset("/home/kde4/export.dot");
+    m_exporter.writeDot(m_graph);
   }
   else
   {
@@ -227,13 +228,13 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   //  QCanvasEllipse* eItem;
   double scaleX = 1.0, scaleY = 1.0;
 
-  if (_detailLevel == 0)      { scaleX = m_graph->scale() * 0.7; scaleY = m_graph->scale() * 0.7; }
-  else if (_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
-  else if (_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
+  if (m_detailLevel == 0)      { scaleX = m_graph->scale() * 0.7; scaleY = m_graph->scale() * 0.7; }
+  else if (m_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+  else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
   else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
   
   int gh = int(m_graph->height());
-//   kDebug() << "detail level = " << _detailLevel << " ; scaleX = " << scaleX << endl;
+//   kDebug() << "detail level = " << m_detailLevel << " ; scaleX = " << scaleX << endl;
   QGraphicsScene* newCanvas;
     int w = (int)(scaleX * m_graph->width() / m_graph->horizCellFactor());
     int h = (int)(scaleY * gh / m_graph->vertCellFactor());
@@ -244,7 +245,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 
     newCanvas = new QGraphicsScene(0,0,w+2*m_xMargin, h+2*m_yMargin);
     std::cerr << "Created canvas " << newCanvas << std::endl;
-    newCanvas->setBackgroundBrush(QBrush(QColor(m_graph->backgroundColor())));
+    newCanvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
     m_canvasNaturalSize = newCanvas->sceneRect().size();
     QSizeF newCanvasSize = newCanvas->sceneRect().size();
   
@@ -767,9 +768,7 @@ void DotGraphView::readViewConfig()
   KConfigGroup g(KGlobal::config(),"GraphViewLayout");
   
   QVariant dl = DEFAULT_DETAILLEVEL;
-  _detailLevel     = g.readEntry("DetailLevel", dl).toInt();
-  _layout          = GraphOptions::layout(g.readEntry("Layout",
-            layoutString(DEFAULT_LAYOUT)));
+  m_detailLevel     = g.readEntry("DetailLevel", dl).toInt();
   m_zoomPosition  = zoomPos(g.readEntry("ZoomPosition",
             zoomPosString(DEFAULT_ZOOMPOS)));
   emit(sigViewBevActivated(m_zoomPosition));
@@ -780,9 +779,7 @@ void DotGraphView::saveViewConfig()
 //   kDebug() << "Saving view config" << endl;  
   KConfigGroup g(KGlobal::config(), "GraphViewLayout");
 
-    writeConfigEntry(&g, "DetailLevel", _detailLevel, DEFAULT_DETAILLEVEL);
-    writeConfigEntry(&g, "Layout",
-         layoutString(_layout), layoutString(DEFAULT_LAYOUT).utf8().data());
+    writeConfigEntry(&g, "DetailLevel", m_detailLevel, DEFAULT_DETAILLEVEL);
     writeConfigEntry(&g, "ZoomPosition",
          zoomPosString(m_zoomPosition),
          zoomPosString(DEFAULT_ZOOMPOS).utf8().data());

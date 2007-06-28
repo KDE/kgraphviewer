@@ -28,13 +28,14 @@
 
 #include <qstring.h>
 
+#include "graphelement.h"
 #include "graphsubgraph.h"
 #include "graphnode.h"
 #include "graphedge.h"
 #include "dotdefaults.h"
 
 
-class DotGraph
+class DotGraph : public GraphElement
 {
 public:
   DotGraph(const QString& command, const QString& fileName);
@@ -44,6 +45,9 @@ public:
   QString chooseLayoutProgramForFile(const QString& str);
   bool parseDot(const QString& str);
     
+  inline const GraphNodeMap& nodes() const {return m_nodesMap;}
+  inline const GraphEdgeMap& edges() const {return m_edgesMap;}
+  inline const GraphSubgraphMap& subgraphs() const {return m_subgraphsMap;}
   inline GraphNodeMap& nodes() {return m_nodesMap;}
   inline GraphEdgeMap& edges() {return m_edgesMap;}
   inline GraphSubgraphMap& subgraphs() {return m_subgraphsMap;}
@@ -56,17 +60,9 @@ public:
   
   inline void strict(bool s) {m_strict = s;}
   inline void directed(bool d) {m_directed = d;}
-  inline void id(const QString& id) {m_id = id;}
   inline bool strict() const {return m_strict;}
   inline bool directed() const {return m_directed;}
-  inline const QString& id() const {return m_id;}
 
-  inline void fontName(const QString& theValue) {m_fontName = theValue;}
-  inline const QString& fontName() const {return m_fontName;}
-
-  inline void fontSize(unsigned int theValue) {m_fontSize = theValue;}
-  inline unsigned int fontSize() const {return m_fontSize;}
-  
   std::set< GraphNode* >& nodesOfCell(unsigned int id);
   
   inline unsigned int horizCellFactor() const {return m_horizCellFactor;}
@@ -74,34 +70,17 @@ public:
   inline double wdhcf() const {return m_wdhcf;}
   inline double hdvcf() const {return m_hdvcf;}
   
-  inline const QString& color() const {return m_color;}
-  inline void color(const QString& color) {m_color = color;}
-  
-  inline const QString& backgroundColor() const {return m_backgroundColor;}
-  inline void backgroundColor(const QString& backgroundColor) {m_backgroundColor = backgroundColor;}
-  
-  inline const QString& fontColor() const {return m_fontColor;}
-  inline void fontColor(const QString& color) {m_fontColor = color;}
-  
-  inline const QString& label() const {return m_label;}
-  inline void label(const QString& l) {m_label = l;}
-  
   inline void layoutCommand(const QString& command) {m_layoutCommand = command;}
   inline const QString& layoutCommand() {return m_layoutCommand;}
   
   inline void dotFileName(const QString& fileName) {m_dotFileName = fileName;}
   inline const QString& dotFileName() const {return m_dotFileName;}
   
-  inline DotRenderOpVec& renderOperations() {return m_renderOperations;};
-  inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
-  inline void renderOperations(DotRenderOpVec& drov) {m_renderOperations = drov;};
-  
 private:
   unsigned int cellNumber(int x, int y);
   void computeCells();
     
   QString m_dotFileName;
-  QString m_backgroundColor;
   GraphSubgraphMap m_subgraphsMap;
   GraphNodeMap m_nodesMap;
   GraphEdgeMap m_edgesMap;
@@ -109,12 +88,6 @@ private:
   double m_scale;
   bool m_directed;
   bool m_strict;
-  QString m_id;
-  QString m_fontName;
-  unsigned int m_fontSize;
-  QString m_color;
-  QString m_fontColor;
-  QString m_label;
   QString m_layoutCommand;
   
   unsigned int m_horizCellFactor, m_vertCellFactor;
@@ -122,7 +95,6 @@ private:
   
   double m_wdhcf, m_hdvcf;
   
-  DotRenderOpVec m_renderOperations;
 };
 
 #endif

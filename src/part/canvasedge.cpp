@@ -33,6 +33,8 @@
 #include <QPainter>
 
 #include "canvasedge.h"
+#include "graphedge.h"
+#include "graphnode.h"
 #include "dotdefaults.h"
 #include "dot2qtconsts.h"
 #include "FontsCache.h"
@@ -74,8 +76,8 @@ CanvasEdge::CanvasEdge(GraphEdge* e, QGraphicsScene* c,
 //   std::cerr << std::endl;
   if (m_points.size() == 0) return;
   
-  int minX = m_points[0].x(), minY = m_points[0].y();
-  int maxX = minX, maxY = minY;
+  qreal minX = m_points[0].x(), minY = m_points[0].y();
+  qreal maxX = minX, maxY = minY;
   int i;
 
   int len = m_points.count();
@@ -175,11 +177,11 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
       if (edge()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
-        pen.setWidth(2 * widthScaleFactor);
+        pen.setWidth((int)(2 * widthScaleFactor));
       }
       else
       {
-        pen.setWidth(1 * widthScaleFactor);
+        pen.setWidth((int)(1 * widthScaleFactor));
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(edge()->style()));
       }
       p->save();
