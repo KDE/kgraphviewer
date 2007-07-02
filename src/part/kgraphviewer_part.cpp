@@ -139,10 +139,10 @@ extern "C"
 
 // KComponentData kgraphviewerPartFactory::s_instance = 0L;
 KAboutData* kgraphviewerPartFactory::s_about = new KAboutData(
-    "kgraphviewerpart", I18N_NOOP("kgraphviewerPart"),
-    "1.0", I18N_NOOP( "GraphViz dot files viewer" ),
+    "kgraphviewerpart", 0, ki18n("kgraphviewerPart"),
+    "1.0", ki18n( "GraphViz dot files viewer" ),
     KAboutData::License_GPL,
-    "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>");
+    ki18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
 
 KComponentData kgraphviewerPartFactory::s_instance(s_about);
 
@@ -177,10 +177,10 @@ KComponentData kgraphviewerPartFactory::componentData()
 {
 /*    if( !s_instance )
     {
-        s_about = new KAboutData( "kgraphviewerpart", I18N_NOOP("kgraphviewerPart"),
-                    "1.0", I18N_NOOP( "GraphViz dot files viewer" ),
+        s_about = new KAboutData( "kgraphviewerpart", 0, ki18n("kgraphviewerPart"),
+                    "1.0", ki18n( "GraphViz dot files viewer" ),
                     KAboutData::License_GPL,
-                    "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>");
+                    ki18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
         s_instance(s_about);
     }*/
     return s_instance;

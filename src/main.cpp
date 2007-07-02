@@ -39,18 +39,15 @@ I18N_NOOP("A Graphviz dot graph viewer for KDE");
 
 static const char version[] = "1.0";
 
-static KCmdLineOptions options[] =
-{
-    { "+[URL]", I18N_NOOP( "Dot graph to open" ), 0 },
-    KCmdLineLastOption
-};
-
 int main(int argc, char **argv)
 {
-  KAboutData about("kgraphviewer", I18N_NOOP("KGraphViewer"), version, description,
-                    KAboutData::License_GPL, "(C) 2005-2006 Gaël de Chalendar", 0, 0, "kleag@free.fr");
-  about.addAuthor( "Gaël de Chalendar", 0, "kleag@free.fr" );
+  KAboutData about("kgraphviewer", 0, ki18n("KGraphViewer"), version, ki18n(description),
+                    KAboutData::License_GPL, ki18n("(C) 2005-2006 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
+  about.addAuthor( ki18n("Gaël de Chalendar"), KLocalizedString(), "kleag@free.fr" );
   KCmdLineArgs::init(argc, argv, &about);
+
+  KCmdLineOptions options;
+  options.add("+[URL]", ki18n( "Dot graph to open" ));
   KCmdLineArgs::addCmdLineOptions( options );
   KApplication app;
   
