@@ -14,8 +14,6 @@ kde4_add_kcfg_files( kgraphviewer_SRCS kgraphviewersettings.kcfgc )
 
 kde4_add_ui_files( kgraphviewer_SRCS preferencesReload.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui )
 
-kde4_automoc(${kgraphviewer_SRCS})
-
 kde4_add_executable(kgraphviewer ${kgraphviewer_SRCS})
 
 # I think that we can reduce number of lib to link :)
