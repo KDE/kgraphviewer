@@ -16,8 +16,7 @@ kde4_add_ui_files( kgraphviewer_SRCS preferencesReload.ui preferencesOpenInExist
 
 kde4_add_executable(kgraphviewer ${kgraphviewer_SRCS})
 
-# I think that we can reduce number of lib to link :)
-target_link_libraries(kgraphviewer  ${QT_AND_KDECORE_LIBS} ${QT_QT_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} ${KDE4_KDEFX_LIBS} )
+target_link_libraries(kgraphviewer  ${QT_AND_KDECORE_LIBS} ${KDE4_KHTML_LIBS})
 
 install( TARGETS kgraphviewer DESTINATION ${BIN_INSTALL_DIR})
 
@@ -74,5 +73,3 @@ install( FILES kgraphviewer.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 #kde_mime_DATA = x-kgraphviewer.desktop
 #
 #rcdir = $(kde_datadir)/kgraphviewer
-#rc_DATA = kgraphviewer_shell.rc
-#

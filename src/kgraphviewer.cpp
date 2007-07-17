@@ -215,6 +215,7 @@ void KGraphViewer::setupActions()
 //   KStandardAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), this);
   actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT( optionsConfigure() ) );
 //   KStandardAction::preferences(this, SLOT(optionsConfigure()), this);
+
 }
 
 bool KGraphViewer::queryExit()
@@ -455,7 +456,7 @@ void KGraphViewer::close()
 
 void KGraphViewer::newTabSelectedSlot(QWidget* tab)
 {
-//   std::cerr << "newTabSelectedSlot " << tab << std::endl;
+//   kDebug() << k_funcinfo << tab << endl;
   emit(hide((KParts::Part*)(m_manager->activePart())));
   if (!m_tabsPartsMap.isEmpty())
   {
