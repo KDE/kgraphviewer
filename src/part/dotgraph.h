@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -23,10 +23,9 @@
 #ifndef DOT_GRAPH_H
 #define DOT_GRAPH_H
 
-#include <vector>
-#include <set>
-
-#include <qstring.h>
+#include <QList>
+#include <QSet>
+#include <QString>
 
 #include "graphelement.h"
 #include "graphsubgraph.h"
@@ -37,6 +36,7 @@
 
 class DotGraph : public GraphElement
 {
+//   Q_OBJECT
 public:
   DotGraph(const QString& command, const QString& fileName);
 
@@ -63,7 +63,7 @@ public:
   inline bool strict() const {return m_strict;}
   inline bool directed() const {return m_directed;}
 
-  std::set< GraphNode* >& nodesOfCell(unsigned int id);
+  QSet< GraphNode* >& nodesOfCell(unsigned int id);
   
   inline unsigned int horizCellFactor() const {return m_horizCellFactor;}
   inline unsigned int vertCellFactor() const {return m_vertCellFactor;}
@@ -75,7 +75,9 @@ public:
   
   inline void dotFileName(const QString& fileName) {m_dotFileName = fileName;}
   inline const QString& dotFileName() const {return m_dotFileName;}
-  
+
+  bool update();
+
 private:
   unsigned int cellNumber(int x, int y);
   void computeCells();
@@ -91,7 +93,7 @@ private:
   QString m_layoutCommand;
   
   unsigned int m_horizCellFactor, m_vertCellFactor;
-  std::vector< std::set< GraphNode* > > m_cells;
+  QVector< QSet< GraphNode* > > m_cells;
   
   double m_wdhcf, m_hdvcf;
   

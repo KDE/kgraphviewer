@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2005 by Gaël de Chalendar   *
+ *   Copyright (C) 2005-2007 by Gael de Chalendar   *
  *   kleag@free.fr   *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,12 +20,12 @@
 #ifndef DOT2QTCONSTS_H
 #define DOT2QTCONSTS_H
 
-#include <map>
-#include <qstring.h>
-#include <qfont.h>
+#include <QMap>
+#include <QString>
+#include <QFont>
 
 /**
-@author Gaël de Chalendar
+@author Gael de Chalendar
 */
 class Dot2QtConsts
 {
@@ -44,10 +44,10 @@ private:
 
   static Dot2QtConsts* m_componentData;
   
-  std::map< QString, Qt::PenStyle > m_penStyles;
-  std::map< QString, QString > m_colors;
-  std::map< QString, QColor > m_qcolors;
-  std::map< QString, QFont > m_psFonts;
+  QMap< QString, Qt::PenStyle > m_penStyles;
+  QMap< QString, QString > m_colors;
+  QMap< QString, QColor > m_qcolors;
+  QMap< QString, QFont > m_psFonts;
   
 };
 

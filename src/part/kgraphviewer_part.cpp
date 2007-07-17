@@ -75,6 +75,10 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
   pagesetupAct->setText(i18n("Page setup"));
   pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog allowing to setup how the graph will be printed"));
 
+  QAction* updateAct = actionCollection()->addAction("view_update", m_widget, SLOT(slotUpdate()));
+  updateAct->setWhatsThis(i18n("Update the view of the current graph by running dot"));
+  updateAct->setShortcut(Qt::CTRL+Qt::Key_U);
+
   QAction* redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, "view_redisplay", m_widget, SLOT(reload()));
   redisplayAct->setWhatsThis(i18n("Reload the current graph from file"));
   redisplayAct->setShortcut(Qt::Key_F5);
@@ -117,6 +121,11 @@ void kgraphviewerPart::slotHide(KParts::Part* part)
   {
     m_widget->hideToolsWindows();
   }
+}
+
+void kgraphviewerPart::slotUpdate()
+{
+  m_widget->slotUpdate();
 }
 
 /*It's usually safe to leave the factory code alone.. with the

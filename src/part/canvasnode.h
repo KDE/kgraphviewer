@@ -48,8 +48,9 @@
 class GraphNode;
 class DotGraphView;
 
-class CanvasNode
+class CanvasNode : public QObject
 {
+  Q_OBJECT
 public:
   CanvasNode(DotGraphView* v,GraphNode* n);
   
@@ -70,6 +71,9 @@ public:
     
   inline bool hasFocus() const {return m_hasFocus;}
   inline void hasFocus(bool val) {m_hasFocus = val;}
+
+public Q_SLOTS:
+  void modelChanged();
   
 protected:
   virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
@@ -132,33 +136,33 @@ protected:
   QWidget *widget);
 };
 
-class CanvasHtmlNode: public KHTMLPart, public CanvasNode
-{
-  Q_OBJECT
-public:
-  CanvasHtmlNode(
-                     DotGraphView* v, 
-                     GraphNode* n,
-                     const DotRenderOp& dro,
-                     const DotRenderOpVec& dros,
-                     QGraphicsScene* c,
-                     double scaleX, double scaleY, int xMargin, int yMargin, int gh,
-                     int wdhcf, int hdvcf);
-  virtual ~CanvasHtmlNode();
-  
-  QRect rect() {return view()->contentsRect();}
-  
-protected:
-//   virtual void paint(QPainter&);
-
-public slots:
-  void move(int x, int y);
-  void zoomed(double factor);
-
-private:
-  double m_zoomFactor;
-  int m_xMovedTo, m_yMovedTo;
-};
+// class CanvasHtmlNode: public KHTMLPart, public CanvasNode
+// {
+//   Q_OBJECT
+// public:
+//   CanvasHtmlNode(
+//                      DotGraphView* v, 
+//                      GraphNode* n,
+//                      const DotRenderOp& dro,
+//                      const DotRenderOpVec& dros,
+//                      QGraphicsScene* c,
+//                      double scaleX, double scaleY, int xMargin, int yMargin, int gh,
+//                      int wdhcf, int hdvcf);
+//   virtual ~CanvasHtmlNode();
+//   
+//   QRect rect() {return view()->contentsRect();}
+//   
+// protected:
+// //   virtual void paint(QPainter&);
+// 
+// public slots:
+//   void move(int x, int y);
+//   void zoomed(double factor);
+// 
+// private:
+//   double m_zoomFactor;
+//   int m_xMovedTo, m_yMovedTo;
+// };
 
 
 #endif

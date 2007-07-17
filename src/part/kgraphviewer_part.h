@@ -55,6 +55,7 @@ public:
 
 public slots:
   void slotHide(KParts::Part* part);
+  void slotUpdate();
 
 protected:
     /**

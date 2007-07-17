@@ -50,7 +50,7 @@ public:
 
   QString filename() { return _dotName; }
 
-  void writeDot(const DotGraph* graph);
+  QString writeDot(const DotGraph* graph);
 
 
 private:

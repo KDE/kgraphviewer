@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2006 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2006-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -30,21 +30,18 @@
 #include <boost/spirit/utility/distinct.hpp>
 #include <boost/spirit/utility/loops.hpp>
 
+#include <QPoint>
+#include <QColor>
+#include <QPair>
+#include <QVector>
+
 #include <map>
 #include <list>
 #include <string>
 #include <sstream>
 
-#include <QString>
-#include <QPair>
-#include <QVector>
-#include <QPoint>
-#include <QColor>
+bool parse(const std::string& str);
 
-class DotGraph;
-class GraphSubgraph;
-class GraphNode;
-class GraphEdge;
 
 void dump(char const* first, char const* last);
 void strict(char const* first, char const* last);
@@ -81,49 +78,25 @@ void valid_op(char const* first, char const* last);
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec);
 bool parse_numeric_color(char const* str, QColor& c);
 
-struct DotGraphParsingHelper
+struct DotGrammar : public boost::spirit::grammar<DotGrammar>
 {
-  static bool parse(const std::string& str);
-  
-  void createnode(const std::string& nodeid);
-  void createsubgraph();
-  void setgraphattributes();
-  void setsubgraphattributes();
-      void setnodeattributes();
-  void setedgeattributes();
-  void setattributedlist();
-  void createedges();
-  void edgebound(const std::string& bound) {edgebounds.push_back(bound);}
-  void finalactions();
+  template <typename ScannerT>
+  struct definition
+  {
+    definition(DotGrammar const& self);
     
-  std::string attrid;
-  std::string valid;
-  std::string attributed;
-  std::string subgraphid;
+    boost::spirit::rule<ScannerT> graph, ID, tag, stmt_list, stmt, attr_stmt,
+    attr_list, a_list, edge_stmt, edgeop,
+    edgeRHS, node_stmt, node_id,
+    port, subgraph, compass_pt;
+    
+    boost::spirit::rule<ScannerT> const& start() const
+    {
+      return graph;
+    }
+  };
   
-  uint uniq;
-  
-  typedef std::map< std::string, std::string > AttributesMap;
-  AttributesMap attributes;
-  AttributesMap graphAttributes;
-  AttributesMap nodesAttributes;
-  AttributesMap edgesAttributes;
-  std::list< AttributesMap > graphAttributesStack;
-  std::list< AttributesMap > nodesAttributesStack;
-  std::list< AttributesMap > edgesAttributesStack;
-  
-  std::list< std::string > edgebounds;
-  
-  unsigned int z;
-  unsigned int maxZ;
-  
-  DotGraph* graph;
-  
-  GraphSubgraph* gs;
-  GraphNode* gn;
-  GraphEdge* ge;
 };
-
 
 
 

@@ -11,6 +11,7 @@
     <Action name="file_page_setup"/>
   </Menu>
   <Menu name="view">
+    <Action name="view_update"/>
     <Action name="view_redisplay"/>
     <Separator/>
     <Action name="view_layout_algo"/>

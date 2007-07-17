@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -51,7 +51,6 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kconfig.h>
-//#include <ktempfile.h>
 #include <kapplication.h>
 #include <kiconloader.h>
 #include <kfiledialog.h>
@@ -206,19 +205,14 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   }
   m_graph->layoutCommand(layoutCommand);
   
-//   std::cerr << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand() << std::endl;
-  if (m_graph->parseDot(m_graph->dotFileName()))
-  {
-    kDebug() << k_funcinfo << "exporting" << endl;
-    m_exporter.reset("/home/kde4/export.dot");
-    m_exporter.writeDot(m_graph);
-  }
-  else
+//   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand() << endl;
+  if (!m_graph->parseDot(m_graph->dotFileName()))
   {
     kError() << "NOT successfully parsed!" << endl;
     return false;
   }
   
+  kDebug() << k_funcinfo << "successfully parsed" << endl;
   viewport()->setUpdatesEnabled(false);
   
   if (m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
@@ -244,7 +238,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
     
 
     newCanvas = new QGraphicsScene(0,0,w+2*m_xMargin, h+2*m_yMargin);
-    std::cerr << "Created canvas " << newCanvas << std::endl;
+    kDebug() << "Created canvas " << newCanvas << endl;
     newCanvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
     m_canvasNaturalSize = newCanvas->sceneRect().size();
     QSizeF newCanvasSize = newCanvas->sceneRect().size();
@@ -293,7 +287,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   edgesIt_end = m_graph->edges().end();
   for (; edgesIt != edgesIt_end; edgesIt++)
   {
-    GraphEdge* gedge = (*edgesIt).second;
+    GraphEdge* gedge = *edgesIt;
     
 /*    if (!( ( m_graph->nodesOfCell(0).find (e->fromNode()) != m_graph->nodesOfCell(0).end() )
            && ( m_graph->nodesOfCell(0).find (e->toNode()) != m_graph->nodesOfCell(0).end() ) ))
@@ -340,7 +334,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
     if ( dro.renderop == "T" )
     {
 //       std::cerr << "Adding graph label '"<<dro.str<<"'" << std::endl;
-      QString str = QString::fromUtf8(dro.str.c_str());
+      const QString& str = dro.str;
       int stringWidthGoal = int(dro.integers[3] * scaleX);
       int fontSize = m_graph->fontSize();
       QFont* font = FontsCache::changeable().fromName(m_graph->fontName());
@@ -384,7 +378,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 
   viewport()->setUpdatesEnabled(true);
   show();
-  std::set<QGraphicsSimpleTextItem*>::iterator labelViewsIt, labelViewsIt_end;
+  QSet<QGraphicsSimpleTextItem*>::iterator labelViewsIt, labelViewsIt_end;
   labelViewsIt = m_labelViews.begin(); labelViewsIt_end = m_labelViews.end();
   for (; labelViewsIt != labelViewsIt_end; labelViewsIt++)
   {
@@ -1194,7 +1188,12 @@ void DotGraphView::slotBevBottomRight()
 
 void DotGraphView::slotBevAutomatic()
 {
-  viewBevActivated(Auto); 
+  viewBevActivated(Auto);
+}
+
+void DotGraphView::slotUpdate()
+{
+  m_graph->update();
 }
 
 

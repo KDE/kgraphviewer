@@ -30,36 +30,38 @@
  * The base of all GraphViz dot graph elements (nodes, edges, subgraphs,
  * graphs). It is used to store the element attributes
  */
-class GraphElement: public QMap<QString,QString>
+class GraphElement: public QObject
 {
+  Q_OBJECT
 public:
   GraphElement();
+  GraphElement(const GraphElement& element);
   
   virtual ~GraphElement() {}
   
-  inline void id(const QString& id) {(*this)["id"]=id;}
-  inline void style(const QString& ls) {(*this)["style"]=ls;}
-  inline void shape(const QString& lc) {(*this)["shape"]=lc;}
-  inline void color(const QString& nt) {(*this)["color"]=nt;}
-  inline void lineColor(const QString& nt) {(*this)["color"]=nt;}
-  inline void backColor(const QString& nc) {(*this)["bgcolor"]=nc;}
+  inline void id(const QString& id) {m_attributes["id"]=id;}
+  inline void style(const QString& ls) {m_attributes["style"]=ls;}
+  inline void shape(const QString& lc) {m_attributes["shape"]=lc;}
+  inline void color(const QString& nt) {m_attributes["color"]=nt;}
+  inline void lineColor(const QString& nt) {m_attributes["color"]=nt;}
+  inline void backColor(const QString& nc) {m_attributes["bgcolor"]=nc;}
   
-  inline const QString id() const {return (*this)["id"];}
-  inline const QString style() const {return (*this)["style"];}
-  inline const QString shape() const {return (*this)["shape"];}
-  inline const QString color() const {return (*this)["color"];}
-  inline const QString lineColor() const {return (*this)["color"];}
-  inline const QString backColor() const {return (*this)["bgcolor"];}
+  inline QString id() const {return m_attributes["id"];}
+  inline QString style() const {return m_attributes["style"];}
+  inline QString shape() const {return m_attributes["shape"];}
+  inline QString color() const {return m_attributes["color"];}
+  inline QString lineColor() const {return m_attributes["color"];}
+  virtual QString backColor() const;
   
-  inline void label(const QString& label) {(*this)["label"]=label;}
-  inline const QString label() const {return (*this)["label"];}
+  inline void label(const QString& label) {m_attributes["label"]=label;}
+  inline const QString label() const {return m_attributes["label"];}
 
-  inline unsigned int fontSize() const {return (*this)["fontsize"].toUInt();}
-  inline void fontSize(unsigned int fs) {(*this)["fontsize"]=QString::number(fs);}
-  inline const QString fontName() const {return (*this)["fontname"];}
-  inline void fontName(const QString& fn) {(*this)["fontname"]=fn;}
-  inline const QString fontColor() const {return (*this)["fontcolor"];}
-  inline void fontColor(const QString& fc) {(*this)["fontcolor"] = fc;}
+inline unsigned int fontSize() const {return m_attributes["fontsize"].toUInt();}
+inline void fontSize(unsigned int fs) {m_attributes["fontsize"]=QString::number(fs);}
+inline QString fontName() const {return m_attributes["fontname"];}
+inline void fontName(const QString& fn) {m_attributes["fontname"]=fn;}
+inline QString fontColor() const {return m_attributes["fontcolor"];}
+inline void fontColor(const QString& fc) {m_attributes["fontcolor"] = fc;}
 
   inline DotRenderOpVec& renderOperations() {return m_renderOperations;};
   inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
@@ -68,16 +70,28 @@ public:
   inline const double z() const {return m_z;}
   inline void z(double thez) {m_z = thez;}
   
-  inline const QString shapeFile() const {return (*this)["shapefile"];}
-  inline void shapeFile(const QString& sf) {(*this)["shapefile"] = sf;}
+  inline QString shapeFile() const {return m_attributes["shapefile"];}
+  inline void shapeFile(const QString& sf) {m_attributes["shapefile"] = sf;}
   
-  inline const QString url() const {return (*this)["URL"];}
-  inline void url(const QString& theUrl) {(*this)["URL"] = theUrl;}
+  inline QString url() const {return m_attributes["URL"];}
+  inline void url(const QString& theUrl) {m_attributes["URL"] = theUrl;}
+
+  virtual void updateWith(const GraphElement& element);
+
+  inline QMap<QString,QString>& attributes() {return m_attributes;}
+  inline const QMap<QString,QString>& attributes() const {return m_attributes;}
+  
+  Q_SIGNALS:
+    void changed();
+
+protected:
+  QMap<QString,QString> m_attributes;
   
 private:
   double m_z;
 
   DotRenderOpVec m_renderOperations;
+
 };
 
 

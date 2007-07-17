@@ -158,7 +158,6 @@ void CanvasSubgraph::paint(QPainter& p)
   {
     if ( (*it).renderop == "T" )
     {
-      QString str = QString::fromUtf8((*it).str.c_str());
       // draw a label
 /*      std::cerr << "Drawing a label " << (*it).integers[0] 
       << " " << (*it).integers[1] << " " << (*it).integers[2]
@@ -170,7 +169,7 @@ void CanvasSubgraph::paint(QPainter& p)
       int fontSize = subgraph()->fontSize();
       m_font->setPointSize(fontSize);
       QFontMetrics fm(*m_font);
-      while (fm.width(str) > stringWidthGoal+10  && fontSize > 1)
+      while (fm.width((*it).str) > stringWidthGoal+10  && fontSize > 1)
       {
         fontSize--;
         m_font->setPointSize(fontSize);
@@ -187,7 +186,7 @@ void CanvasSubgraph::paint(QPainter& p)
               )
           + m_xMargin ),
       int(((m_gh - ((*it).integers[1]))*m_scaleY)+ m_yMargin),
-      str);
+                 (*it).str);
     }
   }
   p.restore();

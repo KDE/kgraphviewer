@@ -74,69 +74,57 @@ void GraphExporter::reset( QString filename)
 
 
 
-void GraphExporter::writeDot(const DotGraph* graph)
+QString GraphExporter::writeDot(const DotGraph* graph)
 {
   kDebug() << k_funcinfo << endl;
   QFile* file = 0;
-  QTextStream* stream = 0;
 
-  if (_tmpFile)
-    stream = new QTextStream(_tmpFile);
-  else {
-    file = new QFile(_dotName);
-    if ( !file->open( QIODevice::WriteOnly ) ) {
-      kError() << "Can't write dot file '" << _dotName << "'" << endl;
-      return;
-    }
-    stream = new QTextStream(file);
+  KTemporaryFile tempFile;
+  tempFile.setSuffix(".dot");
+
+  QFile f(tempFile.name());
+  if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
+  {
+    kError() << "Aaaarrrgh!" << endl;
+    exit(2);
   }
+  QTextStream stream(&f);
+  stream << "coucou" << endl;
 
+  stream << "digraph \""<<graph->id()<<"\" {\n";
 
-  *stream << "digraph \""<<graph->id()<<"\" {\n";
-
-  *stream << "graph [" << *graph <<"]" << endl;
+  stream << "graph [" << *graph <<"]" << endl;
 
   /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
-  /// possible to save them back as needed: to be changed !
+  /// possible to save them back : to be changed !
+  kDebug() << k_funcinfo << "writing subgraphs" << endl;
   GraphSubgraphMap::const_iterator sit;
   for ( sit = graph->subgraphs().begin();
   sit != graph->subgraphs().end(); ++sit )
   {
     const GraphSubgraph& s = **sit;
-    
-    (*stream) << s;
+    (stream) << s;
   }
-  
+
+  kDebug() << k_funcinfo << "writing nodes" << endl;
   GraphNodeMap::const_iterator nit;
   for ( nit = graph->nodes().begin();
         nit != graph->nodes().end(); ++nit )
   {
-    const GraphNode& n = **nit;
-
-    (*stream) << n;
+    (stream) << **nit;
   }
 
+  kDebug() << k_funcinfo << "writing edges" << endl;
   GraphEdgeMap::const_iterator eit;
   for ( eit = graph->edges().begin();
         eit != graph->edges().end(); ++eit )
   {
-    const GraphEdge& e = *((*eit).second);
-
-    *stream << e;
-
+    stream << **eit;
   }
 
-  *stream << "}\n";
+  stream << "}\n";
 
-  if (_tmpFile) 
-  {
-    _tmpFile->close();
-  }
-  else 
-  {
-    file->close();
-    delete file;
-    delete stream;
-  }
+  f.close();
+  return tempFile.name();
 }
 

@@ -66,6 +66,12 @@ CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n)
 
 {
   m_font = FontsCache::changeable().fromName(n->fontName());
+  connect(n,SIGNAL(changed()),this,SLOT(modelChanged()));
+}
+
+void CanvasNode::modelChanged()
+{
+  update();
 }
 
 CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro, 
@@ -77,14 +83,14 @@ CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro,
                                             int wdhcf, int hdvcf)
 {
   CanvasNode* res = 0;
-  std::cerr << "dotShapedCanvasNode: creating node for " << n->label().toStdString()
-            << " ; dro = " << dro.renderop << std::endl;
+  kDebug() << "dotShapedCanvasNode: creating node for " << n->label()
+            << " ; dro = " << dro.renderop << endl;
   if (n->label()[0] == '<' && n->shape() != "record")
   {
 //     std::cerr << "dotShapedCanvasNode: creating CanvasHtmlNode" << std::endl;
-    res = new CanvasHtmlNode(v, n, dro, dros, c,
+/*    res = new CanvasHtmlNode(v, n, dro, dros, c,
                              scaleX, scaleY, xMargin, yMargin, gh,
-                             wdhcf, hdvcf);
+                             wdhcf, hdvcf);*/
   }
   else if (dro.renderop == "e" || dro.renderop == "E")
   {
@@ -102,20 +108,20 @@ CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro,
   }
   else if (dro.renderop == "L" || dro.renderop == "B"  || dro.renderop == "b")
   {
-    kWarning() << "xdot render operation '" << QString::fromStdString(dro.renderop) << "' is currently "
+    kWarning() << "xdot render operation '" << dro.renderop << "' is currently "
       "not supported (ignored)." << endl;
   }
   else if (
              dro.renderop == "C" || dro.renderop == "c" 
           || dro.renderop == "F" || dro.renderop == "S")
   {
-    kWarning() << "xdot render operation '" << QString::fromStdString(dro.renderop) << "' is currently "
+    kWarning() << "xdot render operation '" << dro.renderop << "' is currently "
       "not supported (ignored).\nUsually its value is handled through"
       " standard attributes." << endl;
   }
   else 
   {
-    kError() << "Error ! Unknown node shape '" << QString::fromStdString(dro.renderop) << "' ; ignoring it." << endl;
+    kError() << "Error ! Unknown node shape '" << dro.renderop << "' ; ignoring it." << endl;
     //    res = new CanvasPolygonalNode(v, n, dro, c);
   }
   if (res != 0)
@@ -134,12 +140,11 @@ CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro,
 void CanvasNode::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
 QWidget *widget)
 {
-  DotRenderOpVec::const_reverse_iterator it, it_end;
-  it = node()->renderOperations().rbegin(); 
-  it_end = node()->renderOperations().rend();
-  for (; it != it_end; it++)
+  QListIterator<DotRenderOp> it(node()->renderOperations());
+  it.toBack();
+  while (it.hasPrevious())
   {
-    const DotRenderOp& dro = (*it);
+    const DotRenderOp& dro = it.previous();
     if (dro.renderop == "e" || dro.renderop == "E")
     {
       int w = int(m_scaleX * dro.integers[2]) * 2;
@@ -211,12 +216,11 @@ QWidget *widget)
 
   }
 
-  it = node()->renderOperations().rbegin(); 
-  it_end = node()->renderOperations().rend();
-  for (; it != it_end; it++)
+  it.toBack();
+  while (it.hasPrevious())
   {
-    const DotRenderOp& dro = (*it);
-    if ( (*it).renderop == "L" )
+    const DotRenderOp& dro = it.previous();
+    if ( dro.renderop == "L" )
     {
       QPolygonF points(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
@@ -256,19 +260,18 @@ QWidget *widget)
     const DotRenderOp& dro = (*itl);
     if ( dro.renderop == "T" )
     {
-      QString str = QString::fromUtf8(dro.str.c_str());
       // draw a label
-/*      std::cerr << "Drawing a label " << (*it).integers[0] 
+/*      kDebug() << "Drawing a label " << (*it).integers[0]
         << " " << (*it).integers[1] << " " << (*it).integers[2]
         << " " << (*it).integers[3] << " " << (*it).str 
         << " (" << node()->fontName() << ", " << node()->fontSize()
-        << ", " << node()->fontColor() << ")" << std::endl;*/
+        << ", " << node()->fontColor() << ")" << endl;*/
       
       int stringWidthGoal = int(dro.integers[3] * m_scaleX);
       int fontSize = node()->fontSize();
       m_font->setPointSize(fontSize);
       QFontMetrics fm(*m_font);
-      while (fm.width(str) > stringWidthGoal && fontSize > 1)
+      while (fm.width(dro.str) > stringWidthGoal && fontSize > 1)
       {
         fontSize--;
         m_font->setPointSize(fontSize);
@@ -287,7 +290,7 @@ QWidget *widget)
                       )
                       + m_xMargin ),
                   int(((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin),
-                  str);
+                  dro.str);
       p->restore();
     }
   }
@@ -424,76 +427,76 @@ QWidget *widget)
   CanvasNode::paint(p,option,widget);
 }
 
-CanvasHtmlNode::CanvasHtmlNode(
-                                          DotGraphView* v, 
-                                          GraphNode* n,
-                                          const DotRenderOp& dro,
-                                          const DotRenderOpVec& dros,
-                                          QGraphicsScene* c,
-                                          double scaleX, double scaleY, 
-                                          int xMargin, int yMargin, int gh,
-                                          int wdhcf, int hdvcf
-                                        )
-: KHTMLPart(v->viewport()), CanvasNode(v, n)
-{
-  m_renderOperations = dros;
-//   std::cerr << "Creating "<<node()->id()<<" CanvasHtmlNode for" << n 
-//     << " with label '" << n->label() << "'" << std::endl;
-
-  QString myHTMLCode = n->label();
-  myHTMLCode = myHTMLCode.mid(1, myHTMLCode.length() - 2);
-//   std::cerr << "HTML = " << myHTMLCode << std::endl;
-  begin(KUrl(QString("file:") + QDir::currentPath() + "/index.html"));
-  setAutoloadImages(true);
-  write(myHTMLCode);
-  kDebug() << "HTML written." << endl;
-  end();
-  setStatusMessagesEnabled (false);
-//   view()->setFrameShape ( QFrame::NoFrame );
-//   view()->setFrameShadow ( QFrame::Plain );
-//   view()->setLineWidth ( 0 );
-//   view()->setMidLineWidth ( 0 );
-//   view()->setHScrollBarMode ( Q3ScrollView::AlwaysOff );
-//   view()->setVScrollBarMode ( Q3ScrollView::AlwaysOff );
-  view()->setMarginWidth(0);
-  view()->setMarginHeight(0);
-  m_zoomFactor = m_view->zoom();
-  view()->part()->setZoomFactor(int(m_zoomFactor*100));
-  view()->move(int(n->x()*scaleX*m_zoomFactor), int((gh-n->y())*scaleY*m_zoomFactor));
-  view()->setMinimumSize(int(n->w()*scaleX),int(n->h()*scaleY*m_zoomFactor));
-  view()->setMaximumSize(int(n->w()*scaleX),int(n->h()*scaleY*m_zoomFactor));
-  view()->adjustSize();
-  KHTMLPart::show();
-  connect(v, SIGNAL(contentsMoving ( int, int)), this, SLOT(move(int, int)));
-  connect(v, SIGNAL(zoomed (double)), this, SLOT(zoomed(double)));
-}
-
-CanvasHtmlNode::~CanvasHtmlNode() 
-{
-  KHTMLPart::hide();
-}
-
-// void CanvasHtmlNode::paint(QPainter& p)
+// CanvasHtmlNode::CanvasHtmlNode(
+//                                           DotGraphView* v, 
+//                                           GraphNode* n,
+//                                           const DotRenderOp& dro,
+//                                           const DotRenderOpVec& dros,
+//                                           QGraphicsScene* c,
+//                                           double scaleX, double scaleY, 
+//                                           int xMargin, int yMargin, int gh,
+//                                           int wdhcf, int hdvcf
+//                                         )
+// : KHTMLPart(v->viewport()), CanvasNode(v, n)
 // {
-//   view()->drawContents(&p);
+//   m_renderOperations = dros;
+// //   std::cerr << "Creating "<<node()->id()<<" CanvasHtmlNode for" << n 
+// //     << " with label '" << n->label() << "'" << std::endl;
+// 
+//   QString myHTMLCode = n->label();
+//   myHTMLCode = myHTMLCode.mid(1, myHTMLCode.length() - 2);
+// //   std::cerr << "HTML = " << myHTMLCode << std::endl;
+//   begin(KUrl(QString("file:") + QDir::currentPath() + "/index.html"));
+//   setAutoloadImages(true);
+//   write(myHTMLCode);
+//   kDebug() << "HTML written." << endl;
+//   end();
+//   setStatusMessagesEnabled (false);
+// //   view()->setFrameShape ( QFrame::NoFrame );
+// //   view()->setFrameShadow ( QFrame::Plain );
+// //   view()->setLineWidth ( 0 );
+// //   view()->setMidLineWidth ( 0 );
+// //   view()->setHScrollBarMode ( Q3ScrollView::AlwaysOff );
+// //   view()->setVScrollBarMode ( Q3ScrollView::AlwaysOff );
+//   view()->setMarginWidth(0);
+//   view()->setMarginHeight(0);
+//   m_zoomFactor = m_view->zoom();
+//   view()->part()->setZoomFactor(int(m_zoomFactor*100));
+//   view()->move(int(n->x()*scaleX*m_zoomFactor), int((gh-n->y())*scaleY*m_zoomFactor));
+//   view()->setMinimumSize(int(n->w()*scaleX),int(n->h()*scaleY*m_zoomFactor));
+//   view()->setMaximumSize(int(n->w()*scaleX),int(n->h()*scaleY*m_zoomFactor));
+//   view()->adjustSize();
+//   KHTMLPart::show();
+//   CanvasHtmlNode::connect(v, SIGNAL(contentsMoving ( int, int)), this, SLOT(move(int, int)));
+//   CanvasHtmlNode::connect(v, SIGNAL(zoomed (double)), this, SLOT(zoomed(double)));
 // }
-
-void CanvasHtmlNode::move(int x, int y)
-{
-//   std::cerr << "CanvasHtmlNode::move("<<x<<", "<<y<<")" << std::endl;
-  m_xMovedTo = x; m_yMovedTo = y;
-  view()->move(int((node()->x())*m_scaleX*m_zoomFactor - m_xMovedTo), int((m_gh-node()->y())*m_scaleY*m_zoomFactor) - m_yMovedTo);
-//   view()->move(int(x*m_scaleX), int((m_gh-y)*m_scaleY));
-}
-
-void CanvasHtmlNode::zoomed(double factor)
-{
-  m_zoomFactor = factor;
-  view()->part()->setZoomFactor(int(factor*100));
-  view()->move(int(node()->x()*m_scaleX*m_zoomFactor - m_xMovedTo), int((m_gh-node()->y())*m_scaleY*m_zoomFactor - m_yMovedTo));
-  view()->setMinimumSize(int(node()->w()*m_scaleX*m_zoomFactor),int(node()->h()*m_scaleY*m_zoomFactor));
-  view()->setMaximumSize(int(node()->w()*m_scaleX*m_zoomFactor),int(node()->h()*m_scaleY*m_zoomFactor));
-  view()->adjustSize();
-}
+// 
+// CanvasHtmlNode::~CanvasHtmlNode() 
+// {
+//   KHTMLPart::hide();
+// }
+// 
+// // void CanvasHtmlNode::paint(QPainter& p)
+// // {
+// //   view()->drawContents(&p);
+// // }
+// 
+// void CanvasHtmlNode::move(int x, int y)
+// {
+// //   std::cerr << "CanvasHtmlNode::move("<<x<<", "<<y<<")" << std::endl;
+//   m_xMovedTo = x; m_yMovedTo = y;
+//   view()->move(int((node()->x())*m_scaleX*m_zoomFactor - m_xMovedTo), int((m_gh-node()->y())*m_scaleY*m_zoomFactor) - m_yMovedTo);
+// //   view()->move(int(x*m_scaleX), int((m_gh-y)*m_scaleY));
+// }
+// 
+// void CanvasHtmlNode::zoomed(double factor)
+// {
+//   m_zoomFactor = factor;
+//   view()->part()->setZoomFactor(int(factor*100));
+//   view()->move(int(node()->x()*m_scaleX*m_zoomFactor - m_xMovedTo), int((m_gh-node()->y())*m_scaleY*m_zoomFactor - m_yMovedTo));
+//   view()->setMinimumSize(int(node()->w()*m_scaleX*m_zoomFactor),int(node()->h()*m_scaleY*m_zoomFactor));
+//   view()->setMaximumSize(int(node()->w()*m_scaleX*m_zoomFactor),int(node()->h()*m_scaleY*m_zoomFactor));
+//   view()->adjustSize();
+// }
 
 #include "canvasnode.moc"

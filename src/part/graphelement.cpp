@@ -25,9 +25,10 @@
 #include "dotdefaults.h"
 
 GraphElement::GraphElement() :
-    QMap<QString,QString>(),
+    QObject(),
     m_z(1.0),
-    m_renderOperations()
+    m_renderOperations(),
+    m_attributes()
 {
 /*  label("");
   id("");
@@ -42,12 +43,56 @@ GraphElement::GraphElement() :
   shapeFile("");*/
 }
 
+GraphElement::GraphElement(const GraphElement& element) : QObject(),
+  m_attributes()
+{
+  QMapIterator<QString,QString> it(element.m_attributes);
+  while (it.hasNext())
+  {
+    m_attributes[it.key()] = it.value();
+  }
+}
 
+void GraphElement::updateWith(const GraphElement& element)
+{
+  bool modified = false;
+  QMapIterator<QString,QString> it(element.attributes());
+  while (it.hasNext())
+  {
+    if (!m_attributes.contains(it.key()) || m_attributes[it.key()] != it.value())
+    {
+      m_attributes[it.key()] = it.value();
+      modified = true;
+    }
+  }
+  if (modified)
+  {
+    emit changed();
+  }
+}
+
+
+QString GraphElement::backColor() const
+{
+  if (m_attributes.find("fillcolor") != m_attributes.end())
+  {
+    return m_attributes["fillcolor"];
+  }
+  else if ( (m_attributes.find("color") != m_attributes.end())
+    && (m_attributes["style"] == "filled") )
+  {
+    return m_attributes["color"];
+  }
+  else
+  {
+    return DOT_DEFAULT_NODE_BACKCOLOR;
+  }
+}
 
 QTextStream& operator<<(QTextStream& s, const GraphElement& n)
 {
-  GraphElement::const_iterator it, it_end;
-  it = n.begin(); it_end = n.end();
+  QMap<QString,QString>::const_iterator it, it_end;
+  it = n.attributes().begin(); it_end = n.attributes().end();
   for (;it != it_end; it++)
   {
     if (!it.value().isEmpty())
@@ -66,3 +111,5 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
   }
   return s;
 }
+
+#include "graphelement.moc"

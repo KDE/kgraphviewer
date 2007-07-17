@@ -48,6 +48,7 @@ class CanvasNode;
  */
 class GraphNode : public GraphElement
 {
+//   Q_OBJECT
 public:
   GraphNode();
   
@@ -63,7 +64,7 @@ public:
   inline double w() const {return m_w;}
   inline double h() const {return m_h;}
 
-  CanvasNode* canvasNode() { return m_cn[0]; }
+  CanvasNode* canvasNode();
   void setCanvasNode(CanvasNode* cn) { m_cn.push_back(cn); }
 
   bool isVisible() const { return m_visible; }

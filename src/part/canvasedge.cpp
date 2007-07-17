@@ -122,7 +122,7 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
   
     if ( (*it).renderop == "T" )
     {
-      QString str = QString::fromUtf8((*it).str.c_str());
+      const QString& str = (*it).str;
     
       qreal stringWidthGoal = (*it).integers[3] * m_scaleX;
       int fontSize = edge()->fontSize();

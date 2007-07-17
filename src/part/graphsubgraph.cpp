@@ -35,7 +35,33 @@ GraphSubgraph::GraphSubgraph() :
 {
 }
 
-QString m_label;
+QString GraphSubgraph::backColor() const
+{
+  if (m_attributes.find("bgcolor") != m_attributes.end())
+  {
+    return m_attributes["bgcolor"];
+  }
+  else if ( (m_attributes.find("style") != m_attributes.end())
+    && (m_attributes["style"] == "filled")
+    && (m_attributes.find("color") != m_attributes.end()) )
+  {
+    return m_attributes["color"];
+  }
+  else if ((m_attributes.find("style") != m_attributes.end())
+    && (m_attributes["style"] == "filled")
+    && (m_attributes.find("fillcolor") != m_attributes.end()))
+  {
+    return m_attributes["fillcolor"];
+  }
+  else
+  {
+    return DOT_DEFAULT_BACKCOLOR;
+  }
+
+
+
+}
+
 
 QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
 {

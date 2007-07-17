@@ -18,7 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include <kdebug.h> 
-#include <qcolor.h>
+#include <QColor>
 
 #include "dot2qtconsts.h"
 #include "dotgrammar.h"
@@ -882,7 +882,7 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
   {
     if (m_qcolors.find(dotColor) != m_qcolors.end())
     {
-      return (*m_qcolors.find(dotColor)).second;
+      return (*m_qcolors.find(dotColor));
     }
     QColor res(dotColor);
     if (res.isValid())
@@ -893,7 +893,7 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
     {
         if (m_colors.find(dotColor) != m_colors.end())
         {
-            res = QColor((*m_colors.find(dotColor)).second);
+            res = QColor((*m_colors.find(dotColor)));
             if (res.isValid())
             {
                 return res;
@@ -916,7 +916,7 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
 Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString& dotLineStyle) const
 {
   if (m_penStyles.find(dotLineStyle) != m_penStyles.end())
-    return (*(m_penStyles.find(dotLineStyle))).second;
+    return (*(m_penStyles.find(dotLineStyle)));
   else 
   {
     if (dotLineStyle.left(12) != "setlinewidth")
@@ -928,7 +928,7 @@ Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString& dotLineStyle) const
 QFont Dot2QtConsts::qtFont(const QString& dotFont) const
 {
   if (m_psFonts.find(dotFont) != m_psFonts.end())
-    return (*(m_psFonts.find(dotFont))).second;
+    return (*(m_psFonts.find(dotFont)));
   else
   {
     kWarning() << "Unknown dot font '" << dotFont << "'. returning Qt default." << endl;

@@ -19,8 +19,8 @@
 #ifndef DOT_RENDEROP_H
 #define DOT_RENDEROP_H
 
-#include <string>
-#include <vector>
+#include <QString>
+#include <QList>
 
 /**
  * members are interpreted in function of render operations definitions given at:
@@ -28,12 +28,12 @@
  */
 struct DotRenderOp
 {
-  std::string renderop;
-  std::vector< int > integers;
-  std::string str;
+  QString renderop;
+  QList< int > integers;
+  QString str;
 };
 
-typedef std::vector< DotRenderOp > DotRenderOpVec;
+typedef QList< DotRenderOp > DotRenderOpVec;
 
 
 #endif

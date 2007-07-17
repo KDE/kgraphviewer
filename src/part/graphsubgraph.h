@@ -37,6 +37,7 @@ class CanvasSubgraph;
  */
 class GraphSubgraph : public GraphElement
 {
+//   Q_OBJECT
 public:
   GraphSubgraph();
   
@@ -47,6 +48,8 @@ public:
 
   bool isVisible() const { return m_visible; }
   void setVisible(bool v) { m_visible = v; }
+
+  virtual QString backColor() const;
 
  private:
   CanvasSubgraph* m_cs;

@@ -51,6 +51,14 @@ GraphNode::GraphNode() :
 {
 }
 
+CanvasNode* GraphNode::canvasNode()
+{
+  if (m_cn.empty())
+  {
+    return 0;
+  }
+  return m_cn[0];
+}
 
 QTextStream& operator<<(QTextStream& s, const GraphNode& n)
 {

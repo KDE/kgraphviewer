@@ -34,11 +34,10 @@
 
 #include <kconfig.h>
 #include <kactioncollection.h>
+#include <kconfiggroup.h>
 
 #include <QGraphicsView>
-
-#include <set>
-#include <kconfiggroup.h>
+#include <QSet>
 
 #include "graphexporter.h"
 
@@ -138,7 +137,7 @@ public slots:
   void slotBevBottomLeft();
   void slotBevBottomRight();
   void slotBevAutomatic();
-        
+  void slotUpdate();
 
 protected:
   void resizeEvent(QResizeEvent*);
@@ -158,7 +157,7 @@ private:
   void exportToImage();
   KActionCollection* actionCollection() {return m_actions;}
   
-  std::set<QGraphicsSimpleTextItem*> m_labelViews;
+  QSet<QGraphicsSimpleTextItem*> m_labelViews;
   QGraphicsScene* m_canvas;
   QMenu* m_popup;
   KSelectAction* m_bevPopup;
