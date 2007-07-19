@@ -171,6 +171,7 @@ KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
 
     setFocusPolicy( Qt::StrongFocus );
     setFocus();
+    connect(this,SIGNAL(okClicked()),SLOT(slotOk()));
 }
 
 /*==================== constructor ===============================*/
@@ -198,6 +199,7 @@ KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
 
     setFocusPolicy( Qt::StrongFocus );
     setFocus();
+    connect(this,SIGNAL(okClicked()),SLOT(slotOk()));
 }
 
 /*===================== destructor ===============================*/
