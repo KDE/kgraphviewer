@@ -54,7 +54,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 {
 //	m_pagesCount = INT_MAX;
 
-	setCaption(i18n("%1 - Print Preview - %2").arg(previewName).arg(""));
+	setCaption(i18n("%1 - Print Preview - %2",previewName,""));
 	setIcon(DesktopIcon("filequickprint"));
 	QVBoxLayout *lyr = new QVBoxLayout(this, 6);
 
@@ -199,7 +199,7 @@ void KGVSimplePrintPreviewWindow::slotRedraw()
   m_navToolbar->setItemEnabled(m_idPrevious, m_pageNumber > 0);
   m_navToolbar->setItemEnabled(m_idFirst, m_pageNumber > 0);
   static_cast<QLabel*>(m_navToolbar->getWidget(m_idPageNumberLabel))->setText(
-    i18n("Page (number) of (total)", "Page %1 of %2").arg(m_pageNumber+1).arg(m_engine.pagesCount()));
+    i18nc("Page (number) of (total)", "Page %1 of %2",m_pageNumber+1,m_engine.pagesCount()));
 }
 
 void KGVSimplePrintPreviewWindow::goToPage(int pageNumber)
@@ -217,7 +217,7 @@ void KGVSimplePrintPreviewWindow::goToPage(int pageNumber)
 	m_navToolbar->setItemEnabled(m_idPrevious, pageNumber > 0);
 	m_navToolbar->setItemEnabled(m_idFirst, pageNumber > 0);
 	static_cast<QLabel*>(m_navToolbar->getWidget(m_idPageNumberLabel))->setText(
-		i18n("Page (number) of (total)", "Page %1 of %2").arg(m_pageNumber+1).arg(m_engine.pagesCount()));
+		i18nc("Page (number) of (total)", "Page %1 of %2",m_pageNumber+1,m_engine.pagesCount()));
 }
 
 void KGVSimplePrintPreviewWindow::setFullWidth()
