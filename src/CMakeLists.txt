@@ -28,7 +28,7 @@ kde4_install_icons( ${ICON_INSTALL_DIR} )
 install( FILES x-kgraphviewer.desktop DESTINATION ${MIME_INSTALL_DIR}/application )
 install( FILES kgraphviewersettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
 install( FILES kgraphviewerui.rc DESTINATION ${DATA_INSTALL_DIR}/kgraphviewer )
-install( FILES kgraphviewer.desktop DESTINATION ${XDG_APPS_DIR} )
+install( FILES kgraphviewer.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 install( FILES kgraphviewer.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 
 
