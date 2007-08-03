@@ -859,7 +859,7 @@ Dot2QtConsts::Dot2QtConsts()
   uint j = 0;
   while (color_lib[j].name != 0)
   {
-//     kDebug() << "Adding color " << color_lib[j].name << endl;
+//     kDebug() << "Adding color " << color_lib[j].name;
     m_qcolors[color_lib[j].name] = QColor(color_lib[j].r,color_lib[j].g,color_lib[j].b);
     j++;
   }
@@ -872,7 +872,7 @@ Dot2QtConsts::~Dot2QtConsts()
 
 QColor Dot2QtConsts::qtColor(const QString& dotColor) const
 {
-//   kDebug() << "Dot2QtConsts::qtColor" << endl;
+//   kDebug() << "Dot2QtConsts::qtColor";
   QColor color;
   if (parse_numeric_color(dotColor.ascii(), color))
   {
@@ -900,13 +900,13 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
             }
             else
             {
-                kWarning() << "Unknown stored dot color '" << dotColor << "'. returning Qt black" << endl;
+                kWarning() << "Unknown stored dot color '" << dotColor << "'. returning Qt black";
                 return Qt::black;
             }
         }
         else
         {
-//           kWarning() << "Unknown dot color '" << dotColor << "'. returning Qt black" << endl;
+//           kWarning() << "Unknown dot color '" << dotColor << "'. returning Qt black";
           return Qt::black;
         }
     }
@@ -920,7 +920,7 @@ Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString& dotLineStyle) const
   else 
   {
     if (dotLineStyle.left(12) != "setlinewidth")
-      kWarning() << "Unknown dot line style '" << dotLineStyle << "'. returning Qt solid line" << endl;
+      kWarning() << "Unknown dot line style '" << dotLineStyle << "'. returning Qt solid line";
     return Qt::SolidLine;
   }
 }
@@ -931,7 +931,7 @@ QFont Dot2QtConsts::qtFont(const QString& dotFont) const
     return (*(m_psFonts.find(dotFont)));
   else
   {
-    kWarning() << "Unknown dot font '" << dotFont << "'. returning Qt default." << endl;
+    kWarning() << "Unknown dot font '" << dotFont << "'. returning Qt default.";
     return QFont(QFont::substitute(dotFont));
   }
 }

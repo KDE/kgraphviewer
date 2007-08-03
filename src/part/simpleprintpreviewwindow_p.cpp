@@ -38,14 +38,14 @@ KGVSimplePrintPreviewView::KGVSimplePrintPreviewView(
  : QWidget(),
   m_window(window)
 {
-  kDebug() << "KGVSimplePrintPreviewView" << endl;
+  kDebug() << "KGVSimplePrintPreviewView";
 /*  resize(300,400);
   resizeContents(200, 400);*/
 }
 
 void KGVSimplePrintPreviewView::paintEvent( QPaintEvent *pe )
 {
-  kDebug() << "KGVSimplePrintPreviewView::paintEvent" << endl;
+  kDebug() << "KGVSimplePrintPreviewView::paintEvent";
   Q_UNUSED(pe);
   QPainter p(m_window);
   p.setRenderHint(QPainter::Antialiasing);
@@ -75,7 +75,7 @@ KGVSimplePrintPreviewScrollView::KGVSimplePrintPreviewScrollView(
 
 void KGVSimplePrintPreviewScrollView::paintEvent( QPaintEvent *pe )
 {
-  kDebug() << "KGVSimplePrintPreviewScrollView::paintEvent" << endl;
+  kDebug() << "KGVSimplePrintPreviewScrollView::paintEvent";
   QScrollArea::paintEvent(pe);
   ((KGVSimplePrintPreviewView*)widget())->paintEvent(pe);
 }
@@ -83,9 +83,9 @@ void KGVSimplePrintPreviewScrollView::paintEvent( QPaintEvent *pe )
 // void KGVSimplePrintPreviewScrollView::resizeEvent( QResizeEvent *re )
 // {
 //   QScrollArea::resizeEvent(re);
-// //  kDebug() << re->size().width() << " " << re->size().height() << endl;
-// //  kDebug() << contentsWidth() << " " << contentsHeight() << endl;
-// //  kDebug() << m_view->width() << " " << m_view->height() << endl;
+// //  kDebug() << re->size().width() << " " << re->size().height();
+// //  kDebug() << contentsWidth() << " " << contentsHeight();
+// //  kDebug() << m_view->width() << " " << m_view->height();
 //   setUpdatesEnabled(false);
 //   if (re->size().width() > (m_view->width()+2*KGVSimplePrintPreviewScrollView_MARGIN)
 //     || re->size().height() > (m_view->height()+2*KGVSimplePrintPreviewScrollView_MARGIN)) 
@@ -127,7 +127,7 @@ void KGVSimplePrintPreviewScrollView::setFullWidth()
 
 // void KGVSimplePrintPreviewScrollView::setContentsPos(int x, int y)
 // {
-// //  kDebug() << "############" << x << " " << y << " " << contentsX()<< " " <<contentsY() << endl;
+// //  kDebug() << "############" << x << " " << y << " " << contentsX()<< " " <<contentsY();
 //   if (x<0 || y<0) //to avoid endless loop on Linux
 //     return;
 //   QScrollArea::setContentsPos(x,y);

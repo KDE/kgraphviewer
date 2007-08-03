@@ -321,7 +321,7 @@ void KGVSimplePrintingPageSetup::slotAddTableBordersCheckboxToggled(bool set)
 
 void KGVSimplePrintingPageSetup::slotFittingButtonClicked(int id)
 {
-  kDebug() << "KGVSimplePrintingPageSetup::slotFittingButtonClicked " << id << endl;
+  kDebug() << "KGVSimplePrintingPageSetup::slotFittingButtonClicked " << id;
   if (id == NaturalSize)
   {
     m_settings->fitToOnePage = false;

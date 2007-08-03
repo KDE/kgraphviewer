@@ -67,13 +67,13 @@ KGraphViewer::KGraphViewer()
   
   if (QDBusConnection::sessionBus().registerService( "org.kde.kgraphviewer" ))
   {
-    kDebug() << "Service Registered successfuly" << endl;
+    kDebug() << "Service Registered successfuly";
     QDBusConnection::sessionBus().registerObject("/", this, QDBusConnection::ExportAllSlots);
     
   }
   else
   {
-    kDebug() << "Failed to register service..." << endl;
+    kDebug() << "Failed to register service...";
   }
 
   // then, setup our actions
@@ -131,7 +131,7 @@ void KGraphViewer::reloadPreviousFiles()
 
 void KGraphViewer::openUrl(const KUrl& url)
 {
-  kDebug() << k_funcinfo << url << endl;
+  kDebug() << k_funcinfo << url;
   KLibFactory *factory = KLibLoader::self()->factory("kgraphviewerpart");
   if (factory)
   {
@@ -165,7 +165,7 @@ void KGraphViewer::openUrl(const KUrl& url)
 
 void KGraphViewer::fileOpen()
 {
-  kDebug() << k_funcinfo << endl;
+  kDebug() << k_funcinfo;
   // this slot is called whenever the File->Open menu is selected,
   // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
   // button is clicked
@@ -456,7 +456,7 @@ void KGraphViewer::close()
 
 void KGraphViewer::newTabSelectedSlot(QWidget* tab)
 {
-//   kDebug() << k_funcinfo << tab << endl;
+//   kDebug() << k_funcinfo << tab;
   emit(hide((KParts::Part*)(m_manager->activePart())));
   if (!m_tabsPartsMap.isEmpty())
   {

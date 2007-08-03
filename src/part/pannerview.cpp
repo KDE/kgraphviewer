@@ -68,7 +68,7 @@ PannerView::PannerView(QWidget * parent, const char * name)
 
 void PannerView::setZoomRect(QRectF r)
 {
-  kDebug() << "PannerView::setZoomRect " << r << endl;
+  kDebug() << "PannerView::setZoomRect " << r;
   QRectF oldRect = m_zoomRect;
   m_zoomRect = r;
   qreal q = mapToScene(15,0).x();
@@ -106,7 +106,7 @@ void PannerView::setZoomRect(QRectF r)
 
 void PannerView::drawForeground(QPainter * p, const QRectF & rect )
 {
-  kDebug() << "PannerView::drawForeground " << rect << endl;
+  kDebug() << "PannerView::drawForeground " << rect;
   if (m_zoomRect.isValid()) 
   {
     p->save();
@@ -142,7 +142,7 @@ void PannerView::mousePressEvent(QMouseEvent* e)
 void PannerView::mouseMoveEvent(QMouseEvent* e)
 {
   QPointF pos = mapToScene(e->pos());
-//   kDebug() << "PannerView::mouseMoveEvent " << pos << endl;
+//   kDebug() << "PannerView::mouseMoveEvent " << pos;
   if (m_movingZoomRect) {
     emit zoomRectMovedTo(pos);
     m_lastPos = pos;
@@ -152,7 +152,7 @@ void PannerView::mouseMoveEvent(QMouseEvent* e)
 void PannerView::mouseReleaseEvent(QMouseEvent* e)
 {
   QPointF pos = mapToScene(e->pos());
-//   kDebug() << "PannerView::mouseReleaseEvent " << pos << endl;
+//   kDebug() << "PannerView::mouseReleaseEvent " << pos;
   m_movingZoomRect = false;
   emit zoomRectMoveFinished();
 }

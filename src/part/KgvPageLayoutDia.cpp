@@ -92,7 +92,7 @@ void KgvPagePreview::setPageLayout( const KgvPageLayout &layout )
     m_textFrameWidth = m_pageWidth - ( layout.ptLeft + layout.ptRight ) * resolutionX * z;
     m_textFrameHeight = m_pageHeight - ( layout.ptTop + layout.ptBottom ) * resolutionY * z;
 
-    kDebug() << "repaint in setPageLayout" << endl;
+    kDebug() << "repaint in setPageLayout";
     repaint( true );
 }
 

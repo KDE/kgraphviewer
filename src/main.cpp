@@ -99,7 +99,7 @@ int main(int argc, char **argv)
               QDBusReply<void> reply = iface.call("openUrl", url.pathOrUrl());
               if (reply.isValid()) 
               {
-                kDebug() << "Reply was valid" << endl;
+                kDebug() << "Reply was valid";
                 return 0;
               }
 

@@ -182,7 +182,7 @@ DotGraphView::~DotGraphView()
 
 bool DotGraphView::loadDot(const QString& dotFileName)
 {
-  kDebug() << k_funcinfo << "'" << dotFileName << "'" << endl;
+  kDebug() << k_funcinfo << "'" << dotFileName << "'";
   hide();
 //   disconnect(m_canvas,SIGNAL(changed()),m_birdEyeView,SLOT(updateScene()));
   m_birdEyeView->setScene(0);
@@ -205,14 +205,14 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   }
   m_graph->layoutCommand(layoutCommand);
   
-//   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand() << endl;
+//   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
   if (!m_graph->parseDot(m_graph->dotFileName()))
   {
     kError() << "NOT successfully parsed!" << endl;
     return false;
   }
   
-  kDebug() << k_funcinfo << "successfully parsed" << endl;
+  kDebug() << k_funcinfo << "successfully parsed";
   viewport()->setUpdatesEnabled(false);
   
   if (m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
@@ -228,7 +228,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
   
   int gh = int(m_graph->height());
-//   kDebug() << "detail level = " << m_detailLevel << " ; scaleX = " << scaleX << endl;
+//   kDebug() << "detail level = " << m_detailLevel << " ; scaleX = " << scaleX;
   QGraphicsScene* newCanvas;
     int w = (int)(scaleX * m_graph->width() / m_graph->horizCellFactor());
     int h = (int)(scaleY * gh / m_graph->vertCellFactor());
@@ -238,7 +238,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
     
 
     newCanvas = new QGraphicsScene(0,0,w+2*m_xMargin, h+2*m_yMargin);
-    kDebug() << "Created canvas " << newCanvas << endl;
+    kDebug() << "Created canvas " << newCanvas;
     newCanvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
     m_canvasNaturalSize = newCanvas->sceneRect().size();
     QSizeF newCanvasSize = newCanvas->sceneRect().size();
@@ -391,7 +391,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 
 void DotGraphView::updateSizes(QSizeF s)
 {
-  kDebug() << "DotGraphView::updateSizes" << endl;
+  kDebug() << "DotGraphView::updateSizes";
   if (m_canvas == 0)
     return;
   if (s == QSizeF(0,0)) s = size();
@@ -642,7 +642,7 @@ void DotGraphView::applyZoom(double factor)
 
 void DotGraphView::resizeEvent(QResizeEvent* e)
 {
-  kDebug() << "resizeEvent" << endl;
+  kDebug() << "resizeEvent";
   QGraphicsView::resizeEvent(e);
   if (m_canvas) updateSizes(e->size());
 //   std::cerr << "resizeEvent end" << std::endl;
@@ -650,9 +650,9 @@ void DotGraphView::resizeEvent(QResizeEvent* e)
 
 void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
 {
-  kDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos << endl;
+  kDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos;
   centerOn(newZoomPos);
-  kDebug() << "  viewport "<< mapToScene(viewport()->rect()).boundingRect() << endl;
+  kDebug() << "  viewport "<< mapToScene(viewport()->rect()).boundingRect();
   QRectF sp = mapToScene(viewport()->rect()).boundingRect();
 /*  QPointF p = newZoomPos - sp.bottomRight()/2;
   if (p.x() < 0) 
@@ -664,20 +664,20 @@ void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
     p.ry() = 0;
   }
   sp.setX(p.x()); sp.setY(p.y());*/
-  kDebug() << "  sp "<< sp /*<< " ; p " << p*/ << endl;
+  kDebug() << "  sp "<< sp /*<< " ; p " << p*/;
   m_birdEyeView->setZoomRect(sp);
 }
                     
 void DotGraphView::zoomRectMoveFinished()
 {
-   kDebug() << "zoomRectMoveFinished" << endl;
+   kDebug() << "zoomRectMoveFinished";
     if (m_zoomPosition == Auto) updateSizes();
 //   std::cerr << "zoomRectMoveFinished end" << std::endl;
 }
 
 void DotGraphView::mousePressEvent(QMouseEvent* e)
 {
-  kDebug() << "mousePressEvent" << e << endl;
+  kDebug() << "mousePressEvent" << e;
 //   setDragMode(ScrollHandDrag);
   QGraphicsView::mousePressEvent(e);
 
@@ -686,7 +686,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
 
 void DotGraphView::mouseMoveEvent(QMouseEvent* e)
 {
-//   kDebug() << "mouseMoveEvent" << e << endl;
+//   kDebug() << "mouseMoveEvent" << e;
   QGraphicsView::mouseMoveEvent(e);
   if (m_isMoving) 
   {
@@ -697,8 +697,8 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
 
 void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
 {
-  kDebug() << "mouseReleaseEvent" << e << endl;
-//   kDebug() << "setDragMode(NoDrag)" << endl;
+  kDebug() << "mouseReleaseEvent" << e;
+//   kDebug() << "setDragMode(NoDrag)";
 //   setDragMode(NoDrag);
   QGraphicsView::mouseReleaseEvent(e);
   m_isMoving = false;
@@ -770,7 +770,7 @@ void DotGraphView::readViewConfig()
 
 void DotGraphView::saveViewConfig()
 {
-//   kDebug() << "Saving view config" << endl;  
+//   kDebug() << "Saving view config";  
   KConfigGroup g(KGlobal::config(), "GraphViewLayout");
 
     writeConfigEntry(&g, "DetailLevel", m_detailLevel, DEFAULT_DETAILLEVEL);
@@ -902,7 +902,7 @@ void DotGraphView::setupPopup()
   {
     return;
   }
-  kDebug() << "DotGraphView::setupPopup" << endl;
+  kDebug() << "DotGraphView::setupPopup";
   m_popup = new QMenu();
 
   m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"),this);
@@ -1039,7 +1039,7 @@ void DotGraphView::setupPopup()
   }
 
 
-  kDebug() << "    m_bevEnabledAction setting checked to : " << KGraphViewerPartSettings::birdsEyeViewEnabled() << endl;
+  kDebug() << "    m_bevEnabledAction setting checked to : " << KGraphViewerPartSettings::birdsEyeViewEnabled();
   m_bevEnabledAction->setChecked(KGraphViewerPartSettings::birdsEyeViewEnabled());
   m_bevPopup->setEnabled(KGraphViewerPartSettings::birdsEyeViewEnabled());
 }
@@ -1098,7 +1098,7 @@ void DotGraphView::slotLayoutReset()
 void DotGraphView::slotSelectLayoutAlgo(const QString& ttext)
 {
 QString text = ttext;//.mid(1);
-  kDebug() << "DotGraphView::slotSelectLayoutAlgo '" << text << "'" << endl;
+  kDebug() << "DotGraphView::slotSelectLayoutAlgo '" << text << "'";
   if (text == "&Dot")
   {
     setLayoutCommand("dot -Txdot");
@@ -1127,38 +1127,38 @@ QString text = ttext;//.mid(1);
 
 void DotGraphView::slotSelectLayoutDot()
 {
-  kDebug() << "DotGraphView::slotSelectLayoutDot" << endl;
+  kDebug() << "DotGraphView::slotSelectLayoutDot";
   setLayoutCommand("dot -Txdot");
 }
 
 void DotGraphView::slotSelectLayoutNeato()
 {
-  kDebug() << "DotGraphView::slotSelectLayoutNeato" << endl;
+  kDebug() << "DotGraphView::slotSelectLayoutNeato";
   setLayoutCommand("neato -Txdot");
 }
 
 void DotGraphView::slotSelectLayoutTwopi()
 {
-  kDebug() << "DotGraphView::slotSelectLayoutTwopi" << endl;
+  kDebug() << "DotGraphView::slotSelectLayoutTwopi";
   setLayoutCommand("twopi -Txdot");
 }
 
 void DotGraphView::slotSelectLayoutFdp()
 {
-  kDebug() << "DotGraphView::slotSelectLayoutFdp" << endl;
+  kDebug() << "DotGraphView::slotSelectLayoutFdp";
   setLayoutCommand("fdp -Txdot");
 }
 
 void DotGraphView::slotSelectLayoutCirco()
 {
-  kDebug() << "DotGraphView::slotSelectLayoutCirco" << endl;
+  kDebug() << "DotGraphView::slotSelectLayoutCirco";
   setLayoutCommand("circo -Txdot");
 }
 
 void DotGraphView::slotBevEnabled()
 {
-  kDebug() << "DotGraphView::slotBevEnabled" << endl;
-  kDebug() << "    m_bevEnabledAction is checked ? " << m_bevEnabledAction->isChecked() << endl;
+  kDebug() << "DotGraphView::slotBevEnabled";
+  kDebug() << "    m_bevEnabledAction is checked ? " << m_bevEnabledAction->isChecked();
   m_bevPopup->setEnabled(m_bevEnabledAction->isChecked());
   KGraphViewerPartSettings::setBirdsEyeViewEnabled(m_bevEnabledAction->isChecked());
 ///@TODO to port

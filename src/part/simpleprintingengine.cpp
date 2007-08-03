@@ -100,7 +100,7 @@ void KGVSimplePrintingEngine::clear()
 
 void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool paint)
 {
-	kDebug() << "KGVSimplePrintingEngine::paintPage" << endl;
+	kDebug() << "KGVSimplePrintingEngine::paintPage";
 
 	uint y = 0;
 

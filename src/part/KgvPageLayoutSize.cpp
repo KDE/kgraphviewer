@@ -306,7 +306,7 @@ void KgvPageLayoutSize::formatChanged( int format ) {
 
 void KgvPageLayoutSize::orientationChanged(int which) 
 {
-  kDebug() << "KgvPageLayoutSize::orientationChanged" << endl;
+  kDebug() << "KgvPageLayoutSize::orientationChanged";
   m_layout.orientation = which == 0 ? PG_PORTRAIT : PG_LANDSCAPE;
 
   // swap dimension

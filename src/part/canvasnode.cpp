@@ -94,7 +94,7 @@ CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro,
   }
   else if (dro.renderop == "e" || dro.renderop == "E")
   {
-//   kDebug() << "dotShapedCanvasNode: creating CanvasEllipseNode" << endl;
+//   kDebug() << "dotShapedCanvasNode: creating CanvasEllipseNode";
     res = new CanvasEllipseNode(v, n, dro, dros, c,
                                 scaleX, scaleY, xMargin, yMargin, gh,
                                 wdhcf, hdvcf);
@@ -318,7 +318,7 @@ CanvasPolygonalNode::CanvasPolygonalNode(
   setFlag(QGraphicsItem::ItemIsMovable, true);
   m_renderOperations = dros;
 
-// // /*  kDebug() << "Creating CanvasPolygonalNode for "<<n->id()<<" with " << dro.integers[0] << " points." << endl;
+// // /*  kDebug() << "Creating CanvasPolygonalNode for "<<n->id()<<" with " << dro.integers[0] << " points.";
 // //   kDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
 // //     << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
   m_scaleX = scaleX; m_scaleY = scaleY;
@@ -385,7 +385,7 @@ CanvasEllipseNode::CanvasEllipseNode(DotGraphView* v, GraphNode* n,
   QString id = n->id();
   QString label = n->label();
   tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-  kDebug() << "CanvasEllipseNode setToolTip " << tipStr << endl;
+  kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
   setToolTip(tipStr);
 }
 
@@ -416,7 +416,7 @@ CanvasEllipseNode::CanvasEllipseNode(
   QString id = n->id();
   QString label = n->label();
   tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-  kDebug() << "CanvasEllipseNode setToolTip " << tipStr << endl;
+  kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
   setToolTip(tipStr);
 }
 
@@ -449,7 +449,7 @@ QWidget *widget)
 //   begin(KUrl(QString("file:") + QDir::currentPath() + "/index.html"));
 //   setAutoloadImages(true);
 //   write(myHTMLCode);
-//   kDebug() << "HTML written." << endl;
+//   kDebug() << "HTML written.";
 //   end();
 //   setStatusMessagesEnabled (false);
 // //   view()->setFrameShape ( QFrame::NoFrame );

@@ -62,7 +62,7 @@ KgvPageLayout KgvPageLayout::standardLayout()
     layout.ptBottom = MM_TO_POINT( 20.0 );
     layout.ptPageEdge = -1;
     layout.ptBindingSide = -1;
-    kDebug() << "Returning standardLayout" << endl;
+    kDebug() << "Returning standardLayout";
     return layout;
 }
 
@@ -119,12 +119,12 @@ int KgvPageFormat::printerPageSize( KgvFormat format )
 {
     if ( format == PG_SCREEN )
     {
-            kWarning() << "You use the page layout SCREEN. Printing in DIN A4 LANDSCAPE." << endl;
+            kWarning() << "You use the page layout SCREEN. Printing in DIN A4 LANDSCAPE.";
             return KPrinter::A4;
     }
     else if ( format == PG_CUSTOM )
     {
-            kWarning() << "The used page layout (CUSTOM) is not supported by KPrinter. Printing in A4." << endl;
+            kWarning() << "The used page layout (CUSTOM) is not supported by KPrinter. Printing in A4.";
             return KPrinter::A4;
     }
     else if ( format <= PG_LAST_FORMAT )

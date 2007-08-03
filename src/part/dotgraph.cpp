@@ -95,7 +95,7 @@ QString DotGraph::chooseLayoutProgramForFile(const QString& str)
 
 bool DotGraph::parseDot(const QString& str)
 {
-  kDebug() << k_funcinfo << str << endl;
+  kDebug() << k_funcinfo << str;
   QString popencmd;
   if (m_layoutCommand.isEmpty())
   {
@@ -104,7 +104,7 @@ bool DotGraph::parseDot(const QString& str)
 //   std::cerr << "Building popencmd" << std::endl;
   popencmd = QString("%1 %2 2>/dev/null").arg(m_layoutCommand).arg(str);
   
-//   kDebug() << "Running '" << popencmd << "'..." << endl;
+//   kDebug() << "Running '" << popencmd << "'...";
   
   FILE* file = popen(popencmd.ascii(), "r");
   if (file == 0) 
@@ -146,24 +146,24 @@ bool DotGraph::parseDot(const QString& str)
   phelper->uniq = 0;
   
   bool parsingResult = parse(s);
-  kDebug() << k_funcinfo << "parsed" << endl;
+  kDebug() << k_funcinfo << "parsed";
   if (parsingResult)
   {
     computeCells();
   }
   delete phelper;
   phelper = 0;
-  kDebug() << k_funcinfo << "return parsing result" << endl;
+  kDebug() << k_funcinfo << "return parsing result";
   return parsingResult;
 }
 
 bool DotGraph::update()
 {
-  kDebug() << k_funcinfo << endl;
+  kDebug() << k_funcinfo;
   GraphExporter exporter;
   QString str = exporter.writeDot(this);
 
-  kDebug() << k_funcinfo << "wrote to " << str << endl;
+  kDebug() << k_funcinfo << "wrote to " << str;
   QString popencmd;
   if (m_layoutCommand.isEmpty())
   {
@@ -172,7 +172,7 @@ bool DotGraph::update()
   //   std::cerr << "Building popencmd" << std::endl;
   popencmd = QString("%1 %2 2>/dev/null").arg(m_layoutCommand).arg(str);
   
-  //   kDebug() << "Running '" << popencmd << "'..." << endl;
+  //   kDebug() << "Running '" << popencmd << "'...";
   
   FILE* file = popen(popencmd.ascii(), "r");
   if (file == 0)
@@ -214,7 +214,7 @@ bool DotGraph::update()
   phelper->maxZ = 1;
   phelper->uniq = 0;
   
-  kDebug() << k_funcinfo << "parsing new dot" << endl;
+  kDebug() << k_funcinfo << "parsing new dot";
   bool parsingResult = parse(s);
   if (parsingResult)
   {
@@ -253,13 +253,13 @@ bool DotGraph::update()
 
 unsigned int DotGraph::cellNumber(int x, int y)
 {
-/*  kDebug() << "x= " << x << ", y= " << y << ", m_width= " << m_width << ", m_height= " << m_height << ", m_horizCellFactor= " << m_horizCellFactor << ", m_vertCellFactor= " << m_vertCellFactor  << ", m_wdhcf= " << m_wdhcf << ", m_hdvcf= " << m_hdvcf << endl;*/
+/*  kDebug() << "x= " << x << ", y= " << y << ", m_width= " << m_width << ", m_height= " << m_height << ", m_horizCellFactor= " << m_horizCellFactor << ", m_vertCellFactor= " << m_vertCellFactor  << ", m_wdhcf= " << m_wdhcf << ", m_hdvcf= " << m_hdvcf;*/
   
   unsigned int nx = (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
   unsigned int ny = (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
-/*  kDebug() << "nx = " << (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf) << endl;
-  kDebug() << "ny = " << (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf) << endl;
-  kDebug() << "res = " << ny * m_horizCellFactor + nx << endl;*/
+/*  kDebug() << "nx = " << (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
+  kDebug() << "ny = " << (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
+  kDebug() << "res = " << ny * m_horizCellFactor + nx;*/
   
   unsigned int res = ny * m_horizCellFactor + nx;
   return res;
@@ -269,7 +269,7 @@ unsigned int DotGraph::cellNumber(int x, int y)
 
 void DotGraph::computeCells()
 {
-  kDebug() << k_funcinfo << endl;
+  kDebug() << k_funcinfo;
   m_horizCellFactor = m_vertCellFactor = 1;
   m_wdhcf = (int)ceil(((double)m_width) / m_horizCellFactor)+1;
   m_hdvcf = (int)ceil(((double)m_height) / m_vertCellFactor)+1;
@@ -286,7 +286,7 @@ void DotGraph::computeCells()
     {
       GraphNode* gn = *it;
       int cellNum = cellNumber(int(gn->x()), int(gn->y()));
-      kDebug() << "Found cell number " << cellNum << endl;
+      kDebug() << "Found cell number " << cellNum;
 
       if (m_cells.size() <= cellNum)
       {
@@ -294,10 +294,10 @@ void DotGraph::computeCells()
       }
       m_cells[cellNum].insert(gn);
       
-      kDebug() << "after insert" << endl;
+      kDebug() << "after insert";
       if ( m_cells[cellNum].size() > MAXCELLWEIGHT )
       {
-        kDebug() << "cell number " << cellNum  << " contains " << m_cells[cellNum].size() << " nodes" << endl;
+        kDebug() << "cell number " << cellNum  << " contains " << m_cells[cellNum].size() << " nodes";
         if ((m_width/m_horizCellFactor) > (m_height/m_vertCellFactor))
         {
           m_horizCellFactor++;
@@ -308,13 +308,13 @@ void DotGraph::computeCells()
           m_vertCellFactor++;
           m_hdvcf = m_height / m_vertCellFactor;
         }
-        kDebug() << "cell factor is now " << m_horizCellFactor << " / " << m_vertCellFactor << endl;
+        kDebug() << "cell factor is now " << m_horizCellFactor << " / " << m_vertCellFactor;
         stop = false;
         break;
       }
     }
   } while (!stop);
-  kDebug() << k_funcinfo << "finished" << endl;
+  kDebug() << k_funcinfo << "finished";
 }
 
 QSet< GraphNode* >& DotGraph::nodesOfCell(unsigned int id)

@@ -62,7 +62,7 @@ CanvasSubgraph::CanvasSubgraph(
     m_pen(Dot2QtConsts::componentData().qtColor(gsubgraph->fontColor()))
 {
   m_font = FontsCache::changeable().fromName(gsubgraph->fontName());
-/*  kDebug() << "Creating CanvasSubgraph for "<<gsubgraph->id()<< endl;
+/*  kDebug() << "Creating CanvasSubgraph for "<<gsubgraph->id();
   kDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
     << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
   

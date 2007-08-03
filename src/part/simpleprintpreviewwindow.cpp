@@ -209,7 +209,7 @@ void KGVSimplePrintPreviewWindow::slotLastClicked()
 
 void KGVSimplePrintPreviewWindow::slotRedraw()
 {
-  kDebug() << "KGVSimplePrintPreviewWindow::slotRedraw" << endl;
+  kDebug() << "KGVSimplePrintPreviewWindow::slotRedraw";
 
   m_engine.clear();
   setFullWidth();

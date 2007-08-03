@@ -49,7 +49,7 @@ QValidator::State
 KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
 {
 
-    kDebug(30004) << "KgvUnitDoubleValidator::validate : " << s << " at " << pos << endl;
+    kDebug(30004) << "KgvUnitDoubleValidator::validate : " << s << " at " << pos;
     QValidator::State result = Acceptable;
 
     QRegExp regexp ("([ a-zA-Z]+)$"); // Letters or spaces at end
@@ -58,7 +58,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
     if ( res == -1 )
     {
         // Nothing like an unit? The user is probably editing the unit
-        kDebug(30004) << "Intermediate (no unit)" << endl;
+        kDebug(30004) << "Intermediate (no unit)";
         return Intermediate;
     }
 
@@ -66,7 +66,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
     const QString number ( s.left( res ).trimmed() );
     const QString unitName ( regexp.cap( 1 ).trimmed().toLower() );
 
-    kDebug(30004) << "Split:" << number << ":" << unitName << ":" << endl;
+    kDebug(30004) << "Split:" << number << ":" << unitName << ":";
 
     bool ok = false;
     const double value = m_base->toDouble( number, &ok );
@@ -79,7 +79,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
         else
         {
             // Probably the user is trying to edit the unit
-            kDebug(30004) << "Intermediate (unknown unit)" << endl;
+            kDebug(30004) << "Intermediate (unknown unit)";
             return Intermediate;
         }
     }
@@ -100,7 +100,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
 QString KgvUnitDoubleBase::getVisibleText( double value ) const
 {
     const QString num ( QString( "%1%2").arg( KGlobal::locale()->formatNumber( value, m_precision ), KgvUnit::unitName( m_unit ) ) );
-    kDebug(30004) << "getVisibleText: " << QString::number( value, 'f', 12 ) << " => " << num << endl;
+    kDebug(30004) << "getVisibleText: " << QString::number( value, 'f', 12 ) << " => " << num;
     return num;
 }
 
@@ -115,7 +115,7 @@ double KgvUnitDoubleBase::toDouble( const QString& str, bool* ok ) const
     str2.remove( KgvUnit::unitName( m_unit ) );
     const double dbl = KGlobal::locale()->readNumber( str2, ok );
     if ( ok )
-      kDebug(30004) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number( dbl, 'f', 12 ) << endl;
+      kDebug(30004) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number( dbl, 'f', 12 );
     else
         kdWarning(30004) << "toDouble error:" << str << ": => :" << str2 << ":" << endl;
     return dbl;

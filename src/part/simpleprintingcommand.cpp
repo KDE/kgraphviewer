@@ -150,7 +150,7 @@ bool KGVSimplePrintingCommand::print(const QString& aTitleText)
 	int fromPage = 0;
 	// on !win32 print QPrinter::numCopies() times (the OS does not perform buffering)
 	pagesToPrint = printer.pageList();
-// 	kDebug() << pagesToPrint << endl;
+// 	kDebug() << pagesToPrint;
 	if (pagesToPrint.isEmpty()) 
   {
 		fromPage = 0;
@@ -178,11 +178,11 @@ bool KGVSimplePrintingCommand::print(const QString& aTitleText)
 // #endif
 	// now, total number of printed pages is printer.numCopies()*printer.pageList().count()
 
-// 	kDebug() << "printing..." << endl;
+// 	kDebug() << "printing...";
 	bool firstPage = true;
 	for (uint copy = 0;copy < loops; copy++) 
   {
-// 		kDebug() << "copy " << (copy+1) << " of " << loops << endl;
+// 		kDebug() << "copy " << (copy+1) << " of " << loops;
 //     std::cerr << "fromPage = " << fromPage << " ; eof = " << m_previewEngine->eof() << std::endl;
 		uint pageNumber = fromPage;
 		QList<int>::ConstIterator pagesIt = pagesToPrint.constBegin();
@@ -213,7 +213,7 @@ bool KGVSimplePrintingCommand::print(const QString& aTitleText)
 			++pagesIt;
 		}
 	}
-// 	kDebug() << "end of printing." << endl;
+// 	kDebug() << "end of printing.";
 
 	// stop painting, this will automatically send the print data to the printer
 	if (!painter.end())

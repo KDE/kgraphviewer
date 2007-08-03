@@ -52,7 +52,7 @@ GraphExporter::~GraphExporter()
 
 void GraphExporter::reset( QString filename)
 {
-  kDebug() << k_funcinfo << filename << endl;
+  kDebug() << k_funcinfo << filename;
 
   if (_tmpFile) 
   {
@@ -76,7 +76,7 @@ void GraphExporter::reset( QString filename)
 
 QString GraphExporter::writeDot(const DotGraph* graph)
 {
-  kDebug() << k_funcinfo << endl;
+  kDebug() << k_funcinfo;
   QFile* file = 0;
 
   KTemporaryFile tempFile;
@@ -97,7 +97,7 @@ QString GraphExporter::writeDot(const DotGraph* graph)
 
   /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
   /// possible to save them back : to be changed !
-  kDebug() << k_funcinfo << "writing subgraphs" << endl;
+  kDebug() << k_funcinfo << "writing subgraphs";
   GraphSubgraphMap::const_iterator sit;
   for ( sit = graph->subgraphs().begin();
   sit != graph->subgraphs().end(); ++sit )
@@ -106,7 +106,7 @@ QString GraphExporter::writeDot(const DotGraph* graph)
     (stream) << s;
   }
 
-  kDebug() << k_funcinfo << "writing nodes" << endl;
+  kDebug() << k_funcinfo << "writing nodes";
   GraphNodeMap::const_iterator nit;
   for ( nit = graph->nodes().begin();
         nit != graph->nodes().end(); ++nit )
@@ -114,7 +114,7 @@ QString GraphExporter::writeDot(const DotGraph* graph)
     (stream) << **nit;
   }
 
-  kDebug() << k_funcinfo << "writing edges" << endl;
+  kDebug() << k_funcinfo << "writing edges";
   GraphEdgeMap::const_iterator eit;
   for ( eit = graph->edges().begin();
         eit != graph->edges().end(); ++eit )
