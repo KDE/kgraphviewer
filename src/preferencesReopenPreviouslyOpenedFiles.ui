@@ -26,9 +26,6 @@
         <height>100</height>
       </size>
     </property>
-    <property name="windowTitle" >
-      <string>Form1</string>
-    </property>
     <layout class="QHBoxLayout" >
       <item>
         <widget class="QGroupBox" name="reopenPreviouslyOpenedFilesMode" >
@@ -80,9 +77,6 @@
             <property name="text" >
               <string>&amp;Yes</string>
             </property>
-            <property name="shortcut" >
-              <string>Alt+Y</string>
-            </property>
           </widget>
           <widget class="QRadioButton" name="ask" >
             <property name="geometry" >
@@ -95,9 +89,6 @@
             </property>
             <property name="text" >
               <string>As&amp;k</string>
-            </property>
-            <property name="shortcut" >
-              <string>Alt+K</string>
             </property>
           </widget>
         </widget>

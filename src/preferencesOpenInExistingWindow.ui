@@ -26,9 +26,6 @@
         <height>100</height>
       </size>
     </property>
-    <property name="windowTitle" >
-      <string>Form1</string>
-    </property>
     <layout class="QGridLayout" >
       <item row="0" column="0" >
         <widget class="QGroupBox" name="openInExistingWindowMode" >
@@ -54,9 +51,6 @@
             </property>
             <property name="text" >
               <string>&amp;Yes</string>
-            </property>
-            <property name="shortcut" >
-              <string>Alt+Y</string>
             </property>
           </widget>
           <widget class="QRadioButton" name="no" >
@@ -86,9 +80,6 @@
             </property>
             <property name="text" >
               <string>As&amp;k</string>
-            </property>
-            <property name="shortcut" >
-              <string>Alt+K</string>
             </property>
           </widget>
         </widget>
