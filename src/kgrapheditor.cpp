@@ -20,7 +20,6 @@
 #include "kgrapheditor.h"
 #include "kgrapheditorConfigDialog.h"
 #include "kgrapheditorsettings.h"
-#include "variantdelegate.h"
 #include "ui_preferencesReload.h"
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
