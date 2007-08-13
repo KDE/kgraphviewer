@@ -149,6 +149,7 @@ bool DotGraph::parseDot(const QString& str)
   {
     if (m_readWrite)
     {
+      storeOriginalAttributes();
       update();
     }
     computeCells();
@@ -316,4 +317,21 @@ void DotGraph::computeCells()
 QSet< GraphNode* >& DotGraph::nodesOfCell(unsigned int id)
 {
   return m_cells[id];
+}
+
+void DotGraph::storeOriginalAttributes()
+{
+  foreach (GraphNode* node, nodes().values())
+  {
+    node->storeOriginalAttributes();
+  }
+  foreach (GraphEdge* edge, edges().values())
+  {
+    edge->storeOriginalAttributes();
+  }
+  foreach (GraphSubgraph* subgraph, subgraphs().values())
+  {
+    subgraph->storeOriginalAttributes();
+  }
+  GraphElement::storeOriginalAttributes();
 }

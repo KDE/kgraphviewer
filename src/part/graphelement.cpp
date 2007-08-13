@@ -123,8 +123,10 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
       else if (it.key() == "_draw_" || it.key() == "_ldraw_")
       {
       }
-      else
+      else if (n.originalAttributes().isEmpty() || n.originalAttributes().contains(it.key()))
       {
+        kDebug() << k_funcinfo << it.key() << it.value();
+        
           s << it.key() << "=\"" << it.value() << "\",";
       }
     }

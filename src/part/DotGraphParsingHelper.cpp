@@ -71,23 +71,6 @@ void DotGraphParsingHelper::setgraphelementattributes(GraphElement* ge, const At
     }
   }
   
-  if (attributes.find("color") == attributes.end())
-  {
-    ge->color(DOT_DEFAULT_LINECOLOR);
-  }
-  if (attributes.find("fontcolor") == attributes.end())
-  {
-    ge->fontColor(DOT_DEFAULT_FONTCOLOR);
-  }
-  if (attributes.find("fontname") == attributes.end())
-  {
-    ge->fontName("Times-Roman");
-  }
-  if (attributes.find("fontsize") == attributes.end())
-  {
-    ge->fontSize(graph->fontSize());
-  }
-  
   if (attributes.find("_draw_") != attributes.end())
   {
     parse_renderop((attributes.find("_draw_"))->second, ge->renderOperations());
@@ -110,11 +93,6 @@ void DotGraphParsingHelper::setgraphattributes()
 {
   kDebug() << "Attributes for graph are : ";
   setgraphelementattributes(graph, graphAttributes);
-  
-  if (graphAttributes.find("bgcolor") == graphAttributes.end())
-  {
-    graph->backColor(DOT_DEFAULT_BACKCOLOR);
-  }
 }
 
 void DotGraphParsingHelper::setsubgraphattributes()
@@ -142,10 +120,6 @@ void DotGraphParsingHelper::setedgeattributes()
   kDebug() << "Attributes for edge " << ge->fromNode()->id() << "->" << ge->toNode()->id() << " are : ";
   setgraphelementattributes(ge, edgesAttributes);
   
-  if (edgesAttributes.find("style") == edgesAttributes.end())
-  {
-    ge->style(DOT_DEFAULT_EDGE_STYLE);
-  }
   if (edgesAttributes.find("_tdraw_") != edgesAttributes.end())
   {
     parse_renderop(edgesAttributes["_tdraw_"], ge->renderOperations());
@@ -173,7 +147,7 @@ void DotGraphParsingHelper::setattributedlist()
     {
       std::vector< int > v;
       parse_integers(attributes["bb"].c_str(), v);
-      if ( (v.size()>=4) )//&& (graph->width() == 0) &&  (graph->width() == 0) )
+      if (v.size()>=4)
       {
         kDebug() << k_funcinfo << "setting width and height to " << v[2] << v[3];
         graph->width(v[2]);

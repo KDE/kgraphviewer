@@ -80,12 +80,19 @@ public:
 
   inline QMap<QString,QString>& attributes() {return m_attributes;}
   inline const QMap<QString,QString>& attributes() const {return m_attributes;}
+
+  inline QList<QString>& originalAttributes() {return m_originalAttributes;}
+  inline const QList<QString>& originalAttributes() const {return m_originalAttributes;}
+
+  virtual inline void storeOriginalAttributes() {m_originalAttributes = m_attributes.keys();}
+
   
-  Q_SIGNALS:
+Q_SIGNALS:
     void changed();
 
 protected:
   QMap<QString,QString> m_attributes;
+  QList<QString> m_originalAttributes;
   
 private:
   double m_z;

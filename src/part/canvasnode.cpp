@@ -186,10 +186,10 @@ QWidget *widget)
     const DotRenderOp& dro = it.previous();
     if (dro.renderop == "e" || dro.renderop == "E")
     {
-      qreal w = int(m_scaleX * dro.integers[2]) * 2;
-      qreal h = int(m_scaleY * dro.integers[3]) * 2;
-      qreal x = m_xMargin + int((dro.integers[0]%m_wdhcf)*m_scaleX) - w/2;
-      qreal y = int((m_gh - dro.integers[1]%m_hdvcf)*m_scaleY) + m_yMargin - h/2;
+      qreal w = m_scaleX * dro.integers[2] * 2;
+      qreal h = m_scaleY * dro.integers[3] * 2;
+      qreal x = m_xMargin + ((dro.integers[0]%m_wdhcf)*m_scaleX) - w/2;
+      qreal y = ((m_gh - dro.integers[1]%m_hdvcf)*m_scaleY) + m_yMargin - h/2;
       QRectF rect(x,y,w,h);
       p->save();
       p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
@@ -326,8 +326,8 @@ QWidget *widget)
       qreal x = (m_scaleX *
                        (
                          (dro.integers[0])
-                         + (((-dro.integers[2])*(dro.integers[3]))/2)
-                         - ( (dro.integers[3])/2 )
+                         + (((-dro.integers[2])*(fm.width(dro.str)))/2)
+                         - ( (fm.width(dro.str))/2 )
                        )
                       )
                       + m_xMargin;

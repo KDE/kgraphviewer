@@ -87,6 +87,8 @@ public:
   inline void setReadWrite() {m_readWrite = true;}
   inline void setReadOnly() {m_readWrite = false;}
 
+  virtual void storeOriginalAttributes();
+
 private:
   unsigned int cellNumber(int x, int y);
   void computeCells();
