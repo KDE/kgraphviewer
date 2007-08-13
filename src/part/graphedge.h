@@ -60,9 +60,6 @@ public:
   const GraphNode* fromNode() const { return _fromNode; }
   const GraphNode* toNode() const { return _toNode; }
 
-  // has special cases for collapsed edges
-  QString prettyName();
-
   void setCallerNode(GraphNode* n) { _fromNode = n; }
   void setCallingNode(GraphNode* n) { _toNode = n; }
 
@@ -85,6 +82,8 @@ public:
   inline QList< DotRenderOp >&  arrowheads() {return m_arrowheads;}
   inline const QList< DotRenderOp >&  arrowheads() const {return m_arrowheads;}
 
+  virtual void updateWith(const GraphEdge& edge);
+
 private:
   // we have a _ce *and* _from/_to because for collapsed edges,
   // only _to or _from will be unequal NULL
@@ -102,6 +101,7 @@ private:
 };
 
 
+/** A multi map associating the bounds nodes of a graph's edges to these edges */
 typedef QMultiMap<QPair<GraphNode*, GraphNode*>, GraphEdge*> GraphEdgeMap;
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e);

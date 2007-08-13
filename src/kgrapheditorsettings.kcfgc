@@ -1,0 +1,5 @@
+File=kgraphviewersettings.kcfg
+ClassName=KGraphViewerSettings
+Singleton=true 
+Mutators=true
+NameSpace=KGraphViewer

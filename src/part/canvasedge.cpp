@@ -37,17 +37,20 @@
 #include "graphnode.h"
 #include "dotdefaults.h"
 #include "dot2qtconsts.h"
+#include "dotgraphview.h"
 #include "FontsCache.h"
 
 //
 // CanvasEdge
 //
 
-CanvasEdge::CanvasEdge(GraphEdge* e, QGraphicsScene* c,
+CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
                        double scaleX, double scaleY, 
                        int xMargin, int yMargin, int gh,
-                       int wdhcf, int hdvcf)
-                       : QAbstractGraphicsShapeItem(0,c),  _edge(e), m_scaleX(scaleX),
+                       int wdhcf, int hdvcf,
+                       QGraphicsItem* parent)
+                       : QAbstractGraphicsShapeItem(parent),
+    m_view(view), m_edge(e), m_scaleX(scaleX),
     m_scaleY(scaleY), m_xMargin(xMargin), m_yMargin(yMargin),
     m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf),
     m_font(0)
@@ -104,6 +107,20 @@ CanvasEdge::CanvasEdge(GraphEdge* e, QGraphicsScene* c,
   setToolTip(tipStr);
 } 
 
+QRectF CanvasEdge::boundingRect() const
+{
+  if (edge()->renderOperations().isEmpty())
+  {
+    QRectF br(
+      edge()->fromNode()->canvasNode()->boundingRect().center(),
+      edge()->toNode()->canvasNode()->boundingRect().center());
+    kDebug() << k_funcinfo << br;
+    return br;
+  }
+  kDebug() << k_funcinfo << m_points.boundingRect();
+  return m_points.boundingRect();
+}
+
 void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
                    QWidget *widget)
 {
@@ -114,12 +131,20 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
     widthScaleFactor = 1;
   }
 
+  if (edge()->renderOperations().isEmpty())
+  {
+    kDebug() << k_funcinfo;
+    p->drawLine(
+      edge()->fromNode()->canvasNode()->boundingRect().center(),
+      edge()->toNode()->canvasNode()->boundingRect().center());
+    return;
+  }
   DotRenderOpVec::const_iterator it, it_end;
   it = edge()->renderOperations().begin(); 
   it_end = edge()->renderOperations().end();
   for (; it != it_end; it++)
   {
-  
+    kDebug() << k_funcinfo;  
     if ( (*it).renderop == "T" )
     {
       const QString& str = (*it).str;

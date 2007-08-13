@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=Graphviz dot graph file edited by KGraphEditor
+Encoding=UTF-8
+Icon=kgrapheditor
+MimeType=application/kgrapheditor
+Patterns=*.dot
+Type=MimeType

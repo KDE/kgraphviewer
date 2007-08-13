@@ -186,7 +186,7 @@ void KGVSimplePrintPreviewWindow::slotLastClicked()
 
 void KGVSimplePrintPreviewWindow::slotRedraw()
 {
-//   std::cerr << "KGVSimplePrintPreviewWindow::slotRedraw" << std::endl;
+  kDebug() << "KGVSimplePrintPreviewWindow::slotRedraw";
 
   m_engine.clear();
   setFullWidth();

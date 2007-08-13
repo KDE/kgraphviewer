@@ -67,6 +67,7 @@
     
 #include "dotgraphview.h"
 #include "dotgraph.h"
+#include "graphelement.h"
 #include "pannerview.h"
 #include "canvassubgraph.h"
 #include "canvasedge.h"
@@ -100,8 +101,15 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
     m_focusedNode(0),
     m_printCommand(0),
     m_actions(actions),
-    m_detailLevel(DEFAULT_DETAILLEVEL)
+    m_detailLevel(DEFAULT_DETAILLEVEL),
+    m_defaultNewElement(0),
+    m_defaultNewElementPixmap(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png")),
+    m_editingMode(None),
+    m_newEdgeSource(0),
+    m_newEdgeDraft(0),
+    m_readWrite(false)
 {
+  kDebug() << k_funcinfo << "New node pic=" << KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png");
   m_canvas = 0;
   m_xMargin = m_yMargin = 0;
   m_birdEyeView = new PannerView(this);
@@ -156,8 +164,7 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   setMatrix(m);
   setupPopup();
   setInteractive(true);
-  setDragMode(ScrollHandDrag);
-//   setDragMode(NoDrag);
+  setDragMode(NoDrag);
   setRenderHint(QPainter::Antialiasing);
 }
 
@@ -199,6 +206,10 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   if (m_graph != 0)
     delete m_graph;
   m_graph = new DotGraph(layoutCommand,dotFileName);
+  if (m_readWrite)
+  {
+    m_graph->setReadWrite();
+  }
   if (layoutCommand == "")
   {
     layoutCommand = m_graph->chooseLayoutProgramForFile(m_graph->dotFileName());
@@ -254,30 +265,14 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   {
     GraphNode* gnode = (*nodesIt);
     
-    DotRenderOpVec::const_iterator it, it_end;
-    it = gnode->renderOperations().begin(); it_end = gnode->renderOperations().end();
-    for (; it != it_end; it++)
-    {
-      if ((*it).renderop != "T" || gnode->shape() == "plaintext")
-      {
-        CanvasNode *cnode = CanvasNode::dotShapedCanvasNode(
-          *it, gnode->renderOperations(), this, gnode, newCanvas, 
-          scaleX, scaleY, m_xMargin, m_yMargin, gh, 
-          int(m_graph->wdhcf()), int(m_graph->hdvcf()));
-        if (cnode == 0) continue;
-        
-        
-        gnode->setCanvasNode(cnode);
-        if (dynamic_cast<QGraphicsPolygonItem*>(cnode) != 0)
-        {
-//           std::cerr << "setting z = " << gnode->z() << std::endl;
-          dynamic_cast<QGraphicsPolygonItem*>(cnode)->setZValue(gnode->z());
-          dynamic_cast<QGraphicsPolygonItem*>(cnode)->show();
-          nbNodesShown++;
-        }
-        break;
-      }
-    }
+    CanvasNode *cnode = new CanvasNode(this, gnode);
+    if (cnode == 0) continue;
+    cnode->initialize(
+      scaleX, scaleY, m_xMargin, m_yMargin, gh,
+      int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+    gnode->setCanvasNode(cnode);
+    newCanvas->addItem(cnode);
+    cnode->show();
   }
 //   std::cerr << "  " << nbNodesShown << " nodes shown" << std::endl;
   
@@ -293,13 +288,14 @@ bool DotGraphView::loadDot(const QString& dotFileName)
            && ( m_graph->nodesOfCell(0).find (e->toNode()) != m_graph->nodesOfCell(0).end() ) ))
       continue;*/
     
-    CanvasEdge* cedge = new CanvasEdge(gedge, newCanvas,scaleX, scaleY, m_xMargin, m_yMargin, gh, 
-                           int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+    CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
+        m_yMargin, gh, int(m_graph->wdhcf()), int(m_graph->hdvcf()));
     
     gedge->setCanvasEdge(cedge);
 //     std::cerr << "setting z = " << gedge->z() << std::endl;
     cedge->setZValue(gedge->z());
     cedge->show();
+    newCanvas->addItem(cedge);
     nbEdgesShown++;
   }
 //   std::cerr << "  " << nbEdgesShown << " edges shown" << std::endl;
@@ -679,19 +675,65 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
 {
   kDebug() << "mousePressEvent" << e;
 //   setDragMode(ScrollHandDrag);
-  QGraphicsView::mousePressEvent(e);
+
+  if (m_editingMode == AddNewElement)
+  {
+    double scaleX = 1.0, scaleY = 1.0;
+
+    if (m_detailLevel == 0)      { scaleX = m_graph->scale() * 0.7; scaleY = m_graph->scale() * 0.7; }
+    else if (m_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+    else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
+    else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+
+    int gh = int(m_graph->height());
+
+    
+    QPointF pos = mapToScene(
+        e->pos().x()-m_defaultNewElementPixmap.width()/2,
+        e->pos().y()-m_defaultNewElementPixmap.height()/2);
+    GraphNode* newNode = new GraphNode();
+    newNode->id(QString("NewNode%1").arg(m_graph->nodes().size()));
+    m_graph->nodes().insert(newNode->id(), newNode);
+    CanvasNode* newCNode = new CanvasNode(this,newNode);
+    newCNode->initialize(
+      scaleX, scaleY, m_xMargin, m_yMargin, gh,
+      int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+    newNode->setCanvasNode(newCNode);
+    scene()->addItem(newCNode);
+    kDebug() << k_funcinfo  << "setting pos to " << pos;
+    newCNode->setPos(pos);
+    newCNode->setZValue(100);
+    newCNode->show();
+
+
+    m_editingMode = None;
+    unsetCursor();
+  }
+  else
+  {
+    QGraphicsView::mousePressEvent(e);
+  }
+  
 
   m_isMoving = true;
 }
 
 void DotGraphView::mouseMoveEvent(QMouseEvent* e)
 {
-//   kDebug() << "mouseMoveEvent" << e;
+//   kDebug() << k_funcinfo << e;
   QGraphicsView::mouseMoveEvent(e);
   if (m_isMoving) 
   {
     QRectF sp = mapToScene(viewport()->rect()).boundingRect();
     m_birdEyeView->setZoomRect(sp);
+  }
+  if (m_editingMode == DrawNewEdge)
+  {
+    QPointF src = m_newEdgeDraft->line().p1();
+    QPointF tgt = mapToScene(e->pos());
+    
+    kDebug() << k_funcinfo << "Setting new edge draft line to" << QLineF(src,tgt);
+    m_newEdgeDraft->setLine(QLineF(src,tgt));
   }
 }
 
@@ -700,7 +742,15 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
   kDebug() << "mouseReleaseEvent" << e;
 //   kDebug() << "setDragMode(NoDrag)";
 //   setDragMode(NoDrag);
-  QGraphicsView::mouseReleaseEvent(e);
+  if (m_editingMode == AddNewElement)
+  {
+    m_editingMode = None;
+    unsetCursor();
+  }
+  else
+  {
+    QGraphicsView::mouseReleaseEvent(e);
+  }
   m_isMoving = false;
 
   if (m_focusedNode != 0 && !m_focusedNode->node()->url().isEmpty())
@@ -973,7 +1023,7 @@ void DotGraphView::setupPopup()
   m_popup->insertSeparator();
 
   m_bevEnabledAction = new KToggleAction(
-          KIcon(KGlobal::dirs()->findResource("appdata","pics/kgraphviewer-bev.png")), 
+          KIcon(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-bev.png")),
           i18n("Enable Bird's-eye View"), this);
   actionCollection()->addAction("view_bev_enabled",m_bevEnabledAction);
   m_bevEnabledAction->setShortcut(Qt::CTRL+Qt::Key_B);
@@ -1196,6 +1246,90 @@ void DotGraphView::slotUpdate()
   m_graph->update();
 }
 
+void DotGraphView::prepareAddNewElement()
+{
+  kDebug() << k_funcinfo;
+  m_editingMode = AddNewElement;
+  unsetCursor();
+  setCursor(QCursor(m_defaultNewElementPixmap));
+}
+
+void DotGraphView::prepareAddNewEdge()
+{
+  kDebug() << k_funcinfo;
+  m_editingMode = AddNewEdge;
+  unsetCursor();
+  setCursor(QCursor(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newedge.png")));
+}
+
+void DotGraphView::createNewEdgeDraftFrom(CanvasNode* node)
+{
+  kDebug() << k_funcinfo;
+  m_editingMode = DrawNewEdge;
+  unsetCursor();
+  m_newEdgeSource = node;
+  
+  m_newEdgeDraft = new QGraphicsLineItem(QLineF(node->boundingRect().center(),node->boundingRect().center()+QPointF(10,10)));
+  scene()->addItem(m_newEdgeDraft);
+  m_newEdgeDraft->setZValue(1000);
+  m_newEdgeDraft->show();
+  kDebug() << k_funcinfo << m_newEdgeDraft->line();
+}
+
+void DotGraphView::finishNewEdgeTo(CanvasNode* node)
+{
+  kDebug() << k_funcinfo;
+  m_editingMode = None;
+  unsetCursor();
+  m_newEdgeDraft->hide();
+  scene()->removeItem(m_newEdgeDraft);
+
+  GraphEdge* gedge  = new GraphEdge();
+  gedge->setCallerNode(m_newEdgeSource->node());
+  gedge->setCallingNode(node->node());
+  m_graph->edges().insert(qMakePair(m_newEdgeSource->node(),node->node()), gedge);
+
+  double scaleX = 1.0, scaleY = 1.0;
+
+  if (m_detailLevel == 0)      { scaleX = m_graph->scale() * 0.7; scaleY = m_graph->scale() * 0.7; }
+  else if (m_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+  else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
+  else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+
+  int gh = int(m_graph->height());
+  CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
+        m_yMargin, gh, int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+
+  gedge->setCanvasEdge(cedge);
+//     std::cerr << "setting z = " << gedge->z() << std::endl;
+  cedge->setZValue(gedge->z());
+  cedge->show();
+  scene()->addItem(cedge);
+
+  delete m_newEdgeDraft;
+  m_newEdgeDraft = 0;
+  m_newEdgeSource = 0;
+}
+
+void DotGraphView::setReadOnly()
+{
+  kDebug() << k_funcinfo;
+  m_readWrite = false;
+  if (m_graph != 0)
+  {
+    m_graph->setReadOnly();
+  }
+}
+
+void DotGraphView::setReadWrite()
+{
+  kDebug() << k_funcinfo;
+  m_readWrite = true;
+  if (m_graph != 0)
+  {
+    m_graph->setReadWrite();
+  }
+}
 
 #include "dotgraphview.moc"
 

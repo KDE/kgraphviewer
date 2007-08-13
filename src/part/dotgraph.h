@@ -33,7 +33,9 @@
 #include "graphedge.h"
 #include "dotdefaults.h"
 
-
+/**
+  * A class representing the model of a GraphViz dot graph
+  */
 class DotGraph : public GraphElement
 {
 //   Q_OBJECT
@@ -44,11 +46,15 @@ public:
   
   QString chooseLayoutProgramForFile(const QString& str);
   bool parseDot(const QString& str);
-    
+
+  /** Constant accessor to the nodes of this graph */
   inline const GraphNodeMap& nodes() const {return m_nodesMap;}
+  /** Constant accessor to the edges of this graph */
   inline const GraphEdgeMap& edges() const {return m_edgesMap;}
   inline const GraphSubgraphMap& subgraphs() const {return m_subgraphsMap;}
+  /** Accessor to the nodes of this graph */
   inline GraphNodeMap& nodes() {return m_nodesMap;}
+  /** Accessor to the edges of this graph */
   inline GraphEdgeMap& edges() {return m_edgesMap;}
   inline GraphSubgraphMap& subgraphs() {return m_subgraphsMap;}
   double width() const {return m_width;}
@@ -78,6 +84,9 @@ public:
 
   bool update();
 
+  inline void setReadWrite() {m_readWrite = true;}
+  inline void setReadOnly() {m_readWrite = false;}
+
 private:
   unsigned int cellNumber(int x, int y);
   void computeCells();
@@ -96,7 +105,8 @@ private:
   QVector< QSet< GraphNode* > > m_cells;
   
   double m_wdhcf, m_hdvcf;
-  
+
+  bool m_readWrite;
 };
 
 #endif

@@ -21,6 +21,7 @@
 
 #include <QString>
 #include <QList>
+#include <QTextStream>
 
 /**
  * members are interpreted in function of render operations definitions given at:
@@ -34,6 +35,5 @@ struct DotRenderOp
 };
 
 typedef QList< DotRenderOp > DotRenderOpVec;
-
 
 #endif

@@ -68,7 +68,7 @@ PannerView::PannerView(QWidget * parent, const char * name)
 
 void PannerView::setZoomRect(QRectF r)
 {
-  kDebug() << "PannerView::setZoomRect " << r;
+//   kDebug() << "PannerView::setZoomRect " << r;
   QRectF oldRect = m_zoomRect;
   m_zoomRect = r;
   qreal q = mapToScene(15,0).x();
@@ -106,8 +106,8 @@ void PannerView::setZoomRect(QRectF r)
 
 void PannerView::drawForeground(QPainter * p, const QRectF & rect )
 {
-  kDebug() << "PannerView::drawForeground " << rect;
-  if (m_zoomRect.isValid()) 
+//   kDebug() << "PannerView::drawForeground " << rect;
+  if (m_zoomRect.isValid())
   {
     p->save();
     p->setPen(Qt::red);

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=kgrapheditor
+Icon=kgrapheditor
+Type=Application
+DocPath=kgrapheditor/kgrapheditor.html
+Comment=A Graphviz dot graph viewer for KDE
+Terminal=false

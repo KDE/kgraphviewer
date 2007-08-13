@@ -89,7 +89,6 @@ QString GraphExporter::writeDot(const DotGraph* graph)
     exit(2);
   }
   QTextStream stream(&f);
-  stream << "coucou" << endl;
 
   stream << "digraph \""<<graph->id()<<"\" {\n";
 

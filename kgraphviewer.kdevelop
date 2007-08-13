@@ -1,9 +1,9 @@
 <?xml version = '1.0'?>
 <kdevelop>
   <general>
-  <projectmanagement>KDevCustomProject</projectmanagement>
-  <projectdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</projectdirectory>
-  <absoluteprojectpath>true</absoluteprojectpath>
+    <projectmanagement>KDevCustomProject</projectmanagement>
+    <projectdirectory>.</projectdirectory>
+    <absoluteprojectpath>false</absoluteprojectpath>
     <author>Kleag</author>
     <email>kleag@free.fr</email>
     <version>1.0rc1</version>
@@ -35,9 +35,9 @@
   </general>
   <kdevautoproject>
     <general>
-  <projectmanagement>KDevCustomProject</projectmanagement>
-  <projectdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</projectdirectory>
-  <absoluteprojectpath>true</absoluteprojectpath>
+      <projectmanagement>KDevCustomProject</projectmanagement>
+      <projectdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</projectdirectory>
+      <absoluteprojectpath>true</absoluteprojectpath>
       <activetarget>src/kgraphviewer</activetarget>
       <useconfiguration>debug</useconfiguration>
     </general>
@@ -126,9 +126,9 @@
   </kdevdoctreeview>
   <kdevdebugger>
     <general>
-  <projectmanagement>KDevCustomProject</projectmanagement>
-  <projectdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</projectdirectory>
-  <absoluteprojectpath>true</absoluteprojectpath>
+      <projectmanagement>KDevCustomProject</projectmanagement>
+      <projectdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</projectdirectory>
+      <absoluteprojectpath>true</absoluteprojectpath>
       <dbgshell>libtool</dbgshell>
       <programargs/>
       <gdbpath/>
@@ -200,9 +200,7 @@
     <dest>/home/gael/Developpements/C++/kgraphviewer</dest>
   </substmap>
   <kdevcppsupport>
-    <references>
-      <pcs>STL</pcs>
-    </references>
+    <references/>
     <codecompletion>
       <includeGlobalFunctions>false</includeGlobalFunctions>
       <includeTypes>false</includeTypes>
@@ -229,6 +227,8 @@
       <usePermanentCaching>true</usePermanentCaching>
       <alwaysIncludeNamespaces>false</alwaysIncludeNamespaces>
       <includePaths>.;</includePaths>
+      <parseMissingHeadersExperimental>false</parseMissingHeadersExperimental>
+      <resolveIncludePathsUsingMakeExperimental>false</resolveIncludePathsUsingMakeExperimental>
     </codecompletion>
     <designerintegration>
       <qtdesigner>
@@ -243,6 +243,7 @@
       <designerintegration>ExternalDesigner</designerintegration>
       <qmake>/usr/lib/qt3//bin/qmake</qmake>
       <designer>/usr/bin/designer-qt3</designer>
+      <designerpluginpaths/>
     </qt>
     <creategettersetter>
       <prefixGet/>
@@ -262,7 +263,7 @@
     <filelistdirectory>/home/kde4/Developpements/C++/kgraphviewer-kde4</filelistdirectory>
     <run>
       <directoryradio>executable</directoryradio>
-      <mainprogram>/home/kde4/Developpements/C++/kgraphviewer-kde4/build/src/kgraphviewer</mainprogram>
+      <mainprogram>/home/kde4/Developpements/C++/kde-extragear-graphics-trunk/build/kgraphviewer/src/kgraphviewer</mainprogram>
       <programargs/>
       <globaldebugarguments/>
       <useglobalprogram>false</useglobalprogram>
@@ -271,10 +272,11 @@
       <autoinstall>false</autoinstall>
       <autokdesu>false</autokdesu>
       <envvars/>
+      <globalcwd>/home/kde4/Developpements/C++/kde-extragear-graphics-trunk/build/kgraphviewer</globalcwd>
     </run>
     <build>
       <buildtool>make</buildtool>
-      <builddir>/home/kde4/Developpements/C++/kgraphviewer-kde4</builddir>
+      <builddir>/home/kde4/Developpements/C++/kde-extragear-graphics-trunk/build/kgraphviewer</builddir>
     </build>
     <make>
       <abortonerror>true</abortonerror>
@@ -289,6 +291,62 @@
         <default/>
       </environments>
     </make>
+    <filetypes>
+      <filetype>*.java</filetype>
+      <filetype>*.h</filetype>
+      <filetype>*.H</filetype>
+      <filetype>*.hh</filetype>
+      <filetype>*.hxx</filetype>
+      <filetype>*.hpp</filetype>
+      <filetype>*.c</filetype>
+      <filetype>*.C</filetype>
+      <filetype>*.cc</filetype>
+      <filetype>*.cpp</filetype>
+      <filetype>*.c++</filetype>
+      <filetype>*.cxx</filetype>
+      <filetype>Makefile</filetype>
+      <filetype>CMakeLists.txt</filetype>
+    </filetypes>
+    <blacklist>
+      <path>config.h</path>
+      <path>src/dotdefaults.h</path>
+      <path>src/Makefile</path>
+      <path>src/part/dotdefaults.h</path>
+      <path>src/part/fdstream.hpp</path>
+      <path>src/part/Makefile</path>
+      <path>src/printing</path>
+      <path>src/printing/KgvGenStyles.cpp</path>
+      <path>src/printing/KgvGenStyles.h</path>
+      <path>src/printing/KgvGlobal.cpp</path>
+      <path>src/printing/KgvGlobal.h</path>
+      <path>src/printing/KgvPageLayoutColumns.cpp</path>
+      <path>src/printing/KgvPageLayoutColumns.h</path>
+      <path>src/printing/KgvPageLayout.cpp</path>
+      <path>src/printing/KgvPageLayoutDia.cpp</path>
+      <path>src/printing/KgvPageLayoutDia.h</path>
+      <path>src/printing/KgvPageLayout.h</path>
+      <path>src/printing/KgvPageLayoutHeader.cpp</path>
+      <path>src/printing/KgvPageLayoutHeader.h</path>
+      <path>src/printing/KgvPageLayoutSize.cpp</path>
+      <path>src/printing/KgvPageLayoutSize.h</path>
+      <path>src/printing/KgvUnit.cpp</path>
+      <path>src/printing/KgvUnit.h</path>
+      <path>src/printing/KgvUnitWidgets.cpp</path>
+      <path>src/printing/KgvUnitWidgets.h</path>
+      <path>src/printing/simpleprintingcommand.cpp</path>
+      <path>src/printing/simpleprintingcommand.h</path>
+      <path>src/printing/simpleprintingengine.cpp</path>
+      <path>src/printing/simpleprintingengine.h</path>
+      <path>src/printing/simpleprintingpagesetup.cpp</path>
+      <path>src/printing/simpleprintingpagesetup.h</path>
+      <path>src/printing/simpleprintingsettings.cpp</path>
+      <path>src/printing/simpleprintingsettings.h</path>
+      <path>src/printing/simpleprintpreviewwindow.cpp</path>
+      <path>src/printing/simpleprintpreviewwindow.h</path>
+      <path>src/printing/simpleprintpreviewwindow_p.cpp</path>
+      <path>src/printing/simpleprintpreviewwindow_p.h</path>
+      <path>src/Singleton.h</path>
+    </blacklist>
   </kdevcustomproject>
   <ctagspart>
     <customArguments/>

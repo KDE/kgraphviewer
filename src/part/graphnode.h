@@ -64,19 +64,23 @@ public:
   inline double w() const {return m_w;}
   inline double h() const {return m_h;}
 
-  CanvasNode* canvasNode();
-  void setCanvasNode(CanvasNode* cn) { m_cn.push_back(cn); }
+  inline CanvasNode* canvasNode() { return m_cn; }
+  inline const CanvasNode* canvasNode() const { return m_cn; }
+  inline void setCanvasNode(CanvasNode* cn) { m_cn = cn; }
 
   bool isVisible() const { return m_visible; }
   void setVisible(bool v) { m_visible = v; }
 
+  virtual void updateWith(const GraphNode& node);
+
 private:
-  QVector< CanvasNode* > m_cn;
+  CanvasNode* m_cn;
   bool m_visible;
 
   double m_x, m_y, m_w, m_h;
 };
 
+/** A map associating the ids of a graph's nodes to these nodes */
 typedef QMap<QString, GraphNode*> GraphNodeMap;
 
 QTextStream& operator<<(QTextStream& s, const GraphNode& n);

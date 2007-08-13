@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005-2006 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public

@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -28,12 +28,13 @@
 #include "dotgraphview.h"
 
 class QWidget;
+
 /**
  * This is a "Part".  It that does all the real work in a KPart
  * application.
  *
  * @short Main Part
- * @author Gaël de Chalendar <kleag@free.fr>
+ * @author Gael de Chalendar <kleag@free.fr>
  */
 class kgraphviewerPart : public KParts::ReadOnlyPart
 {
@@ -53,9 +54,17 @@ public:
   // Return information about the part
   static KAboutData* createAboutData();
 
+  inline DotGraph* graph() {return m_widget->graph();}
+  inline const DotGraph* graph() const {return m_widget->graph();}
+
+
 public slots:
   void slotHide(KParts::Part* part);
   void slotUpdate();
+  void prepareAddNewElement();
+  void prepareAddNewEdge();
+  void setReadOnly();
+  void setReadWrite();
 
 protected:
     /**

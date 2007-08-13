@@ -60,7 +60,7 @@ void DotGraphParsingHelper::setgraphelementattributes(GraphElement* ge, const At
     kDebug() << "    " << QString::fromStdString((*it).first) << "\t=\t'" << QString::fromStdString((*it).second) <<"'";
     if ((*it).first=="label")
     {
-      QString label = QString::fromUtf8((*it).first.c_str());
+      QString label = QString::fromUtf8((*it).second.c_str());
       label.replace("\\n","\n");
       (*ge).attributes()["label"] = label;
     }
@@ -166,15 +166,16 @@ void DotGraphParsingHelper::setedgeattributes()
 
 void DotGraphParsingHelper::setattributedlist()
 {
-  kDebug() << "Setting attributes list for " << QString::fromStdString(attributed);
-  if (attributed == "graph") 
+  kDebug() << k_funcinfo << "Setting attributes list for " << QString::fromStdString(attributed);
+  if (attributed == "graph")
   {
     if (attributes.find("bb") != attributes.end())
     {
       std::vector< int > v;
       parse_integers(attributes["bb"].c_str(), v);
-      if ( (v.size()>=4) && (graph->width() == 0) &&  (graph->width() == 0) )
+      if ( (v.size()>=4) )//&& (graph->width() == 0) &&  (graph->width() == 0) )
       {
+        kDebug() << k_funcinfo << "setting width and height to " << v[2] << v[3];
         graph->width(v[2]);
         graph->height(v[3]);
       }

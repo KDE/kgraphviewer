@@ -46,18 +46,16 @@
 
 GraphNode::GraphNode() :
     GraphElement(),
-    m_cn(), m_visible(false),
+    m_cn(0), m_visible(false),
     m_x(0), m_y(0), m_w(0), m_h(0)
 {
 }
 
-CanvasNode* GraphNode::canvasNode()
+void GraphNode::updateWith(const GraphNode& node)
 {
-  if (m_cn.empty())
-  {
-    return 0;
-  }
-  return m_cn[0];
+  kDebug() << k_funcinfo;
+  GraphElement::updateWith(node);
+  kDebug() << k_funcinfo << "done";
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphNode& n)

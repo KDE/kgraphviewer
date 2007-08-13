@@ -45,7 +45,7 @@
 class CanvasNode;
 class CanvasEdge;
 class GraphEdge;
-
+class DotGraphView;
 
 /*
  * Canvas Items:
@@ -59,29 +59,28 @@ class GraphEdge;
 class CanvasEdge : public QAbstractGraphicsShapeItem
 {
 public:
-  CanvasEdge(GraphEdge*, QGraphicsScene*,
+  CanvasEdge(DotGraphView* v, GraphEdge*,
              double scaleX, double scaleY, 
              int xMargin, int yMargin, int gh,
-             int wdhcf, int hdvcf);
+             int wdhcf, int hdvcf, QGraphicsItem* parent = 0);
+
+  QRectF boundingRect() const;
 
   void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         QWidget *widget);
 
-  QRectF boundingRect() const
-  {
-    return m_points.boundingRect();
-  }
-  
-  GraphEdge* edge() { return _edge; }
+  GraphEdge* edge() { return m_edge; }
+  const GraphEdge* edge() const { return m_edge; }
   
     
 
   private:
   double m_scaleX, m_scaleY; 
   int m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
-  GraphEdge* _edge;
+  GraphEdge* m_edge;
   QPolygonF m_points;
   QFont* m_font;
+  DotGraphView* m_view;
 };
 
 

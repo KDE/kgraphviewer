@@ -48,12 +48,12 @@ using namespace KGraphViewer;
 kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
 : KParts::ReadOnlyPart(parent), m_watch(new KDirWatch())
 {
-//   std::cerr << "kgraphviewerPart::kgraphviewerPart" << std::endl;
+  kDebug() << k_funcinfo;
   // we need an instance
   setComponentData( kgraphviewerPartFactory::componentData() );
 
   // this should be your custom internal widget
-  m_widget = new DotGraphView( actionCollection(), parentWidget);
+  m_widget = new DotGraphView( actionCollection(), parentWidget);  
   m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
   
   // notify the part that this is our internal widget
@@ -128,6 +128,28 @@ void kgraphviewerPart::slotUpdate()
   m_widget->slotUpdate();
 }
 
+void kgraphviewerPart::prepareAddNewElement()
+{
+  m_widget->prepareAddNewElement();
+}
+
+void kgraphviewerPart::prepareAddNewEdge()
+{
+  m_widget->prepareAddNewEdge();
+}
+
+void kgraphviewerPart::setReadOnly()
+{
+  kDebug() << k_funcinfo;
+  m_widget->setReadOnly();
+}
+
+void kgraphviewerPart::setReadWrite()
+{
+  kDebug() << k_funcinfo;
+  m_widget->setReadWrite();
+}
+
 /*It's usually safe to leave the factory code alone.. with the
 notable exception of the KAboutData data*/
 #include <kaboutdata.h>
@@ -151,7 +173,7 @@ KAboutData* kgraphviewerPartFactory::s_about = new KAboutData(
     "kgraphviewerpart", 0, ki18n("kgraphviewerPart"),
     "1.0", ki18n( "GraphViz dot files viewer" ),
     KAboutData::License_GPL,
-    ki18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
+    ki18n("(c) 2005-2006, Gael de Chalendar <kleag@free.fr>"));
 
 KComponentData kgraphviewerPartFactory::s_instance(s_about);
 

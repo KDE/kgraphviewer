@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005-2006 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -45,14 +45,22 @@ KGVSimplePrintPreviewView::KGVSimplePrintPreviewView(
 
 void KGVSimplePrintPreviewView::paintEvent( QPaintEvent *pe )
 {
-  kDebug() << "KGVSimplePrintPreviewView::paintEvent";
+  kDebug() << k_funcinfo;
   Q_UNUSED(pe);
+
   QPainter p(m_window);
-  p.setRenderHint(QPainter::Antialiasing);
-//   p.fillRect(pe->rect(), QBrush(Qt::white));//pe->rect(), QBrush(white));
+//   p.begin(&pm);
+//   p.initFrom(this);
+//! @todo only for screen!
+  kDebug() << k_funcinfo << "filling rect";
+  p.fillRect(QRect(QPoint(0,0),m_window->size()), QBrush(Qt::white));//pe->rect(), QBrush(white));
   if (m_window->currentPage()>=0)
+  {
+    kDebug() << k_funcinfo << "painting page";
     m_window->m_engine.paintPage(m_window->currentPage(), p);
+  }
 //    emit m_window->paintingPageRequested(m_window->currentPage(), p);
+  p.end();
 }
 
 #define KGVSimplePrintPreviewScrollView_MARGIN KDialog::marginHint()
@@ -75,7 +83,7 @@ KGVSimplePrintPreviewScrollView::KGVSimplePrintPreviewScrollView(
 
 void KGVSimplePrintPreviewScrollView::paintEvent( QPaintEvent *pe )
 {
-  kDebug() << "KGVSimplePrintPreviewScrollView::paintEvent";
+  kDebug() << k_funcinfo;
   QScrollArea::paintEvent(pe);
   ((KGVSimplePrintPreviewView*)widget())->paintEvent(pe);
 }
@@ -103,6 +111,7 @@ void KGVSimplePrintPreviewScrollView::paintEvent( QPaintEvent *pe )
 
 void KGVSimplePrintPreviewScrollView::setFullWidth()
 {
+  kDebug() << k_funcinfo;
   viewport()->setUpdatesEnabled(false);
   double widthMM = KgvPageFormat::width( 
     m_window->settings()->pageLayout.format, 

@@ -84,7 +84,7 @@ DotGrammar::definition<ScannerT>::definition(DotGrammar const& self)
 
   attr_list  = ch_p('[') >> !( a_list ) >> ch_p(']');
   a_list  =  ((ID[&attrid] >> !( '=' >> ID[&valid] ))[&addattr] >> !(',' >> a_list ));
-  edge_stmt  =  ( (node_id[&edgebound] | subgraph) >>  edgeRHS >> !( attr_list[assign_a(phelper->attributed,"edge")][&pushAttrList][&setattributedlist] ) )[&createedges][&popAttrList];
+  edge_stmt  =  ( (node_id[&edgebound] | subgraph) >>  edgeRHS >> !( attr_list[assign_a(phelper->attributed,"edge")] ) )[&pushAttrList][&setattributedlist][&createedges][&popAttrList];
   edgeRHS  =  edgeop[&checkedgeop] >> (node_id[&edgebound] | subgraph) >> !( edgeRHS );
   edgeop = str_p("->") | str_p("--");
   node_stmt  = ( node_id[&createnode] >> !( attr_list ) )[assign_a(phelper->attributed,"node")][&pushAttrList][&setattributedlist][&setnodeattributes][&popAttrList];
@@ -203,8 +203,8 @@ void pushAttrListC(char const c)
 
 void pushAttrList(char const* first, char const* last)
 {
-  kDebug() << "Pushing attributes";
-  if (phelper) 
+  kDebug() << k_funcinfo << "Pushing attributes";
+  if (phelper)
   {
     phelper->graphAttributesStack.push_back(phelper->graphAttributes);
     phelper->nodesAttributesStack.push_back(phelper->nodesAttributes);
@@ -505,7 +505,8 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
              ).full;
   if (res ==false)
   {
-    kError() << "parse_renderop failed on '"<<QString::fromStdString(str)<<"'. Last renderop string is '"<<QString::fromStdString(str.c_str())<<"'" << endl;
+    kError() << "parse_renderop failed on "<< QString::fromStdString(str);
+    kError() << "Last renderop string is "<<QString::fromStdString(str.c_str());
   }
 //   delete renderop; renderop = 0;
   return res;

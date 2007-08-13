@@ -53,12 +53,6 @@ GraphEdge::~GraphEdge()
 {
 }
 
-QString GraphEdge::prettyName()
-{
-  return label();
-}
-
-
 void GraphEdge::colors(const QString& cs)
 {
   m_colors = QStringList::split(":", cs);
@@ -77,6 +71,16 @@ const QString GraphEdge::color(uint i)
 //     std::cerr << "no edge color " << i << ". returning " << DOT_DEFAULT_EDGE_COLOR << std::endl;
     return DOT_DEFAULT_EDGE_COLOR;
   }
+}
+
+void GraphEdge::updateWith(const GraphEdge& edge)
+{
+  kDebug() << k_funcinfo;
+  m_arrowheads = edge.arrowheads();
+  m_colors = edge.colors();
+  m_dir = edge.dir();
+  GraphElement::updateWith(edge);
+  kDebug() << k_funcinfo << "done";
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e)

@@ -31,6 +31,7 @@
 #ifndef CANVAS_NODE_H
 #define CANVAS_NODE_H
 
+#include <QAbstractGraphicsShapeItem>
 #include <QGraphicsPolygonItem>
 #include <QGraphicsEllipseItem>
 #include <QWidget>
@@ -48,92 +49,44 @@
 class GraphNode;
 class DotGraphView;
 
-class CanvasNode : public QObject
+class CanvasNode : public QObject, public QAbstractGraphicsShapeItem
 {
   Q_OBJECT
 public:
-  CanvasNode(DotGraphView* v,GraphNode* n);
+  CanvasNode(DotGraphView* v,GraphNode* n, QGraphicsItem* parent = 0);
   
   virtual ~CanvasNode() {}
   
-  GraphNode* node() { return m_node; }
+  void initialize(double scaleX, double scaleY,
+                  int xMargin, int yMargin, int gh,
+                  int wdhcf, int hdvcf);
 
-//   virtual QRect rect() = 0;
-  
-  static CanvasNode* dotShapedCanvasNode(const DotRenderOp& dro, 
-                                  const DotRenderOpVec& dros,
-                                  DotGraphView* v, 
-                                  GraphNode* n,
-                                  QGraphicsScene* c,
-                                  double scaleX, double scaleY, 
-                                         int xMargin, int yMargin, int gh,
-                                         int wdhcf, int hdvcf);
-    
+  GraphNode* node() { return m_node; }
+  const GraphNode* node() const { return m_node; }
+
   inline bool hasFocus() const {return m_hasFocus;}
   inline void hasFocus(bool val) {m_hasFocus = val;}
+
+  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
+QWidget *widget = 0 );
+
+  virtual QRectF boundingRect () const;
 
 public Q_SLOTS:
   void modelChanged();
   
 protected:
-  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-QWidget *widget);
+  virtual void mouseMoveEvent ( QGraphicsSceneMouseEvent * event );
+  virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
+  virtual void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
 
-  virtual void update() {}
-  
-  double m_scaleX, m_scaleY; 
+  double m_scaleX, m_scaleY;
   int m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
   GraphNode* m_node;
   DotGraphView* m_view;
   bool m_hasFocus;
-  DotRenderOpVec m_renderOperations;
   QFont* m_font;
   QPen m_pen;
-};
-
-class CanvasPolygonalNode: public QGraphicsPolygonItem, public CanvasNode
-{
-public:
-  CanvasPolygonalNode(DotGraphView* v,GraphNode* n, const QPolygonF& points, QGraphicsScene* c);
-  CanvasPolygonalNode(
-              DotGraphView* v, 
-              GraphNode* n,
-              const DotRenderOp& dro,
-              const DotRenderOpVec& dros,
-                       QGraphicsScene* c,
-                       double scaleX, double scaleY, int xMargin, int yMargin, int gh,
-                       int wdhcf, int hdvcf);
-  virtual ~CanvasPolygonalNode() {}
-  
-//   QRect rect() {return QGraphicsPolygonItem::polygon().boundingRect().toRect();}
-  virtual void update();
-  
-protected:
-  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-QWidget *widget);
-};
-
-class CanvasEllipseNode: public QGraphicsEllipseItem, public CanvasNode
-{
-public:
-  CanvasEllipseNode(DotGraphView* v,GraphNode* n, int x, int y, int w, int h, QGraphicsScene* c);
-  CanvasEllipseNode(
-                    DotGraphView* v, 
-                    GraphNode* n,
-                    const DotRenderOp& dro,
-                    const DotRenderOpVec& dros,
-                    QGraphicsScene* c,
-                    double scaleX, double scaleY, int xMargin, int yMargin, int gh,
-                    int wdhcf, int hdvcf);
-  virtual ~CanvasEllipseNode() {}
-  
-//   QRect rect() {return QGraphicsEllipseItem::rect().toRect();}
-  
-//   QPointArray areaPoints() const;
-    
-protected:
-  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-  QWidget *widget);
 };
 
 // class CanvasHtmlNode: public KHTMLPart, public CanvasNode

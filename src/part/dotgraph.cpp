@@ -22,8 +22,8 @@
 #include "DotGraphParsingHelper.h"
 
 
-#include <iostream>
-#include <math.h>
+// #include <iostream>
+// #include <math.h>
 #include "fdstream.hpp"
 #include <boost/spirit/utility/confix.hpp>
 
@@ -31,6 +31,7 @@
 #include <QFile>
 #include <QPair>
 #include <QByteArray>
+#include <QProcess>
 
 
 
@@ -45,7 +46,8 @@ DotGraph::DotGraph(const QString& command, const QString& fileName) :
   GraphElement(),
   m_dotFileName(fileName),m_width(0.0), m_height(0.0),m_scale(1.0),
   m_directed(true),m_strict(false),
-  m_layoutCommand(command)
+  m_layoutCommand(command),
+  m_readWrite(false)
 { 
 }
 
@@ -75,7 +77,7 @@ QString DotGraph::chooseLayoutProgramForFile(const QString& str)
     if (!iFILE.open(QIODevice::ReadOnly))
     {
       kError() << "Can't test dot file. Will try to use the dot command on the file: '" << str << "'" << endl;
-      return "dot -Txdot";
+      return "dot";// -Txdot";
     }
     
     QByteArray fileContent = iFILE.readAll();
@@ -87,7 +89,7 @@ QString DotGraph::chooseLayoutProgramForFile(const QString& str)
             !(keyword_p("strict")) >> (keyword_p("graph")[assign_a(cmd,"neato")])
           ), (space_p|comment_p("/*", "*/")) );
     
-    m_layoutCommand = QString::fromStdString(cmd) + " -Txdot" ;
+    m_layoutCommand = QString::fromStdString(cmd);// + " -Txdot" ;
   }
 //   std::cerr << "File " << str << " will be layouted by '" << m_layoutCommand << "'" << std::endl;
   return m_layoutCommand;
@@ -96,44 +98,39 @@ QString DotGraph::chooseLayoutProgramForFile(const QString& str)
 bool DotGraph::parseDot(const QString& str)
 {
   kDebug() << k_funcinfo << str;
-  QString popencmd;
   if (m_layoutCommand.isEmpty())
   {
     return false;
   }
-//   std::cerr << "Building popencmd" << std::endl;
-  popencmd = QString("%1 %2 2>/dev/null").arg(m_layoutCommand).arg(str);
-  
-//   kDebug() << "Running '" << popencmd << "'...";
-  
-  FILE* file = popen(popencmd.ascii(), "r");
-  if (file == 0) 
+
+  kDebug() << "Running " << m_layoutCommand  << str;
+  QProcess dot;
+  QStringList options;
+  if (m_readWrite)
   {
-    kError() << "Can't run dot!" << endl;
+    options << "-Tdot";
+  }
+  else
+  {
+    options << "-Txdot";
+  }
+  options << str;
+  dot.start(m_layoutCommand, options);
+  if (!dot.waitForFinished(-1))
+  {
+    kDebug() << "dot finished with error" << endl;
     return false;
   }
+//   QFile dot(str);
+//   if (!dot.open(QIODevice::ReadOnly | QIODevice::Text))
+//   {
+//     return false;
+//   }
+  QByteArray result = dot.readAll();
+  result.replace("\\\n","");
 
-  std::ostringstream oss;
-  std::string line;
-  boost::fdistream myfile(fileno(file));
- 
-  while (! myfile.eof() )
-  {
-    getline (myfile,line);
-    if (*line.rbegin() != '\\')
-    {
-      oss << line;
-      oss << std::endl;
-    }
-    else
-    {
-      line.resize(line.size()-1);
-      oss << line;
-    }
-  }
- 
-  std::string s =  oss.str();
-//   std::cerr << "std::string content is:" << std::endl << "'" << s << "'" << std::endl;
+  kDebug() << k_funcinfo << "string content is:" << endl << result << endl << "=====================";
+  std::string s =  result.data();
   if (phelper != 0)
   {
     phelper->graph = 0;
@@ -146,9 +143,14 @@ bool DotGraph::parseDot(const QString& str)
   phelper->uniq = 0;
   
   bool parsingResult = parse(s);
-  kDebug() << k_funcinfo << "parsed";
+  kDebug() << k_funcinfo << "parsed " << parsingResult;
+  kDebug() << k_funcinfo << "width and height=" << m_width << m_height;
   if (parsingResult)
   {
+    if (m_readWrite)
+    {
+      update();
+    }
     computeCells();
   }
   delete phelper;
@@ -164,49 +166,30 @@ bool DotGraph::update()
   QString str = exporter.writeDot(this);
 
   kDebug() << k_funcinfo << "wrote to " << str;
-  QString popencmd;
   if (m_layoutCommand.isEmpty())
   {
     return false;
   }
-  //   std::cerr << "Building popencmd" << std::endl;
-  popencmd = QString("%1 %2 2>/dev/null").arg(m_layoutCommand).arg(str);
-  
-  //   kDebug() << "Running '" << popencmd << "'...";
-  
-  FILE* file = popen(popencmd.ascii(), "r");
-  if (file == 0)
+
+  kDebug() << "Running" << m_layoutCommand << str;
+  QProcess dot;
+  dot.start(m_layoutCommand, QStringList() << "-Txdot" << str);
+  if (!dot.waitForFinished(-1))
   {
-    kError() << "Can't run dot!" << endl;
+    kError() << "dot finished with error";
     return false;
   }
-  
-  std::ostringstream oss;
-  std::string line;
-  boost::fdistream myfile(fileno(file));
-  
-  while (! myfile.eof() )
-  {
-    getline (myfile,line);
-    if (*line.rbegin() != '\\')
-    {
-      oss << line;
-      oss << std::endl;
-    }
-    else
-    {
-      line.resize(line.size()-1);
-      oss << line;
-    }
-  }
-  
-  std::string s =  oss.str();
-  //   std::cerr << "std::string content is:" << std::endl << "'" << s << "'" << std::endl;
+  QByteArray result = dot.readAll();
+  result.replace("\\\n","");
+  std::string s(result.data());
+  kDebug() << k_funcinfo << "string content is:" << endl
+      << result << endl << "=====================";
   if (phelper != 0)
   {
     phelper->graph = 0;
     delete phelper;
   }
+
   DotGraph newGraph(m_layoutCommand, m_dotFileName);
   phelper = new DotGraphParsingHelper;
   phelper->graph = &newGraph;
@@ -218,25 +201,36 @@ bool DotGraph::update()
   bool parsingResult = parse(s);
   if (parsingResult)
   {
-    computeCells();
+    m_width=newGraph.width();
+    m_height=newGraph.height();
+    m_scale=newGraph.scale();
+    m_directed=newGraph.directed();
+    m_strict=newGraph.strict();
+    computeCells();  
   }
+  kDebug() << k_funcinfo << "parsing new dot done " << parsingResult;
   delete phelper;
   phelper = 0;
+  kDebug() << k_funcinfo << "phelper deleted";
   if (parsingResult)
   {
     foreach (GraphNode* ngn, newGraph.nodes())
     {
+      kDebug() << k_funcinfo << "node " << ngn->id();
       if (nodes().contains(ngn->id()))
       {
+        kDebug() << k_funcinfo << "known";
         nodes()[ngn->id()]->updateWith(*ngn);
       }
       else
       {
+        kDebug() << k_funcinfo << "new";
         nodes().insert(ngn->id(), new GraphNode(*ngn));
       }
     }
     foreach (GraphEdge* nge, newGraph.edges())
     {
+      kDebug() << k_funcinfo << "an edge";
       QPair<GraphNode*,GraphNode*> pair(nodes()[nge->fromNode()->id()],nodes()[nge->toNode()->id()]);
       if (edges().contains(pair))
       {
@@ -248,6 +242,7 @@ bool DotGraph::update()
       }
     }
   }
+  kDebug() << k_funcinfo << "done";
   return parsingResult;
 }
 
@@ -269,7 +264,7 @@ unsigned int DotGraph::cellNumber(int x, int y)
 
 void DotGraph::computeCells()
 {
-  kDebug() << k_funcinfo;
+  kDebug() << k_funcinfo << m_width << m_height << endl;
   m_horizCellFactor = m_vertCellFactor = 1;
   m_wdhcf = (int)ceil(((double)m_width) / m_horizCellFactor)+1;
   m_hdvcf = (int)ceil(((double)m_height) / m_vertCellFactor)+1;
@@ -314,7 +309,8 @@ void DotGraph::computeCells()
       }
     }
   } while (!stop);
-  kDebug() << k_funcinfo << "finished";
+  kDebug() << k_funcinfo << "m_wdhcf=" << m_wdhcf << "; m_hdvcf=" << m_hdvcf << endl;
+  kDebug() << k_funcinfo << "finished" << endl;
 }
 
 QSet< GraphNode* >& DotGraph::nodesOfCell(unsigned int id)

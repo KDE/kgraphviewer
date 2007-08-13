@@ -40,13 +40,14 @@ KGVSimplePrintPreviewView::KGVSimplePrintPreviewView(
 
 void KGVSimplePrintPreviewView::paintEvent( QPaintEvent *pe )
 {
-//   std::cerr << "KGVSimplePrintPreviewView::paintEvent" << std::endl;
+  kDebug() << k_funcinfo;
   Q_UNUSED(pe);
   if (!enablePainting)
     return;
   QPixmap pm(size()); //dbl buffered
   QPainter p;
-  p.begin(&pm, this);
+  p.begin(&pm);
+  p.initFrom(this);
 //! @todo only for screen!
   p.fillRect(QRect(QPoint(0,0),pm.size()), QBrush(white));//pe->rect(), QBrush(white));
   if (m_window->currentPage()>=0)

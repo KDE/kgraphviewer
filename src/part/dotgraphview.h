@@ -42,6 +42,7 @@
 #include "graphexporter.h"
 
 
+class GraphElement;
 class CanvasNode;
 class PannerView;
 class DotGraph;
@@ -69,7 +70,8 @@ class DotGraphView: public QGraphicsView
  Q_OBJECT
 
 public:
- enum ZoomPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
+  enum ZoomPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
+  enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge };
 
   DotGraphView(KActionCollection* actions, QWidget* parent=0);
   virtual ~DotGraphView();
@@ -104,6 +106,26 @@ public:
   void hideToolsWindows();
   inline double zoom() const {return m_zoom;}
   inline KSelectAction* bevPopup() {return m_bevPopup;}
+
+  inline DotGraph* graph() {return m_graph;}
+  inline const DotGraph* graph() const {return m_graph;}
+
+  inline const GraphElement* defaultNewElement() const {return m_defaultNewElement;}
+  inline QPixmap defaultNewElementPixmap() const {return m_defaultNewElementPixmap;}
+
+  inline void setDefaultNewElement(GraphElement* elem) {m_defaultNewElement = elem;}
+  inline void setDefaultNewElementPixmap(const QPixmap& pm) {m_defaultNewElementPixmap = pm;}
+
+  void prepareAddNewElement();
+  void prepareAddNewEdge();
+
+  void createNewEdgeDraftFrom(CanvasNode* node);
+  void finishNewEdgeTo(CanvasNode* node);
+
+  EditingMode editingMode() const {return m_editingMode;}
+
+  void setReadOnly();
+  void setReadWrite();
 
 signals:
   void zoomed(double factor);
@@ -185,6 +207,15 @@ private:
   KActionCollection* m_actions;
 
   int m_detailLevel;
+
+  GraphElement* m_defaultNewElement;
+  QPixmap m_defaultNewElementPixmap;
+  EditingMode m_editingMode;
+
+  CanvasNode* m_newEdgeSource;
+  QGraphicsLineItem* m_newEdgeDraft;
+
+  bool m_readWrite;
 };
 
 

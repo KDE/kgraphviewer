@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005-2006 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -65,13 +65,13 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 {
 //	m_pagesCount = INT_MAX;
 
-	setCaption(i18n("%1 - Print Preview - %2",previewName,QString("")));
-	setIcon(DesktopIcon("filequickprint"));
-	QVBoxLayout *lyr = new QVBoxLayout();
+  setCaption(i18n("%1 - Print Preview - %2",previewName,QString("")));
+  setIcon(DesktopIcon("filequickprint"));
+  QVBoxLayout *lyr = new QVBoxLayout();
 
-	m_toolbar = new KToolBar(0, this);
-    m_toolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-	lyr->addWidget(m_toolbar);
+  m_toolbar = new KToolBar(0, this);
+  m_toolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+  lyr->addWidget(m_toolbar);
 
   KAction* printAction = KStandardAction::print(this, SLOT(slotPrintClicked()),
                                       &m_actions);
@@ -149,14 +149,15 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
   this->setLayout(lyr);
 //! @todo progress bar...
 
-	QTimer::singleShot(50, this, SLOT(initLater()));
+  QTimer::singleShot(50, this, SLOT(initLater()));
 }
 
 void KGVSimplePrintPreviewWindow::initLater()
 {
-	setFullWidth();
-	updatePagesCount();
-	goToPage(0);
+  kDebug() << k_funcinfo;
+  setFullWidth();
+  updatePagesCount();
+  goToPage(0);
 }
 
 KGVSimplePrintPreviewWindow::~KGVSimplePrintPreviewWindow()
@@ -165,41 +166,41 @@ KGVSimplePrintPreviewWindow::~KGVSimplePrintPreviewWindow()
 
 void KGVSimplePrintPreviewWindow::slotPrintClicked()
 {
-	hide();
-	emit printRequested();
-	show();
-	raise();
+  hide();
+  emit printRequested();
+  show();
+  raise();
 }
 
 void KGVSimplePrintPreviewWindow::slotPageSetup()
 {
-	lower();
-	emit pageSetupRequested();
+  lower();
+  emit pageSetupRequested();
 }
 
 void KGVSimplePrintPreviewWindow::slotZoomInClicked()
 {
-	//! @todo
+  //! @todo
 }
 
 void KGVSimplePrintPreviewWindow::slotZoomOutClicked()
 {
-	//! @todo
+  //! @todo
 }
 
 void KGVSimplePrintPreviewWindow::slotFirstClicked()
 {
-	goToPage(0);
+  goToPage(0);
 }
 
 void KGVSimplePrintPreviewWindow::slotPreviousClicked()
 {
-	goToPage(m_pageNumber-1);
+  goToPage(m_pageNumber-1);
 }
 
 void KGVSimplePrintPreviewWindow::slotNextClicked()
 {
-	goToPage(m_pageNumber+1);
+  goToPage(m_pageNumber+1);
 }
 
 void KGVSimplePrintPreviewWindow::slotLastClicked()
@@ -209,7 +210,7 @@ void KGVSimplePrintPreviewWindow::slotLastClicked()
 
 void KGVSimplePrintPreviewWindow::slotRedraw()
 {
-  kDebug() << "KGVSimplePrintPreviewWindow::slotRedraw";
+  kDebug() << k_funcinfo;
 
   m_engine.clear();
   setFullWidth();
@@ -227,11 +228,12 @@ void KGVSimplePrintPreviewWindow::slotRedraw()
 
 void KGVSimplePrintPreviewWindow::goToPage(int pageNumber)
 {
-	if (pageNumber==m_pageNumber || pageNumber < 0 || pageNumber > ((int)m_engine.pagesCount()-1))
-		return;
-	m_pageNumber = pageNumber;
+  kDebug() << k_funcinfo << pageNumber;
+  if (pageNumber==m_pageNumber || pageNumber < 0 || pageNumber > ((int)m_engine.pagesCount()-1))
+    return;
+  m_pageNumber = pageNumber;
 
-	m_view->repaint(); //this will automatically paint a new page
+  m_view->repaint(); //this will automatically paint a new page
 //	if (m_engine.eof())
 //		m_pagesCount = pageNumber+1;
 
@@ -239,10 +241,10 @@ void KGVSimplePrintPreviewWindow::goToPage(int pageNumber)
 // 	m_navToolbar->setItemEnabled(m_idLast, pageNumber < ((int)m_engine.pagesCount()-1));
 // 	m_navToolbar->setItemEnabled(m_idPrevious, pageNumber > 0);
 // 	m_navToolbar->setItemEnabled(m_idFirst, pageNumber > 0);
-	m_pageNumberLabel->setText(
-		i18nc("Page (number) of (total)", "Page %1 of %2", 
-            m_pageNumber+1, 
-            m_engine.pagesCount()));
+  m_pageNumberLabel->setText(
+      i18nc("Page (number) of (total)", "Page %1 of %2", 
+        m_pageNumber+1, 
+        m_engine.pagesCount()));
 }
 
 void KGVSimplePrintPreviewWindow::setFullWidth()
@@ -252,55 +254,55 @@ void KGVSimplePrintPreviewWindow::setFullWidth()
 
 void KGVSimplePrintPreviewWindow::updatePagesCount()
 {
-	QPixmap pm(m_view->size()); //dbl buffered
-	QPainter p(m_view);
-	//p.begin(&pm, this);
-////! @todo only for screen!
-//	p.fillRect(pe->rect(), QBrush(white));
-	m_engine.calculatePagesCount(p);
-	p.end();
+  QPainter p(m_view);
+  p.begin(this);
+  m_engine.calculatePagesCount(p);
+  p.end();
 }
 
 bool KGVSimplePrintPreviewWindow::event( QEvent * e )
 {
-	QEvent::Type t = e->type();
-	if (t==QEvent::KeyPress) {
-		QKeyEvent *ke = static_cast<QKeyEvent*>(e);
-		const int k = ke->key();
-		bool ok = true;
-		if (k==Qt::Key_Equal || k==Qt::Key_Plus)
-			slotZoomInClicked();
-		else if (k==Qt::Key_Minus)
-			slotZoomOutClicked();
-		else if (k==Qt::Key_Home)
-			slotFirstClicked();
-		else if (k==Qt::Key_End)
-			slotLastClicked();
-		else
-			ok = false;
+  QEvent::Type t = e->type();
+  if (t==QEvent::KeyPress)
+  {
+    QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+    const int k = ke->key();
+    bool ok = true;
+    if (k==Qt::Key_Equal || k==Qt::Key_Plus)
+            slotZoomInClicked();
+    else if (k==Qt::Key_Minus)
+            slotZoomOutClicked();
+    else if (k==Qt::Key_Home)
+            slotFirstClicked();
+    else if (k==Qt::Key_End)
+            slotLastClicked();
+    else
+            ok = false;
 
-		if (ok) {
-			ke->accept();
-			return true;
-		}
-	}
-	else if (t==QEvent::ShortcutOverride) {
-		QKeyEvent *ke = static_cast<QKeyEvent*>(e);
-		const int k = ke->key();
-		bool ok = true;
-		if (k==Qt::Key_PageUp)
-			slotPreviousClicked();
-		else if (k==Qt::Key_PageDown)
-			slotNextClicked();
-		else
-			ok = false;
+    if (ok)
+    {
+      ke->accept();
+      return true;
+    }
+  }
+  else if (t==QEvent::ShortcutOverride)
+  {
+    QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+    const int k = ke->key();
+    bool ok = true;
+    if (k==Qt::Key_PageUp)
+            slotPreviousClicked();
+    else if (k==Qt::Key_PageDown)
+            slotNextClicked();
+    else
+            ok = false;
 
-		if (ok) {
-			ke->accept();
-			return true;
-		}
-	}
-	return QWidget::event(e);
+    if (ok) {
+            ke->accept();
+            return true;
+    }
+  }
+  return QWidget::event(e);
 }
 
 

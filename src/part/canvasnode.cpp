@@ -59,102 +59,143 @@
 // CanvasNode
 //
 
-CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n)
-: m_node(n), m_view(v), m_hasFocus(false), 
+CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n, QGraphicsItem* parent)
+: QObject(), QAbstractGraphicsShapeItem(), 
+  m_node(n), m_view(v), m_hasFocus(false), 
   m_font(0),
   m_pen(Dot2QtConsts::componentData().qtColor(n->fontColor()))
 
 {
+  kDebug() << k_funcinfo << n->id();
   m_font = FontsCache::changeable().fromName(n->fontName());
   connect(n,SIGNAL(changed()),this,SLOT(modelChanged()));
+
+  QString tipStr;
+  QString id = n->id();
+  QString label = n->label();
+  tipStr = i18n("id='%1'\nlabel='%2'",id,label);
+  kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
+  setToolTip(tipStr);
+}
+
+void CanvasNode::initialize(double scaleX, double scaleY,
+                            int xMargin, int yMargin, int gh,
+                            int wdhcf, int hdvcf)
+{
+  setFlag(QGraphicsItem::ItemIsMovable, true);
+
+  m_scaleX = scaleX; m_scaleY = scaleY;
+  m_xMargin = xMargin; m_yMargin = yMargin;
+  m_gh = gh; m_wdhcf = wdhcf; m_hdvcf = hdvcf;
+
+  setZValue(m_node->z());
+
+
+}
+
+QRectF CanvasNode::boundingRect () const
+{
+  kDebug() << k_funcinfo << node()->id();
+
+  qreal adjust = 0.5;
+  QRectF rect;
+  if (node()->renderOperations().isEmpty())
+  {
+    rect = QRectF(0,0,(m_view->defaultNewElementPixmap().size().width())*m_scaleX,(m_view->defaultNewElementPixmap().size().height())*m_scaleY);
+    return rect;
+  }
+  DotRenderOpVec::const_iterator it, it_end;
+  it = node()->renderOperations().begin(); it_end = node()->renderOperations().end();
+  for (; it != it_end; it++)
+  {
+    kDebug() << k_funcinfo << node()->id() << "an op: " << (*it).renderop << " ";
+    foreach (int i, (*it).integers)
+    {
+      kDebug() << i << " ";
+    }
+    kDebug() << (*it).str;
+
+    if ((*it).renderop == "e" || (*it).renderop == "E")
+    {
+      kDebug() << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
+          << "(*it).integers[0]%m_wdhcf=" << (*it).integers[0]%m_wdhcf;
+      int w = int(m_scaleX * (*it).integers[2]) * 2;
+      int h = int(m_scaleY * (*it).integers[3]) * 2;
+      int x = m_xMargin + int(((*it).integers[0]%m_wdhcf)*m_scaleX) - w/2;
+      int y = int((m_gh - (*it).integers[1]%m_hdvcf)*m_scaleY) + m_yMargin - h/2;
+      rect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
+      kDebug() << k_funcinfo << "'" << node()->id() << "' set rect for ellipse to " << rect;
+    }
+    else if  ((*it).renderop == "p" || (*it).renderop == "P")
+    {
+      QPolygonF polygon((*it).integers[0]);
+      for (int i = 0; i < (*it).integers[0]; i++)
+      {
+        qreal x,y;
+        x = ((*it).integers[2*i+1] == m_wdhcf)?(*it).integers[2*i+1]:(*it).integers[2*i+1]%m_wdhcf;
+        y = ((*it).integers[2*i+2] == m_hdvcf)?(*it).integers[2*i+2]:(*it).integers[2*i+2]%m_hdvcf;
+        {
+
+        }
+        QPointF p(
+                  x*m_scaleX +m_xMargin,
+                  (m_gh-y)*m_scaleY + m_yMargin
+                );
+        polygon[i] = p;
+      }
+      rect = polygon.boundingRect();
+      kDebug() << k_funcinfo << "'" << node()->id() << "' set rect for polygon to " << rect;
+    }
+  }
+  kDebug() << k_funcinfo << "'" << node()->id() << "'" << rect;
+  return rect;
 }
 
 void CanvasNode::modelChanged()
 {
-  update();
-}
-
-CanvasNode* CanvasNode::dotShapedCanvasNode(const DotRenderOp& dro, 
-                                            const DotRenderOpVec& dros,
-                                            DotGraphView* v, 
-                                            GraphNode* n,
-                                            QGraphicsScene* c,
-                                            double scaleX, double scaleY, int xMargin, int yMargin, int gh,
-                                            int wdhcf, int hdvcf)
-{
-  CanvasNode* res = 0;
-  kDebug() << "dotShapedCanvasNode: creating node for " << n->label()
-            << " ; dro = " << dro.renderop << endl;
-  if (n->label()[0] == '<' && n->shape() != "record")
-  {
-//     std::cerr << "dotShapedCanvasNode: creating CanvasHtmlNode" << std::endl;
-/*    res = new CanvasHtmlNode(v, n, dro, dros, c,
-                             scaleX, scaleY, xMargin, yMargin, gh,
-                             wdhcf, hdvcf);*/
-  }
-  else if (dro.renderop == "e" || dro.renderop == "E")
-  {
-//   kDebug() << "dotShapedCanvasNode: creating CanvasEllipseNode";
-    res = new CanvasEllipseNode(v, n, dro, dros, c,
-                                scaleX, scaleY, xMargin, yMargin, gh,
-                                wdhcf, hdvcf);
-  }
-  else if(dro.renderop == "p" || dro.renderop == "P" || dro.renderop == "T")
-  {
-//     std::cerr << "dotShapedCanvasNode: creating CanvasPolygonalNode" << std::endl;
-    res = new CanvasPolygonalNode(v, n, dro, dros, c,
-                                  scaleX, scaleY, xMargin, yMargin, gh,
-                                  wdhcf, hdvcf);
-  }
-  else if (dro.renderop == "L" || dro.renderop == "B"  || dro.renderop == "b")
-  {
-    kWarning() << "xdot render operation '" << dro.renderop << "' is currently "
-      "not supported (ignored)." << endl;
-  }
-  else if (
-             dro.renderop == "C" || dro.renderop == "c" 
-          || dro.renderop == "F" || dro.renderop == "S")
-  {
-    kWarning() << "xdot render operation '" << dro.renderop << "' is currently "
-      "not supported (ignored).\nUsually its value is handled through"
-      " standard attributes." << endl;
-  }
-  else 
-  {
-    kError() << "Error ! Unknown node shape '" << dro.renderop << "' ; ignoring it." << endl;
-    //    res = new CanvasPolygonalNode(v, n, dro, c);
-  }
-  if (res != 0)
-  {
-    res->m_scaleX = scaleX; 
-    res->m_scaleY = scaleY; 
-    res->m_xMargin = xMargin; 
-    res->m_yMargin = yMargin;
-    res->m_gh = gh;
-    res->m_wdhcf = wdhcf;
-    res->m_hdvcf = hdvcf;
-  }
-  return res;
+  kDebug() << k_funcinfo << node()->id();
+  m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_node->fontColor()));
+  m_font = FontsCache::changeable().fromName(m_node->fontName());
+  prepareGeometryChange();
 }
 
 void CanvasNode::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
 QWidget *widget)
 {
+  kDebug() << k_funcinfo << node()->id();
+  foreach (DotRenderOp op, node()->renderOperations())
+  {
+    kDebug() << k_funcinfo << node()->id() << "an op: " << op.renderop << " ";
+    foreach (int i, op.integers)
+    {
+      kDebug() << i << " ";
+    }
+    kDebug() << op.str;
+  }
+  if (node()->renderOperations().isEmpty())
+  {
+//     kDebug() << k_funcinfo << "drawPixmap";
+    p->drawPixmap(QPointF(0,0),m_view->defaultNewElementPixmap());
+    return;
+  }
   QListIterator<DotRenderOp> it(node()->renderOperations());
   it.toBack();
   while (it.hasPrevious())
   {
+    kDebug() << k_funcinfo;
     const DotRenderOp& dro = it.previous();
     if (dro.renderop == "e" || dro.renderop == "E")
     {
-      int w = int(m_scaleX * dro.integers[2]) * 2;
-      int h = int(m_scaleY * dro.integers[3]) * 2;
-      int x = m_xMargin + int((dro.integers[0]%m_wdhcf)*m_scaleX) - w/2;
-      int y = int((m_gh - dro.integers[1]%m_hdvcf)*m_scaleY) + m_yMargin - h/2;
+      qreal w = int(m_scaleX * dro.integers[2]) * 2;
+      qreal h = int(m_scaleY * dro.integers[3]) * 2;
+      qreal x = m_xMargin + int((dro.integers[0]%m_wdhcf)*m_scaleX) - w/2;
+      qreal y = int((m_gh - dro.integers[1]%m_hdvcf)*m_scaleY) + m_yMargin - h/2;
+      QRectF rect(x,y,w,h);
       p->save();
       p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
       p->setPen(Dot2QtConsts::componentData().qtColor(node()->lineColor()));
-      p->drawEllipse(x, y, w, h);
+      kDebug() << k_funcinfo << node()->id() << "drawEllipse" << node()->backColor() << x << y << w << h;
+      p->drawEllipse(rect);
       p->restore();
     }
     else if(dro.renderop == "p" || dro.renderop == "P")
@@ -170,8 +211,8 @@ QWidget *widget)
                   int(x*m_scaleX) + m_xMargin,
                   int((m_gh-y)*m_scaleY) + m_yMargin
                 );
-/*        std::cerr << "    point: (" << dro.integers[2*i+1] << ","
-                  << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf << std::endl;*/
+/*        kDebug() << k_funcinfo << "    point: (" << dro.integers[2*i+1] << ","
+                  << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf;*/
         points[i] = p;
       }
       p->save();
@@ -222,6 +263,7 @@ QWidget *widget)
     const DotRenderOp& dro = it.previous();
     if ( dro.renderop == "L" )
     {
+      kDebug() << k_funcinfo << "Label";
       QPolygonF points(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
       {
@@ -246,6 +288,7 @@ QWidget *widget)
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(node()->style()));
       }
       p->setPen(pen);
+      kDebug() << k_funcinfo << node()->id() << "drawPolyline" << points;
       p->drawPolyline(points);
       p->restore();
     }
@@ -265,7 +308,7 @@ QWidget *widget)
         << " " << (*it).integers[1] << " " << (*it).integers[2]
         << " " << (*it).integers[3] << " " << (*it).str 
         << " (" << node()->fontName() << ", " << node()->fontSize()
-        << ", " << node()->fontColor() << ")" << endl;*/
+        << ", " << node()->fontColor() << ")";*/
       
       int stringWidthGoal = int(dro.integers[3] * m_scaleX);
       int fontSize = node()->fontSize();
@@ -280,151 +323,45 @@ QWidget *widget)
       p->save();
       p->setFont(*m_font);
       p->setPen(m_pen);
-      p->drawText(
-                  int((m_scaleX * 
+      qreal x = (m_scaleX *
                        (
-                         (dro.integers[0]) 
+                         (dro.integers[0])
                          + (((-dro.integers[2])*(dro.integers[3]))/2)
                          - ( (dro.integers[3])/2 )
                        )
                       )
-                      + m_xMargin ),
-                  int(((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin),
-                  dro.str);
+                      + m_xMargin;
+      qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
+      QPointF point(x,y);
+      kDebug() << k_funcinfo << node()->id() << "drawText" << point;
+      p->drawText(point, dro.str);
       p->restore();
     }
   }
-
+//   p->drawRect(QRectF(pos(),boundingRect().bottomRight()));
 }
 
-CanvasPolygonalNode::CanvasPolygonalNode(DotGraphView* v,GraphNode* n, const QPolygonF& points, QGraphicsScene* c)
-: QGraphicsPolygonItem(0,c), CanvasNode(v, n)
+void CanvasNode::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-//   setPoints(points);
-}
-
-CanvasPolygonalNode::CanvasPolygonalNode(
-                                          DotGraphView* v, 
-                                          GraphNode* n,
-                                          const DotRenderOp& dro,
-                                          const DotRenderOpVec& dros,
-                                          QGraphicsScene* c,
-                                          double scaleX, double scaleY, 
-                                          int xMargin, int yMargin, int gh,
-                                          int wdhcf, int hdvcf
-                                        )
-: QGraphicsPolygonItem(0,c), CanvasNode(v, n)
-{
-  setFlag(QGraphicsItem::ItemIsMovable, true);
-  m_renderOperations = dros;
-
-// // /*  kDebug() << "Creating CanvasPolygonalNode for "<<n->id()<<" with " << dro.integers[0] << " points.";
-// //   kDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
-// //     << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
-  m_scaleX = scaleX; m_scaleY = scaleY;
-  m_xMargin = xMargin; m_yMargin = yMargin;
-  m_gh = gh; m_wdhcf = wdhcf; m_hdvcf = hdvcf;
-  QPolygonF polygon(dro.integers[0]);
-  for (int i = 0; i < dro.integers[0]; i++)
+  kDebug() << k_funcinfo << m_node->id() << boundingRect();
+  if (m_view->editingMode() == DotGraphView::AddNewEdge)
   {
-    qreal x,y;
-    x = (dro.integers[2*i+1] == wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]%wdhcf;
-    y = (dro.integers[2*i+2] == hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]%hdvcf;
-    {
-      
-    }
-    QPointF p(
-              x*scaleX +xMargin,
-              (gh-y)*scaleY + yMargin
-            );
-/*  kDebug() << "    point: (" << dro.integers[2*i+1] << ","
-      <<dro.integers[2*i+2]<< ") -> " << p << endl;*/
-    polygon[i] = p;
+    m_view->createNewEdgeDraftFrom(this);
   }
-  setPolygon(polygon);
-  
-  QString tipStr;
-  QString id = n->id();
-  QString label = n->label();
-  tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-  setToolTip(tipStr);
-}
-
-/** @todo handle multiple comma separated styles 
- * @todo implement styles diagonals, rounded
- */
-void CanvasPolygonalNode::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
- QWidget *widget)
-{
-  CanvasNode::paint(p,option,widget);
-  
-  // drawing of a colored line around the node if it has focus
-  if (m_hasFocus)
+  else if (m_view->editingMode() == DotGraphView::DrawNewEdge)
   {
-    p->save();
-    QPen pen(Dot2QtConsts::componentData().qtColor("blue"));
-    pen.setStyle(Qt::SolidLine);
-    pen.setWidth(2);
-    p->setPen(pen);
-    p->drawPolyline(polygon());
-    p->restore();
+    m_view->finishNewEdgeTo(this);
   }
 }
 
-void CanvasPolygonalNode::update()
+void CanvasNode::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
-  QGraphicsPolygonItem::update();
+  kDebug() << k_funcinfo;
 }
 
-CanvasEllipseNode::CanvasEllipseNode(DotGraphView* v, GraphNode* n,
-                                             int x, int y, int w, int h, QGraphicsScene* c)
-                                             : QGraphicsEllipseItem(x,y,w,h,0,c), CanvasNode(v, n)
+void CanvasNode::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
-  setFlag(QGraphicsItem::ItemIsMovable, true);
-  QString tipStr;
-  QString id = n->id();
-  QString label = n->label();
-  tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-  kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
-  setToolTip(tipStr);
-}
-
-CanvasEllipseNode::CanvasEllipseNode(
-                   DotGraphView* v, 
-                   GraphNode* n,
-                   const DotRenderOp& dro,
-                   const DotRenderOpVec& dros,
-                   QGraphicsScene* c,
-                   double scaleX, double scaleY, int xMargin, int yMargin, int gh,
-                                      int wdhcf, int hdvcf)
-: QGraphicsEllipseItem(0,c), CanvasNode(v, n)
-{
-/*  kDebug() << "CanvasEllipseNode " << dro.integers.size() << " / "
-    << dro.integers[0] << " / " << dro.integers[1] << " / " 
-    << dro.integers[2] << " / " << dro.integers[3] << endl; */
-  m_renderOperations = dros;
-  m_scaleX = scaleX; m_scaleY = scaleY;
-  m_xMargin = xMargin; m_yMargin = yMargin;
-  m_gh = gh; m_wdhcf = wdhcf; m_hdvcf = hdvcf;
-  int w = int(scaleX * dro.integers[2]) * 2;
-  int h = int(scaleY * dro.integers[3]) * 2;
-  int x = xMargin + int((dro.integers[0]%wdhcf)*scaleX);
-  int y = int((gh - dro.integers[1]%hdvcf)*scaleY) + yMargin;
-  setRect(x,y,w,h);
-
-  QString tipStr;
-  QString id = n->id();
-  QString label = n->label();
-  tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-  kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
-  setToolTip(tipStr);
-}
-
-void CanvasEllipseNode::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-QWidget *widget)
-{
-  
-  CanvasNode::paint(p,option,widget);
+  kDebug() << k_funcinfo;
 }
 
 // CanvasHtmlNode::CanvasHtmlNode(
@@ -440,12 +377,12 @@ QWidget *widget)
 // : KHTMLPart(v->viewport()), CanvasNode(v, n)
 // {
 //   m_renderOperations = dros;
-// //   std::cerr << "Creating "<<node()->id()<<" CanvasHtmlNode for" << n 
-// //     << " with label '" << n->label() << "'" << std::endl;
+// //   kDebug() << "Creating "<<node()->id()<<" CanvasHtmlNode for" << n
+// //     << " with label '" << n->label() << "'";
 // 
 //   QString myHTMLCode = n->label();
 //   myHTMLCode = myHTMLCode.mid(1, myHTMLCode.length() - 2);
-// //   std::cerr << "HTML = " << myHTMLCode << std::endl;
+// //   kDebug() << "HTML = " << myHTMLCode;
 //   begin(KUrl(QString("file:") + QDir::currentPath() + "/index.html"));
 //   setAutoloadImages(true);
 //   write(myHTMLCode);
@@ -483,7 +420,7 @@ QWidget *widget)
 // 
 // void CanvasHtmlNode::move(int x, int y)
 // {
-// //   std::cerr << "CanvasHtmlNode::move("<<x<<", "<<y<<")" << std::endl;
+// //   kDebug() << "CanvasHtmlNode::move("<<x<<", "<<y<<")";
 //   m_xMovedTo = x; m_yMovedTo = y;
 //   view()->move(int((node()->x())*m_scaleX*m_zoomFactor - m_xMovedTo), int((m_gh-node()->y())*m_scaleY*m_zoomFactor) - m_yMovedTo);
 // //   view()->move(int(x*m_scaleX), int((m_gh-y)*m_scaleY));

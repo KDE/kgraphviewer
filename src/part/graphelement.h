@@ -56,12 +56,12 @@ public:
   inline void label(const QString& label) {m_attributes["label"]=label;}
   inline const QString label() const {return m_attributes["label"];}
 
-inline unsigned int fontSize() const {return m_attributes["fontsize"].toUInt();}
-inline void fontSize(unsigned int fs) {m_attributes["fontsize"]=QString::number(fs);}
-inline QString fontName() const {return m_attributes["fontname"];}
-inline void fontName(const QString& fn) {m_attributes["fontname"]=fn;}
-inline QString fontColor() const {return m_attributes["fontcolor"];}
-inline void fontColor(const QString& fc) {m_attributes["fontcolor"] = fc;}
+  inline unsigned int fontSize() const {return m_attributes["fontsize"].toUInt();}
+  inline void fontSize(unsigned int fs) {m_attributes["fontsize"]=QString::number(fs);}
+  inline QString fontName() const {return m_attributes["fontname"];}
+  inline void fontName(const QString& fn) {m_attributes["fontname"]=fn;}
+  inline QString fontColor() const {return m_attributes["fontcolor"];}
+  inline void fontColor(const QString& fc) {m_attributes["fontcolor"] = fc;}
 
   inline DotRenderOpVec& renderOperations() {return m_renderOperations;};
   inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
