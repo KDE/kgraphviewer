@@ -89,6 +89,7 @@ private slots:
   void fileNew();
   void fileOpen();
   void fileSave();
+  void fileSaveAs();
   void close(QWidget* tab);
   void close();
   void slotURLSelected(const KUrl&);

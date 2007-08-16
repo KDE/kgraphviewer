@@ -216,6 +216,7 @@ void KGraphEditor::setupActions()
   m_rfa = (KRecentFilesAction*) actionCollection()->addAction(KStandardAction::OpenRecent, "file_open_recent", this, SLOT( slotURLSelected(const KUrl&) ) );
   m_rfa->loadEntries(KGlobal::config()->group("kgrapheditor"));
   actionCollection()->addAction( KStandardAction::Save, "file_save", this, SLOT( fileSave() ) );
+  actionCollection()->addAction( KStandardAction::SaveAs, "file_save_as", this, SLOT( fileSaveAs() ) );
 
   actionCollection()->addAction( KStandardAction::Quit, "file_quit", this, SLOT( quit() ) );
 
@@ -481,6 +482,19 @@ void KGraphEditor::fileSave()
   if (currentPage != 0)
   {
     emit(saveTo(QUrl(m_tabsFilesMap[currentPage]).path()));
+  }
+}
+
+void KGraphEditor::fileSaveAs()
+{
+  QWidget* currentPage = m_widget->currentPage();
+  if (currentPage != 0)
+  {
+    QString fileName = KFileDialog::getSaveFileName(KUrl(),
+                "*.dot", currentPage,
+                i18n("Save current graph to..."));
+    m_tabsFilesMap[currentPage] = fileName;
+    emit(saveTo(fileName));
   }
 }
 

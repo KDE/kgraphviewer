@@ -6,6 +6,7 @@
     <Action name="file_open"/>
     <Action name="file_open_recent"/>
     <Action name="file_save"/>
+    <Action name="file_save_as"/>
     <DefineGroup name="open_merge" />
     <Separator/>
     <Action name="file_quit"/>
@@ -34,8 +35,7 @@
   <Action name="file_open"/>
   <Action name="file_open_recent"/>
   <Action name="file_save"/>
-  <Action name="edit_new_vertex"/>
-  <Action name="edit_new_edge"/>
+  <Action name="file_save_as"/>
 <Merge/>
 </ToolBar>
 <ToolBar noMerge="2" name="viewToolBar"><text>View Toolbar</text>
@@ -45,5 +45,11 @@
   <Action name="help_whats_this"/>
   <Action name="help"/>
   <Merge/>
+</ToolBar>
+<ToolBar noMerge="4" name="editToolBar"><text>Edit Toolbar</text>
+  <Action name="edit_new_vertex"/>
+  <Action name="edit_new_edge"/>
+  <Merge/>
+<Merge/>
 </ToolBar>
 </kpartgui>
