@@ -335,3 +335,10 @@ void DotGraph::storeOriginalAttributes()
   }
   GraphElement::storeOriginalAttributes();
 }
+
+void DotGraph::saveTo(const QString& fileName)
+{
+  kDebug() << k_funcinfo << fileName;
+  GraphExporter exporter;
+  exporter.writeDot(this, fileName);
+}

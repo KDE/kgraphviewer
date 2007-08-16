@@ -57,7 +57,7 @@ void DotGraphParsingHelper::setgraphelementattributes(GraphElement* ge, const At
   it = attributes.begin(); it_end = attributes.end();
   for (; it != it_end; it++)
   {
-    kDebug() << "    " << QString::fromStdString((*it).first) << "\t=\t'" << QString::fromStdString((*it).second) <<"'";
+    qDebug() << "    " << QString::fromStdString((*it).first) << "\t=\t'" << QString::fromStdString((*it).second) <<"'";
     if ((*it).first=="label")
     {
       QString label = QString::fromUtf8((*it).second.c_str());
@@ -140,7 +140,7 @@ void DotGraphParsingHelper::setedgeattributes()
 
 void DotGraphParsingHelper::setattributedlist()
 {
-  kDebug() << k_funcinfo << "Setting attributes list for " << QString::fromStdString(attributed);
+//   kDebug() << k_funcinfo << "Setting attributes list for " << QString::fromStdString(attributed);
   if (attributed == "graph")
   {
     if (attributes.find("bb") != attributes.end())
@@ -158,7 +158,7 @@ void DotGraphParsingHelper::setattributedlist()
     it = attributes.begin(); it_end = attributes.end();
     for (; it != it_end; it++)
     {
-      kDebug() << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
+//       kDebug() << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
       graphAttributes[(*it).first] = (*it).second;
     }
   }
@@ -168,7 +168,7 @@ void DotGraphParsingHelper::setattributedlist()
     it = attributes.begin(); it_end = attributes.end();
     for (; it != it_end; it++)
     {
-      kDebug() << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
+//       kDebug() << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
       nodesAttributes[(*it).first] = (*it).second;
     }
   }
@@ -178,7 +178,7 @@ void DotGraphParsingHelper::setattributedlist()
     it = attributes.begin(); it_end = attributes.end();
     for (; it != it_end; it++)
     {
-      kDebug() << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
+//       kDebug() << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
       edgesAttributes[(*it).first] = (*it).second;
     }
   }

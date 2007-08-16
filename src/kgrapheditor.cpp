@@ -57,9 +57,11 @@ using namespace KGraphViewer;
 
 KGraphEditor::KGraphEditor() :
     KParts::MainWindow(),
-    m_currentPart(0),
-    m_rfa(0)
+    m_rfa(0),
+    m_currentPart(0)
 {
+  qDebug() << k_funcinfo << "essai1";
+  qDebug() << "essai2";
   // set the shell's ui resource file
   setXMLFile("kgrapheditorui.rc");
 
@@ -210,12 +212,11 @@ void KGraphEditor::setupActions()
   // create our actions
 
   actionCollection()->addAction( KStandardAction::New, "file_new", this, SLOT( fileNew() ) );
-
-
   actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT( fileOpen() ) );
   m_rfa = (KRecentFilesAction*) actionCollection()->addAction(KStandardAction::OpenRecent, "file_open_recent", this, SLOT( slotURLSelected(const KUrl&) ) );
   m_rfa->loadEntries(KGlobal::config()->group("kgrapheditor"));
-  
+  actionCollection()->addAction( KStandardAction::Save, "file_save", this, SLOT( fileSave() ) );
+
   actionCollection()->addAction( KStandardAction::Quit, "file_quit", this, SLOT( quit() ) );
 
   m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
@@ -474,6 +475,15 @@ void KGraphEditor::close()
   }
 }
 
+void KGraphEditor::fileSave()
+{
+  QWidget* currentPage = m_widget->currentPage();
+  if (currentPage != 0)
+  {
+    emit(saveTo(QUrl(m_tabsFilesMap[currentPage]).path()));
+  }
+}
+
 void KGraphEditor::newTabSelectedSlot(QWidget* tab)
 {
 //   kDebug() << k_funcinfo << tab;
@@ -491,6 +501,7 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   {
     disconnect(this,SIGNAL(prepareAddNewElement()),part,SLOT(prepareAddNewElement()));
     disconnect(this,SIGNAL(prepareAddNewEdge()),part,SLOT(prepareAddNewEdge()));
+    disconnect(this,SIGNAL(saveTo(const QString&)),part,SLOT(saveTo(const QString&)));
   }
   m_currentPart = ((kgraphviewerPart*) part);
   m_treeWidget->clear();
@@ -500,6 +511,7 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   }
   connect(this,SIGNAL(prepareAddNewElement()),part,SLOT(prepareAddNewElement()));
   connect(this,SIGNAL(prepareAddNewEdge()),part,SLOT(prepareAddNewEdge()));
+  connect(this,SIGNAL(saveTo(const QString&)),part,SLOT(saveTo(const QString&)));
   DotGraph* graph = m_currentPart->graph();
   QList<QTreeWidgetItem *> items;
   GraphNodeMap& nodesMap = graph->nodes();

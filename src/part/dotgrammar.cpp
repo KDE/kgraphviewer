@@ -159,7 +159,7 @@ void attrid(char const* first, char const* last)
     if (id.size()>0 && id[id.size()-1] == '"') id = id.substr(0,id.size()-1);
     phelper->attrid = id;
     phelper->valid = "";
-    kDebug() << "Got attr ID  = '"<<QString::fromStdString(phelper->attrid)<<"'";
+//     kDebug() << "Got attr ID  = '"<<QString::fromStdString(phelper->attrid)<<"'";
   }
 }
 
@@ -172,7 +172,7 @@ void subgraphid(char const* first, char const* last)
     if (id.size()>0 && id[0] == '"') id = id.substr(1);
     if (id.size()>0 && id[id.size()-1] == '"') id = id.substr(0,id.size()-1);
     phelper->subgraphid = id;
-    kDebug() << "Got subgraph id = '"<<QString::fromStdString(phelper->subgraphid)<<"'";
+//     kDebug() << "Got subgraph id = '"<<QString::fromStdString(phelper->subgraphid)<<"'";
   }
 }
 
@@ -184,7 +184,7 @@ void valid(char const* first, char const* last)
     if (id.size()>0 && id[0] == '"') id = id.substr(1);
     if (id.size()>0 && id[id.size()-1] == '"') id = id.substr(0,id.size()-1);
     phelper->valid = id;
-    kDebug() << "Got attr val = '"<<QString::fromStdString(phelper->valid)<<"'";
+//     kDebug() << "Got attr val = '"<<QString::fromStdString(phelper->valid)<<"'";
   }
 }
 

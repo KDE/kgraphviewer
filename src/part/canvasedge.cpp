@@ -50,80 +50,33 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
                        int wdhcf, int hdvcf,
                        QGraphicsItem* parent)
                        : QAbstractGraphicsShapeItem(parent),
-    m_view(view), m_edge(e), m_scaleX(scaleX),
+    m_scaleX(scaleX),
     m_scaleY(scaleY), m_xMargin(xMargin), m_yMargin(yMargin),
-    m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf),
-    m_font(0)
+    m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
+    m_font(0), m_view(view)
 {
+  connect(e,SIGNAL(changed()),this,SLOT(modelChanged()));
   m_font = FontsCache::changeable().fromName(e->fontName());
 
-//   std::cerr << "edge "  << e->fromNode()->id() << "->"  << e->toNode()->id() << std::endl;
-  DotRenderOpVec::const_iterator it, it_end;
-  it = edge()->renderOperations().begin(); 
-  it_end = edge()->renderOperations().end();
-  for (; it != it_end; it++)
-  {
-//     std::cerr << (*it).renderop  << ", ";
-    if ( (*it).renderop != "B" ) continue;
-    uint previousSize = m_points.size();
-    m_points.resize(previousSize+(*it).integers[0]);
-    for (int i = 0; i < (*it).integers[0]; i++)
-    {
-      QPoint p(
-          int(((*it).integers[2*i+1]%m_wdhcf)*m_scaleX) +m_xMargin,
-          int((m_gh-(*it).integers[2*i+2]%m_hdvcf)*m_scaleY) + m_yMargin
-              );
-      m_points[previousSize+i] = p;
-    }
-  }
-//   std::cerr << std::endl;
-  if (m_points.size() == 0) return;
-  
-  qreal minX = m_points[0].x(), minY = m_points[0].y();
-  qreal maxX = minX, maxY = minY;
-  int i;
-
-  int len = m_points.count();
-  for (i=1;i<len;i++) 
-  {
-    if (m_points[i].x() < minX) minX = m_points[i].x();
-    if (m_points[i].y() < minY) minY = m_points[i].y();
-    if (m_points[i].x() > maxX) maxX = m_points[i].x();
-    if (m_points[i].y() > maxY) maxY = m_points[i].y();
-  }
-  QPolygonF a = m_points,  b = m_points;
-  a.translate(-1, -1);
-  b.translate(1, 1);
-  a.resize(2*len);
-  for (i=0;i<len;i++)
-  {
-    a[len+i] = b[i];
-  }
-
-  m_points = a;;
+//   std::cerr << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << std::endl;
+  computeBoundingRect();
 
   QString tipStr = i18n("%1 -> %2\nlabel='%3'",
-      e->fromNode()->id(),e->toNode()->id(),e->label());
+      edge()->fromNode()->id(),edge()->toNode()->id(),e->label());
   setToolTip(tipStr);
 } 
 
 QRectF CanvasEdge::boundingRect() const
 {
-  if (edge()->renderOperations().isEmpty())
-  {
-    QRectF br(
-      edge()->fromNode()->canvasNode()->boundingRect().center(),
-      edge()->toNode()->canvasNode()->boundingRect().center());
-    kDebug() << k_funcinfo << br;
-    return br;
-  }
-  kDebug() << k_funcinfo << m_points.boundingRect();
-  return m_points.boundingRect();
+//   kDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << m_boundingRect;
+  return m_boundingRect;
 }
 
-void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-                   QWidget *widget)
+void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
+                   QWidget* widget)
 {
+Q_UNUSED(option)
+Q_UNUSED(widget)
   /// computes the scaling of line width
   qreal widthScaleFactor = (m_scaleX+m_scaleY)/2;
   if (widthScaleFactor < 1)
@@ -133,7 +86,6 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
 
   if (edge()->renderOperations().isEmpty())
   {
-    kDebug() << k_funcinfo;
     p->drawLine(
       edge()->fromNode()->canvasNode()->boundingRect().center(),
       edge()->toNode()->canvasNode()->boundingRect().center());
@@ -144,7 +96,7 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
   it_end = edge()->renderOperations().end();
   for (; it != it_end; it++)
   {
-    kDebug() << k_funcinfo;  
+    const DotRenderOp& dro = (*it);
     if ( (*it).renderop == "T" )
     {
       const QString& str = (*it).str;
@@ -163,17 +115,20 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
       p->setFont(*m_font);
       
       p->setPen(Dot2QtConsts::componentData().qtColor(edge()->fontColor()));
-      p->drawText(
-          int((m_scaleX * 
-            (
-            ((*it).integers[0]) 
-            + ((((*it).integers[2])*((*it).integers[3]))/2)
-            - ( ((*it).integers[3])/2 )
-            )
-                )
-            + m_xMargin) ,
-          int(((m_gh - ((*it).integers[1]))*m_scaleY + m_yMargin)),
-      str);
+
+      qreal x = (m_scaleX *
+                       (
+                         (dro.integers[0])
+                         + (((-dro.integers[2])*(fm.width(dro.str)))/2)
+                         - ( (fm.width(dro.str))/2 )
+                       )
+                      )
+                      + m_xMargin;
+      qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
+      QPointF point(x,y);
+      qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawText" << edge()->fontColor() << point;
+
+      p->drawText(point,str);
       p->restore();
     }      
     else if (( (*it).renderop == "p" ) || ((*it).renderop == "P" ))
@@ -182,8 +137,8 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
       for (int i = 0; i < (*it).integers[0]; i++)
       {
         QPointF point(
-            (int((*it).integers[2*i+1])%m_wdhcf)*m_scaleX +m_xMargin,
-            (int(m_gh-(*it).integers[2*i+2])%m_hdvcf)*m_scaleY + m_yMargin
+            (int((*it).integers[2*i+1])/*%m_wdhcf*/)*m_scaleX +m_xMargin,
+            (int(m_gh-(*it).integers[2*i+2])/*%m_hdvcf*/)*m_scaleY + m_yMargin
                 );
         polygon[i] = point;
       }
@@ -192,6 +147,7 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         p->save();
         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
         p->drawPolygon(polygon);
+        qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
         p->restore();
       }
       else
@@ -211,15 +167,16 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
       }
       p->save();
       p->setPen(pen);
+      qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
       p->drawPolyline(polygon);
       p->restore();
     }
     else if (( (*it).renderop == "e" ) || ((*it).renderop == "E" ))
     {
-      double w = m_scaleX * (*it).integers[2] * 2;
-      double h = m_scaleY *  (*it).integers[3] * 2;
-      double x = (m_xMargin + ((*it).integers[0]%m_wdhcf)*m_scaleX) - w/2;
-      double y = ((m_gh -  (*it).integers[1]%m_hdvcf)*m_scaleY + m_yMargin) - h/2;
+      qreal w = m_scaleX * (*it).integers[2] * 2;
+      qreal h = m_scaleY *  (*it).integers[3] * 2;
+      qreal x = (m_xMargin + ((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
+      qreal y = ((m_gh -  (*it).integers[1]/*%m_hdvcf*/)*m_scaleY + m_yMargin) - h/2;
       p->save();
       if ((*it).renderop == "E" )
       {
@@ -233,15 +190,17 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
       if (edge()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
-        pen.setWidth(2 * widthScaleFactor);
+        pen.setWidth(int(2 * widthScaleFactor));
       }
       else
       {
-        pen.setWidth(1 * widthScaleFactor);
+        pen.setWidth(int(1 * widthScaleFactor));
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(edge()->style()));
       }
       p->setPen(pen);
-      p->drawEllipse(int(x),int(y),int(w),int(h));
+      QRectF rect(x,y,w,h);
+      qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
+      p->drawEllipse(rect);
       p->restore();
     }
     else if ( (*it).renderop == "B" )
@@ -251,7 +210,7 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
       if (edge()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
-        pen.setWidth(2 * widthScaleFactor);
+        pen.setWidth(int(2 * widthScaleFactor));
       }
       else if (edge()->style() != "filled")
       {
@@ -261,9 +220,9 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
       {
         bool ok;
         lineWidth = edge()->style().mid(12, edge()->style().length()-1-12).toInt(&ok);
-        pen.setWidth(lineWidth * widthScaleFactor);
+        pen.setWidth(int(lineWidth * widthScaleFactor));
       }
-      for (uint splineNum = 0; splineNum < edge()->colors().count() || (splineNum==0 && edge()->colors().count()==0); splineNum++)
+      for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum==0 && edge()->colors().count()==0); splineNum++)
       {
         QPolygonF points((*it).integers[0]);
         for (int i = 0; i < (*it).integers[0]; i++)
@@ -296,8 +255,8 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
             }
           }
           QPointF p(
-              ((*it).integers[2*i+1]%m_wdhcf*m_scaleX) +m_xMargin + diffX,
-              (m_gh-(*it).integers[2*i+2]%m_hdvcf)*m_scaleY + m_yMargin + diffY
+              ((*it).integers[2*i+1]/*%m_wdhcf*/*m_scaleX) +m_xMargin + diffX,
+              (m_gh-(*it).integers[2*i+2]/*%m_hdvcf*/)*m_scaleY + m_yMargin + diffY
                   );
           points[i] = p;
         }
@@ -308,10 +267,11 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         p->setPen(pen);
         QPainterPath path;
         path.moveTo(points[0]);
-        for (uint j = 0; j < (points.size()-1)/3; j++)
+        for (int j = 0; j < (points.size()-1)/3; j++)
         {
           path.cubicTo(points[3*j + 1],points[3*j+1 + 1], points[3*j+2 + 1]);
         }
+        qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
         p->drawPath(path);
         p->restore();
       }
@@ -319,4 +279,70 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
   }
 }
 
+void CanvasEdge::modelChanged()
+{
+  kDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
+  prepareGeometryChange();
+  computeBoundingRect();
+}
 
+void CanvasEdge::computeBoundingRect()
+{
+  if (edge()->renderOperations().isEmpty())
+  {
+    QRectF br(
+      edge()->fromNode()->canvasNode()->boundingRect().center(),
+      edge()->toNode()->canvasNode()->boundingRect().center());
+    qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
+    m_boundingRect = br;
+  }
+  else
+  {
+    QPolygonF m_points;
+    DotRenderOpVec::const_iterator it, it_end;
+    it = edge()->renderOperations().begin();
+    it_end = edge()->renderOperations().end();
+    for (; it != it_end; it++)
+    {
+  //     std::cerr << (*it).renderop  << ", ";
+      if ( (*it).renderop != "B" ) continue;
+      uint previousSize = m_points.size();
+      m_points.resize(previousSize+(*it).integers[0]);
+      for (int i = 0; i < (*it).integers[0]; i++)
+      {
+        QPointF p(
+            (((*it).integers[2*i+1]/*%m_wdhcf*/)*m_scaleX) +m_xMargin,
+            ((m_gh-(*it).integers[2*i+2]/*%m_hdvcf*/)*m_scaleY) + m_yMargin
+                );
+        m_points[previousSize+i] = p;
+      }
+    }
+  //   std::cerr << std::endl;
+    if (m_points.size() == 0) return;
+
+    qreal minX = m_points[0].x(), minY = m_points[0].y();
+    qreal maxX = minX, maxY = minY;
+    int i;
+
+    int len = m_points.count();
+    for (i=1;i<len;i++)
+    {
+      if (m_points[i].x() < minX) minX = m_points[i].x();
+      if (m_points[i].y() < minY) minY = m_points[i].y();
+      if (m_points[i].x() > maxX) maxX = m_points[i].x();
+      if (m_points[i].y() > maxY) maxY = m_points[i].y();
+    }
+    QPolygonF a = m_points,  b = m_points;
+    a.translate(-1, -1);
+    b.translate(1, 1);
+    a.resize(2*len);
+    for (i=0;i<len;i++)
+    {
+      a[len+i] = b[i];
+    }
+
+    m_points = a;
+    m_boundingRect = m_points.boundingRect();
+  }
+  qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
+}

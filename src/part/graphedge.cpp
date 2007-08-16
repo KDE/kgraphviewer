@@ -28,7 +28,7 @@
 
 #include "graphedge.h"
 #include "graphnode.h"
-#include "canvasnode.h"
+#include "canvasedge.h"
 #include "dotdefaults.h"
 
 #include <iostream>
@@ -43,7 +43,7 @@ GraphEdge::GraphEdge() :
     m_dir(DOT_DEFAULT_EDGE_DIR)
 {
   _fromNode = _toNode = 0;
-  _ce = 0;
+  m_ce = 0;
 
   _visible = true;
   _lastFromCaller = true;
@@ -80,6 +80,10 @@ void GraphEdge::updateWith(const GraphEdge& edge)
   m_colors = edge.colors();
   m_dir = edge.dir();
   GraphElement::updateWith(edge);
+/*  if (m_ce)
+  {
+    m_ce->modelChanged();
+  }*/
   kDebug() << k_funcinfo << "done";
 }
 

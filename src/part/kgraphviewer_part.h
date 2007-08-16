@@ -65,6 +65,7 @@ public slots:
   void prepareAddNewEdge();
   void setReadOnly();
   void setReadWrite();
+  void saveTo(const QString& fileName);
 
 protected:
     /**

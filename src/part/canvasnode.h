@@ -79,6 +79,7 @@ protected:
   virtual void mouseMoveEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
+  void computeBoundingRect();
 
   double m_scaleX, m_scaleY;
   int m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
@@ -87,6 +88,7 @@ protected:
   bool m_hasFocus;
   QFont* m_font;
   QPen m_pen;
+  QRectF m_boundingRect;
 };
 
 // class CanvasHtmlNode: public KHTMLPart, public CanvasNode

@@ -60,7 +60,7 @@
 //
 
 CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n, QGraphicsItem* parent)
-: QObject(), QAbstractGraphicsShapeItem(), 
+: QObject(), QAbstractGraphicsShapeItem(parent), 
   m_node(n), m_view(v), m_hasFocus(false), 
   m_font(0),
   m_pen(Dot2QtConsts::componentData().qtColor(n->fontColor()))
@@ -90,10 +90,15 @@ void CanvasNode::initialize(double scaleX, double scaleY,
 
   setZValue(m_node->z());
 
-
+  computeBoundingRect();
 }
 
 QRectF CanvasNode::boundingRect () const
+{
+  return m_boundingRect;
+}
+
+void CanvasNode::computeBoundingRect()
 {
   kDebug() << k_funcinfo << node()->id();
 
@@ -102,53 +107,58 @@ QRectF CanvasNode::boundingRect () const
   if (node()->renderOperations().isEmpty())
   {
     rect = QRectF(0,0,(m_view->defaultNewElementPixmap().size().width())*m_scaleX,(m_view->defaultNewElementPixmap().size().height())*m_scaleY);
-    return rect;
+    m_boundingRect = rect;
   }
-  DotRenderOpVec::const_iterator it, it_end;
-  it = node()->renderOperations().begin(); it_end = node()->renderOperations().end();
-  for (; it != it_end; it++)
+  else
   {
-    kDebug() << k_funcinfo << node()->id() << "an op: " << (*it).renderop << " ";
-    foreach (int i, (*it).integers)
+    DotRenderOpVec::const_iterator it, it_end;
+    it = node()->renderOperations().begin(); it_end = node()->renderOperations().end();
+    for (; it != it_end; it++)
     {
-      kDebug() << i << " ";
-    }
-    kDebug() << (*it).str;
-
-    if ((*it).renderop == "e" || (*it).renderop == "E")
-    {
-      kDebug() << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
-          << "(*it).integers[0]%m_wdhcf=" << (*it).integers[0]%m_wdhcf;
-      int w = int(m_scaleX * (*it).integers[2]) * 2;
-      int h = int(m_scaleY * (*it).integers[3]) * 2;
-      int x = m_xMargin + int(((*it).integers[0]%m_wdhcf)*m_scaleX) - w/2;
-      int y = int((m_gh - (*it).integers[1]%m_hdvcf)*m_scaleY) + m_yMargin - h/2;
-      rect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
-      kDebug() << k_funcinfo << "'" << node()->id() << "' set rect for ellipse to " << rect;
-    }
-    else if  ((*it).renderop == "p" || (*it).renderop == "P")
-    {
-      QPolygonF polygon((*it).integers[0]);
-      for (int i = 0; i < (*it).integers[0]; i++)
+      QString msg;
+      QTextStream dd(&msg);
+      dd << k_funcinfo << node()->id() << " an op: " << (*it).renderop << " ";
+      foreach (int i, (*it).integers)
       {
-        qreal x,y;
-        x = ((*it).integers[2*i+1] == m_wdhcf)?(*it).integers[2*i+1]:(*it).integers[2*i+1]%m_wdhcf;
-        y = ((*it).integers[2*i+2] == m_hdvcf)?(*it).integers[2*i+2]:(*it).integers[2*i+2]%m_hdvcf;
-        {
-
-        }
-        QPointF p(
-                  x*m_scaleX +m_xMargin,
-                  (m_gh-y)*m_scaleY + m_yMargin
-                );
-        polygon[i] = p;
+        dd << i << " ";
       }
-      rect = polygon.boundingRect();
-      kDebug() << k_funcinfo << "'" << node()->id() << "' set rect for polygon to " << rect;
+      dd << (*it).str;
+      qDebug() << msg;
+
+      if ((*it).renderop == "e" || (*it).renderop == "E")
+      {
+        qDebug() << k_funcinfo << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
+            << "(*it).integers[0]%m_wdhcf=" << (*it).integers[0]%m_wdhcf;
+        qreal w = m_scaleX * (*it).integers[2] * 2;
+        qreal h = m_scaleY * (*it).integers[3] * 2;
+        qreal x = m_xMargin + (((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
+        qreal y = ((m_gh - (*it).integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
+        m_boundingRect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
+        qDebug() << k_funcinfo << "'" << node()->id() << "' set rect for ellipse to " << rect;
+      }
+      else if  ((*it).renderop == "p" || (*it).renderop == "P")
+      {
+        QPolygonF polygon((*it).integers[0]);
+        for (int i = 0; i < (*it).integers[0]; i++)
+        {
+          qreal x,y;
+          x = ((*it).integers[2*i+1] == m_wdhcf)?(*it).integers[2*i+1]:(*it).integers[2*i+1]/*%m_wdhcf*/;
+          y = ((*it).integers[2*i+2] == m_hdvcf)?(*it).integers[2*i+2]:(*it).integers[2*i+2]/*%m_hdvcf*/;
+          {
+
+          }
+          QPointF p(
+                    x*m_scaleX +m_xMargin,
+                    (m_gh-y)*m_scaleY + m_yMargin
+                  );
+          polygon[i] = p;
+        }
+        m_boundingRect = polygon.boundingRect();
+        qDebug() << k_funcinfo << "'" << node()->id() << "' set rect for polygon to " << rect;
+      }
     }
   }
-  kDebug() << k_funcinfo << "'" << node()->id() << "'" << rect;
-  return rect;
+  qDebug() << k_funcinfo << node()->id() << "new bounding rect is:" << m_boundingRect;
 }
 
 void CanvasNode::modelChanged()
@@ -156,22 +166,29 @@ void CanvasNode::modelChanged()
   kDebug() << k_funcinfo << node()->id();
   m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_node->fontColor()));
   m_font = FontsCache::changeable().fromName(m_node->fontName());
+  computeBoundingRect();
   prepareGeometryChange();
+  setPos(0,0);
 }
 
 void CanvasNode::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
 QWidget *widget)
 {
-  kDebug() << k_funcinfo << node()->id();
+  Q_UNUSED(option)
+  Q_UNUSED(widget)
+  QString msg;
+  QTextStream dd(&msg);
   foreach (DotRenderOp op, node()->renderOperations())
   {
-    kDebug() << k_funcinfo << node()->id() << "an op: " << op.renderop << " ";
+    dd << k_funcinfo << node()->id() << " an op: " << op.renderop << " ";
     foreach (int i, op.integers)
     {
-      kDebug() << i << " ";
+      dd << i << " ";
     }
-    kDebug() << op.str;
+    dd << op.str << endl;
   }
+  qDebug() << msg;
+
   if (node()->renderOperations().isEmpty())
   {
 //     kDebug() << k_funcinfo << "drawPixmap";
@@ -182,19 +199,18 @@ QWidget *widget)
   it.toBack();
   while (it.hasPrevious())
   {
-    kDebug() << k_funcinfo;
     const DotRenderOp& dro = it.previous();
     if (dro.renderop == "e" || dro.renderop == "E")
     {
       qreal w = m_scaleX * dro.integers[2] * 2;
       qreal h = m_scaleY * dro.integers[3] * 2;
-      qreal x = m_xMargin + ((dro.integers[0]%m_wdhcf)*m_scaleX) - w/2;
-      qreal y = ((m_gh - dro.integers[1]%m_hdvcf)*m_scaleY) + m_yMargin - h/2;
+      qreal x = m_xMargin + ((dro.integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
+      qreal y = ((m_gh - dro.integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
       QRectF rect(x,y,w,h);
       p->save();
       p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
       p->setPen(Dot2QtConsts::componentData().qtColor(node()->lineColor()));
-      kDebug() << k_funcinfo << node()->id() << "drawEllipse" << node()->backColor() << x << y << w << h;
+      qDebug() << k_funcinfo << node()->id() << "drawEllipse" << node()->backColor() << rect;
       p->drawEllipse(rect);
       p->restore();
     }
@@ -205,8 +221,8 @@ QWidget *widget)
       for (int i = 0; i < dro.integers[0]; i++)
       {
         int x,y;
-        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]%m_wdhcf;
-        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]%m_hdvcf;
+        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
+        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
         QPoint p(
                   int(x*m_scaleX) + m_xMargin,
                   int((m_gh-y)*m_scaleY) + m_yMargin
@@ -268,8 +284,8 @@ QWidget *widget)
       for (int i = 0; i < dro.integers[0]; i++)
       {
         int x,y;
-        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]%m_wdhcf;
-        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]%m_hdvcf;
+        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
+        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
         QPoint p(
                   int(x*m_scaleX) +m_xMargin,
                   int((m_gh-y)*m_scaleY) + m_yMargin
@@ -288,7 +304,7 @@ QWidget *widget)
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(node()->style()));
       }
       p->setPen(pen);
-      kDebug() << k_funcinfo << node()->id() << "drawPolyline" << points;
+      qDebug() << k_funcinfo << node()->id() << "drawPolyline" << points;
       p->drawPolyline(points);
       p->restore();
     }
@@ -333,7 +349,7 @@ QWidget *widget)
                       + m_xMargin;
       qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
       QPointF point(x,y);
-      kDebug() << k_funcinfo << node()->id() << "drawText" << point;
+      qDebug() << k_funcinfo << node()->id() << "drawText" << point;
       p->drawText(point, dro.str);
       p->restore();
     }
@@ -343,6 +359,7 @@ QWidget *widget)
 
 void CanvasNode::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
+  Q_UNUSED(event)
   kDebug() << k_funcinfo << m_node->id() << boundingRect();
   if (m_view->editingMode() == DotGraphView::AddNewEdge)
   {
@@ -356,12 +373,14 @@ void CanvasNode::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
 void CanvasNode::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
-  kDebug() << k_funcinfo;
+  Q_UNUSED(event)
+//   kDebug() << k_funcinfo;
 }
 
 void CanvasNode::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
-  kDebug() << k_funcinfo;
+  Q_UNUSED(event)
+//   kDebug() << k_funcinfo;
 }
 
 // CanvasHtmlNode::CanvasHtmlNode(

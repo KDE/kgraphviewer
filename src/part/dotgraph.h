@@ -89,6 +89,8 @@ public:
 
   virtual void storeOriginalAttributes();
 
+  void saveTo(const QString& fileName);
+
 private:
   unsigned int cellNumber(int x, int y);
   void computeCells();

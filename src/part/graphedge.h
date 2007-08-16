@@ -49,8 +49,8 @@ public:
   GraphEdge();
   ~GraphEdge();
 
-  CanvasEdge* canvasEdge() { return _ce; }
-  void setCanvasEdge(CanvasEdge* ce) { _ce = ce; }
+  CanvasEdge* canvasEdge() { return m_ce; }
+  void setCanvasEdge(CanvasEdge* ce) { m_ce = ce; }
 
   bool isVisible() { return _visible; }
   void setVisible(bool v) { _visible = v; }
@@ -88,7 +88,7 @@ private:
   // we have a _ce *and* _from/_to because for collapsed edges,
   // only _to or _from will be unequal NULL
   GraphNode *_fromNode, *_toNode;
-  CanvasEdge* _ce;
+  CanvasEdge* m_ce;
   bool _visible;
   // for keyboard navigation: have we last reached this edge via a caller?
   bool _lastFromCaller;

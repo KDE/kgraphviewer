@@ -43,19 +43,10 @@ class KTemporaryFile;
 class GraphExporter
 {
 public:
-  GraphExporter(QString filename = QString::null);
+  GraphExporter();
   virtual ~GraphExporter();
 
-  void reset(QString filename = QString::null);
-
-  QString filename() { return _dotName; }
-
-  QString writeDot(const DotGraph* graph);
-
-
-private:
-  QString _dotName;
-  KTemporaryFile* _tmpFile;
+  QString writeDot(const DotGraph* graph, const QString& fileName = QString::null);
 };
 
 

@@ -56,8 +56,9 @@ class DotGraphView;
  */
 
 
-class CanvasEdge : public QAbstractGraphicsShapeItem
+class CanvasEdge : public QObject, public QAbstractGraphicsShapeItem
 {
+Q_OBJECT
 public:
   CanvasEdge(DotGraphView* v, GraphEdge*,
              double scaleX, double scaleY, 
@@ -72,13 +73,17 @@ public:
   GraphEdge* edge() { return m_edge; }
   const GraphEdge* edge() const { return m_edge; }
   
-    
+public Q_SLOTS:
+  void modelChanged();
+
+protected:
+  void computeBoundingRect();
 
   private:
   double m_scaleX, m_scaleY; 
   int m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
   GraphEdge* m_edge;
-  QPolygonF m_points;
+  QRectF m_boundingRect;
   QFont* m_font;
   DotGraphView* m_view;
 };

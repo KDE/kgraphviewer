@@ -18,6 +18,7 @@
 
 
 #include "kgraphviewer_part.h"
+#include "dotgraph.h"
 
 #include <kcomponentdata.h>
 #include <kaction.h>
@@ -148,6 +149,12 @@ void kgraphviewerPart::setReadWrite()
 {
   kDebug() << k_funcinfo;
   m_widget->setReadWrite();
+}
+
+void kgraphviewerPart::saveTo(const QString& fileName)
+{
+  kDebug() << k_funcinfo << fileName;
+  m_widget->graph()->saveTo(fileName);
 }
 
 /*It's usually safe to leave the factory code alone.. with the

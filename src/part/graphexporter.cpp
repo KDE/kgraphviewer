@@ -35,57 +35,30 @@
 #include "graphexporter.h"
 #include "dotgraph.h"
 
-GraphExporter::GraphExporter(QString filename)
+GraphExporter::GraphExporter()
 {
-    _tmpFile = 0;
-  reset(filename);
 }
-
 
 GraphExporter::~GraphExporter()
 {
-  if (_tmpFile) {
-    delete _tmpFile;
-  }
 }
 
-
-void GraphExporter::reset( QString filename)
-{
-  kDebug() << k_funcinfo << filename;
-
-  if (_tmpFile) 
-  {
-    delete _tmpFile;
-  }
-
-  if (filename.isEmpty()) 
-  {
-    _tmpFile = new KTemporaryFile();
-    _tmpFile->setSuffix(".dot");
-    _dotName = _tmpFile->name();
-  }
-  else 
-  {
-    _tmpFile = 0;
-    _dotName = filename;
-  }
-}
-
-
-
-QString GraphExporter::writeDot(const DotGraph* graph)
+QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
 {
   kDebug() << k_funcinfo;
-  QFile* file = 0;
 
-  KTemporaryFile tempFile;
-  tempFile.setSuffix(".dot");
+  QString actualFileName = fileName;
+  if (fileName.isEmpty())
+  {
+    KTemporaryFile tempFile;
+    tempFile.setSuffix(".dot");
+    actualFileName = tempFile.name();
+  }
 
-  QFile f(tempFile.name());
+  QFile f(actualFileName);
   if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
   {
-    kError() << "Aaaarrrgh!" << endl;
+    kError() << k_funcinfo << "Unable to open for writing " << actualFileName << endl;
     exit(2);
   }
   QTextStream stream(&f);
@@ -124,6 +97,6 @@ QString GraphExporter::writeDot(const DotGraph* graph)
   stream << "}\n";
 
   f.close();
-  return tempFile.name();
+  return actualFileName;
 }
 

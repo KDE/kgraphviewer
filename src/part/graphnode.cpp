@@ -36,7 +36,7 @@
 
 #include "dotgraphview.h"
 #include "pannerview.h"
-#include "canvasedge.h"
+#include "canvasnode.h"
 #include "graphnode.h"
 #include "dotdefaults.h"
 
@@ -54,6 +54,10 @@ GraphNode::GraphNode() :
 void GraphNode::updateWith(const GraphNode& node)
 {
   kDebug() << k_funcinfo;
+  if (m_cn)
+  {
+    m_cn->modelChanged();
+  }
   GraphElement::updateWith(node);
   kDebug() << k_funcinfo << "done";
 }

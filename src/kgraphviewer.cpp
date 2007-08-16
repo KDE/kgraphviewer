@@ -52,7 +52,8 @@
 using namespace KGraphViewer;
 
 KGraphViewer::KGraphViewer()
-    : KParts::MainWindow()
+    : KParts::MainWindow(),
+      m_rfa(0)
 {
   // set the shell's ui resource file
   setXMLFile("kgraphviewerui.rc");
@@ -105,7 +106,9 @@ KGraphViewer::KGraphViewer()
 
 KGraphViewer::~KGraphViewer()
 {
-  m_rfa->saveEntries(KGlobal::config()->group("kgraphviewer"));
+  KSharedConfig::Ptr config = KGlobal::config();
+  if (m_rfa != 0)
+    m_rfa->saveEntries(KConfigGroup(config, "kgraphviewer recent files"));
 }
 
 void KGraphViewer::reloadPreviousFiles()
@@ -179,7 +182,7 @@ void KGraphViewer::fileOpen()
     {
       if (m_rfa != 0)
       {
-        m_rfa->addUrl(*it);
+//         m_rfa->addUrl(*it);
       }
       openUrl(*it);
     }
@@ -193,8 +196,12 @@ void KGraphViewer::setupActions()
   actionCollection()->addAction( KStandardAction::New, "file_new", this, SLOT( fileNew() ) );
   
   actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT( fileOpen() ) );
-  m_rfa = (KRecentFilesAction*) actionCollection()->addAction(KStandardAction::OpenRecent, "file_open_recent", this, SLOT( slotURLSelected(const KUrl&) ) );
-  m_rfa->loadEntries(KGlobal::config()->group("kgraphviewer"));
+  m_rfa = KStandardAction::openRecent(this, SLOT( slotURLSelected(const KUrl&) ), this);
+  actionCollection()->addAction(m_rfa->objectName(),m_rfa);
+  m_rfa->setWhatsThis(i18n("This lists files which you have opened recently, and allows you to easily open them again."));
+
+  KSharedConfig::Ptr config = KGlobal::config();
+  m_rfa->loadEntries(KConfigGroup(config, "kgraphviewer recent files"));
   
   actionCollection()->addAction( KStandardAction::Quit, "file_quit", this, SLOT( quit() ) );
 //   KStandardAction::quit(kapp, SLOT(quit()), this);

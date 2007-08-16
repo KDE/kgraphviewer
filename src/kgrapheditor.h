@@ -70,6 +70,7 @@ signals:
   void prepareAddNewElement();
   void prepareAddNewEdge();
   void setReadWrite();
+  void saveTo(const QString& fileName);
 
 public slots:
   /**
@@ -87,6 +88,7 @@ public slots:
 private slots:
   void fileNew();
   void fileOpen();
+  void fileSave();
   void close(QWidget* tab);
   void close();
   void slotURLSelected(const KUrl&);
