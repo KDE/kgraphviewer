@@ -87,8 +87,8 @@ Q_UNUSED(widget)
   if (edge()->renderOperations().isEmpty())
   {
     p->drawLine(
-      edge()->fromNode()->canvasNode()->boundingRect().center(),
-      edge()->toNode()->canvasNode()->boundingRect().center());
+      edge()->fromNode()->canvasNode()->boundingRect().center()+edge()->fromNode()->canvasNode()->pos(),
+      edge()->toNode()->canvasNode()->boundingRect().center()+edge()->toNode()->canvasNode()->pos());
     return;
   }
   DotRenderOpVec::const_iterator it, it_end;
@@ -291,8 +291,8 @@ void CanvasEdge::computeBoundingRect()
   if (edge()->renderOperations().isEmpty())
   {
     QRectF br(
-      edge()->fromNode()->canvasNode()->boundingRect().center(),
-      edge()->toNode()->canvasNode()->boundingRect().center());
+      edge()->fromNode()->canvasNode()->boundingRect().center()+edge()->fromNode()->canvasNode()->pos(),
+      edge()->toNode()->canvasNode()->boundingRect().center()+edge()->toNode()->canvasNode()->pos());
     qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
     m_boundingRect = br;
   }

@@ -257,7 +257,6 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 //   std::set< GraphNode* >& nodes = m_graph->nodesOfCell(0);
   GraphNodeMap& nodes = m_graph->nodes();
 //   std::cerr << "Adding " << nodes.size() << " nodes to canvas" << std::endl;
-  uint nbNodesShown = 0;
   GraphNodeMap::iterator nodesIt, nodesIt_end;
   nodesIt = nodes.begin();
   nodesIt_end = nodes.end();
@@ -274,7 +273,6 @@ bool DotGraphView::loadDot(const QString& dotFileName)
     newCanvas->addItem(cnode);
     cnode->show();
   }
-//   std::cerr << "  " << nbNodesShown << " nodes shown" << std::endl;
   
   uint nbEdgesShown = 0;
   GraphEdgeMap::iterator edgesIt, edgesIt_end;
@@ -1269,7 +1267,7 @@ void DotGraphView::createNewEdgeDraftFrom(CanvasNode* node)
   unsetCursor();
   m_newEdgeSource = node;
   
-  m_newEdgeDraft = new QGraphicsLineItem(QLineF(node->boundingRect().center(),node->boundingRect().center()+QPointF(10,10)));
+  m_newEdgeDraft = new QGraphicsLineItem(QLineF(node->boundingRect().center()+node->pos(),node->boundingRect().center()+node->pos()+QPointF(10,10)));
   scene()->addItem(m_newEdgeDraft);
   m_newEdgeDraft->setZValue(1000);
   m_newEdgeDraft->show();
