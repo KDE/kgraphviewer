@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2006 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2006-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -11,10 +11,17 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
+
+#include "dotgrammar.h"
+#include "dotgraph.h"
+#include "dotdefaults.h"
+#include "graphnode.h"
+#include "graphedge.h"
+#include "DotGraphParsingHelper.h"
 
 #include <iostream>
 
@@ -29,14 +36,6 @@ namespace boost
   void throw_exception(std::exception const & e) {}
 }
 
-
-#include "dotgrammar.h"
-#include "dotgraph.h"
-#include "dotdefaults.h"
-//#include "graphsubgraph.h"
-#include "graphnode.h"
-#include "graphedge.h"
-#include "DotGraphParsingHelper.h"
 
 using namespace std;
 using namespace boost;
@@ -450,12 +449,12 @@ void valid_op(char const* first, char const* last)
   renderopvec->push_back(renderop);
   renderop.renderop = "";
   renderop.integers = QList<int>();
-  renderop.str= "";
+  renderop.str = "";
 }
 
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
 {
-  if (str == "")
+  if (str.empty())
   {
     return false;
   }

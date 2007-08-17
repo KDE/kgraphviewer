@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 /* This file was callgraphview.cpp, part of KCachegrind.
@@ -28,6 +28,20 @@
 /*
  * Callgraph View
  */
+
+#include "dotgraphview.h"
+#include "dotgraph.h"
+#include "graphelement.h"
+#include "pannerview.h"
+#include "canvassubgraph.h"
+#include "canvasedge.h"
+#include "dot2qtconsts.h"
+#include "graphnode.h"
+#include "canvasnode.h"
+#include "graphedge.h"
+#include "FontsCache.h"
+#include "kgraphviewer_partsettings.h"
+#include "simpleprintingcommand.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -65,20 +79,6 @@
 #include <kactionmenu.h>
 #include <kconfiggroup.h>
     
-#include "dotgraphview.h"
-#include "dotgraph.h"
-#include "graphelement.h"
-#include "pannerview.h"
-#include "canvassubgraph.h"
-#include "canvasedge.h"
-#include "dot2qtconsts.h"
-#include "graphnode.h"
-#include "canvasnode.h"
-#include "graphedge.h"
-#include "FontsCache.h"
-#include "kgraphviewer_partsettings.h"
-#include "simpleprintingcommand.h"
-
 // DotGraphView defaults
 
 #define DEFAULT_ZOOMPOS      Auto
@@ -206,11 +206,13 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   if (m_graph != 0)
     delete m_graph;
   m_graph = new DotGraph(layoutCommand,dotFileName);
+  connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+
   if (m_readWrite)
   {
     m_graph->setReadWrite();
   }
-  if (layoutCommand == "")
+  if (layoutCommand.isEmpty())
   {
     layoutCommand = m_graph->chooseLayoutProgramForFile(m_graph->dotFileName());
   }
@@ -237,23 +239,68 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   else if (m_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
   else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
   else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+  //   kDebug() << "detail level = " << m_detailLevel << " ; scaleX = " << scaleX;
+
+  QGraphicsScene* newCanvas;
+
+  m_xMargin = 50;
+  m_yMargin = 50;
   
+
+  newCanvas = new QGraphicsScene();
+  kDebug() << "Created canvas " << newCanvas;
+  
+  m_birdEyeView->setScene(newCanvas);
+//   std::cerr << "After m_birdEyeView set canvas" << std::endl;
+  
+  setScene(newCanvas);
+  m_canvas = newCanvas;
+//   std::cerr << "After set canvas" << std::endl;
+  
+
+  m_cvZoom = 0;
+  updateSizes();
+  zoomRectMovedTo(QPointF(0,0));
+
+  viewport()->setUpdatesEnabled(true);
+  show();
+  m_canvas->update();
+  return true;
+}
+
+
+bool DotGraphView::displayGraph()
+{
+  kDebug() << k_funcinfo;
+  hide();
+  viewport()->setUpdatesEnabled(false);
+
+  if (m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
+  {
+    m_birdEyeView->setDrawingEnabled(false);
+  }
+  //  QCanvasEllipse* eItem;
+  double scaleX = 1.0, scaleY = 1.0;
+
+  if (m_detailLevel == 0)      { scaleX = m_graph->scale() * 0.7; scaleY = m_graph->scale() * 0.7; }
+  else if (m_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+  else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
+  else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+
   int gh = int(m_graph->height());
 //   kDebug() << "detail level = " << m_detailLevel << " ; scaleX = " << scaleX;
-  QGraphicsScene* newCanvas;
-    int w = (int)(scaleX * m_graph->width() / m_graph->horizCellFactor());
-    int h = (int)(scaleY * gh / m_graph->vertCellFactor());
-    
-    m_xMargin = 50;
-    m_yMargin = 50;
-    
+  int w = (int)(scaleX * m_graph->width() / m_graph->horizCellFactor());
+  int h = (int)(scaleY * gh / m_graph->vertCellFactor());
 
-    newCanvas = new QGraphicsScene(0,0,w+2*m_xMargin, h+2*m_yMargin);
-    kDebug() << "Created canvas " << newCanvas;
-    newCanvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
-    m_canvasNaturalSize = newCanvas->sceneRect().size();
-    QSizeF newCanvasSize = newCanvas->sceneRect().size();
-  
+  m_xMargin = 50;
+  m_yMargin = 50;
+
+
+  m_canvas->setSceneRect(0,0,w+2*m_xMargin, h+2*m_yMargin);
+  m_canvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
+  m_canvasNaturalSize = m_canvas->sceneRect().size();
+  QSizeF newCanvasSize = m_canvas->sceneRect().size();
+
 //   std::set< GraphNode* >& nodes = m_graph->nodesOfCell(0);
   GraphNodeMap& nodes = m_graph->nodes();
 //   std::cerr << "Adding " << nodes.size() << " nodes to canvas" << std::endl;
@@ -263,17 +310,17 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   for (; nodesIt != nodesIt_end; nodesIt++)
   {
     GraphNode* gnode = (*nodesIt);
-    
+
     CanvasNode *cnode = new CanvasNode(this, gnode);
     if (cnode == 0) continue;
     cnode->initialize(
       scaleX, scaleY, m_xMargin, m_yMargin, gh,
       int(m_graph->wdhcf()), int(m_graph->hdvcf()));
     gnode->setCanvasNode(cnode);
-    newCanvas->addItem(cnode);
+    m_canvas->addItem(cnode);
     cnode->show();
   }
-  
+
   uint nbEdgesShown = 0;
   GraphEdgeMap::iterator edgesIt, edgesIt_end;
   edgesIt = m_graph->edges().begin();
@@ -281,23 +328,23 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   for (; edgesIt != edgesIt_end; edgesIt++)
   {
     GraphEdge* gedge = *edgesIt;
-    
+
 /*    if (!( ( m_graph->nodesOfCell(0).find (e->fromNode()) != m_graph->nodesOfCell(0).end() )
            && ( m_graph->nodesOfCell(0).find (e->toNode()) != m_graph->nodesOfCell(0).end() ) ))
       continue;*/
-    
+
     CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
         m_yMargin, gh, int(m_graph->wdhcf()), int(m_graph->hdvcf()));
-    
+
     gedge->setCanvasEdge(cedge);
 //     std::cerr << "setting z = " << gedge->z() << std::endl;
     cedge->setZValue(gedge->z());
     cedge->show();
-    newCanvas->addItem(cedge);
+    m_canvas->addItem(cedge);
     nbEdgesShown++;
   }
 //   std::cerr << "  " << nbEdgesShown << " edges shown" << std::endl;
-  
+
   uint nbSubgraphsShown = 0;
   GraphSubgraphMap::iterator subgraphsIt, subgraphsIt_end;
   subgraphsIt = m_graph->subgraphs().begin();
@@ -305,16 +352,17 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   for (; subgraphsIt != subgraphsIt_end; subgraphsIt++)
   {
     GraphSubgraph* gsubgraph = (*subgraphsIt);
-    
+
 /*    if (!( ( m_graph->nodesOfCell(0).find (e->fromNode()) != m_graph->nodesOfCell(0).end() )
     && ( m_graph->nodesOfCell(0).find (e->toNode()) != m_graph->nodesOfCell(0).end() ) ))
     continue;*/
-    
-    CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph, 
-        newCanvas,scaleX, scaleY, m_xMargin, m_yMargin, gh, 
+
+    CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph,
+        m_canvas,scaleX, scaleY, m_xMargin, m_yMargin, gh,
         int(m_graph->wdhcf()), int(m_graph->hdvcf()));
-    
+
     csubgraph->show();
+    m_canvas->addItem(csubgraph);
     nbSubgraphsShown++;
   }
 
@@ -340,12 +388,12 @@ bool DotGraphView::loadDot(const QString& dotFileName)
         font->setPointSize(fontSize);
         fm = QFontMetrics(*font);
       }
-      QGraphicsSimpleTextItem* labelView = new QGraphicsSimpleTextItem(str, 0, newCanvas);
+      QGraphicsSimpleTextItem* labelView = new QGraphicsSimpleTextItem(str, 0, m_canvas);
       labelView->setFont(*font);
       labelView->setPos(
-                  (scaleX * 
+                  (scaleX *
                        (
-                         (dro.integers[0]) 
+                         (dro.integers[0])
                          + (((dro.integers[2])*(dro.integers[3]))/2)
                          - ( (dro.integers[3])/2 )
                        )
@@ -357,14 +405,6 @@ bool DotGraphView::loadDot(const QString& dotFileName)
       m_labelViews.insert(labelView);
     }
   }
-  
-  m_birdEyeView->setScene(newCanvas);
-//   std::cerr << "After m_birdEyeView set canvas" << std::endl;
-  
-  setScene(newCanvas);
-  m_canvas = newCanvas;
-//   std::cerr << "After set canvas" << std::endl;
-  
 
   m_cvZoom = 0;
   updateSizes();
@@ -776,7 +816,7 @@ void DotGraphView::setLayoutCommand(const QString& command)
   reload();
 }
 
-DotGraphView::ZoomPosition DotGraphView::zoomPos(QString s)
+DotGraphView::ZoomPosition DotGraphView::zoomPos(const QString& s)
 {
   DotGraphView::ZoomPosition  res = DEFAULT_ZOOMPOS;
   if (s == QString("DotGraphView::TopLeft")) res = DotGraphView::TopLeft;
@@ -882,15 +922,16 @@ void DotGraphView::dirty(const QString& dotFileName)
 }
 
 KConfigGroup* DotGraphView::configGroup(KConfig* c,
-                                         QString group, QString post)
+                                         const QString& group, const QString& post)
 {
   QStringList gList = c->groupList();
-  if (gList.contains((group+post).ascii()) ) group += post;
-  return new KConfigGroup(c, group);
+  QString res = group;
+  if (gList.contains((group+post).ascii()) ) res += post;
+  return new KConfigGroup(c, res);
 }
 
 void DotGraphView::writeConfigEntry(KConfigGroup* c, const char* pKey,
-                                     QString value, const char* def)
+                                     const QString& value, const char* def)
 {
   if (!c) return;
   if ((value.isEmpty() && ((def == 0) || (*def == 0))) ||

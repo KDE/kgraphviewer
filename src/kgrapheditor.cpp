@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 
@@ -191,7 +191,7 @@ void KGraphEditor::fileOpen()
   // this slot is called whenever the File->Open menu is selected,
   // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
   // button is clicked
-  QStringList file_names = KFileDialog::getOpenFileNames(KUrl(QString::null), QString("*.dot"), 0, QString::null);
+  QStringList file_names = KFileDialog::getOpenFileNames(KUrl(QString()), QString("*.dot"), 0, QString::null);
   
   if (!file_names.empty())
   {
@@ -301,12 +301,12 @@ void KGraphEditor::optionsConfigure()
   //An instance of your dialog could be already created and could be cached, 
   //in which case you want to display the cached dialog instead of creating 
   //another one 
-  if ( KgvConfigurationDialog::showDialog( "settings" ) ) 
+  if ( KgeConfigurationDialog::showDialog( "settings" ) )
     return; 
  
   //KConfigDialog didn't find an instance of this dialog, so lets create it : 
   KPageDialog::FaceType ft = KPageDialog::Auto;
-  KgvConfigurationDialog* dialog = new KgvConfigurationDialog( this, "settings", 
+  KgeConfigurationDialog* dialog = new KgeConfigurationDialog( this, "settings",
                                              KGraphViewerSettings::self(),ft ); 
   
 /*  KGraphViewerPreferencesReloadWidget*  reloadWidget =  

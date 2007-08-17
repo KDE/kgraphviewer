@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005-2006 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 /* This file was part of the KDE project
@@ -25,8 +25,9 @@
    version 2 of the License, or (at your option) any later version.
  */
 
-#ifndef kgvunit_h
-#define kgvunit_h
+#ifndef KGVUNIT_H
+#define KGVUNIT_H
+
 #include <qstring.h>
 #include <qstringlist.h>
 #include <math.h> // for floor
@@ -166,10 +167,10 @@ public:
     static QStringList listOfUnitName();
 
     /// parse common %KOffice and OO values, like "10cm", "5mm" to pt
-    static double parseValue( QString value, double defaultVal = 0.0 );
+    static double parseValue( const QString& value, double defaultVal = 0.0 );
     // Note: the above method doesn't take a const ref, since it modifies the arg.
 
 };
 
 
-#endif
+#endif // KGVUNIT_H

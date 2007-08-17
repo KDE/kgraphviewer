@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 /* This file was part of the KDE project
@@ -26,8 +26,8 @@
  */
 
 #include "simpleprintpreviewwindow.h"
-#include "simpleprintingengine.h"
 #include "simpleprintpreviewwindow_p.h"
+#include "simpleprintingengine.h"
 // #include <kexi_version.h>
 
 #include <qlayout.h>
@@ -49,7 +49,6 @@
 #include <kapplication.h>
 #include <kstandardaction.h>
 
-#include <kapplication.h>
 #include <kparts/mainwindow.h>
 
 #include <iostream>

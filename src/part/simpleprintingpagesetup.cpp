@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005-2006 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 /* This file was part of the KDE project
@@ -231,11 +231,11 @@ void KGVSimplePrintingPageSetup::updatePageLayoutAndUnitInfo()
   s += QString(", ")
    + (m_settings->pageLayout.orientation == PG_PORTRAIT ? i18n("Portrait") : i18n("Landscape"))
    + ", " + i18n("margins:")
-   + " " + KgvUnit::toUserStringValue(m_settings->pageLayout.ptLeft, m_unit)
-   + "/" + KgvUnit::toUserStringValue(m_settings->pageLayout.ptRight, m_unit)
-   + "/" + KgvUnit::toUserStringValue(m_settings->pageLayout.ptTop, m_unit)
-   + "/" + KgvUnit::toUserStringValue(m_settings->pageLayout.ptBottom, m_unit)
-   + " " + KgvUnit::unitName(m_unit);
+   + ' ' + KgvUnit::toUserStringValue(m_settings->pageLayout.ptLeft, m_unit)
+   + '/' + KgvUnit::toUserStringValue(m_settings->pageLayout.ptRight, m_unit)
+   + '/' + KgvUnit::toUserStringValue(m_settings->pageLayout.ptTop, m_unit)
+   + '/' + KgvUnit::toUserStringValue(m_settings->pageLayout.ptBottom, m_unit)
+   + ' ' + KgvUnit::unitName(m_unit);
   m_contents->pageSizeAndMarginsLabel->setText( s );
   m_contents->horizFitNumInput->setRange(1,m_command->engine()->maxHorizFit(),1,true);
   m_contents->vertFitNumInput->setRange(1,m_command->engine()->maxVertFit(),1,true);

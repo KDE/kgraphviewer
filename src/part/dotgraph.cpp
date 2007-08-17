@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 #include "dotgraph.h"
@@ -47,7 +47,8 @@ DotGraph::DotGraph(const QString& command, const QString& fileName) :
   m_dotFileName(fileName),m_width(0.0), m_height(0.0),m_scale(1.0),
   m_directed(true),m_strict(false),
   m_layoutCommand(command),
-  m_readWrite(false)
+  m_readWrite(false),
+  m_dot(0)
 { 
 }
 
@@ -70,7 +71,7 @@ DotGraph::~DotGraph()
 
 QString DotGraph::chooseLayoutProgramForFile(const QString& str)
 {
-  if (m_layoutCommand == "")
+  if (m_layoutCommand.isEmpty())
   {
     QFile iFILE(str);
     
@@ -104,7 +105,6 @@ bool DotGraph::parseDot(const QString& str)
   }
 
   kDebug() << "Running " << m_layoutCommand  << str;
-  QProcess dot;
   QStringList options;
   if (m_readWrite)
   {
@@ -115,18 +115,26 @@ bool DotGraph::parseDot(const QString& str)
     options << "-Txdot";
   }
   options << str;
-  dot.start(m_layoutCommand, options);
-  if (!dot.waitForFinished(-1))
+
+  if (m_dot != 0)
   {
-    kDebug() << "dot finished with error" << endl;
-    return false;
+    m_dot->terminate();
   }
-//   QFile dot(str);
-//   if (!dot.open(QIODevice::ReadOnly | QIODevice::Text))
-//   {
-//     return false;
-//   }
-  QByteArray result = dot.readAll();
+  m_dot = new QProcess();
+  connect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
+  m_dot->start(m_layoutCommand, options);
+  return true;
+}
+
+void DotGraph::slotDotRunningDone(int,QProcess::ExitStatus)
+{
+  kDebug() << k_funcinfo;
+  if (m_dot == 0)
+  {
+    return;
+  }
+  QByteArray result = m_dot->readAll();
+  m_dot->deleteLater();
   result.replace("\\\n","");
 
   kDebug() << k_funcinfo << "string content is:" << endl << result << endl << "=====================";
@@ -141,7 +149,7 @@ bool DotGraph::parseDot(const QString& str)
   phelper->z = 1;
   phelper->maxZ = 1;
   phelper->uniq = 0;
-  
+
   bool parsingResult = parse(s);
   kDebug() << k_funcinfo << "parsed " << parsingResult;
   kDebug() << k_funcinfo << "width and height=" << m_width << m_height;
@@ -156,8 +164,9 @@ bool DotGraph::parseDot(const QString& str)
   }
   delete phelper;
   phelper = 0;
-  kDebug() << k_funcinfo << "return parsing result";
-  return parsingResult;
+//   kDebug() << k_funcinfo << "return parsing result";
+//   return parsingResult;
+  emit(readyToDisplay());
 }
 
 bool DotGraph::update()
@@ -343,3 +352,5 @@ void DotGraph::saveTo(const QString& fileName)
   GraphExporter exporter;
   exporter.writeDot(this, fileName);
 }
+
+#include "dotgraph.moc"

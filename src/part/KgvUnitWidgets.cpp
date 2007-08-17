@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005-2006 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 /* This file was part of the KDE project
@@ -85,7 +85,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
     }
     else
     {
-        kdWarning(30004) << "Not a number: " << number << endl;
+        kWarning() << "Not a number:" << number;
         return Invalid;
     }
 
@@ -117,7 +117,7 @@ double KgvUnitDoubleBase::toDouble( const QString& str, bool* ok ) const
     if ( ok )
       kDebug(30004) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number( dbl, 'f', 12 );
     else
-        kdWarning(30004) << "toDouble error:" << str << ": => :" << str2 << ":" << endl;
+        kWarning() << k_funcinfo << "error:" << str << ": => :" << str2 << ":" << endl;
     return dbl;
 }
 

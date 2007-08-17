@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -29,8 +29,8 @@
  * Callgraph View
  */
 
-#ifndef CALLGRAPHVIEW_H
-#define CALLGRAPHVIEW_H
+#ifndef DOTGRAPHVIEW_H
+#define DOTGRAPHVIEW_H
 
 #include <kconfig.h>
 #include <kactioncollection.h>
@@ -73,7 +73,7 @@ public:
   enum ZoomPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
   enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge };
 
-  DotGraphView(KActionCollection* actions, QWidget* parent=0);
+  explicit DotGraphView(KActionCollection* actions, QWidget* parent=0);
   virtual ~DotGraphView();
 
   void readViewConfig();
@@ -82,11 +82,11 @@ public:
   QWidget* widget() { return this; }
 
   ZoomPosition zoomPos() const { return m_zoomPosition; }
-  static ZoomPosition zoomPos(QString);
+  static ZoomPosition zoomPos(const QString&);
   static QString zoomPosString(ZoomPosition);
   
-  static KConfigGroup* configGroup(KConfig*, QString prefix, QString postfix);
-  static void writeConfigEntry(KConfigGroup*, const char* pKey, QString value,
+  static KConfigGroup* configGroup(KConfig*, const QString& prefix, const QString& postfix);
+  static void writeConfigEntry(KConfigGroup*, const char* pKey, const QString& value,
                                const char* def);
   static void writeConfigEntry(KConfigGroup*, const char* pKey,
                                int value, int def);
@@ -160,6 +160,7 @@ public slots:
   void slotBevBottomRight();
   void slotBevAutomatic();
   void slotUpdate();
+  bool displayGraph();
 
 protected:
   void resizeEvent(QResizeEvent*);
@@ -218,10 +219,4 @@ private:
   bool m_readWrite;
 };
 
-
-
-
-#endif
-
-
-
+#endif // DOTGRAPHVIEW_H

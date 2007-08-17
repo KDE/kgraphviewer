@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 /* This file was callgraphview.h, part of KCachegrind.
@@ -29,16 +29,16 @@
  * Graph Node
  */
 
+#include "graphnode.h"
+#include "dotgraphview.h"
+#include "pannerview.h"
+#include "canvasnode.h"
+#include "dotdefaults.h"
+
 #include <math.h>
 
 #include <kdebug.h>
 #include <kconfig.h>
-
-#include "dotgraphview.h"
-#include "pannerview.h"
-#include "canvasnode.h"
-#include "graphnode.h"
-#include "dotdefaults.h"
 
 //
 // GraphNode

@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 /*
@@ -26,6 +26,7 @@
 #include <QList>
 #include <QSet>
 #include <QString>
+#include <QProcess>
 
 #include "graphelement.h"
 #include "graphsubgraph.h"
@@ -38,7 +39,7 @@
   */
 class DotGraph : public GraphElement
 {
-//   Q_OBJECT
+  Q_OBJECT
 public:
   DotGraph(const QString& command, const QString& fileName);
 
@@ -91,6 +92,12 @@ public:
 
   void saveTo(const QString& fileName);
 
+Q_SIGNALS:
+  void readyToDisplay();
+
+private Q_SLOTS:
+  void slotDotRunningDone(int,QProcess::ExitStatus);
+
 private:
   unsigned int cellNumber(int x, int y);
   void computeCells();
@@ -111,6 +118,7 @@ private:
   double m_wdhcf, m_hdvcf;
 
   bool m_readWrite;
+  QProcess* m_dot;
 };
 
 #endif

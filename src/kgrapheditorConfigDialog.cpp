@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005 Gael de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 
@@ -44,7 +44,7 @@
 
 using namespace KGraphViewer;
 
-KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config, 
+KgeConfigurationDialog::KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config,
               KPageDialog::FaceType dialogType, 
               ButtonCodes dialogButtons, 
               ButtonCode defaultButton, bool modal) : 
@@ -68,27 +68,27 @@ KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& 
   connect(m_reopeningWidget->reopenPreviouslyOpenedFilesMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
 }
 
-KgvConfigurationDialog::~KgvConfigurationDialog () 
+KgeConfigurationDialog::~KgeConfigurationDialog ()
 {
 }
 
-void KgvConfigurationDialog::settingChanged(int)
+void KgeConfigurationDialog::settingChanged(int)
 {
-//   std::cerr << "KgvConfigurationDialog::settingChanged" << std::endl;
+//   std::cerr << "KgeConfigurationDialog::settingChanged" << std::endl;
   m_changed = true;
   settingsChangedSlot();
   updateButtons ();
 }
 
-bool KgvConfigurationDialog::hasChanged()
+bool KgeConfigurationDialog::hasChanged()
 {
-//   std::cerr << "KgvConfigurationDialog::hasChanged" << std::endl;
+//   std::cerr << "KgeConfigurationDialog::hasChanged" << std::endl;
   return m_changed;
 }
 
-void KgvConfigurationDialog::updateSettings()
+void KgeConfigurationDialog::updateSettings()
 {
-//   std::cerr << "KgvConfigurationDialog::updateSettings" << std::endl;
+//   std::cerr << "KgeConfigurationDialog::updateSettings" << std::endl;
   m_changed = false;
 /*  switch (m_openingWidget->openInExistingWindowMode->selectedId())
   {
@@ -133,9 +133,9 @@ void KgvConfigurationDialog::updateSettings()
    //KGraphViewerSettings::writeConfig();
 }
 
-void KgvConfigurationDialog::updateWidgets()
+void KgeConfigurationDialog::updateWidgets()
 {
-//   std::cerr << "KgvConfigurationDialog::updateWidgets" << std::endl;
+//   std::cerr << "KgeConfigurationDialog::updateWidgets" << std::endl;
 
   m_changed = false;
 //   std::cerr << "  openInExistingWindowMode: " << KGraphViewerSettings::openInExistingWindowMode() << std::endl;
@@ -164,4 +164,4 @@ void KgvConfigurationDialog::updateWidgets()
     m_reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(2);*/
 }
 
-#include "kgraphviewerConfigDialog.moc"
+#include "kgrapheditorConfigDialog.moc"

@@ -11,19 +11,19 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 
+#include "DotGraphParsingHelper.h"
 #include "dotgraph.h"
 #include "dotgrammar.h"
 #include "dotdefaults.h"
 //#include "graphsubgraph.h"
 #include "graphnode.h"
 #include "graphedge.h"
-#include "DotGraphParsingHelper.h"
 
 #include <boost/throw_exception.hpp>
 #include <boost/spirit/core.hpp>
@@ -37,12 +37,6 @@
 #include <kdebug.h>
     
 #include <QFile>
-
-
-#include <boost/throw_exception.hpp>
-#include <boost/spirit/core.hpp>
-#include <boost/spirit/utility/distinct.hpp>
-#include <boost/spirit/utility/loops.hpp>
 
 
 using namespace std;

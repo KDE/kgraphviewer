@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005-2006 Gaël de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 /* This file was part of the KDE project
@@ -25,8 +25,8 @@
    version 2 of the License, or (at your option) any later version.
  */
 
-#ifndef __KOUNITWIDGETS_H__
-#define __KOUNITWIDGETS_H__
+#ifndef KGVUNITWIDGETS_H
+#define KGVUNITWIDGETS_H
 
 #include <knuminput.h>
 #include <knumvalidator.h>
@@ -116,7 +116,7 @@ class KgvUnitDoubleSpinBox : public KDoubleSpinBox, public KgvUnitDoubleBase
 {
     Q_OBJECT
 public:
-    KgvUnitDoubleSpinBox( QWidget *parent = 0L, const char *name = 0L );
+    explicit KgvUnitDoubleSpinBox( QWidget *parent = 0L, const char *name = 0L );
     // lower, upper, step and value are in pt
     KgvUnitDoubleSpinBox( QWidget *parent, double lower, double upper, double step, double value = 0.0,
                          KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2, const char *name = 0 );
@@ -166,7 +166,7 @@ class KgvUnitDoubleLineEdit : public KLineEdit, public KgvUnitDoubleBase
 {
     Q_OBJECT
 public:
-    KgvUnitDoubleLineEdit( QWidget *parent = 0L, const char *name = 0L );
+    explicit KgvUnitDoubleLineEdit( QWidget *parent = 0L, const char *name = 0L );
     KgvUnitDoubleLineEdit( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2, const char *name = 0 );
 
     virtual void changeValue( double );
@@ -194,7 +194,7 @@ class KgvUnitDoubleComboBox : public KComboBox, public KgvUnitDoubleBase
 {
     Q_OBJECT
 public:
-    KgvUnitDoubleComboBox( QWidget *parent = 0L, const char *name = 0L );
+    explicit KgvUnitDoubleComboBox( QWidget *parent = 0L, const char *name = 0L );
     KgvUnitDoubleComboBox( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2, const char *name = 0 );
 
     virtual void changeValue( double );
@@ -230,7 +230,7 @@ class KgvUnitDoubleSpinComboBox : public QWidget
 {
     Q_OBJECT
 public:
-    KgvUnitDoubleSpinComboBox( QWidget *parent = 0L, const char *name = 0L );
+    explicit KgvUnitDoubleSpinComboBox( QWidget *parent = 0L, const char *name = 0L );
     KgvUnitDoubleSpinComboBox( QWidget *parent, double lower, double upper, double step, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2, const char *name = 0 );
 
     void insertItem( double, int index = -1 );
@@ -250,5 +250,5 @@ private:
     double m_step;
 };
 
-#endif
+#endif // KGVUNITWIDGETS_H
 

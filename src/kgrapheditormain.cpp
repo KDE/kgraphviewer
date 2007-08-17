@@ -11,9 +11,9 @@
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not, write to
-   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301, USA
 */
 
 
@@ -91,7 +91,7 @@ int main(int argc, char **argv)
             KUrl url;
             if (strarg.left(1) == "/")
               url = KUrl(strarg);
-            else url = KUrl(QDir::currentPath() +"/" + strarg);
+            else url = KUrl(QDir::currentPath() + '/' + strarg);
             arg << url;
             QDBusInterface iface("org.kde.kgrapheditor", "/KGraphEditor", "", QDBusConnection::sessionBus());
             if (iface.isValid()) 
