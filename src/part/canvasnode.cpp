@@ -78,9 +78,9 @@ CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n, QGraphicsItem* parent)
   setToolTip(tipStr);
 }
 
-void CanvasNode::initialize(double scaleX, double scaleY,
-                            int xMargin, int yMargin, int gh,
-                            int wdhcf, int hdvcf)
+void CanvasNode::initialize(qreal scaleX, qreal scaleY,
+                            qreal xMargin, qreal yMargin, qreal gh,
+                            qreal wdhcf, qreal hdvcf)
 {
   setFlag(QGraphicsItem::ItemIsMovable, true);
 
@@ -220,12 +220,12 @@ QWidget *widget)
       QPolygonF points(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
       {
-        int x,y;
+        qreal x,y;
         x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
         y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
-        QPoint p(
-                  int(x*m_scaleX) + m_xMargin,
-                  int((m_gh-y)*m_scaleY) + m_yMargin
+        QPointF p(
+                  (x*m_scaleX) + m_xMargin,
+                  ((m_gh-y)*m_scaleY) + m_yMargin
                 );
 /*        kDebug() << k_funcinfo << "    point: (" << dro.integers[2*i+1] << ","
                   << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf;*/
@@ -283,12 +283,12 @@ QWidget *widget)
       QPolygonF points(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
       {
-        int x,y;
+        qreal x,y;
         x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
         y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
-        QPoint p(
-                  int(x*m_scaleX) +m_xMargin,
-                  int((m_gh-y)*m_scaleY) + m_yMargin
+        QPointF p(
+                  (x*m_scaleX) +m_xMargin,
+                  ((m_gh-y)*m_scaleY) + m_yMargin
                 );
         points[i] = p;
       }

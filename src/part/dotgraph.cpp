@@ -173,57 +173,14 @@ void DotGraph::slotDotRunningDone(int,QProcess::ExitStatus)
 
   qDebug() << k_funcinfo << "parsing new dot";
   bool parsingResult = parse(s);
-  if (parsingResult)
-  {
-    m_width=newGraph.width();
-    m_height=newGraph.height();
-    m_scale=newGraph.scale();
-    m_directed=newGraph.directed();
-    m_strict=newGraph.strict();
-    computeCells();
-  }
-  qDebug() << k_funcinfo << "parsing new dot done " << parsingResult;
   delete phelper;
   phelper = 0;
   qDebug() << k_funcinfo << "phelper deleted";
+
   if (parsingResult)
   {
-    foreach (GraphNode* ngn, newGraph.nodes())
-    {
-      qDebug() << k_funcinfo << "node " << ngn->id();
-      if (nodes().contains(ngn->id()))
-      {
-        qDebug() << k_funcinfo << "known";
-        nodes()[ngn->id()]->updateWith(*ngn);
-      }
-      else
-      {
-        qDebug() << k_funcinfo << "new";
-        GraphNode* newgn = new GraphNode(*ngn);
-        qDebug() << k_funcinfo << "new created";
-        nodes().insert(ngn->id(), newgn);
-        qDebug() << k_funcinfo << "new inserted";
-      }
-    }
-    foreach (GraphEdge* nge, newGraph.edges())
-    {
-      qDebug() << k_funcinfo << "an edge";
-      QPair<GraphNode*,GraphNode*> pair(nodes()[nge->fromNode()->id()],nodes()[nge->toNode()->id()]);
-      if (edges().contains(pair))
-      {
-        edges().value(pair)->updateWith(*nge);
-      }
-      else
-      {
-        GraphEdge* newEdge = new GraphEdge();
-        newEdge->updateWith(*nge);
-        newEdge->setFromNode(nodes()[nge->fromNode()->id()]);
-        newEdge->setToNode(nodes()[nge->toNode()->id()]);
-        edges().insert(pair, newEdge);
-      }
-    }
+    updateWith(newGraph);
   }
-
 //   return parsingResult;
   if (m_readWrite && m_phase == Initial)
   {
@@ -332,6 +289,53 @@ void DotGraph::saveTo(const QString& fileName)
   m_dotFileName = fileName;
   GraphExporter exporter;
   exporter.writeDot(this, fileName);
+}
+
+void DotGraph::updateWith(const DotGraph& newGraph)
+{
+  kDebug();
+  GraphElement::updateWith(newGraph);
+  m_width=newGraph.width();
+  m_height=newGraph.height();
+  m_scale=newGraph.scale();
+  m_directed=newGraph.directed();
+  m_strict=newGraph.strict();
+  computeCells();
+  foreach (GraphNode* ngn, newGraph.nodes())
+  {
+    qDebug() << k_funcinfo << "node " << ngn->id();
+    if (nodes().contains(ngn->id()))
+    {
+      qDebug() << k_funcinfo << "known";
+      nodes()[ngn->id()]->updateWith(*ngn);
+    }
+    else
+    {
+      qDebug() << k_funcinfo << "new";
+      GraphNode* newgn = new GraphNode(*ngn);
+      qDebug() << k_funcinfo << "new created";
+      nodes().insert(ngn->id(), newgn);
+      qDebug() << k_funcinfo << "new inserted";
+    }
+  }
+  foreach (GraphEdge* nge, newGraph.edges())
+  {
+    qDebug() << k_funcinfo << "an edge";
+    QPair<GraphNode*,GraphNode*> pair(nodes()[nge->fromNode()->id()],nodes()[nge->toNode()->id()]);
+    if (edges().contains(pair))
+    {
+      edges().value(pair)->updateWith(*nge);
+    }
+    else
+    {
+      GraphEdge* newEdge = new GraphEdge();
+      newEdge->updateWith(*nge);
+      newEdge->setFromNode(nodes()[nge->fromNode()->id()]);
+      newEdge->setToNode(nodes()[nge->toNode()->id()]);
+      edges().insert(pair, newEdge);
+    }
+  }
+  computeCells();
 }
 
 #include "dotgraph.moc"

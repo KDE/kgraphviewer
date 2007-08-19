@@ -57,9 +57,9 @@ public:
   
   virtual ~CanvasNode() {}
   
-  void initialize(double scaleX, double scaleY,
-                  int xMargin, int yMargin, int gh,
-                  int wdhcf, int hdvcf);
+  void initialize(qreal scaleX, qreal scaleY,
+                  qreal xMargin, qreal yMargin, qreal gh,
+                  qreal wdhcf, qreal hdvcf);
 
   GraphNode* node() { return m_node; }
   const GraphNode* node() const { return m_node; }
@@ -81,8 +81,8 @@ protected:
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
 
-  double m_scaleX, m_scaleY;
-  int m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
+  qreal m_scaleX, m_scaleY;
+  qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
   GraphNode* m_node;
   DotGraphView* m_view;
   bool m_hasFocus;

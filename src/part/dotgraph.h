@@ -94,6 +94,8 @@ public:
 
   void saveTo(const QString& fileName);
 
+  virtual void updateWith(const DotGraph& graph);
+
 Q_SIGNALS:
   void readyToDisplay();
 

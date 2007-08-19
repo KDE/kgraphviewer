@@ -241,7 +241,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 
 bool DotGraphView::displayGraph()
 {
-  qDebug() << k_funcinfo;
+  kDebug();
   hide();
   viewport()->setUpdatesEnabled(false);
 
@@ -257,10 +257,18 @@ bool DotGraphView::displayGraph()
   else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
   else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
 
-  int gh = int(m_graph->height());
+  qreal gh = m_graph->height();
 //   kDebug() << "detail level = " << m_detailLevel << " ; scaleX = " << scaleX;
-  int w = (int)(scaleX * m_graph->width() / m_graph->horizCellFactor());
-  int h = (int)(scaleY * gh / m_graph->vertCellFactor());
+  qreal w = scaleX * m_graph->width();
+  qreal h = scaleY * gh;
+/*  qreal w = (scaleX * m_graph->width() / m_graph->horizCellFactor());
+  qreal h = (scaleY * gh / m_graph->vertCellFactor());*/
+  kDebug() << "width  " << m_graph->width();
+  kDebug() << "height " << m_graph->height();
+  kDebug() << "horiz cell f " << m_graph->horizCellFactor();
+  kDebug() << "vert  cell f " << m_graph->vertCellFactor();
+  kDebug() << "w " << w;
+  kDebug() << "h " << h;
 
   m_xMargin = 50;
   m_yMargin = 50;
@@ -269,8 +277,9 @@ bool DotGraphView::displayGraph()
   m_canvas->setSceneRect(0,0,w+2*m_xMargin, h+2*m_yMargin);
   m_canvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
   m_canvasNaturalSize = m_canvas->sceneRect().size();
-  QSizeF newCanvasSize = m_canvas->sceneRect().size();
 
+  kDebug() << "sceneRect is now " << m_canvas->sceneRect();
+  
   foreach (GraphNode* gnode, m_graph->nodes())
   {
     if (gnode->canvasNode()==0)
@@ -310,13 +319,8 @@ bool DotGraphView::displayGraph()
     }
   }
 
-  uint nbSubgraphsShown = 0;
-  GraphSubgraphMap::iterator subgraphsIt, subgraphsIt_end;
-  subgraphsIt = m_graph->subgraphs().begin();
-  subgraphsIt_end = m_graph->subgraphs().end();
-  for (; subgraphsIt != subgraphsIt_end; subgraphsIt++)
+  foreach (GraphSubgraph* gsubgraph,m_graph->subgraphs())
   {
-    GraphSubgraph* gsubgraph = (*subgraphsIt);
     if (gsubgraph->canvasSubgraph() == 0)
     {
       CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph,
@@ -325,17 +329,12 @@ bool DotGraphView::displayGraph()
 
       csubgraph->show();
       m_canvas->addItem(csubgraph);
-      nbSubgraphsShown++;
     }
   }
 
 //   std::cerr << "Adding graph render operations: " << m_graph->renderOperations().size() << std::endl;
-  DotRenderOpVec::const_iterator graphRenderOpsIt, graphRenderOpsIt_end;
-  graphRenderOpsIt = m_graph->renderOperations().begin();
-  graphRenderOpsIt_end = m_graph->renderOperations().end();
-  for (; graphRenderOpsIt != graphRenderOpsIt_end; graphRenderOpsIt++)
+  foreach (const DotRenderOp& dro,m_graph->renderOperations())
   {
-    const DotRenderOp& dro = (*graphRenderOpsIt);
     if ( dro.renderop == "T" )
     {
 //       std::cerr << "Adding graph label '"<<dro.str<<"'" << std::endl;
@@ -686,7 +685,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
     else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
 
-    int gh = int(m_graph->height());
+    qreal gh = m_graph->height();
 
     
     QPointF pos = mapToScene(
