@@ -57,6 +57,8 @@ public:
   inline DotGraph* graph() {return m_widget->graph();}
   inline const DotGraph* graph() const {return m_widget->graph();}
 
+Q_SIGNALS:
+  void graphLoaded();
 
 public slots:
   void slotHide(KParts::Part* part);

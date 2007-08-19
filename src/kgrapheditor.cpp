@@ -510,7 +510,7 @@ void KGraphEditor::newTabSelectedSlot(QWidget* tab)
 
 void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
 {
-  kDebug() << k_funcinfo;
+  kDebug();
   if (m_currentPart != 0)
   {
     disconnect(this,SIGNAL(prepareAddNewElement()),part,SLOT(prepareAddNewElement()));
@@ -531,7 +531,39 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   GraphNodeMap& nodesMap = graph->nodes();
   foreach (GraphNode* node, nodesMap)
   {
-    kDebug() << k_funcinfo << "new item " << node->id();
+    kDebug()<< "new item " << node->id();
+    QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(node->id()));
+    item->setFlags(item->flags() | Qt::ItemIsEditable);
+    foreach (QString attrib, node->attributes().keys())
+    {
+      if (attrib != "_draw_" && attrib != "_ldraw_")
+      {
+        QStringList list(attrib);
+        list << node->attributes()[attrib];
+        QTreeWidgetItem* child = new QTreeWidgetItem((QTreeWidget*)0, list);
+        child->setFlags(child->flags() | Qt::ItemIsEditable);
+        item->addChild(child);
+      }
+    }
+    items.append(item);
+  }
+  kDebug() << k_funcinfo << "inserting";
+  m_treeWidget->insertTopLevelItems(0, items);
+
+
+  connect( m_currentPart, SIGNAL( graphLoaded() ),
+           this, SLOT( slotGraphLoaded() ) );
+}
+
+void KGraphEditor::slotGraphLoaded()
+{
+  kDebug();
+  DotGraph* graph = m_currentPart->graph();
+  QList<QTreeWidgetItem *> items;
+  GraphNodeMap& nodesMap = graph->nodes();
+  foreach (GraphNode* node, nodesMap)
+  {
+    kDebug()<< "new item " << node->id();
     QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(node->id()));
     item->setFlags(item->flags() | Qt::ItemIsEditable);
     foreach (QString attrib, node->attributes().keys())

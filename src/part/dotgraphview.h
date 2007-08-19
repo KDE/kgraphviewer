@@ -131,6 +131,7 @@ signals:
   void zoomed(double factor);
   void sigViewBevEnabledToggled(bool value);
   void sigViewBevActivated(int newPos);
+  void graphLoaded();
 
 public slots:
   void zoomIn();

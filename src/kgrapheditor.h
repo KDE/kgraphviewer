@@ -80,6 +80,8 @@ public slots:
 
   void slotSetActiveGraph( KParts::Part* part);
 
+  void slotGraphLoaded();
+  
 /*public slots:
   void reloadOnChangeMode_pressed(int value);
   void openInExistingWindowMode_pressed(int value);

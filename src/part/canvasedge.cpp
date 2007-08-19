@@ -71,7 +71,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
 
 QRectF CanvasEdge::boundingRect() const
 {
-  kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << m_boundingRect;
+//   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << m_boundingRect;
   return m_boundingRect;
 }
 
@@ -137,7 +137,7 @@ Q_UNUSED(widget)
                       + m_xMargin;
       qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
       QPointF point(x,y);
-      qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawText" << edge()->fontColor() << point;
+//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawText" << edge()->fontColor() << point;
 
       p->drawText(point,str);
       p->restore();
@@ -158,7 +158,7 @@ Q_UNUSED(widget)
         p->save();
         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
         p->drawPolygon(polygon);
-        qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
+//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
         p->restore();
       }
       else
@@ -178,7 +178,7 @@ Q_UNUSED(widget)
       }
       p->save();
       p->setPen(pen);
-      qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
+//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
       p->drawPolyline(polygon);
       p->restore();
     }
@@ -210,7 +210,7 @@ Q_UNUSED(widget)
       }
       p->setPen(pen);
       QRectF rect(x,y,w,h);
-      qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
+//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
       p->drawEllipse(rect);
       p->restore();
     }
@@ -282,7 +282,7 @@ Q_UNUSED(widget)
         {
           path.cubicTo(points[3*j + 1],points[3*j+1 + 1], points[3*j+2 + 1]);
         }
-        qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
+//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
         p->drawPath(path);
         p->restore();
       }
@@ -292,14 +292,14 @@ Q_UNUSED(widget)
 
 void CanvasEdge::modelChanged()
 {
-  qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
+//   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
   prepareGeometryChange();
   computeBoundingRect();
 }
 
 void CanvasEdge::computeBoundingRect()
 {
-  qDebug() << k_funcinfo;
+  kDebug();
   if (edge()->renderOperations().isEmpty())
   {
     if ((edge()->fromNode()->canvasNode()==0)
@@ -312,7 +312,7 @@ void CanvasEdge::computeBoundingRect()
       QRectF br(
         edge()->fromNode()->canvasNode()->boundingRect().center()+edge()->fromNode()->canvasNode()->pos(),
         edge()->toNode()->canvasNode()->boundingRect().center()+edge()->toNode()->canvasNode()->pos());
-      qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
+//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
       m_boundingRect = br;
     }
   }
@@ -324,7 +324,7 @@ void CanvasEdge::computeBoundingRect()
     it_end = edge()->renderOperations().end();
     for (; it != it_end; it++)
     {
-      qDebug() << k_funcinfo << (*it).renderop  << ", ";
+//       kDebug() << (*it).renderop  << ", ";
       if ( (*it).renderop != "B" ) continue;
       uint previousSize = points.size();
       points.resize(previousSize+(*it).integers[0]);
@@ -337,7 +337,7 @@ void CanvasEdge::computeBoundingRect()
         points[previousSize+i] = p;
       }
     }
-    qDebug() << k_funcinfo << points.size() << "points";
+//     kDebug() << points.size() << "points";
     if (points.size() == 0) return;
 
     int len = points.count();
@@ -349,9 +349,9 @@ void CanvasEdge::computeBoundingRect()
     {
       a[len+i] = b[i];
     }
-    qDebug() << k_funcinfo << a.size() << "points";
+//     kDebug() << a.size() << "points";
 
     m_boundingRect = a.boundingRect();
   }
-  qDebug() << k_funcinfo ;//<< edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
+//   kDebug() ;//<< edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
 }

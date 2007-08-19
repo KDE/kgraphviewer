@@ -163,7 +163,7 @@ void CanvasNode::computeBoundingRect()
 
 void CanvasNode::modelChanged()
 {
-  kDebug() << k_funcinfo << node()->id();
+//   kDebug() << node()->id();
   m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_node->fontColor()));
   m_font = FontsCache::changeable().fromName(m_node->fontName());
   computeBoundingRect();
@@ -187,7 +187,7 @@ QWidget *widget)
     }
     dd << op.str << endl;
   }
-  qDebug() << msg;
+//   kDebug() << msg;
 
   if (node()->renderOperations().isEmpty())
   {
@@ -210,7 +210,7 @@ QWidget *widget)
       p->save();
       p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
       p->setPen(Dot2QtConsts::componentData().qtColor(node()->lineColor()));
-      qDebug() << k_funcinfo << node()->id() << "drawEllipse" << node()->backColor() << rect;
+//       kDebug() << node()->id() << "drawEllipse" << node()->backColor() << rect;
       p->drawEllipse(rect);
       p->restore();
     }
@@ -279,7 +279,7 @@ QWidget *widget)
     const DotRenderOp& dro = it.previous();
     if ( dro.renderop == "L" )
     {
-      kDebug() << k_funcinfo << "Label";
+//       kDebug() << "Label";
       QPolygonF points(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
       {
@@ -349,7 +349,7 @@ QWidget *widget)
                       + m_xMargin;
       qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
       QPointF point(x,y);
-      qDebug() << k_funcinfo << node()->id() << "drawText" << point;
+//       kDebug() << node()->id() << "drawText" << point;
       p->drawText(point, dro.str);
       p->restore();
     }

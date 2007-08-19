@@ -381,6 +381,9 @@ bool DotGraphView::displayGraph()
     (*labelViewsIt)->show();
   }
   m_canvas->update();
+  
+  emit graphLoaded();
+
   return true;
 }
 

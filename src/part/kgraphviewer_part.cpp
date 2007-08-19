@@ -56,7 +56,9 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
   // this should be your custom internal widget
   m_widget = new DotGraphView( actionCollection(), parentWidget);  
   m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-  
+  connect( m_widget, SIGNAL( graphLoaded() ),
+           this, SIGNAL( graphLoaded() ) );
+
   // notify the part that this is our internal widget
   setWidget(m_widget);
 
