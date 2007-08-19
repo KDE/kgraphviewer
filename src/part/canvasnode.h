@@ -71,6 +71,7 @@ public:
 QWidget *widget = 0 );
 
   virtual QRectF boundingRect () const;
+  void computeBoundingRect();
 
 public Q_SLOTS:
   void modelChanged();
@@ -79,7 +80,6 @@ protected:
   virtual void mouseMoveEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
-  void computeBoundingRect();
 
   double m_scaleX, m_scaleY;
   int m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;

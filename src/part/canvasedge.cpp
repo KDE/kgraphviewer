@@ -45,9 +45,9 @@
 //
 
 CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
-                       double scaleX, double scaleY, 
-                       int xMargin, int yMargin, int gh,
-                       int wdhcf, int hdvcf,
+                       qreal scaleX, qreal scaleY,
+                       qreal xMargin, qreal yMargin, qreal gh,
+                       qreal wdhcf, qreal hdvcf,
                        QGraphicsItem* parent)
                        : QAbstractGraphicsShapeItem(parent),
     m_scaleX(scaleX),
@@ -55,20 +55,23 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
     m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
     m_font(0), m_view(view)
 {
-  connect(e,SIGNAL(changed()),this,SLOT(modelChanged()));
   m_font = FontsCache::changeable().fromName(e->fontName());
 
-//   std::cerr << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << std::endl;
+  kDebug() << edge() << "->"  << edge();
+  kDebug() << "edge "  << edge()->fromNode()/*->id()*/ << "->"  << edge()->toNode()/*->id()*/;
   computeBoundingRect();
-
+  kDebug() << "boundingRect computed: " << m_boundingRect;
+  
   QString tipStr = i18n("%1 -> %2\nlabel='%3'",
       edge()->fromNode()->id(),edge()->toNode()->id(),e->label());
   setToolTip(tipStr);
+
+  connect(e,SIGNAL(changed()),this,SLOT(modelChanged()));
 } 
 
 QRectF CanvasEdge::boundingRect() const
 {
-//   kDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << m_boundingRect;
+  kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << m_boundingRect;
   return m_boundingRect;
 }
 
@@ -77,6 +80,10 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
 {
 Q_UNUSED(option)
 Q_UNUSED(widget)
+  if (m_boundingRect == QRectF())
+  {
+    return;
+  }
   /// computes the scaling of line width
   qreal widthScaleFactor = (m_scaleX+m_scaleY)/2;
   if (widthScaleFactor < 1)
@@ -86,9 +93,13 @@ Q_UNUSED(widget)
 
   if (edge()->renderOperations().isEmpty())
   {
-    p->drawLine(
-      edge()->fromNode()->canvasNode()->boundingRect().center()+edge()->fromNode()->canvasNode()->pos(),
-      edge()->toNode()->canvasNode()->boundingRect().center()+edge()->toNode()->canvasNode()->pos());
+    if ((edge()->fromNode()->canvasNode()!=0)
+      && (edge()->toNode()->canvasNode()!=0))
+    {
+      p->drawLine(
+        edge()->fromNode()->canvasNode()->boundingRect().center()+edge()->fromNode()->canvasNode()->pos(),
+        edge()->toNode()->canvasNode()->boundingRect().center()+edge()->toNode()->canvasNode()->pos());
+    }
     return;
   }
   DotRenderOpVec::const_iterator it, it_end;
@@ -281,68 +292,66 @@ Q_UNUSED(widget)
 
 void CanvasEdge::modelChanged()
 {
-  kDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
+  qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
   prepareGeometryChange();
   computeBoundingRect();
 }
 
 void CanvasEdge::computeBoundingRect()
 {
+  qDebug() << k_funcinfo;
   if (edge()->renderOperations().isEmpty())
   {
-    QRectF br(
-      edge()->fromNode()->canvasNode()->boundingRect().center()+edge()->fromNode()->canvasNode()->pos(),
-      edge()->toNode()->canvasNode()->boundingRect().center()+edge()->toNode()->canvasNode()->pos());
-    qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
-    m_boundingRect = br;
+    if ((edge()->fromNode()->canvasNode()==0)
+      || (edge()->toNode()->canvasNode()==0))
+    {
+      m_boundingRect = QRectF();
+    }
+    else
+    {
+      QRectF br(
+        edge()->fromNode()->canvasNode()->boundingRect().center()+edge()->fromNode()->canvasNode()->pos(),
+        edge()->toNode()->canvasNode()->boundingRect().center()+edge()->toNode()->canvasNode()->pos());
+      qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
+      m_boundingRect = br;
+    }
   }
   else
   {
-    QPolygonF m_points;
+    QPolygonF points;
     DotRenderOpVec::const_iterator it, it_end;
     it = edge()->renderOperations().begin();
     it_end = edge()->renderOperations().end();
     for (; it != it_end; it++)
     {
-  //     std::cerr << (*it).renderop  << ", ";
+      qDebug() << k_funcinfo << (*it).renderop  << ", ";
       if ( (*it).renderop != "B" ) continue;
-      uint previousSize = m_points.size();
-      m_points.resize(previousSize+(*it).integers[0]);
+      uint previousSize = points.size();
+      points.resize(previousSize+(*it).integers[0]);
       for (int i = 0; i < (*it).integers[0]; i++)
       {
         QPointF p(
             (((*it).integers[2*i+1]/*%m_wdhcf*/)*m_scaleX) +m_xMargin,
             ((m_gh-(*it).integers[2*i+2]/*%m_hdvcf*/)*m_scaleY) + m_yMargin
                 );
-        m_points[previousSize+i] = p;
+        points[previousSize+i] = p;
       }
     }
-  //   std::cerr << std::endl;
-    if (m_points.size() == 0) return;
+    qDebug() << k_funcinfo << points.size() << "points";
+    if (points.size() == 0) return;
 
-    qreal minX = m_points[0].x(), minY = m_points[0].y();
-    qreal maxX = minX, maxY = minY;
-    int i;
-
-    int len = m_points.count();
-    for (i=1;i<len;i++)
-    {
-      if (m_points[i].x() < minX) minX = m_points[i].x();
-      if (m_points[i].y() < minY) minY = m_points[i].y();
-      if (m_points[i].x() > maxX) maxX = m_points[i].x();
-      if (m_points[i].y() > maxY) maxY = m_points[i].y();
-    }
-    QPolygonF a = m_points,  b = m_points;
+    int len = points.count();
+    QPolygonF a = points,  b = points;
     a.translate(-1, -1);
     b.translate(1, 1);
     a.resize(2*len);
-    for (i=0;i<len;i++)
+    for (int i=0;i<len;i++)
     {
       a[len+i] = b[i];
     }
+    qDebug() << k_funcinfo << a.size() << "points";
 
-    m_points = a;
-    m_boundingRect = m_points.boundingRect();
+    m_boundingRect = a.boundingRect();
   }
-  qDebug() << k_funcinfo << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
+  qDebug() << k_funcinfo ;//<< edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
 }

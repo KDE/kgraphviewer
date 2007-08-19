@@ -190,18 +190,14 @@ DotGraphView::~DotGraphView()
 bool DotGraphView::loadDot(const QString& dotFileName)
 {
   kDebug() << k_funcinfo << "'" << dotFileName << "'";
-  hide();
-//   disconnect(m_canvas,SIGNAL(changed()),m_birdEyeView,SLOT(updateScene()));
   m_birdEyeView->setScene(0);
-//   disconnect(m_canvas,SIGNAL(changed()),this,SLOT(updateScene()));
-  setScene(0);
   
   if (m_canvas) 
   {
     delete m_canvas;
     m_canvas = 0;
   }
-  
+
   QString layoutCommand = (m_graph!=0?m_graph->layoutCommand():"");
   if (m_graph != 0)
     delete m_graph;
@@ -219,35 +215,10 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   m_graph->layoutCommand(layoutCommand);
   
 //   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
-  if (!m_graph->parseDot(m_graph->dotFileName()))
-  {
-    kError() << "NOT successfully parsed!" << endl;
-    return false;
-  }
-  
-  kDebug() << k_funcinfo << "successfully parsed";
-  viewport()->setUpdatesEnabled(false);
-  
-  if (m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
-  {
-    m_birdEyeView->setDrawingEnabled(false);
-  }
-  //  QCanvasEllipse* eItem;
-  double scaleX = 1.0, scaleY = 1.0;
-
-  if (m_detailLevel == 0)      { scaleX = m_graph->scale() * 0.7; scaleY = m_graph->scale() * 0.7; }
-  else if (m_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
-  else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
-  else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
-  //   kDebug() << "detail level = " << m_detailLevel << " ; scaleX = " << scaleX;
-
-  QGraphicsScene* newCanvas;
-
   m_xMargin = 50;
   m_yMargin = 50;
-  
 
-  newCanvas = new QGraphicsScene();
+  QGraphicsScene* newCanvas = new QGraphicsScene();
   kDebug() << "Created canvas " << newCanvas;
   
   m_birdEyeView->setScene(newCanvas);
@@ -255,23 +226,22 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   
   setScene(newCanvas);
   m_canvas = newCanvas;
-//   std::cerr << "After set canvas" << std::endl;
-  
 
   m_cvZoom = 0;
-  updateSizes();
-  zoomRectMovedTo(QPointF(0,0));
 
-  viewport()->setUpdatesEnabled(true);
-  show();
-  m_canvas->update();
+  if (!m_graph->parseDot(m_graph->dotFileName()))
+  {
+    kError() << "NOT successfully parsed!" << endl;
+    return false;
+  }
+
   return true;
 }
 
 
 bool DotGraphView::displayGraph()
 {
-  kDebug() << k_funcinfo;
+  qDebug() << k_funcinfo;
   hide();
   viewport()->setUpdatesEnabled(false);
 
@@ -301,49 +271,44 @@ bool DotGraphView::displayGraph()
   m_canvasNaturalSize = m_canvas->sceneRect().size();
   QSizeF newCanvasSize = m_canvas->sceneRect().size();
 
-//   std::set< GraphNode* >& nodes = m_graph->nodesOfCell(0);
-  GraphNodeMap& nodes = m_graph->nodes();
-//   std::cerr << "Adding " << nodes.size() << " nodes to canvas" << std::endl;
-  GraphNodeMap::iterator nodesIt, nodesIt_end;
-  nodesIt = nodes.begin();
-  nodesIt_end = nodes.end();
-  for (; nodesIt != nodesIt_end; nodesIt++)
+  foreach (GraphNode* gnode, m_graph->nodes())
   {
-    GraphNode* gnode = (*nodesIt);
-
-    CanvasNode *cnode = new CanvasNode(this, gnode);
-    if (cnode == 0) continue;
-    cnode->initialize(
-      scaleX, scaleY, m_xMargin, m_yMargin, gh,
-      int(m_graph->wdhcf()), int(m_graph->hdvcf()));
-    gnode->setCanvasNode(cnode);
-    m_canvas->addItem(cnode);
-    cnode->show();
+    if (gnode->canvasNode()==0)
+    {
+      CanvasNode *cnode = new CanvasNode(this, gnode);
+      if (cnode == 0) continue;
+      cnode->initialize(
+        scaleX, scaleY, m_xMargin, m_yMargin, gh,
+        int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+      gnode->setCanvasNode(cnode);
+      m_canvas->addItem(cnode);
+      cnode->show();
+    }
+    else
+    {
+      gnode->canvasNode()->computeBoundingRect();
+    }
   }
 
-  uint nbEdgesShown = 0;
-  GraphEdgeMap::iterator edgesIt, edgesIt_end;
-  edgesIt = m_graph->edges().begin();
-  edgesIt_end = m_graph->edges().end();
-  for (; edgesIt != edgesIt_end; edgesIt++)
+  foreach (GraphEdge* gedge, m_graph->edges())
   {
-    GraphEdge* gedge = *edgesIt;
+    if (gedge->canvasEdge() == 0)
+    {
+      qDebug() << k_funcinfo << dynamic_cast<GraphEdge*>(gedge);
+      CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
+          m_yMargin, gh, m_graph->wdhcf(), m_graph->hdvcf());
 
-/*    if (!( ( m_graph->nodesOfCell(0).find (e->fromNode()) != m_graph->nodesOfCell(0).end() )
-           && ( m_graph->nodesOfCell(0).find (e->toNode()) != m_graph->nodesOfCell(0).end() ) ))
-      continue;*/
-
-    CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
-        m_yMargin, gh, int(m_graph->wdhcf()), int(m_graph->hdvcf()));
-
-    gedge->setCanvasEdge(cedge);
-//     std::cerr << "setting z = " << gedge->z() << std::endl;
-    cedge->setZValue(gedge->z());
-    cedge->show();
-    m_canvas->addItem(cedge);
-    nbEdgesShown++;
+      gedge->setCanvasEdge(cedge);
+  //     std::cerr << "setting z = " << gedge->z() << std::endl;
+      cedge->setZValue(gedge->z());
+      cedge->show();
+      m_canvas->addItem(cedge);
+    }
+    else
+    {
+      gedge->canvasEdge()->computeBoundingRect();
+    }
   }
-//   std::cerr << "  " << nbEdgesShown << " edges shown" << std::endl;
 
   uint nbSubgraphsShown = 0;
   GraphSubgraphMap::iterator subgraphsIt, subgraphsIt_end;
@@ -352,18 +317,16 @@ bool DotGraphView::displayGraph()
   for (; subgraphsIt != subgraphsIt_end; subgraphsIt++)
   {
     GraphSubgraph* gsubgraph = (*subgraphsIt);
+    if (gsubgraph->canvasSubgraph() == 0)
+    {
+      CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph,
+          m_canvas,scaleX, scaleY, m_xMargin, m_yMargin, gh,
+          int(m_graph->wdhcf()), int(m_graph->hdvcf()));
 
-/*    if (!( ( m_graph->nodesOfCell(0).find (e->fromNode()) != m_graph->nodesOfCell(0).end() )
-    && ( m_graph->nodesOfCell(0).find (e->toNode()) != m_graph->nodesOfCell(0).end() ) ))
-    continue;*/
-
-    CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph,
-        m_canvas,scaleX, scaleY, m_xMargin, m_yMargin, gh,
-        int(m_graph->wdhcf()), int(m_graph->hdvcf()));
-
-    csubgraph->show();
-    m_canvas->addItem(csubgraph);
-    nbSubgraphsShown++;
+      csubgraph->show();
+      m_canvas->addItem(csubgraph);
+      nbSubgraphsShown++;
+    }
   }
 
 //   std::cerr << "Adding graph render operations: " << m_graph->renderOperations().size() << std::endl;
@@ -425,7 +388,7 @@ bool DotGraphView::displayGraph()
 
 void DotGraphView::updateSizes(QSizeF s)
 {
-  kDebug() << "DotGraphView::updateSizes";
+  qDebug() << k_funcinfo;
   if (m_canvas == 0)
     return;
   if (s == QSizeF(0,0)) s = size();
@@ -684,9 +647,9 @@ void DotGraphView::resizeEvent(QResizeEvent* e)
 
 void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
 {
-  kDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos;
+  qDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos;
   centerOn(newZoomPos);
-  kDebug() << "  viewport "<< mapToScene(viewport()->rect()).boundingRect();
+  qDebug() << "  viewport "<< mapToScene(viewport()->rect()).boundingRect();
   QRectF sp = mapToScene(viewport()->rect()).boundingRect();
 /*  QPointF p = newZoomPos - sp.bottomRight()/2;
   if (p.x() < 0) 
@@ -698,7 +661,7 @@ void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
     p.ry() = 0;
   }
   sp.setX(p.x()); sp.setY(p.y());*/
-  kDebug() << "  sp "<< sp /*<< " ; p " << p*/;
+  qDebug() << "  sp "<< sp /*<< " ; p " << p*/;
   m_birdEyeView->setZoomRect(sp);
 }
                     
@@ -1324,8 +1287,8 @@ void DotGraphView::finishNewEdgeTo(CanvasNode* node)
   scene()->removeItem(m_newEdgeDraft);
 
   GraphEdge* gedge  = new GraphEdge();
-  gedge->setCallerNode(m_newEdgeSource->node());
-  gedge->setCallingNode(node->node());
+  gedge->setFromNode(m_newEdgeSource->node());
+  gedge->setToNode(node->node());
   m_graph->edges().insert(qMakePair(m_newEdgeSource->node(),node->node()), gedge);
 
   double scaleX = 1.0, scaleY = 1.0;

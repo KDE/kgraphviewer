@@ -60,10 +60,10 @@ class CanvasEdge : public QObject, public QAbstractGraphicsShapeItem
 {
 Q_OBJECT
 public:
-  CanvasEdge(DotGraphView* v, GraphEdge*,
-             double scaleX, double scaleY, 
-             int xMargin, int yMargin, int gh,
-             int wdhcf, int hdvcf, QGraphicsItem* parent = 0);
+  explicit CanvasEdge(DotGraphView* v, GraphEdge*,
+             qreal scaleX, qreal scaleY,
+             qreal xMargin, qreal yMargin, qreal gh,
+             qreal wdhcf, qreal hdvcf, QGraphicsItem* parent = 0);
 
   QRectF boundingRect() const;
 
@@ -72,16 +72,17 @@ public:
 
   GraphEdge* edge() { return m_edge; }
   const GraphEdge* edge() const { return m_edge; }
-  
+
+  void computeBoundingRect();
+
 public Q_SLOTS:
   void modelChanged();
 
 protected:
-  void computeBoundingRect();
 
-  private:
-  double m_scaleX, m_scaleY; 
-  int m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
+private:
+  qreal m_scaleX, m_scaleY;
+  qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
   GraphEdge* m_edge;
   QRectF m_boundingRect;
   QFont* m_font;

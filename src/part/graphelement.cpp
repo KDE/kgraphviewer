@@ -44,18 +44,18 @@ GraphElement::GraphElement() :
 }
 
 GraphElement::GraphElement(const GraphElement& element) : QObject(),
-  m_attributes()
+  m_attributes(),
+  m_originalAttributes(),
+  m_z(element.m_z),
+  m_renderOperations()
 {
-  QMapIterator<QString,QString> it(element.m_attributes);
-  while (it.hasNext())
-  {
-    m_attributes[it.key()] = it.value();
-  }
+  qDebug() << k_funcinfo;
+  updateWith(element);
 }
 
 void GraphElement::updateWith(const GraphElement& element)
 {
-  kDebug() << k_funcinfo << m_renderOperations.size();
+  qDebug() << k_funcinfo << m_renderOperations.size();
   bool modified = false;
   foreach (QString attrib, element.attributes().keys())
   {

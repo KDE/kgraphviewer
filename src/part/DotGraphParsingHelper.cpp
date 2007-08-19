@@ -85,33 +85,33 @@ void DotGraphParsingHelper::setgraphelementattributes(GraphElement* ge, const At
 
 void DotGraphParsingHelper::setgraphattributes()
 {
-  kDebug() << "Attributes for graph are : ";
+  qDebug() << k_funcinfo << "Attributes for graph are : ";
   setgraphelementattributes(graph, graphAttributes);
 }
 
 void DotGraphParsingHelper::setsubgraphattributes()
 {
-  kDebug() << "Attributes for subgraph are : ";
+  qDebug() << k_funcinfo << "Attributes for subgraph are : ";
   setgraphelementattributes(gs, graphAttributes);
 }
 
 void DotGraphParsingHelper::setnodeattributes()
 {
-  kDebug() << "setnodeattributes with z = " << z;
+  qDebug() << k_funcinfo << "setnodeattributes with z = " << z;
   
   if (gn == 0)
   {
     return;
   }
-  kDebug() << "Attributes for node " << gn->id() << " are : ";
+  qDebug() << k_funcinfo << "Attributes for node " << gn->id() << " are : ";
   setgraphelementattributes(gn, nodesAttributes);
 }
 
 void DotGraphParsingHelper::setedgeattributes()
 {
-  kDebug() << "setedgeattributeswith z = " << z;
+  qDebug() << k_funcinfo << "setedgeattributeswith z = " << z;
   
-  kDebug() << "Attributes for edge " << ge->fromNode()->id() << "->" << ge->toNode()->id() << " are : ";
+  qDebug() << k_funcinfo << "Attributes for edge " << ge->fromNode()->id() << "->" << ge->toNode()->id() << " are : ";
   setgraphelementattributes(ge, edgesAttributes);
   
   if (edgesAttributes.find("_tdraw_") != edgesAttributes.end())
@@ -134,7 +134,7 @@ void DotGraphParsingHelper::setedgeattributes()
 
 void DotGraphParsingHelper::setattributedlist()
 {
-//   kDebug() << k_funcinfo << "Setting attributes list for " << QString::fromStdString(attributed);
+//   qDebug() << k_funcinfo << "Setting attributes list for " << QString::fromStdString(attributed);
   if (attributed == "graph")
   {
     if (attributes.find("bb") != attributes.end())
@@ -143,7 +143,7 @@ void DotGraphParsingHelper::setattributedlist()
       parse_integers(attributes["bb"].c_str(), v);
       if (v.size()>=4)
       {
-        kDebug() << k_funcinfo << "setting width and height to " << v[2] << v[3];
+        qDebug() << k_funcinfo << "setting width and height to " << v[2] << v[3];
         graph->width(v[2]);
         graph->height(v[3]);
       }
@@ -152,7 +152,7 @@ void DotGraphParsingHelper::setattributedlist()
     it = attributes.begin(); it_end = attributes.end();
     for (; it != it_end; it++)
     {
-//       kDebug() << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
+//       qDebug() << k_funcinfo << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
       graphAttributes[(*it).first] = (*it).second;
     }
   }
@@ -162,7 +162,7 @@ void DotGraphParsingHelper::setattributedlist()
     it = attributes.begin(); it_end = attributes.end();
     for (; it != it_end; it++)
     {
-//       kDebug() << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
+//       qDebug() << k_funcinfo << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
       nodesAttributes[(*it).first] = (*it).second;
     }
   }
@@ -172,7 +172,7 @@ void DotGraphParsingHelper::setattributedlist()
     it = attributes.begin(); it_end = attributes.end();
     for (; it != it_end; it++)
     {
-//       kDebug() << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
+//       qDebug() << k_funcinfo << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
       edgesAttributes[(*it).first] = (*it).second;
     }
   }
@@ -181,10 +181,10 @@ void DotGraphParsingHelper::setattributedlist()
 
 void DotGraphParsingHelper::createnode(const std::string& nodeid)
 {
-  kDebug() << k_funcinfo << QString::fromStdString(nodeid);
+  qDebug() << k_funcinfo << QString::fromStdString(nodeid);
   if (graph->nodes().find(QString::fromStdString(nodeid)) == graph->nodes().end() && graph->nodes().size() < KGV_MAX_ITEMS_TO_LOAD)
   {
-    kDebug() << "Creating a new node";
+    qDebug() << k_funcinfo << "Creating a new node";
     gn = new GraphNode();
     gn->id(QString::fromStdString(nodeid)); 
     gn->label(QString::fromStdString(nodeid)); 
@@ -192,7 +192,7 @@ void DotGraphParsingHelper::createnode(const std::string& nodeid)
   }
   else if (graph->nodes().find(QString::fromStdString(nodeid)) != graph->nodes().end())
   {
-    kDebug() << "Found existing node";
+    qDebug() << k_funcinfo << "Found existing node";
     gn = *(graph->nodes().find(QString::fromStdString(nodeid)));
   }
   edgebounds.clear();
@@ -200,7 +200,7 @@ void DotGraphParsingHelper::createnode(const std::string& nodeid)
 
 void DotGraphParsingHelper::createsubgraph()
 {
-  kDebug() << k_funcinfo;
+  qDebug() << k_funcinfo ;
   if (phelper)
   {
     std::string str = phelper->subgraphid;
@@ -210,10 +210,10 @@ void DotGraphParsingHelper::createsubgraph()
       oss << "kgv_id_" << phelper->uniq++;
       str = oss.str();
     }
-    kDebug() << k_funcinfo << QString::fromStdString(str);
+    qDebug() << k_funcinfo << QString::fromStdString(str);
     if (graph->subgraphs().find(QString::fromStdString(str)) == graph->subgraphs().end())
     {
-      kDebug() << "Creating a new subgraph";
+      qDebug() << k_funcinfo << "Creating a new subgraph";
       gs = new GraphSubgraph();
       gs->id(QString::fromStdString(str)); 
       gs->label(QString::fromStdString(str)); 
@@ -221,7 +221,7 @@ void DotGraphParsingHelper::createsubgraph()
     }
     else
     {
-      kDebug() << "Found existing subgraph";
+      qDebug() << k_funcinfo << "Found existing subgraph";
       gs = *(graph->subgraphs().find(QString::fromStdString(str)));
     }
     phelper->subgraphid = "";
@@ -242,22 +242,26 @@ void DotGraphParsingHelper::createedges()
     {
       return;
     }
-    kDebug() << k_funcinfo << QString::fromStdString(node1Name) << ", " << QString::fromStdString(node2Name);
+    kDebug() << QString::fromStdString(node1Name) << ", " << QString::fromStdString(node2Name);
     ge = new GraphEdge();
     if (!graph->nodes().contains(QString::fromStdString(node1Name)))
     {
+      kDebug() << "new node 1";
       GraphNode* gn1 = new GraphNode();
       gn1->id(QString::fromStdString(node1Name));
       graph->nodes()[QString::fromStdString(node1Name)] = gn1;
     }
     if (!graph->nodes().contains(QString::fromStdString(node2Name)))
     {
+      kDebug() << "new node 2";
       GraphNode* gn2 = new GraphNode();
       gn2->id(QString::fromStdString(node2Name));
       graph->nodes()[QString::fromStdString(node2Name)] = gn2;
     }
-    ge->setCallerNode(graph->nodes()[QString::fromStdString(node1Name)]);
-    ge->setCallingNode(graph->nodes()[QString::fromStdString(node2Name)]);
+    
+    ge->setFromNode(graph->nodes()[QString::fromStdString(node1Name)]);
+    ge->setToNode(graph->nodes()[QString::fromStdString(node2Name)]);
+    kDebug() << ge->fromNode() << " -> " << ge->toNode();
     graph->edges().insert(
       qMakePair(
         graph->nodes()[QString::fromStdString(node1Name)],graph->nodes()[QString::fromStdString(node2Name)]

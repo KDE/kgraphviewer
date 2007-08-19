@@ -66,7 +66,7 @@ CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n, QGraphicsItem* parent)
   m_pen(Dot2QtConsts::componentData().qtColor(n->fontColor()))
 
 {
-  kDebug() << k_funcinfo << n->id();
+  qDebug() << k_funcinfo << n->id();
   m_font = FontsCache::changeable().fromName(n->fontName());
   connect(n,SIGNAL(changed()),this,SLOT(modelChanged()));
 
@@ -74,7 +74,7 @@ CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n, QGraphicsItem* parent)
   QString id = n->id();
   QString label = n->label();
   tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-  kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
+  qDebug() << "CanvasEllipseNode setToolTip " << tipStr;
   setToolTip(tipStr);
 }
 
@@ -100,7 +100,7 @@ QRectF CanvasNode::boundingRect () const
 
 void CanvasNode::computeBoundingRect()
 {
-  kDebug() << k_funcinfo << node()->id();
+  qDebug() << k_funcinfo << node()->id();
 
   qreal adjust = 0.5;
   QRectF rect;
@@ -128,7 +128,7 @@ void CanvasNode::computeBoundingRect()
       if ((*it).renderop == "e" || (*it).renderop == "E")
       {
         qDebug() << k_funcinfo << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
-            << "(*it).integers[0]%m_wdhcf=" << (*it).integers[0]%m_wdhcf;
+            << "(*it).integers[0]/*%m_wdhcf*/=" << (*it).integers[0]/*%m_wdhcf*/;
         qreal w = m_scaleX * (*it).integers[2] * 2;
         qreal h = m_scaleY * (*it).integers[3] * 2;
         qreal x = m_xMargin + (((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;

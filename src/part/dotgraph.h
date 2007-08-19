@@ -41,6 +41,8 @@ class DotGraph : public GraphElement
 {
   Q_OBJECT
 public:
+  enum ParsePhase {Initial, Final};
+  
   DotGraph(const QString& command, const QString& fileName);
 
   virtual ~DotGraph();
@@ -119,6 +121,8 @@ private:
 
   bool m_readWrite;
   QProcess* m_dot;
+
+  ParsePhase m_phase;
 };
 
 #endif

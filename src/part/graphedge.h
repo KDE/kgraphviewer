@@ -49,19 +49,21 @@ public:
   GraphEdge();
   ~GraphEdge();
 
+  GraphEdge(const GraphEdge& edge);
+
   CanvasEdge* canvasEdge() { return m_ce; }
   void setCanvasEdge(CanvasEdge* ce) { m_ce = ce; }
 
-  bool isVisible() { return _visible; }
-  void setVisible(bool v) { _visible = v; }
+  bool isVisible() { return m_visible; }
+  void setVisible(bool v) { m_visible = v; }
 
-  GraphNode* fromNode() { return _fromNode; }
-  GraphNode* toNode() { return _toNode; }
-  const GraphNode* fromNode() const { return _fromNode; }
-  const GraphNode* toNode() const { return _toNode; }
+  GraphNode* fromNode() { return m_fromNode; }
+  GraphNode* toNode() { return m_toNode; }
+  const GraphNode* fromNode() const { return m_fromNode; }
+  const GraphNode* toNode() const { return m_toNode; }
 
-  void setCallerNode(GraphNode* n) { _fromNode = n; }
-  void setCallingNode(GraphNode* n) { _toNode = n; }
+  void setFromNode(GraphNode* n) { m_fromNode = n; }
+  void setToNode(GraphNode* n) { m_toNode = n; }
 
 //   inline const QVector< QPair< float, float > >& edgePoints() const {return m_edgePoints;}
 //   inline QVector< QPair< float, float > >& edgePoints() {return m_edgePoints;}
@@ -87,11 +89,9 @@ public:
 private:
   // we have a _ce *and* _from/_to because for collapsed edges,
   // only _to or _from will be unequal NULL
-  GraphNode *_fromNode, *_toNode;
+  GraphNode *m_fromNode, *m_toNode;
   CanvasEdge* m_ce;
-  bool _visible;
-  // for keyboard navigation: have we last reached this edge via a caller?
-  bool _lastFromCaller;
+  bool m_visible;
   QStringList m_colors;
   QString m_dir;
 //   QVector< QPair< float, float > > m_edgePoints;

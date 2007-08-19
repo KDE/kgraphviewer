@@ -37,18 +37,30 @@
 
 GraphEdge::GraphEdge() : 
     GraphElement(),
+    m_fromNode(0),m_toNode(0),
+    m_ce(0),m_visible(true),
     m_colors(),
-    m_dir(DOT_DEFAULT_EDGE_DIR)
+    m_dir(DOT_DEFAULT_EDGE_DIR),
+    m_arrowheads()
 {
-  _fromNode = _toNode = 0;
-  m_ce = 0;
-
-  _visible = true;
-  _lastFromCaller = true;
+  kDebug() << k_funcinfo;
 }
 
 GraphEdge::~GraphEdge()
 {
+  kDebug() << k_funcinfo;
+}
+
+GraphEdge::GraphEdge(const GraphEdge& edge) :
+  GraphElement(edge)
+{
+    m_fromNode = 0;
+    m_toNode = 0;
+    m_ce = 0;
+    m_visible = edge.m_visible;
+    m_colors = edge.m_colors;
+    m_dir = edge.m_dir;
+    m_arrowheads = edge.m_arrowheads;
 }
 
 void GraphEdge::colors(const QString& cs)
