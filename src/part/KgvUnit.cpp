@@ -179,7 +179,7 @@ double KgvUnit::parseValue( const QString& sval, double defaultVal )
       return fromUserValue( val * 10.0, U_DM );
   else if( unit == "km" )
       return fromUserValue( val * 10000.0, U_DM );
-  kWarning() << k_funcinfo << "Unit" << unit << "is not supported, please report.";
+  kWarning() << "Unit" << unit << "is not supported, please report.";
 
   // TODO : add support for mi/ft ?
   return defaultVal;

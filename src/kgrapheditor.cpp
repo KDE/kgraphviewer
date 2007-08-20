@@ -60,7 +60,7 @@ KGraphEditor::KGraphEditor() :
     m_rfa(0),
     m_currentPart(0)
 {
-  qDebug() << k_funcinfo << "essai1";
+  qDebug() << "essai1";
   qDebug() << "essai2";
   // set the shell's ui resource file
   setXMLFile("kgrapheditorui.rc");
@@ -123,7 +123,7 @@ KGraphEditor::KGraphEditor() :
 
 KGraphEditor::~KGraphEditor()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
 }
 
 void KGraphEditor::reloadPreviousFiles()
@@ -149,7 +149,7 @@ void KGraphEditor::reloadPreviousFiles()
 
 void KGraphEditor::openUrl(const KUrl& url)
 {
-  kDebug() << k_funcinfo << url;
+  kDebug() << url;
   KLibFactory *factory = KLibLoader::self()->factory("kgraphviewerpart");
   if (factory)
   {
@@ -187,7 +187,7 @@ void KGraphEditor::openUrl(const KUrl& url)
 
 void KGraphEditor::fileOpen()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   // this slot is called whenever the File->Open menu is selected,
   // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
   // button is clicked
@@ -240,7 +240,7 @@ void KGraphEditor::setupActions()
 
 bool KGraphEditor::queryExit()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   KGraphViewerSettings::setPreviouslyOpenedFiles(m_openedFiles);
   m_rfa->saveEntries(KGlobal::config()->group("kgrapheditor"));
 
@@ -500,7 +500,7 @@ void KGraphEditor::fileSaveAs()
 
 void KGraphEditor::newTabSelectedSlot(QWidget* tab)
 {
-//   kDebug() << k_funcinfo << tab;
+//   kDebug() << tab;
   emit(hide((KParts::Part*)(m_manager->activePart())));
   if (!m_tabsPartsMap.isEmpty())
   {
@@ -547,7 +547,7 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
     }
     items.append(item);
   }
-  kDebug() << k_funcinfo << "inserting";
+  kDebug() << "inserting";
   m_treeWidget->insertTopLevelItems(0, items);
 
 
@@ -579,13 +579,13 @@ void KGraphEditor::slotGraphLoaded()
     }
     items.append(item);
   }
-  kDebug() << k_funcinfo << "inserting";
+  kDebug() << "inserting";
   m_treeWidget->insertTopLevelItems(0, items);
 }
 
 void KGraphEditor::slotItemChanged ( QTreeWidgetItem * item, int column )
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   DotGraph* graph = m_currentPart->graph();
   /* values column */
   if (column == 1)
@@ -603,7 +603,7 @@ void KGraphEditor::slotItemChanged ( QTreeWidgetItem * item, int column )
 
 void KGraphEditor::slotEditNewVertex()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   if (m_currentPart == 0)
   {
     return;
@@ -613,7 +613,7 @@ void KGraphEditor::slotEditNewVertex()
 
 void KGraphEditor::slotEditNewEdge()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   if (m_currentPart == 0)
   {
     return;

@@ -66,7 +66,7 @@ CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n, QGraphicsItem* parent)
   m_pen(Dot2QtConsts::componentData().qtColor(n->fontColor()))
 
 {
-  qDebug() << k_funcinfo << n->id();
+  qDebug() << n->id();
   m_font = FontsCache::changeable().fromName(n->fontName());
   connect(n,SIGNAL(changed()),this,SLOT(modelChanged()));
 
@@ -100,7 +100,7 @@ QRectF CanvasNode::boundingRect () const
 
 void CanvasNode::computeBoundingRect()
 {
-  qDebug() << k_funcinfo << node()->id();
+  qDebug() << node()->id();
 
   qreal adjust = 0.5;
   QRectF rect;
@@ -117,7 +117,7 @@ void CanvasNode::computeBoundingRect()
     {
       QString msg;
       QTextStream dd(&msg);
-      dd << k_funcinfo << node()->id() << " an op: " << (*it).renderop << " ";
+      dd << node()->id() << " an op: " << (*it).renderop << " ";
       foreach (int i, (*it).integers)
       {
         dd << i << " ";
@@ -127,14 +127,14 @@ void CanvasNode::computeBoundingRect()
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
       {
-        qDebug() << k_funcinfo << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
+        qDebug() << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
             << "(*it).integers[0]/*%m_wdhcf*/=" << (*it).integers[0]/*%m_wdhcf*/;
         qreal w = m_scaleX * (*it).integers[2] * 2;
         qreal h = m_scaleY * (*it).integers[3] * 2;
         qreal x = m_xMargin + (((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
         qreal y = ((m_gh - (*it).integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
         m_boundingRect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
-        qDebug() << k_funcinfo << "'" << node()->id() << "' set rect for ellipse to " << rect;
+        qDebug() << "'" << node()->id() << "' set rect for ellipse to " << rect;
       }
       else if  ((*it).renderop == "p" || (*it).renderop == "P")
       {
@@ -154,11 +154,11 @@ void CanvasNode::computeBoundingRect()
           polygon[i] = p;
         }
         m_boundingRect = polygon.boundingRect();
-        qDebug() << k_funcinfo << "'" << node()->id() << "' set rect for polygon to " << rect;
+        qDebug() << "'" << node()->id() << "' set rect for polygon to " << rect;
       }
     }
   }
-  qDebug() << k_funcinfo << node()->id() << "new bounding rect is:" << m_boundingRect;
+  qDebug() << node()->id() << "new bounding rect is:" << m_boundingRect;
 }
 
 void CanvasNode::modelChanged()
@@ -180,7 +180,7 @@ QWidget *widget)
   QTextStream dd(&msg);
   foreach (DotRenderOp op, node()->renderOperations())
   {
-    dd << k_funcinfo << node()->id() << " an op: " << op.renderop << " ";
+    dd << node()->id() << " an op: " << op.renderop << " ";
     foreach (int i, op.integers)
     {
       dd << i << " ";
@@ -191,7 +191,7 @@ QWidget *widget)
 
   if (node()->renderOperations().isEmpty())
   {
-//     kDebug() << k_funcinfo << "drawPixmap";
+//     kDebug() << "drawPixmap";
     p->drawPixmap(QPointF(0,0),m_view->defaultNewElementPixmap());
     return;
   }
@@ -227,7 +227,7 @@ QWidget *widget)
                   (x*m_scaleX) + m_xMargin,
                   ((m_gh-y)*m_scaleY) + m_yMargin
                 );
-/*        kDebug() << k_funcinfo << "    point: (" << dro.integers[2*i+1] << ","
+/*        kDebug() << "    point: (" << dro.integers[2*i+1] << ","
                   << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf;*/
         points[i] = p;
       }
@@ -304,7 +304,7 @@ QWidget *widget)
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(node()->style()));
       }
       p->setPen(pen);
-      qDebug() << k_funcinfo << node()->id() << "drawPolyline" << points;
+      qDebug() << node()->id() << "drawPolyline" << points;
       p->drawPolyline(points);
       p->restore();
     }
@@ -360,7 +360,7 @@ QWidget *widget)
 void CanvasNode::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
   Q_UNUSED(event)
-  kDebug() << k_funcinfo << m_node->id() << boundingRect();
+  kDebug() << m_node->id() << boundingRect();
   if (m_view->editingMode() == DotGraphView::AddNewEdge)
   {
     m_view->createNewEdgeDraftFrom(this);
@@ -374,13 +374,13 @@ void CanvasNode::mousePressEvent(QGraphicsSceneMouseEvent* event)
 void CanvasNode::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
   Q_UNUSED(event)
-//   kDebug() << k_funcinfo;
+//   kDebug() ;
 }
 
 void CanvasNode::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
   Q_UNUSED(event)
-//   kDebug() << k_funcinfo;
+//   kDebug() ;
 }
 
 // CanvasHtmlNode::CanvasHtmlNode(

@@ -49,13 +49,13 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
   m_z(element.m_z),
   m_renderOperations()
 {
-  qDebug() << k_funcinfo;
+  qDebug() ;
   updateWith(element);
 }
 
 void GraphElement::updateWith(const GraphElement& element)
 {
-  qDebug() << k_funcinfo << m_renderOperations.size();
+  qDebug() << m_renderOperations.size();
   bool modified = false;
   foreach (QString attrib, element.attributes().keys())
   {
@@ -72,7 +72,7 @@ void GraphElement::updateWith(const GraphElement& element)
     {
       QString msg;
       QTextStream dd(&msg);
-      dd << k_funcinfo << "an op: " << op.renderop << " ";
+      dd << "an op: " << op.renderop << " ";
       foreach (int i, op.integers)
       {
         dd << i << " ";
@@ -80,10 +80,10 @@ void GraphElement::updateWith(const GraphElement& element)
       dd << op.str;
       qDebug() << msg;
     }
-    qDebug() << k_funcinfo << "modified: emiting changed";
+    qDebug() << "modified: emiting changed";
     emit changed();
   }
-  qDebug() << k_funcinfo << "done" << m_renderOperations.size();
+  qDebug() << "done" << m_renderOperations.size();
 }
 
 
@@ -118,7 +118,7 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
         if (label != "label")
         {
           label.replace(QRegExp("\n"),"\\n");
-          qDebug() << k_funcinfo << it.key() << "=\"" << label << "\",";
+          qDebug() << it.key() << "=\"" << label << "\",";
           s << it.key() << "=\"" << label << "\",";
         }
       }
@@ -127,7 +127,7 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
       }
       else if (n.originalAttributes().isEmpty() || n.originalAttributes().contains(it.key()))
       {
-        qDebug() << k_funcinfo << it.key() << it.value();
+        qDebug() << it.key() << it.value();
         
           s << it.key() << "=\"" << it.value() << "\",";
       }

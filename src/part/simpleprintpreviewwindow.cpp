@@ -153,7 +153,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 
 void KGVSimplePrintPreviewWindow::initLater()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   setFullWidth();
   updatePagesCount();
   goToPage(0);
@@ -209,7 +209,7 @@ void KGVSimplePrintPreviewWindow::slotLastClicked()
 
 void KGVSimplePrintPreviewWindow::slotRedraw()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
 
   m_engine.clear();
   setFullWidth();
@@ -227,7 +227,7 @@ void KGVSimplePrintPreviewWindow::slotRedraw()
 
 void KGVSimplePrintPreviewWindow::goToPage(int pageNumber)
 {
-  kDebug() << k_funcinfo << pageNumber;
+  kDebug() << pageNumber;
   if (pageNumber==m_pageNumber || pageNumber < 0 || pageNumber > ((int)m_engine.pagesCount()-1))
     return;
   m_pageNumber = pageNumber;

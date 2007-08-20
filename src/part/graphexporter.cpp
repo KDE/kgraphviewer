@@ -45,7 +45,7 @@ GraphExporter::~GraphExporter()
 
 QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
 
   QString actualFileName = fileName;
   if (fileName.isEmpty())
@@ -58,7 +58,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
   QFile f(actualFileName);
   if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
   {
-    kError() << k_funcinfo << "Unable to open for writing " << actualFileName << endl;
+    kError() << "Unable to open for writing " << actualFileName << endl;
     exit(2);
   }
   QTextStream stream(&f);
@@ -69,7 +69,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
 
   /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
   /// possible to save them back : to be changed !
-  kDebug() << k_funcinfo << "writing subgraphs";
+  kDebug() << "writing subgraphs";
   GraphSubgraphMap::const_iterator sit;
   for ( sit = graph->subgraphs().begin();
   sit != graph->subgraphs().end(); ++sit )
@@ -78,7 +78,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
     (stream) << s;
   }
 
-  kDebug() << k_funcinfo << "writing nodes";
+  kDebug() << "writing nodes";
   GraphNodeMap::const_iterator nit;
   for ( nit = graph->nodes().begin();
         nit != graph->nodes().end(); ++nit )
@@ -86,7 +86,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
     (stream) << **nit;
   }
 
-  kDebug() << k_funcinfo << "writing edges";
+  kDebug() << "writing edges";
   GraphEdgeMap::const_iterator eit;
   for ( eit = graph->edges().begin();
         eit != graph->edges().end(); ++eit )

@@ -99,7 +99,7 @@ QString DotGraph::chooseLayoutProgramForFile(const QString& str)
 
 bool DotGraph::parseDot(const QString& str)
 {
-  kDebug() << k_funcinfo << str;
+  kDebug() << str;
   if (m_layoutCommand.isEmpty())
   {
     return false;
@@ -129,7 +129,7 @@ bool DotGraph::parseDot(const QString& str)
 
 bool DotGraph::update()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   GraphExporter exporter;
   QString str = exporter.writeDot(this);
 
@@ -138,7 +138,7 @@ bool DotGraph::update()
 
 void DotGraph::slotDotRunningDone(int,QProcess::ExitStatus)
 {
-  qDebug() << k_funcinfo;
+  qDebug() ;
   if (m_dot == 0)
   {
     return;
@@ -147,7 +147,7 @@ void DotGraph::slotDotRunningDone(int,QProcess::ExitStatus)
   m_dot->deleteLater();
   result.replace("\\\n","");
 
-  qDebug() << k_funcinfo << "string content is:" << endl << result << endl << "=====================";
+  qDebug() << "string content is:" << endl << result << endl << "=====================";
   std::string s =  result.data();
   if (phelper != 0)
   {
@@ -171,11 +171,11 @@ void DotGraph::slotDotRunningDone(int,QProcess::ExitStatus)
   phelper->maxZ = 1;
   phelper->uniq = 0;
 
-  qDebug() << k_funcinfo << "parsing new dot";
+  qDebug() << "parsing new dot";
   bool parsingResult = parse(s);
   delete phelper;
   phelper = 0;
-  qDebug() << k_funcinfo << "phelper deleted";
+  qDebug() << "phelper deleted";
 
   if (parsingResult)
   {
@@ -212,7 +212,7 @@ unsigned int DotGraph::cellNumber(int x, int y)
 void DotGraph::computeCells()
 {
   return;
-  kDebug() << k_funcinfo << m_width << m_height << endl;
+  kDebug() << m_width << m_height << endl;
   m_horizCellFactor = m_vertCellFactor = 1;
   m_wdhcf = (int)ceil(((double)m_width) / m_horizCellFactor)+1;
   m_hdvcf = (int)ceil(((double)m_height) / m_vertCellFactor)+1;
@@ -257,8 +257,8 @@ void DotGraph::computeCells()
       }
     }
   } while (!stop);
-  kDebug() << k_funcinfo << "m_wdhcf=" << m_wdhcf << "; m_hdvcf=" << m_hdvcf << endl;
-  kDebug() << k_funcinfo << "finished" << endl;
+  kDebug() << "m_wdhcf=" << m_wdhcf << "; m_hdvcf=" << m_hdvcf << endl;
+  kDebug() << "finished" << endl;
 }
 
 QSet< GraphNode* >& DotGraph::nodesOfCell(unsigned int id)
@@ -285,7 +285,7 @@ void DotGraph::storeOriginalAttributes()
 
 void DotGraph::saveTo(const QString& fileName)
 {
-  kDebug() << k_funcinfo << fileName;
+  kDebug() << fileName;
   m_dotFileName = fileName;
   GraphExporter exporter;
   exporter.writeDot(this, fileName);
@@ -303,24 +303,24 @@ void DotGraph::updateWith(const DotGraph& newGraph)
   computeCells();
   foreach (GraphNode* ngn, newGraph.nodes())
   {
-    qDebug() << k_funcinfo << "node " << ngn->id();
+    qDebug() << "node " << ngn->id();
     if (nodes().contains(ngn->id()))
     {
-      qDebug() << k_funcinfo << "known";
+      qDebug() << "known";
       nodes()[ngn->id()]->updateWith(*ngn);
     }
     else
     {
-      qDebug() << k_funcinfo << "new";
+      qDebug() << "new";
       GraphNode* newgn = new GraphNode(*ngn);
-      qDebug() << k_funcinfo << "new created";
+      qDebug() << "new created";
       nodes().insert(ngn->id(), newgn);
-      qDebug() << k_funcinfo << "new inserted";
+      qDebug() << "new inserted";
     }
   }
   foreach (GraphEdge* nge, newGraph.edges())
   {
-    qDebug() << k_funcinfo << "an edge";
+    qDebug() << "an edge";
     QPair<GraphNode*,GraphNode*> pair(nodes()[nge->fromNode()->id()],nodes()[nge->toNode()->id()]);
     if (edges().contains(pair))
     {

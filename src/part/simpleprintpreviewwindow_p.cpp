@@ -45,18 +45,18 @@ KGVSimplePrintPreviewView::KGVSimplePrintPreviewView(
 
 void KGVSimplePrintPreviewView::paintEvent( QPaintEvent *pe )
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   Q_UNUSED(pe);
 
   QPainter p(m_window);
 //   p.begin(&pm);
 //   p.initFrom(this);
 //! @todo only for screen!
-  kDebug() << k_funcinfo << "filling rect";
+  kDebug() << "filling rect";
   p.fillRect(QRect(QPoint(0,0),m_window->size()), QBrush(Qt::white));//pe->rect(), QBrush(white));
   if (m_window->currentPage()>=0)
   {
-    kDebug() << k_funcinfo << "painting page";
+    kDebug() << "painting page";
     m_window->m_engine.paintPage(m_window->currentPage(), p);
   }
 //    emit m_window->paintingPageRequested(m_window->currentPage(), p);
@@ -83,7 +83,7 @@ KGVSimplePrintPreviewScrollView::KGVSimplePrintPreviewScrollView(
 
 void KGVSimplePrintPreviewScrollView::paintEvent( QPaintEvent *pe )
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   QScrollArea::paintEvent(pe);
   ((KGVSimplePrintPreviewView*)widget())->paintEvent(pe);
 }
@@ -111,7 +111,7 @@ void KGVSimplePrintPreviewScrollView::paintEvent( QPaintEvent *pe )
 
 void KGVSimplePrintPreviewScrollView::setFullWidth()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   viewport()->setUpdatesEnabled(false);
   double widthMM = KgvPageFormat::width( 
     m_window->settings()->pageLayout.format, 

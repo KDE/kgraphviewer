@@ -93,8 +93,8 @@ QFont KgvGlobal::_defaultFont()
         Q_ASSERT( m_pointSize != -1 );
         font.setPointSize( m_pointSize );
     }
-    //kDebug()<<k_funcinfo<<"QFontInfo(font).pointSize() :"<<QFontInfo(font).pointSize();
-    //kDebug()<<k_funcinfo<<"font.name() :"<<font.family ();
+    //kDebug()<<"QFontInfo(font).pointSize() :"<<QFontInfo(font).pointSize();
+    //kDebug()<<"font.name() :"<<font.family ();
     return font;
 }
 
@@ -202,7 +202,7 @@ KConfig* KgvGlobal::_kofficeConfig()
 
 void KgvGlobal::setDPI( int x, int y )
 {
-    //kDebug() << k_funcinfo << x << "," << y;
+    //kDebug() << x << "," << y;
     KgvGlobal* s = self();
     s->m_dpiX = x;
     s->m_dpiY = y;

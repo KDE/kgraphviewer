@@ -43,12 +43,12 @@ GraphEdge::GraphEdge() :
     m_dir(DOT_DEFAULT_EDGE_DIR),
     m_arrowheads()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
 }
 
 GraphEdge::~GraphEdge()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
 }
 
 GraphEdge::GraphEdge(const GraphEdge& edge) :
@@ -85,7 +85,7 @@ const QString GraphEdge::color(uint i)
 
 void GraphEdge::updateWith(const GraphEdge& edge)
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   m_arrowheads = edge.arrowheads();
   m_colors = edge.colors();
   m_dir = edge.dir();
@@ -94,7 +94,7 @@ void GraphEdge::updateWith(const GraphEdge& edge)
   {
     m_ce->modelChanged();
   }*/
-  kDebug() << k_funcinfo << "done";
+  kDebug() << "done";
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e)

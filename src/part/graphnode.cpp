@@ -49,7 +49,7 @@ GraphNode::GraphNode() :
     m_cn(0), m_visible(false),
     m_x(0), m_y(0), m_w(0), m_h(0)
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
 }
 
 GraphNode::GraphNode(const GraphNode& gn) :
@@ -57,18 +57,18 @@ GraphNode::GraphNode(const GraphNode& gn) :
     m_cn(gn.m_cn), m_visible(gn.m_visible),
     m_x(gn.m_x), m_y(gn.m_y), m_w(gn.m_w), m_h(gn.m_h)
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
 }
 
 void GraphNode::updateWith(const GraphNode& node)
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   if (m_cn)
   {
     m_cn->modelChanged();
   }
   GraphElement::updateWith(node);
-  kDebug() << k_funcinfo << "done";
+  kDebug() << "done";
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphNode& n)

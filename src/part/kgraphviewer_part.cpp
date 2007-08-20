@@ -49,7 +49,7 @@ using namespace KGraphViewer;
 kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
 : KParts::ReadOnlyPart(parent), m_watch(new KDirWatch())
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   // we need an instance
   setComponentData( kgraphviewerPartFactory::componentData() );
 
@@ -105,7 +105,7 @@ kgraphviewerPart::~kgraphviewerPart()
 
 bool kgraphviewerPart::openFile()
 {
-  kDebug() << k_funcinfo << " " << localFilePath();
+  kDebug() << " " << localFilePath();
 //    m_widget->loadedDot( localFilePath() );
   if (!m_widget->loadDot(localFilePath()))
     return false;
@@ -143,19 +143,19 @@ void kgraphviewerPart::prepareAddNewEdge()
 
 void kgraphviewerPart::setReadOnly()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   m_widget->setReadOnly();
 }
 
 void kgraphviewerPart::setReadWrite()
 {
-  kDebug() << k_funcinfo;
+  kDebug() ;
   m_widget->setReadWrite();
 }
 
 void kgraphviewerPart::saveTo(const QString& fileName)
 {
-  kDebug() << k_funcinfo << fileName;
+  kDebug() << fileName;
   m_widget->graph()->saveTo(fileName);
 }
 

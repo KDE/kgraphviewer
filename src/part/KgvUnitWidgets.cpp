@@ -117,7 +117,7 @@ double KgvUnitDoubleBase::toDouble( const QString& str, bool* ok ) const
     if ( ok )
       kDebug(30004) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number( dbl, 'f', 12 );
     else
-        kWarning() << k_funcinfo << "error:" << str << ": => :" << str2 << ":" << endl;
+        kWarning() << "error:" << str << ": => :" << str2 << ":" << endl;
     return dbl;
 }
 
