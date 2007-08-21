@@ -20,6 +20,7 @@
 #include "kgrapheditor.h"
 #include "kgrapheditorConfigDialog.h"
 #include "kgrapheditorsettings.h"
+#include "KGraphEditorNodesTreeWidget.h"
 #include "ui_preferencesReload.h"
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
@@ -73,7 +74,7 @@ KGraphEditor::KGraphEditor() :
   setCentralWidget(m_widget);
 
   m_leftDockWidget = new QDockWidget(this);
-  m_treeWidget = new QTreeWidget(m_leftDockWidget);
+  m_treeWidget = new KGraphEditorNodesTreeWidget(m_leftDockWidget);
   connect(m_treeWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
 //   m_treeWidget->setItemDelegate(new VariantDelegate(m_treeWidget));
   m_treeWidget->setColumnCount(2);

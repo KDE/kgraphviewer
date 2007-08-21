@@ -32,6 +32,7 @@ class QTreeWidgetItem;
 class KToggleAction;
 
 class kgraphviewerPart;
+class KGraphEditorNodesTreeWidget;
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -113,7 +114,7 @@ private:
     
 private:
   QDockWidget* m_leftDockWidget;
-  QTreeWidget *m_treeWidget;
+  KGraphEditorNodesTreeWidget *m_treeWidget;
   KTabWidget* m_widget;
   KRecentFilesAction* m_rfa;
   KParts::PartManager* m_manager;
