@@ -563,10 +563,29 @@ void KGraphEditor::slotGraphLoaded()
   GraphNodeMap& nodesMap = graph->nodes();
   foreach (GraphNode* node, nodesMap)
   {
-    kDebug()<< "new item " << node->id();
-    QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(node->id()));
+    kDebug()<< "item " << node->id();
+    QTreeWidgetItem* item;
+    QList<QTreeWidgetItem*> existingItems = m_treeWidget->findItems(node->id(),Qt::MatchRecursive|Qt::MatchExactly);
+    if (existingItems.isEmpty())
+    {
+      item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(node->id()));
+      items.append(item);
+    }
+    else
+    {
+      item = existingItems[0];
+    }
     item->setFlags(item->flags() | Qt::ItemIsEditable);
-    foreach (QString attrib, node->attributes().keys())
+    QList<QString> keys = node->attributes().keys();
+    for (int i=0; i < item->childCount();i++)
+    {
+      if (keys.contains(item->child(i)->text(0)))
+      {
+        item->child(i)->setText(1,node->attributes()[item->child(i)->text(0)]);
+        keys.removeAll(item->child(i)->text(0));
+      }
+    }
+    foreach (QString attrib, keys)
     {
       if (attrib != "_draw_" && attrib != "_ldraw_")
       {
@@ -577,8 +596,7 @@ void KGraphEditor::slotGraphLoaded()
         item->addChild(child);
       }
     }
-    items.append(item);
-  }
+}
   kDebug() << "inserting";
   m_treeWidget->insertTopLevelItems(0, items);
 }
