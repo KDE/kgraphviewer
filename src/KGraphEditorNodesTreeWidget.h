@@ -47,10 +47,12 @@ protected:
   virtual void contextMenuEvent ( QContextMenuEvent * e );
 
 protected Q_SLOTS:
-  void slotGloup();
+  void slotRemoveNode();
+  void slotAddAttribute();
+  void slotRemoveAttribute();
 
 private:
-  void setupPopup();
+  void setupPopup(const QPoint& point);
 
   QMenu* m_popup;
 };

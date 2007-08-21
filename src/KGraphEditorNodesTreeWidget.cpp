@@ -30,38 +30,67 @@ KGraphEditorNodesTreeWidget::KGraphEditorNodesTreeWidget(QWidget* parent) :
     QTreeWidget(parent),
     m_popup(0)
 {
-  setupPopup();
 }
 
 KGraphEditorNodesTreeWidget::~KGraphEditorNodesTreeWidget()
 {
 }
 
-void KGraphEditorNodesTreeWidget::setupPopup()
+void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
 {
-  kDebug();
+  kDebug() << point;
 
   if (m_popup != 0)
   {
-    return;
+    delete m_popup;
   }
   m_popup = new QMenu();
 
-  KAction* bba = new KAction(i18n("Automatic"), this);
-  connect(bba, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
-          this, SLOT(slotGloup()));
-  m_popup->addAction(bba);
+  QTreeWidgetItem* item = itemAt(point);
+  if (item == 0)
+  {
+    kDebug() << "no item at" << point;
+    return;
+  }
+  KAction* aaa = new KAction(i18n("Add a new attribute"), this);
+  connect(aaa, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+          this, SLOT(slotAddAttribute()));
+  m_popup->addAction(aaa);
+
+  if (item->parent() != 0) // attribute item
+  {
+    KAction* raa = new KAction(i18n("Remove this attribute"), this);
+    connect(raa, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+            this, SLOT(slotRemoveAttribute()));
+    m_popup->addAction(raa);
+  }
+  m_popup->addSeparator();
+  KAction* rna = new KAction(i18n("Remove this node"), this);
+  connect(rna, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+          this, SLOT(slotRemoveNode()));
+  m_popup->addAction(rna);  
 }
 
-void KGraphEditorNodesTreeWidget::slotGloup()
+void KGraphEditorNodesTreeWidget::slotRemoveNode()
 {
-  kDebug() << "AAAAAAAAAAAAAAaaaaaaahhhhhhhhhhh!";
+  kDebug() << "Remove Node";
+}
+
+void KGraphEditorNodesTreeWidget::slotAddAttribute()
+{
+  kDebug() << "Add Attribute";
+}
+
+void KGraphEditorNodesTreeWidget::slotRemoveAttribute()
+{
+  kDebug() << "Remove Attribute";
 }
 
 
 
 void KGraphEditorNodesTreeWidget::contextMenuEvent ( QContextMenuEvent * e )
 {
+  setupPopup(e->pos());
   m_popup->exec(e->globalPos());
 }
 
