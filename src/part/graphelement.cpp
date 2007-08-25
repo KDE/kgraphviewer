@@ -104,6 +104,14 @@ QString GraphElement::backColor() const
   }
 }
 
+void GraphElement::removeAttribute(const QString& attribName)
+{
+  kDebug() << attribName;
+  m_attributes.remove(attribName);
+  emit changed();
+}
+
+
 QTextStream& operator<<(QTextStream& s, const GraphElement& n)
 {
   QMap<QString,QString>::const_iterator it, it_end;
@@ -135,5 +143,6 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
   }
   return s;
 }
+
 
 #include "graphelement.moc"

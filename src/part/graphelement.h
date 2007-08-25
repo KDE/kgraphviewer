@@ -86,6 +86,7 @@ public:
 
   virtual inline void storeOriginalAttributes() {m_originalAttributes = m_attributes.keys();}
 
+  virtual void removeAttribute(const QString& attribName);
   
 Q_SIGNALS:
     void changed();

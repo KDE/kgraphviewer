@@ -28,7 +28,8 @@
 
 KGraphEditorNodesTreeWidget::KGraphEditorNodesTreeWidget(QWidget* parent) :
     QTreeWidget(parent),
-    m_popup(0)
+    m_popup(0),
+    m_item(0)
 {
 }
 
@@ -46,8 +47,8 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
   }
   m_popup = new QMenu();
 
-  QTreeWidgetItem* item = itemAt(point);
-  if (item == 0)
+  m_item = itemAt(point);
+  if (m_item == 0)
   {
     kDebug() << "no item at" << point;
     return;
@@ -57,7 +58,7 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
           this, SLOT(slotAddAttribute()));
   m_popup->addAction(aaa);
 
-  if (item->parent() != 0) // attribute item
+  if (m_item->parent() != 0) // attribute item
   {
     KAction* raa = new KAction(i18n("Remove this attribute"), this);
     connect(raa, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
@@ -74,16 +75,36 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
 void KGraphEditorNodesTreeWidget::slotRemoveNode()
 {
   kDebug() << "Remove Node";
+  emit removeNode(m_item->text(0));
+  delete takeTopLevelItem (indexOfTopLevelItem(m_item));
+  m_item = 0;
 }
 
 void KGraphEditorNodesTreeWidget::slotAddAttribute()
 {
   kDebug() << "Add Attribute";
-}
+  QString nodeName = "NewAttribute";
+  emit addAttribute(m_item->text(0));
+  if (m_item->parent() == 0)
+  {
+    nodeName += QString::number(m_item->childCount());
+    QTreeWidgetItem* item = new QTreeWidgetItem(m_item, QStringList(nodeName));
+    item->setFlags(item->flags() | Qt::ItemIsEditable);
+  }
+  else
+  {
+    nodeName += QString::number(m_item->parent()->childCount());
+    QTreeWidgetItem* item = new QTreeWidgetItem(m_item->parent(), QStringList(nodeName));
+    item->setFlags(item->flags() | Qt::ItemIsEditable);
+  }
+ }
 
 void KGraphEditorNodesTreeWidget::slotRemoveAttribute()
 {
   kDebug() << "Remove Attribute";
+  emit removeAttribute(m_item->parent()->text(0), m_item->text(0));
+  m_item->parent()->removeChild(m_item);
+  m_item = 0;
 }
 
 

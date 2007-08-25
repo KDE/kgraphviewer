@@ -73,6 +73,10 @@ signals:
   void setReadWrite();
   void saveTo(const QString& fileName);
 
+  void removeNode(const QString&);
+  void addAttribute(const QString&);
+  void removeAttribute(const QString&,const QString&);
+
 public slots:
   /**
     * Use this method to load whatever file/URL you have
@@ -83,6 +87,10 @@ public slots:
 
   void slotGraphLoaded();
   
+  void slotRemoveNode(const QString&);
+  void slotAddAttribute(const QString&);
+  void slotRemoveAttribute(const QString&,const QString&);
+
 /*public slots:
   void reloadOnChangeMode_pressed(int value);
   void openInExistingWindowMode_pressed(int value);

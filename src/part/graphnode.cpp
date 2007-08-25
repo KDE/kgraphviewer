@@ -78,3 +78,4 @@ QTextStream& operator<<(QTextStream& s, const GraphNode& n)
     <<"];"<<endl;
   return s;
 }
+

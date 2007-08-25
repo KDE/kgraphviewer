@@ -51,10 +51,16 @@ protected Q_SLOTS:
   void slotAddAttribute();
   void slotRemoveAttribute();
 
+Q_SIGNALS:
+  void removeNode(const QString&);
+  void addAttribute(const QString&);
+  void removeAttribute(const QString&,const QString&);
+
 private:
   void setupPopup(const QPoint& point);
 
   QMenu* m_popup;
+  QTreeWidgetItem* m_item;
 };
 
 #endif // _KGRAPHEDITORNODESTREEWIDGET_H_

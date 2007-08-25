@@ -20,6 +20,7 @@
 #include "dotgrammar.h"
 #include "graphexporter.h"
 #include "DotGraphParsingHelper.h"
+#include "canvasedge.h"
 
 
 // #include <iostream>
@@ -32,6 +33,7 @@
 #include <QPair>
 #include <QByteArray>
 #include <QProcess>
+#include <QMutexLocker>
 
 
 
@@ -117,6 +119,9 @@ bool DotGraph::parseDot(const QString& str)
   }
   options << str;
 
+  kDebug() << "m_dot is " << m_dot  << ". Acquiring mutex";
+  QMutexLocker locker(&m_dotProcessMutex);
+  kDebug() << "mutex acquired ";
   if (m_dot != 0)
   {
     m_dot->terminate();
@@ -124,7 +129,8 @@ bool DotGraph::parseDot(const QString& str)
   m_dot = new QProcess();
   connect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
   m_dot->start(m_layoutCommand, options);
-  return true;
+  kDebug() << "process started";
+ return true;
 }
 
 bool DotGraph::update()
@@ -136,18 +142,30 @@ bool DotGraph::update()
   return parseDot(str);
 }
 
-void DotGraph::slotDotRunningDone(int,QProcess::ExitStatus)
+
+QByteArray DotGraph::getDotResult(int , QProcess::ExitStatus )
 {
-  qDebug() ;
+  kDebug();
+
+  QMutexLocker locker(&m_dotProcessMutex);
   if (m_dot == 0)
   {
-    return;
+    return QByteArray();
   }
   QByteArray result = m_dot->readAll();
-  m_dot->deleteLater();
+  delete m_dot;
+  m_dot = 0;
+  return result;
+}
+
+void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
+{
+  kDebug();
+  
+  QByteArray result = getDotResult(exitCode, exitStatus);
   result.replace("\\\n","");
 
-  qDebug() << "string content is:" << endl << result << endl << "=====================";
+  kDebug() << "string content is:" << endl << result << endl << "=====================";
   std::string s =  result.data();
   if (phelper != 0)
   {
@@ -171,11 +189,11 @@ void DotGraph::slotDotRunningDone(int,QProcess::ExitStatus)
   phelper->maxZ = 1;
   phelper->uniq = 0;
 
-  qDebug() << "parsing new dot";
+  kDebug() << "parsing new dot";
   bool parsingResult = parse(s);
   delete phelper;
   phelper = 0;
-  qDebug() << "phelper deleted";
+  kDebug() << "phelper deleted";
 
   if (parsingResult)
   {
@@ -303,24 +321,24 @@ void DotGraph::updateWith(const DotGraph& newGraph)
   computeCells();
   foreach (GraphNode* ngn, newGraph.nodes())
   {
-    qDebug() << "node " << ngn->id();
+    kDebug() << "node " << ngn->id();
     if (nodes().contains(ngn->id()))
     {
-      qDebug() << "known";
+      kDebug() << "known";
       nodes()[ngn->id()]->updateWith(*ngn);
     }
     else
     {
-      qDebug() << "new";
+      kDebug() << "new";
       GraphNode* newgn = new GraphNode(*ngn);
-      qDebug() << "new created";
+      kDebug() << "new created";
       nodes().insert(ngn->id(), newgn);
-      qDebug() << "new inserted";
+      kDebug() << "new inserted";
     }
   }
   foreach (GraphEdge* nge, newGraph.edges())
   {
-    qDebug() << "an edge";
+    kDebug() << "an edge";
     QPair<GraphNode*,GraphNode*> pair(nodes()[nge->fromNode()->id()],nodes()[nge->toNode()->id()]);
     if (edges().contains(pair))
     {
@@ -336,6 +354,43 @@ void DotGraph::updateWith(const DotGraph& newGraph)
     }
   }
   computeCells();
+}
+
+void DotGraph::removeNodeNamed(const QString& nodeName)
+{
+  GraphNode* node = nodes()[nodeName];
+
+  GraphEdgeMap::iterator it, it_end;
+  it = m_edgesMap.begin(); it_end = m_edgesMap.end();
+  while (it != it_end)
+  {
+    if ( it.key().first == node
+        || it.key().second == node )
+    {
+      GraphEdge* edge = it.value();
+      if (edge->canvasEdge() != 0)
+      {
+        edge->canvasEdge()->hide();
+        delete edge->canvasEdge();
+        delete edge;
+      }
+      it = edges().erase(it);
+    }
+    else
+    {
+      ++it;
+    }
+  }
+
+  if (node->canvasNode() != 0)
+  {
+    node->canvasNode()->hide();
+    delete node->canvasNode();
+    node->setCanvasNode(0);
+  }
+  nodes().remove(nodeName);
+  delete node;
+
 }
 
 #include "dotgraph.moc"

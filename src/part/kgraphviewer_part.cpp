@@ -159,6 +159,23 @@ void kgraphviewerPart::saveTo(const QString& fileName)
   m_widget->graph()->saveTo(fileName);
 }
 
+void kgraphviewerPart::slotRemoveNode(const QString& nodeName)
+{
+  kDebug();
+  m_widget->graph()->removeNodeNamed(nodeName);
+}
+
+void kgraphviewerPart::slotAddAttribute(const QString&)
+{
+  kDebug();
+}
+
+void kgraphviewerPart::slotRemoveAttribute(const QString& nodeName, const QString& attribName)
+{
+  kDebug();
+  m_widget->graph()->nodes()[nodeName]->removeAttribute(attribName);
+}
+
 /*It's usually safe to leave the factory code alone.. with the
 notable exception of the KAboutData data*/
 #include <kaboutdata.h>

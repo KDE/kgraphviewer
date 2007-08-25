@@ -162,7 +162,6 @@ public slots:
   void slotBevAutomatic();
   void slotUpdate();
   bool displayGraph();
-
 protected:
   void resizeEvent(QResizeEvent*);
   void mousePressEvent(QMouseEvent*);

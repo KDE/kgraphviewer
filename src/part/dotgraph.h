@@ -27,6 +27,7 @@
 #include <QSet>
 #include <QString>
 #include <QProcess>
+#include <QMutex>
 
 #include "graphelement.h"
 #include "graphsubgraph.h"
@@ -96,6 +97,8 @@ public:
 
   virtual void updateWith(const DotGraph& graph);
 
+  void removeNodeNamed(const QString& nodeName);
+  
 Q_SIGNALS:
   void readyToDisplay();
 
@@ -105,6 +108,7 @@ private Q_SLOTS:
 private:
   unsigned int cellNumber(int x, int y);
   void computeCells();
+  QByteArray getDotResult(int exitCode, QProcess::ExitStatus exitStatus);
     
   QString m_dotFileName;
   GraphSubgraphMap m_subgraphsMap;
@@ -125,6 +129,8 @@ private:
   QProcess* m_dot;
 
   ParsePhase m_phase;
+
+  QMutex m_dotProcessMutex;
 };
 
 #endif

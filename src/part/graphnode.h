@@ -74,6 +74,7 @@ public:
 
   virtual void updateWith(const GraphNode& node);
 
+  
 private:
   CanvasNode* m_cn;
   bool m_visible;

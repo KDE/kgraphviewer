@@ -68,6 +68,9 @@ public slots:
   void setReadOnly();
   void setReadWrite();
   void saveTo(const QString& fileName);
+  void slotRemoveNode(const QString&);
+  void slotAddAttribute(const QString&);
+  void slotRemoveAttribute(const QString&,const QString&);
 
 protected:
     /**

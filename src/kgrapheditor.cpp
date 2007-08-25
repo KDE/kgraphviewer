@@ -75,7 +75,15 @@ KGraphEditor::KGraphEditor() :
 
   m_leftDockWidget = new QDockWidget(this);
   m_treeWidget = new KGraphEditorNodesTreeWidget(m_leftDockWidget);
-  connect(m_treeWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
+  connect(m_treeWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+          this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
+  connect(m_treeWidget, SIGNAL(removeNode(const QString&)),
+          this, SLOT(slotRemoveNode(const QString&)));
+  connect(m_treeWidget, SIGNAL(addAttribute(const QString&)),
+          this, SLOT(slotAddAttribute(const QString&)));
+  connect(m_treeWidget, SIGNAL(removeAttribute(const QString&,const QString&)),
+          this, SLOT(slotRemoveAttribute(const QString&,const QString&)));
+
 //   m_treeWidget->setItemDelegate(new VariantDelegate(m_treeWidget));
   m_treeWidget->setColumnCount(2);
   m_leftDockWidget->setWidget(m_treeWidget);
@@ -517,6 +525,9 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
     disconnect(this,SIGNAL(prepareAddNewElement()),part,SLOT(prepareAddNewElement()));
     disconnect(this,SIGNAL(prepareAddNewEdge()),part,SLOT(prepareAddNewEdge()));
     disconnect(this,SIGNAL(saveTo(const QString&)),part,SLOT(saveTo(const QString&)));
+    disconnect(this,SIGNAL(removeNode(const QString&)),part,SLOT(slotRemoveNode(const QString&)));
+    disconnect(this,SIGNAL(addAttribute(const QString&)),part,SLOT(slotAddAttribute(const QString&)));
+    disconnect(this,SIGNAL(removeAttribute(const QString&,const QString&)),part,SLOT(slotRemoveAttribute(const QString&,const QString&)));
   }
   m_currentPart = ((kgraphviewerPart*) part);
   m_treeWidget->clear();
@@ -527,7 +538,10 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   connect(this,SIGNAL(prepareAddNewElement()),part,SLOT(prepareAddNewElement()));
   connect(this,SIGNAL(prepareAddNewEdge()),part,SLOT(prepareAddNewEdge()));
   connect(this,SIGNAL(saveTo(const QString&)),part,SLOT(saveTo(const QString&)));
-  DotGraph* graph = m_currentPart->graph();
+  connect(this,SIGNAL(removeNode(const QString&)),part,SLOT(slotRemoveNode(const QString&)));
+  connect(this,SIGNAL(addAttribute(const QString&)),part,SLOT(slotAddAttribute(const QString&)));
+  connect(this,SIGNAL(removeAttribute(const QString&,const QString&)),part,SLOT(slotRemoveAttribute(const QString&,const QString&)));
+DotGraph* graph = m_currentPart->graph();
   QList<QTreeWidgetItem *> items;
   GraphNodeMap& nodesMap = graph->nodes();
   foreach (GraphNode* node, nodesMap)
@@ -638,6 +652,22 @@ void KGraphEditor::slotEditNewEdge()
     return;
   }
   emit(prepareAddNewEdge());
+}
+
+void KGraphEditor::slotRemoveNode(const QString& nodeName)
+{
+  emit removeNode(nodeName);
+}
+
+void KGraphEditor::slotAddAttribute(const QString& attribName)
+{
+  emit addAttribute(attribName);
+}
+
+void KGraphEditor::slotRemoveAttribute(const QString& nodeName, const QString& attribName)
+{
+  kDebug();
+  emit removeAttribute(nodeName,attribName);
 }
 
 #include "kgrapheditor.moc"
