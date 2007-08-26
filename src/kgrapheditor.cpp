@@ -21,6 +21,7 @@
 #include "kgrapheditorConfigDialog.h"
 #include "kgrapheditorsettings.h"
 #include "KGraphEditorNodesTreeWidget.h"
+#include "KGraphEditorElementTreeWidget.h"
 #include "ui_preferencesReload.h"
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
@@ -73,8 +74,8 @@ KGraphEditor::KGraphEditor() :
   
   setCentralWidget(m_widget);
 
-  m_leftDockWidget = new QDockWidget(this);
-  m_treeWidget = new KGraphEditorNodesTreeWidget(m_leftDockWidget);
+    QDockWidget* topLeftDockWidget = new QDockWidget(this);
+  m_treeWidget = new KGraphEditorNodesTreeWidget(topLeftDockWidget);
   connect(m_treeWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
   connect(m_treeWidget, SIGNAL(removeNode(const QString&)),
@@ -86,8 +87,21 @@ KGraphEditor::KGraphEditor() :
 
 //   m_treeWidget->setItemDelegate(new VariantDelegate(m_treeWidget));
   m_treeWidget->setColumnCount(2);
-  m_leftDockWidget->setWidget(m_treeWidget);
-  addDockWidget ( Qt::LeftDockWidgetArea, m_leftDockWidget );
+  topLeftDockWidget->setWidget(m_treeWidget);
+  addDockWidget ( Qt::LeftDockWidgetArea, topLeftDockWidget );
+
+  QDockWidget* bottomLeftDockWidget = new QDockWidget(this);
+  m_newElementAttributesWidget = new KGraphEditorElementTreeWidget(bottomLeftDockWidget);
+  connect(m_newElementAttributesWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+          this,SLOT(slotNewElementItemChanged(QTreeWidgetItem*,int)));
+  connect(m_newElementAttributesWidget, SIGNAL(addAttribute()),
+          this, SLOT(slotAddNewElementAttribute()));
+  connect(m_newElementAttributesWidget, SIGNAL(removeAttribute(const QString&)),
+          this, SLOT(slotRemoveNewElementAttribute(const QString&)));
+  m_newElementAttributesWidget->setColumnCount(2);
+  bottomLeftDockWidget->setWidget(m_newElementAttributesWidget);
+  addDockWidget ( Qt::LeftDockWidgetArea, bottomLeftDockWidget );
+
 
   if (QDBusConnection::sessionBus().registerService( "org.kde.kgrapheditor" ))
   {
@@ -522,8 +536,8 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   kDebug();
   if (m_currentPart != 0)
   {
-    disconnect(this,SIGNAL(prepareAddNewElement()),part,SLOT(prepareAddNewElement()));
-    disconnect(this,SIGNAL(prepareAddNewEdge()),part,SLOT(prepareAddNewEdge()));
+    disconnect(this,SIGNAL(prepareAddNewElement(QMap<QString,QString>)),part,SLOT(prepareAddNewElement(QMap<QString,QString>)));
+    disconnect(this,SIGNAL(prepareAddNewEdge(QMap<QString,QString>)),part,SLOT(prepareAddNewEdge(QMap<QString,QString>)));
     disconnect(this,SIGNAL(saveTo(const QString&)),part,SLOT(saveTo(const QString&)));
     disconnect(this,SIGNAL(removeNode(const QString&)),part,SLOT(slotRemoveNode(const QString&)));
     disconnect(this,SIGNAL(addAttribute(const QString&)),part,SLOT(slotAddAttribute(const QString&)));
@@ -535,8 +549,8 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   {
     return;
   }
-  connect(this,SIGNAL(prepareAddNewElement()),part,SLOT(prepareAddNewElement()));
-  connect(this,SIGNAL(prepareAddNewEdge()),part,SLOT(prepareAddNewEdge()));
+  connect(this,SIGNAL(prepareAddNewElement(QMap<QString,QString>)),part,SLOT(prepareAddNewElement(QMap<QString,QString>)));
+  connect(this,SIGNAL(prepareAddNewEdge(QMap<QString,QString>)),part,SLOT(prepareAddNewEdge(QMap<QString,QString>)));
   connect(this,SIGNAL(saveTo(const QString&)),part,SLOT(saveTo(const QString&)));
   connect(this,SIGNAL(removeNode(const QString&)),part,SLOT(slotRemoveNode(const QString&)));
   connect(this,SIGNAL(addAttribute(const QString&)),part,SLOT(slotAddAttribute(const QString&)));
@@ -641,7 +655,7 @@ void KGraphEditor::slotEditNewVertex()
   {
     return;
   }
-  emit(prepareAddNewElement());
+  emit(prepareAddNewElement(m_newElementAttributes));
 }
 
 void KGraphEditor::slotEditNewEdge()
@@ -651,7 +665,7 @@ void KGraphEditor::slotEditNewEdge()
   {
     return;
   }
-  emit(prepareAddNewEdge());
+  emit(prepareAddNewEdge(m_newElementAttributes));
 }
 
 void KGraphEditor::slotRemoveNode(const QString& nodeName)
@@ -668,6 +682,37 @@ void KGraphEditor::slotRemoveAttribute(const QString& nodeName, const QString& a
 {
   kDebug();
   emit removeAttribute(nodeName,attribName);
+}
+
+void KGraphEditor::slotNewElementItemChanged(QTreeWidgetItem* item ,int column)
+{
+  kDebug();
+  if (column == 0)
+  {
+    kError() << "Item id change not handled";
+    return;
+  }
+  else if (column == 1)
+  {
+    m_newElementAttributes[item->text(0)] = item->text(1);
+  }
+  else
+  {
+    kError() << "Unknonw column" << column;
+    return;
+  }
+}
+
+void KGraphEditor::slotAddNewElementAttribute(const QString& attrib)
+{
+  kDebug();
+  m_newElementAttributes[attrib] = QString();
+}
+
+void KGraphEditor::slotRemoveNewElementAttribute(const QString& attrib)
+{
+  kDebug();
+  m_newElementAttributes.remove(attrib);
 }
 
 #include "kgrapheditor.moc"

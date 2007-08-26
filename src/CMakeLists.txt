@@ -32,7 +32,7 @@ install( FILES kgraphviewer.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 
 ########### kgrapheditor target ###############
 
-set(kgrapheditor_SRCS kgrapheditormain.cpp kgrapheditor.cpp kgrapheditorConfigDialog.cpp KGraphEditorNodesTreeWidget.cpp)
+set(kgrapheditor_SRCS kgrapheditormain.cpp kgrapheditor.cpp kgrapheditorConfigDialog.cpp KGraphEditorNodesTreeWidget.cpp KGraphEditorElementTreeWidget.cpp)
 
 qt4_add_dbus_adaptor(kgrapheditor_SRCS org.kde.kgrapheditor.xml kgrapheditor.h KGraphEditor)
 

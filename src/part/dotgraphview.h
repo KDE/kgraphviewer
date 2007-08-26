@@ -116,8 +116,8 @@ public:
   inline void setDefaultNewElement(GraphElement* elem) {m_defaultNewElement = elem;}
   inline void setDefaultNewElementPixmap(const QPixmap& pm) {m_defaultNewElementPixmap = pm;}
 
-  void prepareAddNewElement();
-  void prepareAddNewEdge();
+  void prepareAddNewElement(QMap<QString,QString> attribs);
+  void prepareAddNewEdge(QMap<QString,QString> attribs);
 
   void createNewEdgeDraftFrom(CanvasNode* node);
   void finishNewEdgeTo(CanvasNode* node);
@@ -217,6 +217,8 @@ private:
   QGraphicsLineItem* m_newEdgeDraft;
 
   bool m_readWrite;
+
+  QMap<QString, QString> m_newElementAttributes;
 };
 
 #endif // DOTGRAPHVIEW_H

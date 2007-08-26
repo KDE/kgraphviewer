@@ -131,14 +131,14 @@ void kgraphviewerPart::slotUpdate()
   m_widget->slotUpdate();
 }
 
-void kgraphviewerPart::prepareAddNewElement()
+void kgraphviewerPart::prepareAddNewElement(QMap<QString,QString> attribs)
 {
-  m_widget->prepareAddNewElement();
+  m_widget->prepareAddNewElement(attribs);
 }
 
-void kgraphviewerPart::prepareAddNewEdge()
+void kgraphviewerPart::prepareAddNewEdge(QMap<QString,QString> attribs)
 {
-  m_widget->prepareAddNewEdge();
+  m_widget->prepareAddNewEdge(attribs);
 }
 
 void kgraphviewerPart::setReadOnly()

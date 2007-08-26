@@ -63,8 +63,8 @@ Q_SIGNALS:
 public slots:
   void slotHide(KParts::Part* part);
   void slotUpdate();
-  void prepareAddNewElement();
-  void prepareAddNewEdge();
+  void prepareAddNewElement(QMap<QString,QString> attribs);
+  void prepareAddNewEdge(QMap<QString,QString> attribs);
   void setReadOnly();
   void setReadWrite();
   void saveTo(const QString& fileName);

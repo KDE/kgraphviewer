@@ -242,7 +242,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 bool DotGraphView::displayGraph()
 {
   kDebug();
-  hide();
+//   hide();
   viewport()->setUpdatesEnabled(false);
 
   if (m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
@@ -373,7 +373,7 @@ bool DotGraphView::displayGraph()
   zoomRectMovedTo(QPointF(0,0));
 
   viewport()->setUpdatesEnabled(true);
-  show();
+//   show();
   QSet<QGraphicsSimpleTextItem*>::iterator labelViewsIt, labelViewsIt_end;
   labelViewsIt = m_labelViews.begin(); labelViewsIt_end = m_labelViews.end();
   for (; labelViewsIt != labelViewsIt_end; labelViewsIt++)
@@ -695,7 +695,11 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
         e->pos().x()-m_defaultNewElementPixmap.width()/2,
         e->pos().y()-m_defaultNewElementPixmap.height()/2);
     GraphNode* newNode = new GraphNode();
-    newNode->id(QString("NewNode%1").arg(m_graph->nodes().size()));
+    newNode->attributes() = m_newElementAttributes;
+    if (newNode->attributes().find("id") == newNode->attributes().end())
+    {
+      newNode->id(QString("NewNode%1").arg(m_graph->nodes().size()));
+    }
     m_graph->nodes().insert(newNode->id(), newNode);
     CanvasNode* newCNode = new CanvasNode(this,newNode);
     newCNode->initialize(
@@ -1250,18 +1254,20 @@ void DotGraphView::slotUpdate()
   m_graph->update();
 }
 
-void DotGraphView::prepareAddNewElement()
+void DotGraphView::prepareAddNewElement(QMap<QString,QString> attribs)
 {
   kDebug() ;
   m_editingMode = AddNewElement;
+  m_newElementAttributes = attribs;
   unsetCursor();
   setCursor(QCursor(m_defaultNewElementPixmap));
 }
 
-void DotGraphView::prepareAddNewEdge()
+void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
 {
   kDebug() ;
   m_editingMode = AddNewEdge;
+  m_newElementAttributes = attribs;
   unsetCursor();
   setCursor(QCursor(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newedge.png")));
 }
@@ -1291,6 +1297,7 @@ void DotGraphView::finishNewEdgeTo(CanvasNode* node)
   GraphEdge* gedge  = new GraphEdge();
   gedge->setFromNode(m_newEdgeSource->node());
   gedge->setToNode(node->node());
+  gedge->attributes() = m_newElementAttributes;
   m_graph->edges().insert(qMakePair(m_newEdgeSource->node(),node->node()), gedge);
 
   double scaleX = 1.0, scaleY = 1.0;

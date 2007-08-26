@@ -33,6 +33,7 @@ class KToggleAction;
 
 class kgraphviewerPart;
 class KGraphEditorNodesTreeWidget;
+class KGraphEditorElementTreeWidget;
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -68,8 +69,8 @@ protected:
 
 signals:
   void hide(KParts::Part* part);
-  void prepareAddNewElement();
-  void prepareAddNewEdge();
+  void prepareAddNewElement(QMap<QString,QString> attribs);
+  void prepareAddNewEdge(QMap<QString,QString> attribs);
   void setReadWrite();
   void saveTo(const QString& fileName);
 
@@ -90,6 +91,10 @@ public slots:
   void slotRemoveNode(const QString&);
   void slotAddAttribute(const QString&);
   void slotRemoveAttribute(const QString&,const QString&);
+
+  void slotNewElementItemChanged(QTreeWidgetItem*,int);
+  void slotAddNewElementAttribute(const QString&);
+  void slotRemoveNewElementAttribute(const QString&);
 
 /*public slots:
   void reloadOnChangeMode_pressed(int value);
@@ -121,8 +126,8 @@ private:
   void setupActions();
     
 private:
-  QDockWidget* m_leftDockWidget;
-  KGraphEditorNodesTreeWidget *m_treeWidget;
+  KGraphEditorNodesTreeWidget* m_treeWidget;
+  KGraphEditorElementTreeWidget* m_newElementAttributesWidget;
   KTabWidget* m_widget;
   KRecentFilesAction* m_rfa;
   KParts::PartManager* m_manager;
@@ -135,6 +140,8 @@ private:
   QMap<QWidget*, KParts::Part*> m_tabsPartsMap;
   QMap<QWidget*, QString> m_tabsFilesMap;
   kgraphviewerPart* m_currentPart;
+
+  QMap<QString, QString> m_newElementAttributes;
 };
 
 #endif // _KGRAPHEDITOR_H_
