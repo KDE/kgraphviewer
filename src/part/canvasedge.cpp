@@ -271,6 +271,7 @@ Q_UNUSED(widget)
                   );
           points[i] = p;
         }
+        kDebug() << "Setting pen color to " << edge()->color(splineNum);
         pen.setColor(Dot2QtConsts::componentData().qtColor(edge()->color(splineNum)));
         p->save();
 //         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));

@@ -66,19 +66,24 @@ GraphEdge::GraphEdge(const GraphEdge& edge) :
 void GraphEdge::colors(const QString& cs)
 {
   m_colors = QStringList::split(":", cs);
-//   std::cerr << "edge nb colors: " << m_colors.size() << std::endl;
+//   kDebug() << fromNode()->id() << " -> " << toNode()->id() << ": nb colors: " << m_colors.size();
 }
 
 const QString GraphEdge::color(uint i) 
 {
+  if (i >= (uint)m_colors.count() && m_attributes.find("color") != m_attributes.end())
+  {
+    colors(m_attributes["color"]);
+  }
   if (i < (uint)m_colors.count())
   {
 //     std::cerr << "edge color " << i << " is " << m_colors[i] << std::endl;
+    kDebug() << fromNode()->id() << " -> " << toNode()->id() << "color" << i << "is" << m_colors[i];
     return m_colors[i];
   }
   else
   {
-//     std::cerr << "no edge color " << i << ". returning " << DOT_DEFAULT_EDGE_COLOR << std::endl;
+//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "no edge color " << i << ". returning " << DOT_DEFAULT_EDGE_COLOR;
     return DOT_DEFAULT_EDGE_COLOR;
   }
 }
