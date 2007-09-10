@@ -54,7 +54,8 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
   setComponentData( kgraphviewerPartFactory::componentData() );
 
   // this should be your custom internal widget
-  m_widget = new DotGraphView( actionCollection(), parentWidget);  
+  m_widget = new DotGraphView( actionCollection(), parentWidget);
+  m_widget->initEmpty();
   m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
   connect( m_widget, SIGNAL( graphLoaded() ),
            this, SIGNAL( graphLoaded() ) );
@@ -128,12 +129,60 @@ void kgraphviewerPart::slotHide(KParts::Part* part)
 
 void kgraphviewerPart::slotUpdate()
 {
+  kDebug();
   m_widget->slotUpdate();
 }
 
 void kgraphviewerPart::prepareAddNewElement(QMap<QString,QString> attribs)
 {
   m_widget->prepareAddNewElement(attribs);
+}
+
+void kgraphviewerPart::slotSetGraphAttributes(QMap<QString,QString> attribs)
+{
+  kDebug() << attribs;
+  m_widget->graph()->attributes() = attribs;
+}
+
+void kgraphviewerPart::slotAddNewNode(QMap<QString,QString> attribs)
+{
+  kDebug() << attribs;
+  GraphNode* newNode = new GraphNode();
+  newNode->attributes() = attribs;
+  m_widget->graph()->nodes().insert(newNode->id(), newNode);
+  kDebug() << "node added as" << newNode->id();
+}
+
+void kgraphviewerPart::slotAddNewSubgraph(QMap<QString,QString> attribs)
+{
+  kDebug() << attribs;
+  GraphSubgraph* newSG = new GraphSubgraph();
+  newSG->attributes() = attribs;
+  m_widget->graph()->subgraphs()[newSG->id()] = newSG;
+  kDebug() << "subgraph added as" << newSG->id();
+}
+
+void kgraphviewerPart::slotAddNewNodeToSubgraph(QMap<QString,QString> attribs,
+    QString subgraph)
+{
+  kDebug() << attribs << "to" << subgraph;
+  GraphNode* newNode = new GraphNode();
+  newNode->attributes() = attribs;
+  m_widget->graph()->nodes().insert(newNode->id(), newNode);
+  m_widget->graph()->subgraphs()[subgraph]->content().push_back(newNode);
+
+  kDebug() << "node added as" << newNode->id();
+}
+
+void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
+            QMap<QString,QString> attribs)
+{
+  kDebug() << src << tgt << attribs;
+  GraphEdge* newEdge = new GraphEdge();
+  newEdge->setFromNode(m_widget->graph()->nodes()[src]);
+  newEdge->setToNode(m_widget->graph()->nodes()[tgt]);
+  newEdge->attributes() = attribs;
+  m_widget->graph()->edges().insert(QPair<GraphNode*,GraphNode*>(newEdge->fromNode(),newEdge->toNode()), newEdge);
 }
 
 void kgraphviewerPart::prepareAddNewEdge(QMap<QString,QString> attribs)

@@ -21,6 +21,7 @@
  */
 
 #include "graphsubgraph.h"
+#include "graphnode.h"
 #include "canvassubgraph.h"
 #include "dotdefaults.h"
 
@@ -66,7 +67,11 @@ QString GraphSubgraph::backColor() const
 QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
 {
   s << "subgraph " << sg.id() << "  {"
-    << dynamic_cast<const GraphElement&>(sg)
-    <<"}"<<endl;
+    << dynamic_cast<const GraphElement&>(sg);
+  foreach (const GraphElement* el, sg.content())
+  {
+    s << *(dynamic_cast<const GraphNode*>(el));
+  }
+  s <<"}"<<endl;
   return s;
 }

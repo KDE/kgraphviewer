@@ -71,6 +71,11 @@ public slots:
   void slotRemoveNode(const QString&);
   void slotAddAttribute(const QString&);
   void slotRemoveAttribute(const QString&,const QString&);
+  void slotSetGraphAttributes(QMap<QString,QString> attribs);
+  void slotAddNewNode(QMap<QString,QString> attribs);
+  void slotAddNewNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph);
+  void slotAddNewSubgraph(QMap<QString,QString> attribs);
+  void slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
 
 protected:
     /**

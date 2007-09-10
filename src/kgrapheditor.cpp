@@ -62,8 +62,6 @@ KGraphEditor::KGraphEditor() :
     m_rfa(0),
     m_currentPart(0)
 {
-  qDebug() << "essai1";
-  qDebug() << "essai2";
   // set the shell's ui resource file
   setXMLFile("kgrapheditorui.rc");
 

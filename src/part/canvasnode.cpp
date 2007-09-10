@@ -66,7 +66,7 @@ CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n, QGraphicsItem* parent)
   m_pen(Dot2QtConsts::componentData().qtColor(n->fontColor()))
 
 {
-  qDebug() << n->id();
+  kDebug() << n->id();
   m_font = FontsCache::changeable().fromName(n->fontName());
   connect(n,SIGNAL(changed()),this,SLOT(modelChanged()));
 
@@ -74,7 +74,7 @@ CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n, QGraphicsItem* parent)
   QString id = n->id();
   QString label = n->label();
   tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-  qDebug() << "CanvasEllipseNode setToolTip " << tipStr;
+  kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
   setToolTip(tipStr);
 }
 
@@ -100,7 +100,7 @@ QRectF CanvasNode::boundingRect () const
 
 void CanvasNode::computeBoundingRect()
 {
-  qDebug() << node()->id();
+  kDebug() << node()->id() << zValue();
 
   qreal adjust = 0.5;
   QRectF rect;
@@ -123,18 +123,18 @@ void CanvasNode::computeBoundingRect()
         dd << i << " ";
       }
       dd << (*it).str;
-      qDebug() << msg;
+      kDebug() << msg;
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
       {
-        qDebug() << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
+        kDebug() << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
             << "(*it).integers[0]/*%m_wdhcf*/=" << (*it).integers[0]/*%m_wdhcf*/;
         qreal w = m_scaleX * (*it).integers[2] * 2;
         qreal h = m_scaleY * (*it).integers[3] * 2;
         qreal x = m_xMargin + (((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
         qreal y = ((m_gh - (*it).integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
         m_boundingRect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
-        qDebug() << "'" << node()->id() << "' set rect for ellipse to " << rect;
+        kDebug() << "'" << node()->id() << "' set rect for ellipse to " << rect;
       }
       else if  ((*it).renderop == "p" || (*it).renderop == "P")
       {
@@ -154,11 +154,11 @@ void CanvasNode::computeBoundingRect()
           polygon[i] = p;
         }
         m_boundingRect = polygon.boundingRect();
-        qDebug() << "'" << node()->id() << "' set rect for polygon to " << rect;
+        kDebug() << "'" << node()->id() << "' set rect for polygon to " << rect;
       }
     }
   }
-  qDebug() << node()->id() << "new bounding rect is:" << m_boundingRect;
+  kDebug() << node()->id() << "new bounding rect is:" << m_boundingRect;
 }
 
 void CanvasNode::modelChanged()
@@ -304,7 +304,7 @@ QWidget *widget)
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(node()->style()));
       }
       p->setPen(pen);
-      qDebug() << node()->id() << "drawPolyline" << points;
+      kDebug() << node()->id() << "drawPolyline" << points;
       p->drawPolyline(points);
       p->restore();
     }

@@ -32,14 +32,7 @@
 #define CANVAS_NODE_H
 
 #include <QAbstractGraphicsShapeItem>
-#include <QGraphicsPolygonItem>
-#include <QGraphicsEllipseItem>
-#include <QWidget>
-#include <QMap>
-#include <QFont>
 #include <QPen>
-//Added by qt3to4:
-#include <QPolygonF>
 
 #include <khtml_part.h>
 #include <khtmlview.h>
@@ -68,7 +61,7 @@ public:
   inline void hasFocus(bool val) {m_hasFocus = val;}
 
   virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-QWidget *widget = 0 );
+        QWidget *widget = 0 );
 
   virtual QRectF boundingRect () const;
   void computeBoundingRect();

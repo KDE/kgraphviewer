@@ -51,10 +51,14 @@ public:
 
   virtual QString backColor() const;
 
+  inline const QList<GraphElement*>& content() const {return m_content;}
+  inline QList<GraphElement*>& content() {return m_content;}
+  inline void setContent(QList<GraphElement*>& c) {m_content=c;}
+
  private:
   CanvasSubgraph* m_cs;
   bool m_visible;
-
+  QList<GraphElement*> m_content;
 };
 
 typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;

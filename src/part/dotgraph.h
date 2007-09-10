@@ -44,6 +44,7 @@ class DotGraph : public GraphElement
 public:
   enum ParsePhase {Initial, Final};
   
+  DotGraph();
   DotGraph(const QString& command, const QString& fileName);
 
   virtual ~DotGraph();

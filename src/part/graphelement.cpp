@@ -49,14 +49,19 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
   m_z(element.m_z),
   m_renderOperations()
 {
-  qDebug() ;
+  kDebug() ;
   updateWith(element);
 }
 
 void GraphElement::updateWith(const GraphElement& element)
 {
-  qDebug() << m_renderOperations.size();
+  kDebug() << m_renderOperations.size();
   bool modified = false;
+  if (element.z() != m_z)
+  {
+    m_z = element.z();
+    modified = true;
+  }
   foreach (QString attrib, element.attributes().keys())
   {
     if ( (!m_attributes.contains(attrib)) || (m_attributes[attrib] != element.attributes()[attrib]) )
@@ -78,12 +83,12 @@ void GraphElement::updateWith(const GraphElement& element)
         dd << i << " ";
       }
       dd << op.str;
-      qDebug() << msg;
+      kDebug() << msg;
     }
-    qDebug() << "modified: emiting changed";
+    kDebug() << "modified: emiting changed";
     emit changed();
   }
-  qDebug() << "done" << m_renderOperations.size();
+  kDebug() << "done" << m_renderOperations.size();
 }
 
 
@@ -126,7 +131,7 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
         if (label != "label")
         {
           label.replace(QRegExp("\n"),"\\n");
-          qDebug() << it.key() << "=\"" << label << "\",";
+          kDebug() << it.key() << "=\"" << label << "\",";
           s << it.key() << "=\"" << label << "\",";
         }
       }
@@ -135,7 +140,7 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
       }
       else if (n.originalAttributes().isEmpty() || n.originalAttributes().contains(it.key()))
       {
-        qDebug() << it.key() << it.value();
+        kDebug() << it.key() << it.value();
         
           s << it.key() << "=\"" << it.value() << "\",";
       }

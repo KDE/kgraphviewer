@@ -187,12 +187,51 @@ DotGraphView::~DotGraphView()
   }
 }
 
+bool DotGraphView::initEmpty()
+{
+  kDebug();
+  m_birdEyeView->setScene(0);
+  
+  if (m_canvas) 
+  {
+    delete m_canvas;
+    m_canvas = 0;
+  }
+
+  if (m_graph != 0)
+    delete m_graph;
+  m_graph = new DotGraph();
+  connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+
+  if (m_readWrite)
+  {
+    m_graph->setReadWrite();
+  }
+  
+//   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
+  m_xMargin = 50;
+  m_yMargin = 50;
+
+  QGraphicsScene* newCanvas = new QGraphicsScene();
+  kDebug() << "Created canvas " << newCanvas;
+  
+  m_birdEyeView->setScene(newCanvas);
+//   std::cerr << "After m_birdEyeView set canvas" << std::endl;
+  
+  setScene(newCanvas);
+  m_canvas = newCanvas;
+
+  m_cvZoom = 0;
+
+  return true;
+}
+
 bool DotGraphView::loadDot(const QString& dotFileName)
 {
   kDebug() << "'" << dotFileName << "'";
   m_birdEyeView->setScene(0);
-  
-  if (m_canvas) 
+
+  if (m_canvas)
   {
     delete m_canvas;
     m_canvas = 0;
@@ -213,17 +252,17 @@ bool DotGraphView::loadDot(const QString& dotFileName)
     layoutCommand = m_graph->chooseLayoutProgramForFile(m_graph->dotFileName());
   }
   m_graph->layoutCommand(layoutCommand);
-  
+
 //   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
   m_xMargin = 50;
   m_yMargin = 50;
 
   QGraphicsScene* newCanvas = new QGraphicsScene();
   kDebug() << "Created canvas " << newCanvas;
-  
+
   m_birdEyeView->setScene(newCanvas);
 //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
-  
+
   setScene(newCanvas);
   m_canvas = newCanvas;
 
@@ -237,7 +276,6 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 
   return true;
 }
-
 
 bool DotGraphView::displayGraph()
 {
@@ -303,7 +341,7 @@ bool DotGraphView::displayGraph()
   {
     if (gedge->canvasEdge() == 0)
     {
-      qDebug() << dynamic_cast<GraphEdge*>(gedge);
+      kDebug() << dynamic_cast<GraphEdge*>(gedge);
       CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
           m_yMargin, gh, m_graph->wdhcf(), m_graph->hdvcf());
 
@@ -318,15 +356,18 @@ bool DotGraphView::displayGraph()
       gedge->canvasEdge()->computeBoundingRect();
     }
   }
-
+  kDebug() << "Creating CanvasSubgraphs" << m_graph->subgraphs().size() << "from" << m_graph;
   foreach (GraphSubgraph* gsubgraph,m_graph->subgraphs())
   {
+    kDebug() << "gup";
     if (gsubgraph->canvasSubgraph() == 0)
     {
-      CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph,
-          m_canvas,scaleX, scaleY, m_xMargin, m_yMargin, gh,
-          int(m_graph->wdhcf()), int(m_graph->hdvcf()));
-
+      kDebug() << " one CanvasSubgraph...";
+      CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph,m_canvas);
+      csubgraph->initialize(
+        scaleX, scaleY, m_xMargin, m_yMargin, gh,
+        int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+      gsubgraph->setCanvasSubgraph(csubgraph);
       csubgraph->show();
       m_canvas->addItem(csubgraph);
     }
@@ -390,7 +431,7 @@ bool DotGraphView::displayGraph()
 
 void DotGraphView::updateSizes(QSizeF s)
 {
-  qDebug() ;
+  kDebug() ;
   if (m_canvas == 0)
     return;
   if (s == QSizeF(0,0)) s = size();
@@ -649,9 +690,9 @@ void DotGraphView::resizeEvent(QResizeEvent* e)
 
 void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
 {
-  qDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos;
+  kDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos;
   centerOn(newZoomPos);
-  qDebug() << "  viewport "<< mapToScene(viewport()->rect()).boundingRect();
+  kDebug() << "  viewport "<< mapToScene(viewport()->rect()).boundingRect();
   QRectF sp = mapToScene(viewport()->rect()).boundingRect();
 /*  QPointF p = newZoomPos - sp.bottomRight()/2;
   if (p.x() < 0) 
@@ -663,7 +704,7 @@ void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
     p.ry() = 0;
   }
   sp.setX(p.x()); sp.setY(p.y());*/
-  qDebug() << "  sp "<< sp /*<< " ; p " << p*/;
+  kDebug() << "  sp "<< sp /*<< " ; p " << p*/;
   m_birdEyeView->setZoomRect(sp);
 }
                     
@@ -1251,6 +1292,7 @@ void DotGraphView::slotBevAutomatic()
 
 void DotGraphView::slotUpdate()
 {
+  kDebug();
   m_graph->update();
 }
 

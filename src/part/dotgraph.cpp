@@ -44,6 +44,17 @@ extern DotGraphParsingHelper* phelper;
 
 const distinct_parser<> keyword_p("0-9a-zA-Z_");
 
+DotGraph::DotGraph() :
+  GraphElement(),
+  m_dotFileName(""),m_width(0.0), m_height(0.0),m_scale(1.0),
+  m_directed(true),m_strict(false),
+  m_layoutCommand(""),
+  m_readWrite(false),
+  m_dot(0),
+  m_phase(Initial)
+{
+}
+
 DotGraph::DotGraph(const QString& command, const QString& fileName) :
   GraphElement(),
   m_dotFileName(fileName),m_width(0.0), m_height(0.0),m_scale(1.0),
@@ -74,29 +85,24 @@ DotGraph::~DotGraph()
 
 QString DotGraph::chooseLayoutProgramForFile(const QString& str)
 {
-  if (m_layoutCommand.isEmpty())
+  QFile iFILE(str);
+
+  if (!iFILE.open(QIODevice::ReadOnly))
   {
-    QFile iFILE(str);
-    
-    if (!iFILE.open(QIODevice::ReadOnly))
-    {
-      kError() << "Can't test dot file. Will try to use the dot command on the file: '" << str << "'" << endl;
-      return "dot";// -Txdot";
-    }
-    
-    QByteArray fileContent = iFILE.readAll();
-    if (fileContent.isEmpty()) return "";
-    std::string s =  fileContent.data();
-    std::string cmd = "dot";
-    parse(s.c_str(),
-          (
-            !(keyword_p("strict")) >> (keyword_p("graph")[assign_a(cmd,"neato")])
-          ), (space_p|comment_p("/*", "*/")) );
-    
-    m_layoutCommand = QString::fromStdString(cmd);// + " -Txdot" ;
+    kError() << "Can't test dot file. Will try to use the dot command on the file: '" << str << "'" << endl;
+    return "dot";// -Txdot";
   }
-//   std::cerr << "File " << str << " will be layouted by '" << m_layoutCommand << "'" << std::endl;
-  return m_layoutCommand;
+
+  QByteArray fileContent = iFILE.readAll();
+  if (fileContent.isEmpty()) return "";
+  std::string s =  fileContent.data();
+  std::string cmd = "dot";
+  parse(s.c_str(),
+        (
+          !(keyword_p("strict")) >> (keyword_p("graph")[assign_a(cmd,"neato")])
+        ), (space_p|comment_p("/*", "*/")) );
+
+  return  QString::fromStdString(cmd);// + " -Txdot" ;
 }
 
 bool DotGraph::parseDot(const QString& str)
@@ -104,7 +110,12 @@ bool DotGraph::parseDot(const QString& str)
   kDebug() << str;
   if (m_layoutCommand.isEmpty())
   {
-    return false;
+    m_layoutCommand = chooseLayoutProgramForFile(str);
+    if (m_layoutCommand.isEmpty())
+    {
+      m_layoutCommand = chooseLayoutProgramForFile(str);
+      return false;
+    }
   }
 
   kDebug() << "Running " << m_layoutCommand  << str;
@@ -325,6 +336,7 @@ void DotGraph::updateWith(const DotGraph& newGraph)
     if (nodes().contains(ngn->id()))
     {
       kDebug() << "known";
+      nodes()[ngn->id()]->z(ngn->z());
       nodes()[ngn->id()]->updateWith(*ngn);
     }
     else
@@ -351,6 +363,21 @@ void DotGraph::updateWith(const DotGraph& newGraph)
       newEdge->setFromNode(nodes()[nge->fromNode()->id()]);
       newEdge->setToNode(nodes()[nge->toNode()->id()]);
       edges().insert(pair, newEdge);
+    }
+  }
+  foreach (GraphSubgraph* nsg, newGraph.subgraphs())
+  {
+    kDebug() << "a subgraph";
+    if (subgraphs().contains(nsg->id()))
+    {
+      subgraphs().value(nsg->id())->updateWith(*nsg);
+    }
+    else
+    {
+      GraphSubgraph* newSubgraph = new GraphSubgraph();
+      newSubgraph->updateWith(*nsg);
+      newSubgraph->z(0);
+      subgraphs().insert(nsg->id(), newSubgraph);
     }
   }
   computeCells();

@@ -138,6 +138,7 @@ public slots:
   void zoomOut();  
   void zoomRectMovedTo(QPointF newZoomPos);
   void zoomRectMoveFinished();
+  bool initEmpty();
   bool loadDot(const QString& dotFileName);
   bool reload();
   void dirty(const QString& dotFileName);
