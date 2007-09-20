@@ -63,7 +63,7 @@ public:
 
 typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;
 
-QTextStream& operator<<(QTextStream& s, const GraphSubgraph& s);
+QTextStream& operator<<(QTextStream& stream, const GraphSubgraph& s);
 
 #endif
 
