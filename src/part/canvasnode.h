@@ -31,57 +31,29 @@
 #ifndef CANVAS_NODE_H
 #define CANVAS_NODE_H
 
-#include <QAbstractGraphicsShapeItem>
-#include <QPen>
-
 #include <khtml_part.h>
 #include <khtmlview.h>
 
-#include "dotgrammar.h"
+#include "canvaselement.h"
 
 class GraphNode;
-class DotGraphView;
 
-class CanvasNode : public QObject, public QAbstractGraphicsShapeItem
+class CanvasNode : public CanvasElement
 {
   Q_OBJECT
 public:
-  CanvasNode(DotGraphView* v,GraphNode* n, QGraphicsItem* parent = 0);
+  CanvasNode(DotGraphView* v,
+            GraphNode* s,
+            QGraphicsScene* c,
+            QGraphicsItem* parent = 0);
   
   virtual ~CanvasNode() {}
   
-  void initialize(qreal scaleX, qreal scaleY,
-                  qreal xMargin, qreal yMargin, qreal gh,
-                  qreal wdhcf, qreal hdvcf);
-
-  GraphNode* node() { return m_node; }
-  const GraphNode* node() const { return m_node; }
-
-  inline bool hasFocus() const {return m_hasFocus;}
-  inline void hasFocus(bool val) {m_hasFocus = val;}
-
-  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-        QWidget *widget = 0 );
-
-  virtual QRectF boundingRect () const;
-  void computeBoundingRect();
-
 public Q_SLOTS:
   void modelChanged();
   
 protected:
-  virtual void mouseMoveEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
-  virtual void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
-
-  qreal m_scaleX, m_scaleY;
-  qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
-  GraphNode* m_node;
-  DotGraphView* m_view;
-  bool m_hasFocus;
-  QFont* m_font;
-  QPen m_pen;
-  QRectF m_boundingRect;
 };
 
 // class CanvasHtmlNode: public KHTMLPart, public CanvasNode

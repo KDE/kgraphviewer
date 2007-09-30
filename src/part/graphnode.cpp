@@ -46,29 +46,29 @@
 
 GraphNode::GraphNode() :
     GraphElement(),
-    m_cn(0), m_visible(false),
-    m_x(0), m_y(0), m_w(0), m_h(0)
+    m_visible(false)//,
+//     m_x(0), m_y(0), m_w(0), m_h(0)
 {
-  kDebug() ;
+//   kDebug() ;
 }
 
 GraphNode::GraphNode(const GraphNode& gn) :
     GraphElement(gn),
-    m_cn(gn.m_cn), m_visible(gn.m_visible),
-    m_x(gn.m_x), m_y(gn.m_y), m_w(gn.m_w), m_h(gn.m_h)
+    m_visible(gn.m_visible)//,
+//     m_x(gn.m_x), m_y(gn.m_y), m_w(gn.m_w), m_h(gn.m_h)
 {
-  kDebug() ;
+//   kDebug() ;
 }
 
 void GraphNode::updateWith(const GraphNode& node)
 {
-  kDebug() ;
-  if (m_cn)
+//   kDebug() ;
+  if (canvasNode())
   {
-    m_cn->modelChanged();
+    canvasNode()->modelChanged();
   }
   GraphElement::updateWith(node);
-  kDebug() << "done";
+//   kDebug() << "done";
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphNode& n)

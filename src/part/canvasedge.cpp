@@ -25,10 +25,6 @@
 */
 
 
-/*
- * Callgraph View
- */
-
 #include "canvasedge.h"
 #include "graphedge.h"
 #include "graphnode.h"
@@ -57,10 +53,10 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
 {
   m_font = FontsCache::changeable().fromName(e->fontName());
 
-  kDebug() << edge() << "->"  << edge();
-  kDebug() << "edge "  << edge()->fromNode()/*->id()*/ << "->"  << edge()->toNode()/*->id()*/;
+//   kDebug() << edge() << "->"  << edge();
+//   kDebug() << "edge "  << edge()->fromNode()/*->id()*/ << "->"  << edge()->toNode()/*->id()*/;
   computeBoundingRect();
-  kDebug() << "boundingRect computed: " << m_boundingRect;
+//   kDebug() << "boundingRect computed: " << m_boundingRect;
   
   QString tipStr = i18n("%1 -> %2\nlabel='%3'",
       edge()->fromNode()->id(),edge()->toNode()->id(),e->label());
@@ -91,14 +87,18 @@ Q_UNUSED(widget)
     widthScaleFactor = 1;
   }
 
+  if (edge()->style()=="invis")
+  {
+    return;
+  }
   if (edge()->renderOperations().isEmpty())
   {
-    if ((edge()->fromNode()->canvasNode()!=0)
-      && (edge()->toNode()->canvasNode()!=0))
+    if ((edge()->fromNode()->canvasElement()!=0)
+      && (edge()->toNode()->canvasElement()!=0))
     {
       p->drawLine(
-        edge()->fromNode()->canvasNode()->boundingRect().center()+edge()->fromNode()->canvasNode()->pos(),
-        edge()->toNode()->canvasNode()->boundingRect().center()+edge()->toNode()->canvasNode()->pos());
+        edge()->fromNode()->canvasElement()->boundingRect().center()+edge()->fromNode()->canvasElement()->pos(),
+        edge()->toNode()->canvasElement()->boundingRect().center()+edge()->toNode()->canvasElement()->pos());
     }
     return;
   }
@@ -271,7 +271,7 @@ Q_UNUSED(widget)
                   );
           points[i] = p;
         }
-        kDebug() << "Setting pen color to " << edge()->color(splineNum);
+//         kDebug() << "Setting pen color to " << edge()->color(splineNum);
         pen.setColor(Dot2QtConsts::componentData().qtColor(edge()->color(splineNum)));
         p->save();
 //         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
@@ -300,19 +300,20 @@ void CanvasEdge::modelChanged()
 
 void CanvasEdge::computeBoundingRect()
 {
-  kDebug();
+//   kDebug();
   if (edge()->renderOperations().isEmpty())
   {
-    if ((edge()->fromNode()->canvasNode()==0)
-      || (edge()->toNode()->canvasNode()==0))
+    if ((edge()->fromNode()->canvasElement()==0)
+      || (edge()->toNode()->canvasElement()==0)
+      || edge()->style()=="invis")
     {
       m_boundingRect = QRectF();
     }
     else
     {
       QRectF br(
-        edge()->fromNode()->canvasNode()->boundingRect().center()+edge()->fromNode()->canvasNode()->pos(),
-        edge()->toNode()->canvasNode()->boundingRect().center()+edge()->toNode()->canvasNode()->pos());
+      edge()->fromNode()->canvasElement()->boundingRect().center()+edge()->fromNode()->canvasElement()->pos(),
+                edge()->toNode()->canvasElement()->boundingRect().center()+edge()->toNode()->canvasElement()->pos());
 //       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
       m_boundingRect = br;
     }

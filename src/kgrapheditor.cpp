@@ -72,7 +72,7 @@ KGraphEditor::KGraphEditor() :
   
   setCentralWidget(m_widget);
 
-    QDockWidget* topLeftDockWidget = new QDockWidget(this);
+  QDockWidget* topLeftDockWidget = new QDockWidget(this);
   m_treeWidget = new KGraphEditorNodesTreeWidget(topLeftDockWidget);
   connect(m_treeWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
@@ -553,7 +553,7 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   connect(this,SIGNAL(removeNode(const QString&)),part,SLOT(slotRemoveNode(const QString&)));
   connect(this,SIGNAL(addAttribute(const QString&)),part,SLOT(slotAddAttribute(const QString&)));
   connect(this,SIGNAL(removeAttribute(const QString&,const QString&)),part,SLOT(slotRemoveAttribute(const QString&,const QString&)));
-DotGraph* graph = m_currentPart->graph();
+  DotGraph* graph = m_currentPart->graph();
   QList<QTreeWidgetItem *> items;
   GraphNodeMap& nodesMap = graph->nodes();
   foreach (GraphNode* node, nodesMap)

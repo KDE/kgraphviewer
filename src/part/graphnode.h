@@ -55,19 +55,19 @@ public:
   
   virtual ~GraphNode() {}  
   
-  inline void x(double x) {m_x = x;}
-  inline void y(double y) {m_y = y;}
-  inline void w(double w) {m_w = w;}
-  inline void h(double h) {m_h = h;}
+//   inline void x(double x) {m_x = x;}
+//   inline void y(double y) {m_y = y;}
+//   inline void w(double w) {m_w = w;}
+//   inline void h(double h) {m_h = h;}
+// 
+//   inline double x() const {return m_x;}
+//   inline double y() const {return m_y;}
+//   inline double w() const {return m_w;}
+//   inline double h() const {return m_h;}
 
-  inline double x() const {return m_x;}
-  inline double y() const {return m_y;}
-  inline double w() const {return m_w;}
-  inline double h() const {return m_h;}
-
-  inline CanvasNode* canvasNode() { return m_cn; }
-  inline const CanvasNode* canvasNode() const { return m_cn; }
-  inline void setCanvasNode(CanvasNode* cn) { m_cn = cn; }
+  inline CanvasNode* canvasNode() { return (CanvasNode*)canvasElement(); }
+  inline const CanvasNode* canvasNode() const { return (const CanvasNode*)canvasElement(); }
+  inline void setCanvasNode(CanvasNode* cn) { setCanvasElement((CanvasElement*)cn); }
 
   bool isVisible() const { return m_visible; }
   void setVisible(bool v) { m_visible = v; }
@@ -76,10 +76,9 @@ public:
 
   
 private:
-  CanvasNode* m_cn;
   bool m_visible;
 
-  double m_x, m_y, m_w, m_h;
+//   double m_x, m_y, m_w, m_h;
 };
 
 /** A map associating the ids of a graph's nodes to these nodes */

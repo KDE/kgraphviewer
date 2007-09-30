@@ -919,7 +919,8 @@ Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString& dotLineStyle) const
     return (*(m_penStyles.find(dotLineStyle)));
   else 
   {
-    if (dotLineStyle.left(12) != "setlinewidth")
+    if (!dotLineStyle.left(12).isEmpty()
+	&& dotLineStyle.left(12) != "setlinewidth")
       kWarning() << "Unknown dot line style '" << dotLineStyle << "'. returning Qt solid line";
     return Qt::SolidLine;
   }

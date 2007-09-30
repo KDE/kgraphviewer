@@ -59,10 +59,13 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
   m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
   connect( m_widget, SIGNAL( graphLoaded() ),
            this, SIGNAL( graphLoaded() ) );
+  connect( m_widget, SIGNAL( newEdgeAdded(QString, QString) ),
+           this, SIGNAL( newEdgeAdded(QString, QString) ) );
 
   // notify the part that this is our internal widget
   setWidget(m_widget);
 
+  kDebug() << "Adding close action";
   QAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", parentWidget, SLOT( close() ) );
   closeAct->setWhatsThis(i18n("Closes the current tab"));
 
@@ -179,10 +182,35 @@ void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
 {
   kDebug() << src << tgt << attribs;
   GraphEdge* newEdge = new GraphEdge();
-  newEdge->setFromNode(m_widget->graph()->nodes()[src]);
-  newEdge->setToNode(m_widget->graph()->nodes()[tgt]);
+  GraphElement* srcElement = 0;
+  GraphElement* tgtElement = 0;
+  if (m_widget->graph()->nodes().contains(src))
+  {
+    srcElement = m_widget->graph()->nodes()[src];
+  }
+  else if (m_widget->graph()->subgraphs().contains(src))
+  {
+    srcElement = m_widget->graph()->subgraphs()[src];
+  }
+  if (m_widget->graph()->nodes().contains(tgt))
+  {
+    tgtElement = m_widget->graph()->nodes()[tgt];
+  }
+  else if (m_widget->graph()->subgraphs().contains(tgt))
+  {
+    tgtElement = m_widget->graph()->subgraphs()[tgt];
+  }
+  
+  if (srcElement==0||tgtElement==0)
+  {
+    kError() << src << "or" << tgt << "missing";
+    return;
+  }
+  newEdge->setId(src+tgt+QString::number(m_widget->graph()->edges().size()));
+  newEdge->setFromNode(srcElement);
+  newEdge->setToNode(tgtElement);
   newEdge->attributes() = attribs;
-  m_widget->graph()->edges().insert(QPair<GraphNode*,GraphNode*>(newEdge->fromNode(),newEdge->toNode()), newEdge);
+  m_widget->graph()->edges().insert(newEdge->id(), newEdge);
 }
 
 void kgraphviewerPart::prepareAddNewEdge(QMap<QString,QString> attribs)
@@ -261,9 +289,9 @@ kgraphviewerPartFactory::~kgraphviewerPartFactory()
     delete s_about;
 }
 
-KParts::Part* kgraphviewerPartFactory::createPartObject( QWidget *parentWidget, 
-                                                        QObject *parent, 
-                                                        const char *classname, 
+KParts::Part* kgraphviewerPartFactory::createPartObject( QWidget *parentWidget,
+                                                        QObject *parent,
+                                                        const char *classname,
                                                         const QStringList &args )
 {
   Q_UNUSED(classname);

@@ -37,7 +37,9 @@
 #include "dotgrammar.h"
 #include "dotrenderop.h"
 
-#include "qstringlist.h"
+#include <QStringList>
+#include <QMap>
+#include <QTextStream>
 
 class CanvasEdge;
 class GraphNode;
@@ -47,23 +49,23 @@ class GraphEdge : public GraphElement
 //   Q_OBJECT
 public:
   GraphEdge();
-  ~GraphEdge();
+  virtual ~GraphEdge();
 
   GraphEdge(const GraphEdge& edge);
 
-  CanvasEdge* canvasEdge() { return m_ce; }
-  void setCanvasEdge(CanvasEdge* ce) { m_ce = ce; }
+  CanvasEdge* canvasEdge() { return (CanvasEdge*)canvasElement(); }
+  void setCanvasEdge(CanvasEdge* ce) { setCanvasElement((CanvasElement*)ce); }
 
   bool isVisible() { return m_visible; }
   void setVisible(bool v) { m_visible = v; }
 
-  GraphNode* fromNode() { return m_fromNode; }
-  GraphNode* toNode() { return m_toNode; }
-  const GraphNode* fromNode() const { return m_fromNode; }
-  const GraphNode* toNode() const { return m_toNode; }
+  GraphElement* fromNode() { return m_fromNode; }
+  GraphElement* toNode() { return m_toNode; }
+  const GraphElement* fromNode() const { return m_fromNode; }
+  const GraphElement* toNode() const { return m_toNode; }
 
-  void setFromNode(GraphNode* n) { m_fromNode = n; }
-  void setToNode(GraphNode* n) { m_toNode = n; }
+  void setFromNode(GraphElement* n) { m_fromNode = n; }
+  void setToNode(GraphElement* n) { m_toNode = n; }
 
 //   inline const QVector< QPair< float, float > >& edgePoints() const {return m_edgePoints;}
 //   inline QVector< QPair< float, float > >& edgePoints() {return m_edgePoints;}
@@ -89,8 +91,7 @@ public:
 private:
   // we have a _ce *and* _from/_to because for collapsed edges,
   // only _to or _from will be unequal NULL
-  GraphNode *m_fromNode, *m_toNode;
-  CanvasEdge* m_ce;
+  GraphElement *m_fromNode, *m_toNode;
   bool m_visible;
   QStringList m_colors;
   QString m_dir;
@@ -102,7 +103,7 @@ private:
 
 
 /** A multi map associating the bounds nodes of a graph's edges to these edges */
-typedef QMultiMap<QPair<GraphNode*, GraphNode*>, GraphEdge*> GraphEdgeMap;
+typedef QMap<QString, GraphEdge*> GraphEdgeMap;
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e);
 

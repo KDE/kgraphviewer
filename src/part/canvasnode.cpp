@@ -55,312 +55,38 @@
 #include <kiconloader.h>
 #include <kfiledialog.h>
 
-//
-// CanvasNode
-//
-
-CanvasNode::CanvasNode(DotGraphView* v, GraphNode* n, QGraphicsItem* parent)
-: QObject(), QAbstractGraphicsShapeItem(parent), 
-  m_node(n), m_view(v), m_hasFocus(false), 
-  m_font(0),
-  m_pen(Dot2QtConsts::componentData().qtColor(n->fontColor()))
+CanvasNode::CanvasNode(DotGraphView* v,
+                        GraphNode* s,
+                        QGraphicsScene* c,
+                        QGraphicsItem* parent)
+: CanvasElement(v,(GraphElement*)s, c, parent)
 
 {
-  kDebug() << n->id();
-  m_font = FontsCache::changeable().fromName(n->fontName());
-  connect(n,SIGNAL(changed()),this,SLOT(modelChanged()));
+  connect(s,SIGNAL(changed()),this,SLOT(modelChanged()));
 
   QString tipStr;
-  QString id = n->id();
-  QString label = n->label();
+  QString id = s->id();
+  QString label = s->label();
   tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-  kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
+//   kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
   setToolTip(tipStr);
-}
-
-void CanvasNode::initialize(qreal scaleX, qreal scaleY,
-                            qreal xMargin, qreal yMargin, qreal gh,
-                            qreal wdhcf, qreal hdvcf)
-{
-  setFlag(QGraphicsItem::ItemIsMovable, true);
-
-  m_scaleX = scaleX; m_scaleY = scaleY;
-  m_xMargin = xMargin; m_yMargin = yMargin;
-  m_gh = gh; m_wdhcf = wdhcf; m_hdvcf = hdvcf;
-
-  setZValue(m_node->z());
-
-  computeBoundingRect();
-}
-
-QRectF CanvasNode::boundingRect () const
-{
-  return m_boundingRect;
-}
-
-void CanvasNode::computeBoundingRect()
-{
-  kDebug() << node()->id() << zValue();
-
-  qreal adjust = 0.5;
-  QRectF rect;
-  if (node()->renderOperations().isEmpty())
-  {
-    rect = QRectF(0,0,(m_view->defaultNewElementPixmap().size().width())*m_scaleX,(m_view->defaultNewElementPixmap().size().height())*m_scaleY);
-    m_boundingRect = rect;
-  }
-  else
-  {
-    DotRenderOpVec::const_iterator it, it_end;
-    it = node()->renderOperations().begin(); it_end = node()->renderOperations().end();
-    for (; it != it_end; it++)
-    {
-      QString msg;
-      QTextStream dd(&msg);
-      dd << node()->id() << " an op: " << (*it).renderop << " ";
-      foreach (int i, (*it).integers)
-      {
-        dd << i << " ";
-      }
-      dd << (*it).str;
-      kDebug() << msg;
-
-      if ((*it).renderop == "e" || (*it).renderop == "E")
-      {
-        kDebug() << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
-            << "(*it).integers[0]/*%m_wdhcf*/=" << (*it).integers[0]/*%m_wdhcf*/;
-        qreal w = m_scaleX * (*it).integers[2] * 2;
-        qreal h = m_scaleY * (*it).integers[3] * 2;
-        qreal x = m_xMargin + (((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
-        qreal y = ((m_gh - (*it).integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
-        m_boundingRect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
-        kDebug() << "'" << node()->id() << "' set rect for ellipse to " << rect;
-      }
-      else if  ((*it).renderop == "p" || (*it).renderop == "P")
-      {
-        QPolygonF polygon((*it).integers[0]);
-        for (int i = 0; i < (*it).integers[0]; i++)
-        {
-          qreal x,y;
-          x = ((*it).integers[2*i+1] == m_wdhcf)?(*it).integers[2*i+1]:(*it).integers[2*i+1]/*%m_wdhcf*/;
-          y = ((*it).integers[2*i+2] == m_hdvcf)?(*it).integers[2*i+2]:(*it).integers[2*i+2]/*%m_hdvcf*/;
-          {
-
-          }
-          QPointF p(
-                    x*m_scaleX +m_xMargin,
-                    (m_gh-y)*m_scaleY + m_yMargin
-                  );
-          polygon[i] = p;
-        }
-        m_boundingRect = polygon.boundingRect();
-        kDebug() << "'" << node()->id() << "' set rect for polygon to " << rect;
-      }
-    }
-  }
-  kDebug() << node()->id() << "new bounding rect is:" << m_boundingRect;
 }
 
 void CanvasNode::modelChanged()
 {
 //   kDebug() << node()->id();
-  m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_node->fontColor()));
-  m_font = FontsCache::changeable().fromName(m_node->fontName());
+  m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_element->fontColor()));
+  m_font = FontsCache::changeable().fromName(m_element->fontName());
   computeBoundingRect();
   prepareGeometryChange();
   setPos(0,0);
 }
 
-void CanvasNode::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-QWidget *widget)
-{
-  Q_UNUSED(option)
-  Q_UNUSED(widget)
-  QString msg;
-  QTextStream dd(&msg);
-  foreach (DotRenderOp op, node()->renderOperations())
-  {
-    dd << node()->id() << " an op: " << op.renderop << " ";
-    foreach (int i, op.integers)
-    {
-      dd << i << " ";
-    }
-    dd << op.str << endl;
-  }
-//   kDebug() << msg;
-
-  if (node()->renderOperations().isEmpty())
-  {
-//     kDebug() << "drawPixmap";
-    p->drawPixmap(QPointF(0,0),m_view->defaultNewElementPixmap());
-    return;
-  }
-  QListIterator<DotRenderOp> it(node()->renderOperations());
-  it.toBack();
-  while (it.hasPrevious())
-  {
-    const DotRenderOp& dro = it.previous();
-    if (dro.renderop == "e" || dro.renderop == "E")
-    {
-      qreal w = m_scaleX * dro.integers[2] * 2;
-      qreal h = m_scaleY * dro.integers[3] * 2;
-      qreal x = m_xMargin + ((dro.integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
-      qreal y = ((m_gh - dro.integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
-      QRectF rect(x,y,w,h);
-      p->save();
-      p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
-      p->setPen(Dot2QtConsts::componentData().qtColor(node()->lineColor()));
-//       kDebug() << node()->id() << "drawEllipse" << node()->backColor() << rect;
-      p->drawEllipse(rect);
-      p->restore();
-    }
-    else if(dro.renderop == "p" || dro.renderop == "P")
-    {
-//       std::cerr << "Drawing polygon for node '"<<node()->id()<<"': ";
-      QPolygonF points(dro.integers[0]);
-      for (int i = 0; i < dro.integers[0]; i++)
-      {
-        qreal x,y;
-        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
-        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
-        QPointF p(
-                  (x*m_scaleX) + m_xMargin,
-                  ((m_gh-y)*m_scaleY) + m_yMargin
-                );
-/*        kDebug() << "    point: (" << dro.integers[2*i+1] << ","
-                  << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf;*/
-        points[i] = p;
-      }
-      p->save();
-      QPen pen(Dot2QtConsts::componentData().qtColor(node()->lineColor()));
-      if (node()->style() == "bold")
-      {
-        pen.setStyle(Qt::SolidLine);
-        pen.setWidth(2);
-      }
-      else if (node()->style() != "filled")
-      {
-        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(node()->style()));
-      }
-      if (node()->style().left(12) == "setlinewidth")
-      {
-        bool ok;
-        uint lineWidth = node()->style().mid(12, node()->style().length()-1-12).toInt(&ok);
-        pen.setWidth(lineWidth);
-      }
-      p->setPen(pen);
-      p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
-/*      if (node()->style() == "filled")
-      {
-        p->setBrush(Dot2QtConsts::componentData().qtColor(node()->backColor()));
-    //     QCanvasPolygon::paint(p);
-      }
-      else
-      {
-        p->setBrush(canvas()->backgroundColor());
-      }*/
-      p->drawPolygon(points);
-      p->restore();
-      if (!node()->shapeFile().isEmpty())
-      {
-        QPixmap pix(node()->shapeFile());
-        if (!pix.isNull())
-        {
-          p->drawPixmap(int(points.boundingRect().left()), int(points.boundingRect().top()), pix);
-        }
-      }
-    }
-
-  }
-
-  it.toBack();
-  while (it.hasPrevious())
-  {
-    const DotRenderOp& dro = it.previous();
-    if ( dro.renderop == "L" )
-    {
-//       kDebug() << "Label";
-      QPolygonF points(dro.integers[0]);
-      for (int i = 0; i < dro.integers[0]; i++)
-      {
-        qreal x,y;
-        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
-        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
-        QPointF p(
-                  (x*m_scaleX) +m_xMargin,
-                  ((m_gh-y)*m_scaleY) + m_yMargin
-                );
-        points[i] = p;
-      }
-      p->save();
-      QPen pen(Dot2QtConsts::componentData().qtColor(node()->lineColor()));
-      if (node()->style() == "bold")
-      {
-        pen.setStyle(Qt::SolidLine);
-        pen.setWidth(2);
-      }
-      else if (node()->style() != "filled")
-      {
-        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(node()->style()));
-      }
-      p->setPen(pen);
-      kDebug() << node()->id() << "drawPolyline" << points;
-      p->drawPolyline(points);
-      p->restore();
-    }
-  }
-
-
-  DotRenderOpVec::const_iterator itl, itl_end;
-  itl = node()->renderOperations().begin(); 
-  itl_end = node()->renderOperations().end();
-  for (; itl != itl_end; itl++)
-  {
-    const DotRenderOp& dro = (*itl);
-    if ( dro.renderop == "T" )
-    {
-      // draw a label
-/*      kDebug() << "Drawing a label " << (*it).integers[0]
-        << " " << (*it).integers[1] << " " << (*it).integers[2]
-        << " " << (*it).integers[3] << " " << (*it).str 
-        << " (" << node()->fontName() << ", " << node()->fontSize()
-        << ", " << node()->fontColor() << ")";*/
-      
-      int stringWidthGoal = int(dro.integers[3] * m_scaleX);
-      int fontSize = node()->fontSize();
-      m_font->setPointSize(fontSize);
-      QFontMetrics fm(*m_font);
-      while (fm.width(dro.str) > stringWidthGoal && fontSize > 1)
-      {
-        fontSize--;
-        m_font->setPointSize(fontSize);
-        fm = QFontMetrics(*m_font);
-      }
-      p->save();
-      p->setFont(*m_font);
-      p->setPen(m_pen);
-      qreal x = (m_scaleX *
-                       (
-                         (dro.integers[0])
-                         + (((-dro.integers[2])*(fm.width(dro.str)))/2)
-                         - ( (fm.width(dro.str))/2 )
-                       )
-                      )
-                      + m_xMargin;
-      qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
-      QPointF point(x,y);
-//       kDebug() << node()->id() << "drawText" << point;
-      p->drawText(point, dro.str);
-      p->restore();
-    }
-  }
-//   p->drawRect(QRectF(pos(),boundingRect().bottomRight()));
-}
 
 void CanvasNode::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
   Q_UNUSED(event)
-  kDebug() << m_node->id() << boundingRect();
+  kDebug() << m_element->id() << boundingRect();
   if (m_view->editingMode() == DotGraphView::AddNewEdge)
   {
     m_view->createNewEdgeDraftFrom(this);
@@ -369,18 +95,6 @@ void CanvasNode::mousePressEvent(QGraphicsSceneMouseEvent* event)
   {
     m_view->finishNewEdgeTo(this);
   }
-}
-
-void CanvasNode::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
-{
-  Q_UNUSED(event)
-//   kDebug() ;
-}
-
-void CanvasNode::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
-{
-  Q_UNUSED(event)
-//   kDebug() ;
 }
 
 // CanvasHtmlNode::CanvasHtmlNode(

@@ -132,6 +132,7 @@ signals:
   void sigViewBevEnabledToggled(bool value);
   void sigViewBevActivated(int newPos);
   void graphLoaded();
+  void newEdgeAdded(QString,QString);
 
 public slots:
   void zoomIn();

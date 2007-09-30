@@ -26,6 +26,8 @@
 #include <QMap>
 #include <QtCore/QTextStream>
 
+class CanvasElement;
+
 /**
  * The base of all GraphViz dot graph elements (nodes, edges, subgraphs,
  * graphs). It is used to store the element attributes
@@ -39,12 +41,12 @@ public:
   
   virtual ~GraphElement() {}
   
-  inline void id(const QString& id) {m_attributes["id"]=id;}
-  inline void style(const QString& ls) {m_attributes["style"]=ls;}
-  inline void shape(const QString& lc) {m_attributes["shape"]=lc;}
-  inline void color(const QString& nt) {m_attributes["color"]=nt;}
-  inline void lineColor(const QString& nt) {m_attributes["color"]=nt;}
-  inline void backColor(const QString& nc) {m_attributes["bgcolor"]=nc;}
+  inline void setId(const QString& id) {m_attributes["id"]=id;}
+  inline void setStyle(const QString& ls) {m_attributes["style"]=ls;}
+  inline void setShape(const QString& lc) {m_attributes["shape"]=lc;}
+  inline void setColor(const QString& nt) {m_attributes["color"]=nt;}
+  inline void setLineColor(const QString& nt) {m_attributes["color"]=nt;}
+  inline void setBackColor(const QString& nc) {m_attributes["bgcolor"]=nc;}
   
   inline QString id() const {return m_attributes["id"];}
   inline QString style() const {return m_attributes["style"];}
@@ -53,28 +55,28 @@ public:
   inline QString lineColor() const {return m_attributes["color"];}
   virtual QString backColor() const;
   
-  inline void label(const QString& label) {m_attributes["label"]=label;}
+  inline void setLabel(const QString& label) {m_attributes["label"]=label;}
   inline const QString label() const {return m_attributes["label"];}
 
   inline unsigned int fontSize() const {return m_attributes["fontsize"].toUInt();}
-  inline void fontSize(unsigned int fs) {m_attributes["fontsize"]=QString::number(fs);}
+  inline void setFontSize(unsigned int fs) {m_attributes["fontsize"]=QString::number(fs);}
   inline QString fontName() const {return m_attributes["fontname"];}
-  inline void fontName(const QString& fn) {m_attributes["fontname"]=fn;}
+  inline void setFontName(const QString& fn) {m_attributes["fontname"]=fn;}
   inline QString fontColor() const {return m_attributes["fontcolor"];}
-  inline void fontColor(const QString& fc) {m_attributes["fontcolor"] = fc;}
+  inline void setFontColor(const QString& fc) {m_attributes["fontcolor"] = fc;}
 
   inline DotRenderOpVec& renderOperations() {return m_renderOperations;};
   inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
-  inline void renderOperations(DotRenderOpVec& drov) {m_renderOperations = drov;};
+  inline void setRenderOperations(DotRenderOpVec& drov) {m_renderOperations = drov;};
   
   inline const double z() const {return m_z;}
-  inline void z(double thez) {m_z = thez;}
+  inline void setZ(double thez) {m_z = thez;}
   
   inline QString shapeFile() const {return m_attributes["shapefile"];}
-  inline void shapeFile(const QString& sf) {m_attributes["shapefile"] = sf;}
+  inline void setShapeFile(const QString& sf) {m_attributes["shapefile"] = sf;}
   
   inline QString url() const {return m_attributes["URL"];}
-  inline void url(const QString& theUrl) {m_attributes["URL"] = theUrl;}
+  inline void setUrl(const QString& theUrl) {m_attributes["URL"] = theUrl;}
 
   virtual void updateWith(const GraphElement& element);
 
@@ -87,14 +89,19 @@ public:
   virtual inline void storeOriginalAttributes() {m_originalAttributes = m_attributes.keys();}
 
   virtual void removeAttribute(const QString& attribName);
+
+  inline CanvasElement* canvasElement() {return m_ce;}
+  inline const CanvasElement* canvasElement() const {return m_ce;}
+  inline void setCanvasElement(CanvasElement* ce) {m_ce = ce;}
   
 Q_SIGNALS:
-    void changed();
+  void changed();
 
 protected:
   QMap<QString,QString> m_attributes;
   QList<QString> m_originalAttributes;
   
+  CanvasElement* m_ce;
 private:
   double m_z;
 

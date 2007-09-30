@@ -59,6 +59,7 @@ public:
 
 Q_SIGNALS:
   void graphLoaded();
+  void newEdgeAdded(QString, QString);
 
 public slots:
   void slotHide(KParts::Part* part);
@@ -98,11 +99,11 @@ class kgraphviewerPartFactory : public KParts::Factory
 public:
     kgraphviewerPartFactory();
     virtual ~kgraphviewerPartFactory();
-    virtual KParts::Part* createPartObject( QWidget *parentWidget, 
-                                            QObject *parent, 
+    virtual KParts::Part* createPartObject( QWidget *parentWidget,
+                                            QObject *parent,
                                             const char *classname, const QStringList &args );
     static KComponentData componentData();
- 
+
 private:
     static KComponentData s_instance;
     static KAboutData* s_about;

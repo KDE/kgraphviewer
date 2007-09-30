@@ -91,6 +91,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
   for ( eit = graph->edges().begin();
         eit != graph->edges().end(); ++eit )
   {
+    kDebug() << "writing edge" << (*eit)->id();
     stream << **eit;
   }
 

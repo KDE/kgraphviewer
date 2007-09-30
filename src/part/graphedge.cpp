@@ -38,17 +38,17 @@
 GraphEdge::GraphEdge() : 
     GraphElement(),
     m_fromNode(0),m_toNode(0),
-    m_ce(0),m_visible(true),
+    m_visible(true),
     m_colors(),
     m_dir(DOT_DEFAULT_EDGE_DIR),
     m_arrowheads()
 {
-  kDebug() ;
+//   kDebug() ;
 }
 
 GraphEdge::~GraphEdge()
 {
-  kDebug() ;
+//   kDebug() ;
 }
 
 GraphEdge::GraphEdge(const GraphEdge& edge) :
@@ -56,7 +56,6 @@ GraphEdge::GraphEdge(const GraphEdge& edge) :
 {
     m_fromNode = 0;
     m_toNode = 0;
-    m_ce = 0;
     m_visible = edge.m_visible;
     m_colors = edge.m_colors;
     m_dir = edge.m_dir;
@@ -78,7 +77,7 @@ const QString GraphEdge::color(uint i)
   if (i < (uint)m_colors.count())
   {
 //     std::cerr << "edge color " << i << " is " << m_colors[i] << std::endl;
-    kDebug() << fromNode()->id() << " -> " << toNode()->id() << "color" << i << "is" << m_colors[i];
+//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "color" << i << "is" << m_colors[i];
     return m_colors[i];
   }
   else
@@ -90,16 +89,11 @@ const QString GraphEdge::color(uint i)
 
 void GraphEdge::updateWith(const GraphEdge& edge)
 {
-  kDebug() ;
+//   kDebug() ;
   m_arrowheads = edge.arrowheads();
   m_colors = edge.colors();
   m_dir = edge.dir();
   GraphElement::updateWith(edge);
-/*  if (m_ce)
-  {
-    m_ce->modelChanged();
-  }*/
-  kDebug() << "done";
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e)

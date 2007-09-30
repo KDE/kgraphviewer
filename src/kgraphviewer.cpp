@@ -203,7 +203,7 @@ void KGraphViewer::setupActions()
   KSharedConfig::Ptr config = KGlobal::config();
   m_rfa->loadEntries(KConfigGroup(config, "kgraphviewer recent files"));
   
-  actionCollection()->addAction( KStandardAction::Quit, "file_quit", this, SLOT( quit() ) );
+  actionCollection()->addAction( KStandardAction::Quit, "file_quit", KApplication::kApplication(), SLOT( quit() ) );
 //   KStandardAction::quit(kapp, SLOT(quit()), this);
 
   m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
@@ -432,6 +432,7 @@ void KGraphViewer::slotURLSelected(const KUrl& url)
 
 void KGraphViewer::close(QWidget* tab)
 {
+  kDebug() << tab;
   m_openedFiles.remove(m_tabsFilesMap[tab]);
   m_widget->removePage(tab);
   tab->hide();
@@ -446,6 +447,7 @@ void KGraphViewer::close(QWidget* tab)
 
 void KGraphViewer::close()
 {
+  kDebug();
   QWidget* currentPage = m_widget->currentPage();
   if (currentPage != 0)
   {

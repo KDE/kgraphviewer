@@ -27,6 +27,8 @@
 GraphElement::GraphElement() :
     QObject(),
     m_attributes(),
+    m_originalAttributes(),
+    m_ce(0),
     m_z(1.0),
     m_renderOperations()
 {
@@ -46,6 +48,7 @@ GraphElement::GraphElement() :
 GraphElement::GraphElement(const GraphElement& element) : QObject(),
   m_attributes(),
   m_originalAttributes(),
+  m_ce(element.m_ce),
   m_z(element.m_z),
   m_renderOperations()
 {
@@ -55,7 +58,7 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
 
 void GraphElement::updateWith(const GraphElement& element)
 {
-  kDebug() << m_renderOperations.size();
+//   kDebug() << m_renderOperations.size();
   bool modified = false;
   if (element.z() != m_z)
   {
@@ -73,7 +76,7 @@ void GraphElement::updateWith(const GraphElement& element)
   if (modified)
   {
     m_renderOperations = element.m_renderOperations;
-    foreach (DotRenderOp op, m_renderOperations)
+/*    foreach (DotRenderOp op, m_renderOperations)
     {
       QString msg;
       QTextStream dd(&msg);
@@ -85,10 +88,10 @@ void GraphElement::updateWith(const GraphElement& element)
       dd << op.str;
       kDebug() << msg;
     }
-    kDebug() << "modified: emiting changed";
+    kDebug() << "modified: emiting changed";*/
     emit changed();
   }
-  kDebug() << "done" << m_renderOperations.size();
+//   kDebug() << "done" << m_renderOperations.size();
 }
 
 
@@ -131,7 +134,7 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
         if (label != "label")
         {
           label.replace(QRegExp("\n"),"\\n");
-          kDebug() << it.key() << "=\"" << label << "\",";
+//           kDebug() << it.key() << "=\"" << label << "\",";
           s << it.key() << "=\"" << label << "\",";
         }
       }
@@ -140,7 +143,7 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
       }
       else if (n.originalAttributes().isEmpty() || n.originalAttributes().contains(it.key()))
       {
-        kDebug() << it.key() << it.value();
+//         kDebug() << it.key() << it.value();
         
           s << it.key() << "=\"" << it.value() << "\",";
       }

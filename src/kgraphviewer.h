@@ -72,6 +72,7 @@ public slots:
     */
   void openUrl(const QString& url) {openUrl(KUrl(url));}
 
+  void close();
 /*public slots:
   void reloadOnChangeMode_pressed(int value);
   void openInExistingWindowMode_pressed(int value);
@@ -81,7 +82,6 @@ private slots:
   void fileNew();
   void fileOpen();
   void close(QWidget* tab);
-  void close();
   void slotURLSelected(const KUrl&);
   void optionsShowToolbar();
   void optionsShowStatusbar();

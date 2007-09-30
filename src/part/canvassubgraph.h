@@ -23,17 +23,13 @@
 #ifndef CANVAS_SUBGRAPH_H
 #define CANVAS_SUBGRAPH_H
 
-#include <QAbstractGraphicsShapeItem>
-#include <QPen>
-#include <QBrush>
-
-#include "dotgrammar.h"
+#include "canvaselement.h"
 
 class GraphSubgraph;
 class DotGraphView;
 class QGraphicsScene;
 
-class CanvasSubgraph: public QObject, public QAbstractGraphicsShapeItem
+class CanvasSubgraph: public CanvasElement
 {
 public:
   CanvasSubgraph(
@@ -43,28 +39,7 @@ public:
       QGraphicsItem* parent = 0);
   virtual ~CanvasSubgraph() {}
   
-  GraphSubgraph* subgraph() { return m_subgraph; }
-
-  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-        QWidget *widget = 0 );
-
-  virtual QRectF boundingRect () const;
-  void computeBoundingRect();
-  
-  void initialize(qreal scaleX, qreal scaleY,
-                  qreal xMargin, qreal yMargin, qreal gh,
-                  qreal wdhcf, qreal hdvcf);
-
-    
 protected:
-  qreal m_scaleX, m_scaleY;
-  qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
-  GraphSubgraph* m_subgraph;
-  DotGraphView* m_view;
-  QFont* m_font;
-  QPen m_pen;
-  QBrush m_brush;
-  QRectF m_boundingRect;
 };
 
   

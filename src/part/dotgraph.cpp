@@ -257,7 +257,8 @@ void DotGraph::computeCells()
     for (; it != it_end; it++)
     {
       GraphNode* gn = *it;
-      int cellNum = cellNumber(int(gn->x()), int(gn->y()));
+//       int cellNum = cellNumber(int(gn->x()), int(gn->y()));
+      int cellNum = cellNumber(0,0);
       kDebug() << "Found cell number " << cellNum;
 
       if (m_cells.size() <= cellNum)
@@ -322,7 +323,7 @@ void DotGraph::saveTo(const QString& fileName)
 
 void DotGraph::updateWith(const DotGraph& newGraph)
 {
-  kDebug();
+//   kDebug();
   GraphElement::updateWith(newGraph);
   m_width=newGraph.width();
   m_height=newGraph.height();
@@ -332,42 +333,46 @@ void DotGraph::updateWith(const DotGraph& newGraph)
   computeCells();
   foreach (GraphNode* ngn, newGraph.nodes())
   {
-    kDebug() << "node " << ngn->id();
+//     kDebug() << "node " << ngn->id();
     if (nodes().contains(ngn->id()))
     {
-      kDebug() << "known";
-      nodes()[ngn->id()]->z(ngn->z());
+//       kDebug() << "known";
+      nodes()[ngn->id()]->setZ(ngn->z());
       nodes()[ngn->id()]->updateWith(*ngn);
     }
     else
     {
-      kDebug() << "new";
+//       kDebug() << "new";
       GraphNode* newgn = new GraphNode(*ngn);
-      kDebug() << "new created";
+//       kDebug() << "new created";
       nodes().insert(ngn->id(), newgn);
-      kDebug() << "new inserted";
+//       kDebug() << "new inserted";
     }
   }
   foreach (GraphEdge* nge, newGraph.edges())
   {
-    kDebug() << "an edge";
-    QPair<GraphNode*,GraphNode*> pair(nodes()[nge->fromNode()->id()],nodes()[nge->toNode()->id()]);
-    if (edges().contains(pair))
+    if (edges().contains(nge->id()))
     {
-      edges().value(pair)->updateWith(*nge);
+      kDebug() << "edge known" << nge->id();
+      edges()[nge->id()]->setZ(nge->z());
+      edges()[nge->id()]->updateWith(*nge);
     }
     else
     {
-      GraphEdge* newEdge = new GraphEdge();
-      newEdge->updateWith(*nge);
-      newEdge->setFromNode(nodes()[nge->fromNode()->id()]);
-      newEdge->setToNode(nodes()[nge->toNode()->id()]);
-      edges().insert(pair, newEdge);
+      kDebug() << "new edge" << nge->id();
+      {
+        GraphEdge* newEdge = new GraphEdge();
+        newEdge->setId(nge->id());
+        newEdge->updateWith(*nge);
+        newEdge->setFromNode(nodes()[nge->fromNode()->id()]);
+        newEdge->setToNode(nodes()[nge->toNode()->id()]);
+        edges().insert(nge->id(), newEdge);
+      }
     }
   }
   foreach (GraphSubgraph* nsg, newGraph.subgraphs())
   {
-    kDebug() << "a subgraph";
+//     kDebug() << "a subgraph";
     if (subgraphs().contains(nsg->id()))
     {
       subgraphs().value(nsg->id())->updateWith(*nsg);
@@ -376,7 +381,7 @@ void DotGraph::updateWith(const DotGraph& newGraph)
     {
       GraphSubgraph* newSubgraph = new GraphSubgraph();
       newSubgraph->updateWith(*nsg);
-      newSubgraph->z(0);
+      newSubgraph->setZ(0);
       subgraphs().insert(nsg->id(), newSubgraph);
     }
   }
@@ -391,8 +396,8 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
   it = m_edgesMap.begin(); it_end = m_edgesMap.end();
   while (it != it_end)
   {
-    if ( it.key().first == node
-        || it.key().second == node )
+    if ( it.value()->fromNode() == node
+        || it.value()->toNode() == node )
     {
       GraphEdge* edge = it.value();
       if (edge->canvasEdge() != 0)

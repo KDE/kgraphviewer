@@ -25,10 +25,6 @@
 */
 
 
-/*
- * Callgraph View
- */
-
 #ifndef CANVAS_EDGE_H
 #define CANVAS_EDGE_H
 
@@ -65,6 +61,8 @@ public:
              qreal xMargin, qreal yMargin, qreal gh,
              qreal wdhcf, qreal hdvcf, QGraphicsItem* parent = 0);
 
+  virtual ~CanvasEdge() {}
+  
   QRectF boundingRect() const;
 
   void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
