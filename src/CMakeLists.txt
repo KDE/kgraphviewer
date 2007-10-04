@@ -23,8 +23,6 @@ install( TARGETS kgraphviewer DESTINATION ${BIN_INSTALL_DIR})
 
 kde4_install_icons( ${ICON_INSTALL_DIR} )
 
-#TODO move x-kgraphviewer mimetype to mime (ask to David Faure)
-install( FILES x-kgraphviewer.desktop DESTINATION ${MIME_INSTALL_DIR}/application )
 install( FILES kgraphviewersettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
 install( FILES kgraphviewerui.rc DESTINATION ${DATA_INSTALL_DIR}/kgraphviewer )
 install( FILES kgraphviewer.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
@@ -48,7 +46,6 @@ install( TARGETS kgrapheditor DESTINATION ${BIN_INSTALL_DIR})
 
 ########### install kgrapheditor files ###############
 
-install( FILES x-kgrapheditor.desktop DESTINATION ${MIME_INSTALL_DIR}/application )
 install( FILES kgrapheditorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
 install( FILES kgrapheditorui.rc DESTINATION ${DATA_INSTALL_DIR}/kgrapheditor )
 install( FILES kgrapheditor.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
