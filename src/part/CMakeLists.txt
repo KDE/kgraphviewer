@@ -1,4 +1,4 @@
-include_directories( ${CMAKE_SOURCE_DIR}/kgraphviewer/src ${CMAKE_SOURCE_DIR}/kgraphviewer/src/part ${CMAKE_SOURCE_DIR}/kgraphviewer/src/printing ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ../ ../printing ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
 ########### next target ###############
