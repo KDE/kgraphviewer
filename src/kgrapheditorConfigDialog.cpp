@@ -76,8 +76,6 @@ void KgeConfigurationDialog::settingChanged(int)
 {
 //   std::cerr << "KgeConfigurationDialog::settingChanged" << std::endl;
   m_changed = true;
-  settingsChangedSlot();
-  updateButtons ();
 }
 
 bool KgeConfigurationDialog::hasChanged()
