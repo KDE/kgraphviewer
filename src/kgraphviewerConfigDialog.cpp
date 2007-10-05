@@ -76,8 +76,6 @@ void KgvConfigurationDialog::settingChanged(int)
 {
 //   std::cerr << "KgvConfigurationDialog::settingChanged" << std::endl;
   m_changed = true;
-  settingsChangedSlot();
-  updateButtons ();
 }
 
 bool KgvConfigurationDialog::hasChanged()
