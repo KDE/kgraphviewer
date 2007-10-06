@@ -41,6 +41,7 @@
 #include <kiconloader.h>
 #include <kmessagebox.h>
 #include <khbox.h>
+#include <kdebug.h>
 
 #include <qlabel.h>
 #include <qlayout.h>

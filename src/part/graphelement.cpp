@@ -24,6 +24,8 @@
 #include <kdebug.h>
 #include <kconfig.h>
 
+#include <QRegExp>
+
 GraphElement::GraphElement() :
     QObject(),
     m_attributes(),

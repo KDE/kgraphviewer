@@ -28,7 +28,7 @@
 #include "simpleprintpreviewwindow_p.h"
 #include "simpleprintingengine.h"
 #include "simpleprintingsettings.h"
-//Added by qt3to4:
+#include <kdebug.h>
 #include <QPixmap>
 #include <QResizeEvent>
 #include <QPaintEvent>
