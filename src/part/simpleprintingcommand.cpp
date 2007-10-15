@@ -47,7 +47,7 @@
 #include <kmessagebox.h>
 #include <knuminput.h>
 
-#include <QPrinter>
+#include <QtGui/QPrinter>
 #include <qlabel.h>
 #include <qtimer.h>
 #include <qlayout.h>

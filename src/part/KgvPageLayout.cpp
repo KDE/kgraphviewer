@@ -28,9 +28,9 @@
 #include "KgvPageLayout.h"
 #include <KgvUnit.h>
 #include <klocale.h>
-#include <QPrinter>
 #include <kdebug.h>
 #include <kglobal.h>
+#include <QtGui/QPrinter>
 #include <qdom.h>
 
 // paper formats ( mm )
