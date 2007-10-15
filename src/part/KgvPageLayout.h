@@ -85,16 +85,16 @@ enum KgvOrientation {
 namespace KgvPageFormat
 {
     /**
-     * @brief Convert a KgvFormat into a KPrinter::PageSize.
+     * @brief Convert a KgvFormat into a QPrinter::PageSize.
      *
      * If format is 'screen' it will use A4 landscape.
      * If format is 'custom' it will use A4 portrait.
      * (you may want to take care of those cases separately).
-     * Usually passed to KPrinter::setPageSize().
+     * Usually passed to QPrinter::setPageSize().
      *
-     * @note We return int instead of the enum to avoid including kprinter.h
+     * @note We return int instead of the enum to avoid including QPrinter
      */
-    int /*KPrinter::PageSize*/ printerPageSize( KgvFormat format );
+    int /*QPrinter::PageSize*/ printerPageSize( KgvFormat format );
 
     /**
      * Returns the width (in mm) for a given page format and orientation

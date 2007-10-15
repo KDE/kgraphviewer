@@ -47,8 +47,6 @@
 #include <QGraphicsScene>
 #include <QPaintDevice>
 
-#include <kprinter.h>
-
 #include <iostream>
 #include <math.h>
 
@@ -121,7 +119,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 		w = dynamic_cast<QPixmap*>(painter.device())->width();
 		h = dynamic_cast<QPixmap*>(painter.device())->height();
 	}
-	else {//KPrinter...
+	else {//QPrinter...
 		w = m_pdm->widthMM();
 		h = m_pdm->heightMM();
 	}
