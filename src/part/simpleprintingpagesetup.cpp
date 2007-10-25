@@ -40,7 +40,6 @@
 #include <kurllabel.h>
 #include <kdebug.h>
 #include <klineedit.h>
-#include <kprinter.h>
 #include <kpushbutton.h>
 #include <kdeversion.h>
 #include <kmessagebox.h>

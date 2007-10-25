@@ -49,7 +49,7 @@ class KgvUnitDoubleBase;
  * \internal
  * \since 1.4 (change of behavior)
  */
-class KgvUnitDoubleValidator : public KDoubleValidator
+class KgvUnitDoubleValidator : public QDoubleValidator
 {
 public:
     KgvUnitDoubleValidator( KgvUnitDoubleBase *base, QObject *parent, const char *name = 0 );
@@ -112,7 +112,7 @@ protected:
  * Spin box for double precision numbers with unit display
  * \since 1.4 (change of behavior)
  */
-class KgvUnitDoubleSpinBox : public KDoubleSpinBox, public KgvUnitDoubleBase
+class KgvUnitDoubleSpinBox : public QDoubleSpinBox, public KgvUnitDoubleBase
 {
     Q_OBJECT
 public:

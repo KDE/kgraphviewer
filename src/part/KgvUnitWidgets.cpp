@@ -41,7 +41,7 @@
 
 
 KgvUnitDoubleValidator::KgvUnitDoubleValidator( KgvUnitDoubleBase *base, QObject *parent, const char *name )
-: KDoubleValidator( parent ), m_base( base )
+: QDoubleValidator( parent ), m_base( base )
 {
 }
 
@@ -127,15 +127,15 @@ double KgvUnitDoubleBase::toDouble( const QString& str, bool* ok ) const
 
 
 KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox( QWidget *parent, const char *name )
-    : KDoubleSpinBox( parent ), KgvUnitDoubleBase( KgvUnit::U_PT, 2 )
+    : QDoubleSpinBox( parent ), KgvUnitDoubleBase( KgvUnit::U_PT, 2 )
     , m_lowerInPoints( -9999 )
     , m_upperInPoints( 9999 )
     , m_stepInPoints( 1 )
 {
-    KDoubleSpinBox::setPrecision( 2 );
+    QDoubleSpinBox::setDecimals( 2 );
     m_validator = new KgvUnitDoubleValidator( this, this );
 //     QSpinBox::setValidator( m_validator );
-    setAcceptLocalizedNumbers( true );
+    //setAcceptLocalizedNumbers( true );
     setUnit( KgvUnit::U_PT );
 
     connect(this, SIGNAL(valueChanged( double )), SLOT(privateValueChanged()));
@@ -149,14 +149,19 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox( QWidget *parent,
 						    KgvUnit::Unit unit, 
 						    unsigned int precision, 
 						    const char *name )
-    : KDoubleSpinBox( lower, upper, step, value, parent, precision),
+    : QDoubleSpinBox( parent),
       KgvUnitDoubleBase( unit, precision ),
     m_lowerInPoints( lower ), m_upperInPoints( upper ), m_stepInPoints( step )
-{
+{ 
+    setMinimum(lower);
+    setMaximum(upper);
+    setSingleStep(step);
+    setValue(value);
+    setDecimals(precision);
     m_unit = KgvUnit::U_PT;
     m_validator = new KgvUnitDoubleValidator( this, this );
 //     QSpinBox::setValidator( m_validator );
-    setAcceptLocalizedNumbers( true );
+    //setAcceptLocalizedNumbers( true );
     setUnit( unit );
     changeValue( value );
     setLineStep( 0.5 );
@@ -167,7 +172,7 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox( QWidget *parent,
 void
 KgvUnitDoubleSpinBox::changeValue( double val )
 {
-    KDoubleSpinBox::setValue( KgvUnit::toUserValue( val, m_unit ) );
+    QDoubleSpinBox::setValue( KgvUnit::toUserValue( val, m_unit ) );
     // TODO: emit valueChanged ONLY if the value was out-of-bounds
     // This will allow the 'user' dialog to set a dirty bool and ensure
     // a proper value is getting saved.
@@ -180,42 +185,42 @@ void KgvUnitDoubleSpinBox::privateValueChanged() {
 void
 KgvUnitDoubleSpinBox::setUnit( KgvUnit::Unit unit )
 {
-    double oldvalue = KgvUnit::fromUserValue( KDoubleSpinBox::value(), m_unit );
-    KDoubleSpinBox::setMinValue( KgvUnit::toUserValue( m_lowerInPoints, unit ) );
-    KDoubleSpinBox::setMaxValue( KgvUnit::toUserValue( m_upperInPoints, unit ) );
-    KDoubleSpinBox::setLineStep( KgvUnit::toUserValue( m_stepInPoints, unit ) );
-    KDoubleSpinBox::setValue( KgvUnit::ptToUnit( oldvalue, unit ) );
+    double oldvalue = KgvUnit::fromUserValue( QDoubleSpinBox::value(), m_unit );
+    QDoubleSpinBox::setMinimum( KgvUnit::toUserValue( m_lowerInPoints, unit ) );
+    QDoubleSpinBox::setMaximum( KgvUnit::toUserValue( m_upperInPoints, unit ) );
+    QDoubleSpinBox::setSingleStep( KgvUnit::toUserValue( m_stepInPoints, unit ) );
+    QDoubleSpinBox::setValue( KgvUnit::ptToUnit( oldvalue, unit ) );
     m_unit = unit;
     setSuffix( KgvUnit::unitName( unit ).prepend( ' ' ) );
 }
 
 double KgvUnitDoubleSpinBox::value( void ) const
 {
-    return KgvUnit::fromUserValue( KDoubleSpinBox::value(), m_unit );
+    return KgvUnit::fromUserValue( QDoubleSpinBox::value(), m_unit );
 }
 
 void KgvUnitDoubleSpinBox::setMinValue( double min )
 {
   m_lowerInPoints = min;
-  KDoubleSpinBox::setMinValue( KgvUnit::toUserValue( m_lowerInPoints, m_unit ) );
+  QDoubleSpinBox::setMinimum( KgvUnit::toUserValue( m_lowerInPoints, m_unit ) );
 }
 
 void KgvUnitDoubleSpinBox::setMaxValue( double max )
 {
   m_upperInPoints = max;
-  KDoubleSpinBox::setMaxValue( KgvUnit::toUserValue( m_upperInPoints, m_unit ) );
+  QDoubleSpinBox::setMaximum( KgvUnit::toUserValue( m_upperInPoints, m_unit ) );
 }
 
 void KgvUnitDoubleSpinBox::setLineStep( double step )
 {
   m_stepInPoints = KgvUnit::toUserValue(step, KgvUnit::U_PT );
-  KDoubleSpinBox::setLineStep( step );
+  QDoubleSpinBox::setSingleStep( step );
 }
 
 void KgvUnitDoubleSpinBox::setLineStepPt( double step )
 {
   m_stepInPoints = step;
-  KDoubleSpinBox::setLineStep( KgvUnit::toUserValue( m_stepInPoints, m_unit ) );
+  QDoubleSpinBox::setSingleStep( KgvUnit::toUserValue( m_stepInPoints, m_unit ) );
 }
 
 void KgvUnitDoubleSpinBox::setMinMaxStep( double min, double max, double step )

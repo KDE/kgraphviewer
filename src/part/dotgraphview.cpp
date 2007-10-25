@@ -68,7 +68,6 @@
 #include <kapplication.h>
 #include <kiconloader.h>
 #include <kfiledialog.h>
-#include <kprinter.h>
 #include <kmessagebox.h>
 #include <kinputdialog.h>
 #include <krun.h>
