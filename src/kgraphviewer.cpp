@@ -49,8 +49,6 @@
 
 #include <iostream>
 
-using namespace KGraphViewer;
-
 KGraphViewer::KGraphViewer()
     : KParts::MainWindow(),
       m_rfa(0)

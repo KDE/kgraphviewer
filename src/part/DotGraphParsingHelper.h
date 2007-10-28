@@ -50,7 +50,7 @@ struct DotGraphParsingHelper
   std::string attributed;
   std::string subgraphid;
   
-  uint uniq;
+  unsigned uniq;
   
   AttributesMap attributes;
   AttributesMap graphAttributes;
