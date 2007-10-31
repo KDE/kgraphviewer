@@ -33,9 +33,8 @@
 #include <klineedit.h>
 #include <kcombobox.h>
 #include <KgvUnit.h>
-//Added by qt3to4:
 #include <QEvent>
-
+#include <QDoubleSpinBox>
 
 // ----------------------------------------------------------------
 //                          Support classes

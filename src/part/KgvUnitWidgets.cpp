@@ -158,6 +158,10 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox( QWidget *parent,
     setSingleStep(step);
     setValue(value);
     setDecimals(precision);
+  QDoubleSpinBox::setMinimum(lower);
+  QDoubleSpinBox::setMaximum(upper);
+  QDoubleSpinBox::setSingleStep(step);
+  QDoubleSpinBox::setValue(value);
     m_unit = KgvUnit::U_PT;
     m_validator = new KgvUnitDoubleValidator( this, this );
 //     QSpinBox::setValidator( m_validator );
@@ -225,8 +229,8 @@ void KgvUnitDoubleSpinBox::setLineStepPt( double step )
 
 void KgvUnitDoubleSpinBox::setMinMaxStep( double min, double max, double step )
 {
-  setMinValue( min );
-  setMaxValue( max );
+  setMinimum( min );
+  setMaximum( max );
   setLineStepPt( step );
 }
 

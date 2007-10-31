@@ -93,6 +93,9 @@ public:
   inline CanvasElement* canvasElement() {return m_ce;}
   inline const CanvasElement* canvasElement() const {return m_ce;}
   inline void setCanvasElement(CanvasElement* ce) {m_ce = ce;}
+
+  inline void setSelected(bool s) {m_selected=s;}
+  inline bool isSelected() {return m_selected;}
   
 Q_SIGNALS:
   void changed();
@@ -107,6 +110,7 @@ private:
 
   DotRenderOpVec m_renderOperations;
 
+  bool m_selected;
 };
 
 

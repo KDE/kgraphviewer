@@ -32,7 +32,8 @@ GraphElement::GraphElement() :
     m_originalAttributes(),
     m_ce(0),
     m_z(1.0),
-    m_renderOperations()
+    m_renderOperations(),
+    m_selected(false)
 {
 /*  label("");
   id("");

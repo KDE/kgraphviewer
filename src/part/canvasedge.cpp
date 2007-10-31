@@ -67,7 +67,6 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
 
 QRectF CanvasEdge::boundingRect() const
 {
-//   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << m_boundingRect;
   return m_boundingRect;
 }
 
@@ -102,12 +101,14 @@ Q_UNUSED(widget)
     }
     return;
   }
+  QList<QPointF> allPoints;
   DotRenderOpVec::const_iterator it, it_end;
   it = edge()->renderOperations().begin(); 
   it_end = edge()->renderOperations().end();
   for (; it != it_end; it++)
   {
     const DotRenderOp& dro = (*it);
+//     kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << (*it).renderop << "; selected:" << edge()->isSelected();
     if ( (*it).renderop == "T" )
     {
       const QString& str = (*it).str;
@@ -152,6 +153,8 @@ Q_UNUSED(widget)
             (int(m_gh-(*it).integers[2*i+2])/*%m_hdvcf*/)*m_scaleY + m_yMargin
                 );
         polygon[i] = point;
+//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << point;
+        allPoints.append(point);
       }
       if ((*it).renderop == "P" )
       {
@@ -270,6 +273,8 @@ Q_UNUSED(widget)
               (m_gh-(*it).integers[2*i+2]/*%m_hdvcf*/)*m_scaleY + m_yMargin + diffY
                   );
           points[i] = p;
+//           kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << p;
+          allPoints.append(p);
         }
 //         kDebug() << "Setting pen color to " << edge()->color(splineNum);
         pen.setColor(Dot2QtConsts::componentData().qtColor(edge()->color(splineNum)));
@@ -287,7 +292,35 @@ Q_UNUSED(widget)
         p->drawPath(path);
         p->restore();
       }
-    }      
+    }
+  }
+  if (edge()->isSelected())
+  {
+//     kDebug() << "draw square";
+//     p->drawRect(m_boundingRect);
+    qreal maxDist = 0;
+    QPair<QPointF,QPointF> pointsPair;
+    foreach(const QPointF& point1, allPoints)
+    {
+      foreach(const QPointF& point2, allPoints)
+      {
+        if (distance(point1, point2) > maxDist)
+        {
+          maxDist = distance(point1, point2);
+          pointsPair = qMakePair(point1, point2);
+        }
+      }
+    }
+    if (maxDist>0)
+    {
+      p->save();
+      //         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
+      p->setBrush(Qt::black);
+      p->setPen(Qt::black);
+      p->drawRect(QRectF(pointsPair.first-QPointF(3,3),QSizeF(6,6)));
+      p->drawRect(QRectF(pointsPair.second-QPointF(3,3),QSizeF(6,6)));
+      p->restore();
+    }
   }
 }
 
@@ -327,7 +360,7 @@ void CanvasEdge::computeBoundingRect()
     for (; it != it_end; it++)
     {
 //       kDebug() << (*it).renderop  << ", ";
-      if ( (*it).renderop != "B" ) continue;
+      if ( ((*it).renderop != "B") && ((*it).renderop != "p") &&  ((*it).renderop != "P") ) continue;
       uint previousSize = points.size();
       points.resize(previousSize+(*it).integers[0]);
       for (int i = 0; i < (*it).integers[0]; i++)
@@ -356,4 +389,16 @@ void CanvasEdge::computeBoundingRect()
     m_boundingRect = a.boundingRect();
   }
 //   kDebug() ;//<< edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
+}
+
+void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
+{
+//   kDebug() << event;
+  edge()->setSelected(!edge()->isSelected());
+  update();
+}
+
+qreal CanvasEdge::distance(const QPointF& point1, const QPointF& point2)
+{
+  return sqrt(pow(point1.x()-point2.x(),2)+pow(point1.y()-point2.y(),2));
 }

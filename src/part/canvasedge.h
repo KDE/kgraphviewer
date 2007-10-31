@@ -77,8 +77,11 @@ public Q_SLOTS:
   void modelChanged();
 
 protected:
+  virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
 
 private:
+  qreal distance(const QPointF& point1, const QPointF& point2);
+  
   qreal m_scaleX, m_scaleY;
   qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
   GraphEdge* m_edge;

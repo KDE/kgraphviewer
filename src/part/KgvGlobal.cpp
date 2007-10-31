@@ -35,18 +35,19 @@
 #include <klocale.h>
 #include <ksimpleconfig.h>
 #include <kstandarddirs.h>
-#include <k3staticdeleter.h>
+// #include <k3staticdeleter.h>
 #include <kimageio.h>
 #include <kiconloader.h>
 
 
 KgvGlobal* KgvGlobal::s_global = 0L;
-static K3StaticDeleter<KgvGlobal> sdg;
+// static K3StaticDeleter<KgvGlobal> sdg;
 
 KgvGlobal* KgvGlobal::self()
 {
     if ( !s_global )
-        sdg.setObject( s_global, new KgvGlobal );
+        s_global = new KgvGlobal ;
+//         sdg.setObject( s_global, new KgvGlobal );
     return s_global;
 }
 
