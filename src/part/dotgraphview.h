@@ -44,6 +44,7 @@
 
 class GraphElement;
 class CanvasNode;
+class CanvasEdge;
 class PannerView;
 class DotGraph;
 class KGVSimplePrintingCommand;
@@ -127,12 +128,16 @@ public:
   void setReadOnly();
   void setReadWrite();
 
+  void removeSelectedEdges();
+  
 signals:
   void zoomed(double factor);
   void sigViewBevEnabledToggled(bool value);
   void sigViewBevActivated(int newPos);
   void graphLoaded();
   void newEdgeAdded(QString,QString);
+  /** signals that the user as activated a remove edge command */
+  void removeEdge(const QString&);
 
 public slots:
   void zoomIn();
@@ -164,6 +169,8 @@ public slots:
   void slotBevAutomatic();
   void slotUpdate();
   bool displayGraph();
+  void slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers);
+  
 protected:
   void resizeEvent(QResizeEvent*);
   void mousePressEvent(QMouseEvent*);

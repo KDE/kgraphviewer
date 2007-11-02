@@ -760,6 +760,15 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
   }
   else
   {
+    QGraphicsItem *item = itemAt(e->pos());
+    if (item == 0) // click outside any item: unselect all
+    {
+      foreach(GraphEdge* e, m_graph->edges())
+      {
+        e->setSelected(false);
+        e->canvasEdge()->update();
+      }
+    }
     QGraphicsView::mousePressEvent(e);
   }
   
@@ -816,6 +825,7 @@ void DotGraphView::mouseDoubleClickEvent(QMouseEvent* e)
 
 void DotGraphView::contextMenuEvent(QContextMenuEvent* e)
 {
+  kDebug();
 //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
 
   m_popup->exec(e->globalPos());
@@ -1309,6 +1319,22 @@ void DotGraphView::prepareAddNewElement(QMap<QString,QString> attribs)
 void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
 {
   kDebug() ;
+  bool anySelected = false;
+  foreach (GraphEdge* edge, m_graph->edges())
+  {
+    if (edge->isSelected())
+    {
+      anySelected = true;
+      foreach(const QString& k, attribs.keys())
+      {
+        edge->attributes()[k] = attribs[k];
+      }
+    }
+  }
+  if (anySelected)
+  {
+    return;
+  }
   m_editingMode = AddNewEdge;
   m_newElementAttributes = attribs;
   unsetCursor();
@@ -1388,7 +1414,33 @@ void DotGraphView::setReadWrite()
   }
 }
 
+void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modifiers)
+{
+  if (!modifiers.testFlag(Qt::ControlModifier))
+  {
+    foreach(GraphEdge* e, m_graph->edges())
+    {
+      if (e->canvasEdge() != edge)
+      {
+        e->setSelected(false);
+        e->canvasEdge()->update();
+      }
+    }
+  }
+}
 
+void DotGraphView::removeSelectedEdges()
+{
+  kDebug();
+  foreach(GraphEdge* e, m_graph->edges())
+  {
+    if (e->isSelected())
+    {
+      kDebug() << "emiting removeEdge " << e->id();
+      emit removeEdge(e->id());
+    }
+  }
+}
 
 #include "dotgraphview.moc"
 

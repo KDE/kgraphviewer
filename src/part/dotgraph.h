@@ -99,7 +99,8 @@ public:
   virtual void updateWith(const DotGraph& graph);
 
   void removeNodeNamed(const QString& nodeName);
-  
+  void removeEdge(const QString& id);
+                             
 Q_SIGNALS:
   void readyToDisplay();
 

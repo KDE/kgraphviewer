@@ -43,6 +43,8 @@ class CanvasEdge;
 class GraphEdge;
 class DotGraphView;
 
+class QMenu;
+
 /*
  * Canvas Items:
  * - CanvasNode       (Rectangular Area)
@@ -61,7 +63,7 @@ public:
              qreal xMargin, qreal yMargin, qreal gh,
              qreal wdhcf, qreal hdvcf, QGraphicsItem* parent = 0);
 
-  virtual ~CanvasEdge() {}
+  virtual ~CanvasEdge();
   
   QRectF boundingRect() const;
 
@@ -73,8 +75,12 @@ public:
 
   void computeBoundingRect();
 
+Q_SIGNALS:
+  void selected(CanvasEdge*, Qt::KeyboardModifiers);
+  
 public Q_SLOTS:
   void modelChanged();
+  void slotRemoveEdge();
 
 protected:
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
@@ -88,6 +94,7 @@ private:
   QRectF m_boundingRect;
   QFont* m_font;
   DotGraphView* m_view;
+  QMenu* m_popup;
 };
 
 

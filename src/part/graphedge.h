@@ -102,7 +102,7 @@ private:
 };
 
 
-/** A multi map associating the bounds nodes of a graph's edges to these edges */
+/** A map associating the bounds nodes of a graph's edges to these edges */
 typedef QMap<QString, GraphEdge*> GraphEdgeMap;
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e);

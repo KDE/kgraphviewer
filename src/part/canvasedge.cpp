@@ -33,8 +33,13 @@
 #include "dotgraphview.h"
 #include "FontsCache.h"
 
-#include <iostream>
+#include <KAction>
+
 #include <QPainter>
+#include <QGraphicsSceneMouseEvent>
+#include <QMenu>
+
+#include <iostream>
 
 //
 // CanvasEdge
@@ -49,7 +54,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
     m_scaleX(scaleX),
     m_scaleY(scaleY), m_xMargin(xMargin), m_yMargin(yMargin),
     m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
-    m_font(0), m_view(view)
+    m_font(0), m_view(view), m_popup(new QMenu())
 {
   m_font = FontsCache::changeable().fromName(e->fontName());
 
@@ -62,8 +67,22 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
       edge()->fromNode()->id(),edge()->toNode()->id(),e->label());
   setToolTip(tipStr);
 
+  // the message should be given (or possible to be given) by the part user
+  KAction* removeEdgeAction = new KAction(i18n("Remove selected edge(s)"), this);
+  m_popup->addAction(removeEdgeAction);
+  connect(removeEdgeAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveEdge()));
+  
+  
   connect(e,SIGNAL(changed()),this,SLOT(modelChanged()));
+  connect(this, SIGNAL(selected(CanvasEdge*, Qt::KeyboardModifiers)), view, SLOT(slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers)));
+  
 } 
+
+CanvasEdge::~CanvasEdge()
+{
+  delete m_popup;
+}
+
 
 QRectF CanvasEdge::boundingRect() const
 {
@@ -393,12 +412,39 @@ void CanvasEdge::computeBoundingRect()
 
 void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
-//   kDebug() << event;
-  edge()->setSelected(!edge()->isSelected());
-  update();
+  kDebug() << event;
+  if (event->button() == Qt::LeftButton)
+  {
+    edge()->setSelected(!edge()->isSelected());
+    if (edge()->isSelected())
+    {
+      emit(selected(this,event->modifiers()));
+    }
+    update();
+  }
+  else if (event->button() == Qt::RightButton)
+  {
+    // opens the selected edge contextual menu and if necessary select the edge
+    if (!edge()->isSelected())
+    {
+      edge()->setSelected(true);
+      emit(selected(this,event->modifiers()));
+      update();
+    }
+    kDebug() << "opens the contextual menu";
+    
+    m_popup->exec(event->screenPos());
+    
+  }
 }
 
 qreal CanvasEdge::distance(const QPointF& point1, const QPointF& point2)
 {
   return sqrt(pow(point1.x()-point2.x(),2)+pow(point1.y()-point2.y(),2));
+}
+
+void CanvasEdge::slotRemoveEdge()
+{
+  kDebug();
+  m_view->removeSelectedEdges();
 }
