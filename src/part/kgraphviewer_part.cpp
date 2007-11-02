@@ -194,6 +194,10 @@ void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
   {
     srcElement = m_widget->graph()->subgraphs()[src];
   }
+  else if (m_widget->graph()->subgraphs().contains(QString("cluster_")+src))
+  {
+    srcElement = m_widget->graph()->subgraphs()[QString("cluster_")+src];
+  }
   if (m_widget->graph()->nodes().contains(tgt))
   {
     tgtElement = m_widget->graph()->nodes()[tgt];
@@ -201,6 +205,10 @@ void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
   else if (m_widget->graph()->subgraphs().contains(tgt))
   {
     tgtElement = m_widget->graph()->subgraphs()[tgt];
+  }
+  else if (m_widget->graph()->subgraphs().contains(QString("cluster_")+tgt))
+  {
+    tgtElement = m_widget->graph()->subgraphs()[QString("cluster_")+tgt];
   }
   
   if (srcElement==0||tgtElement==0)

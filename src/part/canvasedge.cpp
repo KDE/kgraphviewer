@@ -413,6 +413,10 @@ void CanvasEdge::computeBoundingRect()
 void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
   kDebug() << event;
+  if (m_view->isReadOnly())
+  {
+    return;
+  }
   if (event->button() == Qt::LeftButton)
   {
     edge()->setSelected(!edge()->isSelected());
@@ -434,7 +438,6 @@ void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
     kDebug() << "opens the contextual menu";
     
     m_popup->exec(event->screenPos());
-    
   }
 }
 

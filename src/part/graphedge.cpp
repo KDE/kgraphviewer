@@ -26,6 +26,7 @@
 
 #include "graphedge.h"
 #include "graphnode.h"
+#include "graphsubgraph.h"
 #include "canvasedge.h"
 #include "dotdefaults.h"
 
@@ -98,7 +99,17 @@ void GraphEdge::updateWith(const GraphEdge& edge)
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e)
 {
-  s << e.fromNode()->id() << " -> " << e.toNode()->id() << "  ["
+  QString srcLabel = e.fromNode()->id();
+  if (dynamic_cast<const GraphSubgraph*>(e.fromNode()))
+  {
+    srcLabel = QString("subgraph ") + srcLabel;
+  }
+  QString tgtLabel = e.toNode()->id();
+  if (dynamic_cast<const GraphSubgraph*>(e.toNode()))
+  {
+    tgtLabel = QString("subgraph ") + tgtLabel;
+  }
+  s << srcLabel << " -> " << tgtLabel << "  ["
     << dynamic_cast<const GraphElement&>(e) << "];" << endl;
 
   return s;

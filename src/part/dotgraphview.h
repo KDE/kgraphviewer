@@ -127,7 +127,9 @@ public:
 
   void setReadOnly();
   void setReadWrite();
-
+  inline bool isReadWrite() {return m_readWrite;}
+  inline bool isReadOnly() {return !m_readWrite;}
+  
   void removeSelectedEdges();
   
 signals:

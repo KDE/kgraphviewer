@@ -45,25 +45,38 @@ GraphExporter::~GraphExporter()
 
 QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
 {
-  kDebug() ;
+  kDebug() << fileName;
 
   QString actualFileName = fileName;
+
   if (fileName.isEmpty())
   {
     KTemporaryFile tempFile;
     tempFile.setSuffix(".dot");
+    if (!tempFile.open()) 
+    {
+      kError() << "Unable to open for temp file for writing " << tempFile.name() << endl;
+      exit(2);
+    }
     actualFileName = tempFile.name();
+    kDebug() << "using " << actualFileName;
   }
-
+  
   QFile f(actualFileName);
   if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
   {
-    kError() << "Unable to open for writing " << actualFileName << endl;
+    kError() << "Unable to open file for writing " << fileName << endl;
     exit(2);
   }
+  
   QTextStream stream(&f);
 
-  stream << "digraph \""<<graph->id()<<"\" {\n";
+  stream << "digraph \"";
+  if (graph->id()!="\"\"")
+  {
+    stream <<graph->id();
+  }
+  stream <<"\" {\n";
 
   stream << "graph [" << *graph <<"]" << endl;
 
