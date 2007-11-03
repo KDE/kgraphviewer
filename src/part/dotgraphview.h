@@ -199,7 +199,6 @@ private:
   int m_xMargin, m_yMargin;
   PannerView *m_birdEyeView;
   double m_cvZoom;
-  QSizeF m_canvasNaturalSize;
   double m_zoom;
   bool m_isMoving;
   QPoint m_lastPos;

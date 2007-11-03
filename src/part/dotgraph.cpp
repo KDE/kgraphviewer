@@ -135,7 +135,9 @@ bool DotGraph::parseDot(const QString& str)
   kDebug() << "mutex acquired ";
   if (m_dot != 0)
   {
-    m_dot->terminate();
+    disconnect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
+    m_dot->kill();
+    delete m_dot;
   }
   m_dot = new QProcess();
   connect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
@@ -210,6 +212,10 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
   {
     updateWith(newGraph);
   }
+  else
+  {
+    kError() << "parsing failed";
+  }
 //   return parsingResult;
   if (m_readWrite && m_phase == Initial)
   {
@@ -218,6 +224,7 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
   }
   else
   {
+    kDebug() << "emiting readyToDisplay";
     emit(readyToDisplay());
   }
 }
@@ -323,7 +330,7 @@ void DotGraph::saveTo(const QString& fileName)
 
 void DotGraph::updateWith(const DotGraph& newGraph)
 {
-//   kDebug();
+  kDebug();
   GraphElement::updateWith(newGraph);
   m_width=newGraph.width();
   m_height=newGraph.height();

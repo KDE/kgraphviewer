@@ -278,7 +278,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 
 bool DotGraphView::displayGraph()
 {
-//   kDebug();
+  kDebug();
 //   hide();
   viewport()->setUpdatesEnabled(false);
 
@@ -295,25 +295,13 @@ bool DotGraphView::displayGraph()
   else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
 
   qreal gh = m_graph->height();
-//   kDebug() << "detail level = " << m_detailLevel << " ; scaleX = " << scaleX;
-  qreal w = scaleX * m_graph->width();
-  qreal h = scaleY * gh;
-/*  qreal w = (scaleX * m_graph->width() / m_graph->horizCellFactor());
-  qreal h = (scaleY * gh / m_graph->vertCellFactor());*/
-//   kDebug() << "width  " << m_graph->width();
-//   kDebug() << "height " << m_graph->height();
-//   kDebug() << "horiz cell f " << m_graph->horizCellFactor();
-//   kDebug() << "vert  cell f " << m_graph->vertCellFactor();
-//   kDebug() << "w " << w;
-//   kDebug() << "h " << h;
 
   m_xMargin = 50;
   m_yMargin = 50;
 
 
-  m_canvas->setSceneRect(0,0,w+2*m_xMargin, h+2*m_yMargin);
+//   m_canvas->setSceneRect(0,0,w+2*m_xMargin, h+2*m_yMargin);
   m_canvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
-  m_canvasNaturalSize = m_canvas->sceneRect().size();
 
 //   kDebug() << "sceneRect is now " << m_canvas->sceneRect();
   
@@ -325,7 +313,7 @@ bool DotGraphView::displayGraph()
       if (cnode == 0) continue;
       cnode->initialize(
         scaleX, scaleY, m_xMargin, m_yMargin, gh,
-        int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+        m_graph->wdhcf(), m_graph->hdvcf());
       gnode->setCanvasNode(cnode);
       m_canvas->addItem(cnode);
 //       cnode->setZValue(gnode->z());
@@ -366,7 +354,7 @@ bool DotGraphView::displayGraph()
       CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph, m_canvas);
       csubgraph->initialize(
         scaleX, scaleY, m_xMargin, m_yMargin, gh,
-        int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+        m_graph->wdhcf(), m_graph->hdvcf());
       gsubgraph->setCanvasSubgraph(csubgraph);
 //       csubgraph->setZValue(gsubgraph->z());
       csubgraph->setZValue(1);
@@ -427,6 +415,7 @@ bool DotGraphView::displayGraph()
   
   emit graphLoaded();
 
+  viewport()->setUpdatesEnabled(true);
   return true;
 }
 
@@ -439,8 +428,8 @@ void DotGraphView::updateSizes(QSizeF s)
   if (s == QSizeF(0,0)) s = size();
 
   // the part of the canvas that should be visible
-  int cWidth  = int((m_canvas->width()  - 2*m_xMargin + 100));
-  int cHeight = int((m_canvas->height() - 2*m_yMargin + 100));
+  qreal cWidth  = m_canvas->width()  - 2*m_xMargin + 100;
+  qreal cHeight = m_canvas->height() - 2*m_yMargin + 100;
 
   // hide birds eye view if no overview needed
   if (//!_data || !_activeItem ||
@@ -475,15 +464,15 @@ void DotGraphView::updateSizes(QSizeF s)
     m_birdEyeView->setMatrix(wm);
 
     // make it a little bigger to compensate for widget frame
-    m_birdEyeView->resize(int(cWidth * zoom) + 4,
-                          int(cHeight * zoom) + 4);
+    m_birdEyeView->resize((cWidth * zoom) + 4,
+                          (cHeight * zoom) + 4);
 
   }
 
-  int cvW = m_birdEyeView->width();
-  int cvH = m_birdEyeView->height();
-  int x = width()- cvW - verticalScrollBar()->width()    -2;
-  int y = height()-cvH - horizontalScrollBar()->height() -2;
+  qreal cvW = m_birdEyeView->width();
+  qreal cvH = m_birdEyeView->height();
+  qreal x = width()- cvW - verticalScrollBar()->width()    -2;
+  qreal y = height()-cvH - horizontalScrollBar()->height() -2;
   QPoint oldZoomPos = m_birdEyeView->pos();
   QPoint newZoomPos = QPoint(0,0);
   ZoomPosition zp = m_zoomPosition;
@@ -541,17 +530,17 @@ void DotGraphView::updateSizes(QSizeF s)
   {
     newCanvasSize.setWidth(viewport()->width());
   }
-  else if (viewport()->width() < m_canvasNaturalSize.width())
+  else if (viewport()->width() < m_canvas->sceneRect().size().width())
   {
-    newCanvasSize.setWidth(m_canvasNaturalSize.width());
+    newCanvasSize.setWidth(m_canvas->sceneRect().size().width());
   }
   if (newCanvasSize.height() < viewport()->height())
   {
     newCanvasSize.setHeight(viewport()->height());
   }
-  else if (viewport()->height() < m_canvasNaturalSize.height())
+  else if (viewport()->height() < m_canvas->sceneRect().size().height())
   {
-    newCanvasSize.setHeight(m_canvasNaturalSize.height());
+    newCanvasSize.setHeight(m_canvas->sceneRect().size().height());
   }
 //   std::cerr << "done." << std::endl;
 }
@@ -746,7 +735,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     CanvasNode* newCNode = new CanvasNode(this, newNode, m_canvas);
     newCNode->initialize(
       scaleX, scaleY, m_xMargin, m_yMargin, gh,
-      int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+      m_graph->wdhcf(), m_graph->hdvcf());
     newNode->setCanvasNode(newCNode);
     scene()->addItem(newCNode);
     kDebug() << "setting pos to " << pos;
@@ -1377,9 +1366,9 @@ void DotGraphView::finishNewEdgeTo(CanvasNode* node)
   else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
   else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
 
-  int gh = int(m_graph->height());
+  qreal gh = m_graph->height();
   CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
-        m_yMargin, gh, int(m_graph->wdhcf()), int(m_graph->hdvcf()));
+        m_yMargin, gh, m_graph->wdhcf(), m_graph->hdvcf());
 
   gedge->setCanvasEdge(cedge);
 //     std::cerr << "setting z = " << gedge->z() << std::endl;
