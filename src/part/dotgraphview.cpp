@@ -752,6 +752,15 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     QGraphicsItem *item = itemAt(e->pos());
     if (item == 0) // click outside any item: unselect all
     {
+      if (m_editingMode == DrawNewEdge) // was drawing an edge; cancel it
+      {
+        scene()->removeItem(m_newEdgeDraft);
+        delete m_newEdgeDraft;
+        m_newEdgeDraft = 0;
+        m_newEdgeSource = 0;
+        m_editingMode = None;
+        unsetCursor();
+      }
       foreach(GraphEdge* e, m_graph->edges())
       {
         e->setSelected(false);
@@ -786,7 +795,7 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
 
 void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
 {
-  kDebug() << e;
+  kDebug() << e << m_editingMode;
 //   kDebug() << "setDragMode(NoDrag)";
 //   setDragMode(NoDrag);
   if (m_editingMode == AddNewElement)

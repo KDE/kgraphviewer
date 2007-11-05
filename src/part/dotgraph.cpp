@@ -23,7 +23,7 @@
 #include "canvasedge.h"
 
 
-// #include <iostream>
+#include <iostream>
 // #include <math.h>
 #include "fdstream.hpp"
 #include <boost/spirit/utility/confix.hpp>
@@ -178,8 +178,9 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
   QByteArray result = getDotResult(exitCode, exitStatus);
   result.replace("\\\n","");
 
-  kDebug() << "string content is:" << endl << result << endl << "=====================";
+  kDebug() << "string content is:" << endl << result << endl << "=====================" << result.size();
   std::string s =  result.data();
+  std::cerr << "stdstring content is:" << std::endl << s << std::endl << "===================== " << s.size() << std::endl;
   if (phelper != 0)
   {
     phelper->graph = 0;

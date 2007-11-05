@@ -42,7 +42,7 @@
 
 bool parse(const std::string& str);
 
-
+void gotid(char const* first, char const* last);
 void dump(char const* first, char const* last);
 void strict(char const* first, char const* last);
 void undigraph(char const* first, char const* last);
