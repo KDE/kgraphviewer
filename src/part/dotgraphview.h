@@ -43,7 +43,7 @@
 
 
 class GraphElement;
-class CanvasNode;
+class CanvasElement;
 class CanvasEdge;
 class PannerView;
 class DotGraph;
@@ -73,7 +73,8 @@ class DotGraphView: public QGraphicsView
 public:
   enum ZoomPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
   enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge };
-
+  enum ScrollDirection { Here, Left, Right, Top, Bottom };
+  
   explicit DotGraphView(KActionCollection* actions, QWidget* parent=0);
   virtual ~DotGraphView();
 
@@ -120,8 +121,8 @@ public:
   void prepareAddNewElement(QMap<QString,QString> attribs);
   void prepareAddNewEdge(QMap<QString,QString> attribs);
 
-  void createNewEdgeDraftFrom(CanvasNode* node);
-  void finishNewEdgeTo(CanvasNode* node);
+  void createNewEdgeDraftFrom(CanvasElement* node);
+  void finishNewEdgeTo(CanvasElement* node);
 
   EditingMode editingMode() const {return m_editingMode;}
 
@@ -184,9 +185,13 @@ protected:
   void focusInEvent(QFocusEvent*);
   void focusOutEvent(QFocusEvent*);
 
+  void timerEvent ( QTimerEvent * event );
+  void leaveEvent ( QEvent * event );
+  void enterEvent ( QEvent * event );
+  
+  
 private:
   void updateSizes(QSizeF s = QSizeF(0,0));
-  void makeFrame(CanvasNode*, bool active);
   void setupPopup();
   void exportToImage();
   KActionCollection* actionCollection() {return m_actions;}
@@ -210,8 +215,6 @@ private:
   
   DotGraph* m_graph;
   
-  CanvasNode* m_focusedNode;
-
   KGVSimplePrintingCommand* m_printCommand;
   
   KToggleAction* m_bevEnabledAction;
@@ -223,12 +226,18 @@ private:
   QPixmap m_defaultNewElementPixmap;
   EditingMode m_editingMode;
 
-  CanvasNode* m_newEdgeSource;
+  CanvasElement* m_newEdgeSource;
   QGraphicsLineItem* m_newEdgeDraft;
 
   bool m_readWrite;
 
   QMap<QString, QString> m_newElementAttributes;
+
+  /// identifier of the timer started when the mouse leaves the view during
+  /// edge drawing
+  int m_leavedTimer;
+
+  ScrollDirection m_scrollDirection;
 };
 
 #endif // DOTGRAPHVIEW_H

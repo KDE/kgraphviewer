@@ -52,8 +52,6 @@ public:
 public Q_SLOTS:
   void modelChanged();
   
-protected:
-  virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
 };
 
 // class CanvasHtmlNode: public KHTMLPart, public CanvasNode

@@ -97,7 +97,6 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
     m_zoomPosition(DEFAULT_ZOOMPOS), 
     m_lastAutoPosition(DotGraphView::TopLeft),
     m_graph(0),
-    m_focusedNode(0),
     m_printCommand(0),
     m_actions(actions),
     m_detailLevel(DEFAULT_DETAILLEVEL),
@@ -106,7 +105,8 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
     m_editingMode(None),
     m_newEdgeSource(0),
     m_newEdgeDraft(0),
-    m_readWrite(false)
+    m_readWrite(false),
+    m_leavedTimer(std::numeric_limits<int>::max())
 {
   kDebug() << "New node pic=" << KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png");
   m_canvas = 0;
@@ -808,12 +808,6 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
     QGraphicsView::mouseReleaseEvent(e);
   }
   m_isMoving = false;
-
-  if (m_focusedNode != 0 && !m_focusedNode->element()->url().isEmpty())
-  {
-    KUrl url(m_focusedNode->element()->url());
-    new KRun(url,0);
-  }
 }
 
 void DotGraphView::mouseDoubleClickEvent(QMouseEvent* e)
@@ -1339,7 +1333,7 @@ void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
   setCursor(QCursor(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newedge.png")));
 }
 
-void DotGraphView::createNewEdgeDraftFrom(CanvasNode* node)
+void DotGraphView::createNewEdgeDraftFrom(CanvasElement* node)
 {
   kDebug() ;
   m_editingMode = DrawNewEdge;
@@ -1353,7 +1347,7 @@ void DotGraphView::createNewEdgeDraftFrom(CanvasNode* node)
   kDebug() << m_newEdgeDraft->line();
 }
 
-void DotGraphView::finishNewEdgeTo(CanvasNode* node)
+void DotGraphView::finishNewEdgeTo(CanvasElement* node)
 {
   kDebug() ;
   m_editingMode = None;
@@ -1437,6 +1431,64 @@ void DotGraphView::removeSelectedEdges()
       kDebug() << "emiting removeEdge " << e->id();
       emit removeEdge(e->id());
     }
+  }
+}
+
+void DotGraphView::timerEvent ( QTimerEvent * event )
+{
+  kDebug() << event->timerId();
+  qreal hpercent = horizontalScrollBar()->value()*1.0/100;
+  qreal vpercent = verticalScrollBar()->value()*1.0/100;
+  if (m_scrollDirection == Left)
+  {
+    horizontalScrollBar()->setValue(horizontalScrollBar()->value()-(5*hpercent));
+  }
+  else if (m_scrollDirection == Right)
+  {
+    horizontalScrollBar()->setValue(horizontalScrollBar()->value()+(5*hpercent));
+  }
+  else if (m_scrollDirection == Top)
+  {
+    verticalScrollBar()->setValue(verticalScrollBar()->value()-(5*vpercent));
+  }
+  else if (m_scrollDirection == Bottom)
+  {
+    verticalScrollBar()->setValue(verticalScrollBar()->value()+(5*vpercent));
+  }
+}
+
+void DotGraphView::leaveEvent ( QEvent * event )
+{
+  kDebug() << mapFromGlobal(QCursor::pos());
+  if (m_editingMode == DrawNewEdge)
+  {
+    m_leavedTimer = startTimer(10);
+    if (mapFromGlobal(QCursor::pos()).x() <= 0)
+    {
+      m_scrollDirection = Left;
+    }
+    else if (mapFromGlobal(QCursor::pos()).y() <= 0)
+    {
+      m_scrollDirection = Top;
+    }
+    else if (mapFromGlobal(QCursor::pos()).x() >= width())
+    {
+      m_scrollDirection = Right;
+    }
+    else if (mapFromGlobal(QCursor::pos()).y() >= height())
+    {
+      m_scrollDirection = Bottom;
+    }
+  }
+}
+
+void DotGraphView::enterEvent ( QEvent * event )
+{
+  kDebug();
+  if (m_leavedTimer != std::numeric_limits<int>::max())
+  {
+    killTimer(m_leavedTimer);
+    m_leavedTimer = std::numeric_limits<int>::max();
   }
 }
 

@@ -83,20 +83,6 @@ void CanvasNode::modelChanged()
 }
 
 
-void CanvasNode::mousePressEvent(QGraphicsSceneMouseEvent* event)
-{
-  Q_UNUSED(event)
-  kDebug() << m_element->id() << boundingRect();
-  if (m_view->editingMode() == DotGraphView::AddNewEdge)
-  {
-    m_view->createNewEdgeDraftFrom(this);
-  }
-  else if (m_view->editingMode() == DotGraphView::DrawNewEdge)
-  {
-    m_view->finishNewEdgeTo(this);
-  }
-}
-
 // CanvasHtmlNode::CanvasHtmlNode(
 //                                           DotGraphView* v, 
 //                                           GraphNode* n,

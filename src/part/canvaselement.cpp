@@ -362,11 +362,11 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
   kDebug() << m_element->id() << boundingRect();
   if (m_view->editingMode() == DotGraphView::AddNewEdge)
   {
-//     m_view->createNewEdgeDraftFrom(this);
+    m_view->createNewEdgeDraftFrom(this);
   }
   else if (m_view->editingMode() == DotGraphView::DrawNewEdge)
   {
-//     m_view->finishNewEdgeTo(this);
+    m_view->finishNewEdgeTo(this);
   }
 }
 
