@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
 <kcfg> 
-  <kcfgfile name="kgraphviewerrc"/> 
+  <kcfgfile name="kgrapheditorrc"/> 
   <group name="Notification Messages"> 
     <entry name="reloadOnChangeMode" type="String"> 
       <label>The answer to the question 'File modified, do you want to reload it'</label> 

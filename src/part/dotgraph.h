@@ -106,7 +106,8 @@ Q_SIGNALS:
 
 private Q_SLOTS:
   void slotDotRunningDone(int,QProcess::ExitStatus);
-
+  void slotDotRunningError(QProcess::ProcessError);
+  
 private:
   unsigned int cellNumber(int x, int y);
   void computeCells();

@@ -9,10 +9,6 @@
     <Separator/>
     <Action name="file_quit"/>
   </Menu>
-  <Menu name="edit"><text>&amp;Edit</text>
-    <Action name="edit_new_edge"/>
-    <DefineGroup name="edit_merge"/>
-  </Menu>
   <Menu name="view"><text>&amp;View</text>
     <DefineGroup name="view_merge"/>
   </Menu>

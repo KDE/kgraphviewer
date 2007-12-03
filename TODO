@@ -1,27 +1,22 @@
-KDE4 Porting:
-  * WhatsThis pb (kdelibs bug ?)
-  * zooming centering (currently places at top left)
-  * port printing API
-    * remove QT3/KDE3 classes
-    * check dialogs
+Current bugs;
+  * nodes placement in editor after a few additions
 
 Before 2.0
-  * Complete port to KDE4
   * Wait for KDE4.0 release
 
 URGENT (for 2.x)
-  * port to KDE 4
-  * use the Qanava library ?
-  * integration in kate and konqueror ;
+  * [DONE] port to KDE 4
+  * [NO] use the Qanava library ?
+  * [NO] integration in kate and konqueror ;
     (so a change in the kate view of the graph would relayout and reload the 
-    file)
-  * menu to open the file in kate OR to open a katepart inside the kgraphviewer 
-    window
+    file). Started through the editor changes
+  * [NO] menu to open the file in kate OR to open a katepart inside the kgraphviewer 
+    window (see kgrapheditor)
   * loading of big and huge graphes (currently, there is performance problems 
     around 1000 nodes) ;
   * progressive support of more and more dot attributes and values ;
-  * layout in background (thread to don't block the interface, with progress 
-    bar)
+  * [DONE] layout in background (thread to don't block the interface, with progress 
+    bar). done with no progress bar
   * define print zone with the mouse
   * add a speed factor (speed vector) to dragging scroll as in ZGRViewer
   * all configuration data stored for each file (zoom, position, page setup, 
@@ -30,6 +25,6 @@ URGENT (for 2.x)
   * more export options
 
 REALLY NEEDED ?
-  * graph editing facilities ;
-  * non-dot formats supported ;
-  * saving to dot format (regenerate the initial file or equivalent).
+  * [PARTLY DONE, see kgrapheditor and syanot] graph editing facilities ;
+  * [PARTLY DONE, see syanot] non-dot formats supported ;
+  * [TO CHECK] saving to dot format (regenerate the initial file or equivalent).

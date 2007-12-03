@@ -73,10 +73,16 @@ public slots:
   void openUrl(const QString& url) {openUrl(KUrl(url));}
 
   void close();
-/*public slots:
-  void reloadOnChangeMode_pressed(int value);
-  void openInExistingWindowMode_pressed(int value);
-  void reopenPreviouslyOpenedFilesMode_pressed(int value);*/
+
+  void slotReloadOnChangeModeYesToggled(bool value);
+  void slotReloadOnChangeModeNoToggled(bool value);
+  void slotReloadOnChangeModeAskToggled(bool value);
+  void slotOpenInExistingWindowModeYesToggled(bool value);
+  void slotOpenInExistingWindowModeNoToggled(bool value);
+  void slotOpenInExistingWindowModeAskToggled(bool value);
+  void slotReopenPreviouslyOpenedFilesModeYesToggled(bool value);
+  void slotReopenPreviouslyOpenedFilesModeNoToggled(bool value);
+  void slotReopenPreviouslyOpenedFilesModeAskToggled(bool value);
   
 private slots:
   void fileNew();

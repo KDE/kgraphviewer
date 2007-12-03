@@ -29,6 +29,8 @@
 #include <boost/spirit/utility/confix.hpp>
 
 #include <kdebug.h>
+#include <KMessageBox>
+
 #include <QFile>
 #include <QPair>
 #include <QByteArray>
@@ -120,6 +122,7 @@ bool DotGraph::parseDot(const QString& str)
 
   kDebug() << "Running " << m_layoutCommand  << str;
   QStringList options;
+  /// @TODO handle the non-dot commands that could don't know the -T option
   if (m_readWrite && m_phase == Initial)
   {
     options << "-Tdot";
@@ -141,6 +144,7 @@ bool DotGraph::parseDot(const QString& str)
   }
   m_dot = new QProcess();
   connect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
+  connect(m_dot,SIGNAL(error(QProcess::ProcessError)),this,SLOT(slotDotRunningError(QProcess::ProcessError)));
   m_dot->start(m_layoutCommand, options);
   kDebug() << "process started";
  return true;
@@ -227,6 +231,43 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
   {
     kDebug() << "emiting readyToDisplay";
     emit(readyToDisplay());
+  }
+}
+
+void DotGraph::slotDotRunningError(QProcess::ProcessError error)
+{
+  kError() << "DotGraph::slotDotRunningError" << error;
+  switch (error)
+  {
+    case QProcess::FailedToStart:
+      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
+      //@todo uncomment after string unfreeze
+      //       KMessageBox::error(0, i18n("Unable to start %1.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+      break;
+    case QProcess::Crashed:
+      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
+      //@todo uncomment after string unfreeze
+      //       KMessageBox::error(0, i18n("%1 crashed.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+      break;
+    case QProcess::Timedout:
+      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
+      //@todo uncomment after string unfreeze
+      //       KMessageBox::error(0, i18n("%1 timed out.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+      break;
+    case QProcess::WriteError:
+      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
+      //@todo uncomment after string unfreeze
+      //       KMessageBox::error(0, i18n("Was not able to write data to the %1 process.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+      break;
+    case QProcess::ReadError:
+      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
+      //@todo uncomment after string unfreeze
+      //       KMessageBox::error(0, i18n("Was not able to read data from the %1 process.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+      break;
+    default:
+      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
+      //@todo uncomment after string unfreeze
+      //       KMessageBox::error(0, i18n("Unknown error running %1.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
   }
 }
 

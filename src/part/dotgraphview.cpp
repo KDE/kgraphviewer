@@ -83,7 +83,6 @@
 #define DEFAULT_ZOOMPOS      Auto
 #define KGV_MAX_PANNER_NODES 100
 
-using namespace KGraphViewer;
 //
 // DotGraphView
 //
@@ -746,6 +745,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
 
     m_editingMode = None;
     unsetCursor();
+    emit newNodeAdded(newNode->id());
   }
   else
   {
@@ -767,6 +767,8 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
         e->canvasEdge()->update();
       }
     }
+    m_pressPos = e->globalPos();
+    m_pressScrollBarsPos = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
     QGraphicsView::mousePressEvent(e);
   }
   
@@ -788,8 +790,15 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
     QPointF src = m_newEdgeDraft->line().p1();
     QPointF tgt = mapToScene(e->pos());
     
-    kDebug() << "Setting new edge draft line to" << QLineF(src,tgt);
+//     kDebug() << "Setting new edge draft line to" << QLineF(src,tgt);
     m_newEdgeDraft->setLine(QLineF(src,tgt));
+  }
+  else if (e->buttons().testFlag(Qt::LeftButton))
+  {
+    kDebug() << (e->globalPos() - m_pressPos);
+    QPoint diff = e->globalPos() - m_pressPos;
+    horizontalScrollBar()->setValue(m_pressScrollBarsPos.x()-diff.x());
+    verticalScrollBar()->setValue(m_pressScrollBarsPos.y()-diff.y());
   }
 }
 
@@ -1009,25 +1018,44 @@ void DotGraphView::setupPopup()
 
   m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"),this);
   actionCollection()->addAction("view_layout_algo",m_layoutAlgoSelectAction);
+  
   QStringList layoutAlgos;
   KAction* lea = new KAction(i18n(" "), this);
+  //@todo uncomment after string unfreeze
+  //   lea->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
   actionCollection()->addAction("layout_specifiy",lea);
   lea->setCheckable(false);
+  
   KAction* lda = new KAction(i18n("Dot"), this);
+  //@todo uncomment after string unfreeze
+  //   lda->setWhatsThis(i18n("Layout the graph using the dot program."));
   actionCollection()->addAction("layout_dot",lda);
   lda->setCheckable(false);
+  
   KAction* lna = new KAction(i18n("Neato"), this);
+  //@todo uncomment after string unfreeze
+  //   lna->setWhatsThis(i18n("Layout the graph using the neato program."));
   actionCollection()->addAction("layout_neato",lna);
   lna->setCheckable(false);
+  
   KAction* lta = new KAction(i18n("Twopi"), this);
+  //@todo uncomment after string unfreeze
+  //   lta->setWhatsThis(i18n("Layout the graph using the twopi program."));
   actionCollection()->addAction("layout_twopi",lta);
   lta->setCheckable(false);
+  
   KAction* lfa = new KAction(i18n("Fdp"), this);
+  //@todo uncomment after string unfreeze
+  //   lfa->setWhatsThis(i18n("Layout the graph using the fdp program."));
   actionCollection()->addAction("layout_fdp",lfa);
   lfa->setCheckable(false);
+  
   KAction* lca = new KAction(i18n("Circo"), this);
+  //@todo uncomment after string unfreeze
+  //   lca->setWhatsThis(i18n("Layout the graph using the circo program."));
   actionCollection()->addAction("layout_c",lca);
   lca->setCheckable(false);
+  
   m_layoutAlgoSelectAction->addAction(lea);
   m_layoutAlgoSelectAction->addAction(lda);
   m_layoutAlgoSelectAction->addAction(lna);
@@ -1049,8 +1077,12 @@ void DotGraphView::setupPopup()
   
   QMenu* layoutPopup = m_popup->addMenu(i18n("Layout"));
   layoutPopup->addAction(m_layoutAlgoSelectAction);
-  layoutPopup->addAction(i18n("Specify layout command"), this, SLOT(slotLayoutSpecify()));
-  layoutPopup->addAction(i18n("Reset layout command to default"), this, SLOT(slotLayoutReset()));
+  QAction* slc = layoutPopup->addAction(i18n("Specify layout command"), this, SLOT(slotLayoutSpecify()));
+  //@todo uncomment after string unfreeze
+  //   slc->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
+  QAction* rlc = layoutPopup->addAction(i18n("Reset layout command to default"), this, SLOT(slotLayoutReset()));
+  //@todo uncomment after string unfreeze
+  //   rlc->setWhatsThis(i18n("Resets the layout command to use to the default depending on the graph type (directed or not)."));
   
                         
   m_popup->insertSeparator();
@@ -1066,6 +1098,7 @@ void DotGraphView::setupPopup()
 
   m_popup->addAction(file_exportMenu);
   KAction* exportToImageAction = new KAction(i18n("As Image ..."),this);
+  exportToImageAction->setWhatsThis(i18n("Export the graph to an image (currently PNG only) file."));
   actionCollection()->addAction("export_image", exportToImageAction);
   connect(exportToImageAction,SIGNAL(triggered(bool)), this, SLOT(slotExportImage()));
   
@@ -1077,7 +1110,7 @@ void DotGraphView::setupPopup()
   m_bevEnabledAction = new KToggleAction(
           KIcon(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-bev.png")),
           i18n("Enable Bird's-eye View"), this);
-  actionCollection()->addAction("view_bev_enabled",m_bevEnabledAction);
+          actionCollection()->addAction("view_bev_enabled",m_bevEnabledAction);
   m_bevEnabledAction->setShortcut(Qt::CTRL+Qt::Key_B);
   m_bevEnabledAction->setWhatsThis(i18n("Enables or disables the Bird's-eye View"));
   connect(m_bevEnabledAction, 
@@ -1088,30 +1121,42 @@ void DotGraphView::setupPopup()
   m_popup->addAction(m_bevEnabledAction);
   
   m_bevPopup = new KSelectAction(i18n("Birds-eye View"), this);
+  //@todo uncomment after string unfreeze
+  //   m_bevPopup->setWhatsThis(i18n("Allows to setup the Bird's-eye View."));
   m_popup->addAction(m_bevPopup);
   actionCollection()->addAction("view_bev",m_bevPopup);
 
   KAction* btla = new KAction(i18n("Top Left"), this);
+  //@todo uncomment after string unfreeze
+  //   btla->setWhatsThis(i18n("Puts the Bird's-eye View at the top left corner."));
   btla->setCheckable(true);
   actionCollection()->addAction("bev_top_left",btla);
   connect(btla, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevTopLeft()));
   KAction* btra = new KAction(i18n("Top Right"), this);
+  //@todo uncomment after string unfreeze
+  //   btra->setWhatsThis(i18n("Puts the Bird's-eye View at the top right corner."));
   btra->setCheckable(true);
   actionCollection()->addAction("bev_top_right",btra);
   connect(btra, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevTopRight()));
   KAction* bbla = new KAction(i18n("Bottom Left"), this);
+  //@todo uncomment after string unfreeze
+  //   bbla->setWhatsThis(i18n("Puts the Bird's-eye View at the bottom left corner."));
   bbla->setCheckable(true);
   actionCollection()->addAction("bev_bottom_left",bbla);
   connect(bbla, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevBottomLeft()));
   KAction* bbra = new KAction(i18n("Bottom Right"), this);
+  //@todo uncomment after string unfreeze
+  //   bbra->setWhatsThis(i18n("Puts the Bird's-eye View at the bottom right corner."));
   bbra->setCheckable(true);
   actionCollection()->addAction("bev_bottom_right",bbra);
   connect(bbra, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevBottomRight()));
   KAction* bba = new KAction(i18n("Automatic"), this);
+  //@todo uncomment after string unfreeze
+  //   bba->setWhatsThis(i18n("Let's KGraphViewer automaticaly choose the Bird's-eye View position."));
   bba->setCheckable(true);
   actionCollection()->addAction("bev_automatic",bba);
   connect(bba, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
@@ -1201,25 +1246,25 @@ void DotGraphView::slotSelectLayoutAlgo(const QString& ttext)
 {
 QString text = ttext;//.mid(1);
   kDebug() << "DotGraphView::slotSelectLayoutAlgo '" << text << "'";
-  if (text == "&Dot")
+  if (text == "Dot")
   {
-    setLayoutCommand("dot -Txdot");
+    setLayoutCommand("dot");
   }
-  else if (text == "&Neato")
+  else if (text == "Neato")
   {
-    setLayoutCommand("neato -Txdot");
+    setLayoutCommand("neato");
   }
-  else if (text == "&Twopi")
+  else if (text == "Twopi")
   {
-    setLayoutCommand("twopi -Txdot");
+    setLayoutCommand("twopi");
   }
-  else if (text == "&Fdp")
+  else if (text == "Fdp")
   {
-    setLayoutCommand("fdp -Txdot");
+    setLayoutCommand("fdp");
   }
-  else if (text == "&Circo")
+  else if (text == "Circo")
   {
-    setLayoutCommand("circo -Txdot");
+    setLayoutCommand("circo");
   }
   else 
   {
@@ -1437,8 +1482,8 @@ void DotGraphView::removeSelectedEdges()
 void DotGraphView::timerEvent ( QTimerEvent * event )
 {
   kDebug() << event->timerId();
-  qreal hpercent = horizontalScrollBar()->value()*1.0/100;
   qreal vpercent = verticalScrollBar()->value()*1.0/100;
+  qreal hpercent = horizontalScrollBar()->value()*1.0/100;
   if (m_scrollDirection == Left)
   {
     horizontalScrollBar()->setValue(horizontalScrollBar()->value()-(5*hpercent));

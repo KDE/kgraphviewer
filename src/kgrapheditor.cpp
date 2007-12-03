@@ -55,8 +55,6 @@
 
 #include <iostream>
 
-using namespace KGraphViewer;
-
 KGraphEditor::KGraphEditor() :
     KParts::MainWindow(),
     m_rfa(0),
@@ -149,7 +147,7 @@ KGraphEditor::~KGraphEditor()
 
 void KGraphEditor::reloadPreviousFiles()
 {
-  QStringList previouslyOpenedFiles = KGraphViewerSettings::previouslyOpenedFiles();
+  QStringList previouslyOpenedFiles = KGraphEditorSettings::previouslyOpenedFiles();
   if ( (previouslyOpenedFiles.empty() == false) 
        && (KMessageBox::questionYesNo(this, 
               i18n("Do you want to reload files from previous session ?"),
@@ -262,12 +260,12 @@ void KGraphEditor::setupActions()
 bool KGraphEditor::queryExit()
 {
   kDebug() ;
-  KGraphViewerSettings::setPreviouslyOpenedFiles(m_openedFiles);
+  KGraphEditorSettings::setPreviouslyOpenedFiles(m_openedFiles);
   m_rfa->saveEntries(KGlobal::config()->group("kgrapheditor"));
 
   // 
   //@TODO to port
-  //KGraphViewerSettings::writeConfig();
+  //KGraphEditorSettings::writeConfig();
   return true;
 }
 
@@ -328,19 +326,19 @@ void KGraphEditor::optionsConfigure()
   //KConfigDialog didn't find an instance of this dialog, so lets create it : 
   KPageDialog::FaceType ft = KPageDialog::Auto;
   KgeConfigurationDialog* dialog = new KgeConfigurationDialog( this, "settings",
-                                             KGraphViewerSettings::self(),ft ); 
+                                             KGraphEditorSettings::self(),ft );
   
 /*  KGraphViewerPreferencesReloadWidget*  reloadWidget =  
       new KGraphViewerPreferencesReloadWidget( 0, "KGraphViewer Settings" );
-  if (KGraphViewerSettings::reloadOnChangeMode() == "yes")
+  if (KGraphEditorSettings::reloadOnChangeMode() == "yes")
   {
     reloadWidget->reloadOnChangeMode->setButton(0);
   }
-  else if (KGraphViewerSettings::reloadOnChangeMode() == "no")
+  else if (KGraphEditorSettings::reloadOnChangeMode() == "no")
   {
     reloadWidget->reloadOnChangeMode->setButton(1);
   }
-  else if (KGraphViewerSettings::reloadOnChangeMode() == "ask")
+  else if (KGraphEditorSettings::reloadOnChangeMode() == "ask")
   {
     reloadWidget->reloadOnChangeMode->setButton(2);
   }
@@ -351,15 +349,15 @@ void KGraphEditor::optionsConfigure()
  
   KGraphViewerPreferencesOpenInExistingWindowWidget*  openingWidget =  
     new KGraphViewerPreferencesOpenInExistingWindowWidget( 0, "KGraphViewer Settings" );
-  if (KGraphViewerSettings::openInExistingWindowMode() == "yes")
+  if (KGraphEditorSettings::openInExistingWindowMode() == "yes")
   {
     openingWidget->openInExistingWindowMode->setButton(0);
   }
-  else if (KGraphViewerSettings::openInExistingWindowMode() == "no")
+  else if (KGraphEditorSettings::openInExistingWindowMode() == "no")
   {
     openingWidget->openInExistingWindowMode->setButton(1);
   }
-  else if (KGraphViewerSettings::openInExistingWindowMode() == "ask")
+  else if (KGraphEditorSettings::openInExistingWindowMode() == "ask")
   {
     openingWidget->openInExistingWindowMode->setButton(2);
   }
@@ -370,15 +368,15 @@ void KGraphEditor::optionsConfigure()
   
   KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget*  reopeningWidget =  
     new KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget( 0, "KGraphViewer Settings" );
-  if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "yes")
+  if (KGraphEditorSettings::reopenPreviouslyOpenedFilesMode() == "yes")
   {
     reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(0);
   }
-  else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "no")
+  else if (KGraphEditorSettings::reopenPreviouslyOpenedFilesMode() == "no")
   {
     reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(1);
   }
-  else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "ask")
+  else if (KGraphEditorSettings::reopenPreviouslyOpenedFilesMode() == "ask")
   {
     reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(2);
   }
@@ -403,13 +401,13 @@ void KGraphEditor::applyNewToolbarConfig()
 //   switch (value)
 //   {
 //   case 0:
-//     KGraphViewerSettings::setReloadOnChangeMode("yes");
+//     KGraphEditorSettings::setReloadOnChangeMode("yes");
 //     break;
 //   case 1:
-//     KGraphViewerSettings::setReloadOnChangeMode("no");
+//     KGraphEditorSettings::setReloadOnChangeMode("no");
 //     break;
 //   case 2:
-//     KGraphViewerSettings::setReloadOnChangeMode("ask");
+//     KGraphEditorSettings::setReloadOnChangeMode("ask");
 //     break;
 //   default:
 //   kError() << "Invalid reload on change mode value: " << value;
@@ -417,7 +415,7 @@ void KGraphEditor::applyNewToolbarConfig()
 //   }
 //   kDebug() << "emiting";
 //   emit(settingsChanged());
-//   KGraphViewerSettings::writeConfig();
+//   KGraphEditorSettings::writeConfig();
 // }
 // 
 // void KGraphViewer::openInExistingWindowMode_pressed(int value)
@@ -426,13 +424,13 @@ void KGraphEditor::applyNewToolbarConfig()
 //   switch (value)
 //   {
 //   case 0:
-//     KGraphViewerSettings::setOpenInExistingWindowMode("yes");
+//     KGraphEditorSettings::setOpenInExistingWindowMode("yes");
 //     break;
 //   case 1:
-//     KGraphViewerSettings::setOpenInExistingWindowMode("no");
+//     KGraphEditorSettings::setOpenInExistingWindowMode("no");
 //     break;
 //   case 2:
-//     KGraphViewerSettings::setOpenInExistingWindowMode("ask");
+//     KGraphEditorSettings::setOpenInExistingWindowMode("ask");
 //     break;
 //   default:
 //   kError() << "Invalid OpenInExistingWindow value: " << value << endl;
@@ -441,7 +439,7 @@ void KGraphEditor::applyNewToolbarConfig()
 // 
 //   std::cerr << "emiting" << std::endl;
 //   emit(settingsChanged());
-//   KGraphViewerSettings::writeConfig();
+//   KGraphEditorSettings::writeConfig();
 // }
 // 
 // void KGraphViewer::reopenPreviouslyOpenedFilesMode_pressed(int value)
@@ -450,13 +448,13 @@ void KGraphEditor::applyNewToolbarConfig()
 //   switch (value)
 //   {
 //   case 0:
-//     KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("yes");
+//     KGraphEditorSettings::setReopenPreviouslyOpenedFilesMode("yes");
 //     break;
 //   case 1:
-//     KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("no");
+//     KGraphEditorSettings::setReopenPreviouslyOpenedFilesMode("no");
 //     break;
 //   case 2:
-//     KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("ask");
+//     KGraphEditorSettings::setReopenPreviouslyOpenedFilesMode("ask");
 //     break;
 //   default:
 //   kError() << "Invalid ReopenPreviouslyOpenedFilesMode value: " << value << endl;
@@ -465,7 +463,7 @@ void KGraphEditor::applyNewToolbarConfig()
 // 
 //   std::cerr << "emiting" << std::endl;
 //   emit(settingsChanged());
-//   KGraphViewerSettings::writeConfig();
+//   KGraphEditorSettings::writeConfig();
 // }
 
 
@@ -540,6 +538,7 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
     disconnect(this,SIGNAL(removeNode(const QString&)),part,SLOT(slotRemoveNode(const QString&)));
     disconnect(this,SIGNAL(addAttribute(const QString&)),part,SLOT(slotAddAttribute(const QString&)));
     disconnect(this,SIGNAL(removeAttribute(const QString&,const QString&)),part,SLOT(slotRemoveAttribute(const QString&,const QString&)));
+    disconnect(this,SIGNAL(update()),part,SLOT(slotUpdate()));
   }
   m_currentPart = ((kgraphviewerPart*) part);
   m_treeWidget->clear();
@@ -553,6 +552,7 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   connect(this,SIGNAL(removeNode(const QString&)),part,SLOT(slotRemoveNode(const QString&)));
   connect(this,SIGNAL(addAttribute(const QString&)),part,SLOT(slotAddAttribute(const QString&)));
   connect(this,SIGNAL(removeAttribute(const QString&,const QString&)),part,SLOT(slotRemoveAttribute(const QString&,const QString&)));
+  connect(this,SIGNAL(update()),part,SLOT(slotUpdate()));
   DotGraph* graph = m_currentPart->graph();
   QList<QTreeWidgetItem *> items;
   GraphNodeMap& nodesMap = graph->nodes();
@@ -580,11 +580,33 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
 
   connect( m_currentPart, SIGNAL( graphLoaded() ),
            this, SLOT( slotGraphLoaded() ) );
+
+  connect( m_currentPart, SIGNAL( newNodeAdded(const QString&) ),
+          this, SLOT( slotNewNodeAdded(const QString&) ) );
+
+  connect( m_currentPart, SIGNAL( newEdgeAdded(const QString&, const QString&) ),
+            this, SLOT( slotNewEdgeAdded(const QString&, const QString&) ) );
 }
+
+void KGraphEditor::slotNewNodeAdded(const QString& id)
+{
+  kDebug();
+  update();
+}
+
+void KGraphEditor::slotNewEdgeAdded(const QString& ids, const QString& idt)
+{
+  kDebug();
+  update();
+}
+
 
 void KGraphEditor::slotGraphLoaded()
 {
   kDebug();
+  disconnect(m_treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+           this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
+
   DotGraph* graph = m_currentPart->graph();
   QList<QTreeWidgetItem *> items;
   GraphNodeMap& nodesMap = graph->nodes();
@@ -626,6 +648,8 @@ void KGraphEditor::slotGraphLoaded()
 }
   kDebug() << "inserting";
   m_treeWidget->insertTopLevelItems(0, items);
+  connect(m_treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+           this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
 }
 
 void KGraphEditor::slotItemChanged ( QTreeWidgetItem * item, int column )
@@ -644,6 +668,7 @@ void KGraphEditor::slotItemChanged ( QTreeWidgetItem * item, int column )
       graph->nodes()[nodeLabel]->attributes()[attributeName] = attributeValue;
     }
   }
+  emit update();
 }
 
 void KGraphEditor::slotEditNewVertex()
@@ -669,17 +694,20 @@ void KGraphEditor::slotEditNewEdge()
 void KGraphEditor::slotRemoveNode(const QString& nodeName)
 {
   emit removeNode(nodeName);
+  emit update();
 }
 
 void KGraphEditor::slotAddAttribute(const QString& attribName)
 {
   emit addAttribute(attribName);
+  emit update();
 }
 
 void KGraphEditor::slotRemoveAttribute(const QString& nodeName, const QString& attribName)
 {
   kDebug();
   emit removeAttribute(nodeName,attribName);
+  emit update();
 }
 
 void KGraphEditor::slotNewElementItemChanged(QTreeWidgetItem* item ,int column)

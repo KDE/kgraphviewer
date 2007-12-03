@@ -59,10 +59,12 @@ public:
 
 Q_SIGNALS:
   void graphLoaded();
-  void newEdgeAdded(QString, QString);
+  void newNodeAdded(const QString&);
+  void newEdgeAdded(const QString&, const QString&);
   /** signals that the user as activated a remove edge command */
   void removeEdge(const QString&);
-    
+  void close();
+  
 public slots:
   void slotHide(KParts::Part* part);
   void slotUpdate();
@@ -80,7 +82,8 @@ public slots:
   void slotAddNewSubgraph(QMap<QString,QString> attribs);
   void slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
   void slotRemoveEdge(const QString& id);
-                       
+  void slotClose();
+  
 protected:
     /**
      * This must be implemented by each part

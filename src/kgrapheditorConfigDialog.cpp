@@ -42,8 +42,6 @@
 
 #include <iostream>
 
-using namespace KGraphViewer;
-
 KgeConfigurationDialog::KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config,
               KPageDialog::FaceType dialogType, 
               ButtonCodes dialogButtons, 

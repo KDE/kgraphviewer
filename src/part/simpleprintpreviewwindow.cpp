@@ -248,15 +248,18 @@ void KGVSimplePrintPreviewWindow::goToPage(int pageNumber)
 
 void KGVSimplePrintPreviewWindow::setFullWidth()
 {
-// 	m_scrollView->setFullWidth();
+  kDebug();
+	m_scrollView->setFullWidth();
 }
 
 void KGVSimplePrintPreviewWindow::updatePagesCount()
 {
-  QPainter p(m_view);
-  p.begin(this);
+  kDebug();
+  QPainter p(this);
+//   QPainter p(m_view);
+//   p.begin(this);
   m_engine.calculatePagesCount(p);
-  p.end();
+//   p.end();
 }
 
 bool KGVSimplePrintPreviewWindow::event( QEvent * e )

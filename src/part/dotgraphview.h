@@ -138,7 +138,8 @@ signals:
   void sigViewBevEnabledToggled(bool value);
   void sigViewBevActivated(int newPos);
   void graphLoaded();
-  void newEdgeAdded(QString,QString);
+  void newNodeAdded(const QString&);
+  void newEdgeAdded(const QString&, const QString&);
   /** signals that the user as activated a remove edge command */
   void removeEdge(const QString&);
 
@@ -238,6 +239,9 @@ private:
   int m_leavedTimer;
 
   ScrollDirection m_scrollDirection;
+
+  QPoint m_pressPos;
+  QPoint m_pressScrollBarsPos;
 };
 
 #endif // DOTGRAPHVIEW_H

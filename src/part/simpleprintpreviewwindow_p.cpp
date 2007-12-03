@@ -41,15 +41,17 @@ KGVSimplePrintPreviewView::KGVSimplePrintPreviewView(
   kDebug() << "KGVSimplePrintPreviewView";
 /*  resize(300,400);
   resizeContents(200, 400);*/
+setAttribute(Qt::WA_PaintOutsidePaintEvent,true);
 }
 
 void KGVSimplePrintPreviewView::paintEvent( QPaintEvent *pe )
 {
-  kDebug() ;
+  kDebug() << pe;
   Q_UNUSED(pe);
 
-  QPainter p(m_window);
-//   p.begin(&pm);
+  QPainter p(this);
+//   QPainter p(m_window);
+  //   p.begin(&pm);
 //   p.initFrom(this);
 //! @todo only for screen!
   kDebug() << "filling rect";
@@ -83,7 +85,7 @@ KGVSimplePrintPreviewScrollView::KGVSimplePrintPreviewScrollView(
 
 void KGVSimplePrintPreviewScrollView::paintEvent( QPaintEvent *pe )
 {
-  kDebug() ;
+  kDebug() << widget();
   QScrollArea::paintEvent(pe);
   ((KGVSimplePrintPreviewView*)widget())->paintEvent(pe);
 }

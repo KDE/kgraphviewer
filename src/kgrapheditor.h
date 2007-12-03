@@ -77,7 +77,8 @@ signals:
   void removeNode(const QString&);
   void addAttribute(const QString&);
   void removeAttribute(const QString&,const QString&);
-
+  void update();
+  
 public slots:
   /**
     * Use this method to load whatever file/URL you have
@@ -96,7 +97,9 @@ public slots:
   void slotAddNewElementAttribute(const QString&);
   void slotRemoveNewElementAttribute(const QString&);
 
-/*public slots:
+  void slotNewNodeAdded(const QString& id);
+  void slotNewEdgeAdded(const QString& id, const QString& id);
+  /*public slots:
   void reloadOnChangeMode_pressed(int value);
   void openInExistingWindowMode_pressed(int value);
   void reopenPreviouslyOpenedFilesMode_pressed(int value);*/

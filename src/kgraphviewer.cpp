@@ -126,6 +126,7 @@ void KGraphViewer::reloadPreviousFiles()
     {
       openUrl(*it);
     }
+    KGraphViewerSettings::self()->writeConfig();
   }
   
 }
@@ -150,6 +151,7 @@ void KGraphViewer::openUrl(const KUrl& url)
       m_tabsPartsMap[m_widget->currentPage()] = part;
       m_tabsFilesMap[m_widget->currentPage()] = url.url();
       connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
+      connect(part,SIGNAL(close()),this,SLOT(close()));
     }
   }
   else
@@ -191,9 +193,14 @@ void KGraphViewer::fileOpen()
 void KGraphViewer::setupActions()
 {
   // create our actions
-  actionCollection()->addAction( KStandardAction::New, "file_new", this, SLOT( fileNew() ) );
+  KAction* newAction = actionCollection()->addAction( KStandardAction::New, "file_new", this, SLOT( fileNew() ) );
+  // @todo uncomment after code unfreeze
+  //   newAction->setWhatsThis(i18n("Opens a new empty KGraphViewer window."));
   
-  actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT( fileOpen() ) );
+  KAction* openAction = actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT( fileOpen() ) );
+  // @todo uncomment after code unfreeze
+  //   openAction->setWhatsThis(i18n("Shows the file open dialog to choose a GraphViz dot file to open."));
+  
   m_rfa = KStandardAction::openRecent(this, SLOT( slotURLSelected(const KUrl&) ), this);
   actionCollection()->addAction(m_rfa->objectName(),m_rfa);
   m_rfa->setWhatsThis(i18n("This lists files which you have opened recently, and allows you to easily open them again."));
@@ -201,17 +208,26 @@ void KGraphViewer::setupActions()
   KSharedConfig::Ptr config = KGlobal::config();
   m_rfa->loadEntries(KConfigGroup(config, "kgraphviewer recent files"));
   
-  actionCollection()->addAction( KStandardAction::Quit, "file_quit", KApplication::kApplication(), SLOT( quit() ) );
-//   KStandardAction::quit(kapp, SLOT(quit()), this);
-
+  KAction* quitAction = actionCollection()->addAction( KStandardAction::Quit, "file_quit", KApplication::kApplication(), SLOT( quit() ) );
+  // @todo uncomment after code unfreeze
+  //   quitAction->setWhatsThis(i18n("Quits KGraphViewer."));
+  
   m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
-
-  actionCollection()->addAction( KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT( optionsConfigureKeys() ) );
-//   KStandardAction::keyBindings(this, SLOT(optionsConfigureKeys()), this);
-  actionCollection()->addAction( KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT( optionsConfigureToolbars() ) );
-//   KStandardAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), this);
-  actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT( optionsConfigure() ) );
-//   KStandardAction::preferences(this, SLOT(optionsConfigure()), this);
+  // @todo uncomment after code unfreeze
+  //   m_statusbarAction->setWhatsThis(i18n("Shows or hide the status bar."));
+  
+  KAction* kbAction = actionCollection()->addAction( KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT( optionsConfigureKeys() ) );
+  // @todo uncomment after code unfreeze
+//   kbAction->setWhatsThis(i18n("Configure the bindings between keys and actions."));
+  
+  KAction* ctAction = actionCollection()->addAction( KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT( optionsConfigureToolbars() ) );
+  // @todo uncomment after code unfreeze
+  //   ctAction->setWhatsThis(i18n("Tollbars configuration ."));
+  
+  KAction* configureAction = actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT( optionsConfigure() ) );
+  // @todo uncomment after code unfreeze
+  //   configureAction->setWhatsThis(i18n("Main KGraphViewer configuration options."));
+  
 
 }
 
@@ -221,7 +237,7 @@ bool KGraphViewer::queryExit()
   KGraphViewerSettings::setPreviouslyOpenedFiles(m_openedFiles);
   // 
   //@TODO to port
-  //KGraphViewerSettings::writeConfig();
+  KGraphViewerSettings::self()->writeConfig();
   return true;
 }
 
@@ -283,65 +299,63 @@ void KGraphViewer::optionsConfigure()
   KPageDialog::FaceType ft = KPageDialog::Auto;
   KgvConfigurationDialog* dialog = new KgvConfigurationDialog( this, "settings", 
                                              KGraphViewerSettings::self(),ft ); 
-  
-/*  KGraphViewerPreferencesReloadWidget*  reloadWidget =  
-      new KGraphViewerPreferencesReloadWidget( 0, "KGraphViewer Settings" );
-  if (KGraphViewerSettings::reloadOnChangeMode() == "yes")
-  {
-    reloadWidget->reloadOnChangeMode->setButton(0);
-  }
-  else if (KGraphViewerSettings::reloadOnChangeMode() == "no")
-  {
-    reloadWidget->reloadOnChangeMode->setButton(1);
-  }
-  else if (KGraphViewerSettings::reloadOnChangeMode() == "ask")
-  {
-    reloadWidget->reloadOnChangeMode->setButton(2);
-  }
-  
-  connect((QObject*)reloadWidget->reloadOnChangeMode, SIGNAL(clicked(int)), this, SLOT(reloadOnChangeMode_pressed(int)) );
-  
-  dialog->addPage( reloadWidget, i18n("Reloading"), "kgraphreloadoptions", i18n("Reloading"), true); 
- 
-  KGraphViewerPreferencesOpenInExistingWindowWidget*  openingWidget =  
-    new KGraphViewerPreferencesOpenInExistingWindowWidget( 0, "KGraphViewer Settings" );
-  if (KGraphViewerSettings::openInExistingWindowMode() == "yes")
-  {
-    openingWidget->openInExistingWindowMode->setButton(0);
-  }
-  else if (KGraphViewerSettings::openInExistingWindowMode() == "no")
-  {
-    openingWidget->openInExistingWindowMode->setButton(1);
-  }
-  else if (KGraphViewerSettings::openInExistingWindowMode() == "ask")
-  {
-    openingWidget->openInExistingWindowMode->setButton(2);
-  }
-  
-  connect((QObject*)openingWidget->openInExistingWindowMode, SIGNAL(clicked(int)), this, SLOT(openInExistingWindowMode_pressed(int)) );
-  
-  dialog->addPage( openingWidget, i18n("Opening"), "kgraphopeningoptions", i18n("Opening"), true); 
-  
-  KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget*  reopeningWidget =  
-    new KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget( 0, "KGraphViewer Settings" );
-  if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "yes")
-  {
-    reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(0);
-  }
-  else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "no")
-  {
-    reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(1);
-  }
-  else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "ask")
-  {
-    reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(2);
-  }
-  
-  connect((QObject*)reopeningWidget->reopenPreviouslyOpenedFilesMode, SIGNAL(clicked(int)), this, SLOT(reopenPreviouslyOpenedFilesMode_pressed(int)) );
 
-  dialog->addPage( reopeningWidget, i18n("Session Management"), "kgraphreopeningoptions", i18n("Session Management"), true); 
-  */
-//   connect(dialog, SIGNAL(settingsChanged()), this, SLOT(settingsChanged()));
+  Ui::KGraphViewerPreferencesReloadWidget*  reloadWidget = dialog->reloadWidget;
+  kDebug() << KGraphViewerSettings::reloadOnChangeMode();
+  if (KGraphViewerSettings::reloadOnChangeMode() == "true")
+  {
+    reloadWidget->yes->setChecked(true);
+  }
+  else if (KGraphViewerSettings::reloadOnChangeMode() == "false")
+  {
+    reloadWidget->no->setChecked(true);
+  }
+  else // if (KGraphViewerSettings::reloadOnChangeMode() == "ask")
+  {
+    reloadWidget->ask->setChecked(true);
+  }
+  
+  connect((QObject*)reloadWidget->yes, SIGNAL(toggled(bool)), this, SLOT(slotReloadOnChangeModeYesToggled(bool)) );
+  connect((QObject*)reloadWidget->no, SIGNAL(toggled(bool)), this, SLOT(slotReloadOnChangeModeNoToggled(bool)) );
+  connect((QObject*)reloadWidget->ask, SIGNAL(toggled(bool)), this, SLOT(slotReloadOnChangeModeAskToggled(bool)) );
+
+  Ui::KGraphViewerPreferencesOpenInExistingWindowWidget*  openingWidget = dialog->openingWidget;
+  if (KGraphViewerSettings::openInExistingWindowMode() == "true")
+  {
+    openingWidget->yes->setChecked(true);
+  }
+  else if (KGraphViewerSettings::openInExistingWindowMode() == "false")
+  {
+    openingWidget->no->setChecked(true);
+  }
+  else // if (KGraphViewerSettings::openInExistingWindowMode() == "ask")
+  {
+    openingWidget->ask->setChecked(true);
+  }
+  
+  connect((QObject*)openingWidget->yes, SIGNAL(toggled(bool)), this, SLOT(slotOpenInExistingWindowModeYesToggled(bool)) );
+  connect((QObject*)openingWidget->no, SIGNAL(toggled(bool)), this, SLOT(slotOpenInExistingWindowModeNoToggled(bool)) );
+  connect((QObject*)openingWidget->ask, SIGNAL(toggled(bool)), this, SLOT(slotOpenInExistingWindowModeAskToggled(bool)) );
+  
+  Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget*  reopeningWidget = dialog->reopeningWidget;
+  if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "true")
+  {
+    reopeningWidget->yes->setChecked(true);
+  }
+  else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "false")
+  {
+    reopeningWidget->no->setChecked(true);
+  }
+  else // if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "ask")
+  {
+    reopeningWidget->ask->setChecked(true);
+  }
+  
+  connect((QObject*)reopeningWidget->yes, SIGNAL(toggled(bool)), this, SLOT(slotReopenPreviouslyOpenedFilesModeYesToggled(bool)) );
+  connect((QObject*)reopeningWidget->no, SIGNAL(toggled(bool)), this, SLOT(slotReopenPreviouslyOpenedFilesModeNoToggled(bool)) );
+  connect((QObject*)reopeningWidget->ask, SIGNAL(toggled(bool)), this, SLOT(slotReopenPreviouslyOpenedFilesModeAskToggled(bool)) );
+  
+  connect(dialog, SIGNAL(settingsChanged()), this, SLOT(settingsChanged()));
 
   dialog->show();
 }
@@ -351,76 +365,101 @@ void KGraphViewer::applyNewToolbarConfig()
   applyMainWindowSettings(KGlobal::config()->group("kgraphviewer"));
 }
 
-// void KGraphViewer::reloadOnChangeMode_pressed(int value)
-// {
-//   std::cerr << "reloadOnChangeMode_pressed " << value << std::endl;
-//   switch (value)
-//   {
-//   case 0:
-//     KGraphViewerSettings::setReloadOnChangeMode("yes");
-//     break;
-//   case 1:
-//     KGraphViewerSettings::setReloadOnChangeMode("no");
-//     break;
-//   case 2:
-//     KGraphViewerSettings::setReloadOnChangeMode("ask");
-//     break;
-//   default:
-//   kError() << "Invalid reload on change mode value: " << value << endl;
-//     return;
-//   }
-//   std::cerr << "emiting" << std::endl;
-//   emit(settingsChanged());
-//   KGraphViewerSettings::writeConfig();
-// }
-// 
-// void KGraphViewer::openInExistingWindowMode_pressed(int value)
-// {
-//   std::cerr << "openInExistingWindowMode_pressed " << value << std::endl;
-//   switch (value)
-//   {
-//   case 0:
-//     KGraphViewerSettings::setOpenInExistingWindowMode("yes");
-//     break;
-//   case 1:
-//     KGraphViewerSettings::setOpenInExistingWindowMode("no");
-//     break;
-//   case 2:
-//     KGraphViewerSettings::setOpenInExistingWindowMode("ask");
-//     break;
-//   default:
-//   kError() << "Invalid OpenInExistingWindow value: " << value << endl;
-//     return;
-//   }
-// 
-//   std::cerr << "emiting" << std::endl;
-//   emit(settingsChanged());
-//   KGraphViewerSettings::writeConfig();
-// }
-// 
-// void KGraphViewer::reopenPreviouslyOpenedFilesMode_pressed(int value)
-// {
-//   std::cerr << "reopenPreviouslyOpenedFilesMode_pressed " << value << std::endl;
-//   switch (value)
-//   {
-//   case 0:
-//     KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("yes");
-//     break;
-//   case 1:
-//     KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("no");
-//     break;
-//   case 2:
-//     KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("ask");
-//     break;
-//   default:
-//   kError() << "Invalid ReopenPreviouslyOpenedFilesMode value: " << value << endl;
-//     return;
-//   }
-// 
-//   std::cerr << "emiting" << std::endl;
-//   emit(settingsChanged());
-//   KGraphViewerSettings::writeConfig();
-// }
+void KGraphViewer::slotReloadOnChangeModeYesToggled(bool value)
+{
+  kDebug();
+  if (value)
+  {
+    KGraphViewerSettings::setReloadOnChangeMode("true");
+  }
+  //   kDebug() << "emiting";
+  //   emit(settingsChanged());
+  KGraphViewerSettings::self()->writeConfig();
+}
+
+void KGraphViewer::slotReloadOnChangeModeNoToggled(bool value)
+{
+  kDebug();
+  if (value)
+  {
+    KGraphViewerSettings::setReloadOnChangeMode("false");
+  }
+  //   kDebug() << "emiting";
+  //   emit(settingsChanged());
+  KGraphViewerSettings::self()->writeConfig();
+}
+
+void KGraphViewer::slotReloadOnChangeModeAskToggled(bool value)
+{
+  kDebug();
+  if (value)
+  {
+    KGraphViewerSettings::setReloadOnChangeMode("ask");
+  }
+  //   kDebug() << "emiting";
+  //   emit(settingsChanged());
+  KGraphViewerSettings::self()->writeConfig();
+}
+
+void KGraphViewer::slotOpenInExistingWindowModeYesToggled(bool value)
+{
+  kDebug() << value;
+  if (value)
+  {
+    KGraphViewerSettings::setOpenInExistingWindowMode("true");
+  }
+  KGraphViewerSettings::self()->writeConfig();
+}
+
+void KGraphViewer::slotOpenInExistingWindowModeNoToggled(bool value)
+{
+  kDebug() << value;
+  if (value)
+  {
+    KGraphViewerSettings::setOpenInExistingWindowMode("false");
+  }
+  KGraphViewerSettings::self()->writeConfig();
+}
+
+void KGraphViewer::slotOpenInExistingWindowModeAskToggled(bool value)
+{
+  kDebug() << value;
+  if (value)
+  {
+    KGraphViewerSettings::setOpenInExistingWindowMode("ask");
+  }
+  KGraphViewerSettings::self()->writeConfig();
+}
+
+void KGraphViewer::slotReopenPreviouslyOpenedFilesModeYesToggled(bool value)
+{
+  kDebug() << value;
+  if (value)
+  {
+    KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("true");
+  }
+  KGraphViewerSettings::self()->writeConfig();
+}
+
+void KGraphViewer::slotReopenPreviouslyOpenedFilesModeNoToggled(bool value)
+{
+  kDebug() << value;
+  if (value)
+  {
+    KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("false");
+  }
+  KGraphViewerSettings::self()->writeConfig();
+}
+
+void KGraphViewer::slotReopenPreviouslyOpenedFilesModeAskToggled(bool value)
+{
+  kDebug() << value;
+  if (value)
+  {
+    KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("ask");
+  }
+  KGraphViewerSettings::self()->writeConfig();
+}
 
 
 void KGraphViewer::slotURLSelected(const KUrl& url)

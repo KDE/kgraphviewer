@@ -92,6 +92,7 @@ QRectF CanvasEdge::boundingRect() const
 void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
                    QWidget* widget)
 {
+//   kDebug();
 Q_UNUSED(option)
 Q_UNUSED(widget)
   if (m_boundingRect == QRectF())

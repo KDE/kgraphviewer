@@ -24,6 +24,4 @@ include_directories (${QDBUS_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DI
 
 configure_file (config-kgraphviewer.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h )
 
-
-MESSAGE(STATUS "remember to port kgraphviewer (dbus)")
 add_subdirectory(src)

@@ -54,9 +54,11 @@ protected:
   virtual bool hasChanged();
 
   bool m_changed;
-  Ui::KGraphViewerPreferencesReloadWidget*  m_reloadWidget;
-  Ui::KGraphViewerPreferencesOpenInExistingWindowWidget* m_openingWidget;
-  Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget* m_reopeningWidget;
+
+public:
+  Ui::KGraphViewerPreferencesReloadWidget*  reloadWidget;
+  Ui::KGraphViewerPreferencesOpenInExistingWindowWidget* openingWidget;
+  Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget* reopeningWidget;
 };
 
 #endif

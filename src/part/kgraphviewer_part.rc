@@ -11,7 +11,7 @@
     <Action name="file_page_setup" group="file_merge"/>
   </Menu>
   <Menu name="view">
-    <Action name="view_update"/>
+    <!--Action name="view_update"/-->
     <Action name="view_redisplay"/>
     <Separator/>
     <Action name="view_layout_algo"/>
@@ -25,19 +25,19 @@
 </MenuBar>
 <ToolBar name="mainToolBar">
   <Action name="file_close"/>
-  <Action name="file_print"/>
+  <!--Action name="file_print"/-->
   <Action name="file_print_preview"/>
-  <Action name="file_page_setup"/>
+  <!--Action name="file_page_setup"/-->
 </ToolBar>
 <ToolBar name="viewToolBar">
-  <Action name="view_redisplay"/>
-  <Separator/>
+  <!--Action name="view_redisplay"/-->
+  <!--Separator/-->
   <Action name="view_layout_algo"/>
   <Separator/>
   <Action name="view_zoom_in"/>
   <Action name="view_zoom_out"/>
   <Separator/>
   <Action name="view_bev_enabled"/>
-  <Action name="view_bev"/>
+  <!--Action name="view_bev"/-->
 </ToolBar>
 </kpartgui>

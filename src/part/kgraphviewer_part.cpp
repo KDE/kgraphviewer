@@ -44,8 +44,6 @@
 // #include "kgraphviewersettings.h"
 #include "kgraphviewer_partsettings.h"
 
-using namespace KGraphViewer;
-
 kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
 : KParts::ReadOnlyPart(parent), m_watch(new KDirWatch())
 {
@@ -59,16 +57,17 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
   m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
   connect( m_widget, SIGNAL( graphLoaded() ),
            this, SIGNAL( graphLoaded() ) );
-  connect( m_widget, SIGNAL( newEdgeAdded(QString, QString) ),
-           this, SIGNAL( newEdgeAdded(QString, QString) ) );
+  connect( m_widget, SIGNAL( newEdgeAdded(const QString&, const QString&) ),
+          this, SIGNAL( newEdgeAdded(const QString&, const QString&) ) );
+  connect( m_widget, SIGNAL( newNodeAdded(const QString&) ),
+          this, SIGNAL( newNodeAdded(const QString&) ) );
   connect( m_widget, SIGNAL( removeEdge(const QString&) ),
            this, SIGNAL( removeEdge(const QString&) ) );
                     
   // notify the part that this is our internal widget
   setWidget(m_widget);
 
-  kDebug() << "Adding close action";
-  QAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", parentWidget, SLOT( close() ) );
+  QAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT( slotClose() ) );
   closeAct->setWhatsThis(i18n("Closes the current tab"));
 
   QAction* printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", m_widget, SLOT(print()));
@@ -84,10 +83,11 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
   pagesetupAct->setText(i18n("Page setup"));
   pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog allowing to setup how the graph will be printed"));
 
-  QAction* updateAct = actionCollection()->addAction("view_update", m_widget, SLOT(slotUpdate()));
-  updateAct->setWhatsThis(i18n("Update the view of the current graph by running dot"));
+/*  KAction *updateAct = new KAction("view_update", i18n("&Update view"), actionCollection(), "update");
   updateAct->setShortcut(Qt::CTRL+Qt::Key_U);
-
+  updateAct->setWhatsThis(i18n("Update the view of the current graph by running dot"));
+  connect(updateAct, SIGNAL(triggered(bool)), m_widget, SLOT(slotUpdate()));*/
+  
   QAction* redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, "view_redisplay", m_widget, SLOT(reload()));
   redisplayAct->setWhatsThis(i18n("Reload the current graph from file"));
   redisplayAct->setShortcut(Qt::Key_F5);
@@ -102,6 +102,12 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
 
 // set our XML-UI resource file
   setXMLFile("kgraphviewer_part.rc");
+}
+
+void kgraphviewerPart::slotClose()
+{
+  kDebug();
+  emit close();
 }
 
 kgraphviewerPart::~kgraphviewerPart()
