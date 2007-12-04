@@ -98,7 +98,7 @@ public slots:
   void slotRemoveNewElementAttribute(const QString&);
 
   void slotNewNodeAdded(const QString& id);
-  void slotNewEdgeAdded(const QString& id, const QString& id);
+  void slotNewEdgeAdded(const QString& ids, const QString& idt);
   /*public slots:
   void reloadOnChangeMode_pressed(int value);
   void openInExistingWindowMode_pressed(int value);
