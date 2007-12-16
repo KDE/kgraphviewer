@@ -99,11 +99,10 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 	setFocusPolicy(Qt::WheelFocus);
 // 	m_contents->setFocusProxy(m_contents->headerTitleLineEdit);
 
-	m_contents->printButton->setIconSet( KStandardGuiItem::print().iconSet() );
-	m_contents->printButton->setText( KStandardGuiItem::print().text() );
+	m_contents->printButton->setGuiItem( KStandardGuiItem::print() );
 	connect(m_contents->printButton, SIGNAL(clicked()), this, SLOT(slotPrint()));
 
-	m_contents->printPreviewButton->setIconSet( SmallIconSet("filequickprint") );
+	m_contents->printPreviewButton->setIcon( KIcon("document-print-preview") );
 	m_contents->printPreviewButton->setText( i18n("Print Preview...") );
 	connect(m_contents->printPreviewButton, SIGNAL(clicked()), this, SLOT(slotPrintPreview()));
 
