@@ -599,6 +599,7 @@ void DotGraphView::wheelEvent(QWheelEvent* e)
   e->accept();
   if (e->state() == Qt::ShiftModifier)
   {
+    kDebug() << " + Shift: zooming";
     // move canvas...
     if (e->delta() < 0)
     {
@@ -611,26 +612,31 @@ void DotGraphView::wheelEvent(QWheelEvent* e)
   }
   else
   {
+    kDebug() << " : scrolling ";
     if (e->orientation() == Qt::Horizontal)
     {
       if (e->delta() < 0)
       {
-        scrollContentsBy(-viewport()->width()/10,0);
+        kDebug() << "scroll by " <<  -viewport()->width()/10 << 0;
+        horizontalScrollBar()->setValue(horizontalScrollBar()->value()+viewport()->width()/10);
       }
       else
       {
-        scrollContentsBy(viewport()->width()/10,0);
+        kDebug() << "scroll by " <<  viewport()->width()/10 << 0;
+        horizontalScrollBar()->setValue(horizontalScrollBar()->value()-viewport()->width()/10);
       }
     }
     else
     {
       if (e->delta() < 0)
       {
-        scrollContentsBy(0,viewport()->height()/10);
+        kDebug() << "scroll by " << 0 << viewport()->width()/10;
+        verticalScrollBar()->setValue(verticalScrollBar()->value()+viewport()->height()/10);
       }
       else
       {
-        scrollContentsBy(0,-viewport()->height()/10);
+        kDebug() << "scroll by " << 0 << -viewport()->width()/10;
+        verticalScrollBar()->setValue(verticalScrollBar()->value()-viewport()->height()/10);
       }
     }
   }
