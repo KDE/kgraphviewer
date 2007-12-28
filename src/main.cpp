@@ -37,7 +37,7 @@
 static const char description[] =
 I18N_NOOP("A Graphviz dot graph viewer for KDE");
 
-static const char version[] = "1.0";
+static const char version[] = "1.99.1";
 
 int main(int argc, char **argv)
 {
