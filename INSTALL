@@ -1,28 +1,24 @@
 Basic Installation
 ==================
 
-   These are generic installation instructions.
+   These are generic installation instructions. It supposes that you have a
+   working KDE4 developpement environment. See the following URL if it is not
+   the case:
+   http://techbase.kde.org/index.php?title=Getting_Started
 
-   This package uses the Scons/bksys build system.
-   http://freehackers.org/~tnagy/bksys.html
+   This package uses the cmake.
 
+   In the following, let <sourcedir> be the directory containing the present
+   file.
 
-  1. `cd' to the directory containing the package's source code and type
-     `./configure' to configure the package for your system.  If you're
-     using `csh' on an old version of System V, you might need to type
-     `sh ./configure' instead to prevent `csh' from trying to execute
-     `configure' itself.
+  1. Create a build directory. Let us refer to it as <builddir>. move to it:
+     cd <builddir>
 
-     You can also use `./configure debug=full' in order to build a debug
-     version. That can be great to be able to send usefull bug reports to
-     the author.
+  2. Type `cmake -DCMAKE_INSTALL_PREFIX=$KDEDIR <sourcedir>' to configure the 
+     package.
 
-  2. Type `make' to compile the package.
-
-  3. Type `make install' to install the programs and any data files and
+  3. Type `make' to build the package.
+ 
+  4. Type `make install' to install the programs and any data files and
      documentation. If you have not write permission to the  KDE installation
      directory, you should become root before.
-
-  4. You can remove the program binaries and object files from the
-     source code directory by typing `make clean'.  
-
