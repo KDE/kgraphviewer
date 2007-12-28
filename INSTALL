@@ -17,8 +17,11 @@ Basic Installation
   2. Type `cmake -DCMAKE_INSTALL_PREFIX=$KDEDIR <sourcedir>' to configure the 
      package.
 
-  3. Type `make' to build the package.
+  3. Move to the src subdirectory:
+     cd src
+
+  4. Type `make' to build the package.
  
-  4. Type `make install' to install the programs and any data files and
+  5. Type `make install' to install the programs and any data files and
      documentation. If you have not write permission to the  KDE installation
      directory, you should become root before.
