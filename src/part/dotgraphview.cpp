@@ -1095,7 +1095,6 @@ void DotGraphView::setupPopup()
   
   KActionMenu* file_exportMenu = new KActionMenu(i18n("Export Graph"), this);
   actionCollection()->addAction("file_export",file_exportMenu);
-  connect(file_exportMenu,SIGNAL(activated(int)),this,SLOT(fileExportActivated(int)));
   file_exportMenu->setToolTip(i18n("Allows to export the graph to another format."));  
   file_exportMenu->setWhatsThis(i18n(
   "Use the Export Graph menu to export the graph to another format."
