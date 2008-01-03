@@ -1,4 +1,4 @@
-dnl AM_INIT_AUTOMAKE(kgraphviewer, 1.99.1, kleag@free.fr)
+dnl AM_INIT_AUTOMAKE(kgraphviewer, 2.0, kleag@free.fr)
 
 AC_C_BIGENDIAN
 AC_CHECK_KDEMAXPATHLEN
