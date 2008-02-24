@@ -41,11 +41,11 @@ GraphElement::GraphElement() :
   shape(DOT_DEFAULT_SHAPE);
   lineColor(DOT_DEFAULT_LINECOLOR);
   backColor(DOT_DEFAULT_BACKCOLOR);
-  fontSize(DOT_DEFAULT_FONTSIZE);
   fontName(DOT_DEFAULT_FONTNAME);
   fontColor(DOT_DEFAULT_FONTCOLOR);
   url("");
   shapeFile("");*/
+  setFontSize(DOT_DEFAULT_FONTSIZE);
 }
 
 GraphElement::GraphElement(const GraphElement& element) : QObject(),
@@ -61,7 +61,7 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
 
 void GraphElement::updateWith(const GraphElement& element)
 {
-//   kDebug() << m_renderOperations.size();
+  kDebug();
   bool modified = false;
   if (element.z() != m_z)
   {
