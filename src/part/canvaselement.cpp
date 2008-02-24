@@ -84,6 +84,15 @@ CanvasElement::CanvasElement(
   
 }
 
+void CanvasElement::modelChanged()
+{
+  kDebug() ;//<< id();
+  m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_element->fontColor()));
+  m_font = FontsCache::changeable().fromName(m_element->fontName());
+  prepareGeometryChange();
+  computeBoundingRect();
+}
+
 void CanvasElement::initialize(qreal scaleX, qreal scaleY,
                             qreal xMargin, qreal yMargin, qreal gh,
                             qreal wdhcf, qreal hdvcf)
@@ -167,7 +176,7 @@ void CanvasElement::computeBoundingRect()
       }
     }
   }
-//   kDebug() << element()->id() << "new bounding rect is:" << m_boundingRect;
+  setPos(0,0);
 }
 
 void CanvasElement::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
@@ -194,6 +203,7 @@ QWidget *widget)
     p->drawPixmap(QPointF(0,0),m_view->defaultNewElementPixmap());
     return;
   }
+
   QListIterator<DotRenderOp> it(element()->renderOperations());
   it.toBack();
   while (it.hasPrevious())
@@ -209,7 +219,8 @@ QWidget *widget)
       p->save();
       p->setBrush(Dot2QtConsts::componentData().qtColor(element()->backColor()));
       p->setPen(Dot2QtConsts::componentData().qtColor(element()->lineColor()));
-//       kDebug() << element()->id() << "drawEllipse" << element()->backColor() << rect;
+      kDebug() << element()->id() << "drawEllipse" << element()->backColor() << rect;
+//       rect = QRectF(0,0,100,100);
       p->drawEllipse(rect);
       p->restore();
     }
@@ -258,6 +269,7 @@ QWidget *widget)
       {
         p->setBrush(canvas()->backgroundColor());
       }*/
+      kDebug() << element()->id() << "drawPolygon" << points;
       p->drawPolygon(points);
       p->restore();
       if (!element()->shapeFile().isEmpty())
@@ -303,7 +315,7 @@ QWidget *widget)
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));
       }
       p->setPen(pen);
-//       kDebug() << element()->id() << "drawPolyline" << points;
+      kDebug() << element()->id() << "drawPolyline" << points;
       p->drawPolyline(points);
       p->restore();
     }
@@ -319,14 +331,15 @@ QWidget *widget)
     if ( dro.renderop == "T" )
     {
       // draw a label
-/*      kDebug() << "Drawing a label " << (*it).integers[0]
-        << " " << (*it).integers[1] << " " << (*it).integers[2]
-        << " " << (*it).integers[3] << " " << (*it).str
-        << " (" << element()->fontName() << ", " << element()->fontSize()
-        << ", " << element()->fontColor() << ")";*/
+//       kDebug() << "Drawing a label " << (*itl).integers[0]
+//         << " " << (*itl).integers[1] << " " << (*itl).integers[2]
+//         << " " << (*itl).integers[3] << " " << (*itl).str
+//         << " (" << element()->fontName() << ", " << element()->fontSize()
+//         << ", " << element()->fontColor() << ")";
 
       int stringWidthGoal = int(dro.integers[3] * m_scaleX);
       int fontSize = element()->fontSize();
+//       kDebug() << element()->id() << " initial fontSize " << fontSize;
       m_font->setPointSize(fontSize);
       QFontMetrics fm(*m_font);
       while (fm.width(dro.str) > stringWidthGoal && fontSize > 1)
@@ -348,7 +361,7 @@ QWidget *widget)
                       + m_xMargin;
       qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
       QPointF point(x,y);
-//       kDebug() << element()->id() << "drawText" << point;
+      kDebug() << element()->id() << "drawText" << point << " " << fontSize;
       p->drawText(point, dro.str);
       p->restore();
     }

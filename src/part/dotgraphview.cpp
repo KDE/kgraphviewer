@@ -421,7 +421,7 @@ bool DotGraphView::displayGraph()
 
 void DotGraphView::updateSizes(QSizeF s)
 {
-//   kDebug() ;
+  kDebug() ;
   if (m_canvas == 0)
     return;
   if (s == QSizeF(0,0)) s = size();

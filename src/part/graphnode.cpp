@@ -63,11 +63,11 @@ GraphNode::GraphNode(const GraphNode& gn) :
 void GraphNode::updateWith(const GraphNode& node)
 {
 //   kDebug() ;
+  GraphElement::updateWith(node);
   if (canvasNode())
   {
     canvasNode()->modelChanged();
   }
-  GraphElement::updateWith(node);
 //   kDebug() << "done";
 }
 

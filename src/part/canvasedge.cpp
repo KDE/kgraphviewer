@@ -56,10 +56,9 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
     m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
     m_font(0), m_view(view), m_popup(new QMenu())
 {
+  kDebug() << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << m_gh;
   m_font = FontsCache::changeable().fromName(e->fontName());
 
-//   kDebug() << edge() << "->"  << edge();
-//   kDebug() << "edge "  << edge()->fromNode()/*->id()*/ << "->"  << edge()->toNode()/*->id()*/;
   computeBoundingRect();
 //   kDebug() << "boundingRect computed: " << m_boundingRect;
   
@@ -122,18 +121,14 @@ Q_UNUSED(widget)
     return;
   }
   QList<QPointF> allPoints;
-  DotRenderOpVec::const_iterator it, it_end;
-  it = edge()->renderOperations().begin(); 
-  it_end = edge()->renderOperations().end();
-  for (; it != it_end; it++)
+  foreach (const DotRenderOp& dro, edge()->renderOperations())
   {
-    const DotRenderOp& dro = (*it);
-//     kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << (*it).renderop << "; selected:" << edge()->isSelected();
-    if ( (*it).renderop == "T" )
+//     kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << dro.renderop << "; selected:" << edge()->isSelected();
+    if ( dro.renderop == "T" )
     {
-      const QString& str = (*it).str;
+      const QString& str = dro.str;
     
-      qreal stringWidthGoal = (*it).integers[3] * m_scaleX;
+      qreal stringWidthGoal = dro.integers[3] * m_scaleX;
       int fontSize = edge()->fontSize();
       m_font->setPointSize(fontSize);
       QFontMetrics fm(*m_font);
@@ -163,25 +158,25 @@ Q_UNUSED(widget)
       p->drawText(point,str);
       p->restore();
     }      
-    else if (( (*it).renderop == "p" ) || ((*it).renderop == "P" ))
+    else if (( dro.renderop == "p" ) || (dro.renderop == "P" ))
     {
-      QPolygonF polygon((*it).integers[0]);
-      for (int i = 0; i < (*it).integers[0]; i++)
+      QPolygonF polygon(dro.integers[0]);
+      for (int i = 0; i < dro.integers[0]; i++)
       {
         QPointF point(
-            (int((*it).integers[2*i+1])/*%m_wdhcf*/)*m_scaleX +m_xMargin,
-            (int(m_gh-(*it).integers[2*i+2])/*%m_hdvcf*/)*m_scaleY + m_yMargin
+            (int(dro.integers[2*i+1])/*%m_wdhcf*/)*m_scaleX +m_xMargin,
+            (int(m_gh-dro.integers[2*i+2])/*%m_hdvcf*/)*m_scaleY + m_yMargin
                 );
         polygon[i] = point;
 //         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << point;
         allPoints.append(point);
       }
-      if ((*it).renderop == "P" )
+      if (dro.renderop == "P" )
       {
         p->save();
         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
         p->drawPolygon(polygon);
-//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
+        kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
         p->restore();
       }
       else
@@ -201,18 +196,18 @@ Q_UNUSED(widget)
       }
       p->save();
       p->setPen(pen);
-//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
+      kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
       p->drawPolyline(polygon);
       p->restore();
     }
-    else if (( (*it).renderop == "e" ) || ((*it).renderop == "E" ))
+    else if (( dro.renderop == "e" ) || (dro.renderop == "E" ))
     {
-      qreal w = m_scaleX * (*it).integers[2] * 2;
-      qreal h = m_scaleY *  (*it).integers[3] * 2;
-      qreal x = (m_xMargin + ((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
-      qreal y = ((m_gh -  (*it).integers[1]/*%m_hdvcf*/)*m_scaleY + m_yMargin) - h/2;
+      qreal w = m_scaleX * dro.integers[2] * 2;
+      qreal h = m_scaleY *  dro.integers[3] * 2;
+      qreal x = (m_xMargin + (dro.integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
+      qreal y = ((m_gh -  dro.integers[1]/*%m_hdvcf*/)*m_scaleY + m_yMargin) - h/2;
       p->save();
-      if ((*it).renderop == "E" )
+      if (dro.renderop == "E" )
       {
         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
       }
@@ -233,11 +228,11 @@ Q_UNUSED(widget)
       }
       p->setPen(pen);
       QRectF rect(x,y,w,h);
-//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
+      kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
       p->drawEllipse(rect);
       p->restore();
     }
-    else if ( (*it).renderop == "B" )
+    else if ( dro.renderop == "B" )
     {
       uint lineWidth = 1;
       QPen pen;
@@ -258,11 +253,11 @@ Q_UNUSED(widget)
       }
       for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum==0 && edge()->colors().count()==0); splineNum++)
       {
-        QPolygonF points((*it).integers[0]);
-        for (int i = 0; i < (*it).integers[0]; i++)
+        QPolygonF points(dro.integers[0]);
+        for (int i = 0; i < dro.integers[0]; i++)
         {
-          qreal nom = ((*it).integers[2*(*it).integers[0]]-(*it).integers[2]);
-          qreal denom = ((*it).integers[2*(*it).integers[0]-1]-(*it).integers[1]);
+          qreal nom = (dro.integers[2*dro.integers[0]]-dro.integers[2]);
+          qreal denom = (dro.integers[2*dro.integers[0]-1]-dro.integers[1]);
           qreal diffX, diffY;
           if (nom == 0)
           {
@@ -289,8 +284,8 @@ Q_UNUSED(widget)
             }
           }
           QPointF p(
-              ((*it).integers[2*i+1]/*%m_wdhcf*/*m_scaleX) +m_xMargin + diffX,
-              (m_gh-(*it).integers[2*i+2]/*%m_hdvcf*/)*m_scaleY + m_yMargin + diffY
+              (dro.integers[2*i+1]/*%m_wdhcf*/*m_scaleX) +m_xMargin + diffX,
+              (m_gh-dro.integers[2*i+2]/*%m_hdvcf*/)*m_scaleY + m_yMargin + diffY
                   );
           points[i] = p;
 //           kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << p;
@@ -308,7 +303,7 @@ Q_UNUSED(widget)
         {
           path.cubicTo(points[3*j + 1],points[3*j+1 + 1], points[3*j+2 + 1]);
         }
-//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
+        kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
         p->drawPath(path);
         p->restore();
       }
@@ -374,20 +369,17 @@ void CanvasEdge::computeBoundingRect()
   else
   {
     QPolygonF points;
-    DotRenderOpVec::const_iterator it, it_end;
-    it = edge()->renderOperations().begin();
-    it_end = edge()->renderOperations().end();
-    for (; it != it_end; it++)
+    foreach (const DotRenderOp& dro, edge()->renderOperations())
     {
-//       kDebug() << (*it).renderop  << ", ";
-      if ( ((*it).renderop != "B") && ((*it).renderop != "p") &&  ((*it).renderop != "P") ) continue;
+//       kDebug() << dro.renderop  << ", ";
+      if ( (dro.renderop != "B") && (dro.renderop != "p") &&  (dro.renderop != "P") ) continue;
       uint previousSize = points.size();
-      points.resize(previousSize+(*it).integers[0]);
-      for (int i = 0; i < (*it).integers[0]; i++)
+      points.resize(previousSize+dro.integers[0]);
+      for (int i = 0; i < dro.integers[0]; i++)
       {
         QPointF p(
-            (((*it).integers[2*i+1]/*%m_wdhcf*/)*m_scaleX) +m_xMargin,
-            ((m_gh-(*it).integers[2*i+2]/*%m_hdvcf*/)*m_scaleY) + m_yMargin
+            ((dro.integers[2*i+1]/*%m_wdhcf*/)*m_scaleX) +m_xMargin,
+            ((m_gh-dro.integers[2*i+2]/*%m_hdvcf*/)*m_scaleY) + m_yMargin
                 );
         points[previousSize+i] = p;
       }

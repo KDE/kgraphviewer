@@ -90,11 +90,15 @@ const QString GraphEdge::color(uint i)
 
 void GraphEdge::updateWith(const GraphEdge& edge)
 {
-//   kDebug() ;
+  kDebug() ;
   m_arrowheads = edge.arrowheads();
   m_colors = edge.colors();
   m_dir = edge.dir();
   GraphElement::updateWith(edge);
+  if (canvasEdge())
+  {
+    canvasEdge()->modelChanged();
+  }
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e)

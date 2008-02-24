@@ -49,8 +49,8 @@ public:
   
   virtual ~CanvasNode() {}
   
-public Q_SLOTS:
-  void modelChanged();
+/*public Q_SLOTS:
+  void modelChanged();*/
   
 };
 

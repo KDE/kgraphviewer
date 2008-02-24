@@ -56,7 +56,8 @@ public:
                   qreal xMargin, qreal yMargin, qreal gh,
                   qreal wdhcf, qreal hdvcf);
 
-    
+  inline void setGh(qreal gh) {m_gh = gh;}
+  
   protected:
   virtual void mouseMoveEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
@@ -70,6 +71,9 @@ public:
   QPen m_pen;
   QBrush m_brush;
   QRectF m_boundingRect;
+
+public Q_SLOTS:
+  void modelChanged();
 };
 
   

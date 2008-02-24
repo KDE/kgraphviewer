@@ -182,9 +182,9 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
   QByteArray result = getDotResult(exitCode, exitStatus);
   result.replace("\\\n","");
 
-  kDebug() << "string content is:" << endl << result << endl << "=====================" << result.size();
+//   kDebug() << "string content is:" << endl << result << endl << "=====================" << result.size();
   std::string s =  result.data();
-  std::cerr << "stdstring content is:" << std::endl << s << std::endl << "===================== " << s.size() << std::endl;
+//   std::cerr << "stdstring content is:" << std::endl << s << std::endl << "===================== " << s.size() << std::endl;
   if (phelper != 0)
   {
     phelper->graph = 0;
@@ -388,6 +388,10 @@ void DotGraph::updateWith(const DotGraph& newGraph)
 //       kDebug() << "known";
       nodes()[ngn->id()]->setZ(ngn->z());
       nodes()[ngn->id()]->updateWith(*ngn);
+      if (nodes()[ngn->id()]->canvasElement()!=0)
+      {
+        nodes()[ngn->id()]->canvasElement()->setGh(m_height);
+      }
     }
     else
     {
@@ -405,6 +409,10 @@ void DotGraph::updateWith(const DotGraph& newGraph)
       kDebug() << "edge known" << nge->id();
       edges()[nge->id()]->setZ(nge->z());
       edges()[nge->id()]->updateWith(*nge);
+      if (edges()[nge->id()]->canvasEdge()!=0)
+      {
+        edges()[nge->id()]->canvasEdge()->setGh(m_height);
+      }
     }
     else
     {
@@ -425,6 +433,10 @@ void DotGraph::updateWith(const DotGraph& newGraph)
     if (subgraphs().contains(nsg->id()))
     {
       subgraphs().value(nsg->id())->updateWith(*nsg);
+      if (subgraphs().value(nsg->id())->canvasElement()!=0)
+      {
+        subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
+      }
     }
     else
     {

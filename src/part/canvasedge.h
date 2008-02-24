@@ -70,9 +70,11 @@ public:
   void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         QWidget *widget);
 
-  GraphEdge* edge() { return m_edge; }
-  const GraphEdge* edge() const { return m_edge; }
+  inline GraphEdge* edge() { return m_edge; }
+  inline const GraphEdge* edge() const { return m_edge; }
 
+  inline void setGh(qreal gh) {m_gh = gh;}
+  
   void computeBoundingRect();
 
 Q_SIGNALS:

@@ -72,15 +72,14 @@ CanvasNode::CanvasNode(DotGraphView* v,
   setToolTip(tipStr);
 }
 
-void CanvasNode::modelChanged()
-{
-//   kDebug() << node()->id();
-  m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_element->fontColor()));
-  m_font = FontsCache::changeable().fromName(m_element->fontName());
-  computeBoundingRect();
-  prepareGeometryChange();
-  setPos(0,0);
-}
+// void CanvasNode::modelChanged()
+// {
+//   kDebug() << element()->id();
+//   m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_element->fontColor()));
+//   m_font = FontsCache::changeable().fromName(m_element->fontName());
+//   prepareGeometryChange();
+//   computeBoundingRect();
+// }
 
 
 // CanvasHtmlNode::CanvasHtmlNode(
