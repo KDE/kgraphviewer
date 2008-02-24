@@ -45,17 +45,13 @@
 //
 
 GraphNode::GraphNode() :
-    GraphElement(),
-    m_visible(false)//,
-//     m_x(0), m_y(0), m_w(0), m_h(0)
+    GraphElement()
 {
 //   kDebug() ;
 }
 
 GraphNode::GraphNode(const GraphNode& gn) :
-    GraphElement(gn),
-    m_visible(gn.m_visible)//,
-//     m_x(gn.m_x), m_y(gn.m_y), m_w(gn.m_w), m_h(gn.m_h)
+    GraphElement(gn)
 {
 //   kDebug() ;
 }

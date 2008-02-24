@@ -43,11 +43,8 @@ public:
   
   virtual ~GraphSubgraph() {}  
   
-  CanvasSubgraph* canvasSubgraph() { return m_cs; }
-  void setCanvasSubgraph(CanvasSubgraph* cs) { m_cs = cs; }
-
-  bool isVisible() const { return m_visible; }
-  void setVisible(bool v) { m_visible = v; }
+  CanvasSubgraph* canvasSubgraph() { return (CanvasSubgraph*)canvasElement();  }
+  void setCanvasSubgraph(CanvasSubgraph* cs) { setCanvasElement((CanvasElement*)cs); }
 
   virtual QString backColor() const;
 
@@ -56,8 +53,6 @@ public:
   inline void setContent(QList<GraphElement*>& c) {m_content=c;}
 
  private:
-  CanvasSubgraph* m_cs;
-  bool m_visible;
   QList<GraphElement*> m_content;
 };
 

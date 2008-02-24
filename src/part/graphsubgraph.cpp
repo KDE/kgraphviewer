@@ -30,9 +30,7 @@
 //
 
 GraphSubgraph::GraphSubgraph() :
-    GraphElement(),
-    m_cs(0),
-    m_visible(false)
+    GraphElement()
 {
 }
 
