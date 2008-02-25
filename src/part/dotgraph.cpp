@@ -506,5 +506,19 @@ void DotGraph::removeEdge(const QString& id)
   }
 }
 
+void DotGraph::removeElement(const QString& id)
+{
+  kDebug();
+  foreach (const QString& eid, nodes().keys())
+  {
+    GraphNode* node = nodes()[eid];
+    if (node->id() ==id)
+    {
+      removeNodeNamed(id);
+      break;
+    }
+  }
+}
+
                                        
 #include "dotgraph.moc"

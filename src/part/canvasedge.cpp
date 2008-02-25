@@ -442,5 +442,7 @@ qreal CanvasEdge::distance(const QPointF& point1, const QPointF& point2)
 void CanvasEdge::slotRemoveEdge()
 {
   kDebug();
-  m_view->removeSelectedEdges();
+  m_view->removeSelectedElements();
 }
+
+#include "canvasedge.moc"

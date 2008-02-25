@@ -49,9 +49,6 @@ public:
   
   virtual ~CanvasNode() {}
   
-/*public Q_SLOTS:
-  void modelChanged();*/
-  
 };
 
 // class CanvasHtmlNode: public KHTMLPart, public CanvasNode

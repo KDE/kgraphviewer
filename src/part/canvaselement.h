@@ -32,16 +32,19 @@
 class GraphElement;
 class DotGraphView;
 class QGraphicsScene;
+class QMenu;
 
 class CanvasElement: public QObject, public QAbstractGraphicsShapeItem
 {
+Q_OBJECT
 public:
   CanvasElement(
       DotGraphView* v, 
       GraphElement* s,
       QGraphicsScene* c,
       QGraphicsItem* parent = 0);
-  virtual ~CanvasElement() {}
+      
+  virtual ~CanvasElement();
   
   GraphElement* element() { return m_element; }
 
@@ -71,9 +74,14 @@ public:
   QPen m_pen;
   QBrush m_brush;
   QRectF m_boundingRect;
+  QMenu* m_popup;
 
+Q_SIGNALS:
+  void selected(CanvasElement*, Qt::KeyboardModifiers);
+  
 public Q_SLOTS:
   void modelChanged();
+  void slotRemoveElement();
 };
 
   

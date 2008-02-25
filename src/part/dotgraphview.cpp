@@ -164,6 +164,10 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   setInteractive(true);
   setDragMode(NoDrag);
   setRenderHint(QPainter::Antialiasing);
+
+  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
+  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
+  connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
 }
 
 DotGraphView::~DotGraphView()
@@ -200,6 +204,9 @@ bool DotGraphView::initEmpty()
     delete m_graph;
   m_graph = new DotGraph();
   connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
+  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
+//   connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
 
   if (m_readWrite)
   {
@@ -240,6 +247,9 @@ bool DotGraphView::loadDot(const QString& dotFileName)
     delete m_graph;
   m_graph = new DotGraph(layoutCommand,dotFileName);
   connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
+  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
+  connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
 
   if (m_readWrite)
   {
@@ -771,6 +781,11 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
       {
         e->setSelected(false);
         e->canvasEdge()->update();
+      }
+      foreach(GraphNode* n, m_graph->nodes())
+      {
+        n->setSelected(false);
+        n->canvasElement()->update();
       }
     }
     m_pressPos = e->globalPos();
@@ -1468,6 +1483,31 @@ void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modi
         e->canvasEdge()->update();
       }
     }
+    foreach(GraphNode* n, m_graph->nodes())
+    {
+      n->setSelected(false);
+      n->canvasNode()->update();
+    }
+  }
+}
+
+void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModifiers modifiers)
+{
+  if (!modifiers.testFlag(Qt::ControlModifier))
+  {
+    foreach(GraphEdge* e, m_graph->edges())
+    {
+      e->setSelected(false);
+      e->canvasEdge()->update();
+    }
+    foreach(GraphNode* e, m_graph->nodes())
+    {
+      if (e->canvasElement() != element)
+      {
+        e->setSelected(false);
+        e->canvasElement()->update();
+      }
+    }
   }
 }
 
@@ -1482,6 +1522,26 @@ void DotGraphView::removeSelectedEdges()
       emit removeEdge(e->id());
     }
   }
+}
+
+void DotGraphView::removeSelectedNodes()
+{
+  kDebug();
+  foreach(GraphNode* e, m_graph->nodes())
+  {
+    if (e->isSelected())
+    {
+      kDebug() << "emiting removeElement " << e->id();
+      emit removeElement(e->id());
+    }
+  }
+}
+
+void DotGraphView::removeSelectedElements()
+{
+  kDebug();
+  removeSelectedNodes();
+  removeSelectedEdges();
 }
 
 void DotGraphView::timerEvent ( QTimerEvent * event )

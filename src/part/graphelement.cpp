@@ -53,7 +53,8 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
   m_originalAttributes(),
   m_ce(element.m_ce),
   m_z(element.m_z),
-  m_renderOperations()
+  m_renderOperations(),
+  m_selected(element.m_selected)
 {
   kDebug() ;
   updateWith(element);

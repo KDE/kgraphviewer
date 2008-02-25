@@ -72,16 +72,6 @@ CanvasNode::CanvasNode(DotGraphView* v,
   setToolTip(tipStr);
 }
 
-// void CanvasNode::modelChanged()
-// {
-//   kDebug() << element()->id();
-//   m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_element->fontColor()));
-//   m_font = FontsCache::changeable().fromName(m_element->fontName());
-//   prepareGeometryChange();
-//   computeBoundingRect();
-// }
-
-
 // CanvasHtmlNode::CanvasHtmlNode(
 //                                           DotGraphView* v, 
 //                                           GraphNode* n,

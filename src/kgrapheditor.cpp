@@ -586,6 +586,13 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
 
   connect( m_currentPart, SIGNAL( newEdgeAdded(const QString&, const QString&) ),
             this, SLOT( slotNewEdgeAdded(const QString&, const QString&) ) );
+
+  connect( m_currentPart, SIGNAL( removeElement(const QString&) ),
+            this, SLOT( slotRemoveElement(const QString&) ) );
+
+
+  connect( this, SIGNAL( removeElement(const QString&) ),
+            m_currentPart, SLOT( slotRemoveElement(const QString&) ) );
 }
 
 void KGraphEditor::slotNewNodeAdded(const QString& id)
@@ -740,5 +747,13 @@ void KGraphEditor::slotRemoveNewElementAttribute(const QString& attrib)
   kDebug();
   m_newElementAttributes.remove(attrib);
 }
+
+void KGraphEditor::slotRemoveElement(const QString& id)
+{
+  kDebug() << id;
+  m_treeWidget->slotRemoveElement(id);
+  emit(removeElement(id));
+}
+
 
 #include "kgrapheditor.moc"

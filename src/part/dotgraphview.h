@@ -131,17 +131,23 @@ public:
   inline bool isReadWrite() {return m_readWrite;}
   inline bool isReadOnly() {return !m_readWrite;}
   
+  void removeSelectedNodes();
   void removeSelectedEdges();
+  void removeSelectedElements();
   
-signals:
+Q_SIGNALS:
   void zoomed(double factor);
   void sigViewBevEnabledToggled(bool value);
   void sigViewBevActivated(int newPos);
   void graphLoaded();
   void newNodeAdded(const QString&);
   void newEdgeAdded(const QString&, const QString&);
-  /** signals that the user as activated a remove edge command */
+  /** signals that the user has activated a remove edge command */
   void removeEdge(const QString&);
+  /** signals that the user has activated a remove edge command */
+  void removeNodeNamed(const QString&);
+  /** signals that the user has activated a remove element command */
+  void removeElement(const QString&);
 
 public slots:
   void zoomIn();
@@ -174,6 +180,7 @@ public slots:
   void slotUpdate();
   bool displayGraph();
   void slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers);
+  void slotElementSelected(CanvasElement*, Qt::KeyboardModifiers);
   
 protected:
   void resizeEvent(QResizeEvent*);

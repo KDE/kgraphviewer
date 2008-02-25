@@ -63,6 +63,8 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
           this, SIGNAL( newNodeAdded(const QString&) ) );
   connect( m_widget, SIGNAL( removeEdge(const QString&) ),
            this, SIGNAL( removeEdge(const QString&) ) );
+  connect( m_widget, SIGNAL( removeElement(const QString&) ),
+           this, SIGNAL( removeElement(const QString&) ) );
                     
   // notify the part that this is our internal widget
   setWidget(m_widget);
@@ -273,6 +275,12 @@ void kgraphviewerPart::slotRemoveEdge(const QString& id)
 {
   kDebug();
   m_widget->graph()->removeEdge(id);
+}
+
+void kgraphviewerPart::slotRemoveElement(const QString& id)
+{
+  kDebug();
+  m_widget->graph()->removeElement(id);
 }
 
 /*It's usually safe to leave the factory code alone.. with the

@@ -30,6 +30,8 @@
 
 #include <QPainter>
 #include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
+#include <QMenu>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -38,6 +40,7 @@
 #include <kapplication.h>
 #include <kiconloader.h>
 #include <kfiledialog.h>
+#include <KAction>
 
 CanvasElement::CanvasElement(
                               DotGraphView* v,
@@ -48,7 +51,8 @@ CanvasElement::CanvasElement(
   : QObject(), QAbstractGraphicsShapeItem(parent), 
     m_element(gelement), m_view(v),
     m_font(0),
-    m_pen(Dot2QtConsts::componentData().qtColor(gelement->fontColor()))
+    m_pen(Dot2QtConsts::componentData().qtColor(gelement->fontColor())),
+    m_popup(new QMenu())
 {
 //   kDebug();
   m_font = FontsCache::changeable().fromName(gelement->fontName());
@@ -82,6 +86,18 @@ CanvasElement::CanvasElement(
     m_brush = c->backgroundBrush();
   }
   
+  // the message should be given (or possible to be given) by the part user
+  KAction* removeElementAction = new KAction(i18n("Remove selected element(s)"), this);
+  m_popup->addAction(removeElementAction);
+  connect(removeElementAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveElement()));
+
+  connect(this, SIGNAL(selected(CanvasElement*, Qt::KeyboardModifiers)), v, SLOT(slotElementSelected(CanvasElement*, Qt::KeyboardModifiers)));
+
+}
+
+CanvasElement::~CanvasElement()
+{
+  delete m_popup;
 }
 
 void CanvasElement::modelChanged()
@@ -366,22 +382,63 @@ QWidget *widget)
       p->restore();
     }
   }
-//   p->drawRect(QRectF(pos(),boundingRect().bottomRight()));
+  if (element()->isSelected())
+  {
+    kDebug() << "element is selected: draw selection marks";
+    p->save();
+    p->setBrush(Qt::black);
+    p->setPen(Qt::black);
+    p->drawRect(QRectF(m_boundingRect.topLeft(),QSizeF(6,6)));
+    p->drawRect(QRectF(m_boundingRect.topRight()-QPointF(6,0),QSizeF(6,6)));
+    p->drawRect(QRectF(m_boundingRect.bottomLeft()-QPointF(0,6),QSizeF(6,6)));
+    p->drawRect(QRectF(m_boundingRect.bottomRight()-QPointF(6,6),QSizeF(6,6)));
+    p->restore();
+}
 }
 
 void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-  Q_UNUSED(event)
   kDebug() << m_element->id() << boundingRect();
+  if (m_view->isReadOnly())
+  {
+    return;
+  }
   if (m_view->editingMode() == DotGraphView::AddNewEdge)
   {
     m_view->createNewEdgeDraftFrom(this);
+    return;
   }
   else if (m_view->editingMode() == DotGraphView::DrawNewEdge)
   {
     m_view->finishNewEdgeTo(this);
+    return;
+  }
+  if (event->button() == Qt::LeftButton)
+  {
+    m_element->setSelected(!m_element->isSelected());
+    if (m_element->isSelected())
+    {
+      emit(selected(this,event->modifiers()));
+    }
+    update();
+  }
+  else if (event->button() == Qt::RightButton)
+  {
+    // opens the selected edge contextual menu and if necessary select the edge
+    if (!m_element->isSelected())
+    {
+      m_element->setSelected(true);
+      emit(selected(this,event->modifiers()));
+      update();
+    }
+    kDebug() << "opens the contextual menu";
+
+    m_popup->exec(event->screenPos());
   }
 }
+
+
+
 
 void CanvasElement::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
@@ -395,5 +452,10 @@ void CanvasElement::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 //   kDebug() ;
 }
 
+void CanvasElement::slotRemoveElement()
+{
+  kDebug();
+  m_view->removeSelectedElements();
+}
 
-#include "canvassubgraph.moc"
+#include "canvaselement.moc"

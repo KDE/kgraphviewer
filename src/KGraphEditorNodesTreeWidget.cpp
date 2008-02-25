@@ -74,10 +74,20 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
 
 void KGraphEditorNodesTreeWidget::slotRemoveNode()
 {
-  kDebug() << "Remove Node";
+  kDebug();
   emit removeNode(m_item->text(0));
   delete takeTopLevelItem (indexOfTopLevelItem(m_item));
   m_item = 0;
+}
+
+void KGraphEditorNodesTreeWidget::slotRemoveElement(const QString& id)
+{
+  kDebug() << id;
+  QList<QTreeWidgetItem*> items = findItems(id,Qt::MatchExactly,0);
+  foreach (QTreeWidgetItem* item, items)
+  {
+    delete takeTopLevelItem (indexOfTopLevelItem(item));
+  }
 }
 
 void KGraphEditorNodesTreeWidget::slotAddAttribute()

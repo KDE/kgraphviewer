@@ -64,10 +64,9 @@ public:
   void reloadPreviousFiles();
 
 protected:
-
   bool queryExit(); 
 
-signals:
+Q_SIGNALS:
   void hide(KParts::Part* part);
   void prepareAddNewElement(QMap<QString,QString> attribs);
   void prepareAddNewEdge(QMap<QString,QString> attribs);
@@ -75,11 +74,12 @@ signals:
   void saveTo(const QString& fileName);
 
   void removeNode(const QString&);
+  void removeElement(const QString&);
   void addAttribute(const QString&);
   void removeAttribute(const QString&,const QString&);
   void update();
   
-public slots:
+public Q_SLOTS:
   /**
     * Use this method to load whatever file/URL you have
     */
@@ -103,8 +103,9 @@ public slots:
   void reloadOnChangeMode_pressed(int value);
   void openInExistingWindowMode_pressed(int value);
   void reopenPreviouslyOpenedFilesMode_pressed(int value);*/
-  
-private slots:
+  void slotRemoveElement(const QString& id);
+
+private Q_SLOTS:
   void fileNew();
   void fileOpen();
   void fileSave();

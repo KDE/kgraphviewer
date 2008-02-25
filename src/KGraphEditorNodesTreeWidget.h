@@ -51,6 +51,9 @@ protected Q_SLOTS:
   void slotAddAttribute();
   void slotRemoveAttribute();
 
+public Q_SLOTS:
+  void slotRemoveElement(const QString& id);
+
 Q_SIGNALS:
   void removeNode(const QString&);
   void addAttribute(const QString&);
