@@ -410,10 +410,8 @@ bool DotGraphView::displayGraph()
 
   m_cvZoom = 0;
   updateSizes();
-  zoomRectMovedTo(QPointF(0,0));
 
   viewport()->setUpdatesEnabled(true);
-//   show();
   QSet<QGraphicsSimpleTextItem*>::iterator labelViewsIt, labelViewsIt_end;
   labelViewsIt = m_labelViews.begin(); labelViewsIt_end = m_labelViews.end();
   for (; labelViewsIt != labelViewsIt_end; labelViewsIt++)
@@ -424,7 +422,6 @@ bool DotGraphView::displayGraph()
   
   emit graphLoaded();
 
-  viewport()->setUpdatesEnabled(true);
   return true;
 }
 
@@ -787,6 +784,11 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
         n->setSelected(false);
         n->canvasElement()->update();
       }
+      foreach(GraphSubgraph* s, m_graph->subgraphs())
+      {
+        s->setSelected(false);
+        s->canvasElement()->update();
+      }
     }
     m_pressPos = e->globalPos();
     m_pressScrollBarsPos = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
@@ -816,7 +818,7 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
   }
   else if (e->buttons().testFlag(Qt::LeftButton))
   {
-    kDebug() << (e->globalPos() - m_pressPos);
+//     kDebug() << (e->globalPos() - m_pressPos);
     QPoint diff = e->globalPos() - m_pressPos;
     horizontalScrollBar()->setValue(m_pressScrollBarsPos.x()-diff.x());
     verticalScrollBar()->setValue(m_pressScrollBarsPos.y()-diff.y());
@@ -1042,38 +1044,32 @@ void DotGraphView::setupPopup()
   
   QStringList layoutAlgos;
   KAction* lea = new KAction(i18n(" "), this);
-  //@todo uncomment after string unfreeze
-  //   lea->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
+  lea->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
   actionCollection()->addAction("layout_specifiy",lea);
   lea->setCheckable(false);
   
   KAction* lda = new KAction(i18n("Dot"), this);
-  //@todo uncomment after string unfreeze
-  //   lda->setWhatsThis(i18n("Layout the graph using the dot program."));
+  lda->setWhatsThis(i18n("Layout the graph using the dot program."));
   actionCollection()->addAction("layout_dot",lda);
   lda->setCheckable(false);
   
   KAction* lna = new KAction(i18n("Neato"), this);
-  //@todo uncomment after string unfreeze
-  //   lna->setWhatsThis(i18n("Layout the graph using the neato program."));
+  lna->setWhatsThis(i18n("Layout the graph using the neato program."));
   actionCollection()->addAction("layout_neato",lna);
   lna->setCheckable(false);
   
   KAction* lta = new KAction(i18n("Twopi"), this);
-  //@todo uncomment after string unfreeze
-  //   lta->setWhatsThis(i18n("Layout the graph using the twopi program."));
+  lta->setWhatsThis(i18n("Layout the graph using the twopi program."));
   actionCollection()->addAction("layout_twopi",lta);
   lta->setCheckable(false);
   
   KAction* lfa = new KAction(i18n("Fdp"), this);
-  //@todo uncomment after string unfreeze
-  //   lfa->setWhatsThis(i18n("Layout the graph using the fdp program."));
+  lfa->setWhatsThis(i18n("Layout the graph using the fdp program."));
   actionCollection()->addAction("layout_fdp",lfa);
   lfa->setCheckable(false);
   
   KAction* lca = new KAction(i18n("Circo"), this);
-  //@todo uncomment after string unfreeze
-  //   lca->setWhatsThis(i18n("Layout the graph using the circo program."));
+  lca->setWhatsThis(i18n("Layout the graph using the circo program."));
   actionCollection()->addAction("layout_c",lca);
   lca->setCheckable(false);
   
@@ -1099,11 +1095,9 @@ void DotGraphView::setupPopup()
   QMenu* layoutPopup = m_popup->addMenu(i18n("Layout"));
   layoutPopup->addAction(m_layoutAlgoSelectAction);
   QAction* slc = layoutPopup->addAction(i18n("Specify layout command"), this, SLOT(slotLayoutSpecify()));
-  //@todo uncomment after string unfreeze
-  //   slc->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
+  slc->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
   QAction* rlc = layoutPopup->addAction(i18n("Reset layout command to default"), this, SLOT(slotLayoutReset()));
-  //@todo uncomment after string unfreeze
-  //   rlc->setWhatsThis(i18n("Resets the layout command to use to the default depending on the graph type (directed or not)."));
+  rlc->setWhatsThis(i18n("Resets the layout command to use to the default depending on the graph type (directed or not)."));
   
                         
   m_popup->insertSeparator();
@@ -1141,42 +1135,36 @@ void DotGraphView::setupPopup()
   m_popup->addAction(m_bevEnabledAction);
   
   m_bevPopup = new KSelectAction(i18n("Birds-eye View"), this);
-  //@todo uncomment after string unfreeze
-  //   m_bevPopup->setWhatsThis(i18n("Allows to setup the Bird's-eye View."));
+  m_bevPopup->setWhatsThis(i18n("Allows to setup the Bird's-eye View."));
   m_popup->addAction(m_bevPopup);
   actionCollection()->addAction("view_bev",m_bevPopup);
 
   KAction* btla = new KAction(i18n("Top Left"), this);
-  //@todo uncomment after string unfreeze
-  //   btla->setWhatsThis(i18n("Puts the Bird's-eye View at the top left corner."));
+  btla->setWhatsThis(i18n("Puts the Bird's-eye View at the top left corner."));
   btla->setCheckable(true);
   actionCollection()->addAction("bev_top_left",btla);
   connect(btla, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevTopLeft()));
   KAction* btra = new KAction(i18n("Top Right"), this);
-  //@todo uncomment after string unfreeze
-  //   btra->setWhatsThis(i18n("Puts the Bird's-eye View at the top right corner."));
+  btra->setWhatsThis(i18n("Puts the Bird's-eye View at the top right corner."));
   btra->setCheckable(true);
   actionCollection()->addAction("bev_top_right",btra);
   connect(btra, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevTopRight()));
   KAction* bbla = new KAction(i18n("Bottom Left"), this);
-  //@todo uncomment after string unfreeze
-  //   bbla->setWhatsThis(i18n("Puts the Bird's-eye View at the bottom left corner."));
+  bbla->setWhatsThis(i18n("Puts the Bird's-eye View at the bottom left corner."));
   bbla->setCheckable(true);
   actionCollection()->addAction("bev_bottom_left",bbla);
   connect(bbla, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevBottomLeft()));
   KAction* bbra = new KAction(i18n("Bottom Right"), this);
-  //@todo uncomment after string unfreeze
-  //   bbra->setWhatsThis(i18n("Puts the Bird's-eye View at the bottom right corner."));
+  bbra->setWhatsThis(i18n("Puts the Bird's-eye View at the bottom right corner."));
   bbra->setCheckable(true);
   actionCollection()->addAction("bev_bottom_right",bbra);
   connect(bbra, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevBottomRight()));
   KAction* bba = new KAction(i18n("Automatic"), this);
-  //@todo uncomment after string unfreeze
-  //   bba->setWhatsThis(i18n("Let's KGraphViewer automaticaly choose the Bird's-eye View position."));
+  bba->setWhatsThis(i18n("Let's KGraphViewer automaticaly choose the Bird's-eye View position."));
   bba->setCheckable(true);
   actionCollection()->addAction("bev_automatic",bba);
   connect(bba, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
@@ -1473,6 +1461,8 @@ void DotGraphView::setReadWrite()
 
 void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modifiers)
 {
+  QList<QString> selection;
+  selection.push_back(edge->edge()->id());
   if (!modifiers.testFlag(Qt::ControlModifier))
   {
     foreach(GraphEdge* e, m_graph->edges())
@@ -1488,11 +1478,46 @@ void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modi
       n->setSelected(false);
       n->canvasNode()->update();
     }
+    foreach(GraphSubgraph* s, m_graph->subgraphs())
+    {
+      s->setSelected(false);
+      s->canvasElement()->update();
+    }
   }
+  else
+  {
+    foreach(GraphEdge* e, m_graph->edges())
+    {
+      if (e->canvasEdge() != edge)
+      {
+        if (e->isSelected())
+        {
+          selection.push_back(e->id());
+        }
+      }
+    }
+    foreach(GraphNode* n, m_graph->nodes())
+    {
+      if (n->isSelected())
+      {
+        selection.push_back(n->id());
+      }
+    }
+    foreach(GraphSubgraph* s, m_graph->subgraphs())
+    {
+      if (s->isSelected())
+      {
+        selection.push_back(s->id());
+      }
+    }
+  }
+  emit selectionIs(selection);
 }
 
 void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModifiers modifiers)
 {
+  QList<QString> selection;
+  selection.push_back(element->element()->id());
   if (!modifiers.testFlag(Qt::ControlModifier))
   {
     foreach(GraphEdge* e, m_graph->edges())
@@ -1508,7 +1533,40 @@ void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModif
         e->canvasElement()->update();
       }
     }
+    foreach(GraphSubgraph* s, m_graph->subgraphs())
+    {
+      if (s->canvasElement() != element)
+      {
+        s->setSelected(false);
+        s->canvasElement()->update();
+      }
+    }
   }
+  else
+  {
+    foreach(GraphEdge* e, m_graph->edges())
+    {
+      if (e->isSelected())
+      {
+        selection.push_back(e->id());
+      }
+    }
+    foreach(GraphNode* n, m_graph->nodes())
+    {
+      if (n->isSelected())
+      {
+        selection.push_back(n->id());
+      }
+    }
+    foreach(GraphSubgraph* s, m_graph->subgraphs())
+    {
+      if (s->isSelected())
+      {
+        selection.push_back(s->id());
+      }
+    }
+  }
+  emit selectionIs(selection);
 }
 
 void DotGraphView::removeSelectedEdges()
@@ -1567,7 +1625,7 @@ void DotGraphView::timerEvent ( QTimerEvent * event )
   }
 }
 
-void DotGraphView::leaveEvent ( QEvent * event )
+void DotGraphView::leaveEvent ( QEvent * /*event*/ )
 {
   kDebug() << mapFromGlobal(QCursor::pos());
   if (m_editingMode == DrawNewEdge)
@@ -1592,7 +1650,7 @@ void DotGraphView::leaveEvent ( QEvent * event )
   }
 }
 
-void DotGraphView::enterEvent ( QEvent * event )
+void DotGraphView::enterEvent ( QEvent * /*event*/ )
 {
   kDebug();
   if (m_leavedTimer != std::numeric_limits<int>::max())

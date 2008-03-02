@@ -65,6 +65,8 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
            this, SIGNAL( removeEdge(const QString&) ) );
   connect( m_widget, SIGNAL( removeElement(const QString&) ),
            this, SIGNAL( removeElement(const QString&) ) );
+  connect( m_widget, SIGNAL( selectionIs(const QList<QString>&) ),
+           this, SIGNAL( selectionIs(const QList<QString>&) ) );
                     
   // notify the part that this is our internal widget
   setWidget(m_widget);
@@ -263,6 +265,12 @@ void kgraphviewerPart::slotRemoveNode(const QString& nodeName)
 void kgraphviewerPart::slotAddAttribute(const QString&)
 {
   kDebug();
+}
+
+void kgraphviewerPart::slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue)
+{
+  kDebug();
+  m_widget->graph()->setAttribute(elementId,attributeName,attributeValue);
 }
 
 void kgraphviewerPart::slotRemoveAttribute(const QString& nodeName, const QString& attribName)

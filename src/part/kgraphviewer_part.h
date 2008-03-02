@@ -66,6 +66,7 @@ Q_SIGNALS:
   /** signals that the user has activated a remove element command */
   void removeElement(const QString&);
   void close();
+  void selectionIs(const QList<QString>&);
   
 public slots:
   void slotHide(KParts::Part* part);
@@ -77,6 +78,7 @@ public slots:
   void saveTo(const QString& fileName);
   void slotRemoveNode(const QString&);
   void slotAddAttribute(const QString&);
+  void slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
   void slotRemoveAttribute(const QString&,const QString&);
   void slotSetGraphAttributes(QMap<QString,QString> attribs);
   void slotAddNewNode(QMap<QString,QString> attribs);

@@ -41,7 +41,7 @@
 
 using namespace std;
 
-#define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<size_t>::max()
+#define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<int>::max()
 
 extern DotGraphParsingHelper* phelper;
 

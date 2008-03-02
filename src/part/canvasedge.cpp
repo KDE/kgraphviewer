@@ -57,6 +57,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
     m_font(0), m_view(view), m_popup(new QMenu())
 {
   kDebug() << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << m_gh;
+  setBoundingRegionGranularity(0.9);
   m_font = FontsCache::changeable().fromName(e->fontName());
 
   computeBoundingRect();
@@ -87,6 +88,72 @@ QRectF CanvasEdge::boundingRect() const
 {
   return m_boundingRect;
 }
+
+QPainterPath CanvasEdge::shape () const
+{
+//   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
+  QPainterPath path;
+  path.addRegion(boundingRegion(QTransform()));
+  return path;
+  
+  foreach (const DotRenderOp& dro, edge()->renderOperations())
+  {
+    if ( dro.renderop == "B" )
+    {
+      for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum==0 && edge()->colors().count()==0); splineNum++)
+      {
+        QPolygonF points(dro.integers[0]);
+        for (int i = 0; i < dro.integers[0]; i++)
+        {
+          qreal nom = (dro.integers[2*dro.integers[0]]-dro.integers[2]);
+          qreal denom = (dro.integers[2*dro.integers[0]-1]-dro.integers[1]);
+          qreal diffX, diffY;
+          if (nom == 0)
+          {
+            diffX = 0;
+            diffY = 2*(edge()->colors().count()/2 - splineNum);
+          }
+          else if (denom ==0)
+          {
+            diffX = 2*(edge()->colors().count()/2 - splineNum);
+            diffY = 0;
+          }
+          else
+          {
+            double pente = nom/denom;
+            if (pente < 0)
+            {
+              diffX = 2*(edge()->colors().count()/2 - splineNum);
+              diffY = edge()->colors().count()/2 + splineNum;
+            }
+            else
+            {
+              diffX = 2*(edge()->colors().count()/2 - splineNum);
+              diffY = 2*(edge()->colors().count()/2 - splineNum);
+            }
+          }
+          QPointF p(
+              (dro.integers[2*i+1]/*%m_wdhcf*/*m_scaleX) +m_xMargin + diffX,
+              (m_gh-dro.integers[2*i+2]/*%m_hdvcf*/)*m_scaleY + m_yMargin + diffY
+                  );
+          points[i] = p;
+        }
+        path.moveTo(points[0]);
+        for (int j = 0; j < (points.size()-1)/3; j++)
+        {
+          path.cubicTo(points[3*j + 1],points[3*j+1 + 1], points[3*j+2 + 1]);
+        }
+        for (int j = (points.size()-1)/3-3; j >= 0 ; j--)
+        {
+          path.cubicTo(points[3*j + 1],points[3*j+1 + 1], points[3*j+2 + 1]);
+        }
+      }
+    }
+  }
+  return path;
+}
+
+
 
 void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
                    QWidget* widget)
@@ -176,7 +243,7 @@ Q_UNUSED(widget)
         p->save();
         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
         p->drawPolygon(polygon);
-        kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
+//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
         p->restore();
       }
       else
@@ -196,7 +263,7 @@ Q_UNUSED(widget)
       }
       p->save();
       p->setPen(pen);
-      kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
+//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
       p->drawPolyline(polygon);
       p->restore();
     }
@@ -228,7 +295,7 @@ Q_UNUSED(widget)
       }
       p->setPen(pen);
       QRectF rect(x,y,w,h);
-      kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
+//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
       p->drawEllipse(rect);
       p->restore();
     }
@@ -256,6 +323,8 @@ Q_UNUSED(widget)
         QPolygonF points(dro.integers[0]);
         for (int i = 0; i < dro.integers[0]; i++)
         {
+          // computing of diffX and diffY to draw parallel edges
+          // when asked through the corresponding GraphViz feature
           qreal nom = (dro.integers[2*dro.integers[0]]-dro.integers[2]);
           qreal denom = (dro.integers[2*dro.integers[0]-1]-dro.integers[1]);
           qreal diffX, diffY;
@@ -303,7 +372,7 @@ Q_UNUSED(widget)
         {
           path.cubicTo(points[3*j + 1],points[3*j+1 + 1], points[3*j+2 + 1]);
         }
-        kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
+//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
         p->drawPath(path);
         p->restore();
       }

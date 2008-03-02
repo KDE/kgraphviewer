@@ -78,7 +78,7 @@ public:
   inline QString url() const {return m_attributes["URL"];}
   inline void setUrl(const QString& theUrl) {m_attributes["URL"] = theUrl;}
 
-  virtual void updateWith(const GraphElement& element);
+  virtual void updateWithElement(const GraphElement& element);
 
   inline QMap<QString,QString>& attributes() {return m_attributes;}
   inline const QMap<QString,QString>& attributes() const {return m_attributes;}

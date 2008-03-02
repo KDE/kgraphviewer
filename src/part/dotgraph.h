@@ -96,7 +96,9 @@ public:
 
   void saveTo(const QString& fileName);
 
-  virtual void updateWith(const DotGraph& graph);
+  virtual void updateWithGraph(const DotGraph& graph);
+
+  void setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
 
 public Q_SLOTS:
   void removeNodeNamed(const QString& nodeName);

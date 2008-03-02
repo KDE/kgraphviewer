@@ -57,10 +57,10 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
   m_selected(element.m_selected)
 {
   kDebug() ;
-  updateWith(element);
+  updateWithElement(element);
 }
 
-void GraphElement::updateWith(const GraphElement& element)
+void GraphElement::updateWithElement(const GraphElement& element)
 {
   kDebug();
   bool modified = false;

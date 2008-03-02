@@ -59,7 +59,7 @@ public:
   inline const CanvasNode* canvasNode() const { return (const CanvasNode*)canvasElement(); }
   inline void setCanvasNode(CanvasNode* cn) { setCanvasElement((CanvasElement*)cn); }
 
-  virtual void updateWith(const GraphNode& node);
+  virtual void updateWithNode(const GraphNode& node);
 
   
 private:

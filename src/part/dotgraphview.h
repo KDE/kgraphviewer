@@ -148,8 +148,9 @@ Q_SIGNALS:
   void removeNodeNamed(const QString&);
   /** signals that the user has activated a remove element command */
   void removeElement(const QString&);
-
-public slots:
+  /** signals the content of the new selection */
+  void selectionIs(const QList<QString>&);
+public Q_SLOTS:
   void zoomIn();
   void zoomOut();  
   void zoomRectMovedTo(QPointF newZoomPos);

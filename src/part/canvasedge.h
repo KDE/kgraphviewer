@@ -67,6 +67,8 @@ public:
   
   QRectF boundingRect() const;
 
+  QPainterPath shape () const;
+
   void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         QWidget *widget);
 

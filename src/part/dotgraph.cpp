@@ -139,6 +139,7 @@ bool DotGraph::parseDot(const QString& str)
   if (m_dot != 0)
   {
     disconnect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
+    disconnect(m_dot,SIGNAL(error(QProcess::ProcessError)),this,SLOT(slotDotRunningError(QProcess::ProcessError)));
     m_dot->kill();
     delete m_dot;
   }
@@ -215,7 +216,7 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
 
   if (parsingResult)
   {
-    updateWith(newGraph);
+    updateWithGraph(newGraph);
   }
   else
   {
@@ -240,34 +241,22 @@ void DotGraph::slotDotRunningError(QProcess::ProcessError error)
   switch (error)
   {
     case QProcess::FailedToStart:
-      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
-      //@todo uncomment after string unfreeze
-      //       KMessageBox::error(0, i18n("Unable to start %1.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-      break;
+      KMessageBox::error(0, i18n("Unable to start %1.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+    break;
     case QProcess::Crashed:
-      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
-      //@todo uncomment after string unfreeze
-      //       KMessageBox::error(0, i18n("%1 crashed.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-      break;
+      KMessageBox::error(0, i18n("%1 crashed.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+    break;
     case QProcess::Timedout:
-      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
-      //@todo uncomment after string unfreeze
-      //       KMessageBox::error(0, i18n("%1 timed out.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-      break;
+      KMessageBox::error(0, i18n("%1 timed out.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+    break;
     case QProcess::WriteError:
-      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
-      //@todo uncomment after string unfreeze
-      //       KMessageBox::error(0, i18n("Was not able to write data to the %1 process.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-      break;
+      KMessageBox::error(0, i18n("Was not able to write data to the %1 process.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+    break;
     case QProcess::ReadError:
-      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
-      //@todo uncomment after string unfreeze
-      //       KMessageBox::error(0, i18n("Was not able to read data from the %1 process.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-      break;
+      KMessageBox::error(0, i18n("Was not able to read data from the %1 process.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+    break;
     default:
-      KMessageBox::error(0, i18n("Error!"),i18n("Error!"),KMessageBox::Notify);
-      //@todo uncomment after string unfreeze
-      //       KMessageBox::error(0, i18n("Unknown error running %1.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
+      KMessageBox::error(0, i18n("Unknown error running %1.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
   }
 }
 
@@ -370,10 +359,10 @@ void DotGraph::saveTo(const QString& fileName)
   exporter.writeDot(this, fileName);
 }
 
-void DotGraph::updateWith(const DotGraph& newGraph)
+void DotGraph::updateWithGraph(const DotGraph& newGraph)
 {
   kDebug();
-  GraphElement::updateWith(newGraph);
+  GraphElement::updateWithElement(newGraph);
   m_width=newGraph.width();
   m_height=newGraph.height();
   m_scale=newGraph.scale();
@@ -387,7 +376,7 @@ void DotGraph::updateWith(const DotGraph& newGraph)
     {
 //       kDebug() << "known";
       nodes()[ngn->id()]->setZ(ngn->z());
-      nodes()[ngn->id()]->updateWith(*ngn);
+      nodes()[ngn->id()]->updateWithNode(*ngn);
       if (nodes()[ngn->id()]->canvasElement()!=0)
       {
         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
@@ -408,7 +397,7 @@ void DotGraph::updateWith(const DotGraph& newGraph)
     {
       kDebug() << "edge known" << nge->id();
       edges()[nge->id()]->setZ(nge->z());
-      edges()[nge->id()]->updateWith(*nge);
+      edges()[nge->id()]->updateWithEdge(*nge);
       if (edges()[nge->id()]->canvasEdge()!=0)
       {
         edges()[nge->id()]->canvasEdge()->setGh(m_height);
@@ -420,7 +409,7 @@ void DotGraph::updateWith(const DotGraph& newGraph)
       {
         GraphEdge* newEdge = new GraphEdge();
         newEdge->setId(nge->id());
-        newEdge->updateWith(*nge);
+        newEdge->updateWithEdge(*nge);
         newEdge->setFromNode(nodes()[nge->fromNode()->id()]);
         newEdge->setToNode(nodes()[nge->toNode()->id()]);
         edges().insert(nge->id(), newEdge);
@@ -432,7 +421,7 @@ void DotGraph::updateWith(const DotGraph& newGraph)
 //     kDebug() << "a subgraph";
     if (subgraphs().contains(nsg->id()))
     {
-      subgraphs().value(nsg->id())->updateWith(*nsg);
+      subgraphs().value(nsg->id())->updateWithElement(*nsg);
       if (subgraphs().value(nsg->id())->canvasElement()!=0)
       {
         subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
@@ -441,7 +430,7 @@ void DotGraph::updateWith(const DotGraph& newGraph)
     else
     {
       GraphSubgraph* newSubgraph = new GraphSubgraph();
-      newSubgraph->updateWith(*nsg);
+      newSubgraph->updateWithElement(*nsg);
       newSubgraph->setZ(0);
       subgraphs().insert(nsg->id(), newSubgraph);
     }
@@ -520,5 +509,21 @@ void DotGraph::removeElement(const QString& id)
   }
 }
 
-                                       
+void DotGraph::setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue)
+{
+  if (nodes().contains(elementId))
+  {
+    nodes()[elementId]->attributes()[attributeName] = attributeValue;
+  }
+  else if (edges().contains(elementId))
+  {
+    edges()[elementId]->attributes()[attributeName] = attributeValue;
+  }
+  else if (subgraphs().contains(elementId))
+  {
+    subgraphs()[elementId]->attributes()[attributeName] = attributeValue;
+  }
+}
+
+
 #include "dotgraph.moc"

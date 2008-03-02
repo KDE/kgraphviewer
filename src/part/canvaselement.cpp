@@ -235,7 +235,7 @@ QWidget *widget)
       p->save();
       p->setBrush(Dot2QtConsts::componentData().qtColor(element()->backColor()));
       p->setPen(Dot2QtConsts::componentData().qtColor(element()->lineColor()));
-      kDebug() << element()->id() << "drawEllipse" << element()->backColor() << rect;
+//       kDebug() << element()->id() << "drawEllipse" << element()->backColor() << rect;
 //       rect = QRectF(0,0,100,100);
       p->drawEllipse(rect);
       p->restore();
@@ -285,7 +285,7 @@ QWidget *widget)
       {
         p->setBrush(canvas()->backgroundColor());
       }*/
-      kDebug() << element()->id() << "drawPolygon" << points;
+//       kDebug() << element()->id() << "drawPolygon" << points;
       p->drawPolygon(points);
       p->restore();
       if (!element()->shapeFile().isEmpty())
@@ -331,7 +331,7 @@ QWidget *widget)
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));
       }
       p->setPen(pen);
-      kDebug() << element()->id() << "drawPolyline" << points;
+//       kDebug() << element()->id() << "drawPolyline" << points;
       p->drawPolyline(points);
       p->restore();
     }
@@ -377,14 +377,14 @@ QWidget *widget)
                       + m_xMargin;
       qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
       QPointF point(x,y);
-      kDebug() << element()->id() << "drawText" << point << " " << fontSize;
+//       kDebug() << element()->id() << "drawText" << point << " " << fontSize;
       p->drawText(point, dro.str);
       p->restore();
     }
   }
   if (element()->isSelected())
   {
-    kDebug() << "element is selected: draw selection marks";
+//     kDebug() << "element is selected: draw selection marks";
     p->save();
     p->setBrush(Qt::black);
     p->setPen(Qt::black);

@@ -88,13 +88,13 @@ const QString GraphEdge::color(uint i)
   }
 }
 
-void GraphEdge::updateWith(const GraphEdge& edge)
+void GraphEdge::updateWithEdge(const GraphEdge& edge)
 {
   kDebug() ;
   m_arrowheads = edge.arrowheads();
   m_colors = edge.colors();
   m_dir = edge.dir();
-  GraphElement::updateWith(edge);
+  GraphElement::updateWithElement(edge);
   if (canvasEdge())
   {
     canvasEdge()->modelChanged();
