@@ -15,6 +15,11 @@ endif (APPLE)
 find_package(KdepimLibs REQUIRED)
 #macro_optional_find_package(GraphViz)
 
+FIND_PROGRAM(DOT_EXECUTABLE NAMES dot  PATHS /usr/bin/  )
+if(NOT DOT_EXECUTABLE)
+   MESSAGE(STATUS "GraphViz not found. You will need it at runtime")
+endif(NOT DOT_EXECUTABLE)
+
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT3_SUPPORT)
 
 remove_definitions(-DQT_NO_STL) 
