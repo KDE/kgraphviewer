@@ -14,6 +14,7 @@ kde4_add_ui_files(kgraphviewerpart_PART_SRCS ${kgraphviewerprinting_UI} )
 
 kde4_add_plugin(kgraphviewerpart ${kgraphviewerpart_PART_SRCS})
 
+add_definitions(-DQT_STL)
 target_link_libraries(kgraphviewerpart  ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} )
 
 install( TARGETS kgraphviewerpart DESTINATION ${PLUGIN_INSTALL_DIR})
