@@ -12,15 +12,21 @@
   </Menu>
   <Menu name="view">
     <!--Action name="view_update"/-->
+    <ActionList name="view_actionlist">
     <Action name="view_redisplay"/>
     <Separator/>
     <Action name="view_layout_algo"/>
+    </ActionList>
     <Separator/>
+    <!--ActionList name="view_zooming_actionlist"-->
     <Action name="view_zoom_in"/>
     <Action name="view_zoom_out"/>
     <Separator/>
+    <!--/ActionList-->
+    <!--ActionList name="view_bev_actionlist"-->
     <Action name="view_bev_enabled"/>
     <Action name="view_bev"/>
+    <!--/ActionList-->
   </Menu>
 </MenuBar>
 <ToolBar name="mainToolBar">

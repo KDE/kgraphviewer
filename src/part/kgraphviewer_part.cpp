@@ -262,6 +262,17 @@ void kgraphviewerPart::slotRemoveNode(const QString& nodeName)
   m_widget->graph()->removeNodeNamed(nodeName);
 }
 
+void kgraphviewerPart::slotSelectNode(const QString& nodeName)
+{
+  kDebug() << nodeName;
+  m_widget->graph()->nodes()[nodeName]->setSelected(true);
+  if (m_widget->graph()->nodes()[nodeName]->canvasNode()!=0)
+  {
+    m_widget->graph()->nodes()[nodeName]->canvasNode()->modelChanged();
+    m_widget->slotElementSelected(m_widget->graph()->nodes()[nodeName]->canvasNode(),Qt::NoModifier);
+  }
+}
+
 void kgraphviewerPart::slotAddAttribute(const QString&)
 {
   kDebug();

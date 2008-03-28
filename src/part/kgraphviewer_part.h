@@ -88,6 +88,7 @@ public slots:
   void slotRemoveEdge(const QString& id);
   void slotRemoveElement(const QString& id);
   void slotClose();
+  void slotSelectNode(const QString&);
   
 protected:
     /**

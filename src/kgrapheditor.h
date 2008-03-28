@@ -73,6 +73,7 @@ Q_SIGNALS:
   void setReadWrite();
   void saveTo(const QString& fileName);
 
+  void selectNode(const QString&);
   void removeNode(const QString&);
   void removeElement(const QString&);
   void addAttribute(const QString&);
@@ -104,6 +105,7 @@ public Q_SLOTS:
   void openInExistingWindowMode_pressed(int value);
   void reopenPreviouslyOpenedFilesMode_pressed(int value);*/
   void slotRemoveElement(const QString& id);
+  void slotSelectionIs(const QList<QString>&);
 
 private Q_SLOTS:
   void fileNew();
@@ -122,6 +124,7 @@ private Q_SLOTS:
     
   void applyNewToolbarConfig();
   void slotItemChanged ( QTreeWidgetItem * item, int column );
+  void slotItemClicked ( QTreeWidgetItem * item, int column );
   void slotEditNewVertex();
   void slotEditNewEdge();
 
@@ -146,6 +149,8 @@ private:
   kgraphviewerPart* m_currentPart;
 
   QMap<QString, QString> m_newElementAttributes;
+
+  QString m_currentTreeWidgetItemText;
 };
 
 #endif // _KGRAPHEDITOR_H_

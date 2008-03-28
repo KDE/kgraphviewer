@@ -1,30 +1,35 @@
 Current bugs;
-  * nodes placement in editor after a few additions
-
-Before 2.0
-  * Wait for KDE4.0 release
+* kge: save should not ask to reload due to the change
 
 URGENT (for 2.x)
-  * [DONE] port to KDE 4
-  * [NO] use the Qanava library ?
-  * [NO] integration in kate and konqueror ;
-    (so a change in the kate view of the graph would relayout and reload the 
-    file). Started through the editor changes
-  * [NO] menu to open the file in kate OR to open a katepart inside the kgraphviewer 
-    window (see kgrapheditor)
-  * loading of big and huge graphes (currently, there is performance problems 
-    around 1000 nodes) ;
-  * progressive support of more and more dot attributes and values ;
-  * [DONE] layout in background (thread to don't block the interface, with progress 
-    bar). done with no progress bar
+  * loading of big and huge graphes (currently, there is performance problems
+    around 1000 nodes). Will be done through the use of another layout algorithm. Should the be able to switch to graphviz to display part of thhe graph ;
+  * progress bar for the layout in background
   * define print zone with the mouse
   * add a speed factor (speed vector) to dragging scroll as in ZGRViewer
-  * all configuration data stored for each file (zoom, position, page setup, 
+  * all configuration data stored for each file (zoom, position, page setup,
     layout program used, ...)
   * more i18n
   * more export options
+  * [COMPLETE?] progressive support of more and more dot attributes and values ;
+  * [DONE] port to KDE 4
+  * [DONE] layout in background (thread to don't block the interface)
+
+
+  * Is there a way to let kgraphviewer reposition the graph on the
+   target (or source) of some edge? (eg, I am looking on node 'a'
+   and there is an edge a->b, I want to click on the edge and
+   then the graph is repositioned to 'b')
+  * Where can I configure the zoom steps? 
+  * birdseye view in a separate window?
 
 REALLY NEEDED ?
   * [PARTLY DONE, see kgrapheditor and syanot] graph editing facilities ;
   * [PARTLY DONE, see syanot] non-dot formats supported ;
   * [TO CHECK] saving to dot format (regenerate the initial file or equivalent).
+  * [NO] use the Qanava library ?
+  * [NO] integration in kate and konqueror ;
+    (so a change in the kate view of the graph would relayout and reload the
+    file). Started through the editor changes
+  * [NO] menu to open the file in kate OR to open a katepart inside the kgraphviewer
+    window (see kgrapheditor)
