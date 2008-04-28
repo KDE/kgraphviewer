@@ -213,7 +213,7 @@ QWidget *widget)
   }
 //   kDebug() << msg;
 
-  if (element()->renderOperations().isEmpty())
+  if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
   {
 //     kDebug() << "drawPixmap";
     p->drawPixmap(QPointF(0,0),m_view->defaultNewElementPixmap());
