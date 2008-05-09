@@ -527,6 +527,6 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
 bool parse(const std::string& str)
 {
   DotGrammar g;
-  return boost::spirit::parse(str.c_str(), g, (+boost::spirit::space_p|boost::spirit::comment_p("/*", "*/"))).full;
+  return boost::spirit::parse(str.c_str(), g >> end_p, (+boost::spirit::space_p|boost::spirit::comment_p("/*", "*/"))).full;
 }
 
