@@ -202,7 +202,7 @@ QWidget *widget)
   Q_UNUSED(widget)
   QString msg;
   QTextStream dd(&msg);
-  foreach (DotRenderOp op, element()->renderOperations())
+  foreach (const DotRenderOp &op, element()->renderOperations())
   {
     dd << element()->id() << " an op: " << op.renderop << " ";
     foreach (int i, op.integers)

@@ -216,7 +216,7 @@ void KGraphEditor::fileOpen()
   
   if (!file_names.empty())
   {
-    foreach (QString fileName, file_names)
+    foreach (const QString &fileName, file_names)
     {
       if (m_rfa != 0)
       {
@@ -566,7 +566,7 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
     kDebug()<< "new item " << node->id();
     QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(node->id()));
     item->setFlags(item->flags() | Qt::ItemIsEditable);
-    foreach (QString attrib, node->attributes().keys())
+    foreach (const QString &attrib, node->attributes().keys())
     {
       if (attrib != "_draw_" && attrib != "_ldraw_")
       {
@@ -650,7 +650,7 @@ void KGraphEditor::slotGraphLoaded()
         keys.removeAll(item->child(i)->text(0));
       }
     }
-    foreach (QString attrib, keys)
+    foreach (const QString &attrib, keys)
     {
       if (attrib != "_draw_" && attrib != "_ldraw_")
       {
@@ -798,7 +798,7 @@ void KGraphEditor::slotSelectionIs(const QList<QString>& elements)
   {
     item->setSelected(false);
   }
-  foreach (QString elementName, elements)
+  foreach (const QString &elementName, elements)
   {
     QList<QTreeWidgetItem*> items = m_treeWidget->findItems(elementName,Qt::MatchExactly,0);
     foreach (QTreeWidgetItem* item, items)

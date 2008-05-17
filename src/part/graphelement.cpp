@@ -69,7 +69,7 @@ void GraphElement::updateWithElement(const GraphElement& element)
     m_z = element.z();
     modified = true;
   }
-  foreach (QString attrib, element.attributes().keys())
+  foreach (const QString &attrib, element.attributes().keys())
   {
     if ( (!m_attributes.contains(attrib)) || (m_attributes[attrib] != element.attributes()[attrib]) )
     {
