@@ -17,7 +17,7 @@ kde4_add_executable(kgraphviewer ${kgraphviewer_SRCS})
 
 target_link_libraries(kgraphviewer  ${QT_AND_KDECORE_LIBS} ${KDE4_KHTML_LIBS})
 
-install( TARGETS kgraphviewer DESTINATION ${BIN_INSTALL_DIR})
+install( TARGETS kgraphviewer ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### install kgraphviewer files ###############
 
@@ -42,7 +42,7 @@ kde4_add_executable(kgrapheditor ${kgrapheditor_SRCS})
 
 target_link_libraries(kgrapheditor  ${QT_AND_KDECORE_LIBS} ${KDE4_KHTML_LIBS})
 
-install( TARGETS kgrapheditor DESTINATION ${BIN_INSTALL_DIR})
+install( TARGETS kgrapheditor ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### install kgrapheditor files ###############
 
