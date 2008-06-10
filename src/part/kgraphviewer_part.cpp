@@ -67,6 +67,12 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
            this, SIGNAL( removeElement(const QString&) ) );
   connect( m_widget, SIGNAL( selectionIs(const QList<QString>&) ),
            this, SIGNAL( selectionIs(const QList<QString>&) ) );
+  connect( m_widget, SIGNAL( newEdgeFinished(
+      const QString&, const QString&,
+      const QMap<QString, QString>&) ),
+          this, SIGNAL( newEdgeFinished(
+      const QString&, const QString&,
+      const QMap<QString, QString>&) ) );
                     
   // notify the part that this is our internal widget
   setWidget(m_widget);
@@ -194,6 +200,7 @@ void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
 {
   kDebug() << src << tgt << attribs;
   GraphEdge* newEdge = new GraphEdge();
+  newEdge->attributes() = attribs;
   GraphElement* srcElement = 0;
   GraphElement* tgtElement = 0;
   if (m_widget->graph()->nodes().contains(src))
@@ -229,7 +236,6 @@ void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
   newEdge->setId(src+tgt+QString::number(m_widget->graph()->edges().size()));
   newEdge->setFromNode(srcElement);
   newEdge->setToNode(tgtElement);
-  newEdge->attributes() = attribs;
   m_widget->graph()->edges().insert(newEdge->id(), newEdge);
 }
 
@@ -301,6 +307,14 @@ void kgraphviewerPart::slotRemoveElement(const QString& id)
   kDebug();
   m_widget->graph()->removeElement(id);
 }
+
+void kgraphviewerPart::slotSetHighlighting(bool highlightingValue)
+{
+  kDebug();
+  m_widget->setHighlighting(highlightingValue);
+}
+
+
 
 /*It's usually safe to leave the factory code alone.. with the
 notable exception of the KAboutData data*/

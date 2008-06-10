@@ -74,6 +74,11 @@ void GraphElement::updateWithElement(const GraphElement& element)
     if ( (!m_attributes.contains(attrib)) || (m_attributes[attrib] != element.attributes()[attrib]) )
     {
       m_attributes[attrib] = element.attributes()[attrib];
+      if (attrib == "z")
+      {
+        bool ok;
+        setZ(m_attributes[attrib].toDouble(&ok));
+      }
       modified = true;
     }
   }

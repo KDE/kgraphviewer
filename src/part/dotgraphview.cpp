@@ -105,7 +105,8 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
     m_newEdgeSource(0),
     m_newEdgeDraft(0),
     m_readWrite(false),
-    m_leavedTimer(std::numeric_limits<int>::max())
+    m_leavedTimer(std::numeric_limits<int>::max()),
+    m_highlighting(false)
 {
   kDebug() << "New node pic=" << KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png");
   m_canvas = 0;
@@ -767,9 +768,13 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     {
       if (m_editingMode == DrawNewEdge) // was drawing an edge; cancel it
       {
-        scene()->removeItem(m_newEdgeDraft);
-        delete m_newEdgeDraft;
-        m_newEdgeDraft = 0;
+        if (m_newEdgeDraft!=0)
+        {
+          m_newEdgeDraft->hide();
+          scene()->removeItem(m_newEdgeDraft);
+          delete m_newEdgeDraft;
+          m_newEdgeDraft = 0;
+        }
         m_newEdgeSource = 0;
         m_editingMode = None;
         unsetCursor();
@@ -810,11 +815,14 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
   }
   if (m_editingMode == DrawNewEdge)
   {
-    QPointF src = m_newEdgeDraft->line().p1();
-    QPointF tgt = mapToScene(e->pos());
+    if (m_newEdgeDraft != 0)
+    {
+      QPointF src = m_newEdgeDraft->line().p1();
+      QPointF tgt = mapToScene(e->pos());
     
 //     kDebug() << "Setting new edge draft line to" << QLineF(src,tgt);
-    m_newEdgeDraft->setLine(QLineF(src,tgt));
+      m_newEdgeDraft->setLine(QLineF(src,tgt));
+    }
   }
   else if (e->buttons().testFlag(Qt::LeftButton))
   {
@@ -1363,7 +1371,7 @@ void DotGraphView::prepareAddNewElement(QMap<QString,QString> attribs)
 
 void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
 {
-  kDebug() ;
+  kDebug() << attribs;
   bool anySelected = false;
   foreach (GraphEdge* edge, m_graph->edges())
   {
@@ -1388,11 +1396,19 @@ void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
 
 void DotGraphView::createNewEdgeDraftFrom(CanvasElement* node)
 {
-  kDebug() ;
+  kDebug() << node->element()->id();
   m_editingMode = DrawNewEdge;
   unsetCursor();
   m_newEdgeSource = node;
-  
+
+  if (m_newEdgeDraft != 0)
+  {
+    kDebug() << "removing new edge draft";
+    m_newEdgeDraft->hide();
+    scene()->removeItem(m_newEdgeDraft);
+    delete m_newEdgeDraft;
+    m_newEdgeDraft = 0;
+  }
   m_newEdgeDraft = new QGraphicsLineItem(QLineF(node->boundingRect().center()+node->pos(),node->boundingRect().center()+node->pos()+QPointF(10,10)));
   scene()->addItem(m_newEdgeDraft);
   m_newEdgeDraft->setZValue(1000);
@@ -1402,42 +1418,65 @@ void DotGraphView::createNewEdgeDraftFrom(CanvasElement* node)
 
 void DotGraphView::finishNewEdgeTo(CanvasElement* node)
 {
-  kDebug() ;
+  kDebug() << node->element()->id();
   m_editingMode = None;
   unsetCursor();
-  m_newEdgeDraft->hide();
-  scene()->removeItem(m_newEdgeDraft);
 
-  GraphEdge* gedge  = new GraphEdge();
-  gedge->setFromNode(m_newEdgeSource->element());
-  gedge->setToNode(node->element());
-  gedge->attributes() = m_newElementAttributes;
-  gedge->setId(m_newEdgeSource->element()->id()+node->element()->id()+QString::number(m_graph->edges().size()));
-  m_graph->edges().insert(gedge->id(), gedge);
+  if (m_newEdgeDraft != 0)
+  {
+    kDebug() << "removing new edge draft";
+    m_newEdgeDraft->hide();
+    scene()->removeItem(m_newEdgeDraft);
+    delete m_newEdgeDraft;
+    m_newEdgeDraft = 0;
+  }
 
-  double scaleX = 1.0, scaleY = 1.0;
+  emit newEdgeFinished(m_newEdgeSource->element()->id(),node->element()->id(),m_newElementAttributes);
 
-  if (m_detailLevel == 0)      { scaleX = m_graph->scale() * 0.7; scaleY = m_graph->scale() * 0.7; }
-  else if (m_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
-  else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
-  else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
-
-  qreal gh = m_graph->height();
-  CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
-        m_yMargin, gh, m_graph->wdhcf(), m_graph->hdvcf());
-
-  gedge->setCanvasEdge(cedge);
-//     std::cerr << "setting z = " << gedge->z() << std::endl;
-  cedge->setZValue(gedge->z());
-  cedge->show();
-  scene()->addItem(cedge);
-
-  delete m_newEdgeDraft;
-  m_newEdgeDraft = 0;
   m_newEdgeSource = 0;
-
-  emit newEdgeAdded(gedge->fromNode()->id(),gedge->toNode()->id());
 }
+
+// void DotGraphView::slotFinishNewEdge(
+//       const QString& srcId,
+//       const QString& tgtId,
+//       const QMap<QString, QString> newElementAttributes)
+// {
+//   kDebug() ;
+// 
+//   GraphEdge* gedge  = new GraphEdge();
+//   gedge->setFromNode(m_graph->nodes()[srcId]);
+//   gedge->setToNode(m_graph->nodes()[tgtId]);
+//   gedge->attributes() = newElementAttributes;
+//   foreach (const QString &attrib, newElementAttributes.keys())
+//   {
+//     if (attrib == "z")
+//     {
+//       bool ok;
+//       gedge->setZ(newElementAttributes[attrib].toDouble(&ok));
+//     }
+//   }
+//   gedge->setId(srcId+tgtId+QString::number(m_graph->edges().size()));
+//   m_graph->edges().insert(gedge->id(), gedge);
+// 
+//   double scaleX = 1.0, scaleY = 1.0;
+// 
+//   if (m_detailLevel == 0)      { scaleX = m_graph->scale() * 0.7; scaleY = m_graph->scale() * 0.7; }
+//   else if (m_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+//   else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
+//   else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+// 
+//   qreal gh = m_graph->height();
+//   CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
+//         m_yMargin, gh, m_graph->wdhcf(), m_graph->hdvcf());
+// 
+//   gedge->setCanvasEdge(cedge);
+// //     std::cerr << "setting z = " << gedge->z() << std::endl;
+//   cedge->setZValue(gedge->z());
+//   cedge->show();
+//   scene()->addItem(cedge);
+// 
+//   emit newEdgeAdded(gedge->fromNode()->id(),gedge->toNode()->id());
+// }
 
 void DotGraphView::setReadOnly()
 {

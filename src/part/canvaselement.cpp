@@ -52,7 +52,8 @@ CanvasElement::CanvasElement(
     m_element(gelement), m_view(v),
     m_font(0),
     m_pen(Dot2QtConsts::componentData().qtColor(gelement->fontColor())),
-    m_popup(new QMenu())
+    m_popup(new QMenu()),
+    m_hovered(false)
 {
 //   kDebug();
   m_font = FontsCache::changeable().fromName(gelement->fontName());
@@ -93,6 +94,7 @@ CanvasElement::CanvasElement(
 
   connect(this, SIGNAL(selected(CanvasElement*, Qt::KeyboardModifiers)), v, SLOT(slotElementSelected(CanvasElement*, Qt::KeyboardModifiers)));
 
+  setAcceptHoverEvents ( true );
 }
 
 CanvasElement::~CanvasElement()
@@ -222,6 +224,8 @@ QWidget *widget)
 
   QListIterator<DotRenderOp> it(element()->renderOperations());
   it.toBack();
+
+
   while (it.hasPrevious())
   {
     const DotRenderOp& dro = it.previous();
@@ -275,7 +279,13 @@ QWidget *widget)
         pen.setWidth(lineWidth);
       }
       p->setPen(pen);
-      p->setBrush(Dot2QtConsts::componentData().qtColor(element()->backColor()));
+
+      QColor color(Dot2QtConsts::componentData().qtColor(element()->backColor()));
+      if (m_hovered && m_view->highlighting())
+      {
+        color = color.lighter();
+      }
+      p->setBrush(color);
 /*      if (element()->style() == "filled")
       {
         p->setBrush(Dot2QtConsts::componentData().qtColor(element()->backColor()));
@@ -456,6 +466,22 @@ void CanvasElement::slotRemoveElement()
 {
   kDebug();
   m_view->removeSelectedElements();
+}
+
+void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
+{
+  Q_UNUSED(event)
+  kDebug();
+  m_hovered = true;
+  update();
+}
+
+void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
+{
+  Q_UNUSED(event)
+  kDebug();
+  m_hovered = false;
+  update();
 }
 
 #include "canvaselement.moc"

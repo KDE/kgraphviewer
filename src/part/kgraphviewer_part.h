@@ -67,7 +67,11 @@ Q_SIGNALS:
   void removeElement(const QString&);
   void close();
   void selectionIs(const QList<QString>&);
-  
+  /** let the application tweak the created edge if necessary */
+  void newEdgeFinished(
+      const QString&, const QString&,
+      const QMap<QString, QString>&);
+
 public slots:
   void slotHide(KParts::Part* part);
   void slotUpdate();
@@ -89,7 +93,8 @@ public slots:
   void slotRemoveElement(const QString& id);
   void slotClose();
   void slotSelectNode(const QString&);
-  
+  void slotSetHighlighting(bool highlightingValue);
+
 protected:
     /**
      * This must be implemented by each part

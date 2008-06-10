@@ -79,7 +79,8 @@ Q_SIGNALS:
   void addAttribute(const QString&);
   void removeAttribute(const QString&,const QString&);
   void update();
-  
+  void saddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
+
 public Q_SLOTS:
   /**
     * Use this method to load whatever file/URL you have
@@ -106,6 +107,7 @@ public Q_SLOTS:
   void reopenPreviouslyOpenedFilesMode_pressed(int value);*/
   void slotRemoveElement(const QString& id);
   void slotSelectionIs(const QList<QString>&);
+  void slotNewEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&);
 
 private Q_SLOTS:
   void fileNew();

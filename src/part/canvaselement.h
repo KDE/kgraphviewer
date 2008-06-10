@@ -65,6 +65,8 @@ public:
   virtual void mouseMoveEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
+  virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
+  virtual void hoverLeaveEvent( QGraphicsSceneHoverEvent * event );
 
   qreal m_scaleX, m_scaleY;
   qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
@@ -75,6 +77,8 @@ public:
   QBrush m_brush;
   QRectF m_boundingRect;
   QMenu* m_popup;
+
+  bool m_hovered;
 
 Q_SIGNALS:
   void selected(CanvasElement*, Qt::KeyboardModifiers);

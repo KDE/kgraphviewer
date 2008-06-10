@@ -135,6 +135,9 @@ public:
   void removeSelectedEdges();
   void removeSelectedElements();
   
+  inline bool highlighting() {return m_highlighting;}
+  inline void setHighlighting(bool highlightingValue) {m_highlighting = highlightingValue;}
+
 Q_SIGNALS:
   void zoomed(double factor);
   void sigViewBevEnabledToggled(bool value);
@@ -150,6 +153,11 @@ Q_SIGNALS:
   void removeElement(const QString&);
   /** signals the content of the new selection */
   void selectionIs(const QList<QString>&);
+  /** let the application tweak the created edge if necessary */
+  void newEdgeFinished(
+      const QString&, const QString&,
+      const QMap<QString, QString>&);
+
 public Q_SLOTS:
   void zoomIn();
   void zoomOut();  
@@ -250,6 +258,9 @@ private:
 
   QPoint m_pressPos;
   QPoint m_pressScrollBarsPos;
+
+  /// true if elements should be highlighted on hover; false otherwise
+  bool m_highlighting;
 };
 
 #endif // DOTGRAPHVIEW_H

@@ -542,6 +542,8 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
     disconnect(this,SIGNAL(removeAttribute(const QString&,const QString&)),m_currentPart,SLOT(slotRemoveAttribute(const QString&,const QString&)));
     disconnect(this,SIGNAL(update()),m_currentPart,SLOT(slotUpdate()));
     disconnect(this,SIGNAL(selectNode(const QString&)),m_currentPart,SLOT(slotSelectNode(const QString&)));
+    disconnect(this,SIGNAL(saddNewEdge(QString,QString,QMap<QString,QString>)),
+           m_currentPart,SLOT(slotAddNewEdge(QString,QString,QMap<QString,QString>)));
   }
   m_currentPart = ((kgraphviewerPart*) part);
   m_treeWidget->clear();
@@ -557,6 +559,10 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   connect(this,SIGNAL(removeAttribute(const QString&,const QString&)),part,SLOT(slotRemoveAttribute(const QString&,const QString&)));
   connect(this,SIGNAL(update()),part,SLOT(slotUpdate()));
   connect(this,SIGNAL(selectNode(const QString&)),part,SLOT(slotSelectNode(const QString&)));
+  connect( this, SIGNAL( removeElement(const QString&) ),
+            m_currentPart, SLOT( slotRemoveElement(const QString&) ) );
+  connect(this,SIGNAL(saddNewEdge(QString,QString,QMap<QString,QString>)),
+            m_currentPart,SLOT(slotAddNewEdge(QString,QString,QMap<QString,QString>)));
 
   DotGraph* graph = m_currentPart->graph();
   QList<QTreeWidgetItem *> items;
@@ -598,22 +604,28 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   connect( m_currentPart, SIGNAL( selectionIs(const QList<QString>&) ),
             this, SLOT( slotSelectionIs(const QList<QString>&) ) );
 
-  connect( this, SIGNAL( removeElement(const QString&) ),
-            m_currentPart, SLOT( slotRemoveElement(const QString&) ) );
+  connect( m_currentPart, SIGNAL( newEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&) ),
+            this, SLOT( slotNewEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&) ) );
 }
 
-void KGraphEditor::slotNewNodeAdded(const QString& /*id*/)
+void KGraphEditor::slotNewNodeAdded(const QString& id)
 {
-  kDebug();
+  kDebug() << id;
   update();
 }
 
-void KGraphEditor::slotNewEdgeAdded(const QString& /*ids*/, const QString& /*idt*/)
+void KGraphEditor::slotNewEdgeAdded(const QString& ids, const QString& idt)
 {
-  kDebug();
+  kDebug() << ids << idt;
   update();
 }
 
+void KGraphEditor::slotNewEdgeFinished( const QString& srcId, const QString& tgtId, const QMap<QString, QString>&attribs)
+{
+  kDebug() << srcId << tgtId << attribs;
+  emit saddNewEdge(srcId,tgtId,attribs);
+  update();
+}
 
 void KGraphEditor::slotGraphLoaded()
 {
