@@ -81,6 +81,7 @@ public slots:
   void setReadWrite();
   void saveTo(const QString& fileName);
   void slotRemoveNode(const QString&);
+  void slotRemoveSubgraph(const QString&);
   void slotAddAttribute(const QString&);
   void slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
   void slotRemoveAttribute(const QString&,const QString&);

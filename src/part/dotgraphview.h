@@ -133,6 +133,7 @@ public:
   
   void removeSelectedNodes();
   void removeSelectedEdges();
+  void removeSelectedSubgraphs();
   void removeSelectedElements();
   
   inline bool highlighting() {return m_highlighting;}

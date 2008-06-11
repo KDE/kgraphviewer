@@ -264,8 +264,14 @@ void kgraphviewerPart::saveTo(const QString& fileName)
 
 void kgraphviewerPart::slotRemoveNode(const QString& nodeName)
 {
-  kDebug();
+  kDebug() << nodeName;
   m_widget->graph()->removeNodeNamed(nodeName);
+}
+
+void kgraphviewerPart::slotRemoveSubgraph(const QString& subgraphName)
+{
+  kDebug() << subgraphName;
+  m_widget->graph()->removeSubgraphNamed(subgraphName);
 }
 
 void kgraphviewerPart::slotSelectNode(const QString& nodeName)

@@ -21,6 +21,7 @@
 #include "graphexporter.h"
 #include "DotGraphParsingHelper.h"
 #include "canvasedge.h"
+#include "canvassubgraph.h"
 
 
 #include <iostream>
@@ -440,6 +441,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
 
 void DotGraph::removeNodeNamed(const QString& nodeName)
 {
+  kDebug() << nodeName;
   GraphNode* node = nodes()[nodeName];
 
   GraphEdgeMap::iterator it, it_end;
@@ -475,9 +477,51 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
 
 }
 
+void DotGraph::removeSubgraphNamed(const QString& subgraphName)
+{
+  kDebug() << subgraphName;
+  GraphSubgraph* subgraph = subgraphs()[subgraphName];
+
+  if (subgraph == 0)
+  {
+    kError() << "Subgraph" << subgraphName << "not found";
+    return;
+  }
+  GraphEdgeMap::iterator it, it_end;
+  it = m_edgesMap.begin(); it_end = m_edgesMap.end();
+  while (it != it_end)
+  {
+    if ( it.value()->fromNode() == subgraph
+        || it.value()->toNode() == subgraph )
+    {
+      GraphEdge* edge = it.value();
+      if (edge->canvasEdge() != 0)
+      {
+        edge->canvasEdge()->hide();
+        delete edge->canvasEdge();
+        delete edge;
+      }
+      it = edges().erase(it);
+    }
+    else
+    {
+      ++it;
+    }
+  }
+
+  if (subgraph->canvasSubgraph() != 0)
+  {
+    subgraph->canvasSubgraph()->hide();
+    delete subgraph->canvasSubgraph();
+    subgraph->setCanvasSubgraph(0);
+  }
+  subgraphs().remove(subgraphName);
+  delete subgraph;
+}
+
 void DotGraph::removeEdge(const QString& id)
 {
-  kDebug();
+  kDebug() << id;
   foreach (const QString& eid, edges().keys())
   {
     GraphEdge* edge = edges()[eid];
@@ -497,7 +541,7 @@ void DotGraph::removeEdge(const QString& id)
 
 void DotGraph::removeElement(const QString& id)
 {
-  kDebug();
+  kDebug() << id;
   foreach (const QString& eid, nodes().keys())
   {
     GraphNode* node = nodes()[eid];

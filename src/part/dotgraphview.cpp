@@ -1636,11 +1636,25 @@ void DotGraphView::removeSelectedNodes()
   }
 }
 
+void DotGraphView::removeSelectedSubgraphs()
+{
+  kDebug();
+  foreach(GraphSubgraph* e, m_graph->subgraphs())
+  {
+    if (e->isSelected())
+    {
+      kDebug() << "emiting removeElement " << e->id();
+      emit removeElement(e->id());
+    }
+  }
+}
+
 void DotGraphView::removeSelectedElements()
 {
   kDebug();
   removeSelectedNodes();
   removeSelectedEdges();
+  removeSelectedSubgraphs();
 }
 
 void DotGraphView::timerEvent ( QTimerEvent * event )
