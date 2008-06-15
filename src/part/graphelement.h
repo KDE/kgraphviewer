@@ -69,7 +69,7 @@ public:
   inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
   inline void setRenderOperations(DotRenderOpVec& drov) {m_renderOperations = drov;};
   
-  inline const double z() const {return m_z;}
+  inline double z() const {return m_z;}
   inline void setZ(double thez) {m_z = thez;}
   
   inline QString shapeFile() const {return m_attributes["shapefile"];}
