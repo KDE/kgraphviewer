@@ -17,6 +17,7 @@
 */
 
 #include "graphelement.h"
+#include "canvaselement.h"
 #include "dotdefaults.h"
 
 #include <math.h>

@@ -43,6 +43,8 @@ public:
   
   virtual ~GraphSubgraph() {}  
   
+  void updateWithSubgraph(const GraphSubgraph& subgraph);
+
   CanvasSubgraph* canvasSubgraph() { return (CanvasSubgraph*)canvasElement();  }
   void setCanvasSubgraph(CanvasSubgraph* cs) { setCanvasElement((CanvasElement*)cs); }
 
@@ -51,6 +53,9 @@ public:
   inline const QList<GraphElement*>& content() const {return m_content;}
   inline QList<GraphElement*>& content() {return m_content;}
   inline void setContent(QList<GraphElement*>& c) {m_content=c;}
+
+  void removeElement(GraphElement* element);
+
 
  private:
   QList<GraphElement*> m_content;

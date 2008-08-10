@@ -72,7 +72,7 @@ class DotGraphView: public QGraphicsView
 
 public:
   enum ZoomPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
-  enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge };
+  enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge, SelectingElements };
   enum ScrollDirection { Here, Left, Right, Top, Bottom };
   
   explicit DotGraphView(KActionCollection* actions, QWidget* parent=0);
@@ -120,7 +120,8 @@ public:
 
   void prepareAddNewElement(QMap<QString,QString> attribs);
   void prepareAddNewEdge(QMap<QString,QString> attribs);
-
+  void prepareSelectElements();
+  
   void createNewEdgeDraftFrom(CanvasElement* node);
   void finishNewEdgeTo(CanvasElement* node);
 
@@ -153,7 +154,7 @@ Q_SIGNALS:
   /** signals that the user has activated a remove element command */
   void removeElement(const QString&);
   /** signals the content of the new selection */
-  void selectionIs(const QList<QString>&);
+  void selectionIs(const QList<QString>, const QPoint&);
   /** let the application tweak the created edge if necessary */
   void newEdgeFinished(
       const QString&, const QString&,
@@ -191,7 +192,8 @@ public Q_SLOTS:
   bool displayGraph();
   void slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers);
   void slotElementSelected(CanvasElement*, Qt::KeyboardModifiers);
-  
+  void slotSelectionChanged();
+
 protected:
   void resizeEvent(QResizeEvent*);
   void mousePressEvent(QMouseEvent*);

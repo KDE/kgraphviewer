@@ -58,10 +58,11 @@ GraphNode::GraphNode(const GraphNode& gn) :
 
 void GraphNode::updateWithNode(const GraphNode& node)
 {
-//   kDebug() ;
+  kDebug() << id() << node.id();
   GraphElement::updateWithElement(node);
   if (canvasNode())
   {
+    canvasNode()->computeBoundingRect();
     canvasNode()->modelChanged();
   }
 //   kDebug() << "done";

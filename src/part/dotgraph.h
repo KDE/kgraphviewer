@@ -102,6 +102,7 @@ public:
 
 public Q_SLOTS:
   void removeNodeNamed(const QString& nodeName);
+  void removeNodeFromSubgraph(const QString& nodeName, const QString& subgraphName);
   void removeSubgraphNamed(const QString& subgraphName);
   void removeEdge(const QString& id);
   void removeElement(const QString& id);

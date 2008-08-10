@@ -117,6 +117,7 @@ void CanvasElement::initialize(qreal scaleX, qreal scaleY,
 {
 //   kDebug();
   setFlag(QGraphicsItem::ItemIsMovable, true);
+  setFlag(QGraphicsItem::ItemIsSelectable, true);
 
   m_scaleX = scaleX; m_scaleY = scaleY;
   m_xMargin = xMargin; m_yMargin = yMargin;
@@ -447,9 +448,6 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
   }
 }
 
-
-
-
 void CanvasElement::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
   Q_UNUSED(event)
@@ -471,7 +469,7 @@ void CanvasElement::slotRemoveElement()
 void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
-  kDebug();
+//   kDebug();
   m_hovered = true;
   update();
 }
@@ -479,7 +477,7 @@ void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
-  kDebug();
+//   kDebug();
   m_hovered = false;
   update();
 }

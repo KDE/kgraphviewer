@@ -66,7 +66,7 @@ Q_SIGNALS:
   /** signals that the user has activated a remove element command */
   void removeElement(const QString&);
   void close();
-  void selectionIs(const QList<QString>&);
+  void selectionIs(const QList<QString>, const QPoint&);
   /** let the application tweak the created edge if necessary */
   void newEdgeFinished(
       const QString&, const QString&,
@@ -81,6 +81,9 @@ public slots:
   void setReadWrite();
   void saveTo(const QString& fileName);
   void slotRemoveNode(const QString&);
+  void slotRemoveNodeFromSubgraph(
+      const QString& nodeName,
+      const QString& subgraphName);
   void slotRemoveSubgraph(const QString&);
   void slotAddAttribute(const QString&);
   void slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
@@ -88,6 +91,9 @@ public slots:
   void slotSetGraphAttributes(QMap<QString,QString> attribs);
   void slotAddNewNode(QMap<QString,QString> attribs);
   void slotAddNewNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph);
+  void slotAddExistingNodeToSubgraph(
+    QMap<QString,QString> attribs,
+    QString subgraph);
   void slotAddNewSubgraph(QMap<QString,QString> attribs);
   void slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
   void slotRemoveEdge(const QString& id);
@@ -95,7 +101,8 @@ public slots:
   void slotClose();
   void slotSelectNode(const QString&);
   void slotSetHighlighting(bool highlightingValue);
-
+  void slotPrepareToSelect();
+  
 protected:
     /**
      * This must be implemented by each part

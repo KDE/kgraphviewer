@@ -25,6 +25,8 @@
 #include "canvassubgraph.h"
 #include "dotdefaults.h"
 
+#include <kdebug.h>
+
 //
 // GraphSubgraph
 //
@@ -33,6 +35,19 @@ GraphSubgraph::GraphSubgraph() :
     GraphElement()
 {
 }
+
+void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
+{
+  kDebug() << id() << subgraph.id();
+  GraphElement::updateWithElement(subgraph);
+  if (canvasSubgraph())
+  {
+    canvasSubgraph()->modelChanged();
+    canvasSubgraph()->computeBoundingRect();
+  }
+//   kDebug() << "done";
+}
+
 
 QString GraphSubgraph::backColor() const
 {
@@ -56,11 +71,12 @@ QString GraphSubgraph::backColor() const
   {
     return DOT_DEFAULT_BACKCOLOR;
   }
-
-
-
 }
 
+void GraphSubgraph::removeElement(GraphElement* element)
+{
+  m_content.remove(element);
+}
 
 QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
 {

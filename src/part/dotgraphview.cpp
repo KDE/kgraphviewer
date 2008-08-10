@@ -273,6 +273,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
 
   setScene(newCanvas);
+  connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
   m_canvas = newCanvas;
 
   m_cvZoom = 0;
@@ -284,6 +285,11 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   }
 
   return true;
+}
+
+void DotGraphView::slotSelectionChanged()
+{
+  kDebug() << scene()->selectedItems().size();
 }
 
 bool DotGraphView::displayGraph()
@@ -370,6 +376,10 @@ bool DotGraphView::displayGraph()
       csubgraph->setZValue(1);
       csubgraph->show();
       m_canvas->addItem(csubgraph);
+    }
+    else
+    {
+      gsubgraph->canvasSubgraph()->computeBoundingRect();
     }
   }
 
@@ -722,6 +732,7 @@ void DotGraphView::zoomRectMoveFinished()
 void DotGraphView::mousePressEvent(QMouseEvent* e)
 {
   kDebug() << e;
+  QGraphicsView::mousePressEvent(e);
 
   if (m_editingMode == AddNewElement)
   {
@@ -734,7 +745,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
 
     qreal gh = m_graph->height();
 
-    
+
     QPointF pos = mapToScene(
         e->pos().x()-m_defaultNewElementPixmap.width()/2,
         e->pos().y()-m_defaultNewElementPixmap.height()/2);
@@ -763,8 +774,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
   }
   else
   {
-    QGraphicsItem *item = itemAt(e->pos());
-    if (item == 0) // click outside any item: unselect all
+    if (itemAt(e->pos()) == 0) // click outside any item: unselect all
     {
       if (m_editingMode == DrawNewEdge) // was drawing an edge; cancel it
       {
@@ -797,18 +807,18 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     }
     m_pressPos = e->globalPos();
     m_pressScrollBarsPos = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
-    QGraphicsView::mousePressEvent(e);
   }
-  
+
 
   m_isMoving = true;
 }
 
 void DotGraphView::mouseMoveEvent(QMouseEvent* e)
 {
-//   kDebug() << e;
   QGraphicsView::mouseMoveEvent(e);
-  if (m_isMoving) 
+//   kDebug() << scene()->selectedItems().size();
+
+  if (m_isMoving)
   {
     QRectF sp = mapToScene(viewport()->rect()).boundingRect();
     m_birdEyeView->setZoomRect(sp);
@@ -819,10 +829,14 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
     {
       QPointF src = m_newEdgeDraft->line().p1();
       QPointF tgt = mapToScene(e->pos());
-    
+
 //     kDebug() << "Setting new edge draft line to" << QLineF(src,tgt);
       m_newEdgeDraft->setLine(QLineF(src,tgt));
     }
+  }
+  else if (m_editingMode == SelectingElements)
+  {
+//     kDebug() << "selecting";
   }
   else if (e->buttons().testFlag(Qt::LeftButton))
   {
@@ -842,6 +856,26 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
   {
     m_editingMode = None;
     unsetCursor();
+  }
+  else if (m_editingMode == SelectingElements)
+  {
+    QGraphicsView::mouseReleaseEvent(e);
+    kDebug() << "Stopping selection" << scene() << m_canvas;
+    QList<QGraphicsItem *> items = scene()->selectedItems();
+    QList<QString> selection;
+    foreach (QGraphicsItem * item, items)
+    {
+      CanvasElement* element = dynamic_cast<CanvasElement*>(item);
+      element->element()->setSelected(true);
+      if (element != 0)
+      {
+        selection.push_back(element->element()->id());
+      }
+    }
+    m_editingMode = None;
+    setDragMode(NoDrag);
+    update();
+    emit selectionIs(selection, mapToGlobal( e->pos() ));
   }
   else
   {
@@ -1394,6 +1428,13 @@ void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
   setCursor(QCursor(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newedge.png")));
 }
 
+void DotGraphView::prepareSelectElements()
+{
+  kDebug();
+  m_editingMode = SelectingElements;
+  setDragMode ( RubberBandDrag );
+}
+
 void DotGraphView::createNewEdgeDraftFrom(CanvasElement* node)
 {
   kDebug() << node->element()->id();
@@ -1551,7 +1592,7 @@ void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modi
       }
     }
   }
-  emit selectionIs(selection);
+  emit selectionIs(selection, QPoint());
 }
 
 void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModifiers modifiers)
@@ -1607,7 +1648,7 @@ void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModif
       }
     }
   }
-  emit selectionIs(selection);
+  emit selectionIs(selection, QPoint());
 }
 
 void DotGraphView::removeSelectedEdges()

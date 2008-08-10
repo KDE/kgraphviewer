@@ -115,7 +115,7 @@ void incrz(char const /*first*/)
 
 void anychar(char const c)
 {
-  kDebug() << c;
+//   kDebug() << c;
 }
 
 void decrz(char const /*first*/)
@@ -411,7 +411,7 @@ bool parse_integers(char const* str, std::vector<int>& v)
 
 bool parse_spline(char const* str, QVector< QPair< float, float > >& points)
 {
-  kDebug() << "Parsing spline..." << QString::fromStdString(str);
+//   kDebug() << "Parsing spline..." << QString::fromStdString(str);
   char e = 'n', s = 'n';
   int sx,sy,ex,ey;
   QPair< float, float > p;
@@ -466,7 +466,7 @@ void valid_op(char const* first, char const* last)
 
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
 {
-  std::cerr << "parse_renderop " << str << " " << str.size() << std::endl;
+//   std::cerr << "parse_renderop " << str << " " << str.size() << std::endl;
   if (str.empty())
   {
     return false;

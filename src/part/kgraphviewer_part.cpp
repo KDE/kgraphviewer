@@ -65,8 +65,8 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
            this, SIGNAL( removeEdge(const QString&) ) );
   connect( m_widget, SIGNAL( removeElement(const QString&) ),
            this, SIGNAL( removeElement(const QString&) ) );
-  connect( m_widget, SIGNAL( selectionIs(const QList<QString>&) ),
-           this, SIGNAL( selectionIs(const QList<QString>&) ) );
+  connect( m_widget, SIGNAL( selectionIs(const QList<QString>, const QPoint&) ),
+           this, SIGNAL( selectionIs(const QList<QString>, const QPoint&) ) );
   connect( m_widget, SIGNAL( newEdgeFinished(
       const QString&, const QString&,
       const QMap<QString, QString>&) ),
@@ -195,6 +195,20 @@ void kgraphviewerPart::slotAddNewNodeToSubgraph(QMap<QString,QString> attribs,
   kDebug() << "node added as" << newNode->id();
 }
 
+void kgraphviewerPart::slotAddExistingNodeToSubgraph(
+    QMap<QString,QString> attribs,
+    QString subgraph)
+{
+  kDebug() << attribs << "to" << subgraph;
+  if (m_widget->graph()->nodes().contains(attribs["id"]))
+  {
+    GraphNode* node = m_widget->graph()->nodes()[attribs["id"]];
+    node->attributes() = attribs;
+    m_widget->graph()->subgraphs()[subgraph]->content().push_back(node);
+    kDebug() << "node " << node->id() << " added as " << subgraph;
+  }
+}
+
 void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
             QMap<QString,QString> attribs)
 {
@@ -268,6 +282,12 @@ void kgraphviewerPart::slotRemoveNode(const QString& nodeName)
   m_widget->graph()->removeNodeNamed(nodeName);
 }
 
+void kgraphviewerPart::slotRemoveNodeFromSubgraph(const QString& nodeName, const QString& subgraphName)
+{
+  kDebug() << nodeName << subgraphName;
+  m_widget->graph()->removeNodeFromSubgraph(nodeName, subgraphName);
+}
+
 void kgraphviewerPart::slotRemoveSubgraph(const QString& subgraphName)
 {
   kDebug() << subgraphName;
@@ -321,6 +341,11 @@ void kgraphviewerPart::slotSetHighlighting(bool highlightingValue)
 }
 
 
+void kgraphviewerPart::slotPrepareToSelect()
+{
+  kDebug();
+  m_widget->prepareSelectElements();
+}
 
 /*It's usually safe to leave the factory code alone.. with the
 notable exception of the KAboutData data*/

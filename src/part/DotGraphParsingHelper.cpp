@@ -188,10 +188,10 @@ void DotGraphParsingHelper::setattributedlist()
 void DotGraphParsingHelper::createnode(const std::string& nodeid)
 {
   QString id = QString::fromStdString(nodeid); 
-  kDebug() << id;
+//   kDebug() << id;
   if (graph->nodes().find(QString::fromStdString(nodeid)) == graph->nodes().end() && graph->nodes().size() < KGV_MAX_ITEMS_TO_LOAD)
   {
-    kDebug() << "Creating a new node";
+//     kDebug() << "Creating a new node";
     gn = new GraphNode();
     gn->setId(QString::fromStdString(nodeid));
 //     gn->label(QString::fromStdString(nodeid));
@@ -199,7 +199,7 @@ void DotGraphParsingHelper::createnode(const std::string& nodeid)
   }
   else if (graph->nodes().find(QString::fromStdString(nodeid)) != graph->nodes().end())
   {
-    kDebug() << "Found existing node";
+//     kDebug() << "Found existing node";
     gn = *(graph->nodes().find(QString::fromStdString(nodeid)));
   }
   edgebounds.clear();
@@ -217,7 +217,7 @@ void DotGraphParsingHelper::createsubgraph()
       oss << "kgv_id_" << phelper->uniq++;
       str = oss.str();
     }
-    kDebug() << QString::fromStdString(str);
+//     kDebug() << QString::fromStdString(str);
     if (graph->subgraphs().find(QString::fromStdString(str)) == graph->subgraphs().end())
     {
 //       kDebug() << "Creating a new subgraph";
@@ -225,7 +225,7 @@ void DotGraphParsingHelper::createsubgraph()
       gs->setId(QString::fromStdString(str));
 //       gs->label(QString::fromStdString(str)); 
       graph->subgraphs().insert(QString::fromStdString(str), gs);
-      kDebug() << "there is now"<<graph->subgraphs().size()<<"subgraphs in" << graph;
+//       kDebug() << "there is now"<<graph->subgraphs().size()<<"subgraphs in" << graph;
     }
     else
     {
@@ -238,7 +238,7 @@ void DotGraphParsingHelper::createsubgraph()
 
 void DotGraphParsingHelper::createedges()
 {
-  kDebug();
+//   kDebug();
   std::string node1Name, node2Name;
   node1Name = edgebounds.front();
   edgebounds.pop_front();
@@ -251,18 +251,18 @@ void DotGraphParsingHelper::createedges()
     {
       return;
     }
-    kDebug() << QString::fromStdString(node1Name) << ", " << QString::fromStdString(node2Name);
+//     kDebug() << QString::fromStdString(node1Name) << ", " << QString::fromStdString(node2Name);
     ge = new GraphEdge();
     if (!graph->nodes().contains(QString::fromStdString(node1Name)))
     {
-      kDebug() << "new node 1";
+//       kDebug() << "new node 1";
       GraphNode* gn1 = new GraphNode();
       gn1->setId(QString::fromStdString(node1Name));
       graph->nodes()[QString::fromStdString(node1Name)] = gn1;
     }
     if (!graph->nodes().contains(QString::fromStdString(node2Name)))
     {
-      kDebug() << "new node 2";
+//       kDebug() << "new node 2";
       GraphNode* gn2 = new GraphNode();
       gn2->setId(QString::fromStdString(node2Name));
       graph->nodes()[QString::fromStdString(node2Name)] = gn2;
@@ -270,11 +270,11 @@ void DotGraphParsingHelper::createedges()
     
     ge->setFromNode(graph->nodes()[QString::fromStdString(node1Name)]);
     ge->setToNode(graph->nodes()[QString::fromStdString(node2Name)]);
-    kDebug() << ge->fromNode()->id() << " -> " << ge->toNode()->id();
+//     kDebug() << ge->fromNode()->id() << " -> " << ge->toNode()->id();
     ge->setId(QString::fromStdString(node1Name)+QString::fromStdString(node2Name)+QString::number(graph->edges().size()));
-    kDebug() << "num before=" << graph->edges().size();
+//     kDebug() << "num before=" << graph->edges().size();
     graph->edges().insert(ge->id(), ge);
-    kDebug() << "num after=" << graph->edges().size();
+//     kDebug() << "num after=" << graph->edges().size();
 
     setedgeattributes();
 

@@ -82,7 +82,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
 
   /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
   /// possible to save them back : to be changed !
-  kDebug() << "writing subgraphs";
+//   kDebug() << "writing subgraphs";
   GraphSubgraphMap::const_iterator sit;
   for ( sit = graph->subgraphs().begin();
   sit != graph->subgraphs().end(); ++sit )
@@ -91,7 +91,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
     (stream) << s;
   }
 
-  kDebug() << "writing nodes";
+//   kDebug() << "writing nodes";
   GraphNodeMap::const_iterator nit;
   for ( nit = graph->nodes().begin();
         nit != graph->nodes().end(); ++nit )
@@ -99,12 +99,12 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
     (stream) << **nit;
   }
 
-  kDebug() << "writing edges";
+//   kDebug() << "writing edges";
   GraphEdgeMap::const_iterator eit;
   for ( eit = graph->edges().begin();
         eit != graph->edges().end(); ++eit )
   {
-    kDebug() << "writing edge" << (*eit)->id();
+//     kDebug() << "writing edge" << (*eit)->id();
     stream << **eit;
   }
 

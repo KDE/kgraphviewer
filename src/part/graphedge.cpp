@@ -90,13 +90,14 @@ const QString GraphEdge::color(uint i)
 
 void GraphEdge::updateWithEdge(const GraphEdge& edge)
 {
-  kDebug() ;
+  kDebug() << id() << edge.id();
   m_arrowheads = edge.arrowheads();
   m_colors = edge.colors();
   m_dir = edge.dir();
   GraphElement::updateWithElement(edge);
   if (canvasEdge())
   {
+    canvasEdge()->computeBoundingRect();
     canvasEdge()->modelChanged();
   }
 }

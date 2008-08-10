@@ -422,7 +422,8 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
 //     kDebug() << "a subgraph";
     if (subgraphs().contains(nsg->id()))
     {
-      subgraphs().value(nsg->id())->updateWithElement(*nsg);
+      kDebug() << "subgraph known" << nsg->id();
+      subgraphs().value(nsg->id())->updateWithSubgraph(*nsg);
       if (subgraphs().value(nsg->id())->canvasElement()!=0)
       {
         subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
@@ -431,7 +432,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
     else
     {
       GraphSubgraph* newSubgraph = new GraphSubgraph();
-      newSubgraph->updateWithElement(*nsg);
+      newSubgraph->updateWithSubgraph(*nsg);
       newSubgraph->setZ(0);
       subgraphs().insert(nsg->id(), newSubgraph);
     }
@@ -477,9 +478,23 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
 
 }
 
+void DotGraph::removeNodeFromSubgraph(
+    const QString& nodeName,
+    const QString& subgraphName)
+{
+  kDebug() << nodeName << subgraphName;
+  GraphNode* node = nodes()[nodeName];
+  GraphSubgraph* subgraph = subgraphs()[subgraphName];
+  subgraph->removeElement(node);
+  if (subgraph->content().isEmpty())
+  {
+    removeSubgraphNamed(subgraphName);
+  }
+}
+
 void DotGraph::removeSubgraphNamed(const QString& subgraphName)
 {
-  kDebug() << subgraphName;
+  kDebug() << subgraphName << " from " << subgraphs().keys();
   GraphSubgraph* subgraph = subgraphs()[subgraphName];
 
   if (subgraph == 0)
