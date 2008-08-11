@@ -485,6 +485,7 @@ void DotGraph::removeNodeFromSubgraph(
   kDebug() << nodeName << subgraphName;
   GraphNode* node = nodes()[nodeName];
   GraphSubgraph* subgraph = subgraphs()[subgraphName];
+  if (subgraph == 0) return;
   subgraph->removeElement(node);
   if (subgraph->content().isEmpty())
   {
@@ -560,10 +561,28 @@ void DotGraph::removeElement(const QString& id)
   foreach (const QString& eid, nodes().keys())
   {
     GraphNode* node = nodes()[eid];
-    if (node->id() ==id)
+    if (node->id() == id)
     {
       removeNodeNamed(id);
-      break;
+      return;
+    }
+  }
+  foreach (const QString& eid, edges().keys())
+  {
+    GraphEdge* edge = edges()[eid];
+    if (edge->id() == id)
+    {
+      removeEdge(id);
+      return;
+    }
+  }
+  foreach (const QString& sid, subgraphs().keys())
+  {
+    GraphSubgraph* subgraph = subgraphs()[sid];
+    if (subgraph->id() == id)
+    {
+      removeSubgraphNamed(id);
+      return;
     }
   }
 }

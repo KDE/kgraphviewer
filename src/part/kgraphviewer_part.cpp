@@ -33,11 +33,7 @@
 #include <kiconloader.h>
 #include <kstandarddirs.h>
 
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qicon.h>
-#include <qpixmap.h>
-#include <qlayout.h>
+#include <QUuid>
 
 #include <iostream>
 
@@ -67,6 +63,10 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
            this, SIGNAL( removeElement(const QString&) ) );
   connect( m_widget, SIGNAL( selectionIs(const QList<QString>, const QPoint&) ),
            this, SIGNAL( selectionIs(const QList<QString>, const QPoint&) ) );
+  connect( m_widget,
+           SIGNAL( contextMenuEvent(const QString&, const QPoint&) ),
+           this,
+           SIGNAL( contextMenuEvent(const QString&, const QPoint&) ) );
   connect( m_widget, SIGNAL( newEdgeFinished(
       const QString&, const QString&,
       const QMap<QString, QString>&) ),
@@ -247,7 +247,14 @@ void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
     kError() << src << "or" << tgt << "missing";
     return;
   }
-  newEdge->setId(src+tgt+QString::number(m_widget->graph()->edges().size()));
+  if (attribs.keys().contains("id"))
+  {
+    newEdge->setId(attribs["id"]);
+  }
+  else
+  {
+    newEdge->setId(src+tgt+QUuid::createUuid().toString().remove("{").remove("}").remove("-"));
+  }
   newEdge->setFromNode(srcElement);
   newEdge->setToNode(tgtElement);
   m_widget->graph()->edges().insert(newEdge->id(), newEdge);

@@ -82,7 +82,8 @@ public:
 
 Q_SIGNALS:
   void selected(CanvasElement*, Qt::KeyboardModifiers);
-  
+  void elementContextMenuEvent(const QString&, const QPoint&);
+
 public Q_SLOTS:
   void modelChanged();
   void slotRemoveElement();

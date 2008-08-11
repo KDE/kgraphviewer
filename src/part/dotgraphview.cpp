@@ -897,6 +897,14 @@ void DotGraphView::contextMenuEvent(QContextMenuEvent* e)
   m_popup->exec(e->globalPos());
 }
 
+void DotGraphView::slotContextMenuEvent(const QString& id, const QPoint& p)
+{
+  kDebug();
+//   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
+
+  emit (contextMenuEvent(id, p));
+}
+
 void DotGraphView::setLayoutCommand(const QString& command)
 {
   m_graph->layoutCommand(command);

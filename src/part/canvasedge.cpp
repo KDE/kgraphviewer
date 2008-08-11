@@ -76,6 +76,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
   connect(e,SIGNAL(changed()),this,SLOT(modelChanged()));
   connect(this, SIGNAL(selected(CanvasEdge*, Qt::KeyboardModifiers)), view, SLOT(slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers)));
   
+  connect(this, SIGNAL(edgeContextMenuEvent(const QString&, const QPoint&)), view, SLOT(slotContextMenuEvent(const QString&, const QPoint&)));
 } 
 
 CanvasEdge::~CanvasEdge()
@@ -490,16 +491,17 @@ void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
   }
   else if (event->button() == Qt::RightButton)
   {
-    // opens the selected edge contextual menu and if necessary select the edge
     if (!edge()->isSelected())
     {
       edge()->setSelected(true);
       emit(selected(this,event->modifiers()));
       update();
     }
-    kDebug() << "opens the contextual menu";
-    
-    m_popup->exec(event->screenPos());
+    kDebug() << "emiting edgeContextMenuEvent("<<m_edge->id()<<","<<event->screenPos()<<")";
+    emit(edgeContextMenuEvent(m_edge->id(), event->screenPos() ));
+// opens the selected edge contextual menu and if necessary select the edge
+/*    kDebug() << "opens the contextual menu";
+    m_popup->exec(event->screenPos());*/
   }
 }
 

@@ -67,6 +67,7 @@ Q_SIGNALS:
   void removeElement(const QString&);
   void close();
   void selectionIs(const QList<QString>, const QPoint&);
+  void contextMenuEvent(const QString&, const QPoint&);
   /** let the application tweak the created edge if necessary */
   void newEdgeFinished(
       const QString&, const QString&,

@@ -159,6 +159,7 @@ Q_SIGNALS:
   void newEdgeFinished(
       const QString&, const QString&,
       const QMap<QString, QString>&);
+  void contextMenuEvent(const QString&, const QPoint&);
 
 public Q_SLOTS:
   void zoomIn();
@@ -193,6 +194,7 @@ public Q_SLOTS:
   void slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers);
   void slotElementSelected(CanvasElement*, Qt::KeyboardModifiers);
   void slotSelectionChanged();
+  void slotContextMenuEvent(const QString&, const QPoint&);
 
 protected:
   void resizeEvent(QResizeEvent*);

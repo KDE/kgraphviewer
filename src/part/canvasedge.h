@@ -81,7 +81,8 @@ public:
 
 Q_SIGNALS:
   void selected(CanvasEdge*, Qt::KeyboardModifiers);
-  
+  void edgeContextMenuEvent(const QString&, const QPoint&);
+
 public Q_SLOTS:
   void modelChanged();
   void slotRemoveEdge();

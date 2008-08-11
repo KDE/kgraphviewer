@@ -94,6 +94,8 @@ CanvasElement::CanvasElement(
 
   connect(this, SIGNAL(selected(CanvasElement*, Qt::KeyboardModifiers)), v, SLOT(slotElementSelected(CanvasElement*, Qt::KeyboardModifiers)));
 
+  connect(this, SIGNAL(elementContextMenuEvent(const QString&, const QPoint&)), v, SLOT(slotContextMenuEvent(const QString&, const QPoint&)));
+
   setAcceptHoverEvents ( true );
 }
 
@@ -442,9 +444,10 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
       emit(selected(this,event->modifiers()));
       update();
     }
-    kDebug() << "opens the contextual menu";
-
-    m_popup->exec(event->screenPos());
+    
+//     kDebug() << "opens the contextual menu";
+//     m_popup->exec(event->screenPos());
+    emit(elementContextMenuEvent(m_element->id(), event->screenPos() ));
   }
 }
 

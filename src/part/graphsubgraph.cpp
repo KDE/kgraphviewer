@@ -32,7 +32,7 @@
 //
 
 GraphSubgraph::GraphSubgraph() :
-    GraphElement()
+    GraphElement(), m_content()
 {
 }
 
@@ -75,7 +75,7 @@ QString GraphSubgraph::backColor() const
 
 void GraphSubgraph::removeElement(GraphElement* element)
 {
-  m_content.remove(element);
+  m_content.removeAll(element);
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
