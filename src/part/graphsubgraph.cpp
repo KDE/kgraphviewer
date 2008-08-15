@@ -49,18 +49,37 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
       if (ge->id() == updatingge->id())
       {
         found = true;
-        dynamic_cast<GraphNode*>(ge)->updateWithNode(*dynamic_cast<GraphNode*>(updatingge));
+        if (dynamic_cast<GraphNode*>(ge) != 0)
+        {
+          dynamic_cast<GraphNode*>(ge)->updateWithNode(*dynamic_cast<GraphNode*>(updatingge));
         //     kDebug() << "node " << ngn->id();
+        }
+        else if (dynamic_cast<GraphSubgraph*>(ge) != 0)
+        {
+          dynamic_cast<GraphSubgraph*>(ge)->updateWithSubgraph(*dynamic_cast<GraphSubgraph*>(updatingge));
+        }
+        else
+        {
+          kError() << "Updated element is neither a node nor a subgraph";
+        }
         break;
       }
     }
     if (!found)
     {
   //       kDebug() << "new";
-      GraphNode* newgn = new GraphNode(*dynamic_cast<GraphNode*>(updatingge));
+      if (dynamic_cast<GraphNode*>(updatingge) != 0)
+      {
+        GraphNode* newgn = new GraphNode(*dynamic_cast<GraphNode*>(updatingge));
   //       kDebug() << "new created";
-      content().push_back(newgn);
+        content().push_back(newgn);
   //       kDebug() << "new inserted";
+      }
+      else if (dynamic_cast<GraphSubgraph*>(updatingge) != 0)
+      {
+        GraphSubgraph* newsg = new GraphSubgraph(*dynamic_cast<GraphSubgraph*>(updatingge));
+        content().push_back(newsg);
+      }
     }
   }
 

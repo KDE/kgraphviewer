@@ -433,8 +433,8 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
         GraphEdge* newEdge = new GraphEdge();
         newEdge->setId(nge->id());
         newEdge->updateWithEdge(*nge);
-        newEdge->setFromNode(nge->fromNode());
-        newEdge->setToNode(nge->toNode());
+        newEdge->setFromNode(elementNamed(nge->fromNode()->id()));
+        newEdge->setToNode(elementNamed(nge->toNode()->id()));
         edges().insert(nge->id(), newEdge);
       }
     }

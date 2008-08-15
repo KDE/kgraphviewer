@@ -37,7 +37,7 @@
 #include <kdebug.h>
     
 #include <QFile>
-
+#include<QUuid>
 
 using namespace std;
 
@@ -309,48 +309,21 @@ void DotGraphParsingHelper::createedges()
     }
     kDebug() << QString::fromStdString(node1Name) << ", " << QString::fromStdString(node2Name);
     ge = new GraphEdge();
-    GraphNode* gn1 = 0;
-    GraphNode* gn2 = 0;
-    kDebug() << "Searching in subgraphs";
-    foreach(GraphSubgraph* subgraph, graph->subgraphs())
-    {
-      foreach (GraphElement* element, subgraph->content())
-      {
-        if (element->id() == QString::fromStdString(node1Name))
-        {
-          gn1 = dynamic_cast<GraphNode*>(element);
-        }
-        else if (element->id() == QString::fromStdString(node2Name))
-        {
-          gn2 = dynamic_cast<GraphNode*>(element);
-        }
-      }
-    }
-    kDebug() << "Found gn1="<<gn1<<" and gn2=" << gn2;
-    kDebug() << "graph is "<< (void*)graph;
-    if (gn1 == 0
-      && !graph->nodes().contains(QString::fromStdString(node1Name)))
+    GraphElement* gn1 = graph->elementNamed(QString::fromStdString(node1Name));
+    if (gn1 == 0)
     {
       kDebug() << "new node 1";
       gn1 = new GraphNode();
       gn1->setId(QString::fromStdString(node1Name));
-      graph->nodes()[QString::fromStdString(node1Name)] = gn1;
+      graph->nodes()[QString::fromStdString(node1Name)] = dynamic_cast<GraphNode*>(gn1);
     }
-    else if (gn1==0)
-    {
-      gn1 = graph->nodes()[QString::fromStdString(node1Name)];
-    }
-    if (gn2 == 0
-      && !graph->nodes().contains(QString::fromStdString(node2Name)))
+    GraphElement* gn2 = graph->elementNamed(QString::fromStdString(node2Name));
+    if (gn2 == 0)
     {
       kDebug() << "new node 2";
       gn2 = new GraphNode();
       gn2->setId(QString::fromStdString(node2Name));
-      graph->nodes()[QString::fromStdString(node2Name)] = gn2;
-    }
-    else if (gn2==0)
-    {
-      gn2 = graph->nodes()[QString::fromStdString(node2Name)];
+      graph->nodes()[QString::fromStdString(node2Name)] = dynamic_cast<GraphNode*>(gn2);
     }
     kDebug() << "Found gn1="<<gn1<<" and gn2=" << gn2;
     if (gn1 == 0 || gn2 == 0)
@@ -360,7 +333,7 @@ void DotGraphParsingHelper::createedges()
     ge->setFromNode(gn1);
     ge->setToNode(gn2);
     kDebug() << ge->fromNode()->id() << " -> " << ge->toNode()->id();
-    ge->setId(QString::fromStdString(node1Name)+QString::fromStdString(node2Name)+QString::number(graph->edges().size()));
+    ge->setId(QString::fromStdString(node1Name)+QString::fromStdString(node2Name)+QUuid::createUuid().toString().remove("{").remove("}").remove("-"));
 //     kDebug() << "num before=" << graph->edges().size();
     graph->edges().insert(ge->id(), ge);
 //     kDebug() << "num after=" << graph->edges().size();

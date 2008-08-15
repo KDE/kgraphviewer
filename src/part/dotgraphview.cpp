@@ -327,9 +327,9 @@ bool DotGraphView::displayGraph()
     foreach (GraphElement* element, gsubgraph->content())
     {
       GraphNode* gnode = dynamic_cast<GraphNode*>(element);
-      kDebug() << "a subgraph node:" << gnode;
       if (gnode->canvasNode()==0)
       {
+        kDebug() << "a subgraph node:" << gnode->id();
         CanvasNode *cnode = new CanvasNode(this, gnode, m_canvas);
         if (cnode == 0) continue;
         cnode->initialize(
@@ -348,7 +348,7 @@ bool DotGraphView::displayGraph()
     }
     if (gsubgraph->canvasSubgraph() == 0)
     {
-      kDebug() << " one CanvasSubgraph...";
+      kDebug() << " one CanvasSubgraph..." << gsubgraph->id();
       CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph, m_canvas);
       csubgraph->initialize(
         scaleX, scaleY, m_xMargin, m_yMargin, gh,
@@ -375,7 +375,7 @@ bool DotGraphView::displayGraph()
     kDebug()<<  "  canvasNode=" << (void*)gnode->canvasNode();
     if (gnode->canvasNode()==0)
     {
-      kDebug() << " one CanvasNode...";
+      kDebug() << " one CanvasNode..." << gnode->id();
       CanvasNode *cnode = new CanvasNode(this, gnode, m_canvas);
       if (cnode == 0) continue;
       cnode->initialize(
@@ -393,12 +393,17 @@ bool DotGraphView::displayGraph()
     }
   }
 
-  kDebug() << "Creating edges" << m_graph->edges().size() << "from" << m_graph;
+  kDebug() << "Creating" << m_graph->edges().size() << "edges from" << m_graph;
   foreach (GraphEdge* gedge, m_graph->edges())
   {
+    kDebug() << "One GraphEdge:" << gedge->id();
     if (gedge->canvasEdge() == 0)
     {
-      kDebug() << " one CanvasEdge...";
+      kDebug() << "New CanvasEdge for" << gedge->id();
+      kDebug() << "edge fromNode=" << (void*)gedge->fromNode();
+      kDebug() << "              "<< gedge->fromNode()->id();
+      kDebug() << "edge toNode=" << (void*)gedge->toNode();
+      kDebug() << "              "<< gedge->toNode()->id();
       CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, m_xMargin,
           m_yMargin, gh, m_graph->wdhcf(), m_graph->hdvcf());
 
