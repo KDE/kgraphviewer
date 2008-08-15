@@ -379,7 +379,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
       subgraphs().value(nsg->id())->updateWithSubgraph(*nsg);
       if (subgraphs().value(nsg->id())->canvasElement()!=0)
       {
-        subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
+//         subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
       }
     }
     else
@@ -401,7 +401,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
       nodes()[ngn->id()]->updateWithNode(*ngn);
       if (nodes()[ngn->id()]->canvasElement()!=0)
       {
-        nodes()[ngn->id()]->canvasElement()->setGh(m_height);
+//         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
       }
     }
     else
@@ -423,7 +423,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
       edges()[nge->id()]->updateWithEdge(*nge);
       if (edges()[nge->id()]->canvasEdge()!=0)
       {
-        edges()[nge->id()]->canvasEdge()->setGh(m_height);
+//         edges()[nge->id()]->canvasEdge()->setGh(m_height);
       }
     }
     else
@@ -550,6 +550,23 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
     delete subgraph->canvasSubgraph();
     subgraph->setCanvasSubgraph(0);
   }
+  foreach(GraphElement* element, subgraph->content())
+  {
+    if (dynamic_cast<GraphNode*>(element) != 0)
+    {
+      kDebug() << "Adding" << element->id() << "to main graph";
+      nodes()[element->id()] = dynamic_cast<GraphNode*>(element);
+    }
+    else if (dynamic_cast<GraphSubgraph*>(element) != 0)
+    {
+      subgraphs()[element->id()] = dynamic_cast<GraphSubgraph*>(element);
+    }
+    else
+    {
+      kError() << "Don't know how to handle" << element->id();
+    }
+  }
+  subgraph->content().clear();
   subgraphs().remove(subgraphName);
   delete subgraph;
 }

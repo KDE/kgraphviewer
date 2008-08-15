@@ -321,7 +321,7 @@ bool DotGraphView::displayGraph()
 
 //   kDebug() << "sceneRect is now " << m_canvas->sceneRect();
   
-  kDebug() << "Creating CanvasSubgraphs" << m_graph->subgraphs().size() << "from" << m_graph;
+  kDebug() << "Creating" << m_graph->subgraphs().size() << "CanvasSubgraphs from" << m_graph;
   foreach (GraphSubgraph* gsubgraph,m_graph->subgraphs())
   {
     foreach (GraphElement* element, gsubgraph->content())
@@ -329,7 +329,7 @@ bool DotGraphView::displayGraph()
       GraphNode* gnode = dynamic_cast<GraphNode*>(element);
       if (gnode->canvasNode()==0)
       {
-        kDebug() << "a subgraph node:" << gnode->id();
+        kDebug() << "Creating canvas node for:" << gnode->id();
         CanvasNode *cnode = new CanvasNode(this, gnode, m_canvas);
         if (cnode == 0) continue;
         cnode->initialize(
@@ -341,14 +341,11 @@ bool DotGraphView::displayGraph()
         cnode->setZValue(2);
         cnode->show();
       }
-      else
-      {
-        gnode->canvasNode()->computeBoundingRect();
-      }
+      gnode->canvasNode()->computeBoundingRect();
     }
     if (gsubgraph->canvasSubgraph() == 0)
     {
-      kDebug() << " one CanvasSubgraph..." << gsubgraph->id();
+      kDebug() << "Creating canvas subgraph for" << gsubgraph->id();
       CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph, m_canvas);
       csubgraph->initialize(
         scaleX, scaleY, m_xMargin, m_yMargin, gh,
@@ -360,10 +357,7 @@ bool DotGraphView::displayGraph()
       m_canvas->addItem(csubgraph);
       kDebug() << " one CanvasSubgraph... Done";
     }
-    else
-    {
-      gsubgraph->canvasSubgraph()->computeBoundingRect();
-    }
+    gsubgraph->canvasSubgraph()->computeBoundingRect();
   }
 
   kDebug() << "Creating" << m_graph->nodes().size() << "nodes from" << m_graph;
@@ -375,7 +369,7 @@ bool DotGraphView::displayGraph()
     kDebug()<<  "  canvasNode=" << (void*)gnode->canvasNode();
     if (gnode->canvasNode()==0)
     {
-      kDebug() << " one CanvasNode..." << gnode->id();
+      kDebug() << "Creating canvas node for" << gnode->id();
       CanvasNode *cnode = new CanvasNode(this, gnode, m_canvas);
       if (cnode == 0) continue;
       cnode->initialize(
@@ -387,10 +381,7 @@ bool DotGraphView::displayGraph()
       cnode->setZValue(2);
       cnode->show();
     }
-    else
-    {
-      gnode->canvasNode()->computeBoundingRect();
-    }
+    gnode->canvasNode()->computeBoundingRect();
   }
 
   kDebug() << "Creating" << m_graph->edges().size() << "edges from" << m_graph;
@@ -413,10 +404,7 @@ bool DotGraphView::displayGraph()
       cedge->show();
       m_canvas->addItem(cedge);
     }
-    else
-    {
-      gedge->canvasEdge()->computeBoundingRect();
-    }
+    gedge->canvasEdge()->computeBoundingRect();
   }
   kDebug() << "Adding graph render operations: " << m_graph->renderOperations().size();
   foreach (const DotRenderOp& dro,m_graph->renderOperations())

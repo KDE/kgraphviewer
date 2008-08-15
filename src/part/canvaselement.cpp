@@ -48,7 +48,9 @@ CanvasElement::CanvasElement(
                               QGraphicsScene* c,
                               QGraphicsItem* parent
                             )
-  : QObject(), QAbstractGraphicsShapeItem(parent), 
+  : QObject(), QAbstractGraphicsShapeItem(parent),
+    m_scaleX(0), m_scaleY(0),
+    m_xMargin(0), m_yMargin(0), m_gh(0), m_wdhcf(0), m_hdvcf(0),
     m_element(gelement), m_view(v),
     m_font(0),
     m_pen(Dot2QtConsts::componentData().qtColor(gelement->fontColor())),
@@ -123,7 +125,8 @@ void CanvasElement::initialize(qreal scaleX, qreal scaleY,
 
   m_scaleX = scaleX; m_scaleY = scaleY;
   m_xMargin = xMargin; m_yMargin = yMargin;
-  m_gh = gh; m_wdhcf = wdhcf; m_hdvcf = hdvcf;
+//   m_gh = gh;
+  m_wdhcf = wdhcf; m_hdvcf = hdvcf;
 
   setZValue(m_element->z());
 

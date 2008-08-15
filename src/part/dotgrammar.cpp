@@ -123,6 +123,7 @@ void decrz(char const /*first*/)
   if (phelper)
   {
     phelper->z--;
+    phelper->gs = 0;
   }
 }
 

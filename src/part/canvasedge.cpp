@@ -51,9 +51,9 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
                        qreal wdhcf, qreal hdvcf,
                        QGraphicsItem* parent)
                        : QAbstractGraphicsShapeItem(parent),
-    m_scaleX(scaleX),
-    m_scaleY(scaleY), m_xMargin(xMargin), m_yMargin(yMargin),
-    m_gh(gh), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
+    m_scaleX(scaleX), m_scaleY(scaleY),
+    m_xMargin(xMargin), m_yMargin(yMargin),
+    m_gh(/*gh*/0), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
     m_font(0), m_view(view), m_popup(new QMenu())
 {
   kDebug() << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << m_gh;

@@ -200,9 +200,14 @@ void kgraphviewerPart::slotAddExistingNodeToSubgraph(
     QString subgraph)
 {
   kDebug() << attribs << "to" << subgraph;
+  GraphNode* node = dynamic_cast<GraphNode*>(m_widget->graph()->elementNamed(attribs["id"]));
+  if (node == 0)
+  {
+    kError() << "No such node" << attribs["id"];
+    return;
+  }
   if (m_widget->graph()->nodes().contains(attribs["id"]))
   {
-    GraphNode* node = m_widget->graph()->nodes()[attribs["id"]];
     m_widget->graph()->nodes().remove(attribs["id"]);
     node->attributes() = attribs;
     m_widget->graph()->subgraphs()[subgraph]->content().push_back(node);
@@ -215,7 +220,7 @@ void kgraphviewerPart::slotAddExistingNodeToSubgraph(
       GraphElement* elt = 0;
       foreach(GraphElement* element, gs->content())
       {
-        if (element->id() == attribs["id"])
+        if (element == node)
         {
           elt = element;
           break;
@@ -227,6 +232,45 @@ void kgraphviewerPart::slotAddExistingNodeToSubgraph(
         gs->removeElement(elt);
         m_widget->graph()->subgraphs()[subgraph]->content().push_back(elt);
         kDebug() << "node " << elt->id() << " added in " << subgraph;
+        break;
+      }
+    }
+  }
+}
+
+void kgraphviewerPart::slotMoveExistingNodeToMainGraph(QMap<QString,QString> attribs)
+{
+  kDebug() << attribs;
+  GraphNode* node = dynamic_cast<GraphNode*>(m_widget->graph()->elementNamed(attribs["id"]));
+  if (node == 0)
+  {
+    kError() << "No such node" << attribs["id"];
+    return;
+  }
+  else if (m_widget->graph()->nodes().contains(attribs["id"]))
+  {
+    kError() << "Node" << attribs["id"] << "already in main graph";
+    return;
+  }
+  else
+  {
+    foreach(GraphSubgraph* gs, m_widget->graph()->subgraphs())
+    {
+      bool found = false;
+      foreach(GraphElement* element, gs->content())
+      {
+        if (element == node)
+        {
+          found = true;
+          break;
+        }
+      }
+      if (found)
+      {
+        kDebug() << "removing node " << node->id() << " from " << gs->id();
+        gs->removeElement(node);
+        m_widget->graph()->nodes()[node->id()] = node;
+        kDebug() << "node " << node->id() << " moved to main graph";
         break;
       }
     }
