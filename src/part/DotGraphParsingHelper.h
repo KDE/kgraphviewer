@@ -33,6 +33,8 @@ struct DotGraphParsingHelper
 {
   typedef std::map< std::string, std::string > AttributesMap;
 
+  DotGraphParsingHelper();
+
   void createnode(const std::string& nodeid);
   void createsubgraph();
   void setgraphattributes();
@@ -50,7 +52,7 @@ struct DotGraphParsingHelper
   std::string attributed;
   std::string subgraphid;
   
-  unsigned uniq;
+  unsigned int uniq;
   
   AttributesMap attributes;
   AttributesMap graphAttributes;

@@ -40,6 +40,30 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
 {
   kDebug() << id() << subgraph.id();
   GraphElement::updateWithElement(subgraph);
+
+  bool found = false;
+  foreach (GraphElement* updatingge, subgraph.content())
+  {
+    foreach (GraphElement* ge, content())
+    {
+      if (ge->id() == updatingge->id())
+      {
+        found = true;
+        dynamic_cast<GraphNode*>(ge)->updateWithNode(*dynamic_cast<GraphNode*>(updatingge));
+        //     kDebug() << "node " << ngn->id();
+        break;
+      }
+    }
+    if (!found)
+    {
+  //       kDebug() << "new";
+      GraphNode* newgn = new GraphNode(*dynamic_cast<GraphNode*>(updatingge));
+  //       kDebug() << "new created";
+      content().push_back(newgn);
+  //       kDebug() << "new inserted";
+    }
+  }
+
   if (canvasSubgraph())
   {
     canvasSubgraph()->modelChanged();
@@ -76,6 +100,27 @@ QString GraphSubgraph::backColor() const
 void GraphSubgraph::removeElement(GraphElement* element)
 {
   m_content.removeAll(element);
+}
+
+GraphElement* GraphSubgraph::elementNamed(const QString& id)
+{
+  if (this->id() == id) return this;
+  foreach (GraphElement* element, content())
+  {
+    if (element->id() == id)
+    {
+      return element;
+    }
+    else if (dynamic_cast<GraphSubgraph*>(element))
+    {
+      GraphElement* subgraphElement = dynamic_cast<GraphSubgraph*>(element)->elementNamed(id);
+      if (subgraphElement != 0)
+      {
+        return subgraphElement;
+      }
+    }
+  }
+  return 0;
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)

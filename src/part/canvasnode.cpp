@@ -62,6 +62,7 @@ CanvasNode::CanvasNode(DotGraphView* v,
 : CanvasElement(v,(GraphElement*)s, c, parent)
 
 {
+  kDebug() << s->id();
   connect(s,SIGNAL(changed()),this,SLOT(modelChanged()));
 
   QString tipStr;

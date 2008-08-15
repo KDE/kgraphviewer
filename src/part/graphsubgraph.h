@@ -56,7 +56,10 @@ public:
 
   void removeElement(GraphElement* element);
 
-
+  /// Recursively walk through this subgraph and its subsubgraphs to find an element named id
+  /// @return the node found or 0 if there is no such node
+  GraphElement* elementNamed(const QString& id);
+  
  private:
   QList<GraphElement*> m_content;
 };

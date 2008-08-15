@@ -100,6 +100,8 @@ public:
 
   void setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
 
+  GraphElement* elementNamed(const QString& id);
+
 public Q_SLOTS:
   void removeNodeNamed(const QString& nodeName);
   void removeNodeFromSubgraph(const QString& nodeName, const QString& subgraphName);

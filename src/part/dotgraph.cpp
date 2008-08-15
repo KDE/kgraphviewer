@@ -184,7 +184,7 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
   QByteArray result = getDotResult(exitCode, exitStatus);
   result.replace("\\\n","");
 
-//   kDebug() << "string content is:" << endl << result << endl << "=====================" << result.size();
+  kDebug() << "string content is:" << endl << result << endl << "=====================" << result.size();
   std::string s =  result.data();
 //   std::cerr << "stdstring content is:" << std::endl << s << std::endl << "===================== " << s.size() << std::endl;
   if (phelper != 0)
@@ -370,12 +370,33 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
   m_directed=newGraph.directed();
   m_strict=newGraph.strict();
   computeCells();
+  foreach (GraphSubgraph* nsg, newGraph.subgraphs())
+  {
+    kDebug() << "subgraph" << nsg->id();
+    if (subgraphs().contains(nsg->id()))
+    {
+      kDebug() << "subgraph known" << nsg->id();
+      subgraphs().value(nsg->id())->updateWithSubgraph(*nsg);
+      if (subgraphs().value(nsg->id())->canvasElement()!=0)
+      {
+        subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
+      }
+    }
+    else
+    {
+      kDebug() << "new subgraph" << nsg->id();
+      GraphSubgraph* newSubgraph = new GraphSubgraph();
+      newSubgraph->updateWithSubgraph(*nsg);
+      newSubgraph->setZ(0);
+      subgraphs().insert(nsg->id(), newSubgraph);
+    }
+  }
   foreach (GraphNode* ngn, newGraph.nodes())
   {
-//     kDebug() << "node " << ngn->id();
+    kDebug() << "node " << ngn->id();
     if (nodes().contains(ngn->id()))
     {
-//       kDebug() << "known";
+      kDebug() << "known";
       nodes()[ngn->id()]->setZ(ngn->z());
       nodes()[ngn->id()]->updateWithNode(*ngn);
       if (nodes()[ngn->id()]->canvasElement()!=0)
@@ -385,7 +406,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
     }
     else
     {
-//       kDebug() << "new";
+      kDebug() << "new";
       GraphNode* newgn = new GraphNode(*ngn);
 //       kDebug() << "new created";
       nodes().insert(ngn->id(), newgn);
@@ -394,6 +415,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
   }
   foreach (GraphEdge* nge, newGraph.edges())
   {
+    kDebug() << "edge " << nge->id();
     if (edges().contains(nge->id()))
     {
       kDebug() << "edge known" << nge->id();
@@ -411,40 +433,26 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
         GraphEdge* newEdge = new GraphEdge();
         newEdge->setId(nge->id());
         newEdge->updateWithEdge(*nge);
-        newEdge->setFromNode(nodes()[nge->fromNode()->id()]);
-        newEdge->setToNode(nodes()[nge->toNode()->id()]);
+        newEdge->setFromNode(nge->fromNode());
+        newEdge->setToNode(nge->toNode());
         edges().insert(nge->id(), newEdge);
       }
     }
   }
-  foreach (GraphSubgraph* nsg, newGraph.subgraphs())
-  {
-//     kDebug() << "a subgraph";
-    if (subgraphs().contains(nsg->id()))
-    {
-      kDebug() << "subgraph known" << nsg->id();
-      subgraphs().value(nsg->id())->updateWithSubgraph(*nsg);
-      if (subgraphs().value(nsg->id())->canvasElement()!=0)
-      {
-        subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
-      }
-    }
-    else
-    {
-      GraphSubgraph* newSubgraph = new GraphSubgraph();
-      newSubgraph->updateWithSubgraph(*nsg);
-      newSubgraph->setZ(0);
-      subgraphs().insert(nsg->id(), newSubgraph);
-    }
-  }
+  kDebug() << "Done";
   computeCells();
 }
 
 void DotGraph::removeNodeNamed(const QString& nodeName)
 {
   kDebug() << nodeName;
-  GraphNode* node = nodes()[nodeName];
-
+  GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(nodeName));
+  if (node == 0)
+  {
+    kError() << "No such node " << nodeName;
+    return;
+  }
+  
   GraphEdgeMap::iterator it, it_end;
   it = m_edgesMap.begin(); it_end = m_edgesMap.end();
   while (it != it_end)
@@ -483,9 +491,20 @@ void DotGraph::removeNodeFromSubgraph(
     const QString& subgraphName)
 {
   kDebug() << nodeName << subgraphName;
-  GraphNode* node = nodes()[nodeName];
+  GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(nodeName));
+  if (node == 0)
+  {
+    kError() << "No such node " << nodeName;
+    return;
+  }
+
   GraphSubgraph* subgraph = subgraphs()[subgraphName];
-  if (subgraph == 0) return;
+  if (subgraph == 0)
+  {
+    kError() << "No such subgraph " << subgraphName;
+    return;
+  }
+  
   subgraph->removeElement(node);
   if (subgraph->content().isEmpty())
   {
@@ -603,5 +622,31 @@ void DotGraph::setAttribute(const QString& elementId, const QString& attributeNa
   }
 }
 
+GraphElement* DotGraph::elementNamed(const QString& id)
+{
+  foreach (const QString& nid, nodes().keys())
+  {
+    if (nid == id)
+    {
+      return nodes()[nid];
+    }
+  }
+  foreach (const QString& eid, edges().keys())
+  {
+    if (eid == id)
+    {
+      return edges()[eid];
+    }
+  }
+  foreach (const QString& sid, subgraphs().keys())
+  {
+    GraphElement* element = subgraphs()[sid]->elementNamed(id);
+    if (element != 0)
+    {
+      return element;
+    }
+  }
+  return 0;
+}
 
 #include "dotgraph.moc"

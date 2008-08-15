@@ -138,7 +138,7 @@ QRectF CanvasElement::boundingRect () const
 void CanvasElement::computeBoundingRect()
 {
 //   kDebug() << element();
-//   kDebug() << element()->id() << zValue();
+  kDebug() << element()->id() << zValue();
   
   qreal adjust = 0.5;
   QRectF rect;

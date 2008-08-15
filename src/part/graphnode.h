@@ -40,6 +40,8 @@
 #include "dotrenderop.h"
 #include "dotgrammar.h"
 #include "graphelement.h"
+#include "canvaselement.h"
+#include "canvasnode.h"
 
 class CanvasNode;
 
@@ -55,8 +57,8 @@ public:
   
   virtual ~GraphNode() {}  
   
-  inline CanvasNode* canvasNode() { return (CanvasNode*)canvasElement(); }
-  inline const CanvasNode* canvasNode() const { return (const CanvasNode*)canvasElement(); }
+  inline CanvasNode* canvasNode() { return dynamic_cast<CanvasNode*>(canvasElement()); }
+  inline const CanvasNode* canvasNode() const { return dynamic_cast<const CanvasNode*>(canvasElement()); }
   inline void setCanvasNode(CanvasNode* cn) { setCanvasElement((CanvasElement*)cn); }
 
   virtual void updateWithNode(const GraphNode& node);

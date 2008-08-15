@@ -245,8 +245,8 @@ void popAttrList(char const* /*first*/, char const* /*last*/)
 
 void createnode(char const* first, char const* last)
 {
-//   kDebug() << QString::fromStdString(std::string(first,last));
-  if (phelper) 
+  kDebug() << (void*)first << (void*)last << QString::fromStdString(std::string(first,last));
+  if (phelper!=0 && first!=0 && last != 0) 
   {
     std::string id(first,last);
     if (id.size()>0 && id[0] == '"') id = id.substr(1);
@@ -311,7 +311,7 @@ void checkedgeop(char const* first, char const* last)
 
 void edgebound(char const* first, char const* last)
 {
-//   kDebug() << "edgebound: " << QString::fromStdString(std::string(first,last));
+  kDebug() << "edgebound: " << QString::fromStdString(std::string(first,last));
   if (phelper) 
   {
     std::string id(first,last);
@@ -466,7 +466,7 @@ void valid_op(char const* first, char const* last)
 
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
 {
-//   std::cerr << "parse_renderop " << str << " " << str.size() << std::endl;
+  kDebug() << "parse_renderop " << str.c_str() << " " << str.size();
   if (str.empty())
   {
     return false;

@@ -189,10 +189,10 @@ void kgraphviewerPart::slotAddNewNodeToSubgraph(QMap<QString,QString> attribs,
   kDebug() << attribs << "to" << subgraph;
   GraphNode* newNode = new GraphNode();
   newNode->attributes() = attribs;
-  m_widget->graph()->nodes().insert(newNode->id(), newNode);
+//   m_widget->graph()->nodes().insert(newNode->id(), newNode);
   m_widget->graph()->subgraphs()[subgraph]->content().push_back(newNode);
 
-  kDebug() << "node added as" << newNode->id();
+  kDebug() << "node added as" << newNode->id() << "in" << subgraph;
 }
 
 void kgraphviewerPart::slotAddExistingNodeToSubgraph(
@@ -203,9 +203,33 @@ void kgraphviewerPart::slotAddExistingNodeToSubgraph(
   if (m_widget->graph()->nodes().contains(attribs["id"]))
   {
     GraphNode* node = m_widget->graph()->nodes()[attribs["id"]];
+    m_widget->graph()->nodes().remove(attribs["id"]);
     node->attributes() = attribs;
     m_widget->graph()->subgraphs()[subgraph]->content().push_back(node);
-    kDebug() << "node " << node->id() << " added as " << subgraph;
+    kDebug() << "node " << node->id() << " added in " << subgraph;
+  }
+  else
+  {
+    foreach(GraphSubgraph* gs, m_widget->graph()->subgraphs())
+    {
+      GraphElement* elt = 0;
+      foreach(GraphElement* element, gs->content())
+      {
+        if (element->id() == attribs["id"])
+        {
+          elt = element;
+          break;
+        }
+      }
+      if (elt != 0)
+      {
+        kDebug() << "removing node " << elt->id() << " from " << gs->id();
+        gs->removeElement(elt);
+        m_widget->graph()->subgraphs()[subgraph]->content().push_back(elt);
+        kDebug() << "node " << elt->id() << " added in " << subgraph;
+        break;
+      }
+    }
   }
 }
 
@@ -215,34 +239,18 @@ void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
   kDebug() << src << tgt << attribs;
   GraphEdge* newEdge = new GraphEdge();
   newEdge->attributes() = attribs;
-  GraphElement* srcElement = 0;
-  GraphElement* tgtElement = 0;
-  if (m_widget->graph()->nodes().contains(src))
+  GraphElement* srcElement = graph()->elementNamed(src);
+  if (srcElement == 0)
   {
-    srcElement = m_widget->graph()->nodes()[src];
+    srcElement = graph()->elementNamed(QString("cluster_")+src);
   }
-  else if (m_widget->graph()->subgraphs().contains(src))
+  GraphElement* tgtElement = graph()->elementNamed(tgt);
+  if (tgtElement == 0)
   {
-    srcElement = m_widget->graph()->subgraphs()[src];
-  }
-  else if (m_widget->graph()->subgraphs().contains(QString("cluster_")+src))
-  {
-    srcElement = m_widget->graph()->subgraphs()[QString("cluster_")+src];
-  }
-  if (m_widget->graph()->nodes().contains(tgt))
-  {
-    tgtElement = m_widget->graph()->nodes()[tgt];
-  }
-  else if (m_widget->graph()->subgraphs().contains(tgt))
-  {
-    tgtElement = m_widget->graph()->subgraphs()[tgt];
-  }
-  else if (m_widget->graph()->subgraphs().contains(QString("cluster_")+tgt))
-  {
-    tgtElement = m_widget->graph()->subgraphs()[QString("cluster_")+tgt];
+    tgtElement = graph()->elementNamed(QString("cluster_")+tgt);
   }
   
-  if (srcElement==0||tgtElement==0)
+  if (srcElement == 0 || tgtElement == 0)
   {
     kError() << src << "or" << tgt << "missing";
     return;
@@ -304,11 +312,13 @@ void kgraphviewerPart::slotRemoveSubgraph(const QString& subgraphName)
 void kgraphviewerPart::slotSelectNode(const QString& nodeName)
 {
   kDebug() << nodeName;
-  m_widget->graph()->nodes()[nodeName]->setSelected(true);
-  if (m_widget->graph()->nodes()[nodeName]->canvasNode()!=0)
+  GraphNode* node = dynamic_cast<GraphNode*>(m_widget->graph()->elementNamed(nodeName));
+  if (node == 0) return;
+  node->setSelected(true);
+  if (node->canvasNode()!=0)
   {
-    m_widget->graph()->nodes()[nodeName]->canvasNode()->modelChanged();
-    m_widget->slotElementSelected(m_widget->graph()->nodes()[nodeName]->canvasNode(),Qt::NoModifier);
+    node->canvasNode()->modelChanged();
+    m_widget->slotElementSelected(node->canvasNode(),Qt::NoModifier);
   }
 }
 
@@ -326,7 +336,11 @@ void kgraphviewerPart::slotSetAttribute(const QString& elementId, const QString&
 void kgraphviewerPart::slotRemoveAttribute(const QString& nodeName, const QString& attribName)
 {
   kDebug();
-  m_widget->graph()->nodes()[nodeName]->removeAttribute(attribName);
+  GraphElement* element = m_widget->graph()->elementNamed(nodeName);
+  if (element != 0)
+  {
+    element->removeAttribute(attribName);
+  }
 }
 
 void kgraphviewerPart::slotRemoveEdge(const QString& id)

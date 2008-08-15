@@ -63,7 +63,7 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
 
 void GraphElement::updateWithElement(const GraphElement& element)
 {
-  kDebug();
+  kDebug() << element.id();
   bool modified = false;
   if (element.z() != m_z)
   {
@@ -85,6 +85,7 @@ void GraphElement::updateWithElement(const GraphElement& element)
   }
   if (modified)
   {
+    kDebug() << "modified: update render operations";
     m_renderOperations = element.m_renderOperations;
 /*    foreach (DotRenderOp op, m_renderOperations)
     {
@@ -101,7 +102,7 @@ void GraphElement::updateWithElement(const GraphElement& element)
     kDebug() << "modified: emiting changed";*/
     emit changed();
   }
-//   kDebug() << "done" << m_renderOperations.size();
+  kDebug() << "done" << m_renderOperations.size();
 }
 
 
