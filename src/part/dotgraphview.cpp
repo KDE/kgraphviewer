@@ -54,6 +54,7 @@
 #include <QContextMenuEvent>
 #include <QKeyEvent>
 #include <QPixmap>
+#include <QBitmap>
 #include <QResizeEvent>
 #include <QFocusEvent>
 #include <QMouseEvent>
@@ -123,7 +124,7 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   m_birdEyeView->hide();
 
   setFocusPolicy(Qt::StrongFocus);
-  setBackgroundMode(Qt::NoBackground);
+  setBackgroundRole(QPalette::Window);
 //   viewport()->setMouseTracking(true);
   
   connect(m_birdEyeView, SIGNAL(zoomRectMovedTo(QPointF)),
@@ -755,7 +756,7 @@ void DotGraphView::zoomRectMoveFinished()
 
 void DotGraphView::mousePressEvent(QMouseEvent* e)
 {
-  kDebug() << e;
+  kDebug() << e << m_editingMode;
   QGraphicsView::mousePressEvent(e);
 
   if (m_editingMode == AddNewElement)
@@ -796,6 +797,9 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     unsetCursor();
     emit newNodeAdded(newNode->id());
   }
+  else if (m_editingMode == SelectingElements)
+  {
+  }
   else
   {
     if (itemAt(e->pos()) == 0) // click outside any item: unselect all
@@ -811,7 +815,10 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
         }
         m_newEdgeSource = 0;
         m_editingMode = None;
-        unsetCursor();
+      }
+      else if (m_editingMode == AddNewEdge)
+      {
+        m_editingMode = None;
       }
       foreach(GraphEdge* e, m_graph->edges())
       {
@@ -828,12 +835,11 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
         s->setSelected(false);
         s->canvasElement()->update();
       }
+      emit selectionIs(QList<QString>(),QPoint());
     }
     m_pressPos = e->globalPos();
     m_pressScrollBarsPos = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
   }
-
-
   m_isMoving = true;
 }
 
@@ -897,9 +903,13 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
       }
     }
     m_editingMode = None;
+    unsetCursor();
     setDragMode(NoDrag);
-    update();
-    emit selectionIs(selection, mapToGlobal( e->pos() ));
+    if (!selection.isEmpty())
+    {
+      update();
+      emit selectionIs(selection, mapToGlobal( e->pos() ));
+    }
   }
   else
   {
@@ -1457,13 +1467,15 @@ void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
   m_editingMode = AddNewEdge;
   m_newElementAttributes = attribs;
   unsetCursor();
-  setCursor(QCursor(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newedge.png")));
+  QBitmap bm(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newedge.png"));
+  setCursor(QCursor(bm,bm,32,16));
 }
 
 void DotGraphView::prepareSelectElements()
 {
   kDebug();
   m_editingMode = SelectingElements;
+  setCursor(Qt::CrossCursor);
   setDragMode ( RubberBandDrag );
 }
 

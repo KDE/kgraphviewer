@@ -412,6 +412,16 @@ void kgraphviewerPart::slotPrepareToSelect()
   m_widget->prepareSelectElements();
 }
 
+void kgraphviewerPart::slotSetCursor(const QCursor& cursor)
+{
+  m_widget->setCursor(cursor);
+}
+
+void kgraphviewerPart::slotUnsetCursor()
+{
+  m_widget->unsetCursor();
+}
+
 /*It's usually safe to leave the factory code alone.. with the
 notable exception of the KAboutData data*/
 #include <kaboutdata.h>

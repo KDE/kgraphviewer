@@ -102,6 +102,8 @@ public slots:
   void slotSelectNode(const QString&);
   void slotSetHighlighting(bool highlightingValue);
   void slotPrepareToSelect();
+  void slotSetCursor(const QCursor& cursor);
+  void slotUnsetCursor();
   
 protected:
     /**
