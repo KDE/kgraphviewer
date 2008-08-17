@@ -59,6 +59,18 @@ public:
   /// Recursively walk through this subgraph and its subsubgraphs to find an element named id
   /// @return the node found or 0 if there is no such node
   GraphElement* elementNamed(const QString& id);
+
+
+  /// Recursively walk through this subgraph and its subsubgraphs to make
+  /// the given element selected or not depending on the selectValue parameter
+  /// and unselect other elements depending on the  unselect others parameter
+  /// @return true if the given node was found
+  virtual bool setElementSelected(
+      GraphElement* element,
+      bool selectValue,
+      bool unselectOthers);
+
+  void retrieveSelectedElementsIds(QList<QString> selection);
   
  private:
   QList<GraphElement*> m_content;

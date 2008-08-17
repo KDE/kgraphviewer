@@ -142,6 +142,75 @@ GraphElement* GraphSubgraph::elementNamed(const QString& id)
   return 0;
 }
 
+bool GraphSubgraph::setElementSelected(
+    GraphElement* element,
+    bool selectValue,
+    bool unselectOthers)
+{
+  if (element)
+    kDebug() << element->id() << selectValue << unselectOthers;
+  bool res = false;
+  if (element == this)
+  {
+    if (isSelected() != selectValue)
+    {
+      setSelected(selectValue);
+      canvasElement()->update();
+    }
+    res = true;
+  }
+  else if (isSelected() && unselectOthers)
+  {
+    setSelected(false);
+    canvasElement()->update();
+  }
+  foreach (GraphElement* el, content())
+  {
+    if (dynamic_cast<GraphSubgraph*>(el) != 0)
+    {
+      bool subres = dynamic_cast<GraphSubgraph*>(el)->setElementSelected(element, selectValue, unselectOthers);
+      if (!res) res = subres;
+    }
+    else if (element == el)
+    {
+      res = true;
+      if (el->isSelected() != selectValue)
+      {
+        el->setSelected(selectValue);
+        el->canvasElement()->update();
+      }
+    }
+    else 
+    {
+      if (unselectOthers && el->isSelected())
+      {
+        el->setSelected(false);
+        el->canvasElement()->update();
+      }
+    }
+  }
+  return res;
+}
+
+void GraphSubgraph::retrieveSelectedElementsIds(QList<QString> selection)
+{
+  if (isSelected())
+  {
+    selection.push_back(id());
+  }
+  foreach (GraphElement* el, content())
+  {
+    if (dynamic_cast<GraphSubgraph*>(el) != 0)
+    {
+      dynamic_cast<GraphSubgraph*>(el)->retrieveSelectedElementsIds(selection);
+    }
+    else  if (el->isSelected())
+    {
+      selection.push_back(el->id());
+    }
+  }
+}
+
 QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
 {
   s << "subgraph " << sg.id() << "  {"

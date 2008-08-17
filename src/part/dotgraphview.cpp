@@ -1605,8 +1605,7 @@ void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modi
     }
     foreach(GraphSubgraph* s, m_graph->subgraphs())
     {
-      s->setSelected(false);
-      s->canvasElement()->update();
+      s->setElementSelected(0, false, true);
     }
   }
   else
@@ -1661,11 +1660,7 @@ void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModif
     }
     foreach(GraphSubgraph* s, m_graph->subgraphs())
     {
-      if (s->canvasElement() != element)
-      {
-        s->setSelected(false);
-        s->canvasElement()->update();
-      }
+      s->setElementSelected(element->element(), true, true);
     }
   }
   else
@@ -1686,10 +1681,7 @@ void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModif
     }
     foreach(GraphSubgraph* s, m_graph->subgraphs())
     {
-      if (s->isSelected())
-      {
-        selection.push_back(s->id());
-      }
+      s->retrieveSelectedElementsIds(selection);
     }
   }
   emit selectionIs(selection, QPoint());
