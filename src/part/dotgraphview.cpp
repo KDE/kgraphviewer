@@ -1585,7 +1585,7 @@ void DotGraphView::setReadWrite()
 
 void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modifiers)
 {
-  kDebug();
+  kDebug() << edge->edge()->id();
   QList<QString> selection;
   selection.push_back(edge->edge()->id());
   if (!modifiers.testFlag(Qt::ControlModifier))

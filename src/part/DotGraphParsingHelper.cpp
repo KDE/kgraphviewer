@@ -219,24 +219,8 @@ void DotGraphParsingHelper::createnode(const std::string& nodeid)
 {
   QString id = QString::fromStdString(nodeid); 
   kDebug() << id;
-  bool foundInSubgraph = false;
-  foreach (GraphSubgraph* subgraph, graph->subgraphs())
-  {
-    foreach (GraphElement* element, subgraph->content())
-    {
-      if (element->id() == id)
-      {
-        kDebug() << "Found node " << id << "in subgraph" << subgraph->id();
-        foundInSubgraph = true;
-        gn = dynamic_cast<GraphNode*>(element);
-        break;
-      }
-    }
-    if (foundInSubgraph) break;
-  }
-  if (foundInSubgraph) {}
-  else if (graph->nodes().find(id) == graph->nodes().end()
-    && graph->nodes().size() < KGV_MAX_ITEMS_TO_LOAD)
+  gn = dynamic_cast<GraphNode*>(graph->elementNamed(id));
+  if (gn==0 && graph->nodes().size() < KGV_MAX_ITEMS_TO_LOAD)
   {
     kDebug() << "Creating a new node" << z << (void*)gs;
     gn = new GraphNode();
@@ -252,11 +236,6 @@ void DotGraphParsingHelper::createnode(const std::string& nodeid)
       kDebug() << "Adding node" << id;
       graph->nodes()[id] = gn;
     }
-  }
-  else if (graph->nodes().find(id) != graph->nodes().end())
-  {
-    kDebug() << "Found existing node";
-    gn = *(graph->nodes().find(id));
   }
   edgebounds.clear();
 }
@@ -333,12 +312,17 @@ void DotGraphParsingHelper::createedges()
     ge->setFromNode(gn1);
     ge->setToNode(gn2);
     kDebug() << ge->fromNode()->id() << " -> " << ge->toNode()->id();
-    ge->setId(QString::fromStdString(node1Name)+QString::fromStdString(node2Name)+QUuid::createUuid().toString().remove("{").remove("}").remove("-"));
+    setedgeattributes();
+    kDebug() << ge->id();
+    if (ge->id() == "")
+    {
+      ge->setId(QString::fromStdString(node1Name)+QString::fromStdString(node2Name)+QUuid::createUuid().toString().remove("{").remove("}").remove("-"));
+    }
+    kDebug() << ge->id();
 //     kDebug() << "num before=" << graph->edges().size();
     graph->edges().insert(ge->id(), ge);
 //     kDebug() << "num after=" << graph->edges().size();
 
-    setedgeattributes();
 
     node1Name = node2Name;
   }

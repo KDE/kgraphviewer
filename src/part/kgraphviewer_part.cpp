@@ -299,7 +299,7 @@ void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
     kError() << src << "or" << tgt << "missing";
     return;
   }
-  if (attribs.keys().contains("id"))
+  if (attribs.contains("id"))
   {
     newEdge->setId(attribs["id"]);
   }
