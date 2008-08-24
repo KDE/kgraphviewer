@@ -1,8 +1,10 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=kgrapheditor
+Exec=kgrapheditor %U
 Icon=kgrapheditor
 Type=Application
+Categories=Qt;KDE;Application;Graphics;
 DocPath=kgrapheditor/kgrapheditor.html
-Comment=A Graphviz dot graph viewer for KDE
+Comment=A Graphviz dot graph editor for KDE
 Terminal=false
