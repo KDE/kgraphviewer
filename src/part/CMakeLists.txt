@@ -25,7 +25,6 @@ install( TARGETS kgraphviewerpart DESTINATION ${PLUGIN_INSTALL_DIR})
 install( FILES kgraphviewer_partsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
 install( FILES kgraphviewer_part.rc DESTINATION ${DATA_INSTALL_DIR}/kgraphviewerpart )
 
-install( FILES kgraphviewer_part.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 install( FILES kgraphviewer_part.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 install( FILES kgraphviewer-bev.png DESTINATION ${DATA_INSTALL_DIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-newnode.png DESTINATION ${DATA_INSTALL_DIR}/kgraphviewerpart/pics )
