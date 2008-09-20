@@ -1,10 +1,27 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=kgrapheditor
+Name[fr]=kgrapheditorNom
+Name[hi]=केग्राफएडीटर
+Name[ml]=കെഗ്രാഫ്എഡിറ്റര്‍
+Name[x-test]=xxkgrapheditorxx
 Exec=kgrapheditor %U
 Icon=kgrapheditor
 Type=Application
 Categories=Qt;KDE;Application;Graphics;
 DocPath=kgrapheditor/kgrapheditor.html
 Comment=A Graphviz dot graph editor for KDE
+Comment[el]=Ένας προβολέας γραφικών dot Graphviz για το KDE
+Comment[et]=KDE GraphVizi dot-graafide redaktor
+Comment[ga]=Eagarthóir graf Graphviz i bhformáid 'dot' le haghaidh KDE
+Comment[gl]=Un editor de gráficos de Graphviz dot para KDE
+Comment[it]=Un editor di grafi dot di GraphViz per KDE
+Comment[km]=កម្មវិធី​និពន្ធ​ក្រាហ្វ​ Graphviz សម្រាប់ KDE
+Comment[nds]=Editor för GraphViz-Dot-Diagrammen för KDE
+Comment[nl]=Een Graphviz puntgrafiek-bewerker voor KDE
+Comment[pt]=Um visualizador de grafos pontuais do Graphviz para o KDE
+Comment[pt_BR]=Um visualizador de grafos pontuais do Graphviz para o KDE
+Comment[sv]=En editor av Graphviz dot-grafer för KDE
+Comment[uk]=Редактор точкових графіків Graphviz для KDE
+Comment[zh_CN]=一款 KDE 的 Graphviz Dot 图编辑器
 Terminal=false
