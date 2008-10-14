@@ -11,6 +11,7 @@ Type=Application
 Categories=Qt;KDE;Application;Graphics;
 DocPath=kgrapheditor/kgrapheditor.html
 Comment=A Graphviz dot graph editor for KDE
+Comment[cs]=Editor bodových grafů Graphviz pro KDE
 Comment[el]=Ένας προβολέας γραφικών dot Graphviz για το KDE
 Comment[et]=KDE GraphVizi dot-graafide redaktor
 Comment[ga]=Eagarthóir graf Graphviz i bhformáid 'dot' le haghaidh KDE

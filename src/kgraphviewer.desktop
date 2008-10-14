@@ -13,6 +13,7 @@ Categories=Qt;KDE;Application;Graphics;
 DocPath=kgraphviewer/index.html
 Comment=A Graphviz dot graph viewer for KDE
 Comment[bg]=Програма за преглед на Graphviz-графики в KDE
+Comment[cs]=Prohlížeč bodových grafů Graphviz pro KDE
 Comment[da]=Et visningsprogram af Graphviz dot til KDE
 Comment[de]=Ein Graphviz Punktegraphbetrachter für KDE
 Comment[el]=Ένας προβολέας γραφικών Graphviz για το KDE
