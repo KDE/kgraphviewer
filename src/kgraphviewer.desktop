@@ -5,6 +5,7 @@ Name[fr]=kgraphviewer Nom
 Name[hi]=केग्राफव्यूअर
 Name[ml]=കെഗ്രാഫ്‌വ്യൂവര്‍
 Name[nds]=KGraphViewer
+Name[tr]=Kgraphviewer
 Name[x-test]=xxkgraphviewerxx
 Exec=kgraphviewer %i -caption "%c"
 Icon=kgraphviewer
