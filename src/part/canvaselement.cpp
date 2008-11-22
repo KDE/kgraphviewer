@@ -154,7 +154,7 @@ void CanvasElement::computeBoundingRect()
   else
   {
     DotRenderOpVec::const_iterator it, it_end;
-    it = element()->renderOperations().begin(); it_end = element()->renderOperations().end();
+    it = element()->renderOperations().constBegin(); it_end = element()->renderOperations().constEnd();
     for (; it != it_end; it++)
     {
 //       QString msg;
@@ -355,8 +355,8 @@ QWidget *widget)
 
 
   DotRenderOpVec::const_iterator itl, itl_end;
-  itl = element()->renderOperations().begin();
-  itl_end = element()->renderOperations().end();
+  itl = element()->renderOperations().constBegin();
+  itl_end = element()->renderOperations().constEnd();
   for (; itl != itl_end; itl++)
   {
     const DotRenderOp& dro = (*itl);

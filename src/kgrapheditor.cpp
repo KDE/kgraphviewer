@@ -159,7 +159,7 @@ void KGraphEditor::reloadPreviousFiles()
               "reopenPreviouslyOpenedFilesMode"   ) == KMessageBox::Yes) )
   {
     QStringList::const_iterator it, it_end;
-    it = previouslyOpenedFiles.begin(); it_end = previouslyOpenedFiles.end();
+    it = previouslyOpenedFiles.constBegin(); it_end = previouslyOpenedFiles.constEnd();
     for (; it != it_end; it++)
     {
       openUrl(*it);

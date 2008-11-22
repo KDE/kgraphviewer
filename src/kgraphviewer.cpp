@@ -121,7 +121,7 @@ void KGraphViewer::reloadPreviousFiles()
               "reopenPreviouslyOpenedFilesMode"   ) == KMessageBox::Yes) )
   {
     QStringList::const_iterator it, it_end;
-    it = previouslyOpenedFiles.begin(); it_end = previouslyOpenedFiles.end();
+    it = previouslyOpenedFiles.constBegin(); it_end = previouslyOpenedFiles.constEnd();
     for (; it != it_end; it++)
     {
       openUrl(*it);
@@ -177,7 +177,7 @@ void KGraphViewer::fileOpen()
   if (!file_names.empty())
   {
     QStringList::const_iterator it, it_end;
-    it = file_names.begin(); it_end = file_names.end();
+    it = file_names.constBegin(); it_end = file_names.constEnd();
     for (; it != it_end; it++)
     {
       if (m_rfa != 0)

@@ -153,7 +153,7 @@ void DotGraphParsingHelper::setedgeattributes()
     parse_renderop(edgesAttributes["_tdraw_"], ge->renderOperations());
     kDebug() << "edge renderOperations size is now " << ge->renderOperations().size();
     DotRenderOpVec::const_iterator it, it_end;
-    it = ge->renderOperations().begin(); it_end = ge->renderOperations().end();
+    it = ge->renderOperations().constBegin(); it_end = ge->renderOperations().constEnd();
     for (; it != it_end; it++)
       ge->arrowheads().push_back(*it);
   }
@@ -162,7 +162,7 @@ void DotGraphParsingHelper::setedgeattributes()
     parse_renderop(edgesAttributes["_hdraw_"], ge->renderOperations());
     kDebug() << "edge renderOperations size is now " << ge->renderOperations().size();
     DotRenderOpVec::const_iterator it, it_end;
-    it = ge->renderOperations().begin(); it_end = ge->renderOperations().end();
+    it = ge->renderOperations().constBegin(); it_end = ge->renderOperations().constEnd();
     for (; it != it_end; it++)
       ge->arrowheads().push_back(*it);
   }
