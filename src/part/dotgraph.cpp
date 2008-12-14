@@ -337,15 +337,15 @@ QSet< GraphNode* >& DotGraph::nodesOfCell(unsigned int id)
 
 void DotGraph::storeOriginalAttributes()
 {
-  foreach (GraphNode* node, nodes().values())
+  foreach (GraphNode* node, nodes())
   {
     node->storeOriginalAttributes();
   }
-  foreach (GraphEdge* edge, edges().values())
+  foreach (GraphEdge* edge, edges())
   {
     edge->storeOriginalAttributes();
   }
-  foreach (GraphSubgraph* subgraph, subgraphs().values())
+  foreach (GraphSubgraph* subgraph, subgraphs())
   {
     subgraph->storeOriginalAttributes();
   }
