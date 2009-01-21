@@ -12,7 +12,7 @@
       <default>ask</default>
     </entry> 
     <entry name="reopenPreviouslyOpenedFilesMode" type="String"> 
-      <label>The answer to the question 'Should the files that where opened in previous sessions be reopened at startup ?'</label> 
+      <label>The answer to the question 'Should the files that were opened in previous sessions be reopened at startup ?'</label> 
       <default>ask</default>
     </entry> 
     <entry name="birdsEyeViewEnabled" type="Bool"> 
