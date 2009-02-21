@@ -103,10 +103,12 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
   redisplayAct->setShortcut(Qt::Key_F5);
 
   QAction* zoomInAct = actionCollection()->addAction(KStandardAction::ZoomIn, "view_zoom_in", m_widget, SLOT(zoomIn()));
+  // xgettext: no-c-format
   zoomInAct->setWhatsThis(i18n("Zoom in by 10% the currently viewed graph"));
   zoomInAct->setShortcut(Qt::Key_F7);
   
   QAction* zoomOutAct = actionCollection()->addAction(KStandardAction::ZoomOut, "view_zoom_out", m_widget, SLOT(zoomOut()));
+  // xgettext: no-c-format
   zoomOutAct->setWhatsThis(i18n("Zoom out by 10% the currently viewed graph"));
   zoomOutAct->setShortcut(Qt::Key_F8);
 

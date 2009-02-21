@@ -135,7 +135,7 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   setWhatsThis( i18n( 
     "<h1>GraphViz dot format graph visualization</h1>"
     "<p>If the graph is larger than the widget area, an overview "
-        "panner is shown in one edge. Choose throug the context menu "
+        "panner is shown in one edge. Choose through the context menu "
         "if the optimal position of this overview should be automatically "
         "computed or put it where you want.</p>"
     "<h2>How to work with it ?</h2>"
@@ -1169,7 +1169,7 @@ void DotGraphView::setupPopup()
   m_layoutAlgoSelectAction->setToolTip(i18n("Choose a GraphViz layout algorithm or edit your own one."));  
   m_layoutAlgoSelectAction->setWhatsThis(i18n(
   "Choose a GraphViz layout algorithm or type in your own command that will "
-  "generate a graph in the xdot format on its standard output. For example, to"
+  "generate a graph in the xdot format on its standard output. For example, to "
   "manually specify the <tt>G</tt> option to the dot command, type in: "
   "<tt>dot -Gname=MyGraphName -Txdot </tt>"));  
   connect(m_layoutAlgoSelectAction, SIGNAL(triggered (const QString &)),
@@ -1190,7 +1190,7 @@ void DotGraphView::setupPopup()
   actionCollection()->addAction("file_export",file_exportMenu);
   file_exportMenu->setToolTip(i18n("Allows to export the graph to another format."));  
   file_exportMenu->setWhatsThis(i18n(
-  "Use the Export Graph menu to export the graph to another format."
+  "Use the Export Graph menu to export the graph to another format. "
   "There is currently only on export format supported: PNG image."));  
   
 
