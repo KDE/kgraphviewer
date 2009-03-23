@@ -66,7 +66,7 @@ QString KgvUnit::unitDescription( Unit _unit )
     case KgvUnit::U_PT:
         return i18n("Points (pt)" );
     default:
-        return i18n("Error!");
+        return i18n("Error.");
     }
 }
 

@@ -114,7 +114,7 @@ void KGraphViewer::reloadPreviousFiles()
   QStringList previouslyOpenedFiles = KGraphViewerSettings::previouslyOpenedFiles();
   if ( (previouslyOpenedFiles.empty() == false) 
        && (KMessageBox::questionYesNo(this, 
-              i18n("Do you want to reload files from previous session ?"),
+              i18n("Do you want to reload files from the previous session?"),
               i18n("Reload Confirmation"),
               KStandardGuiItem::yes(),
               KStandardGuiItem::no(),
@@ -158,7 +158,7 @@ void KGraphViewer::openUrl(const KUrl& url)
   {
     // if we couldn't find our Part, we exit since the Shell by
     // itself can't do anything useful
-    KMessageBox::error(this, i18n("Could not find our part."));
+    KMessageBox::error(this, i18n("Could not find the KGraphViewer part."));
     kapp->quit();
     // we return here, cause kapp->quit() only means "exit the
     // next time we enter the event loop...

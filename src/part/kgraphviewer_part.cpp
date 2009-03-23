@@ -91,7 +91,7 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
 //   KAction* pagesetupAct = new KAction(i18n("&Page setup"), this); //actionCollection(), "file_page_setup");
   QAction* pagesetupAct = actionCollection()->addAction("file_page_setup", m_widget, SLOT(pageSetup()));
   pagesetupAct->setText(i18n("Page setup"));
-  pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog allowing to setup how the graph will be printed"));
+  pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog to allow graph printing to be setup"));
 
 /*  KAction *updateAct = new KAction("view_update", i18n("&Update view"), actionCollection(), "update");
   updateAct->setShortcut(Qt::CTRL+Qt::Key_U);
@@ -104,12 +104,12 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
 
   QAction* zoomInAct = actionCollection()->addAction(KStandardAction::ZoomIn, "view_zoom_in", m_widget, SLOT(zoomIn()));
   // xgettext: no-c-format
-  zoomInAct->setWhatsThis(i18n("Zoom in by 10% the currently viewed graph"));
+  zoomInAct->setWhatsThis(i18n("Zoom in by 10% on the currently viewed graph"));
   zoomInAct->setShortcut(Qt::Key_F7);
   
   QAction* zoomOutAct = actionCollection()->addAction(KStandardAction::ZoomOut, "view_zoom_out", m_widget, SLOT(zoomOut()));
   // xgettext: no-c-format
-  zoomOutAct->setWhatsThis(i18n("Zoom out by 10% the currently viewed graph"));
+  zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
   zoomOutAct->setShortcut(Qt::Key_F8);
 
 // set our XML-UI resource file
@@ -446,7 +446,7 @@ KAboutData* kgraphviewerPartFactory::s_about = new KAboutData(
     "kgraphviewerpart", 0, ki18n("kgraphviewerPart"),
     "1.0", ki18n( "GraphViz dot files viewer" ),
     KAboutData::License_GPL,
-    ki18n("(c) 2005-2006, Gael de Chalendar &lt;kleag@free.fr&gt;"));
+    ki18n("(c) 2005-2006, Gaël de Chalendar &lt;kleag@free.fr&gt;"));
 
 KComponentData kgraphviewerPartFactory::s_instance(s_about);
 

@@ -79,10 +79,10 @@ int main(int argc, char **argv)
         {
           if (instanceExists 
               && (KMessageBox::questionYesNo(0, 
-                                         i18n("There is already a KGraphViewer window opened. What's your choice ?"),
+                                         i18n("A KGraphViewer window is already open, where do you want to open this file?"),
                                          i18n("Opening in new window confirmation"),
-                                             KGuiItem("Open in the existing one"),
-                                             KGuiItem("Open in new window"),
+                                             KGuiItem(i18nc("Where to open a file", "Existing window")),
+                                             KGuiItem(i18nc("Where to open a file", "New window")),
                                              "openInNewWindowMode"   ) == KMessageBox::Yes) )
           {
             QByteArray tosenddata;

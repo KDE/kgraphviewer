@@ -42,8 +42,8 @@ static const char version[] = "0.1";
 int main(int argc, char **argv)
 {
   KAboutData about("kgrapheditor", 0, ki18n("KGraphEditor"), version, ki18n(description),
-                    KAboutData::License_GPL, ki18n("(C) 2005-2006 Gael de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
-  about.addAuthor( ki18n("Gael de Chalendar"), KLocalizedString(), "kleag@free.fr" );
+                    KAboutData::License_GPL, ki18n("(C) 2005-2006 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
+  about.addAuthor( ki18n("Gaël de Chalendar"), KLocalizedString(), "kleag@free.fr" );
   KCmdLineArgs::init(argc, argv, &about);
 
   KCmdLineOptions options;
@@ -79,10 +79,10 @@ int main(int argc, char **argv)
         {
           if (instanceExists 
               && (KMessageBox::questionYesNo(0, 
-                                         i18n("There is already a KGraphEditor window opened. What's your choice ?"),
+                                         i18n("A KGraphEditor window is already open, where do you want to open this file?"),
                                          i18n("Opening in new window confirmation"),
-                                             KGuiItem("Open in the existing one"),
-                                             KGuiItem("Open in new window"),
+                                             KGuiItem(i18nc("Where to open a file", "Existing window")),
+                                             KGuiItem(i18nc("Where to open a file", "New window")),
                                              "openInNewWindowMode"   ) == KMessageBox::Yes) )
           {
             QByteArray tosenddata;

@@ -59,11 +59,11 @@ PannerView::PannerView(QWidget * parent, const char * name)
   // viewport()->setBackgroundMode(Qt::NoBackground);
   setBackgroundMode(Qt::NoBackground);
 
-  setToolTip(i18n("View of The complete graph. Click and drag to move this visible part."));
-  setWhatsThis(i18n("<h1>View of The complete graph</h1>"
-    "<p>Single click out of the red square to move the center of his one at the "
-    "mouse position.</p><p>Click in the red square and drag the mouse and the "
-    "red square will follow the movement.</p>"));
+  setToolTip(i18n("View of the complete graph. Click and drag to move the visible part."));
+  setWhatsThis(i18n("<h1>View of the Complete Graph</h1>"
+    "<p>Single clicking somewhere without the red square will move the center of the "
+    "view to where the mouse was clicked.</p><p>Clicking and dragging within the red square "
+    "will cause the view to follow the movement.</p>"));
 }
 
 void PannerView::setZoomRect(QRectF r)

@@ -362,7 +362,7 @@
         <item rowspan="2" row="2" column="0" >
          <widget class="QGroupBox" name="groupBox2" >
           <property name="title" >
-           <string>Horizontaly</string>
+           <string>Horizontally</string>
           </property>
           <widget class="KIntNumInput" native="1" name="horizFitNumInput" >
            <property name="geometry" >
@@ -379,7 +379,7 @@
         <item rowspan="2" row="4" column="0" >
          <widget class="QGroupBox" name="groupBox3" >
           <property name="title" >
-           <string>Verticaly</string>
+           <string>Vertically</string>
           </property>
           <widget class="KIntNumInput" native="1" name="vertFitNumInput" >
            <property name="geometry" >

@@ -1188,15 +1188,15 @@ void DotGraphView::setupPopup()
   
   KActionMenu* file_exportMenu = new KActionMenu(i18n("Export Graph"), this);
   actionCollection()->addAction("file_export",file_exportMenu);
-  file_exportMenu->setToolTip(i18n("Allows to export the graph to another format."));  
+  file_exportMenu->setToolTip(i18n("Allows the graph to be exported in another format."));  
   file_exportMenu->setWhatsThis(i18n(
-  "Use the Export Graph menu to export the graph to another format. "
-  "There is currently only on export format supported: PNG image."));  
+  "Use the Export Graph menu to export the graph in another format. "
+  "There is currently only one export format supported: as a PNG image."));  
   
 
   m_popup->addAction(file_exportMenu);
-  KAction* exportToImageAction = new KAction(i18n("As Image ..."),this);
-  exportToImageAction->setWhatsThis(i18n("Export the graph to an image (currently PNG only) file."));
+  KAction* exportToImageAction = new KAction(i18n("As Image..."),this);
+  exportToImageAction->setWhatsThis(i18n("Export the graph to an image file (currently PNG only.)"));
   actionCollection()->addAction("export_image", exportToImageAction);
   connect(exportToImageAction,SIGNAL(triggered(bool)), this, SLOT(slotExportImage()));
   
@@ -1219,36 +1219,36 @@ void DotGraphView::setupPopup()
   m_popup->addAction(m_bevEnabledAction);
   
   m_bevPopup = new KSelectAction(i18n("Birds-eye View"), this);
-  m_bevPopup->setWhatsThis(i18n("Allows to setup the Bird's-eye View."));
+  m_bevPopup->setWhatsThis(i18n("Allows the Bird's-eye View to be setup."));
   m_popup->addAction(m_bevPopup);
   actionCollection()->addAction("view_bev",m_bevPopup);
 
   KAction* btla = new KAction(i18n("Top Left"), this);
-  btla->setWhatsThis(i18n("Puts the Bird's-eye View at the top left corner."));
+  btla->setWhatsThis(i18n("Puts the Bird's-eye View in the top-left corner."));
   btla->setCheckable(true);
   actionCollection()->addAction("bev_top_left",btla);
   connect(btla, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevTopLeft()));
   KAction* btra = new KAction(i18n("Top Right"), this);
-  btra->setWhatsThis(i18n("Puts the Bird's-eye View at the top right corner."));
+  btra->setWhatsThis(i18n("Puts the Bird's-eye View in the top-right corner."));
   btra->setCheckable(true);
   actionCollection()->addAction("bev_top_right",btra);
   connect(btra, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevTopRight()));
   KAction* bbla = new KAction(i18n("Bottom Left"), this);
-  bbla->setWhatsThis(i18n("Puts the Bird's-eye View at the bottom left corner."));
+  bbla->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-left corner."));
   bbla->setCheckable(true);
   actionCollection()->addAction("bev_bottom_left",bbla);
   connect(bbla, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevBottomLeft()));
   KAction* bbra = new KAction(i18n("Bottom Right"), this);
-  bbra->setWhatsThis(i18n("Puts the Bird's-eye View at the bottom right corner."));
+  bbra->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-right corner."));
   bbra->setCheckable(true);
   actionCollection()->addAction("bev_bottom_right",bbra);
   connect(bbra, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
           this, SLOT(slotBevBottomRight()));
   KAction* bba = new KAction(i18n("Automatic"), this);
-  bba->setWhatsThis(i18n("Let's KGraphViewer automaticaly choose the Bird's-eye View position."));
+  bba->setWhatsThis(i18n("Let KGraphViewer automatically choose the position of the Bird's-eye View."));
   bba->setCheckable(true);
   actionCollection()->addAction("bev_automatic",bba);
   connect(bba, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)), 
