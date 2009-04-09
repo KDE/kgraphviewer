@@ -150,7 +150,7 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
                     "    <li>or click & drag the panner view</li>"
                     "  </ul>"
                 "</li>"
-            "<li>To zoom, you can either use the zoom in and zoom out toolbar butons or click on the <Shift> key while rolling your mouse wheel.</li>"
+            "<li>To zoom, you can either use the zoom in and zoom out toolbar buttons, or click on the <Shift> key while rolling your mouse wheel.</li>"
                 "<li>Try the contextual menu (usually by right-clicking) to discover other "
                     "possibilities.</li>"
                 "<li>Try the <tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the printing options.</li>"
