@@ -197,8 +197,8 @@ KgvFormat KgvPageFormat::defaultFormat()
 QString KgvPageFormat::name( KgvFormat format )
 {
     if ( format <= PG_LAST_FORMAT )
-        return i18n( "Page size", pageFormatInfo[ format ].descriptiveName );
-    return i18n( "Page size", pageFormatInfo[ PG_DIN_A4 ].descriptiveName );
+        return i18nc( "Page size", pageFormatInfo[ format ].descriptiveName );
+    return i18nc( "Page size", pageFormatInfo[ PG_DIN_A4 ].descriptiveName );
 }
 
 QStringList KgvPageFormat::allFormats()
@@ -206,7 +206,7 @@ QStringList KgvPageFormat::allFormats()
     QStringList lst;
     for ( int i = 0 ; i <= PG_LAST_FORMAT ; ++i )
     {
-        lst << i18n( "Page size", pageFormatInfo[ i ].descriptiveName );
+        lst << i18nc( "Page size", pageFormatInfo[ i ].descriptiveName );
     }
     return lst;
 }
