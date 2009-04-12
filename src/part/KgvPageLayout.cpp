@@ -83,36 +83,36 @@ struct PageFormatInfo
 
 const PageFormatInfo pageFormatInfo[]=
 {
-    { PG_DIN_A3,        QPrinter::A3,           "A3",           I18N_NOOP("ISO A3"),       297.0,  420.0 },
-    { PG_DIN_A4,        QPrinter::A4,           "A4",           I18N_NOOP("ISO A4"),       210.0,  297.0 },
-    { PG_DIN_A5,        QPrinter::A5,           "A5",           I18N_NOOP("ISO A5"),       148.0,  210.0 },
-    { PG_US_LETTER,     QPrinter::Letter,       "Letter",       I18N_NOOP("US Letter"),    215.9,  279.4 },
-    { PG_US_LEGAL,      QPrinter::Legal,        "Legal",        I18N_NOOP("US Legal"),     215.9,  355.6 },
-    { PG_SCREEN,        QPrinter::A4,           "Screen",       I18N_NOOP("Screen"), PG_A4_HEIGHT, PG_A4_WIDTH }, // Custom, so fall back to A4
-    { PG_CUSTOM,        QPrinter::A4,           "Custom",       I18N_NOOP2("Custom size", "Custom"), PG_A4_WIDTH, PG_A4_HEIGHT }, // Custom, so fall back to A4
-    { PG_DIN_B5,        QPrinter::B5,           "B5",           I18N_NOOP("ISO B5"),       182.0,  257.0 },
+    { PG_DIN_A3,        QPrinter::A3,           "A3",           I18N_NOOP2("Page size", "ISO A3"),       297.0,  420.0 },
+    { PG_DIN_A4,        QPrinter::A4,           "A4",           I18N_NOOP2("Page size", "ISO A4"),       210.0,  297.0 },
+    { PG_DIN_A5,        QPrinter::A5,           "A5",           I18N_NOOP2("Page size", "ISO A5"),       148.0,  210.0 },
+    { PG_US_LETTER,     QPrinter::Letter,       "Letter",       I18N_NOOP2("Page size", "US Letter"),    215.9,  279.4 },
+    { PG_US_LEGAL,      QPrinter::Legal,        "Legal",        I18N_NOOP2("Page size", "US Legal"),     215.9,  355.6 },
+    { PG_SCREEN,        QPrinter::A4,           "Screen",       I18N_NOOP2("Page size", "Screen"), PG_A4_HEIGHT, PG_A4_WIDTH }, // Custom, so fall back to A4
+    { PG_CUSTOM,        QPrinter::A4,           "Custom",       I18N_NOOP2("Page size", "Custom"), PG_A4_WIDTH, PG_A4_HEIGHT }, // Custom, so fall back to A4
+    { PG_DIN_B5,        QPrinter::B5,           "B5",           I18N_NOOP2("Page size", "ISO B5"),       182.0,  257.0 },
     // Hmm, wikipedia says 184.15 * 266.7 for executive !
-    { PG_US_EXECUTIVE,  QPrinter::Executive,    "Executive",    I18N_NOOP("US Executive"), 191.0,  254.0 }, // should be 190.5 mm x 254.0 mm
-    { PG_DIN_A0,        QPrinter::A0,           "A0",           I18N_NOOP("ISO A0"),       841.0, 1189.0 },
-    { PG_DIN_A1,        QPrinter::A1,           "A1",           I18N_NOOP("ISO A1"),       594.0,  841.0 },
-    { PG_DIN_A2,        QPrinter::A2,           "A2",           I18N_NOOP("ISO A2"),       420.0,  594.0 },
-    { PG_DIN_A6,        QPrinter::A6,           "A6",           I18N_NOOP("ISO A6"),       105.0,  148.0 },
-    { PG_DIN_A7,        QPrinter::A7,           "A7",           I18N_NOOP("ISO A7"),        74.0,  105.0 },
-    { PG_DIN_A8,        QPrinter::A8,           "A8",           I18N_NOOP("ISO A8"),        52.0,   74.0 },
-    { PG_DIN_A9,        QPrinter::A9,           "A9",           I18N_NOOP("ISO A9"),        37.0,   52.0 },
-    { PG_DIN_B0,        QPrinter::B0,           "B0",           I18N_NOOP("ISO B0"),      1030.0, 1456.0 },
-    { PG_DIN_B1,        QPrinter::B1,           "B1",           I18N_NOOP("ISO B1"),       728.0, 1030.0 },
-    { PG_DIN_B10,       QPrinter::B10,          "B10",          I18N_NOOP("ISO B10"),       32.0,   45.0 },
-    { PG_DIN_B2,        QPrinter::B2,           "B2",           I18N_NOOP("ISO B2"),       515.0,  728.0 },
-    { PG_DIN_B3,        QPrinter::B3,           "B3",           I18N_NOOP("ISO B3"),       364.0,  515.0 },
-    { PG_DIN_B4,        QPrinter::B4,           "B4",           I18N_NOOP("ISO B4"),       257.0,  364.0 },
-    { PG_DIN_B6,        QPrinter::B6,           "B6",           I18N_NOOP("ISO B6"),       128.0,  182.0 },
-    { PG_ISO_C5,        QPrinter::C5E,          "C5",           I18N_NOOP("ISO C5"),       163.0,  229.0 }, // Some sources tells: 162 mm x 228 mm
-    { PG_US_COMM10,     QPrinter::Comm10E,      "Comm10",       I18N_NOOP("US Common 10"), 105.0,  241.0 }, // should be 104.775 mm x 241.3 mm
-    { PG_ISO_DL,        QPrinter::DLE,          "DL",           I18N_NOOP("ISO DL"),       110.0,  220.0 },
-    { PG_US_FOLIO,      QPrinter::Folio,        "Folio",        I18N_NOOP("US Folio"),     210.0,  330.0 }, // should be 209.54 mm x 330.2 mm
-    { PG_US_LEDGER,     QPrinter::Ledger,       "Ledger",       I18N_NOOP("US Ledger"),    432.0,  279.0 }, // should be 431.8 mm x 297.4 mm
-    { PG_US_TABLOID,    QPrinter::Tabloid,      "Tabloid",      I18N_NOOP("US Tabloid"),   279.0,  432.0 }  // should be 297.4 mm x 431.8 mm
+    { PG_US_EXECUTIVE,  QPrinter::Executive,    "Executive",    I18N_NOOP2("Page size", "US Executive"), 191.0,  254.0 }, // should be 190.5 mm x 254.0 mm
+    { PG_DIN_A0,        QPrinter::A0,           "A0",           I18N_NOOP2("Page size", "ISO A0"),       841.0, 1189.0 },
+    { PG_DIN_A1,        QPrinter::A1,           "A1",           I18N_NOOP2("Page size", "ISO A1"),       594.0,  841.0 },
+    { PG_DIN_A2,        QPrinter::A2,           "A2",           I18N_NOOP2("Page size", "ISO A2"),       420.0,  594.0 },
+    { PG_DIN_A6,        QPrinter::A6,           "A6",           I18N_NOOP2("Page size", "ISO A6"),       105.0,  148.0 },
+    { PG_DIN_A7,        QPrinter::A7,           "A7",           I18N_NOOP2("Page size", "ISO A7"),        74.0,  105.0 },
+    { PG_DIN_A8,        QPrinter::A8,           "A8",           I18N_NOOP2("Page size", "ISO A8"),        52.0,   74.0 },
+    { PG_DIN_A9,        QPrinter::A9,           "A9",           I18N_NOOP2("Page size", "ISO A9"),        37.0,   52.0 },
+    { PG_DIN_B0,        QPrinter::B0,           "B0",           I18N_NOOP2("Page size", "ISO B0"),      1030.0, 1456.0 },
+    { PG_DIN_B1,        QPrinter::B1,           "B1",           I18N_NOOP2("Page size", "ISO B1"),       728.0, 1030.0 },
+    { PG_DIN_B10,       QPrinter::B10,          "B10",          I18N_NOOP2("Page size", "ISO B10"),       32.0,   45.0 },
+    { PG_DIN_B2,        QPrinter::B2,           "B2",           I18N_NOOP2("Page size", "ISO B2"),       515.0,  728.0 },
+    { PG_DIN_B3,        QPrinter::B3,           "B3",           I18N_NOOP2("Page size", "ISO B3"),       364.0,  515.0 },
+    { PG_DIN_B4,        QPrinter::B4,           "B4",           I18N_NOOP2("Page size", "ISO B4"),       257.0,  364.0 },
+    { PG_DIN_B6,        QPrinter::B6,           "B6",           I18N_NOOP2("Page size", "ISO B6"),       128.0,  182.0 },
+    { PG_ISO_C5,        QPrinter::C5E,          "C5",           I18N_NOOP2("Page size", "ISO C5"),       163.0,  229.0 }, // Some sources tells: 162 mm x 228 mm
+    { PG_US_COMM10,     QPrinter::Comm10E,      "Comm10",       I18N_NOOP2("Page size", "US Common 10"), 105.0,  241.0 }, // should be 104.775 mm x 241.3 mm
+    { PG_ISO_DL,        QPrinter::DLE,          "DL",           I18N_NOOP2("Page size", "ISO DL"),       110.0,  220.0 },
+    { PG_US_FOLIO,      QPrinter::Folio,        "Folio",        I18N_NOOP2("Page size", "US Folio"),     210.0,  330.0 }, // should be 209.54 mm x 330.2 mm
+    { PG_US_LEDGER,     QPrinter::Ledger,       "Ledger",       I18N_NOOP2("Page size", "US Ledger"),    432.0,  279.0 }, // should be 431.8 mm x 297.4 mm
+    { PG_US_TABLOID,    QPrinter::Tabloid,      "Tabloid",      I18N_NOOP2("Page size", "US Tabloid"),   279.0,  432.0 }  // should be 297.4 mm x 431.8 mm
 };
 
 int KgvPageFormat::printerPageSize( KgvFormat format )
@@ -197,8 +197,8 @@ KgvFormat KgvPageFormat::defaultFormat()
 QString KgvPageFormat::name( KgvFormat format )
 {
     if ( format <= PG_LAST_FORMAT )
-        return i18n( pageFormatInfo[ format ].descriptiveName );
-    return i18n( pageFormatInfo[ PG_DIN_A4 ].descriptiveName );
+        return i18n( "Page size", pageFormatInfo[ format ].descriptiveName );
+    return i18n( "Page size", pageFormatInfo[ PG_DIN_A4 ].descriptiveName );
 }
 
 QStringList KgvPageFormat::allFormats()
@@ -206,7 +206,7 @@ QStringList KgvPageFormat::allFormats()
     QStringList lst;
     for ( int i = 0 ; i <= PG_LAST_FORMAT ; ++i )
     {
-        lst << i18n( pageFormatInfo[ i ].descriptiveName );
+        lst << i18n( "Page size", pageFormatInfo[ i ].descriptiveName );
     }
     return lst;
 }
