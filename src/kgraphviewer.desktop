@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=kgraphviewer
 Name[fr]=kgraphviewer Nom
 Name[hi]=केग्राफव्यूअर
@@ -12,8 +11,8 @@ Name[x-test]=xxkgraphviewerxx
 Exec=kgraphviewer %i -caption "%c"
 Icon=kgraphviewer
 Type=Application
-Categories=Qt;KDE;Application;Graphics;
-DocPath=kgraphviewer/index.html
+Categories=Qt;KDE;Graphics;
+X-DocPath=kgraphviewer/index.html
 Comment=A Graphviz dot graph viewer for KDE
 Comment[bg]=Програма за преглед на Graphviz-графики в KDE
 Comment[cs]=Prohlížeč bodových grafů Graphviz pro KDE

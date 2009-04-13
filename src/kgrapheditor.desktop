@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=kgrapheditor
 Name[fr]=kgrapheditorNom
 Name[hi]=केग्राफएडीटर
@@ -12,8 +11,8 @@ Name[x-test]=xxkgrapheditorxx
 Exec=kgrapheditor %U
 Icon=kgrapheditor
 Type=Application
-Categories=Qt;KDE;Application;Graphics;
-DocPath=kgrapheditor/kgrapheditor.html
+Categories=Qt;KDE;Graphics;
+X-DocPath=kgrapheditor/kgrapheditor.html
 Comment=A Graphviz dot graph editor for KDE
 Comment[cs]=Editor bodových grafů Graphviz pro KDE
 Comment[da]=Et program til redigering af Graphviz dot til KDE
