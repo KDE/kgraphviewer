@@ -67,12 +67,10 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
            SIGNAL( contextMenuEvent(const QString&, const QPoint&) ),
            this,
            SIGNAL( contextMenuEvent(const QString&, const QPoint&) ) );
-  connect( m_widget, SIGNAL( newEdgeFinished(
-      const QString&, const QString&,
-      const QMap<QString, QString>&) ),
-          this, SIGNAL( newEdgeFinished(
-      const QString&, const QString&,
-      const QMap<QString, QString>&) ) );
+  connect( m_widget,
+           SIGNAL( newEdgeFinished(const QString&, const QString&, const QMap<QString, QString>&) ),
+          this,
+           SIGNAL( newEdgeFinished(const QString&, const QString&, const QMap<QString, QString>&) ) );
                     
   // notify the part that this is our internal widget
   setWidget(m_widget);
@@ -133,7 +131,13 @@ bool kgraphviewerPart::openFile()
 //    m_widget->loadedDot( localFilePath() );
   if (!m_widget->loadDot(localFilePath()))
     return false;
-//   std::cerr << "Watching file " << localFilePath() << std::endl;
+
+  // deletes the existing file watcher because we have no way know here the name of the
+  // previously watched file and thus we cannot use removeFile... :-(
+  delete m_watch;
+  m_watch = new KDirWatch();
+
+  //   kDebug() << "Watching file " << localFilePath();
   m_watch->addFile(localFilePath());
   connect(m_watch, SIGNAL(dirty(const QString &)), m_widget, SLOT(dirty(const QString&)));
   QString label = localFilePath().section('/',-1,-1);
