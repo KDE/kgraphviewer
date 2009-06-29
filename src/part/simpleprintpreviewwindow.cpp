@@ -68,7 +68,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
   setIcon(DesktopIcon("filequickprint"));
   QVBoxLayout *lyr = new QVBoxLayout();
 
-  m_toolbar = new KToolBar(0, this);
+  m_toolbar = new KToolBar(this);
   m_toolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
   lyr->addWidget(m_toolbar);
 
@@ -113,7 +113,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
   m_scrollView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   lyr->addWidget(m_scrollView);
     
-  m_navToolbar = new KToolBar(0, this);
+  m_navToolbar = new KToolBar(this);
   m_navToolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
   lyr->addWidget(m_navToolbar);
 
