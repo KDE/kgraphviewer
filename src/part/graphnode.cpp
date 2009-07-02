@@ -51,9 +51,15 @@ GraphNode::GraphNode() :
 }
 
 GraphNode::GraphNode(const GraphNode& gn) :
-    GraphElement(gn)
+GraphElement(gn)
 {
-//   kDebug() ;
+  //   kDebug() ;
+}
+
+GraphNode::GraphNode(node_t* gn) : GraphElement()
+{
+  kDebug();
+  updateWithNode(gn);
 }
 
 void GraphNode::updateWithNode(const GraphNode& node)
@@ -66,6 +72,25 @@ void GraphNode::updateWithNode(const GraphNode& node)
     canvasNode()->modelChanged();
   }
 //   kDebug() << "done";
+}
+
+void GraphNode::updateWithNode(node_t* node)
+{
+  kDebug() << node->name;
+  m_attributes["id"] = node->name;
+  m_attributes["label"] = ND_label(node)->text;
+  
+  
+  if (agget(node, (char*)"_draw_") != NULL)
+  {
+    parse_renderop(agget(node, (char*)"_draw_"), renderOperations());
+    kDebug() << "_draw_: element renderOperations size is now " << renderOperations().size();
+  }
+  if (agget(node, (char*)"_ldraw_") != NULL)
+  {
+    parse_renderop(agget(node, (char*)"_ldraw_"), renderOperations());
+    kDebug() << "_ldraw_: element renderOperations size is now " << renderOperations().size();
+  }
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphNode& n)

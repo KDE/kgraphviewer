@@ -193,7 +193,7 @@ DotGraphView::~DotGraphView()
 
 bool DotGraphView::initEmpty()
 {
-//   kDebug();
+  kDebug();
   m_birdEyeView->setScene(0);
   
   if (m_canvas) 
@@ -285,6 +285,122 @@ bool DotGraphView::loadDot(const QString& dotFileName)
     return false;
   }
 
+  return true;
+}
+
+bool DotGraphView::slotLoadLibrary(const QString& dotFileName)
+{
+  kDebug() << "'" << dotFileName << "'";
+  m_birdEyeView->setScene(0);
+  
+  if (m_canvas)
+  {
+    delete m_canvas;
+    m_canvas = 0;
+  }
+  
+  QString layoutCommand = (m_graph!=0?m_graph->layoutCommand():"");
+  if (m_graph != 0)
+    delete m_graph;
+  m_graph = new DotGraph(layoutCommand,dotFileName);
+  connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
+  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
+  connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
+  
+  if (m_readWrite)
+  {
+    m_graph->setReadWrite();
+  }
+  if (layoutCommand.isEmpty())
+  {
+    if (!m_graph->dotFileName().isEmpty())
+      layoutCommand = m_graph->chooseLayoutProgramForFile(m_graph->dotFileName());
+    else
+      layoutCommand = "dot";
+  }
+  m_graph->layoutCommand(layoutCommand);
+  
+  //   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
+  m_xMargin = 50;
+  m_yMargin = 50;
+  
+  QGraphicsScene* newCanvas = new QGraphicsScene();
+  kDebug() << "Created canvas " << newCanvas;
+  
+  m_birdEyeView->setScene(newCanvas);
+  //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
+  
+  setScene(newCanvas);
+  connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
+  m_canvas = newCanvas;
+  
+  m_cvZoom = 0;
+  
+  if (!m_graph->parseLibrary(m_graph->dotFileName()))
+  {
+    kError() << "NOT successfully parsed!" << endl;
+    return false;
+  }
+  return true;
+}
+
+bool DotGraphView::slotLoadLibrary(graph_t* graph)
+{
+  kDebug() << "graph_t";
+  m_birdEyeView->setScene(0);
+  
+  if (m_canvas)
+  {
+    delete m_canvas;
+    m_canvas = 0;
+  }
+  
+  QString layoutCommand = (m_graph!=0?m_graph->layoutCommand():"");
+  if (m_graph != 0)
+    delete m_graph;
+
+  if (layoutCommand.isEmpty())
+    layoutCommand = "dot";
+
+  kDebug() << "layoutCommand:" << layoutCommand;
+  m_graph = new DotGraph(layoutCommand,"");
+
+  connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
+  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
+  connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
+  
+  if (m_readWrite)
+  {
+    m_graph->setReadWrite();
+  }
+  
+  
+  GVC_t* gvc = gvContext();
+  gvLayout(gvc, graph, layoutCommand.toUtf8());
+  gvRender (gvc, graph, "xdot", NULL);
+             
+                                      
+  m_xMargin = 50;
+  m_yMargin = 50;
+  
+  QGraphicsScene* newCanvas = new QGraphicsScene();
+  kDebug() << "Created canvas " << newCanvas;
+  
+  m_birdEyeView->setScene(newCanvas);
+  //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
+  
+  setScene(newCanvas);
+  connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
+  m_canvas = newCanvas;
+  
+  m_cvZoom = 0;
+
+  m_graph->updateWithGraph(graph);
+
+  gvFreeLayout(gvc, graph);
+  gvFreeContext(gvc);
   return true;
 }
 
@@ -389,7 +505,9 @@ bool DotGraphView::displayGraph()
   foreach (GraphEdge* gedge, m_graph->edges())
   {
     kDebug() << "One GraphEdge:" << gedge->id();
-    if (gedge->canvasEdge() == 0)
+    if (gedge->canvasEdge() == 0
+      && gedge->fromNode() != 0
+      && gedge->toNode() != 0)
     {
       kDebug() << "New CanvasEdge for" << gedge->id();
       kDebug() << "edge fromNode=" << (void*)gedge->fromNode();
@@ -405,7 +523,8 @@ bool DotGraphView::displayGraph()
       cedge->show();
       m_canvas->addItem(cedge);
     }
-    gedge->canvasEdge()->computeBoundingRect();
+    if (gedge->canvasEdge() != 0)
+      gedge->canvasEdge()->computeBoundingRect();
   }
   kDebug() << "Adding graph render operations: " << m_graph->renderOperations().size();
   foreach (const DotRenderOp& dro,m_graph->renderOperations())
@@ -1400,8 +1519,7 @@ void DotGraphView::slotBevEnabled()
   kDebug() << "    m_bevEnabledAction is checked ? " << m_bevEnabledAction->isChecked();
   m_bevPopup->setEnabled(m_bevEnabledAction->isChecked());
   KGraphViewerPartSettings::setBirdsEyeViewEnabled(m_bevEnabledAction->isChecked());
-///@TODO to port
-//   KGraphViewerPartSettings::writeConfig();
+  KGraphViewerPartSettings::self()->writeConfig();
   updateSizes();
 }
 

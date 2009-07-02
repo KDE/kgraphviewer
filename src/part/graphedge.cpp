@@ -102,6 +102,41 @@ void GraphEdge::updateWithEdge(const GraphEdge& edge)
   }
 }
 
+void GraphEdge::updateWithEdge(edge_t* edge)
+{
+  kDebug();
+  if (agget(edge, (char*)"_draw_") != NULL)
+  {
+    parse_renderop(agget(edge, (char*)"_draw_"), renderOperations());
+    kDebug() << "element renderOperations size is now " << renderOperations().size();
+  }
+  if (agget(edge, (char*)"_ldraw_") != NULL)
+  {
+    parse_renderop(agget(edge, (char*)"_ldraw_"), renderOperations());
+    kDebug() << "element renderOperations size is now " << renderOperations().size();
+  }
+  if (agget(edge, (char*)"_hdraw_") != NULL)
+  {
+    parse_renderop(agget(edge, (char*)"_hdraw_"), renderOperations());
+    kDebug() << "element renderOperations size is now " << renderOperations().size();
+  }
+  if (agget(edge, (char*)"_tdraw_") != NULL)
+  {
+    parse_renderop(agget(edge, (char*)"_tdraw_"), renderOperations());
+    kDebug() << "element renderOperations size is now " << renderOperations().size();
+  }
+  if (agget(edge, (char*)"_hldraw_") != NULL)
+  {
+    parse_renderop(agget(edge, (char*)"_hldraw_"), renderOperations());
+    kDebug() << "element renderOperations size is now " << renderOperations().size();
+  }
+  if (agget(edge, (char*)"_tldraw_") != NULL)
+  {
+    parse_renderop(agget(edge, (char*)"_tldraw_"), renderOperations());
+    kDebug() << "element renderOperations size is now " << renderOperations().size();
+  }
+}
+
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e)
 {
   QString srcLabel = e.fromNode()->id();

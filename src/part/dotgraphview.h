@@ -39,6 +39,8 @@
 #include <QGraphicsView>
 #include <QSet>
 
+#include <graphviz/gvc.h>
+
 #include "graphexporter.h"
 
 
@@ -168,6 +170,8 @@ public Q_SLOTS:
   void zoomRectMoveFinished();
   bool initEmpty();
   bool loadDot(const QString& dotFileName);
+  bool slotLoadLibrary(graph_t* graph);
+  bool slotLoadLibrary(const QString& dotFileName);
   bool reload();
   void dirty(const QString& dotFileName);
   void pageSetup();

@@ -26,9 +26,9 @@
 #include "dotrenderop.h"
 
 #include <boost/throw_exception.hpp>
-#include <boost/spirit/core.hpp>
-#include <boost/spirit/utility/distinct.hpp>
-#include <boost/spirit/utility/loops.hpp>
+#include <boost/spirit/include/classic_core.hpp>
+#include <boost/spirit/include/classic_distinct.hpp>
+#include <boost/spirit/include/classic_loops.hpp>
 
 #include <QPoint>
 #include <QColor>
@@ -78,19 +78,19 @@ void valid_op(char const* first, char const* last);
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec);
 bool parse_numeric_color(char const* str, QColor& c);
 
-struct DotGrammar : public boost::spirit::grammar<DotGrammar>
+struct DotGrammar : public boost::spirit::classic::grammar<DotGrammar>
 {
   template <typename ScannerT>
   struct definition
   {
     definition(DotGrammar const& self);
     
-    boost::spirit::rule<ScannerT> graph, ID, tag, stmt_list, stmt, attr_stmt,
+    boost::spirit::classic::rule<ScannerT> graph, ID, tag, stmt_list, stmt, attr_stmt,
     attr_list, a_list, edge_stmt, edgeop,
     edgeRHS, node_stmt, node_id,
     port, subgraph, compass_pt;
     
-    boost::spirit::rule<ScannerT> const& start() const
+    boost::spirit::classic::rule<ScannerT> const& start() const
     {
       return graph;
     }

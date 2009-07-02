@@ -29,6 +29,8 @@
 #include <QProcess>
 #include <QMutex>
 
+#include <graphviz/gvc.h>
+
 #include "graphelement.h"
 #include "graphsubgraph.h"
 #include "graphnode.h"
@@ -51,7 +53,8 @@ public:
   
   QString chooseLayoutProgramForFile(const QString& str);
   bool parseDot(const QString& str);
-
+  bool parseLibrary(const QString& str);
+  
   /** Constant accessor to the nodes of this graph */
   inline const GraphNodeMap& nodes() const {return m_nodesMap;}
   /** Constant accessor to the edges of this graph */
@@ -96,6 +99,7 @@ public:
 
   void saveTo(const QString& fileName);
 
+  virtual void updateWithGraph(graph_t* newGraph);
   virtual void updateWithGraph(const DotGraph& graph);
 
   void setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);

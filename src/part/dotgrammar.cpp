@@ -29,7 +29,7 @@
     
 #include <QFile>
 
-#include <boost/spirit/utility/confix.hpp>
+#include <boost/spirit/include/classic_confix.hpp>
 #include <boost/throw_exception.hpp> 
 namespace boost
 {
@@ -39,7 +39,7 @@ namespace boost
 
 using namespace std;
 using namespace boost;
-using namespace boost::spirit;
+using namespace boost::spirit::classic;
 
 #define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<size_t>::max()
 #define BOOST_SPIRIT_DEBUG 1
@@ -53,7 +53,7 @@ void anychar(char const c);
 
 // keyword_p for C++
 // (for basic usage instead of std_p)
-const boost::spirit::distinct_parser<> keyword_p("0-9a-zA-Z_");
+const boost::spirit::classic::distinct_parser<> keyword_p("0-9a-zA-Z_");
 
 template <typename ScannerT>
 DotGrammar::definition<ScannerT>::definition(DotGrammar const& /*self*/)
@@ -458,7 +458,7 @@ void valid_op(char const* first, char const* last)
   renderop.renderop = QString::fromUtf8(therenderop.c_str());
   renderop.str = QString::fromUtf8(thestr.c_str());
 
-//   kDebug() << "Validating render operation '"<<QString::fromStdString(s)<<"': '"<<renderop.renderop<<"/"<<renderop.str<<"'";
+  kDebug() << "Validating render operation '"<<QString::fromStdString(s)<<"': '"<<renderop.renderop<<"/"<<renderop.str<<"'";
   renderopvec->push_back(renderop);
   renderop.renderop = "";
   renderop.integers = QList<int>();
@@ -467,12 +467,11 @@ void valid_op(char const* first, char const* last)
 
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
 {
-  kDebug() << "parse_renderop " << str.c_str() << " " << str.size();
+  kDebug() << QString::fromUtf8(str.c_str()) << str.size();
   if (str.empty())
   {
     return false;
   }
-  // T 1537 228 0 40 9 -#1 (== 0) T 1537 217 0 90 19 -MAIN:./main/main.pl 
   init_op();
   renderopvec = &arenderopvec;
   bool res;
@@ -502,24 +501,26 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
                        int_p[assign_a(c)] >> +space_p >> '-' >> 
                        (repeat_p(boost::ref(c))[anychar_p])[assign_a(thestr)] >> +space_p
                      )[&valid_op]
-                   | (
+  // c 9 -#000000ff 
+                     | (
                        (ch_p('C')|ch_p('c')|ch_p('S'))[assign_a(therenderop)] >> +space_p >>
                        int_p[assign_a(c)] >> +space_p >> '-' >> 
                        (repeat_p(boost::ref(c))[anychar_p])[assign_a(thestr)] >> +space_p
                      )[&valid_op] 
-                   | ( 
+  // F 14,000000 11 -Times-Roman 
+                    | (
                        ch_p('F')[assign_a(therenderop)] >> +space_p >>
-                       real_p[push_back_a(renderop.integers)] >> +space_p >> 
+                       int_p[push_back_a(renderop.integers)] >> (ch_p(',')|ch_p('.')) >> int_p >> +space_p >>
                        int_p[assign_a(c)] >> +space_p >> '-' >> 
                        (repeat_p(boost::ref(c))[anychar_p])[assign_a(thestr)] >> +space_p
                      )[&valid_op]
                  )
-              )
+                 ) >> !end_p
              ).full;
   if (res ==false)
   {
-    kError() << "parse_renderop failed on "<< QString::fromStdString(str);
-    kError() << "Last renderop string is "<<QString::fromStdString(str.c_str());
+    kError() << "ERROR: parse_renderop failed on "<< QString::fromStdString(str);
+    kError() << "       Last renderop string is "<<QString::fromStdString(str.c_str());
   }
 //   delete renderop; renderop = 0;
   return res;
@@ -528,6 +529,6 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
 bool parse(const std::string& str)
 {
   DotGrammar g;
-  return boost::spirit::parse(str.c_str(), g >> end_p, (+boost::spirit::space_p|boost::spirit::comment_p("/*", "*/"))).full;
+  return boost::spirit::classic::parse(str.c_str(), g >> end_p, (+boost::spirit::classic::space_p|boost::spirit::classic::comment_p("/*", "*/"))).full;
 }
 

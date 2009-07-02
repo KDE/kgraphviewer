@@ -25,9 +25,11 @@
 
 
 #include <iostream>
-// #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "fdstream.hpp"
-#include <boost/spirit/utility/confix.hpp>
+#include <boost/spirit/include/classic_confix.hpp>
+#include <graphviz/gvc.h>
 
 #include <kdebug.h>
 #include <KMessageBox>
@@ -41,7 +43,7 @@
 
 
 using namespace boost;
-using namespace boost::spirit;
+using namespace boost::spirit::classic;
 
 extern DotGraphParsingHelper* phelper;
 
@@ -150,6 +152,37 @@ bool DotGraph::parseDot(const QString& str)
   m_dot->start(m_layoutCommand, options);
   kDebug() << "process started";
  return true;
+}
+
+bool DotGraph::parseLibrary(const QString& str)
+{
+  kDebug() << str;
+  if (m_layoutCommand.isEmpty())
+  {
+    m_layoutCommand = chooseLayoutProgramForFile(str);
+    if (m_layoutCommand.isEmpty())
+    {
+      m_layoutCommand = chooseLayoutProgramForFile(str);
+      return false;
+    }
+  }
+  
+  kDebug() << "Running " << m_layoutCommand  << str;
+  GVC_t *gvc;
+  graph_t *g;
+  FILE* fp;
+  gvc = gvContext();
+  fp = fopen(str.toUtf8().data(), "r");
+  g = agread(fp);
+  gvLayout(gvc, g, m_layoutCommand.toUtf8());
+  gvRender (gvc, g, "xdot", NULL);
+  
+  updateWithGraph(g);
+  
+  gvFreeLayout(gvc, g);
+  agclose(g);
+  bool result = (gvFreeContext(gvc) == 0);
+  return result;
 }
 
 bool DotGraph::update()
@@ -358,6 +391,111 @@ void DotGraph::saveTo(const QString& fileName)
   m_dotFileName = fileName;
   GraphExporter exporter;
   exporter.writeDot(this, fileName);
+}
+
+void DotGraph::updateWithGraph(graph_t* newGraph)
+{
+  kDebug();
+/*  GraphElement::updateWithElement(newGraph);
+  m_width=newGraph.width();
+  m_height=newGraph.height();
+  m_scale=newGraph.scale();
+  m_directed=newGraph.directed();
+  m_strict=newGraph.strict();*/
+/*  foreach (GraphSubgraph* nsg, newGraph.subgraphs())
+  {
+    kDebug() << "subgraph" << nsg->id();
+    if (subgraphs().contains(nsg->id()))
+    {
+      kDebug() << "subgraph known" << nsg->id();
+      subgraphs().value(nsg->id())->updateWithSubgraph(*nsg);
+      if (subgraphs().value(nsg->id())->canvasElement()!=0)
+      {
+        //         subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
+      }
+    }
+    else
+    {
+      kDebug() << "new subgraph" << nsg->id();
+      GraphSubgraph* newSubgraph = new GraphSubgraph();
+      newSubgraph->updateWithSubgraph(*nsg);
+      newSubgraph->setZ(0);
+      subgraphs().insert(nsg->id(), newSubgraph);
+    }
+  }*/
+  node_t* ngn = agfstnode(newGraph);
+  kDebug() << "first node:" << (void*)ngn;
+  
+  while (ngn != NULL)
+//   foreach (GraphNode* ngn, newGraph.nodes())
+  {
+    kDebug() << "node " << ngn->name;
+    if (nodes().contains(ngn->name))
+    {
+      kDebug() << "known";
+// ???
+//       nodes()[ngn->name]->setZ(ngn->z());
+      nodes()[ngn->name]->updateWithNode(ngn);
+      if (nodes()[ngn->name]->canvasElement()!=0)
+      {
+        //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
+      }
+    }
+    else
+    {
+      kDebug() << "new";
+      GraphNode* newgn = new GraphNode(ngn);
+      //       kDebug() << "new created";
+      nodes().insert(ngn->name, newgn);
+      //       kDebug() << "new inserted";
+    }
+
+    edge_t* nge = agfstout(newGraph, ngn);
+    while (nge != NULL)
+    {
+      kDebug() << "edge " << nge->id;
+      QString edgeName = QString(nge->head->name) + nge->tail->name;
+      if (edges().contains(edgeName))
+      {
+        kDebug() << "edge known" << nge->id;
+//         edges()[nge->name]->setZ(nge->z());
+        edges()[edgeName]->updateWithEdge(nge);
+        if (edges()[edgeName]->canvasEdge()!=0)
+        {
+          //         edges()[nge->id()]->canvasEdge()->setGh(m_height);
+        }
+      }
+      else
+      {
+        kDebug() << "new edge" << edgeName;
+        {
+          GraphEdge* newEdge = new GraphEdge();
+          newEdge->setId(edgeName);
+          newEdge->updateWithEdge(nge);
+          if (elementNamed(nge->tail->name) == 0)
+          {
+            GraphNode* newgn = new GraphNode();
+            //       kDebug() << "new created";
+            nodes().insert(nge->tail->name, newgn);
+          }
+          newEdge->setFromNode(elementNamed(nge->tail->name));
+          if (elementNamed(nge->head->name) == 0)
+          {
+            GraphNode* newgn = new GraphNode();
+            //       kDebug() << "new created";
+            nodes().insert(nge->head->name, newgn);
+          }
+          newEdge->setToNode(elementNamed(nge->head->name));
+          edges().insert(edgeName, newEdge);
+        }
+      }
+      nge = agnxtedge(newGraph, nge, ngn);
+    }
+    ngn = agnxtnode(newGraph, ngn);
+  }
+  kDebug() << "Done";
+  emit readyToDisplay();
+  computeCells();
 }
 
 void DotGraph::updateWithGraph(const DotGraph& newGraph)

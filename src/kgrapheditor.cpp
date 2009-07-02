@@ -265,9 +265,7 @@ bool KGraphEditor::queryExit()
   KGraphEditorSettings::setPreviouslyOpenedFiles(m_openedFiles);
   m_rfa->saveEntries(KGlobal::config()->group("kgrapheditor"));
 
-  // 
-  //@TODO to port
-  //KGraphEditorSettings::writeConfig();
+  KGraphEditorSettings::self()->writeConfig();
   return true;
 }
 

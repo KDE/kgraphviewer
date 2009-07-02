@@ -13,7 +13,6 @@ if (APPLE)
    find_package(Carbon REQUIRED)
 endif (APPLE)
 find_package(KdepimLibs REQUIRED)
-#macro_optional_find_package(GraphViz)
 
 FIND_PROGRAM(DOT_EXECUTABLE NAMES dot  PATHS /usr/bin/  )
 if(NOT DOT_EXECUTABLE)

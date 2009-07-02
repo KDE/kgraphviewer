@@ -25,6 +25,8 @@
 #include <ktabwidget.h>
 #include <kdirwatch.h>
 
+#include <graphviz/gvc.h>
+
 #include "dotgraphview.h"
 
 class QWidget;
@@ -104,13 +106,20 @@ public slots:
   void slotPrepareToSelect();
   void slotSetCursor(const QCursor& cursor);
   void slotUnsetCursor();
+
+  /** Emit a signal connected to this slot to load the given file using the graphviz library (instead of one of the external commands) */
+  bool slotOpenFileLibrary(const QString& fileName);
+  
+  /** Emit a signal connected to this slot to display an already existing graphviz library graph.
+      It will be layouted by this kgraphviewer part. */
+  bool slotLoadLibrary(graph_t* graph);
   
 protected:
     /**
-     * This must be implemented by each part
+     * This must be implemented by each part. Use openUrl to open a file
      */
     virtual bool openFile();
-
+    
 private:
   DotGraphView *m_widget;
   KDirWatch* m_watch;

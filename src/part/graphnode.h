@@ -37,6 +37,8 @@
 #include <QMap>
 #include <QtCore/QTextStream>
 
+#include <graphviz/gvc.h>
+
 #include "dotrenderop.h"
 #include "dotgrammar.h"
 #include "graphelement.h"
@@ -54,6 +56,7 @@ class GraphNode : public GraphElement
 public:
   GraphNode();
   GraphNode(const GraphNode& gn);
+  GraphNode(node_t* gn);
   
   virtual ~GraphNode() {}  
   
@@ -62,6 +65,7 @@ public:
   inline void setCanvasNode(CanvasNode* cn) { setCanvasElement((CanvasElement*)cn); }
 
   virtual void updateWithNode(const GraphNode& node);
+  virtual void updateWithNode(node_t* node);
 
   
 private:

@@ -28,6 +28,8 @@
 #include <kaction.h>
 #include <krecentfilesaction.h>
 
+#include <graphviz/gvc.h>
+
 
 class KToggleAction;
 /**
@@ -55,7 +57,7 @@ public:
     * Use this method to load whatever file/URL you have
     */
   void openUrl(const KUrl& url);
- 
+
   void reloadPreviousFiles();
 
 protected:
@@ -64,14 +66,16 @@ protected:
 
 signals:
   void hide(KParts::Part* part);
-
-    
+  void openFileLibrary(const QString& fileName);
+  void loadLibrary(graph_t*);
+  
 public slots:
   /**
     * Use this method to load whatever file/URL you have
     */
   void openUrl(const QString& url) {openUrl(KUrl(url));}
-
+//   void openUrlLibrary(const QString& url) {openUrlLibrary(KUrl(url));}
+  
   void close();
 
   void slotReloadOnChangeModeYesToggled(bool value);
@@ -83,6 +87,8 @@ public slots:
   void slotReopenPreviouslyOpenedFilesModeYesToggled(bool value);
   void slotReopenPreviouslyOpenedFilesModeNoToggled(bool value);
   void slotReopenPreviouslyOpenedFilesModeAskToggled(bool value);
+  void slotParsingModeExternalToggled(bool value);
+  void slotParsingModeInternalToggled(bool value);
   
 private slots:
   void fileNew();
@@ -95,7 +101,15 @@ private slots:
   void optionsConfigureToolbars();
   void optionsConfigure();
   void newTabSelectedSlot(QWidget* tab);
-    
+
+  /** parse with an external command */
+  void openUrlCommand(const KUrl& url, KParts::ReadOnlyPart* part);
+  
+  /** parse with the graphviz library */
+  void openUrlLibrary(const KUrl& url, KParts::ReadOnlyPart* part);
+  
+  
+
   void applyNewToolbarConfig();
 
 private:

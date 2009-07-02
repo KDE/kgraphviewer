@@ -91,11 +91,6 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
   pagesetupAct->setText(i18n("Page setup"));
   pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog to allow graph printing to be setup"));
 
-/*  KAction *updateAct = new KAction("view_update", i18n("&Update view"), actionCollection(), "update");
-  updateAct->setShortcut(Qt::CTRL+Qt::Key_U);
-  updateAct->setWhatsThis(i18n("Update the view of the current graph by running dot"));
-  connect(updateAct, SIGNAL(triggered(bool)), m_widget, SLOT(slotUpdate()));*/
-  
   QAction* redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, "view_redisplay", m_widget, SLOT(reload()));
   redisplayAct->setWhatsThis(i18n("Reload the current graph from file"));
   redisplayAct->setShortcut(Qt::Key_F5);
@@ -128,15 +123,36 @@ kgraphviewerPart::~kgraphviewerPart()
 bool kgraphviewerPart::openFile()
 {
   kDebug() << " " << localFilePath();
-//    m_widget->loadedDot( localFilePath() );
+  //    m_widget->loadedDot( localFilePath() );
   if (!m_widget->loadDot(localFilePath()))
     return false;
-
+  
   // deletes the existing file watcher because we have no way know here the name of the
   // previously watched file and thus we cannot use removeFile... :-(
   delete m_watch;
   m_watch = new KDirWatch();
+  
+  //   kDebug() << "Watching file " << localFilePath();
+  m_watch->addFile(localFilePath());
+  connect(m_watch, SIGNAL(dirty(const QString &)), m_widget, SLOT(dirty(const QString&)));
+  QString label = localFilePath().section('/',-1,-1);
+  
+  m_widget->show();
+  return true;
+}
 
+bool kgraphviewerPart::slotOpenFileLibrary(const QString& fileName)
+{
+  kDebug() << fileName;
+  //    m_widget->loadedDot( localFilePath() );
+  if (!m_widget->slotLoadLibrary(fileName))
+    return false;
+  
+  // deletes the existing file watcher because we have no way know here the name of the
+  // previously watched file and thus we cannot use removeFile... :-(
+  delete m_watch;
+  m_watch = new KDirWatch();
+  
   //   kDebug() << "Watching file " << localFilePath();
   m_watch->addFile(localFilePath());
   connect(m_watch, SIGNAL(dirty(const QString &)), m_widget, SLOT(dirty(const QString&)));
@@ -426,6 +442,15 @@ void kgraphviewerPart::slotSetCursor(const QCursor& cursor)
 void kgraphviewerPart::slotUnsetCursor()
 {
   m_widget->unsetCursor();
+}
+
+bool kgraphviewerPart::slotLoadLibrary(graph_t* graph)
+{
+  kDebug();
+  bool res =  m_widget->slotLoadLibrary(graph);
+  if (res)
+    m_widget->show();
+  return res;
 }
 
 /*It's usually safe to leave the factory code alone.. with the

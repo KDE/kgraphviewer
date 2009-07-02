@@ -229,13 +229,39 @@ QWidget *widget)
   }
 
   QListIterator<DotRenderOp> it(element()->renderOperations());
-  it.toBack();
+//   it.toBack();
 
-
-  while (it.hasPrevious())
+  QColor lineColor = Dot2QtConsts::componentData().qtColor(element()->lineColor());
+  QColor backColor = Dot2QtConsts::componentData().qtColor(element()->backColor());
+  if (m_hovered && m_view->highlighting())
   {
-    const DotRenderOp& dro = it.previous();
-    if (dro.renderop == "e" || dro.renderop == "E")
+    backColor = backColor.lighter();
+  }
+  
+  while (it.hasNext())
+  {
+    const DotRenderOp& dro = it.next();
+    if (dro.renderop == "c")
+    {
+      QColor c(dro.str.mid(0,7));
+      bool ok;
+      c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
+      lineColor = c;
+      kDebug() << "c" << dro.str.mid(0,7) << lineColor;
+    }
+    else if (dro.renderop == "C")
+    {
+      QColor c(dro.str.mid(0,7));
+      bool ok;
+      c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
+      if (m_hovered && m_view->highlighting())
+      {
+        c = c.lighter();
+      }
+      backColor = c;
+      kDebug() << "C" << dro.str.mid(0,7) << backColor;
+    }
+    else if (dro.renderop == "e" || dro.renderop == "E")
     {
       qreal w = m_scaleX * dro.integers[2] * 2;
       qreal h = m_scaleY * dro.integers[3] * 2;
@@ -243,9 +269,9 @@ QWidget *widget)
       qreal y = ((m_gh - dro.integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
       QRectF rect(x,y,w,h);
       p->save();
-      p->setBrush(Dot2QtConsts::componentData().qtColor(element()->backColor()));
-      p->setPen(Dot2QtConsts::componentData().qtColor(element()->lineColor()));
-//       kDebug() << element()->id() << "drawEllipse" << element()->backColor() << rect;
+      p->setBrush(backColor);
+      p->setPen(lineColor);
+      kDebug() << element()->id() << "drawEllipse" << lineColor << backColor << rect;
 //       rect = QRectF(0,0,100,100);
       p->drawEllipse(rect);
       p->restore();
@@ -268,7 +294,9 @@ QWidget *widget)
         points[i] = p;
       }
       p->save();
-      QPen pen(Dot2QtConsts::componentData().qtColor(element()->lineColor()));
+
+      QPen pen = p->pen();
+      pen.setColor(lineColor);
       if (element()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
@@ -285,13 +313,7 @@ QWidget *widget)
         pen.setWidth(lineWidth);
       }
       p->setPen(pen);
-
-      QColor color(Dot2QtConsts::componentData().qtColor(element()->backColor()));
-      if (m_hovered && m_view->highlighting())
-      {
-        color = color.lighter();
-      }
-      p->setBrush(color);
+      p->setBrush(backColor);
 /*      if (element()->style() == "filled")
       {
         p->setBrush(Dot2QtConsts::componentData().qtColor(element()->backColor()));
@@ -316,11 +338,31 @@ QWidget *widget)
 
   }
 
-  it.toBack();
-  while (it.hasPrevious())
+  it.toFront();
+  while (it.hasNext())
   {
-    const DotRenderOp& dro = it.previous();
-    if ( dro.renderop == "L" )
+    const DotRenderOp& dro = it.next();
+    if (dro.renderop == "c")
+    {
+      QColor c(dro.str.mid(0,7));
+      bool ok;
+      c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
+      lineColor = c;
+      kDebug() << "c" << dro.str.mid(0,7) << lineColor;
+    }
+    else if (dro.renderop == "C")
+    {
+      QColor c(dro.str.mid(0,7));
+      bool ok;
+      c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
+      if (m_hovered && m_view->highlighting())
+      {
+        c = c.lighter();
+      }
+      backColor = c;
+      kDebug() << "C" << dro.str.mid(0,7) << backColor;
+    }
+    else if ( dro.renderop == "L" )
     {
 //       kDebug() << "Label";
       QPolygonF points(dro.integers[0]);
@@ -336,7 +378,7 @@ QWidget *widget)
         points[i] = p;
       }
       p->save();
-      QPen pen(Dot2QtConsts::componentData().qtColor(element()->lineColor()));
+      QPen pen(lineColor);
       if (element()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
@@ -353,21 +395,33 @@ QWidget *widget)
     }
   }
 
-
-  DotRenderOpVec::const_iterator itl, itl_end;
-  itl = element()->renderOperations().constBegin();
-  itl_end = element()->renderOperations().constEnd();
-  for (; itl != itl_end; itl++)
+  kDebug() << "Drawing" << element()->id() << "labels";
+  QString color = lineColor.name();
+  it.toFront();
+  while (it.hasNext())
   {
-    const DotRenderOp& dro = (*itl);
-    if ( dro.renderop == "T" )
+    const DotRenderOp& dro = it.next();
+    if (dro.renderop == "c" || dro.renderop == "C")
     {
+      color = dro.str.mid(0,7);
+      kDebug() << dro.renderop << color;
+    }
+    else if (dro.renderop == "F")
+    {
+      element()->setFontName(dro.str);
+      element()->setFontSize(dro.integers[0]);
+      kDebug() << "F" << element()->fontName() << element()->fontColor() << element()->fontSize();
+    }
+    else if ( dro.renderop == "T" )
+    {
+      // we suppose here that the color has been set just before
+      element()->setFontColor(color);
       // draw a label
-//       kDebug() << "Drawing a label " << (*itl).integers[0]
-//         << " " << (*itl).integers[1] << " " << (*itl).integers[2]
-//         << " " << (*itl).integers[3] << " " << (*itl).str
-//         << " (" << element()->fontName() << ", " << element()->fontSize()
-//         << ", " << element()->fontColor() << ")";
+      kDebug() << "Drawing a label " << dro.integers[0]
+      << " " << dro.integers[1] << " " << dro.integers[2]
+      << " " << dro.integers[3] << " " << dro.str
+        << " (" << element()->fontName() << ", " << element()->fontSize()
+        << ", " << element()->fontColor() << ")";
 
       int stringWidthGoal = int(dro.integers[3] * m_scaleX);
       int fontSize = element()->fontSize();
@@ -382,7 +436,9 @@ QWidget *widget)
       }
       p->save();
       p->setFont(*m_font);
-      p->setPen(m_pen);
+      QPen pen(m_pen);
+      pen.setColor(element()->fontColor());
+      p->setPen(pen);
       qreal x = (m_scaleX *
                        (
                          (dro.integers[0])
@@ -393,7 +449,7 @@ QWidget *widget)
                       + m_xMargin;
       qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
       QPointF point(x,y);
-//       kDebug() << element()->id() << "drawText" << point << " " << fontSize;
+      kDebug() << element()->id() << "drawText" << point << " " << fontSize;
       p->drawText(point, dro.str);
       p->restore();
     }

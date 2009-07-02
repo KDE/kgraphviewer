@@ -188,11 +188,35 @@ Q_UNUSED(widget)
     }
     return;
   }
+
+  QColor lineColor = Dot2QtConsts::componentData().qtColor(edge()->color(0));
+  QColor backColor;
+  
   QList<QPointF> allPoints;
   foreach (const DotRenderOp& dro, edge()->renderOperations())
   {
-//     kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << dro.renderop << "; selected:" << edge()->isSelected();
-    if ( dro.renderop == "T" )
+    //     kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << dro.renderop << "; selected:" << edge()->isSelected();
+    if (dro.renderop == "c")
+    {
+      QColor c(dro.str.mid(0,7));
+      bool ok;
+      c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
+      lineColor = c;
+      kDebug() << "c" << dro.str.mid(0,7) << lineColor;
+    }
+    else if (dro.renderop == "C")
+    {
+      QColor c(dro.str.mid(0,7));
+      bool ok;
+      c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
+/*      if (m_hovered && m_view->highlighting())
+      {
+        c = c.lighter();
+      }*/
+      backColor = c;
+      kDebug() << "C" << dro.str.mid(0,7) << backColor;
+    }
+    else if ( dro.renderop == "T" )
     {
       const QString& str = dro.str;
     
@@ -242,7 +266,7 @@ Q_UNUSED(widget)
       if (dro.renderop == "P" )
       {
         p->save();
-        p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
+        p->setBrush(lineColor);
         p->drawPolygon(polygon);
 //         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
         p->restore();
@@ -251,7 +275,7 @@ Q_UNUSED(widget)
       {
         p->setBrush(Dot2QtConsts::componentData().qtColor("white"));
       }
-      QPen pen(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
+      QPen pen(lineColor);
       if (edge()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
@@ -277,13 +301,13 @@ Q_UNUSED(widget)
       p->save();
       if (dro.renderop == "E" )
       {
-        p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
+        p->setBrush(lineColor);
       }
       else
       {
         p->setBrush(Dot2QtConsts::componentData().qtColor("white"));
       }
-      QPen pen(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
+      QPen pen(lineColor);
       if (edge()->style() == "bold")
       {
         pen.setStyle(Qt::SolidLine);
@@ -362,7 +386,9 @@ Q_UNUSED(widget)
           allPoints.append(p);
         }
 //         kDebug() << "Setting pen color to " << edge()->color(splineNum);
-        pen.setColor(Dot2QtConsts::componentData().qtColor(edge()->color(splineNum)));
+        if (splineNum != 0)
+          lineColor = Dot2QtConsts::componentData().qtColor(edge()->color(splineNum));
+        pen.setColor(splineNum);
         p->save();
 //         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
         p->setBrush(Qt::NoBrush);
