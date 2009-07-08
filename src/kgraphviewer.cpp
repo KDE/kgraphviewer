@@ -236,13 +236,13 @@ void KGraphViewer::setupActions()
   quitAction->setWhatsThis(i18n("Quits KGraphViewer."));
   
   m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
-  m_statusbarAction->setWhatsThis(i18n("Shows or hide the status bar."));
+  m_statusbarAction->setWhatsThis(i18n("Shows or hides the status bar."));
   
   KAction* kbAction = actionCollection()->addAction( KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT( optionsConfigureKeys() ) );
   kbAction->setWhatsThis(i18n("Configure the bindings between keys and actions."));
   
   KAction* ctAction = actionCollection()->addAction( KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT( optionsConfigureToolbars() ) );
-  ctAction->setWhatsThis(i18n("Tollbars configuration ."));
+  ctAction->setWhatsThis(i18n("Toolbars configuration ."));
   
   KAction* configureAction = actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT( optionsConfigure() ) );
   configureAction->setWhatsThis(i18n("Main KGraphViewer configuration options."));
