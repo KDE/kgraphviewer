@@ -174,7 +174,7 @@ bool DotGraph::parseLibrary(const QString& str)
   gvc = gvContext();
   fp = fopen(str.toUtf8().data(), "r");
   g = agread(fp);
-  gvLayout(gvc, g, m_layoutCommand.toUtf8());
+  gvLayout(gvc, g, m_layoutCommand.toUtf8().data());
   gvRender (gvc, g, "xdot", NULL);
   
   updateWithGraph(g);

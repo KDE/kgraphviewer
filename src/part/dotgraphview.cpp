@@ -378,7 +378,7 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   
   
   GVC_t* gvc = gvContext();
-  gvLayout(gvc, graph, layoutCommand.toUtf8());
+  gvLayout(gvc, graph, layoutCommand.toUtf8().data());
   gvRender (gvc, graph, "xdot", NULL);
              
                                       
