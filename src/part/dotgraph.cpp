@@ -126,14 +126,14 @@ bool DotGraph::parseDot(const QString& str)
   kDebug() << "Running " << m_layoutCommand  << str;
   QStringList options;
   /// @TODO handle the non-dot commands that could don't know the -T option
-  if (m_readWrite && m_phase == Initial)
-  {
-    options << "-Tdot";
-  }
-  else
-  {
+//  if (m_readWrite && m_phase == Initial)
+//  {
+//    options << "-Tdot";
+//  }
+//  else
+//  {
     options << "-Txdot";
-  }
+//   }
   options << str;
 
   kDebug() << "m_dot is " << m_dot  << ". Acquiring mutex";
@@ -250,23 +250,25 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
 
   if (parsingResult)
   {
+    kDebug() << "calling updateWithGraph";
     updateWithGraph(newGraph);
   }
   else
   {
+    kDebug() << "parsing failed";
     kError() << "parsing failed";
   }
 //   return parsingResult;
-  if (m_readWrite && m_phase == Initial)
-  {
-    m_phase = Final;
-    update();
-  }
-  else
-  {
+//   if (m_readWrite && m_phase == Initial)
+//   {
+//     m_phase = Final;
+//     update();
+//   }
+//   else
+//   {
     kDebug() << "emiting readyToDisplay";
     emit(readyToDisplay());
-  }
+//   }
 }
 
 void DotGraph::slotDotRunningError(QProcess::ProcessError error)

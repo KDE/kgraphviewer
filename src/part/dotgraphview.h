@@ -249,6 +249,9 @@ private:
   int m_detailLevel;
 
   GraphElement* m_defaultNewElement;
+  
+  /** image used for a new node just added in an edited graph because this new node has
+  still no attribute and thus no render operation */
   QPixmap m_defaultNewElementPixmap;
   EditingMode m_editingMode;
 

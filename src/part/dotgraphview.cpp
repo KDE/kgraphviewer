@@ -240,7 +240,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 
   if (m_canvas)
   {
-    delete m_canvas;
+    m_canvas->deleteLater();
     m_canvas = 0;
   }
 
@@ -898,6 +898,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     if (newNode->attributes().find("id") == newNode->attributes().end())
     {
       newNode->setId(QString("NewNode%1").arg(m_graph->nodes().size()));
+      newNode->setLabel(newNode->id());
     }
     m_graph->nodes().insert(newNode->id(), newNode);
     CanvasNode* newCNode = new CanvasNode(this, newNode, m_canvas);

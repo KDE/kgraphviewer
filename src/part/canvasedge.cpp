@@ -202,7 +202,7 @@ Q_UNUSED(widget)
       bool ok;
       c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
       lineColor = c;
-      kDebug() << "c" << dro.str.mid(0,7) << lineColor;
+//       kDebug() << "c" << dro.str.mid(0,7) << lineColor;
     }
     else if (dro.renderop == "C")
     {
@@ -214,7 +214,7 @@ Q_UNUSED(widget)
         c = c.lighter();
       }*/
       backColor = c;
-      kDebug() << "C" << dro.str.mid(0,7) << backColor;
+//       kDebug() << "C" << dro.str.mid(0,7) << backColor;
     }
     else if ( dro.renderop == "T" )
     {
