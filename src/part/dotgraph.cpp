@@ -56,8 +56,10 @@ DotGraph::DotGraph() :
   m_layoutCommand(""),
   m_readWrite(false),
   m_dot(0),
-  m_phase(Initial)
+  m_phase(Initial),
+  m_useLibrary(false)
 {
+  setId("unnamed");
 }
 
 DotGraph::DotGraph(const QString& command, const QString& fileName) :
@@ -67,8 +69,10 @@ DotGraph::DotGraph(const QString& command, const QString& fileName) :
   m_layoutCommand(command),
   m_readWrite(false),
   m_dot(0),
-  m_phase(Initial)
-{ 
+  m_phase(Initial),
+  m_useLibrary(false)
+{
+  setId("unnamed");
 }
 
 DotGraph::~DotGraph()  
@@ -187,13 +191,30 @@ bool DotGraph::parseLibrary(const QString& str)
 
 bool DotGraph::update()
 {
-  kDebug() ;
   GraphExporter exporter;
-  QString str = exporter.writeDot(this);
+  if (!m_useLibrary)
+  {
+    kDebug() << "command";
+    QString str = exporter.writeDot(this);
+    return parseDot(str);
+  }
+  else
+  {
+    kDebug() << "library";
+    graph_t* graph = exporter.exportToGraphviz(this);
 
-  return parseDot(str);
+    GVC_t* gvc = gvContext();
+    gvLayout(gvc, graph, m_layoutCommand.toUtf8().data());
+    gvRender (gvc, graph, "xdot", NULL);
+
+    updateWithGraph(graph);
+    
+    gvFreeLayout(gvc, graph);
+    agclose(graph);
+    bool result = (gvFreeContext(gvc) == 0);
+    return result;
+  }
 }
-
 
 QByteArray DotGraph::getDotResult(int , QProcess::ExitStatus )
 {

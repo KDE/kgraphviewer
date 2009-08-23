@@ -105,6 +105,7 @@ void GraphEdge::updateWithEdge(const GraphEdge& edge)
 void GraphEdge::updateWithEdge(edge_t* edge)
 {
   kDebug();
+  renderOperations().clear();
   if (agget(edge, (char*)"_draw_") != NULL)
   {
     parse_renderop(agget(edge, (char*)"_draw_"), renderOperations());

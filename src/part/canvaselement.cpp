@@ -221,12 +221,12 @@ QWidget *widget)
   }
 //   kDebug() << msg;
 
-  if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
-  {
+//   if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
+//   {
 //     kDebug() << "drawPixmap";
-    p->drawPixmap(QPointF(0,0),m_view->defaultNewElementPixmap());
-    return;
-  }
+//     p->drawPixmap(QPointF(0,0),m_view->defaultNewElementPixmap());
+//     return;
+//   }
 
   QListIterator<DotRenderOp> it(element()->renderOperations());
 //   it.toBack();

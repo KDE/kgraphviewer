@@ -246,7 +246,7 @@ void popAttrList(char const* /*first*/, char const* /*last*/)
 
 void createnode(char const* first, char const* last)
 {
-  kDebug() << (void*)first << (void*)last << QString::fromStdString(std::string(first,last));
+//   kDebug() << (void*)first << (void*)last << QString::fromStdString(std::string(first,last));
   if (phelper!=0 && first!=0 && last != 0) 
   {
     std::string id(first,last);
@@ -312,7 +312,7 @@ void checkedgeop(char const* first, char const* last)
 
 void edgebound(char const* first, char const* last)
 {
-  kDebug() << "edgebound: " << QString::fromStdString(std::string(first,last));
+//   kDebug() << "edgebound: " << QString::fromStdString(std::string(first,last));
   if (phelper) 
   {
     std::string id(first,last);
@@ -458,7 +458,7 @@ void valid_op(char const* first, char const* last)
   renderop.renderop = QString::fromUtf8(therenderop.c_str());
   renderop.str = QString::fromUtf8(thestr.c_str());
 
-  kDebug() << "Validating render operation '"<<QString::fromStdString(s)<<"': '"<<renderop.renderop<<"/"<<renderop.str<<"'";
+//   kDebug() << "Validating render operation '"<<QString::fromStdString(s)<<"': '"<<renderop.renderop<<"/"<<renderop.str<<"'";
   renderopvec->push_back(renderop);
   renderop.renderop = "";
   renderop.integers = QList<int>();
@@ -467,7 +467,7 @@ void valid_op(char const* first, char const* last)
 
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
 {
-  kDebug() << QString::fromUtf8(str.c_str()) << str.size();
+//   kDebug() << QString::fromUtf8(str.c_str()) << str.size();
   if (str.empty())
   {
     return false;

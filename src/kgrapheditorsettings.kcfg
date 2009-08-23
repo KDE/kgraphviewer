@@ -7,6 +7,10 @@
       <label>The answer to the question 'File modified, do you want to reload it'</label> 
       <default>ask</default>
     </entry> 
+    <entry name="parsingMode" type="String">
+      <label>To choose whether parsing using an external command (usually dot) or the graphviz library</label>
+      <default>external</default>
+    </entry>
     <entry name="openInExistingWindowMode" type="String"> 
       <label>The answer to the question 'If another window already exist when launching kgraphviewer, should we open in it, open a new window or ask ?'</label> 
       <default>ask</default>

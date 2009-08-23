@@ -100,6 +100,7 @@ public:
   bool isVisible() const { return m_visible; }
   void setVisible(bool v) { m_visible = v; }
 
+  void exportToGraphviz(void* element)  const;
 
 Q_SIGNALS:
   void changed();

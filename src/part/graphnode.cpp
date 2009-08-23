@@ -80,7 +80,7 @@ void GraphNode::updateWithNode(node_t* node)
   m_attributes["id"] = node->name;
   m_attributes["label"] = ND_label(node)->text;
   
-  
+  renderOperations().clear();
   if (agget(node, (char*)"_draw_") != NULL)
   {
     parse_renderop(agget(node, (char*)"_draw_"), renderOperations());

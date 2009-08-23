@@ -26,6 +26,8 @@
 #include <kaction.h>
 #include <krecentfilesaction.h>
 
+#include <graphviz/gvc.h>
+
 class QTreeWidget;
 class QTreeWidgetItem;
 
@@ -67,6 +69,7 @@ protected:
   bool queryExit(); 
 
 Q_SIGNALS:
+  void loadLibrary(graph_t*);
   void hide(KParts::Part* part);
   void prepareAddNewElement(QMap<QString,QString> attribs);
   void prepareAddNewEdge(QMap<QString,QString> attribs);
@@ -130,6 +133,16 @@ private Q_SLOTS:
   void slotEditNewVertex();
   void slotEditNewEdge();
 
+  /** parse with an external command */
+  void openUrlCommand(const KUrl& url, KParts::ReadOnlyPart* part);
+  
+  /** parse with the graphviz library */
+  void openUrlLibrary(const KUrl& url, KParts::ReadOnlyPart* part);
+
+  void slotParsingModeExternalToggled(bool value);
+  void slotParsingModeInternalToggled(bool value);
+  
+  
 private:
   void setupAccel();
   void setupActions();

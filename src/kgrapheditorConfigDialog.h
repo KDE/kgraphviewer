@@ -23,6 +23,7 @@
 #include <kconfigdialog.h>
 
 namespace Ui {
+class KGraphViewerPreferencesParsingWidget;
 class KGraphViewerPreferencesReloadWidget;
 class KGraphViewerPreferencesOpenInExistingWindowWidget;
 class KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget;
@@ -54,6 +55,9 @@ protected:
   virtual bool hasChanged();
 
   bool m_changed;
+
+public:
+  Ui::KGraphViewerPreferencesParsingWidget*  m_parsingWidget;
   Ui::KGraphViewerPreferencesReloadWidget*  m_reloadWidget;
   Ui::KGraphViewerPreferencesOpenInExistingWindowWidget* m_openingWidget;
   Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget* m_reopeningWidget;

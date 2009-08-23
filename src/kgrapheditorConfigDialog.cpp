@@ -20,6 +20,7 @@
 #include "kgrapheditorConfigDialog.h"
 #include "kgrapheditorsettings.h"
 #include "ui_preferencesReload.h"
+#include "ui_preferencesParsing.h"
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
 
@@ -48,19 +49,24 @@ KgeConfigurationDialog::KgeConfigurationDialog (QWidget *parent, const QString& 
               ButtonCode defaultButton, bool modal) : 
   KConfigDialog (parent, name, config),//, dialogType, dialogButtons, defaultButton, modal) ,
   m_changed(false),
+  m_parsingWidget(new Ui::KGraphViewerPreferencesParsingWidget()),
   m_reloadWidget(new Ui::KGraphViewerPreferencesReloadWidget()),
   m_openingWidget(new Ui::KGraphViewerPreferencesOpenInExistingWindowWidget()),
   m_reopeningWidget(new Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget())
 {
+  QWidget* page0 = new QWidget();
+  m_parsingWidget->setupUi(page0);
   QWidget* page1 = new QWidget();
   m_reloadWidget->setupUi(page1);
   QWidget* page2 = new QWidget();
   m_openingWidget->setupUi(page2);
   QWidget* page3 = new QWidget();
   m_reopeningWidget->setupUi(page3);
+  addPage( page0, i18n("Parsing"), "kgraphparsingoptions", i18n("Parsing"), false);
   addPage( page1, i18n("Reloading"), "kgraphreloadoptions", i18n("Reloading"), false); 
   addPage( page2, i18n("Opening"), "kgraphopeningoptions", i18n("Opening"), false); 
   addPage( page3, i18n("Session Management"), "kgraphreopeningoptions", i18n("Session Management"), false); 
+  connect(m_parsingWidget->parsingMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
   connect(m_reloadWidget->reloadOnChangeMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
   connect(m_openingWidget->openInExistingWindowMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
   connect(m_reopeningWidget->reopenPreviouslyOpenedFilesMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));

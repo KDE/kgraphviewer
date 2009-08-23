@@ -26,6 +26,7 @@
 #include <kconfig.h>
 
 #include <QRegExp>
+#include <graphviz/gvc.h>
 
 GraphElement::GraphElement() :
     QObject(),
@@ -130,6 +131,36 @@ void GraphElement::removeAttribute(const QString& attribName)
   emit changed();
 }
 
+void GraphElement::exportToGraphviz(void* element) const
+{
+  QMap<QString,QString>::const_iterator it, it_end;
+  it = attributes().begin(); it_end = attributes().end();
+  for (;it != it_end; it++)
+  {
+    if (!it.value().isEmpty())
+    {
+      if (it.key() == "label")
+      {
+        QString label = it.value();
+        if (label != "label")
+        {
+          label.replace(QRegExp("\n"),"\\n");
+          //           kDebug() << it.key() << "=\"" << label << "\",";
+          agsafeset(element, it.key().toUtf8().data(), label.toUtf8().data(), QString().toUtf8().data());
+        }
+      }
+      else if (it.key() == "_draw_" || it.key() == "_ldraw_")
+      {
+      }
+      else if (originalAttributes().isEmpty() || originalAttributes().contains(it.key()))
+      {
+        //         kDebug() << it.key() << it.value();
+        
+        agsafeset(element, it.key().toUtf8().data(), it.value().toUtf8().data(), QString().toUtf8().data());
+      }
+    }
+  }
+}
 
 QTextStream& operator<<(QTextStream& s, const GraphElement& n)
 {

@@ -365,7 +365,8 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
 
   kDebug() << "layoutCommand:" << layoutCommand;
   m_graph = new DotGraph(layoutCommand,"");
-
+  m_graph->setUseLibrary(true);
+  
   connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
   connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
   connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));

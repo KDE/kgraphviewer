@@ -36,11 +36,11 @@ qt4_add_dbus_adaptor(kgrapheditor_SRCS org.kde.kgrapheditor.xml kgrapheditor.h K
 
 kde4_add_kcfg_files( kgrapheditor_SRCS kgrapheditorsettings.kcfgc )
 
-kde4_add_ui_files( kgrapheditor_SRCS preferencesReload.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui )
+kde4_add_ui_files( kgrapheditor_SRCS preferencesReload.ui preferencesParsing.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui )
 
 kde4_add_executable(kgrapheditor ${kgrapheditor_SRCS})
 
-target_link_libraries(kgrapheditor  ${QT_AND_KDECORE_LIBS} ${KDE4_KHTML_LIBS})
+target_link_libraries(kgrapheditor  ${QT_AND_KDECORE_LIBS} ${KDE4_KHTML_LIBS}  gvc graph pathplan cdt)
 
 install( TARGETS kgrapheditor ${INSTALL_TARGETS_DEFAULT_ARGS})
 

@@ -23,6 +23,7 @@
 #include "KGraphEditorNodesTreeWidget.h"
 #include "KGraphEditorElementTreeWidget.h"
 #include "ui_preferencesReload.h"
+#include "ui_preferencesParsing.h"
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
 #include "part/dotgraph.h"
@@ -185,7 +186,10 @@ void KGraphEditor::openUrl(const KUrl& url)
       m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), label);
       m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
       createGUI(part);
-      part->openUrl( url );
+      (KGraphEditorSettings::parsingMode() == "external")
+        ?openUrlCommand(url,part)
+        :openUrlLibrary(url,part);
+      
       m_openedFiles.push_back(url.url());
       m_manager->addPart( part, true );
       m_tabsPartsMap[m_widget->currentPage()] = part;
@@ -205,6 +209,27 @@ void KGraphEditor::openUrl(const KUrl& url)
     return;
   }
 }
+
+void KGraphEditor::openUrlCommand(const KUrl& url, KParts::ReadOnlyPart* part)
+{
+  kDebug() << url;
+  part->openUrl( url );
+}
+
+void KGraphEditor::openUrlLibrary(const KUrl& url, KParts::ReadOnlyPart* part)
+{
+  kDebug() << "in openUrlLibrary" << url;
+  connect(this, SIGNAL(loadLibrary(graph_t*)),part,SLOT(slotLoadLibrary(graph_t*)));
+  GVC_t *gvc;
+  graph_t *g;
+  FILE* fp;
+  gvc = gvContext();
+  fp = fopen(url.pathOrUrl().toUtf8().data(), "r");
+  kDebug() << "fopen" << url.pathOrUrl() << (void*)fp;
+  g = agread(fp);
+  emit(loadLibrary(g));
+}
+
 
 void KGraphEditor::fileOpen()
 {
@@ -327,7 +352,21 @@ void KGraphEditor::optionsConfigure()
   KPageDialog::FaceType ft = KPageDialog::Auto;
   KgeConfigurationDialog* dialog = new KgeConfigurationDialog( this, "settings",
                                              KGraphEditorSettings::self(),ft );
-  
+
+  Ui::KGraphViewerPreferencesParsingWidget*  parsingWidget = dialog->m_parsingWidget;
+  kDebug() << KGraphEditorSettings::parsingMode();
+  if (KGraphEditorSettings::parsingMode() == "external")
+  {
+    parsingWidget->external->setChecked(true);
+  }
+  else if (KGraphEditorSettings::parsingMode() == "internal")
+  {
+    parsingWidget->internal->setChecked(true);
+  }
+  connect((QObject*)parsingWidget->external, SIGNAL(toggled(bool)), this, SLOT(slotParsingModeExternalToggled(bool)) );
+  connect((QObject*)parsingWidget->internal, SIGNAL(toggled(bool)), this, SLOT(slotParsingModeInternalToggled(bool)) );
+
+                                             
 /*  KGraphViewerPreferencesReloadWidget*  reloadWidget =  
       new KGraphViewerPreferencesReloadWidget( 0, "KGraphViewer Settings" );
   if (KGraphEditorSettings::reloadOnChangeMode() == "yes")
@@ -817,5 +856,30 @@ void KGraphEditor::slotSelectionIs(const QList<QString>& elements)
     }
   }
 }
+
+void KGraphEditor::slotParsingModeExternalToggled(bool value)
+{
+  kDebug();
+  if (value)
+  {
+    KGraphEditorSettings::setParsingMode("external");
+  }
+  //   kDebug() << "emiting";
+  //   emit(settingsChanged());
+  KGraphEditorSettings::self()->writeConfig();
+}
+
+void KGraphEditor::slotParsingModeInternalToggled(bool value)
+{
+  kDebug();
+  if (value)
+  {
+    KGraphEditorSettings::setParsingMode("internal");
+  }
+  //   kDebug() << "emiting";
+  //   emit(settingsChanged());
+  KGraphEditorSettings::self()->writeConfig();
+}
+
 
 #include "kgrapheditor.moc"
