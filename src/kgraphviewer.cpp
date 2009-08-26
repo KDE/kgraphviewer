@@ -159,6 +159,9 @@ void KGraphViewer::openUrl(const KUrl& url)
         m_tabsFilesMap[m_widget->currentPage()] = url.url();
         connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
         connect(part,SIGNAL(close()),this,SLOT(close()));
+
+        connect(part, SIGNAL( hoverEnter(const QString&) ), this, SLOT(slotHoverEnter(const QString&)));
+        connect(part, SIGNAL( hoverLeave(const QString&) ), this, SLOT(slotHoverLeave(const QString&)));
     }
   }
   else
@@ -555,6 +558,18 @@ void KGraphViewer::newTabSelectedSlot(QWidget* tab)
   {
     m_manager->setActivePart(m_tabsPartsMap[tab]);
   }
+}
+
+void KGraphViewer::slotHoverEnter(const QString& id)
+{
+  kDebug() << id;
+  statusBar()->showMessage(id);
+}
+
+void KGraphViewer::slotHoverLeave(const QString& id)
+{
+  kDebug() << id;
+  statusBar()->showMessage("");
 }
 
 #include "kgraphviewer.moc"

@@ -99,6 +99,10 @@ CanvasElement::CanvasElement(
   connect(this, SIGNAL(elementContextMenuEvent(const QString&, const QPoint&)), v, SLOT(slotContextMenuEvent(const QString&, const QPoint&)));
 
   setAcceptHoverEvents ( true );
+
+  connect(this, SIGNAL(hoverEnter(CanvasElement*)), v, SLOT(slotElementHoverEnter(CanvasElement*)));
+  connect(this, SIGNAL(hoverLeave(CanvasElement*)), v, SLOT(slotElementHoverLeave(CanvasElement*)));
+  
 }
 
 CanvasElement::~CanvasElement()
@@ -221,12 +225,11 @@ QWidget *widget)
   }
 //   kDebug() << msg;
 
-//   if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
-//   {
-//     kDebug() << "drawPixmap";
-//     p->drawPixmap(QPointF(0,0),m_view->defaultNewElementPixmap());
-//     return;
-//   }
+  if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
+  {
+    kError() << element()->id() << ": no render operation. This should not happen.";
+    return;
+  }
 
   QListIterator<DotRenderOp> it(element()->renderOperations());
 //   it.toBack();
@@ -534,6 +537,7 @@ void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 //   kDebug();
   m_hovered = true;
   update();
+  emit hoverEnter(this);
 }
 
 void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
@@ -542,6 +546,7 @@ void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
 //   kDebug();
   m_hovered = false;
   update();
+  emit hoverLeave(this);
 }
 
 #include "canvaselement.moc"

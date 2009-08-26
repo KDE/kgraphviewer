@@ -71,7 +71,14 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
            SIGNAL( newEdgeFinished(const QString&, const QString&, const QMap<QString, QString>&) ),
           this,
            SIGNAL( newEdgeFinished(const QString&, const QString&, const QMap<QString, QString>&) ) );
-                    
+  connect( m_widget, SIGNAL( hoverEnter(const QString&)) ,
+          this, SIGNAL( hoverEnter(const QString&) ) );
+  connect( m_widget, SIGNAL( hoverLeave(const QString&)) ,
+          this, SIGNAL( hoverLeave(const QString&)) );
+                   
+
+          
+           
   // notify the part that this is our internal widget
   setWidget(m_widget);
 

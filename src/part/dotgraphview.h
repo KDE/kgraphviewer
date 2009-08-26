@@ -162,7 +162,9 @@ Q_SIGNALS:
       const QString&, const QString&,
       const QMap<QString, QString>&);
   void contextMenuEvent(const QString&, const QPoint&);
-
+  void hoverEnter(const QString&);
+  void hoverLeave(const QString&);
+  
 public Q_SLOTS:
   void zoomIn();
   void zoomOut();  
@@ -199,7 +201,9 @@ public Q_SLOTS:
   void slotElementSelected(CanvasElement*, Qt::KeyboardModifiers);
   void slotSelectionChanged();
   void slotContextMenuEvent(const QString&, const QPoint&);
-
+  void slotElementHoverEnter(CanvasElement*);
+  void slotElementHoverLeave(CanvasElement*);
+  
 protected:
   void resizeEvent(QResizeEvent*);
   void mousePressEvent(QMouseEvent*);

@@ -142,7 +142,9 @@ private Q_SLOTS:
   void slotParsingModeExternalToggled(bool value);
   void slotParsingModeInternalToggled(bool value);
   
-  
+  void slotHoverEnter(const QString&);
+  void slotHoverLeave(const QString&);
+
 private:
   void setupAccel();
   void setupActions();

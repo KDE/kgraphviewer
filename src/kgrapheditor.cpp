@@ -643,6 +643,12 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
 
   connect( m_currentPart, SIGNAL( newEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&) ),
             this, SLOT( slotNewEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&) ) );
+
+  connect( m_currentPart, SIGNAL( hoverEnter(const QString&) ),
+           this, SLOT( slotHoverEnter(const QString&) ) );
+            
+  connect( m_currentPart, SIGNAL( hoverLeave (const QString&) ),
+          this, SLOT( slotHoverLeave(const QString&) ) );
 }
 
 void KGraphEditor::slotNewNodeAdded(const QString& id)
@@ -879,6 +885,18 @@ void KGraphEditor::slotParsingModeInternalToggled(bool value)
   //   kDebug() << "emiting";
   //   emit(settingsChanged());
   KGraphEditorSettings::self()->writeConfig();
+}
+
+void KGraphEditor::slotHoverEnter(const QString& id)
+{
+  kDebug() << id;
+  statusBar()->showMessage(id);
+}
+
+void KGraphEditor::slotHoverLeave(const QString& id)
+{
+  kDebug() << id;
+  statusBar()->showMessage("");
 }
 
 

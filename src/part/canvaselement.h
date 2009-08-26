@@ -79,11 +79,13 @@ public:
   QMenu* m_popup;
 
   bool m_hovered;
-
+  
 Q_SIGNALS:
   void selected(CanvasElement*, Qt::KeyboardModifiers);
   void elementContextMenuEvent(const QString&, const QPoint&);
-
+  void hoverEnter(CanvasElement*);
+  void hoverLeave(CanvasElement*);
+  
 public Q_SLOTS:
   void modelChanged();
   void slotRemoveElement();

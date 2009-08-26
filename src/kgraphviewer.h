@@ -108,10 +108,11 @@ private slots:
   /** parse with the graphviz library */
   void openUrlLibrary(const KUrl& url, KParts::ReadOnlyPart* part);
   
-  
-
   void applyNewToolbarConfig();
 
+  void slotHoverEnter(const QString&);
+  void slotHoverLeave(const QString&);
+  
 private:
   void setupAccel();
   void setupActions();

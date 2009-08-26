@@ -74,6 +74,8 @@ Q_SIGNALS:
   void newEdgeFinished(
       const QString&, const QString&,
       const QMap<QString, QString>&);
+  void hoverEnter(const QString&);
+  void hoverLeave(const QString&);
 
 public slots:
   void slotHide(KParts::Part* part);

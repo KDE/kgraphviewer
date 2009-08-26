@@ -899,6 +899,9 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     if (newNode->attributes().find("id") == newNode->attributes().end())
     {
       newNode->setId(QString("NewNode%1").arg(m_graph->nodes().size()));
+    }
+    if (newNode->attributes().find("label") == newNode->attributes().end())
+    {
       newNode->setLabel(newNode->id());
     }
     m_graph->nodes().insert(newNode->id(), newNode);
@@ -1058,6 +1061,22 @@ void DotGraphView::slotContextMenuEvent(const QString& id, const QPoint& p)
 //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
 
   emit (contextMenuEvent(id, p));
+}
+
+void DotGraphView::slotElementHoverEnter(CanvasElement* element)
+{
+  kDebug() << element->element()->id();
+  //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
+  
+  emit (hoverEnter(element->element()->id()));
+}
+
+void DotGraphView::slotElementHoverLeave(CanvasElement* element)
+{
+  kDebug() << element->element()->id();
+  //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
+  
+  emit (hoverLeave(element->element()->id()));
 }
 
 void DotGraphView::setLayoutCommand(const QString& command)
