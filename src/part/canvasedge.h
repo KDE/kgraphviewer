@@ -82,14 +82,18 @@ public:
 Q_SIGNALS:
   void selected(CanvasEdge*, Qt::KeyboardModifiers);
   void edgeContextMenuEvent(const QString&, const QPoint&);
-
+  void hoverEnter(CanvasEdge*);
+  void hoverLeave(CanvasEdge*);
+  
 public Q_SLOTS:
   void modelChanged();
   void slotRemoveEdge();
 
 protected:
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
-
+  virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
+  virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
+  
 private:
   qreal distance(const QPointF& point1, const QPointF& point2);
   

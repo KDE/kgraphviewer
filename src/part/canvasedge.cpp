@@ -77,6 +77,11 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
   connect(this, SIGNAL(selected(CanvasEdge*, Qt::KeyboardModifiers)), view, SLOT(slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers)));
   
   connect(this, SIGNAL(edgeContextMenuEvent(const QString&, const QPoint&)), view, SLOT(slotContextMenuEvent(const QString&, const QPoint&)));
+
+  kDebug() << "connect slotElementHoverEnter";
+  connect(this, SIGNAL(hoverEnter(CanvasEdge*)), view, SLOT(slotElementHoverEnter(CanvasEdge*)));
+  connect(this, SIGNAL(hoverLeave(CanvasEdge*)), view, SLOT(slotElementHoverLeave(CanvasEdge*)));
+  
 } 
 
 CanvasEdge::~CanvasEdge()
@@ -496,7 +501,7 @@ void CanvasEdge::computeBoundingRect()
 
     m_boundingRect = a.boundingRect();
   }
-//   kDebug() ;//<< edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
+  kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
 }
 
 void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
@@ -541,5 +546,20 @@ void CanvasEdge::slotRemoveEdge()
   kDebug();
   m_view->removeSelectedElements();
 }
+
+void CanvasEdge::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
+{
+  Q_UNUSED(event)
+  kDebug() << edge()->id();
+  emit hoverEnter(this);
+}
+
+void CanvasEdge::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
+{
+  Q_UNUSED(event)
+  kDebug() << edge()->id();
+  emit hoverLeave(this);
+}
+
 
 #include "canvasedge.moc"

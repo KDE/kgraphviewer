@@ -440,8 +440,23 @@ bool DotGraphView::displayGraph()
 //   kDebug() << "sceneRect is now " << m_canvas->sceneRect();
   
   kDebug() << "Creating" << m_graph->subgraphs().size() << "CanvasSubgraphs from" << m_graph;
+  int zvalue = -1;
   foreach (GraphSubgraph* gsubgraph,m_graph->subgraphs())
   {
+    if (gsubgraph->canvasSubgraph() == 0)
+    {
+      kDebug() << "Creating canvas subgraph for" << gsubgraph->id();
+      CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph, m_canvas);
+      csubgraph->initialize(
+        scaleX, scaleY, m_xMargin, m_yMargin, gh,
+        m_graph->wdhcf(), m_graph->hdvcf());
+      gsubgraph->setCanvasSubgraph(csubgraph);
+//       csubgraph->setZValue(gsubgraph->z());
+      csubgraph->setZValue(zvalue+=2);
+      csubgraph->show();
+      m_canvas->addItem(csubgraph);
+      kDebug() << " one CanvasSubgraph... Done";
+    }
     foreach (GraphElement* element, gsubgraph->content())
     {
       GraphNode* gnode = dynamic_cast<GraphNode*>(element);
@@ -456,24 +471,10 @@ bool DotGraphView::displayGraph()
         gnode->setCanvasNode(cnode);
         m_canvas->addItem(cnode);
   //       cnode->setZValue(gnode->z());
-        cnode->setZValue(2);
+        cnode->setZValue(zvalue+1);
         cnode->show();
       }
       gnode->canvasNode()->computeBoundingRect();
-    }
-    if (gsubgraph->canvasSubgraph() == 0)
-    {
-      kDebug() << "Creating canvas subgraph for" << gsubgraph->id();
-      CanvasSubgraph* csubgraph = new CanvasSubgraph(this, gsubgraph, m_canvas);
-      csubgraph->initialize(
-        scaleX, scaleY, m_xMargin, m_yMargin, gh,
-        m_graph->wdhcf(), m_graph->hdvcf());
-      gsubgraph->setCanvasSubgraph(csubgraph);
-//       csubgraph->setZValue(gsubgraph->z());
-      csubgraph->setZValue(1);
-      csubgraph->show();
-      m_canvas->addItem(csubgraph);
-      kDebug() << " one CanvasSubgraph... Done";
     }
     gsubgraph->canvasSubgraph()->computeBoundingRect();
   }
@@ -520,7 +521,8 @@ bool DotGraphView::displayGraph()
 
       gedge->setCanvasEdge(cedge);
   //     std::cerr << "setting z = " << gedge->z() << std::endl;
-      cedge->setZValue(gedge->z());
+  //    cedge->setZValue(gedge->z());
+      cedge->setZValue(zvalue+2);
       cedge->show();
       m_canvas->addItem(cedge);
     }
@@ -1077,6 +1079,22 @@ void DotGraphView::slotElementHoverLeave(CanvasElement* element)
   //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
   
   emit (hoverLeave(element->element()->id()));
+}
+
+void DotGraphView::slotElementHoverEnter(CanvasEdge* element)
+{
+  kDebug() << element->edge()->id();
+  //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
+  
+  emit (hoverEnter(element->edge()->id()));
+}
+
+void DotGraphView::slotElementHoverLeave(CanvasEdge* element)
+{
+  kDebug() << element->edge()->id();
+  //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
+  
+  emit (hoverLeave(element->edge()->id()));
 }
 
 void DotGraphView::setLayoutCommand(const QString& command)

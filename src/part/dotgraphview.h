@@ -203,6 +203,8 @@ public Q_SLOTS:
   void slotContextMenuEvent(const QString&, const QPoint&);
   void slotElementHoverEnter(CanvasElement*);
   void slotElementHoverLeave(CanvasElement*);
+  void slotElementHoverEnter(CanvasEdge*);
+  void slotElementHoverLeave(CanvasEdge*);
   
 protected:
   void resizeEvent(QResizeEvent*);

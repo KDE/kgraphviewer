@@ -43,7 +43,11 @@ int main(int argc, char **argv)
 {
   KAboutData about("kgraphviewer", 0, ki18n("KGraphViewer"), version, ki18n(description),
                     KAboutData::License_GPL, ki18n("(C) 2005-2006 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
-  about.addAuthor( ki18n("Gaël de Chalendar"), KLocalizedString(), "kleag@free.fr" );
+  about.addAuthor( ki18n("Gaël de Chalendar"), ki18n("Original Author and current maintainer"), "kleag@free.fr" );
+  about.addAuthor( ki18n("Reimar Döffinger"), ki18n("Contributor"), "Reimar.Doeffinger@stud.uni-karlsruhe.de" );
+  about.addAuthor( ki18n("Matthias Peinhardt"), ki18n("Contributor"), "matthias.peinhardt@googlemail.com" );
+  about.addAuthor( ki18n("Sandro Andrade"), ki18n("Contributor"), "sandro.andrade@gmail.com" );
+  
   KCmdLineArgs::init(argc, argv, &about);
 
   KCmdLineOptions options;
