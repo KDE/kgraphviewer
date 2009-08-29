@@ -79,7 +79,8 @@ void GraphNode::updateWithNode(node_t* node)
   kDebug() << node->name;
   m_attributes["id"] = node->name;
   m_attributes["label"] = ND_label(node)->text;
-  
+
+
   renderOperations().clear();
   if (agget(node, (char*)"_draw_") != NULL)
   {
@@ -90,6 +91,14 @@ void GraphNode::updateWithNode(node_t* node)
   {
     parse_renderop(agget(node, (char*)"_ldraw_"), renderOperations());
     kDebug() << "_ldraw_: element renderOperations size is now " << renderOperations().size();
+  }
+
+  Agsym_t *attr = agfstattr(node);
+  while(attr)
+  {
+    kDebug() << node->name << ":" << attr->name << agxget(node,attr->index);
+    m_attributes[attr->name] = agxget(node,attr->index);
+    attr = agnxtattr(node,attr);
   }
 }
 

@@ -136,6 +136,13 @@ void GraphEdge::updateWithEdge(edge_t* edge)
     parse_renderop(agget(edge, (char*)"_tldraw_"), renderOperations());
     kDebug() << "element renderOperations size is now " << renderOperations().size();
   }
+  Agsym_t *attr = agfstattr(edge);
+  while(attr)
+  {
+    m_attributes[attr->name] = agxget(edge,attr->index);
+    attr = agnxtattr(edge,attr);
+  }
+  
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e)
