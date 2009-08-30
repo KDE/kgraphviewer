@@ -32,8 +32,14 @@
 //
 
 GraphSubgraph::GraphSubgraph() :
-    GraphElement(), m_content()
+  GraphElement(), m_content()
 {
+}
+
+GraphSubgraph::GraphSubgraph(graph_t* sg) :
+  GraphElement(), m_content()
+{
+  updateWithSubgraph(sg);
 }
 
 void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
@@ -89,6 +95,62 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
     canvasSubgraph()->computeBoundingRect();
   }
 //   kDebug() << "done";
+}
+
+void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
+{
+  kDebug() << subgraph->name;
+  m_attributes["id"] = subgraph->name;
+  m_attributes["label"] = GD_label(subgraph)->text;
+  
+  
+  renderOperations().clear();
+  if (agget(subgraph, (char*)"_draw_") != NULL)
+  {
+    parse_renderop(agget(subgraph, (char*)"_draw_"), renderOperations());
+    kDebug() << "_draw_: element renderOperations size is now " << renderOperations().size();
+  }
+  if (agget(subgraph, (char*)"_ldraw_") != NULL)
+  {
+    parse_renderop(agget(subgraph, (char*)"_ldraw_"), renderOperations());
+    kDebug() << "_ldraw_: element renderOperations size is now " << renderOperations().size();
+  }
+  
+  Agsym_t *attr = agfstattr(subgraph);
+  while(attr)
+  {
+    kDebug() << subgraph->name << ":" << attr->name << agxget(subgraph,attr->index);
+    m_attributes[attr->name] = agxget(subgraph,attr->index);
+    attr = agnxtattr(subgraph,attr);
+  }
+
+
+  for (edge_t* e = agfstout(subgraph->meta_node->graph, subgraph->meta_node); e;
+      e = agnxtout(subgraph->meta_node->graph, e))
+  {
+    graph_t* sg = agusergraph(aghead(e));
+    kDebug() << "subsubgraph:" << sg->name;
+    if ( subgraphs().contains(sg->name))
+    {
+      kDebug() << "known subsubgraph";
+      // ???
+      //       nodes()[ngn->name]->setZ(ngn->z());
+      subgraphs()[sg->name]->updateWithSubgraph(sg);
+      if (subgraphs()[sg->name]->canvasElement()!=0)
+      {
+        //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
+      }
+    }
+    else
+    {
+      kDebug() << "new subsubgraph";
+      GraphSubgraph* newsg = new GraphSubgraph(sg);
+      //       kDebug() << "new created";
+      subgraphs().insert(sg->name, newsg);
+      //       kDebug() << "new inserted";
+    }
+    
+  }
 }
 
 

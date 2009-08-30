@@ -419,33 +419,32 @@ void DotGraph::saveTo(const QString& fileName)
 void DotGraph::updateWithGraph(graph_t* newGraph)
 {
   kDebug();
-/*  GraphElement::updateWithElement(newGraph);
-  m_width=newGraph.width();
-  m_height=newGraph.height();
-  m_scale=newGraph.scale();
-  m_directed=newGraph.directed();
-  m_strict=newGraph.strict();*/
-/*  foreach (GraphSubgraph* nsg, newGraph.subgraphs())
-  {
-    kDebug() << "subgraph" << nsg->id();
-    if (subgraphs().contains(nsg->id()))
+  for (edge_t* e = agfstout(newGraph->meta_node->graph, newGraph->meta_node); e;
+      e = agnxtout(newGraph->meta_node->graph, e)) {
+    graph_t* sg = agusergraph(aghead(e));
+    kDebug() << "subgraph:" << sg->name;
+    if (subgraphs().contains(sg->name))
     {
-      kDebug() << "subgraph known" << nsg->id();
-      subgraphs().value(nsg->id())->updateWithSubgraph(*nsg);
-      if (subgraphs().value(nsg->id())->canvasElement()!=0)
+      kDebug() << "known";
+      // ???
+      //       nodes()[ngn->name]->setZ(ngn->z());
+      subgraphs()[sg->name]->updateWithSubgraph(sg);
+      if (subgraphs()[sg->name]->canvasElement()!=0)
       {
-        //         subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
+        //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
       }
     }
     else
     {
-      kDebug() << "new subgraph" << nsg->id();
-      GraphSubgraph* newSubgraph = new GraphSubgraph();
-      newSubgraph->updateWithSubgraph(*nsg);
-      newSubgraph->setZ(0);
-      subgraphs().insert(nsg->id(), newSubgraph);
+      kDebug() << "new";
+      GraphSubgraph* newsg = new GraphSubgraph(sg);
+      //       kDebug() << "new created";
+      subgraphs().insert(sg->name, newsg);
+      //       kDebug() << "new inserted";
     }
-  }*/
+
+  }
+  
   node_t* ngn = agfstnode(newGraph);
   kDebug() << "first node:" << (void*)ngn;
   

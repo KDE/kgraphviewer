@@ -30,7 +30,13 @@
 #include "graphelement.h"
 #include "dotrenderop.h"
 
+#include <graphviz/gvc.h>
+
 class CanvasSubgraph;
+class GraphSubgraph;
+
+typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;
+
 
 /**
  * Colors and styles are dot names
@@ -40,11 +46,16 @@ class GraphSubgraph : public GraphElement
 //   Q_OBJECT
 public:
   GraphSubgraph();
+  explicit GraphSubgraph(graph_t* sg);
   
   virtual ~GraphSubgraph() {}  
+
+  inline const GraphSubgraphMap& subgraphs() const {return m_subgraphsMap;}
+  inline GraphSubgraphMap& subgraphs() {return m_subgraphsMap;}
   
   void updateWithSubgraph(const GraphSubgraph& subgraph);
-
+  void updateWithSubgraph(graph_t* subgraph);
+  
   CanvasSubgraph* canvasSubgraph() { return (CanvasSubgraph*)canvasElement();  }
   void setCanvasSubgraph(CanvasSubgraph* cs) { setCanvasElement((CanvasElement*)cs); }
 
@@ -74,9 +85,8 @@ public:
   
  private:
   QList<GraphElement*> m_content;
+  GraphSubgraphMap m_subgraphsMap;
 };
-
-typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;
 
 QTextStream& operator<<(QTextStream& stream, const GraphSubgraph& s);
 

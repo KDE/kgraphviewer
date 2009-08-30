@@ -45,6 +45,7 @@
 
 
 class GraphElement;
+class GraphSubgraph;
 class CanvasElement;
 class CanvasEdge;
 class PannerView;
@@ -227,6 +228,8 @@ private:
   void setupPopup();
   void exportToImage();
   KActionCollection* actionCollection() {return m_actions;}
+  int displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent = 0);
+  
   
   QSet<QGraphicsSimpleTextItem*> m_labelViews;
   QGraphicsScene* m_canvas;
