@@ -295,7 +295,7 @@ bool DotGraphView::slotLoadLibrary(const QString& dotFileName)
   
   if (m_canvas)
   {
-    delete m_canvas;
+    m_canvas->deleteLater();
     m_canvas = 0;
   }
   
@@ -352,7 +352,7 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   
   if (m_canvas)
   {
-    delete m_canvas;
+    m_canvas->deleteLater();
     m_canvas = 0;
   }
   
