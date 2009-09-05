@@ -109,7 +109,7 @@ public Q_SLOTS:
   void openInExistingWindowMode_pressed(int value);
   void reopenPreviouslyOpenedFilesMode_pressed(int value);*/
   void slotRemoveElement(const QString& id);
-  void slotSelectionIs(const QList<QString>&);
+  void slotSelectionIs(const QList<QString>&, const QPoint&p);
   void slotNewEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&);
 
 private Q_SLOTS:
@@ -145,6 +145,8 @@ private Q_SLOTS:
   void slotHoverEnter(const QString&);
   void slotHoverLeave(const QString&);
 
+  KParts::ReadOnlyPart* slotNewGraph();
+  
 private:
   void setupAccel();
   void setupActions();

@@ -169,9 +169,9 @@ void KGraphEditor::reloadPreviousFiles()
   
 }
 
-void KGraphEditor::openUrl(const KUrl& url)
+KParts::ReadOnlyPart*  KGraphEditor::slotNewGraph()
 {
-  kDebug() << url;
+  kDebug();
   KLibFactory *factory = KLibLoader::self()->factory("kgraphviewerpart");
   if (factory)
   {
@@ -182,21 +182,16 @@ void KGraphEditor::openUrl(const KUrl& url)
       connect(this,SIGNAL(setReadWrite()),part,SLOT(setReadWrite()));
       emit(setReadWrite());
       
-      QString label = url.url().section('/',-1,-1);
-      m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), label);
+      m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), "");
       m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
       createGUI(part);
-      (KGraphEditorSettings::parsingMode() == "external")
-        ?openUrlCommand(url,part)
-        :openUrlLibrary(url,part);
-      
-      m_openedFiles.push_back(url.url());
+
       m_manager->addPart( part, true );
       m_tabsPartsMap[m_widget->currentPage()] = part;
-      m_tabsFilesMap[m_widget->currentPage()] = url.url();
+      m_tabsFilesMap[m_widget->currentPage()] = "";
       connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
-
     }
+    return part;
   }
   else
   {
@@ -206,7 +201,28 @@ void KGraphEditor::openUrl(const KUrl& url)
     kapp->quit();
     // we return here, cause kapp->quit() only means "exit the
     // next time we enter the event loop...
-    return;
+    return 0;
+  }
+}
+
+void KGraphEditor::openUrl(const KUrl& url)
+{
+  kDebug() << url;
+  KParts::ReadOnlyPart* part = slotNewGraph();
+  
+  if (part)
+  {
+    QString label = url.url().section('/',-1,-1);
+    // @TODO set label
+    m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), label);
+    m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
+    createGUI(part);
+    m_tabsFilesMap[m_widget->currentPage()] = url.url();
+    (KGraphEditorSettings::parsingMode() == "external")
+      ?openUrlCommand(url,part)
+      :openUrlLibrary(url,part);
+
+    m_openedFiles.push_back(url.url());
   }
 }
 
@@ -300,7 +316,7 @@ void KGraphEditor::fileNew()
   // the New shortcut is pressed (usually CTRL+N) or the New toolbar
   // button is clicked
 
-  (new KGraphEditor)->show();
+  slotNewGraph();
 }
 
 
@@ -638,8 +654,8 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   connect( m_currentPart, SIGNAL( removeElement(const QString&) ),
             this, SLOT( slotRemoveElement(const QString&) ) );
 
-  connect( m_currentPart, SIGNAL( selectionIs(const QList<QString>&) ),
-            this, SLOT( slotSelectionIs(const QList<QString>&) ) );
+  connect( m_currentPart, SIGNAL( selectionIs(const QList<QString>&, const QPoint&) ),
+            this, SLOT( slotSelectionIs(const QList<QString>&, const QPoint&) ) );
 
   connect( m_currentPart, SIGNAL( newEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&) ),
             this, SLOT( slotNewEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&) ) );
@@ -845,9 +861,10 @@ void KGraphEditor::slotRemoveElement(const QString& id)
   emit(removeElement(id));
 }
 
-void KGraphEditor::slotSelectionIs(const QList<QString>& elements)
+void KGraphEditor::slotSelectionIs(const QList<QString>& elements , const QPoint& p)
 {
   kDebug();
+  Q_UNUSED(p);
   QList<QTreeWidgetItem*> items = m_treeWidget->selectedItems();
   foreach (QTreeWidgetItem* item, items)
   {
