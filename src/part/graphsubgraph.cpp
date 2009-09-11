@@ -101,7 +101,8 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
 {
   kDebug() << subgraph->name;
   m_attributes["id"] = subgraph->name;
-  m_attributes["label"] = GD_label(subgraph)->text;
+  if (GD_label(subgraph))
+    m_attributes["label"] = GD_label(subgraph)->text;
   
   
   renderOperations().clear();
