@@ -245,7 +245,7 @@ void KGraphViewer::setupActions()
   kbAction->setWhatsThis(i18n("Configure the bindings between keys and actions."));
   
   KAction* ctAction = actionCollection()->addAction( KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT( optionsConfigureToolbars() ) );
-  ctAction->setWhatsThis(i18n("Toolbars configuration ."));
+  ctAction->setWhatsThis(i18n("Toolbar configuration."));
   
   KAction* configureAction = actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT( optionsConfigure() ) );
   configureAction->setWhatsThis(i18n("Main KGraphViewer configuration options."));

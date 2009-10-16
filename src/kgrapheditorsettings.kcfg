@@ -8,7 +8,7 @@
       <default>ask</default>
     </entry> 
     <entry name="parsingMode" type="String">
-      <label>To choose whether parsing using an external command (usually dot) or the graphviz library</label>
+      <label>To choose whether to parse using an external command (usually dot) or the graphviz library</label>
       <default>external</default>
     </entry>
     <entry name="openInExistingWindowMode" type="String"> 
