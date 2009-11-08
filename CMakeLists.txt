@@ -14,6 +14,8 @@ if (APPLE)
 endif (APPLE)
 find_package(KdepimLibs REQUIRED)
 
+find_package(Boost 1.39 REQUIRED)
+
 FIND_PROGRAM(DOT_EXECUTABLE NAMES dot  PATHS /usr/bin/  )
 if(NOT DOT_EXECUTABLE)
    MESSAGE(STATUS "GraphViz not found. You will need it at runtime")
