@@ -65,19 +65,13 @@
 
 #include <kdebug.h>
 #include <klocale.h>
-#include <kconfig.h>
-#include <kapplication.h>
-#include <kiconloader.h>
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 #include <kinputdialog.h>
-#include <krun.h>
-#include <kcursor.h>
 #include <kselectaction.h>
 #include <ktoggleaction.h>
 #include <kstandarddirs.h>
 #include <kactionmenu.h>
-#include <kconfiggroup.h>
     
 // DotGraphView defaults
 

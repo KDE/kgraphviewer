@@ -421,7 +421,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
   kDebug();
   for (edge_t* e = agfstout(newGraph->meta_node->graph, newGraph->meta_node); e;
       e = agnxtout(newGraph->meta_node->graph, e)) {
-    graph_t* sg = agusergraph(aghead(e));
+    graph_t* sg = agusergraph(e->head);
     kDebug() << "subgraph:" << sg->name;
     if (subgraphs().contains(sg->name))
     {

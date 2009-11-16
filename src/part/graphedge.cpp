@@ -30,8 +30,6 @@
 #include "canvasedge.h"
 #include "dotdefaults.h"
 
-#include <kconfig.h>
-
 /*
  * Graph Edge
  */

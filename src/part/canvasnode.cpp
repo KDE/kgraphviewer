@@ -49,11 +49,6 @@
 
 #include <kdebug.h>
 #include <klocale.h>
-#include <kconfig.h>
-//#include <ktempfile.h>
-#include <kapplication.h>
-#include <kiconloader.h>
-#include <kfiledialog.h>
 
 CanvasNode::CanvasNode(DotGraphView* v,
                         GraphNode* s,

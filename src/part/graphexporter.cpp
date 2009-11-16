@@ -33,7 +33,6 @@
 
 #include <kdebug.h>
 #include <ktemporaryfile.h>
-#include <kapplication.h>
 
 GraphExporter::GraphExporter()
 {

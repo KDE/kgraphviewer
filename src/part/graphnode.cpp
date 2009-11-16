@@ -38,7 +38,6 @@
 #include <math.h>
 
 #include <kdebug.h>
-#include <kconfig.h>
 
 //
 // GraphNode
