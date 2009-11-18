@@ -129,7 +129,7 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
   for (edge_t* e = agfstout(subgraph->meta_node->graph, subgraph->meta_node); e;
       e = agnxtout(subgraph->meta_node->graph, e))
   {
-    graph_t* sg = agusergraph(aghead(e));
+    graph_t* sg = agusergraph(e->head);
     kDebug() << "subsubgraph:" << sg->name;
     if ( subgraphs().contains(sg->name))
     {
