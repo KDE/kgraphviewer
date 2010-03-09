@@ -12,7 +12,6 @@ find_package(ZLIB REQUIRED)
 if (APPLE)
    find_package(Carbon REQUIRED)
 endif (APPLE)
-find_package(KdepimLibs REQUIRED)
 
 find_package(Boost 1.36 REQUIRED)
 
