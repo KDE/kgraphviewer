@@ -968,18 +968,24 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
       }
       foreach(GraphEdge* e, m_graph->edges())
       {
-        e->setSelected(false);
-        e->canvasEdge()->update();
+        if (e->isSelected()) {
+          e->setSelected(false);
+          e->canvasEdge()->update();
+        }
       }
       foreach(GraphNode* n, m_graph->nodes())
       {
-        n->setSelected(false);
-        n->canvasElement()->update();
+        if (n->isSelected()) {
+          n->setSelected(false);
+          n->canvasElement()->update();
+        }
       }
       foreach(GraphSubgraph* s, m_graph->subgraphs())
       {
-        s->setSelected(false);
-        s->canvasElement()->update();
+        if (s->isSelected()) {
+          s->setSelected(false);
+          s->canvasElement()->update();
+        }
       }
       emit selectionIs(QList<QString>(),QPoint());
     }
@@ -1824,15 +1830,19 @@ void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModif
   {
     foreach(GraphEdge* e, m_graph->edges())
     {
-      e->setSelected(false);
-      e->canvasEdge()->update();
+      if (e->isSelected()) {
+        e->setSelected(false);
+        e->canvasEdge()->update();
+      }
     }
     foreach(GraphNode* e, m_graph->nodes())
     {
       if (e->canvasElement() != element)
       {
-        e->setSelected(false);
-        e->canvasElement()->update();
+        if (e->isSelected()) {
+          e->setSelected(false);
+          e->canvasElement()->update();
+        }
       }
     }
     foreach(GraphSubgraph* s, m_graph->subgraphs())
