@@ -98,10 +98,12 @@ QRectF CanvasEdge::boundingRect() const
 QPainterPath CanvasEdge::shape () const
 {
 //   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
-  QPainterPath path;
-  path.addRegion(boundingRegion(QTransform()));
-  return path;
-  
+  kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
+  if (m_boundingRegion.isEmpty()) {
+    m_boundingRegion.addRegion(boundingRegion(QTransform()));
+  }
+  return m_boundingRegion;
+  /*
   foreach (const DotRenderOp& dro, edge()->renderOperations())
   {
     if ( dro.renderop == "B" )
@@ -139,8 +141,9 @@ QPainterPath CanvasEdge::shape () const
             }
           }
           QPointF p(
-              (dro.integers[2*i+1]/*%m_wdhcf*/*m_scaleX) +m_xMargin + diffX,
-              (m_gh-dro.integers[2*i+2]/*%m_hdvcf*/)*m_scaleY + m_yMargin + diffY
+              //NOTE: when uncommenting, fix nested comments in here:
+              (dro.integers[2*i+1]/ *%m_wdhcf* /*m_scaleX) +m_xMargin + diffX,
+              (m_gh-dro.integers[2*i+2]/ *%m_hdvcf* /)*m_scaleY + m_yMargin + diffY
                   );
           points[i] = p;
         }
@@ -157,6 +160,7 @@ QPainterPath CanvasEdge::shape () const
     }
   }
   return path;
+  */
 }
 
 
@@ -450,6 +454,8 @@ void CanvasEdge::modelChanged()
 void CanvasEdge::computeBoundingRect()
 {
 //   kDebug();
+  //invalidate bounding region cache
+  m_boundingRegion = QPainterPath();
   if (edge()->renderOperations().isEmpty())
   {
     if ((edge()->fromNode()->canvasElement()==0)

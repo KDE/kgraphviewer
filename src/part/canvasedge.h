@@ -104,6 +104,7 @@ private:
   QFont* m_font;
   DotGraphView* m_view;
   QMenu* m_popup;
+  mutable QPainterPath m_boundingRegion;
 };
 
 
