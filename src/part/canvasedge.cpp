@@ -98,7 +98,6 @@ QRectF CanvasEdge::boundingRect() const
 QPainterPath CanvasEdge::shape () const
 {
 //   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
-  kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
   if (m_boundingRegion.isEmpty()) {
     m_boundingRegion.addRegion(boundingRegion(QTransform()));
   }
