@@ -948,7 +948,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
   }
   else
   {
-    if (itemAt(e->pos()) == 0) // click outside any item: unselect all
+    if (m_editingMode != None && itemAt(e->pos()) == 0) // click outside any item: unselect all
     {
       if (m_editingMode == DrawNewEdge) // was drawing an edge; cancel it
       {
