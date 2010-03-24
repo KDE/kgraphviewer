@@ -902,6 +902,9 @@ void DotGraphView::zoomRectMoveFinished()
 
 void DotGraphView::mousePressEvent(QMouseEvent* e)
 {
+  if (e->button() != Qt::LeftButton) {
+    return;
+  }
   kDebug() << e << m_editingMode;
   QGraphicsView::mousePressEvent(e);
 
