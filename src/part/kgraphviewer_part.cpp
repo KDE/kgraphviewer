@@ -122,6 +122,11 @@ void kgraphviewerPart::slotClose()
   emit close();
 }
 
+bool kgraphviewerPart::closeUrl()
+{
+  m_widget->initEmpty();
+}
+
 kgraphviewerPart::~kgraphviewerPart()
 {
   delete m_watch; 

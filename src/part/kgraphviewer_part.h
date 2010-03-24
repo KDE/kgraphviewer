@@ -110,6 +110,7 @@ public slots:
   void slotPrepareToSelect();
   void slotSetCursor(const QCursor& cursor);
   void slotUnsetCursor();
+  virtual bool closeUrl();
 
   /** Emit a signal connected to this slot to load the given file using the graphviz library (instead of one of the external commands) */
   bool slotOpenFileLibrary(const QString& fileName);
