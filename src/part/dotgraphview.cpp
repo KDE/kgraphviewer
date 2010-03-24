@@ -652,7 +652,30 @@ void DotGraphView::updateSizes(QSizeF s)
                           (cHeight * zoom) + 4);
 
   }
+  updateBirdEyeView();
+  m_birdEyeView->show();
+  QSizeF newCanvasSize = m_canvas->sceneRect().size();
+  if (newCanvasSize.width() < viewport()->width())
+  {
+    newCanvasSize.setWidth(viewport()->width());
+  }
+  else if (viewport()->width() < m_canvas->sceneRect().size().width())
+  {
+    newCanvasSize.setWidth(m_canvas->sceneRect().size().width());
+  }
+  if (newCanvasSize.height() < viewport()->height())
+  {
+    newCanvasSize.setHeight(viewport()->height());
+  }
+  else if (viewport()->height() < m_canvas->sceneRect().size().height())
+  {
+    newCanvasSize.setHeight(m_canvas->sceneRect().size().height());
+  }
+//   std::cerr << "done." << std::endl;
+}
 
+void DotGraphView::updateBirdEyeView()
+{
   qreal cvW = m_birdEyeView->width();
   qreal cvH = m_birdEyeView->height();
   qreal x = width()- cvW - verticalScrollBar()->width()    -2;
@@ -708,25 +731,6 @@ void DotGraphView::updateSizes(QSizeF s)
   }
   if (newZoomPos != oldZoomPos) 
     m_birdEyeView->move(newZoomPos);
-  m_birdEyeView->show();
-  QSizeF newCanvasSize = m_canvas->sceneRect().size();
-  if (newCanvasSize.width() < viewport()->width())
-  {
-    newCanvasSize.setWidth(viewport()->width());
-  }
-  else if (viewport()->width() < m_canvas->sceneRect().size().width())
-  {
-    newCanvasSize.setWidth(m_canvas->sceneRect().size().width());
-  }
-  if (newCanvasSize.height() < viewport()->height())
-  {
-    newCanvasSize.setHeight(viewport()->height());
-  }
-  else if (viewport()->height() < m_canvas->sceneRect().size().height())
-  {
-    newCanvasSize.setHeight(m_canvas->sceneRect().size().height());
-  }
-//   std::cerr << "done." << std::endl;
 }
 
 void DotGraphView::focusInEvent(QFocusEvent*)
@@ -892,7 +896,7 @@ void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
 void DotGraphView::zoomRectMoveFinished()
 {
 //    kDebug() << "zoomRectMoveFinished";
-    if (m_zoomPosition == Auto) updateSizes();
+    updateBirdEyeView();
 //   std::cerr << "zoomRectMoveFinished end" << std::endl;
 }
 

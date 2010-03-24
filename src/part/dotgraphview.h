@@ -225,6 +225,7 @@ protected:
   
 private:
   void updateSizes(QSizeF s = QSizeF(0,0));
+  void updateBirdEyeView();
   void setupPopup();
   void exportToImage();
   KActionCollection* actionCollection() {return m_actions;}
