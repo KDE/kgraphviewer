@@ -121,6 +121,9 @@ void PannerView::drawForeground(QPainter * p, const QRectF & rect )
 
 void PannerView::mousePressEvent(QMouseEvent* e)
 {
+  if (e->button() != Qt::LeftButton) {
+    return;
+  }
 /*  kDebug() << "PannerView::mousePressEvent " 
               << mapToScene(e->pos()) << " / " << m_zoomRect << " / " << m_zoomRect.center() <<endl;*/
   QPointF pos = mapToScene(e->pos());
@@ -136,6 +139,10 @@ void PannerView::mousePressEvent(QMouseEvent* e)
 
 void PannerView::mouseMoveEvent(QMouseEvent* e)
 {
+  if (e->button() != Qt::LeftButton) {
+    return;
+  }
+
   QPointF pos = mapToScene(e->pos());
 //   kDebug() << "PannerView::mouseMoveEvent " << pos;
   if (m_movingZoomRect) {
@@ -146,6 +153,9 @@ void PannerView::mouseMoveEvent(QMouseEvent* e)
 
 void PannerView::mouseReleaseEvent(QMouseEvent* e)
 {
+  if (e->button() != Qt::LeftButton) {
+    return;
+  }
   QPointF pos = mapToScene(e->pos());
 //   kDebug() << "PannerView::mouseReleaseEvent " << pos;
   m_movingZoomRect = false;
