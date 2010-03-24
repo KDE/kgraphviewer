@@ -321,7 +321,7 @@ bool DotGraphView::slotLoadLibrary(const QString& dotFileName)
   
   QGraphicsScene* newCanvas = new QGraphicsScene();
   kDebug() << "Created canvas " << newCanvas;
-  
+
   m_birdEyeView->setScene(newCanvas);
   //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
   
@@ -653,6 +653,7 @@ void DotGraphView::updateSizes(QSizeF s)
 
   }
   updateBirdEyeView();
+  m_birdEyeView->setZoomRect(mapToScene(viewport()->rect()).boundingRect());
   m_birdEyeView->show();
   QSizeF newCanvasSize = m_canvas->sceneRect().size();
   if (newCanvasSize.width() < viewport()->width())
@@ -877,20 +878,6 @@ void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
 {
 //   kDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos;
   centerOn(newZoomPos);
-//   kDebug() << "  viewport "<< mapToScene(viewport()->rect()).boundingRect();
-  QRectF sp = mapToScene(viewport()->rect()).boundingRect();
-/*  QPointF p = newZoomPos - sp.bottomRight()/2;
-  if (p.x() < 0) 
-  {
-    p.rx() = 0;
-  }
-  if (p.y() < 0) 
-  {
-    p.ry() = 0;
-  }
-  sp.setX(p.x()); sp.setY(p.y());*/
-//   kDebug() << "  sp "<< sp /*<< " ; p " << p*/;
-  m_birdEyeView->setZoomRect(sp);
 }
                     
 void DotGraphView::zoomRectMoveFinished()
@@ -1009,8 +996,7 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
 
   if (m_isMoving)
   {
-    QRectF sp = mapToScene(viewport()->rect()).boundingRect();
-    m_birdEyeView->setZoomRect(sp);
+    m_birdEyeView->moveZoomRectTo(mapToScene(viewport()->rect()).boundingRect().center());
   }
   if (m_editingMode == DrawNewEdge)
   {

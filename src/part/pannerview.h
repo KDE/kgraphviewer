@@ -49,6 +49,7 @@ public:
   explicit PannerView(QWidget * parent = 0, const char * name = 0);
 
   void setZoomRect(QRectF r);
+  void moveZoomRectTo(const QPointF& newPos);
 
   inline void setDrawingEnabled(bool val) {m_drawContents = val;}
 
