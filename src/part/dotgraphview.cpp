@@ -1012,10 +1012,6 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
   QGraphicsView::mouseMoveEvent(e);
 //   kDebug() << scene()->selectedItems().size();
 
-  if (m_isMoving)
-  {
-    m_birdEyeView->moveZoomRectTo(mapToScene(viewport()->rect()).boundingRect().center());
-  }
   if (m_editingMode == DrawNewEdge)
   {
     if (m_newEdgeDraft != 0)
