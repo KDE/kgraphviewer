@@ -216,7 +216,7 @@ bool DotGraphView::initEmpty()
   m_yMargin = 50;
 
   QGraphicsScene* newCanvas = new QGraphicsScene();
-  QGraphicsTextItem* item = newCanvas->addText(i18n("no graph loaded"));
+  QGraphicsSimpleTextItem* item = newCanvas->addSimpleText(i18n("no graph loaded"));
 //   kDebug() << "Created canvas " << newCanvas;
   
   m_birdEyeView->setScene(newCanvas);
@@ -275,14 +275,18 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
   m_canvas = newCanvas;
 
+  QGraphicsSimpleTextItem* loadingLabel = newCanvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
+  loadingLabel->setZValue(100);
+  centerOn(loadingLabel);
+
   m_cvZoom = 0;
 
   if (!m_graph->parseDot(m_graph->dotFileName()))
   {
     kError() << "NOT successfully parsed!" << endl;
+    loadingLabel->setText(i18n("error parsing file %1", dotFileName));
     return false;
   }
-
   return true;
 }
 
@@ -413,6 +417,8 @@ bool DotGraphView::displayGraph()
   kDebug();
 //   hide();
   viewport()->setUpdatesEnabled(false);
+
+  m_canvas->clear();
 
   if (m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
   {
