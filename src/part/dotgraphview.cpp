@@ -216,6 +216,7 @@ bool DotGraphView::initEmpty()
   m_yMargin = 50;
 
   QGraphicsScene* newCanvas = new QGraphicsScene();
+  QGraphicsTextItem* item = newCanvas->addText(i18n("no graph loaded"));
 //   kDebug() << "Created canvas " << newCanvas;
   
   m_birdEyeView->setScene(newCanvas);
@@ -223,6 +224,7 @@ bool DotGraphView::initEmpty()
   
   setScene(newCanvas);
   m_canvas = newCanvas;
+  centerOn(item);
 
   m_cvZoom = 0;
 
