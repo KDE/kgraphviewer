@@ -110,7 +110,7 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   m_cvZoom = 1;
 
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-  setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+  setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
   
   m_birdEyeView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   m_birdEyeView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
