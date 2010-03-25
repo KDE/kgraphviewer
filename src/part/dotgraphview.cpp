@@ -542,6 +542,8 @@ bool DotGraphView::displayGraph()
   m_cvZoom = 0;
   updateSizes();
 
+  centerOn(m_canvas->sceneRect().center());
+
   viewport()->setUpdatesEnabled(true);
   QSet<QGraphicsSimpleTextItem*>::iterator labelViewsIt, labelViewsIt_end;
   labelViewsIt = m_labelViews.begin(); labelViewsIt_end = m_labelViews.end();
