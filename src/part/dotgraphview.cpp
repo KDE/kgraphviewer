@@ -870,7 +870,7 @@ void DotGraphView::applyZoom(double factor)
 void DotGraphView::scrollContentsBy(int dx, int dy)
 {
   QGraphicsView::scrollContentsBy(dx, dy);
-  if (m_birdEyeView) { // we might be shutting down
+  if (m_birdEyeView && scene()) { // we might be shutting down
     m_birdEyeView->moveZoomRectTo(mapToScene(viewport()->rect()).boundingRect().center(), false);
   }
 }
