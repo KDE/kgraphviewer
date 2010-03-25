@@ -102,9 +102,12 @@ void PannerView::setZoomRect(QRectF r)
   scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
 }
 
-void PannerView::moveZoomRectTo(const QPointF& newPos)
+void PannerView::moveZoomRectTo(const QPointF& newPos, bool notify)
 {
-  Q_ASSERT(m_zoomRect.isValid());
+  if (!m_zoomRect.isValid()) {
+    return;
+  }
+
   if (m_zoomRect.center() == newPos) {
     kDebug() << "same pos, don't do anything";
     return;
@@ -114,7 +117,7 @@ void PannerView::moveZoomRectTo(const QPointF& newPos)
   m_zoomRect.moveCenter(newPos);
   scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
 
-  if (m_zoomRect.isValid()) {
+  if (m_zoomRect.isValid() && notify) {
     emit zoomRectMovedTo(newPos);
     m_lastPos = newPos;
   }

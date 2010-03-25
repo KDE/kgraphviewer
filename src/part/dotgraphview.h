@@ -99,7 +99,7 @@ public:
                                bool value, bool def);
   static void writeConfigEntry(KConfigGroup*, const char* pKey,
                                double value, double def);
-  
+
   virtual void wheelEvent(QWheelEvent* e);
     
   void applyZoom(double factor);
@@ -208,6 +208,7 @@ public Q_SLOTS:
   void slotElementHoverLeave(CanvasEdge*);
   
 protected:
+  void scrollContentsBy(int dx, int dy);
   void resizeEvent(QResizeEvent*);
   void mousePressEvent(QMouseEvent*);
   void mouseMoveEvent(QMouseEvent*);

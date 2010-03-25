@@ -170,6 +170,7 @@ DotGraphView::~DotGraphView()
 {
   saveViewConfig();
   delete m_birdEyeView;
+  m_birdEyeView = 0;
   if (m_popup != 0)
   {
     delete m_popup;
@@ -864,6 +865,14 @@ void DotGraphView::applyZoom(double factor)
   emit zoomed(m_zoom);
   setUpdatesEnabled(true);
   updateSizes();
+}
+
+void DotGraphView::scrollContentsBy(int dx, int dy)
+{
+  QGraphicsView::scrollContentsBy(dx, dy);
+  if (m_birdEyeView) { // we might be shutting down
+    m_birdEyeView->moveZoomRectTo(mapToScene(viewport()->rect()).boundingRect().center(), false);
+  }
 }
 
 void DotGraphView::resizeEvent(QResizeEvent* e)
