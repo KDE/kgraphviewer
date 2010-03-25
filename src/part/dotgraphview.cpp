@@ -189,6 +189,7 @@ DotGraphView::~DotGraphView()
 bool DotGraphView::initEmpty()
 {
   kDebug();
+  m_birdEyeView->hide();
   m_birdEyeView->setScene(0);
   
   if (m_canvas) 
