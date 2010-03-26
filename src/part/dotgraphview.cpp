@@ -1384,8 +1384,8 @@ void DotGraphView::setupPopup()
   QAction* rlc = layoutPopup->addAction(i18n("Reset layout command to default"), this, SLOT(slotLayoutReset()));
   rlc->setWhatsThis(i18n("Resets the layout command to use to the default depending on the graph type (directed or not)."));
   
-  m_popup->addAction(KIcon("zoom-in"), "Zoom In", this, SLOT(zoomIn()));
-  m_popup->addAction(KIcon("zoom-out"), "Zoom Out", this, SLOT(zoomOut()));
+  m_popup->addAction(KIcon("zoom-in"), i18n("Zoom In"), this, SLOT(zoomIn()));
+  m_popup->addAction(KIcon("zoom-out"), i18n("Zoom Out"), this, SLOT(zoomOut()));
                         
   m_popup->insertSeparator();
   
