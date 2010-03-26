@@ -102,8 +102,11 @@ public:
                                double value, double def);
 
   virtual void wheelEvent(QWheelEvent* e);
-    
+
+  /// multiplies current zoom factor with @p factor
   void applyZoom(double factor);
+  /// sets zoom factor to @p factor
+  void setZoomFactor(double factor);
   
   void setLayoutCommand(const QString& command);
     

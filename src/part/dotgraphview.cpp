@@ -855,9 +855,8 @@ void DotGraphView::zoomOut()
   applyZoom(.90);
 }
 
-void DotGraphView::applyZoom(double factor)
+void DotGraphView::setZoomFactor(double newZoom)
 {
-  double newZoom = m_zoom * factor;
   if (newZoom < 0.1 || newZoom > 10)
     return;
   m_zoom = newZoom;
@@ -865,6 +864,8 @@ void DotGraphView::applyZoom(double factor)
   {
     m_zoom = 1;
   }
+
+  const double factor = newZoom / m_zoom;
   qreal centerX = (sceneRect().x() + (viewport()->width() / 2))*factor;
   qreal centerY = (sceneRect().y() + (viewport()->height() / 2))*factor;
   
@@ -876,6 +877,11 @@ void DotGraphView::applyZoom(double factor)
   emit zoomed(m_zoom);
   setUpdatesEnabled(true);
   updateSizes();
+}
+
+void DotGraphView::applyZoom(double factor)
+{
+  setZoomFactor(m_zoom * factor);
 }
 
 void DotGraphView::scrollContentsBy(int dx, int dy)

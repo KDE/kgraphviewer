@@ -66,6 +66,7 @@ public:
 
   virtual void zoomIn() = 0;
   virtual void zoomOut() = 0;
+  virtual void zoomBy(double factor) = 0;
   virtual void setZoomFactor(double factor) = 0;
 
   enum PannerPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };

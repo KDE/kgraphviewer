@@ -52,6 +52,7 @@ public:
     virtual void setLayoutCommand(const QString& command);
     virtual void setPannerPosition(PannerPosition position);
     virtual void setPannerEnabled(bool enabled);
+    virtual void zoomBy(double factor);
     virtual void setZoomFactor(double factor);
     virtual void zoomIn();
     virtual void zoomOut();

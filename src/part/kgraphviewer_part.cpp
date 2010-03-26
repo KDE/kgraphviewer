@@ -563,6 +563,11 @@ void kgraphviewerPart::setPannerEnabled(bool enabled)
 
 void kgraphviewerPart::setZoomFactor(double factor)
 {
+  m_widget->setZoomFactor(factor);
+}
+
+void kgraphviewerPart::zoomBy(double factor)
+{
   m_widget->applyZoom(factor);
 }
 
