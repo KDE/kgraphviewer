@@ -143,6 +143,9 @@ public:
   inline bool highlighting() {return m_highlighting;}
   inline void setHighlighting(bool highlightingValue) {m_highlighting = highlightingValue;}
 
+  // public so that the panner view can bubble through
+  void contextMenuEvent(QContextMenuEvent*);
+
 Q_SIGNALS:
   void zoomed(double factor);
   void sigViewBevEnabledToggled(bool value);
@@ -214,7 +217,6 @@ protected:
   void mouseMoveEvent(QMouseEvent*);
   void mouseReleaseEvent(QMouseEvent*);
   void mouseDoubleClickEvent(QMouseEvent*);
-  void contextMenuEvent(QContextMenuEvent*);
   void keyPressEvent(QKeyEvent*);
   void focusInEvent(QFocusEvent*);
   void focusOutEvent(QFocusEvent*);

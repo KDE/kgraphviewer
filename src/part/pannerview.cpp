@@ -42,11 +42,13 @@
 #include <kdebug.h>
 #include <klocale.h>
 
+#include "dotgraphview.h"
+
 //
 // PannerView
 //
-PannerView::PannerView(QWidget * parent, const char * name)
-  : QGraphicsView(parent), m_drawContents(true)
+PannerView::PannerView(DotGraphView * parent, const char * name)
+  : QGraphicsView(parent), m_drawContents(true), m_parent(parent)
 {
   m_movingZoomRect = false;
 
@@ -174,6 +176,11 @@ void PannerView::mouseReleaseEvent(QMouseEvent* e)
 //   kDebug() << "PannerView::mouseReleaseEvent " << pos;
   m_movingZoomRect = false;
   emit zoomRectMoveFinished();
+}
+
+void PannerView::contextMenuEvent(QContextMenuEvent* event)
+{
+  m_parent->contextMenuEvent(event);
 }
 
 #include "pannerview.moc"

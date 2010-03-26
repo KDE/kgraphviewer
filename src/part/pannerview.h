@@ -37,6 +37,7 @@
 //Added by qt3to4:
 #include <QMouseEvent>
 
+class DotGraphView;
 
 /**
  * A panner layed over a QCanvas
@@ -46,7 +47,7 @@ class PannerView: public QGraphicsView
   Q_OBJECT
 
 public:
-  explicit PannerView(QWidget * parent = 0, const char * name = 0);
+  explicit PannerView(DotGraphView * parent, const char * name = 0);
 
   inline void setDrawingEnabled(bool val) {m_drawContents = val;}
 
@@ -63,11 +64,13 @@ protected:
   virtual void mouseMoveEvent(QMouseEvent*);
   virtual void mouseReleaseEvent(QMouseEvent*);
   virtual void drawForeground(QPainter * p, const QRectF & rect );
+  virtual void contextMenuEvent(QContextMenuEvent* event);
 
   QRectF m_zoomRect;
   bool m_movingZoomRect;
   QPointF m_lastPos;
   bool m_drawContents;
+  DotGraphView* m_parent;
 };
 
 #endif
