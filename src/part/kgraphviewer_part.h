@@ -29,6 +29,8 @@
 
 #include "dotgraphview.h"
 
+#include "kgraphviewer_interface.h"
+
 class QWidget;
 
 /**
@@ -38,9 +40,22 @@ class QWidget;
  * @short Main Part
  * @author Gael de Chalendar <kleag@free.fr>
  */
-class kgraphviewerPart : public KParts::ReadOnlyPart
+class kgraphviewerPart : public KParts::ReadOnlyPart, public KGraphViewerInterface
 {
     Q_OBJECT
+    Q_INTERFACES(KGraphViewerInterface) 
+
+//BEGIN: KGraphViewerInterface
+public:
+    virtual void centerOnNode(const QString& nodeId);
+    virtual void selectNode(const QString& nodeId);
+    virtual void setLayoutCommand(const QString& command);
+    virtual void setPannerPosition(PannerPosition position);
+    virtual void setPannerEnabled(bool enabled);
+    virtual void setZoomFactor(double factor);
+    virtual void zoomIn();
+    virtual void zoomOut();
+
 public:
     /**
      * Default constructor

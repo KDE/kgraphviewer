@@ -42,7 +42,7 @@
 #include <graphviz/gvc.h>
 
 #include "graphexporter.h"
-
+#include "kgraphviewer_interface.h"
 
 class GraphElement;
 class GraphSubgraph;
@@ -74,7 +74,6 @@ class DotGraphView: public QGraphicsView
  Q_OBJECT
 
 public:
-  enum ZoomPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
   enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge, SelectingElements };
   enum ScrollDirection { Here, Left, Right, Top, Bottom };
   
@@ -86,9 +85,11 @@ public:
 
   QWidget* widget() { return this; }
 
-  ZoomPosition zoomPos() const { return m_zoomPosition; }
-  static ZoomPosition zoomPos(const QString&);
-  static QString zoomPosString(ZoomPosition);
+  //TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
+  KGraphViewerInterface::PannerPosition zoomPos() const { return m_zoomPosition; }
+  static KGraphViewerInterface::PannerPosition zoomPos(const QString&);
+  static QString zoomPosString(KGraphViewerInterface::PannerPosition);
+  void setPannerEnabled(bool enabled);
   
   static KConfigGroup* configGroup(KConfig*, const QString& prefix, const QString& postfix);
   static void writeConfigEntry(KConfigGroup*, const char* pKey, const QString& value,
@@ -193,7 +194,7 @@ public Q_SLOTS:
   void slotSelectLayoutTwopi();
   void slotSelectLayoutFdp();
   void slotSelectLayoutCirco();
-  void slotBevEnabled();
+  void slotBevToggled();
   void slotBevTopLeft();
   void slotBevTopRight();
   void slotBevBottomLeft();
@@ -250,7 +251,7 @@ private:
   GraphExporter m_exporter;
 
   // widget options
-  ZoomPosition m_zoomPosition, m_lastAutoPosition;
+  KGraphViewerInterface::PannerPosition m_zoomPosition, m_lastAutoPosition;
   
   DotGraph* m_graph;
   

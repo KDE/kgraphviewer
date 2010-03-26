@@ -124,7 +124,7 @@ void kgraphviewerPart::slotClose()
 
 bool kgraphviewerPart::closeUrl()
 {
-  m_widget->initEmpty();
+  return m_widget->initEmpty();
 }
 
 kgraphviewerPart::~kgraphviewerPart()
@@ -529,6 +529,51 @@ KComponentData kgraphviewerPartFactory::componentData()
         s_instance(s_about);
     }*/
     return s_instance;
+}
+
+void kgraphviewerPart::centerOnNode(const QString& nodeId)
+{
+  GraphNode* node = dynamic_cast<GraphNode*>(m_widget->graph()->elementNamed(nodeId));
+  if (node == 0) return;
+  if (node->canvasNode()!=0)
+  {
+    m_widget->centerOn(node->canvasNode());
+  }
+}
+
+void kgraphviewerPart::selectNode(const QString& nodeId)
+{
+  slotSelectNode(nodeId);
+}
+
+void kgraphviewerPart::setLayoutCommand(const QString& command)
+{
+  m_widget->setLayoutCommand(command);
+}
+
+void kgraphviewerPart::setPannerPosition(KGraphViewerInterface::PannerPosition position)
+{
+  m_widget->viewBevActivated(position);
+}
+
+void kgraphviewerPart::setPannerEnabled(bool enabled)
+{
+  m_widget->setPannerEnabled(enabled);
+}
+
+void kgraphviewerPart::setZoomFactor(double factor)
+{
+  m_widget->applyZoom(factor);
+}
+
+void kgraphviewerPart::zoomIn()
+{
+  m_widget->zoomIn();
+}
+
+void kgraphviewerPart::zoomOut()
+{
+  m_widget->zoomOut();
 }
 
 #include "kgraphviewer_part.moc"
