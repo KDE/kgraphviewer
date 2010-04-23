@@ -117,6 +117,7 @@ QString DotGraph::chooseLayoutProgramForFile(const QString& str)
 bool DotGraph::parseDot(const QString& str)
 {
   kDebug() << str;
+  m_useLibrary = false;
   if (m_layoutCommand.isEmpty())
   {
     m_layoutCommand = chooseLayoutProgramForFile(str);
@@ -161,6 +162,7 @@ bool DotGraph::parseDot(const QString& str)
 bool DotGraph::parseLibrary(const QString& str)
 {
   kDebug() << str;
+  m_useLibrary = true;
   if (m_layoutCommand.isEmpty())
   {
     m_layoutCommand = chooseLayoutProgramForFile(str);

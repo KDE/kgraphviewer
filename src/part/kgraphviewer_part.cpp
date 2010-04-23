@@ -41,7 +41,7 @@
 #include "kgraphviewer_partsettings.h"
 
 kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
-: KParts::ReadOnlyPart(parent), m_watch(new KDirWatch())
+: KParts::ReadOnlyPart(parent), m_watch(new KDirWatch()), m_layoutMethod(KGraphViewerInterface::InternalLibrary)
 {
   kDebug() ;
   // we need an instance
@@ -136,29 +136,19 @@ bool kgraphviewerPart::openFile()
 {
   kDebug() << " " << localFilePath();
   //    m_widget->loadedDot( localFilePath() );
-  if (!m_widget->loadDot(localFilePath()))
-    return false;
-  
-  // deletes the existing file watcher because we have no way know here the name of the
-  // previously watched file and thus we cannot use removeFile... :-(
-  delete m_watch;
-  m_watch = new KDirWatch();
-  
-  //   kDebug() << "Watching file " << localFilePath();
-  m_watch->addFile(localFilePath());
-  connect(m_watch, SIGNAL(dirty(const QString &)), m_widget, SLOT(dirty(const QString&)));
-  QString label = localFilePath().section('/',-1,-1);
-  
-  m_widget->show();
-  return true;
-}
-
-bool kgraphviewerPart::slotOpenFileLibrary(const QString& fileName)
-{
-  kDebug() << fileName;
-  //    m_widget->loadedDot( localFilePath() );
-  if (!m_widget->slotLoadLibrary(fileName))
-    return false;
+  switch (m_layoutMethod)
+  {
+    case ExternalProgram:
+      if (!m_widget->loadDot(localFilePath()))
+        return false;
+      break;
+    case InternalLibrary:
+      if (!m_widget->loadLibrary(localFilePath()))
+        return false;
+      break;
+    default:
+      kError() << "Unsupported layout method " << m_layoutMethod;
+  }
   
   // deletes the existing file watcher because we have no way know here the name of the
   // previously watched file and thus we cannot use removeFile... :-(
@@ -456,15 +446,6 @@ void kgraphviewerPart::slotUnsetCursor()
   m_widget->unsetCursor();
 }
 
-bool kgraphviewerPart::slotLoadLibrary(graph_t* graph)
-{
-  kDebug();
-  bool res =  m_widget->slotLoadLibrary(graph);
-  if (res)
-    m_widget->show();
-  return res;
-}
-
 /*It's usually safe to leave the factory code alone.. with the
 notable exception of the KAboutData data*/
 #include <kaboutdata.h>
@@ -529,6 +510,16 @@ KComponentData kgraphviewerPartFactory::componentData()
         s_instance(s_about);
     }*/
     return s_instance;
+}
+
+void kgraphviewerPart::slotSetLayoutMethod(LayoutMethod method)
+{
+  setLayoutMethod(method);
+}
+
+void kgraphviewerPart::setLayoutMethod(LayoutMethod method)
+{
+  m_layoutMethod = method;
 }
 
 void kgraphviewerPart::centerOnNode(const QString& nodeId)

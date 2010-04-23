@@ -18,6 +18,7 @@
 
 
 #include "kgraphviewer.h"
+#include "part/kgraphviewer_interface.h"
 #include "kgraphviewerConfigDialog.h"
 #include "kgraphviewersettings.h"
 #include "ui_preferencesParsing.h"
@@ -141,27 +142,34 @@ void KGraphViewer::openUrl(const KUrl& url)
   if (factory)
   {
     KParts::ReadOnlyPart* part = static_cast<KParts::ReadOnlyPart*>(factory->create(this, "kgraphviewerpart"));
-    
+    KGraphViewerInterface* kgv = qobject_cast<KGraphViewerInterface*>( part );
+    if( ! kgv )
+    {
+      // This should not happen
+      return;
+    }
+    (KGraphViewerSettings::parsingMode() == "external")
+      ?kgv->setLayoutMethod(KGraphViewerInterface::ExternalProgram)
+      :kgv->setLayoutMethod(KGraphViewerInterface::InternalLibrary);
+
     if (part)
     {
       QString label = url.url().section('/',-1,-1);
       m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), label);
       m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
       createGUI(part);
+
+      part->openUrl( url );
       
-      (KGraphViewerSettings::parsingMode() == "external")
-        ?openUrlCommand(url,part)
-        :openUrlLibrary(url,part);
+      m_openedFiles.push_back(url.url());
+      m_manager->addPart( part, true );
+      m_tabsPartsMap[m_widget->currentPage()] = part;
+      m_tabsFilesMap[m_widget->currentPage()] = url.url();
+      connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
+      connect(part,SIGNAL(close()),this,SLOT(close()));
 
-        m_openedFiles.push_back(url.url());
-        m_manager->addPart( part, true );
-        m_tabsPartsMap[m_widget->currentPage()] = part;
-        m_tabsFilesMap[m_widget->currentPage()] = url.url();
-        connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
-        connect(part,SIGNAL(close()),this,SLOT(close()));
-
-        connect(part, SIGNAL( hoverEnter(const QString&) ), this, SLOT(slotHoverEnter(const QString&)));
-        connect(part, SIGNAL( hoverLeave(const QString&) ), this, SLOT(slotHoverLeave(const QString&)));
+      connect(part, SIGNAL( hoverEnter(const QString&) ), this, SLOT(slotHoverEnter(const QString&)));
+      connect(part, SIGNAL( hoverLeave(const QString&) ), this, SLOT(slotHoverLeave(const QString&)));
     }
   }
   else
@@ -174,26 +182,6 @@ void KGraphViewer::openUrl(const KUrl& url)
     // next time we enter the event loop...
     return;
   }
-}
-
-void KGraphViewer::openUrlCommand(const KUrl& url, KParts::ReadOnlyPart* part)
-{
-  kDebug() << url;
-  part->openUrl( url );
-}
-
-void KGraphViewer::openUrlLibrary(const KUrl& url, KParts::ReadOnlyPart* part)
-{
-  kDebug() << "in openUrlLibrary" << url;
-  connect(this, SIGNAL(loadLibrary(graph_t*)),part,SLOT(slotLoadLibrary(graph_t*)));
-  GVC_t *gvc;
-  graph_t *g;
-  FILE* fp;
-  gvc = gvContext();
-  fp = fopen(url.pathOrUrl().toUtf8().data(), "r");
-  kDebug() << "fopen" << url.pathOrUrl() << (void*)fp;
-  g = agread(fp);
-  emit(loadLibrary(g));
 }
 
 void KGraphViewer::fileOpen()

@@ -66,15 +66,12 @@ protected:
 
 signals:
   void hide(KParts::Part* part);
-  void openFileLibrary(const QString& fileName);
-  void loadLibrary(graph_t*);
   
 public slots:
   /**
     * Use this method to load whatever file/URL you have
     */
   void openUrl(const QString& url) {openUrl(KUrl(url));}
-//   void openUrlLibrary(const QString& url) {openUrlLibrary(KUrl(url));}
   
   void close();
 
@@ -102,12 +99,6 @@ private slots:
   void optionsConfigure();
   void newTabSelectedSlot(QWidget* tab);
 
-  /** parse with an external command */
-  void openUrlCommand(const KUrl& url, KParts::ReadOnlyPart* part);
-  
-  /** parse with the graphviz library */
-  void openUrlLibrary(const KUrl& url, KParts::ReadOnlyPart* part);
-  
   void applyNewToolbarConfig();
 
   void slotHoverEnter(const QString&);

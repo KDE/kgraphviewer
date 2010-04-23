@@ -290,64 +290,40 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   return true;
 }
 
-bool DotGraphView::slotLoadLibrary(const QString& dotFileName)
+bool DotGraphView::loadLibrary(const QString& dotFileName)
 {
   kDebug() << "'" << dotFileName << "'";
-  m_birdEyeView->setScene(0);
   
-  if (m_canvas)
-  {
-    m_canvas->deleteLater();
-    m_canvas = 0;
-  }
-  
+  QGraphicsSimpleTextItem* loadingLabel = m_canvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
+  loadingLabel->setZValue(100);
+  centerOn(loadingLabel);
+
   QString layoutCommand = (m_graph!=0?m_graph->layoutCommand():"");
-  if (m_graph != 0)
-    delete m_graph;
-  m_graph = new DotGraph(layoutCommand,dotFileName);
-  connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
-  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
-  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
-  connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
-  
-  if (m_readWrite)
-  {
-    m_graph->setReadWrite();
-  }
   if (layoutCommand.isEmpty())
   {
-    if (!m_graph->dotFileName().isEmpty())
-      layoutCommand = m_graph->chooseLayoutProgramForFile(m_graph->dotFileName());
+    if (!dotFileName.isEmpty())
+      layoutCommand = m_graph->chooseLayoutProgramForFile(dotFileName);
     else
       layoutCommand = "dot";
   }
-  m_graph->layoutCommand(layoutCommand);
+  GVC_t *gvc;
+  graph_t *g;
+  FILE* fp;
+  gvc = gvContext();
+  fp = fopen(dotFileName.toUtf8().data(), "r");
+  g = agread(fp);
   
-  //   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
-  m_xMargin = 50;
-  m_yMargin = 50;
+  bool result = loadLibrary(g, layoutCommand);
+  if (result)
+    m_graph->dotFileName(dotFileName);
   
-  QGraphicsScene* newCanvas = new QGraphicsScene();
-  kDebug() << "Created canvas " << newCanvas;
-
-  m_birdEyeView->setScene(newCanvas);
-  //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
+  agclose(g);
+  bool freeresult = (gvFreeContext(gvc) == 0);
   
-  setScene(newCanvas);
-  connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
-  m_canvas = newCanvas;
-  
-  m_cvZoom = 0;
-  
-  if (!m_graph->parseLibrary(m_graph->dotFileName()))
-  {
-    kError() << "NOT successfully parsed!" << endl;
-    return false;
-  }
-  return true;
+  return result && freeresult;
 }
 
-bool DotGraphView::slotLoadLibrary(graph_t* graph)
+bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
 {
   kDebug() << "graph_t";
   m_birdEyeView->setScene(0);
@@ -358,12 +334,8 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
     m_canvas = 0;
   }
   
-  QString layoutCommand = (m_graph!=0?m_graph->layoutCommand():"");
   if (m_graph != 0)
     delete m_graph;
-
-  if (layoutCommand.isEmpty())
-    layoutCommand = "dot";
 
   kDebug() << "layoutCommand:" << layoutCommand;
   m_graph = new DotGraph(layoutCommand,"");
@@ -379,27 +351,27 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
     m_graph->setReadWrite();
   }
   
-  
-  GVC_t* gvc = gvContext();
-  gvLayout(gvc, graph, layoutCommand.toUtf8().data());
-  gvRender (gvc, graph, "xdot", NULL);
-             
-                                      
   m_xMargin = 50;
   m_yMargin = 50;
   
   QGraphicsScene* newCanvas = new QGraphicsScene();
   kDebug() << "Created canvas " << newCanvas;
+  QGraphicsSimpleTextItem* loadingLabel = newCanvas->addSimpleText(i18n("graph is getting loaded..."));
+  loadingLabel->setZValue(100);
   
   m_birdEyeView->setScene(newCanvas);
-  //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
-  
   setScene(newCanvas);
+  centerOn(loadingLabel);
   connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
   m_canvas = newCanvas;
   
   m_cvZoom = 0;
 
+  GVC_t* gvc = gvContext();
+  gvLayout(gvc, graph, layoutCommand.toUtf8().data());
+  gvRender (gvc, graph, "xdot", NULL);
+             
+                                      
   m_graph->updateWithGraph(graph);
 
   gvFreeLayout(gvc, graph);
@@ -1237,7 +1209,10 @@ void DotGraphView::printPreview()
 bool DotGraphView::reload()
 {
   QString fileName = m_graph->dotFileName();
-  return loadDot(fileName);
+  if (m_graph->useLibrary())
+    return loadLibrary(fileName);
+  else
+    return loadDot(fileName);
 }
 
 void DotGraphView::dirty(const QString& dotFileName)
@@ -1252,7 +1227,10 @@ void DotGraphView::dirty(const QString& dotFileName)
                                 KStandardGuiItem::no(),
                                 "reloadOnChangeMode"   ) == KMessageBox::Yes)
     {
-      loadDot(dotFileName);
+      if (m_graph->useLibrary())
+        loadLibrary(dotFileName);
+      else
+        loadDot(dotFileName);
     }
   }
 }

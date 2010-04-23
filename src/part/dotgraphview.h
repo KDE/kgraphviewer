@@ -80,6 +80,10 @@ public:
   explicit DotGraphView(KActionCollection* actions, QWidget* parent=0);
   virtual ~DotGraphView();
 
+  bool loadDot(const QString& dotFileName);
+  bool loadLibrary(const QString& dotFileName);
+  bool loadLibrary(graph_t* graph, const QString& layoutCommand = "dot");
+
   void readViewConfig();
   void saveViewConfig();
 
@@ -179,9 +183,6 @@ public Q_SLOTS:
   void zoomRectMovedTo(QPointF newZoomPos);
   void zoomRectMoveFinished();
   bool initEmpty();
-  bool loadDot(const QString& dotFileName);
-  bool slotLoadLibrary(graph_t* graph);
-  bool slotLoadLibrary(const QString& dotFileName);
   bool reload();
   void dirty(const QString& dotFileName);
   void pageSetup();

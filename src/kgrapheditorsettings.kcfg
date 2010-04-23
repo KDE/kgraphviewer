@@ -9,7 +9,7 @@
     </entry> 
     <entry name="parsingMode" type="String">
       <label>To choose whether to parse using an external command (usually dot) or the graphviz library</label>
-      <default>external</default>
+      <default>internal</default>
     </entry>
     <entry name="openInExistingWindowMode" type="String"> 
       <label>The answer to the question 'If another window already exist when launching kgraphviewer, should we open in it, open a new window or ask ?'</label> 

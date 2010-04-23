@@ -62,8 +62,14 @@ class QStringList;
 class KGraphViewerInterface
 {
 public:
+  enum LayoutMethod
+  {
+    ExternalProgram,
+    InternalLibrary
+  };
   virtual ~KGraphViewerInterface(){}
 
+  virtual void setLayoutMethod(LayoutMethod method) = 0;
   virtual void zoomIn() = 0;
   virtual void zoomOut() = 0;
   virtual void zoomBy(double factor) = 0;

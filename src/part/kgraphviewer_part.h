@@ -25,8 +25,6 @@
 #include <ktabwidget.h>
 #include <kdirwatch.h>
 
-#include <graphviz/gvc.h>
-
 #include "dotgraphview.h"
 
 #include "kgraphviewer_interface.h"
@@ -47,6 +45,7 @@ class kgraphviewerPart : public KParts::ReadOnlyPart, public KGraphViewerInterfa
 
 //BEGIN: KGraphViewerInterface
 public:
+    virtual void setLayoutMethod(LayoutMethod method);
     virtual void centerOnNode(const QString& nodeId);
     virtual void selectNode(const QString& nodeId);
     virtual void setLayoutCommand(const QString& command);
@@ -127,13 +126,7 @@ public slots:
   void slotSetCursor(const QCursor& cursor);
   void slotUnsetCursor();
   virtual bool closeUrl();
-
-  /** Emit a signal connected to this slot to load the given file using the graphviz library (instead of one of the external commands) */
-  bool slotOpenFileLibrary(const QString& fileName);
-  
-  /** Emit a signal connected to this slot to display an already existing graphviz library graph.
-      It will be layouted by this kgraphviewer part. */
-  bool slotLoadLibrary(graph_t* graph);
+  void slotSetLayoutMethod(LayoutMethod method);
   
 protected:
     /**
@@ -145,6 +138,7 @@ private:
   DotGraphView *m_widget;
   KDirWatch* m_watch;
   QString m_file;
+  LayoutMethod m_layoutMethod;
 };
 
 class KComponentData;

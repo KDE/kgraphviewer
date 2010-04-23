@@ -210,6 +210,16 @@ void KGraphEditor::openUrl(const KUrl& url)
   kDebug() << url;
   KParts::ReadOnlyPart* part = slotNewGraph();
   
+  KGraphViewerInterface* kgv = qobject_cast<KGraphViewerInterface*>( part );
+  if( ! kgv )
+  {
+    // This should not happen
+    return;
+  }
+  (KGraphEditorSettings::parsingMode() == "external")
+    ?kgv->setLayoutMethod(KGraphViewerInterface::ExternalProgram)
+    :kgv->setLayoutMethod(KGraphViewerInterface::InternalLibrary);
+
   if (part)
   {
     QString label = url.url().section('/',-1,-1);
@@ -218,34 +228,11 @@ void KGraphEditor::openUrl(const KUrl& url)
     m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
     createGUI(part);
     m_tabsFilesMap[m_widget->currentPage()] = url.url();
-    (KGraphEditorSettings::parsingMode() == "external")
-      ?openUrlCommand(url,part)
-      :openUrlLibrary(url,part);
-
+    part->openUrl( url );
+    
     m_openedFiles.push_back(url.url());
   }
 }
-
-void KGraphEditor::openUrlCommand(const KUrl& url, KParts::ReadOnlyPart* part)
-{
-  kDebug() << url;
-  part->openUrl( url );
-}
-
-void KGraphEditor::openUrlLibrary(const KUrl& url, KParts::ReadOnlyPart* part)
-{
-  kDebug() << "in openUrlLibrary" << url;
-  connect(this, SIGNAL(loadLibrary(graph_t*)),part,SLOT(slotLoadLibrary(graph_t*)));
-  GVC_t *gvc;
-  graph_t *g;
-  FILE* fp;
-  gvc = gvContext();
-  fp = fopen(url.pathOrUrl().toUtf8().data(), "r");
-  kDebug() << "fopen" << url.pathOrUrl() << (void*)fp;
-  g = agread(fp);
-  emit(loadLibrary(g));
-}
-
 
 void KGraphEditor::fileOpen()
 {

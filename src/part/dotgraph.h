@@ -107,6 +107,7 @@ public:
   GraphElement* elementNamed(const QString& id);
 
   inline void setUseLibrary(bool value) {m_useLibrary = value;}
+  inline bool useLibrary() {return m_useLibrary;}
   
 public Q_SLOTS:
   void removeNodeNamed(const QString& nodeName);
