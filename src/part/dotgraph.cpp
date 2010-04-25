@@ -159,38 +159,6 @@ bool DotGraph::parseDot(const QString& str)
  return true;
 }
 
-bool DotGraph::parseLibrary(const QString& str)
-{
-  kDebug() << str;
-  m_useLibrary = true;
-  if (m_layoutCommand.isEmpty())
-  {
-    m_layoutCommand = chooseLayoutProgramForFile(str);
-    if (m_layoutCommand.isEmpty())
-    {
-      m_layoutCommand = chooseLayoutProgramForFile(str);
-      return false;
-    }
-  }
-  
-  kDebug() << "Running " << m_layoutCommand  << str;
-  GVC_t *gvc;
-  graph_t *g;
-  FILE* fp;
-  gvc = gvContext();
-  fp = fopen(str.toUtf8().data(), "r");
-  g = agread(fp);
-  gvLayout(gvc, g, m_layoutCommand.toUtf8().data());
-  gvRender (gvc, g, "xdot", NULL);
-  
-  updateWithGraph(g);
-  
-  gvFreeLayout(gvc, g);
-  agclose(g);
-  bool result = (gvFreeContext(gvc) == 0);
-  return result;
-}
-
 bool DotGraph::update()
 {
   GraphExporter exporter;

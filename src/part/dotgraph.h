@@ -53,7 +53,6 @@ public:
   
   QString chooseLayoutProgramForFile(const QString& str);
   bool parseDot(const QString& str);
-  bool parseLibrary(const QString& str);
   
   /** Constant accessor to the nodes of this graph */
   inline const GraphNodeMap& nodes() const {return m_nodesMap;}

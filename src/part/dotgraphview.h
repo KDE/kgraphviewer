@@ -39,10 +39,10 @@
 #include <QGraphicsView>
 #include <QSet>
 
-#include <graphviz/gvc.h>
-
 #include "graphexporter.h"
 #include "kgraphviewer_interface.h"
+#include "loadagraphthread.h"
+#include "layoutagraphthread.h"
 
 class GraphElement;
 class GraphSubgraph;
@@ -214,6 +214,10 @@ public Q_SLOTS:
   void slotElementHoverLeave(CanvasElement*);
   void slotElementHoverEnter(CanvasEdge*);
   void slotElementHoverLeave(CanvasEdge*);
+
+private Q_SLOTS:
+  void slotAGraphReadFinished();
+  void slotAGraphLayoutFinished();
   
 protected:
   void scrollContentsBy(int dx, int dy);
@@ -291,6 +295,12 @@ private:
 
   /// true if elements should be highlighted on hover; false otherwise
   bool m_highlighting;
+
+  /// A thread to load graphviz agraph files
+  LoadAGraphThread m_loadThread;
+  
+  /// A thread to layout graphviz agraph files
+  LayoutAGraphThread m_layoutThread;
 };
 
 #endif // DOTGRAPHVIEW_H
