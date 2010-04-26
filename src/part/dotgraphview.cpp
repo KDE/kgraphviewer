@@ -1977,7 +1977,6 @@ void DotGraphView::slotAGraphLayoutFinished()
 
   gvFreeLayout(m_layoutThread.gvc(), m_layoutThread.g());
   agclose(m_layoutThread.g());
-  bool freeresult = (gvFreeContext(m_layoutThread.gvc()) == 0);
 }
 
 #include "dotgraphview.moc"

@@ -37,6 +37,9 @@
 
 #include <iostream>
 
+#include <graphviz/gvc.h>
+
+
 // #include "kgraphviewersettings.h"
 #include "kgraphviewer_partsettings.h"
 
@@ -479,7 +482,8 @@ kgraphviewerPartFactory::kgraphviewerPartFactory()
 
 kgraphviewerPartFactory::~kgraphviewerPartFactory()
 {
-    delete s_about;
+  gvFreeContext(gvContext());
+  delete s_about;
 }
 
 KParts::Part* kgraphviewerPartFactory::createPartObject( QWidget *parentWidget,
