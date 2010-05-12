@@ -39,6 +39,8 @@ class QPaintDevice;
 
 #include "dotgraphview.h"
 
+namespace KGraphViewer
+{
 class KGVSimplePrintingSettings;
 
 /*! @short An engine painting data on pages using QPainter.
@@ -108,5 +110,7 @@ protected:
   
   QPixmap m_painting;
 };
+
+}
 
 #endif

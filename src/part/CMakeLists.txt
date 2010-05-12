@@ -1,21 +1,38 @@
 include_directories( ../ ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
+link_directories(${CMAKE_BINARY_DIR}/lib)
 
 ########### next target ###############
 
-set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  loadagraphthread.cpp layoutagraphthread.cpp graphelement.cpp graphsubgraph.cpp graphnode.cpp graphedge.cpp graphexporter.cpp pannerview.cpp canvassubgraph.cpp canvasnode.cpp canvasedge.cpp canvaselement.cpp dotgraph.cpp dotgraphview.cpp dot2qtconsts.cpp dotgrammar.cpp DotGraphParsingHelper.cpp FontsCache.cpp simpleprintingsettings.cpp simpleprintingengine.cpp simpleprintingcommand.cpp simpleprintingpagesetup.cpp simpleprintpreviewwindow_p.cpp simpleprintpreviewwindow.cpp KgvGlobal.cpp KgvUnit.cpp KgvUnitWidgets.cpp KgvPageLayoutColumns.cpp KgvPageLayoutDia.cpp KgvPageLayout.cpp KgvPageLayoutHeader.cpp KgvPageLayoutSize.cpp)
+set( kgraphviewerlib_LIB_SRCS loadagraphthread.cpp layoutagraphthread.cpp graphelement.cpp graphsubgraph.cpp graphnode.cpp graphedge.cpp graphexporter.cpp pannerview.cpp canvassubgraph.cpp canvasnode.cpp canvasedge.cpp canvaselement.cpp dotgraph.cpp dotgraphview.cpp dot2qtconsts.cpp dotgrammar.cpp DotGraphParsingHelper.cpp FontsCache.cpp simpleprintingsettings.cpp simpleprintingengine.cpp simpleprintingcommand.cpp simpleprintingpagesetup.cpp simpleprintpreviewwindow_p.cpp simpleprintpreviewwindow.cpp KgvGlobal.cpp KgvUnit.cpp KgvUnitWidgets.cpp KgvPageLayoutColumns.cpp KgvPageLayoutDia.cpp KgvPageLayout.cpp KgvPageLayoutHeader.cpp KgvPageLayoutSize.cpp)
 
-kde4_add_kcfg_files( kgraphviewerpart_PART_SRCS kgraphviewer_partsettings.kcfgc )
+kde4_add_kcfg_files( kgraphviewerlib_LIB_SRCS kgraphviewer_partsettings.kcfgc )
 
 set( kgraphviewerprinting_UI simpleprintingpagesetupbase.ui KgvPageLayoutColumnsBase.ui KgvPageLayoutHeaderBase.ui )
 
-kde4_add_ui_files(kgraphviewerpart_PART_SRCS ${kgraphviewerprinting_UI} )
+kde4_add_ui_files(kgraphviewer_LIB_SRCS ${kgraphviewerprinting_UI} )
 
+
+kde4_add_library(kgraphviewerlib SHARED ${kgraphviewerlib_LIB_SRCS})
+
+add_definitions(-DQT_STL)
+target_link_libraries(kgraphviewerlib  ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} gvc graph pathplan cdt)
+
+set_target_properties(kgraphviewerlib PROPERTIES VERSION 2.0.3
+                                          SOVERSION 2 )
+
+
+install( TARGETS kgraphviewerlib DESTINATION ${INSTALL_TARGETS_DEFAULT_ARGS})
+
+
+########### next target ###############
+
+set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
 
 kde4_add_plugin(kgraphviewerpart ${kgraphviewerpart_PART_SRCS})
 
 add_definitions(-DQT_STL)
-target_link_libraries(kgraphviewerpart  ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} gvc graph pathplan cdt)
+target_link_libraries(kgraphviewerpart ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} gvc graph pathplan cdt kgraphviewerlib)
 
 install( TARGETS kgraphviewerpart DESTINATION ${PLUGIN_INSTALL_DIR})
 

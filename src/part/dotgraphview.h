@@ -39,18 +39,12 @@
 #include <QGraphicsView>
 #include <QSet>
 
+#include "kgraphviewer_export.h"
 #include "graphexporter.h"
 #include "kgraphviewer_interface.h"
 #include "loadagraphthread.h"
 #include "layoutagraphthread.h"
 
-class GraphElement;
-class GraphSubgraph;
-class CanvasElement;
-class CanvasEdge;
-class PannerView;
-class DotGraph;
-class KGVSimplePrintingCommand;
 class KSelectAction;
 class KToggleAction;
 
@@ -63,13 +57,24 @@ class QWheelEvent;
 class QContextMenuEvent;
 class QWidget;
 
+namespace KGraphViewer
+{
+
+class GraphElement;
+class GraphSubgraph;
+class CanvasElement;
+class CanvasEdge;
+class PannerView;
+class DotGraph;
+class KGVSimplePrintingCommand;
+
 #define DEFAULT_DETAILLEVEL 1
 /**
  * A CanvasView showing a part of the call graph
  * and another zoomed out CanvasView in a border acting as
  * a panner to select to visible part (only if needed)
  */
-class DotGraphView: public QGraphicsView
+class KGRAPHVIEWER_EXPORT DotGraphView: public QGraphicsView
 {
  Q_OBJECT
 
@@ -77,11 +82,11 @@ public:
   enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge, SelectingElements };
   enum ScrollDirection { Here, Left, Right, Top, Bottom };
   
-  explicit DotGraphView(KActionCollection* actions, QWidget* parent=0);
+  explicit KGRAPHVIEWER_EXPORT DotGraphView(KActionCollection* actions, QWidget* parent=0);
   virtual ~DotGraphView();
 
-  bool loadDot(const QString& dotFileName);
-  bool loadLibrary(const QString& dotFileName);
+  bool KGRAPHVIEWER_EXPORT loadDot(const QString& dotFileName);
+  bool KGRAPHVIEWER_EXPORT loadLibrary(const QString& dotFileName);
   bool loadLibrary(graph_t* graph, const QString& layoutCommand = "dot");
 
   void readViewConfig();
@@ -138,8 +143,8 @@ public:
 
   EditingMode editingMode() const {return m_editingMode;}
 
-  void setReadOnly();
-  void setReadWrite();
+void KGRAPHVIEWER_EXPORT setReadOnly();
+  void KGRAPHVIEWER_EXPORT setReadWrite();
   inline bool isReadWrite() {return m_readWrite;}
   inline bool isReadOnly() {return !m_readWrite;}
   
@@ -214,7 +219,9 @@ public Q_SLOTS:
   void slotElementHoverLeave(CanvasElement*);
   void slotElementHoverEnter(CanvasEdge*);
   void slotElementHoverLeave(CanvasEdge*);
-
+  void slotSelectNode(const QString& nodeName);
+  void centerOnNode(const QString& nodeId);
+  
 private Q_SLOTS:
   void slotAGraphReadFinished();
   void slotAGraphLayoutFinished();
@@ -302,5 +309,7 @@ private:
   /// A thread to layout graphviz agraph files
   LayoutAGraphThread m_layoutThread;
 };
+
+}
 
 #endif // DOTGRAPHVIEW_H

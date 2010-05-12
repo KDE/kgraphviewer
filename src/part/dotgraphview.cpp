@@ -62,6 +62,7 @@
 #include <QMenu>
 #include <QGraphicsSimpleTextItem>
 #include <QScrollBar>
+#include <QUuid>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -78,6 +79,8 @@
 #define DEFAULT_ZOOMPOS      KGraphViewerInterface::Auto
 #define KGV_MAX_PANNER_NODES 100
 
+namespace KGraphViewer
+{
 //
 // DotGraphView
 //
@@ -163,9 +166,6 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   setDragMode(NoDrag);
   setRenderHint(QPainter::Antialiasing);
 
-  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
-  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
-  connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
   connect(&m_loadThread, SIGNAL(finished()), this, SLOT(slotAGraphReadFinished()));
   connect(&m_layoutThread, SIGNAL(finished()), this, SLOT(slotAGraphLayoutFinished()));
 }
@@ -206,9 +206,6 @@ bool DotGraphView::initEmpty()
     delete m_graph;
   m_graph = new DotGraph();
   connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
-  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
-  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
-//   connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
 
   if (m_readWrite)
   {
@@ -251,9 +248,6 @@ bool DotGraphView::loadDot(const QString& dotFileName)
     delete m_graph;
   m_graph = new DotGraph(layoutCommand,dotFileName);
   connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
-  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
-  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
-  connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
 
   if (m_readWrite)
   {
@@ -327,9 +321,6 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
   m_graph->setUseLibrary(true);
   
   connect(m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
-  connect(this, SIGNAL(removeEdge(const QString&)), m_graph, SLOT(removeEdge(const QString&)));
-  connect(this, SIGNAL(removeNodeNamed(const QString&)), m_graph, SLOT(removeNodeNamed(const QString&)));
-  connect(this, SIGNAL(removeElement(const QString&)), m_graph, SLOT(removeElement(const QString&)));
   
   if (m_readWrite)
   {
@@ -1859,6 +1850,7 @@ void DotGraphView::removeSelectedEdges()
     if (e->isSelected())
     {
       kDebug() << "emiting removeEdge " << e->id();
+      m_graph->removeEdge(e->id());
       emit removeEdge(e->id());
     }
   }
@@ -1872,6 +1864,7 @@ void DotGraphView::removeSelectedNodes()
     if (e->isSelected())
     {
       kDebug() << "emiting removeElement " << e->id();
+      m_graph->removeElement(e->id());
       emit removeElement(e->id());
     }
   }
@@ -1885,6 +1878,7 @@ void DotGraphView::removeSelectedSubgraphs()
     if (e->isSelected())
     {
       kDebug() << "emiting removeElement " << e->id();
+      m_graph->removeElement(e->id());
       emit removeElement(e->id());
     }
   }
@@ -1977,6 +1971,32 @@ void DotGraphView::slotAGraphLayoutFinished()
 
   gvFreeLayout(m_layoutThread.gvc(), m_layoutThread.g());
   agclose(m_layoutThread.g());
+}
+
+void DotGraphView::slotSelectNode(const QString& nodeName)
+{
+  kDebug() << nodeName;
+  GraphNode* node = dynamic_cast<GraphNode*>(graph()->elementNamed(nodeName));
+  if (node == 0) return;
+  node->setSelected(true);
+  if (node->canvasNode()!=0)
+  {
+    node->canvasNode()->modelChanged();
+    slotElementSelected(node->canvasNode(),Qt::NoModifier);
+  }
+}
+
+void DotGraphView::centerOnNode(const QString& nodeId)
+{
+  GraphNode* node = dynamic_cast<GraphNode*>(graph()->elementNamed(nodeId));
+  if (node == 0) return;
+  if (node->canvasNode()!=0)
+  {
+    centerOn(node->canvasNode());
+  }
+}
+
+
 }
 
 #include "dotgraphview.moc"

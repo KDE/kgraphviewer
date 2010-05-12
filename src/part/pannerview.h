@@ -37,6 +37,9 @@
 //Added by qt3to4:
 #include <QMouseEvent>
 
+namespace KGraphViewer
+{
+
 class DotGraphView;
 
 /**
@@ -72,6 +75,8 @@ protected:
   bool m_drawContents;
   DotGraphView* m_parent;
 };
+
+}
 
 #endif
 

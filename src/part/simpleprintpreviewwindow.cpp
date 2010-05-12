@@ -53,6 +53,10 @@
 
 #include <iostream>
 
+namespace KGraphViewer
+{
+  
+
 KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 	KGVSimplePrintingEngine &engine, const QString& previewName, 
 	QWidget *parent, Qt::WFlags f)
@@ -307,5 +311,6 @@ bool KGVSimplePrintPreviewWindow::event( QEvent * e )
   return QWidget::event(e);
 }
 
+}
 
 #include "simpleprintpreviewwindow.moc"

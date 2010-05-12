@@ -34,6 +34,8 @@
 
 #include "kgrapheditoradaptor.h"
 
+using namespace KGraphViewer;
+
 static const char description[] =
 I18N_NOOP("A Graphviz dot graph viewer for KDE");
 
@@ -65,8 +67,8 @@ int main(int argc, char **argv)
       if ( args->count() == 0 )
       {
         widget = new KGraphEditor;
-	new KgrapheditorAdaptor(widget);
-	QDBusConnection::sessionBus().registerObject("/KGraphEditor", widget);
+        new KgrapheditorAdaptor(widget);
+        QDBusConnection::sessionBus().registerObject("/KGraphEditor", widget);
         widget->show();
       }
       else

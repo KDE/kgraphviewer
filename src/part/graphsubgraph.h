@@ -32,6 +32,10 @@
 
 #include <graphviz/gvc.h>
 
+namespace KGraphViewer
+{
+  
+  
 class CanvasSubgraph;
 class GraphSubgraph;
 
@@ -89,6 +93,8 @@ public:
 };
 
 QTextStream& operator<<(QTextStream& stream, const GraphSubgraph& s);
+
+}
 
 #endif
 

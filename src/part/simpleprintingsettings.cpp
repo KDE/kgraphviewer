@@ -49,7 +49,9 @@
 
 // #include <kprinter.h>
 
-
+namespace KGraphViewer
+{
+  
 KGVSimplePrintingSettings::KGVSimplePrintingSettings()
 {
 	pageLayout = KgvPageLayout::standardLayout();
@@ -139,3 +141,4 @@ void KGVSimplePrintingSettings::save()
   config->sync();
 }
 
+}

@@ -45,6 +45,9 @@
 #include "canvaselement.h"
 #include "canvasnode.h"
 
+namespace KGraphViewer
+{
+  
 class CanvasNode;
 
 /**
@@ -75,6 +78,8 @@ private:
 typedef QMap<QString, GraphNode*> GraphNodeMap;
 
 QTextStream& operator<<(QTextStream& s, const GraphNode& n);
+
+}
 
 #endif
 

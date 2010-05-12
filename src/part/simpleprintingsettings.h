@@ -30,8 +30,10 @@
 
 #include "KgvPageLayoutDia.h"
 
+namespace KGraphViewer
+{
 
-enum FittingModes 
+enum FittingModes
 {
   NaturalSize = 0,
   FitToOnePage,
@@ -60,5 +62,7 @@ public:
   unsigned int vertFitting;
   bool chainedFittings;
 };
+
+}
 
 #endif

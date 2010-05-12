@@ -18,8 +18,10 @@
 
 
 #include "kgraphviewer_part.h"
+#include "dotgraphview.h"
 #include "dotgraph.h"
 
+#include <KDirWatch>
 #include <kcomponentdata.h>
 #include <kaction.h>
 #include <ktoggleaction.h>
@@ -33,8 +35,6 @@
 #include <kiconloader.h>
 #include <kstandarddirs.h>
 
-#include <QUuid>
-
 #include <iostream>
 
 #include <graphviz/gvc.h>
@@ -43,74 +43,96 @@
 // #include "kgraphviewersettings.h"
 #include "kgraphviewer_partsettings.h"
 
-kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
-: KParts::ReadOnlyPart(parent), m_watch(new KDirWatch()), m_layoutMethod(KGraphViewerInterface::InternalLibrary)
+namespace KGraphViewer
+{
+
+class KGraphViewerPartPrivate
+{
+public:
+  KGraphViewerPartPrivate() : m_watch(new KDirWatch()), m_layoutMethod(KGraphViewerInterface::InternalLibrary)
+  {
+    
+  }
+  
+  ~KGraphViewerPartPrivate()
+  {
+    delete m_watch;
+  }
+  
+  DotGraphView *m_widget;
+  KDirWatch* m_watch;
+  KGraphViewerPart::LayoutMethod m_layoutMethod;
+  
+};
+
+KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent)
+: KParts::ReadOnlyPart(parent), d(new KGraphViewerPartPrivate())
 {
   kDebug() ;
   // we need an instance
-  setComponentData( kgraphviewerPartFactory::componentData() );
+  setComponentData( KGraphViewerPartFactory::componentData() );
 
   // this should be your custom internal widget
-  m_widget = new DotGraphView( actionCollection(), parentWidget);
-  m_widget->initEmpty();
-  m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-  connect( m_widget, SIGNAL( graphLoaded() ),
+  d->m_widget = new DotGraphView( actionCollection(), parentWidget);
+  d->m_widget->initEmpty();
+  d->m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+  connect( d->m_widget, SIGNAL( graphLoaded() ),
            this, SIGNAL( graphLoaded() ) );
-  connect( m_widget, SIGNAL( newEdgeAdded(const QString&, const QString&) ),
+  connect( d->m_widget, SIGNAL( newEdgeAdded(const QString&, const QString&) ),
           this, SIGNAL( newEdgeAdded(const QString&, const QString&) ) );
-  connect( m_widget, SIGNAL( newNodeAdded(const QString&) ),
+  connect( d->m_widget, SIGNAL( newNodeAdded(const QString&) ),
           this, SIGNAL( newNodeAdded(const QString&) ) );
-  connect( m_widget, SIGNAL( removeEdge(const QString&) ),
+  connect( d->m_widget, SIGNAL( removeEdge(const QString&) ),
            this, SIGNAL( removeEdge(const QString&) ) );
-  connect( m_widget, SIGNAL( removeElement(const QString&) ),
+  connect( d->m_widget, SIGNAL( removeElement(const QString&) ),
            this, SIGNAL( removeElement(const QString&) ) );
-  connect( m_widget, SIGNAL( selectionIs(const QList<QString>, const QPoint&) ),
+  connect( d->m_widget, SIGNAL( selectionIs(const QList<QString>, const QPoint&) ),
            this, SIGNAL( selectionIs(const QList<QString>, const QPoint&) ) );
-  connect( m_widget,
+  connect( d->m_widget,
            SIGNAL( contextMenuEvent(const QString&, const QPoint&) ),
            this,
            SIGNAL( contextMenuEvent(const QString&, const QPoint&) ) );
-  connect( m_widget,
+  connect( d->m_widget,
            SIGNAL( newEdgeFinished(const QString&, const QString&, const QMap<QString, QString>&) ),
           this,
            SIGNAL( newEdgeFinished(const QString&, const QString&, const QMap<QString, QString>&) ) );
-  connect( m_widget, SIGNAL( hoverEnter(const QString&)) ,
+  connect( d->m_widget, SIGNAL( hoverEnter(const QString&)) ,
           this, SIGNAL( hoverEnter(const QString&) ) );
-  connect( m_widget, SIGNAL( hoverLeave(const QString&)) ,
+  connect( d->m_widget, SIGNAL( hoverLeave(const QString&)) ,
           this, SIGNAL( hoverLeave(const QString&)) );
                    
 
           
            
   // notify the part that this is our internal widget
-  setWidget(m_widget);
+  setWidget(d->m_widget);
 
   QAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT( slotClose() ) );
   closeAct->setWhatsThis(i18n("Closes the current tab"));
 
-  QAction* printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", m_widget, SLOT(print()));
+  QAction* printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", d->m_widget, SLOT(print()));
   printAct->setWhatsThis(i18n("Print the graph using current page setup settings"));
   printAct->setShortcut(Qt::ControlModifier + Qt::Key_P);
   
-  QAction* printPreviewAct = actionCollection()->addAction(KStandardAction::PrintPreview, "file_print_preview", m_widget, SLOT(printPreview()));
+  QAction* printPreviewAct = actionCollection()->addAction(KStandardAction::PrintPreview, "file_print_preview", d->m_widget, SLOT(printPreview()));
   printPreviewAct->setWhatsThis(i18n("Open the print preview window"));
   printPreviewAct->setShortcut(Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_P);
   
 //   KAction* pagesetupAct = new KAction(i18n("&Page setup"), this); //actionCollection(), "file_page_setup");
-  QAction* pagesetupAct = actionCollection()->addAction("file_page_setup", m_widget, SLOT(pageSetup()));
+  QAction* pagesetupAct = actionCollection()->addAction("file_page_setup", d->m_widget, SLOT(pageSetup()));
   pagesetupAct->setText(i18n("Page setup"));
   pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog to allow graph printing to be setup"));
 
-  QAction* redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, "view_redisplay", m_widget, SLOT(reload()));
+  QAction* redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, "view_redisplay", d->m_widget, SLOT(reload()));
   redisplayAct->setWhatsThis(i18n("Reload the current graph from file"));
   redisplayAct->setShortcut(Qt::Key_F5);
 
-  QAction* zoomInAct = actionCollection()->addAction(KStandardAction::ZoomIn, "view_zoom_in", m_widget, SLOT(zoomIn()));
+  QAction* zoomInAct = actionCollection()->addAction(KStandardAction::ZoomIn, "view_zoom_in", d->m_widget, SLOT(zoomIn()));
   // xgettext: no-c-format
   zoomInAct->setWhatsThis(i18n("Zoom in by 10% on the currently viewed graph"));
   zoomInAct->setShortcut(Qt::Key_F7);
   
-  QAction* zoomOutAct = actionCollection()->addAction(KStandardAction::ZoomOut, "view_zoom_out", m_widget, SLOT(zoomOut()));
+  QAction* zoomOutAct = actionCollection()->addAction(KStandardAction::ZoomOut, "view_zoom_out", d->m_widget, SLOT(zoomOut()));
   // xgettext: no-c-format
   zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
   zoomOutAct->setShortcut(Qt::Key_F8);
@@ -119,461 +141,341 @@ kgraphviewerPart::kgraphviewerPart( QWidget *parentWidget, QObject *parent)
   setXMLFile("kgraphviewer_part.rc");
 }
 
-void kgraphviewerPart::slotClose()
+/*DotGraph* KGraphViewerPart::graph()
+{
+  return d->m_widget->graph();
+}
+
+const DotGraph* KGraphViewerPart::graph() const
+{
+  return d->m_widget->graph();
+}
+*/
+
+QList<QString> KGraphViewerPart::nodesIdsPrivate()
+{
+  QList<QString> result;
+  
+  return result;
+}
+
+QMap<QString,QString> KGraphViewerPart::nodeAtributesPrivate(const QString& nodeId)
+{
+  QMap<QString,QString> result;
+  return result;
+}
+
+void KGraphViewerPart::slotClose()
 {
   kDebug();
   emit close();
 }
 
-bool kgraphviewerPart::closeUrl()
+bool KGraphViewerPart::closeUrl()
 {
-  return m_widget->initEmpty();
+  return d->m_widget->initEmpty();
 }
 
-kgraphviewerPart::~kgraphviewerPart()
+KGraphViewerPart::~KGraphViewerPart()
 {
-  delete m_watch; 
+  delete d;
 }
 
-bool kgraphviewerPart::openFile()
+bool KGraphViewerPart::openFile()
 {
   kDebug() << " " << localFilePath();
-  //    m_widget->loadedDot( localFilePath() );
-  switch (m_layoutMethod)
+  //    d->m_widget->loadedDot( localFilePath() );
+  switch (d->m_layoutMethod)
   {
     case ExternalProgram:
-      if (!m_widget->loadDot(localFilePath()))
+      if (!d->m_widget->loadDot(localFilePath()))
         return false;
       break;
     case InternalLibrary:
-      if (!m_widget->loadLibrary(localFilePath()))
+      if (!d->m_widget->loadLibrary(localFilePath()))
         return false;
       break;
     default:
-      kError() << "Unsupported layout method " << m_layoutMethod;
+      kError() << "Unsupported layout method " << d->m_layoutMethod;
   }
   
   // deletes the existing file watcher because we have no way know here the name of the
   // previously watched file and thus we cannot use removeFile... :-(
-  delete m_watch;
-  m_watch = new KDirWatch();
+  delete d->m_watch;
+  d->m_watch = new KDirWatch();
   
   //   kDebug() << "Watching file " << localFilePath();
-  m_watch->addFile(localFilePath());
-  connect(m_watch, SIGNAL(dirty(const QString &)), m_widget, SLOT(dirty(const QString&)));
+  d->m_watch->addFile(localFilePath());
+  connect(d->m_watch, SIGNAL(dirty(const QString &)), d->m_widget, SLOT(dirty(const QString&)));
   QString label = localFilePath().section('/',-1,-1);
   
-  m_widget->show();
+  d->m_widget->show();
   return true;
 }
 
-void kgraphviewerPart::slotHide(KParts::Part* part)
+void KGraphViewerPart::slotHide(KParts::Part* part)
 {
   if (part == this)
   {
-    m_widget->hideToolsWindows();
+    d->m_widget->hideToolsWindows();
   }
 }
 
-void kgraphviewerPart::slotUpdate()
+void KGraphViewerPart::slotUpdate()
 {
-  kDebug();
-  m_widget->slotUpdate();
+  d->m_widget->slotUpdate();
 }
 
-void kgraphviewerPart::prepareAddNewElement(QMap<QString,QString> attribs)
+void KGraphViewerPart::prepareAddNewElement(QMap<QString,QString> attribs)
 {
-  m_widget->prepareAddNewElement(attribs);
+  d->m_widget->prepareAddNewElement(attribs);
 }
 
-void kgraphviewerPart::slotSetGraphAttributes(QMap<QString,QString> attribs)
+void KGraphViewerPart::slotSetGraphAttributes(QMap<QString,QString> attribs)
 {
-  kDebug() << attribs;
-  m_widget->graph()->attributes() = attribs;
+  d->m_widget->graph()->setGraphAttributes(attribs);
 }
 
-void kgraphviewerPart::slotAddNewNode(QMap<QString,QString> attribs)
+void KGraphViewerPart::slotAddNewNode(QMap<QString,QString> attribs)
 {
-  kDebug() << attribs;
-  GraphNode* newNode = new GraphNode();
-  newNode->attributes() = attribs;
-  m_widget->graph()->nodes().insert(newNode->id(), newNode);
-  kDebug() << "node added as" << newNode->id();
+  d->m_widget->graph()->addNewNode(attribs);
 }
 
-void kgraphviewerPart::slotAddNewSubgraph(QMap<QString,QString> attribs)
+void KGraphViewerPart::slotAddNewSubgraph(QMap<QString,QString> attribs)
 {
-  kDebug() << attribs;
-  GraphSubgraph* newSG = new GraphSubgraph();
-  newSG->attributes() = attribs;
-  m_widget->graph()->subgraphs()[newSG->id()] = newSG;
-  kDebug() << "subgraph added as" << newSG->id();
+  d->m_widget->graph()->addNewSubgraph(attribs);
 }
 
-void kgraphviewerPart::slotAddNewNodeToSubgraph(QMap<QString,QString> attribs,
+void KGraphViewerPart::slotAddNewNodeToSubgraph(QMap<QString,QString> attribs,
     QString subgraph)
 {
-  kDebug() << attribs << "to" << subgraph;
-  GraphNode* newNode = new GraphNode();
-  newNode->attributes() = attribs;
-//   m_widget->graph()->nodes().insert(newNode->id(), newNode);
-  m_widget->graph()->subgraphs()[subgraph]->content().push_back(newNode);
-
-  kDebug() << "node added as" << newNode->id() << "in" << subgraph;
+  d->m_widget->graph()->addNewNodeToSubgraph(attribs, subgraph);
 }
 
-void kgraphviewerPart::slotAddExistingNodeToSubgraph(
-    QMap<QString,QString> attribs,
-    QString subgraph)
+void KGraphViewerPart::slotAddExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph)
 {
-  kDebug() << attribs << "to" << subgraph;
-  GraphNode* node = dynamic_cast<GraphNode*>(m_widget->graph()->elementNamed(attribs["id"]));
-  if (node == 0)
-  {
-    kError() << "No such node" << attribs["id"];
-    return;
-  }
-  if (m_widget->graph()->nodes().contains(attribs["id"]))
-  {
-    m_widget->graph()->nodes().remove(attribs["id"]);
-    node->attributes() = attribs;
-    m_widget->graph()->subgraphs()[subgraph]->content().push_back(node);
-    kDebug() << "node " << node->id() << " added in " << subgraph;
-  }
-  else
-  {
-    foreach(GraphSubgraph* gs, m_widget->graph()->subgraphs())
-    {
-      GraphElement* elt = 0;
-      foreach(GraphElement* element, gs->content())
-      {
-        if (element == node)
-        {
-          elt = element;
-          break;
-        }
-      }
-      if (elt != 0)
-      {
-        kDebug() << "removing node " << elt->id() << " from " << gs->id();
-        gs->removeElement(elt);
-        m_widget->graph()->subgraphs()[subgraph]->content().push_back(elt);
-        kDebug() << "node " << elt->id() << " added in " << subgraph;
-        break;
-      }
-    }
-  }
+  d->m_widget->graph()->addExistingNodeToSubgraph(attribs, subgraph);
 }
 
-void kgraphviewerPart::slotMoveExistingNodeToMainGraph(QMap<QString,QString> attribs)
+void KGraphViewerPart::slotMoveExistingNodeToMainGraph(QMap<QString,QString> attribs)
 {
-  kDebug() << attribs;
-  GraphNode* node = dynamic_cast<GraphNode*>(m_widget->graph()->elementNamed(attribs["id"]));
-  if (node == 0)
-  {
-    kError() << "No such node" << attribs["id"];
-    return;
-  }
-  else if (m_widget->graph()->nodes().contains(attribs["id"]))
-  {
-    kError() << "Node" << attribs["id"] << "already in main graph";
-    return;
-  }
-  else
-  {
-    foreach(GraphSubgraph* gs, m_widget->graph()->subgraphs())
-    {
-      bool found = false;
-      foreach(GraphElement* element, gs->content())
-      {
-        if (element == node)
-        {
-          found = true;
-          break;
-        }
-      }
-      if (found)
-      {
-        kDebug() << "removing node " << node->id() << " from " << gs->id();
-        gs->removeElement(node);
-        m_widget->graph()->nodes()[node->id()] = node;
-        kDebug() << "node " << node->id() << " moved to main graph";
-        break;
-      }
-    }
-  }
+  d->m_widget->graph()->moveExistingNodeToMainGraph(attribs);
 }
 
-void kgraphviewerPart::slotAddNewEdge(QString src, QString tgt,
-            QMap<QString,QString> attribs)
+void KGraphViewerPart::slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs)
 {
-  kDebug() << src << tgt << attribs;
-  GraphEdge* newEdge = new GraphEdge();
-  newEdge->attributes() = attribs;
-  GraphElement* srcElement = graph()->elementNamed(src);
-  if (srcElement == 0)
-  {
-    srcElement = graph()->elementNamed(QString("cluster_")+src);
-  }
-  GraphElement* tgtElement = graph()->elementNamed(tgt);
-  if (tgtElement == 0)
-  {
-    tgtElement = graph()->elementNamed(QString("cluster_")+tgt);
-  }
-  
-  if (srcElement == 0 || tgtElement == 0)
-  {
-    kError() << src << "or" << tgt << "missing";
-    return;
-  }
-  if (attribs.contains("id"))
-  {
-    newEdge->setId(attribs["id"]);
-  }
-  else
-  {
-    newEdge->setId(src+tgt+QUuid::createUuid().toString().remove("{").remove("}").remove("-"));
-  }
-  newEdge->setFromNode(srcElement);
-  newEdge->setToNode(tgtElement);
-  m_widget->graph()->edges().insert(newEdge->id(), newEdge);
+  d->m_widget->graph()->addNewEdge(src,tgt,attribs);
 }
 
-void kgraphviewerPart::prepareAddNewEdge(QMap<QString,QString> attribs)
+void KGraphViewerPart::prepareAddNewEdge(QMap<QString,QString> attribs)
 {
-  m_widget->prepareAddNewEdge(attribs);
+  d->m_widget->prepareAddNewEdge(attribs);
 }
 
-void kgraphviewerPart::setReadOnly()
+void KGraphViewerPart::setReadOnly()
 {
-  kDebug() ;
-  m_widget->setReadOnly();
+  d->m_widget->setReadOnly();
 }
 
-void kgraphviewerPart::setReadWrite()
+void KGraphViewerPart::setReadWrite()
 {
-  kDebug() ;
-  m_widget->setReadWrite();
+  d->m_widget->setReadWrite();
 }
 
-void kgraphviewerPart::saveTo(const QString& fileName)
+void KGraphViewerPart::saveTo(const QString& fileName)
 {
-  kDebug() << fileName;
-  m_widget->graph()->saveTo(fileName);
+  d->m_widget->graph()->saveTo(fileName);
 }
 
-void kgraphviewerPart::slotRemoveNode(const QString& nodeName)
+void KGraphViewerPart::slotRemoveNode(const QString& nodeName)
 {
-  kDebug() << nodeName;
-  m_widget->graph()->removeNodeNamed(nodeName);
+  d->m_widget->graph()->removeNodeNamed(nodeName);
 }
 
-void kgraphviewerPart::slotRemoveNodeFromSubgraph(const QString& nodeName, const QString& subgraphName)
+void KGraphViewerPart::slotRemoveNodeFromSubgraph(const QString& nodeName, const QString& subgraphName)
 {
-  kDebug() << nodeName << subgraphName;
-  m_widget->graph()->removeNodeFromSubgraph(nodeName, subgraphName);
+  d->m_widget->graph()->removeNodeFromSubgraph(nodeName, subgraphName);
 }
 
-void kgraphviewerPart::slotRemoveSubgraph(const QString& subgraphName)
+void KGraphViewerPart::slotRemoveSubgraph(const QString& subgraphName)
 {
-  kDebug() << subgraphName;
-  m_widget->graph()->removeSubgraphNamed(subgraphName);
+  d->m_widget->graph()->removeSubgraphNamed(subgraphName);
 }
 
-void kgraphviewerPart::slotSelectNode(const QString& nodeName)
+void KGraphViewerPart::slotSelectNode(const QString& nodeName)
 {
-  kDebug() << nodeName;
-  GraphNode* node = dynamic_cast<GraphNode*>(m_widget->graph()->elementNamed(nodeName));
-  if (node == 0) return;
-  node->setSelected(true);
-  if (node->canvasNode()!=0)
-  {
-    node->canvasNode()->modelChanged();
-    m_widget->slotElementSelected(node->canvasNode(),Qt::NoModifier);
-  }
+  d->m_widget->slotSelectNode(nodeName);
 }
 
-void kgraphviewerPart::slotAddAttribute(const QString&)
+void KGraphViewerPart::slotAddAttribute(const QString&)
 {
-  kDebug();
+  kDebug() << "NOT IMPLEMENTED";
 }
 
-void kgraphviewerPart::slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue)
+void KGraphViewerPart::slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue)
 {
-  kDebug();
-  m_widget->graph()->setAttribute(elementId,attributeName,attributeValue);
+  d->m_widget->graph()->setAttribute(elementId,attributeName,attributeValue);
 }
 
-void kgraphviewerPart::slotRemoveAttribute(const QString& nodeName, const QString& attribName)
+void KGraphViewerPart::slotRemoveAttribute(const QString& nodeName, const QString& attribName)
 {
-  kDebug();
-  GraphElement* element = m_widget->graph()->elementNamed(nodeName);
-  if (element != 0)
-  {
-    element->removeAttribute(attribName);
-  }
+  d->m_widget->graph()->removeAttribute(nodeName, attribName);
 }
 
-void kgraphviewerPart::slotRemoveEdge(const QString& id)
+void KGraphViewerPart::slotRemoveEdge(const QString& id)
 {
-  kDebug();
-  m_widget->graph()->removeEdge(id);
+  d->m_widget->graph()->removeEdge(id);
 }
 
-void kgraphviewerPart::slotRemoveElement(const QString& id)
+void KGraphViewerPart::slotRemoveElement(const QString& id)
 {
-  kDebug();
-  m_widget->graph()->removeElement(id);
+  d->m_widget->graph()->removeElement(id);
 }
 
-void kgraphviewerPart::slotSetHighlighting(bool highlightingValue)
+void KGraphViewerPart::slotSetHighlighting(bool highlightingValue)
 {
-  kDebug();
-  m_widget->setHighlighting(highlightingValue);
+  d->m_widget->setHighlighting(highlightingValue);
 }
 
 
-void kgraphviewerPart::slotPrepareToSelect()
+void KGraphViewerPart::slotPrepareToSelect()
 {
-  kDebug();
-  m_widget->prepareSelectElements();
+  d->m_widget->prepareSelectElements();
 }
 
-void kgraphviewerPart::slotSetCursor(const QCursor& cursor)
+void KGraphViewerPart::slotSetCursor(const QCursor& cursor)
 {
-  m_widget->setCursor(cursor);
+  d->m_widget->setCursor(cursor);
 }
 
-void kgraphviewerPart::slotUnsetCursor()
+void KGraphViewerPart::slotUnsetCursor()
 {
-  m_widget->unsetCursor();
+  d->m_widget->unsetCursor();
 }
 
-/*It's usually safe to leave the factory code alone.. with the
-notable exception of the KAboutData data*/
-#include <kaboutdata.h>
-
-extern "C"
-{
-  /**
-   * This function is the 'main' function of this part.  It takes
-   * the form 'void *init_lib<library name>()  It always returns a
-   * new factory object
-   */
-  KDE_EXPORT void *init_kgraphviewerpart()
-  {
-    return new kgraphviewerPartFactory;
-  }
-}
-
-// KComponentData kgraphviewerPartFactory::s_instance = 0L;
-KAboutData* kgraphviewerPartFactory::s_about = new KAboutData(
-    "kgraphviewerpart", 0, ki18n("kgraphviewerPart"),
-    "1.0", ki18n( "GraphViz dot files viewer" ),
-    KAboutData::License_GPL,
-    ki18n("(c) 2005-2006, Gaël de Chalendar &lt;kleag@free.fr&gt;"));
-
-KComponentData kgraphviewerPartFactory::s_instance(s_about);
-
-kgraphviewerPartFactory::kgraphviewerPartFactory()
-    : KParts::Factory()
-{
-}
-
-kgraphviewerPartFactory::~kgraphviewerPartFactory()
-{
-  gvFreeContext(gvContext());
-  delete s_about;
-}
-
-KParts::Part* kgraphviewerPartFactory::createPartObject( QWidget *parentWidget,
-                                                        QObject *parent,
-                                                        const char *classname,
-                                                        const QStringList &args )
-{
-  Q_UNUSED(classname);
-  Q_UNUSED(args);
-//     Create an instance of our Part
-    kgraphviewerPart* obj = new kgraphviewerPart( parentWidget, parent);
-
-//     See if we are to be read-write or not
-//     if (QCString(classname) == "KParts::ReadOnlyPart")
-//         obj->setReadWrite(false);
-
-    return obj;
-}
-
-KComponentData kgraphviewerPartFactory::componentData()
-{
-/*    if( !s_instance )
-    {
-        s_about = new KAboutData( "kgraphviewerpart", 0, ki18n("kgraphviewerPart"),
-                    "1.0", ki18n( "GraphViz dot files viewer" ),
-                    KAboutData::License_GPL,
-                    ki18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
-        s_instance(s_about);
-    }*/
-    return s_instance;
-}
-
-void kgraphviewerPart::slotSetLayoutMethod(LayoutMethod method)
+void KGraphViewerPart::slotSetLayoutMethod(LayoutMethod method)
 {
   setLayoutMethod(method);
 }
 
-void kgraphviewerPart::setLayoutMethod(LayoutMethod method)
+void KGraphViewerPart::setLayoutMethod(LayoutMethod method)
 {
-  m_layoutMethod = method;
+  d->m_layoutMethod = method;
 }
 
-void kgraphviewerPart::centerOnNode(const QString& nodeId)
+void KGraphViewerPart::centerOnNode(const QString& nodeId)
 {
-  GraphNode* node = dynamic_cast<GraphNode*>(m_widget->graph()->elementNamed(nodeId));
-  if (node == 0) return;
-  if (node->canvasNode()!=0)
-  {
-    m_widget->centerOn(node->canvasNode());
-  }
+  d->m_widget->centerOnNode(nodeId);
 }
 
-void kgraphviewerPart::selectNode(const QString& nodeId)
+void KGraphViewerPart::selectNode(const QString& nodeId)
 {
   slotSelectNode(nodeId);
 }
 
-void kgraphviewerPart::setLayoutCommand(const QString& command)
+void KGraphViewerPart::setLayoutCommand(const QString& command)
 {
-  m_widget->setLayoutCommand(command);
+  d->m_widget->setLayoutCommand(command);
 }
 
-void kgraphviewerPart::setPannerPosition(KGraphViewerInterface::PannerPosition position)
+void KGraphViewerPart::setPannerPosition(KGraphViewerInterface::PannerPosition position)
 {
-  m_widget->viewBevActivated(position);
+  d->m_widget->viewBevActivated(position);
 }
 
-void kgraphviewerPart::setPannerEnabled(bool enabled)
+void KGraphViewerPart::setPannerEnabled(bool enabled)
 {
-  m_widget->setPannerEnabled(enabled);
+  d->m_widget->setPannerEnabled(enabled);
 }
 
-void kgraphviewerPart::setZoomFactor(double factor)
+void KGraphViewerPart::setZoomFactor(double factor)
 {
-  m_widget->setZoomFactor(factor);
+  d->m_widget->setZoomFactor(factor);
 }
 
-void kgraphviewerPart::zoomBy(double factor)
+void KGraphViewerPart::zoomBy(double factor)
 {
-  m_widget->applyZoom(factor);
+  d->m_widget->applyZoom(factor);
 }
 
-void kgraphviewerPart::zoomIn()
+void KGraphViewerPart::zoomIn()
 {
-  m_widget->zoomIn();
+  d->m_widget->zoomIn();
 }
 
-void kgraphviewerPart::zoomOut()
+void KGraphViewerPart::zoomOut()
 {
-  m_widget->zoomOut();
+  d->m_widget->zoomOut();
+}
+
+void KGraphViewerPart::slotRenameNode(const QString& oldNodeName, const QString& newNodeName)
+{
+  d->m_widget->graph()->renameNode(oldNodeName,newNodeName);
+}
+
+extern "C"
+{
+  /**
+  * This function is the 'main' function of this part.  It takes
+  * the form 'void *init_lib<library name>()  It always returns a
+  * new factory object
+  */
+  KDE_EXPORT void *init_kgraphviewerpart()
+  {
+    return new KGraphViewerPartFactory();
+  }
+}
+
+// KComponentData KGraphViewerPartFactory::s_instance = 0L;
+KAboutData* KGraphViewerPartFactory::s_about = new KAboutData(
+"kgraphviewerpart", 0, ki18n("KGraphViewerPart"),
+"1.0", ki18n( "GraphViz dot files viewer" ),
+KAboutData::License_GPL,
+ki18n("(c) 2005-2006, Gaël de Chalendar &lt;kleag@free.fr&gt;"));
+
+KComponentData KGraphViewerPartFactory::s_instance(s_about);
+
+KGraphViewerPartFactory::KGraphViewerPartFactory(QObject* parent)
+: KParts::Factory(parent)
+{
+}
+
+KGraphViewerPartFactory::~KGraphViewerPartFactory()
+{
+gvFreeContext(gvContext());
+delete s_about;
+}
+
+KParts::Part* KGraphViewerPartFactory::createPartObject( QWidget *parentWidget,
+QObject *parent,
+const char *classname,
+const QStringList &args )
+{
+  Q_UNUSED(classname);
+  Q_UNUSED(args);
+  //     Create an instance of our Part
+  KGraphViewerPart* obj = new KGraphViewerPart( parentWidget, parent);
+
+  //     See if we are to be read-write or not
+  //     if (QCString(classname) == "KParts::ReadOnlyPart")
+  //         obj->setReadWrite(false);
+
+  return obj;
+}
+
+KComponentData KGraphViewerPartFactory::componentData()
+{
+  /*    if( !s_instance )
+  {
+    s_about = new KAboutData( "kgraphviewerpart", 0, ki18n("KGraphViewerPart"),
+                              "1.0", ki18n( "GraphViz dot files viewer" ),
+                              KAboutData::License_GPL,
+                              ki18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
+                              s_instance(s_about);
+  }*/
+  return s_instance;
+}
+                                                                                                                       
 }
 
 #include "kgraphviewer_part.moc"

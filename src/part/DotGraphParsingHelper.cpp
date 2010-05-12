@@ -41,9 +41,11 @@
 
 using namespace std;
 
-#define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<int>::max()
+extern KGraphViewer::DotGraphParsingHelper* phelper;
 
-extern DotGraphParsingHelper* phelper;
+namespace KGraphViewer
+{
+#define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<int>::max()
 
 DotGraphParsingHelper::DotGraphParsingHelper():
   attrid(),
@@ -337,4 +339,6 @@ void DotGraphParsingHelper::finalactions()
   {
     (*it)->setZ(maxZ+1);
   }
+}
+
 }

@@ -30,8 +30,8 @@
 
 #include <graphviz/gvc.h>
 
-
 class KToggleAction;
+
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
  * statusbar but relies on the "Part" to do all the real work.
@@ -39,19 +39,19 @@ class KToggleAction;
  * @short Application Shell
  * @author Gael de Chalendar <kleag@free.fr>
  */
-class KGraphViewer : public KParts::MainWindow 
+class KGraphViewerWindow : public KParts::MainWindow
 {
   Q_OBJECT
 public:
   /**
     * Default Constructor
     */
-  KGraphViewer();
+  KGraphViewerWindow();
 
   /**
     * Default Destructor
     */
-  virtual ~KGraphViewer();
+  virtual ~KGraphViewerWindow();
 
   /**
     * Use this method to load whatever file/URL you have

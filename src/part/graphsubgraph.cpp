@@ -27,6 +27,9 @@
 
 #include <kdebug.h>
 
+namespace KGraphViewer
+{
+  
 //
 // GraphSubgraph
 //
@@ -284,4 +287,6 @@ QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
   }
   s <<"}"<<endl;
   return s;
+}
+
 }

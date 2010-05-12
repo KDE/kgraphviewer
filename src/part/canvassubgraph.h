@@ -25,9 +25,13 @@
 
 #include "canvaselement.h"
 
+class QGraphicsScene;
+
+namespace KGraphViewer
+{
+  
 class GraphSubgraph;
 class DotGraphView;
-class QGraphicsScene;
 
 class CanvasSubgraph: public CanvasElement
 {
@@ -42,7 +46,8 @@ public:
 protected:
 };
 
-  
+}
+
 #endif
 
 

@@ -125,5 +125,4 @@ void KGraphEditorNodesTreeWidget::contextMenuEvent ( QContextMenuEvent * e )
   m_popup->exec(e->globalPos());
 }
 
-
 #include "KGraphEditorNodesTreeWidget.moc"

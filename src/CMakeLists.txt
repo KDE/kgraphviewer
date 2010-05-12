@@ -7,7 +7,7 @@ include_directories( part ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR
 
 set(kgraphviewer_SRCS main.cpp kgraphviewer.cpp kgraphviewerConfigDialog.cpp)
 
-qt4_add_dbus_adaptor(kgraphviewer_SRCS org.kde.kgraphviewer.xml kgraphviewer.h KGraphViewer)
+qt4_add_dbus_adaptor(kgraphviewer_SRCS org.kde.kgraphviewer.xml kgraphviewer.h KGraphViewerWindow)
 
 kde4_add_kcfg_files( kgraphviewer_SRCS kgraphviewersettings.kcfgc )
 
@@ -40,7 +40,7 @@ kde4_add_ui_files( kgrapheditor_SRCS preferencesReload.ui preferencesParsing.ui 
 
 kde4_add_executable(kgrapheditor ${kgrapheditor_SRCS})
 
-target_link_libraries(kgrapheditor  ${QT_AND_KDECORE_LIBS} ${KDE4_KHTML_LIBS})
+target_link_libraries(kgrapheditor  ${QT_AND_KDECORE_LIBS} ${KDE4_KHTML_LIBS} kgraphviewerlib)
 
 install( TARGETS kgrapheditor ${INSTALL_TARGETS_DEFAULT_ARGS})
 

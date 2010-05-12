@@ -34,6 +34,9 @@
 #include <QResizeEvent>
 #include <QScrollArea>
 
+namespace KGraphViewer
+{
+
 class KGVSimplePrintPreviewView : public QWidget
 {
 	public:
@@ -63,5 +66,7 @@ class KGVSimplePrintPreviewScrollView : public QScrollArea
 // 		virtual void resizeEvent( QResizeEvent *re );
 		KGVSimplePrintPreviewWindow *m_window;
 };
+
+}
 
 #endif

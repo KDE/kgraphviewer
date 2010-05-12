@@ -33,6 +33,9 @@
 #include <QResizeEvent>
 #include <QPaintEvent>
 
+namespace KGraphViewer
+{
+
 KGVSimplePrintPreviewView::KGVSimplePrintPreviewView(
   KGVSimplePrintPreviewWindow *window)
  : QWidget(),
@@ -143,5 +146,7 @@ void KGVSimplePrintPreviewScrollView::setFullWidth()
 //     return;
 //   QScrollArea::setContentsPos(x,y);
 // }
+
+}
 
 #include "simpleprintpreviewwindow_p.moc"

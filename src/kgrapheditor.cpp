@@ -27,14 +27,13 @@
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
 #include "part/dotgraph.h"
-#include "part/kgraphviewer_part.h"
+#include "part/dotgraphview.h"
 
 #include <kshortcutsdialog.h>
 #include <kfiledialog.h>
 #include <kconfig.h>
 #include <kurl.h>
 #include <ktabwidget.h>
-#include <kparts/partmanager.h>
 #include <kedittoolbar.h>
 #include <kdebug.h>
 #include <kstandarddirs.h>
@@ -56,8 +55,10 @@
 
 #include <iostream>
 
+using namespace KGraphViewer;
+
 KGraphEditor::KGraphEditor() :
-    KParts::MainWindow(),
+    KXmlGuiWindow(), 
     m_rfa(0),
     m_currentPart(0)
 {
@@ -124,13 +125,6 @@ KGraphEditor::KGraphEditor() :
   // name which is a bad idea usually.. but it's alright in this
   // case since our Part is made for this Shell
 
- // Create a KParts part manager, to handle part activation/deactivation
-  m_manager = new KParts::PartManager( this );
-  
-  // When the manager says the active part changes, the window updates (recreates) the GUI
-  connect( m_manager, SIGNAL( activePartChanged( KParts::Part * ) ),
-           this, SLOT( createGUI( KParts::Part * ) ) );
-    
   // Creates the GUI with a null part to make appear the main app menus and tools
   createGUI(0);
   setupGUI();  
@@ -139,8 +133,6 @@ KGraphEditor::KGraphEditor() :
   // position, icon size, etc.
   setAutoSaveSettings();
 
-  connect( m_manager, SIGNAL( activePartChanged( KParts::Part * ) ),
-           this, SLOT( slotSetActiveGraph( KParts::Part * ) ) );
 }
 
 KGraphEditor::~KGraphEditor()
@@ -169,69 +161,40 @@ void KGraphEditor::reloadPreviousFiles()
   
 }
 
-KParts::ReadOnlyPart*  KGraphEditor::slotNewGraph()
+DotGraphView*  KGraphEditor::slotNewGraph()
 {
   kDebug();
-  KLibFactory *factory = KLibLoader::self()->factory("kgraphviewerpart");
-  if (factory)
-  {
-    KParts::ReadOnlyPart* part = static_cast<KParts::ReadOnlyPart*>(factory->create(this, "kgraphviewerpart"));
-    
-    if (part)
-    {
-      connect(this,SIGNAL(setReadWrite()),part,SLOT(setReadWrite()));
-      emit(setReadWrite());
-      
-      m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), "");
-      m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
-      createGUI(part);
+  DotGraphView* view = new DotGraphView(0, m_widget);
 
-      m_manager->addPart( part, true );
-      m_tabsPartsMap[m_widget->currentPage()] = part;
-      m_tabsFilesMap[m_widget->currentPage()] = "";
-      connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
-    }
-    return part;
-  }
-  else
-  {
-    // if we couldn't find our Part, we exit since the Shell by
-    // itself can't do anything useful
-    KMessageBox::error(this, i18n("Could not find the KGraphViewer part."));
-    kapp->quit();
-    // we return here, cause kapp->quit() only means "exit the
-    // next time we enter the event loop...
-    return 0;
-  }
+  view->setReadWrite();
+
+    m_widget-> insertTab(view, QIcon( DesktopIcon("kgraphviewer") ), "");
+    m_widget->setCurrentPage(m_widget->indexOf(view));
+//     createGUI(view);
+
+    m_tabsPartsMap[m_widget->currentPage()] = view;
+    m_tabsFilesMap[m_widget->currentPage()] = "";
+//     connect(this,SIGNAL(hide(KParts::Part*)),view,SLOT(slotHide(KParts::Part*)));
+  return view;
 }
 
 void KGraphEditor::openUrl(const KUrl& url)
 {
   kDebug() << url;
-  KParts::ReadOnlyPart* part = slotNewGraph();
+  DotGraphView* part = slotNewGraph();
   
-  KGraphViewerInterface* kgv = qobject_cast<KGraphViewerInterface*>( part );
-  if( ! kgv )
-  {
-    // This should not happen
-    return;
-  }
-  (KGraphEditorSettings::parsingMode() == "external")
-    ?kgv->setLayoutMethod(KGraphViewerInterface::ExternalProgram)
-    :kgv->setLayoutMethod(KGraphViewerInterface::InternalLibrary);
+//   (KGraphEditorSettings::parsingMode() == "external")
+//     ?kgv->setLayoutMethod(KGraphViewerInterface::ExternalProgram)
+//     :kgv->setLayoutMethod(KGraphViewerInterface::InternalLibrary);
 
-  if (part)
-  {
-    QString label = url.url().section('/',-1,-1);
-    // @TODO set label
-    m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), label);
-    m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
-    createGUI(part);
-    m_tabsFilesMap[m_widget->currentPage()] = url.url();
-    part->openUrl( url );
-    
-    m_openedFiles.push_back(url.url());
-  }
+  QString label = url.url().section('/',-1,-1);
+  // @TODO set label
+  m_widget-> insertTab(part, QIcon( DesktopIcon("kgraphviewer") ), label);
+  m_widget->setCurrentPage(m_widget->indexOf(part));
+  m_tabsFilesMap[m_widget->currentPage()] = url.url();
+  part->loadLibrary(url.url());
+
+  m_openedFiles.push_back(url.url());
 }
 
 void KGraphEditor::fileOpen()
@@ -519,8 +482,7 @@ void KGraphEditor::close(QWidget* tab)
   m_openedFiles.remove(m_tabsFilesMap[tab]);
   m_widget->removePage(tab);
   tab->hide();
-  KParts::Part* part = m_tabsPartsMap[tab];
-  m_manager->removePart(part);
+  DotGraphView* part = m_tabsPartsMap[tab];
   m_tabsPartsMap.remove(tab);
   m_tabsFilesMap.remove(tab);
   delete part; part=0;
@@ -562,30 +524,33 @@ void KGraphEditor::fileSaveAs()
 void KGraphEditor::newTabSelectedSlot(QWidget* tab)
 {
 //   kDebug() << tab;
-  emit(hide((KParts::Part*)(m_manager->activePart())));
+//   emit(hide((KParts::Part*)(m_manager->activePart())));
   if (!m_tabsPartsMap.isEmpty())
   {
-    m_manager->setActivePart(m_tabsPartsMap[tab]);
+//     m_manager->setActivePart(m_tabsPartsMap[tab]);
   }
 }
 
-void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
+void KGraphEditor::slotSetActiveGraph( DotGraphView* part)
 {
   kDebug();
   if (m_currentPart != 0)
   {
     disconnect(this,SIGNAL(prepareAddNewElement(QMap<QString,QString>)),m_currentPart,SLOT(prepareAddNewElement(QMap<QString,QString>)));
     disconnect(this,SIGNAL(prepareAddNewEdge(QMap<QString,QString>)),m_currentPart,SLOT(prepareAddNewEdge(QMap<QString,QString>)));
-    disconnect(this,SIGNAL(saveTo(const QString&)),m_currentPart,SLOT(saveTo(const QString&)));
-    disconnect(this,SIGNAL(removeNode(const QString&)),m_currentPart,SLOT(slotRemoveNode(const QString&)));
-    disconnect(this,SIGNAL(addAttribute(const QString&)),m_currentPart,SLOT(slotAddAttribute(const QString&)));
-    disconnect(this,SIGNAL(removeAttribute(const QString&,const QString&)),m_currentPart,SLOT(slotRemoveAttribute(const QString&,const QString&)));
+    disconnect(this,SIGNAL(saveTo(QString)),m_currentPart,SLOT(saveTo(QString)));
+    disconnect(this,SIGNAL(removeNode(QString)),m_currentPart,SLOT(slotRemoveNode(QString)));
+    disconnect(this,SIGNAL(addAttribute(QString)),m_currentPart,SLOT(slotAddAttribute(QString)));
+    disconnect(this,SIGNAL(removeAttribute(QString,QString)),m_currentPart,SLOT(slotRemoveAttribute(QString,QString)));
     disconnect(this,SIGNAL(update()),m_currentPart,SLOT(slotUpdate()));
-    disconnect(this,SIGNAL(selectNode(const QString&)),m_currentPart,SLOT(slotSelectNode(const QString&)));
+    disconnect(this,SIGNAL(selectNode(QString)),m_currentPart,SLOT(slotSelectNode(QString)));
     disconnect(this,SIGNAL(saddNewEdge(QString,QString,QMap<QString,QString>)),
            m_currentPart,SLOT(slotAddNewEdge(QString,QString,QMap<QString,QString>)));
+    disconnect(this,SIGNAL(renameNode(QString,QString)),
+            m_currentPart,SLOT(slotRenameNode(QString,QString)));
+    disconnect(this,SIGNAL(setAttribute(QString,QString,QString)),m_currentPart,SLOT(slotSetAttribute(QString,QString,QString)));
   }
-  m_currentPart = ((kgraphviewerPart*) part);
+  m_currentPart = part;
   m_treeWidget->clear();
   if (m_currentPart == 0)
   {
@@ -593,31 +558,31 @@ void KGraphEditor::slotSetActiveGraph( KParts::Part* part)
   }
   connect(this,SIGNAL(prepareAddNewElement(QMap<QString,QString>)),part,SLOT(prepareAddNewElement(QMap<QString,QString>)));
   connect(this,SIGNAL(prepareAddNewEdge(QMap<QString,QString>)),part,SLOT(prepareAddNewEdge(QMap<QString,QString>)));
-  connect(this,SIGNAL(saveTo(const QString&)),part,SLOT(saveTo(const QString&)));
-  connect(this,SIGNAL(removeNode(const QString&)),part,SLOT(slotRemoveNode(const QString&)));
-  connect(this,SIGNAL(addAttribute(const QString&)),part,SLOT(slotAddAttribute(const QString&)));
-  connect(this,SIGNAL(removeAttribute(const QString&,const QString&)),part,SLOT(slotRemoveAttribute(const QString&,const QString&)));
+  connect(this,SIGNAL(saveTo(QString)),part,SLOT(saveTo(QString)));
+  connect(this,SIGNAL(removeNode(QString)),part,SLOT(slotRemoveNode(QString)));
+  connect(this,SIGNAL(addAttribute(QString)),part,SLOT(slotAddAttribute(QString)));
+  connect(this,SIGNAL(removeAttribute(QString,QString)),part,SLOT(slotRemoveAttribute(QString,QString)));
   connect(this,SIGNAL(update()),part,SLOT(slotUpdate()));
-  connect(this,SIGNAL(selectNode(const QString&)),part,SLOT(slotSelectNode(const QString&)));
-  connect( this, SIGNAL( removeElement(const QString&) ),
-            m_currentPart, SLOT( slotRemoveElement(const QString&) ) );
-  connect(this,SIGNAL(saddNewEdge(QString,QString,QMap<QString,QString>)),
-            m_currentPart,SLOT(slotAddNewEdge(QString,QString,QMap<QString,QString>)));
-
-  DotGraph* graph = m_currentPart->graph();
+  connect(this,SIGNAL(selectNode(QString)),part,SLOT(slotSelectNode(QString)));
+  connect( this,SIGNAL(removeElement(QString)),m_currentPart,SLOT(slotRemoveElement(QString)));
+  connect(this,SIGNAL(saddNewEdge(QString,QString,QMap<QString,QString>)),m_currentPart,SLOT(slotAddNewEdge(QString,QString,QMap<QString,QString>)));
+  connect(this,SIGNAL(renameNode(QString,QString)),m_currentPart,SLOT(slotRenameNode(QString,QString)));
+  connect(this,SIGNAL(setAttribute(QString,QString,QString)),m_currentPart,SLOT(slotSetAttribute(QString,QString,QString)));
+  
+  QList<QString> nodesIds;//TODO = m_currentPart->nodesIds();
   QList<QTreeWidgetItem *> items;
-  GraphNodeMap& nodesMap = graph->nodes();
-  foreach (GraphNode* node, nodesMap)
+  foreach (QString nodeId, nodesIds)
   {
-    kDebug()<< "new item " << node->id();
-    QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(node->id()));
+    kDebug()<< "new item " << nodeId;
+    QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(nodeId));
     item->setFlags(item->flags() | Qt::ItemIsEditable);
-    foreach (const QString &attrib, node->attributes().keys())
+    QMap<QString,QString> attributes;//TODO = m_currentPart->nodeAtributes(nodeId);
+    foreach (const QString &attrib, attributes.keys())
     {
       if (attrib != "_draw_" && attrib != "_ldraw_")
       {
         QStringList list(attrib);
-        list << node->attributes()[attrib];
+        list << attributes[attrib];
         QTreeWidgetItem* child = new QTreeWidgetItem((QTreeWidget*)0, list);
         child->setFlags(child->flags() | Qt::ItemIsEditable);
         item->addChild(child);
@@ -681,17 +646,16 @@ void KGraphEditor::slotGraphLoaded()
   disconnect(m_treeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
            this,SLOT(slotItemClicked(QTreeWidgetItem*,int)));
 
-  DotGraph* graph = m_currentPart->graph();
+  QList<QString> nodesIds;//TODO = m_currentPart->nodesIds();
   QList<QTreeWidgetItem *> items;
-  GraphNodeMap& nodesMap = graph->nodes();
-  foreach (GraphNode* node, nodesMap)
+  foreach (QString nodeId, nodesIds)
   {
-    kDebug()<< "item " << node->id();
+    kDebug()<< "item " << nodeId;
     QTreeWidgetItem* item;
-    QList<QTreeWidgetItem*> existingItems = m_treeWidget->findItems(node->id(),Qt::MatchRecursive|Qt::MatchExactly);
+    QList<QTreeWidgetItem*> existingItems = m_treeWidget->findItems(nodeId,Qt::MatchRecursive|Qt::MatchExactly);
     if (existingItems.isEmpty())
     {
-      item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(node->id()));
+      item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(nodeId));
       items.append(item);
     }
     else
@@ -699,12 +663,13 @@ void KGraphEditor::slotGraphLoaded()
       item = existingItems[0];
     }
     item->setFlags(item->flags() | Qt::ItemIsEditable);
-    QList<QString> keys = node->attributes().keys();
+    QMap<QString,QString> attributes; //TODO = m_currentPart->nodeAtributes(nodeId);
+    QList<QString> keys = attributes.keys();
     for (int i=0; i < item->childCount();i++)
     {
       if (keys.contains(item->child(i)->text(0)))
       {
-        item->child(i)->setText(1,node->attributes()[item->child(i)->text(0)]);
+        item->child(i)->setText(1,attributes[item->child(i)->text(0)]);
         keys.removeAll(item->child(i)->text(0));
       }
     }
@@ -713,7 +678,7 @@ void KGraphEditor::slotGraphLoaded()
       if (attrib != "_draw_" && attrib != "_ldraw_")
       {
         QStringList list(attrib);
-        list << node->attributes()[attrib];
+        list << attributes[attrib];
         QTreeWidgetItem* child = new QTreeWidgetItem((QTreeWidget*)0, list);
         child->setFlags(child->flags() | Qt::ItemIsEditable);
         item->addChild(child);
@@ -731,20 +696,12 @@ void KGraphEditor::slotGraphLoaded()
 void KGraphEditor::slotItemChanged ( QTreeWidgetItem * item, int column )
 {
   kDebug() ;
-  DotGraph* graph = m_currentPart->graph();
   /* values column */
   if (column == 0)
   {
     QString oldNodeName = m_currentTreeWidgetItemText;
     QString newNodeName = item->text(0);
-    if (oldNodeName != newNodeName)
-    {
-      kDebug() << "Renaming " << oldNodeName << " into " << newNodeName;
-      GraphNode* node = graph->nodes()[oldNodeName];
-      graph->nodes().remove(oldNodeName);
-      node->setId(newNodeName);
-      graph->nodes()[newNodeName] = node;
-    }
+    emit(renameNode(oldNodeName,newNodeName));
   }
   else if (column == 1)
   {
@@ -754,7 +711,7 @@ void KGraphEditor::slotItemChanged ( QTreeWidgetItem * item, int column )
       QString nodeLabel = item->parent()->text(0);
       QString attributeName = item->text(0);
       QString attributeValue = item->text(1);
-      graph->nodes()[nodeLabel]->attributes()[attributeName] = attributeValue;
+      emit (setAttribute(nodeLabel,attributeName,attributeValue));
     }
   }
   emit update();

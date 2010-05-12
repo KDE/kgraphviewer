@@ -23,6 +23,8 @@
 #include <list>
 #include <string>
 
+namespace KGraphViewer
+{
 class DotGraph;
 class GraphSubgraph;
 class GraphNode;
@@ -73,6 +75,8 @@ struct DotGraphParsingHelper
   GraphNode* gn;
   GraphEdge* ge;
 };
+
+}
 
 #endif
 

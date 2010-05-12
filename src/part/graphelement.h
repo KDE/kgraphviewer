@@ -26,6 +26,9 @@
 #include <QMap>
 #include <QtCore/QTextStream>
 
+namespace KGraphViewer
+{
+  
 class CanvasElement;
 
 /**
@@ -121,6 +124,8 @@ private:
 
 
 QTextStream& operator<<(QTextStream& s, const GraphElement& n);
+
+}
 
 #endif
 

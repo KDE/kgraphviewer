@@ -50,6 +50,9 @@
 #include <kdebug.h>
 #include <klocale.h>
 
+namespace KGraphViewer
+{
+  
 CanvasNode::CanvasNode(DotGraphView* v,
                         GraphNode* s,
                         QGraphicsScene* c,
@@ -139,5 +142,7 @@ CanvasNode::CanvasNode(DotGraphView* v,
 //   view()->setMaximumSize(int(node()->w()*m_scaleX*m_zoomFactor),int(node()->h()*m_scaleY*m_zoomFactor));
 //   view()->adjustSize();
 // }
+
+}
 
 #include "canvasnode.moc"

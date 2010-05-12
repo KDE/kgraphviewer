@@ -38,6 +38,9 @@
 class QLabel;
 class QScrollArea;
 
+namespace KGraphViewer
+{
+
 class KGVSimplePrintPreviewScrollView;
 class KGVSimplePrintPreviewView;
 class KGVSimplePrintingSettings;
@@ -95,5 +98,7 @@ class KGVSimplePrintPreviewWindow : public QWidget
 
 		friend class KGVSimplePrintPreviewView;
 };
+
+}
 
 #endif

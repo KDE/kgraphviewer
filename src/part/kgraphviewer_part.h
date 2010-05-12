@@ -21,15 +21,22 @@
 
 #include <kparts/part.h>
 #include <kparts/genericfactory.h>
-#include <kaction.h>
-#include <ktabwidget.h>
-#include <kdirwatch.h>
-
-#include "dotgraphview.h"
 
 #include "kgraphviewer_interface.h"
 
+class KComponentData;
+class KAboutData;
+class KDirWatch;
+
 class QWidget;
+
+namespace KGraphViewer
+{
+
+class DotGraph;
+class DotGraphView;
+
+class KGraphViewerPartPrivate;
 
 /**
  * This is a "Part".  It that does all the real work in a KPart
@@ -38,10 +45,10 @@ class QWidget;
  * @short Main Part
  * @author Gael de Chalendar <kleag@free.fr>
  */
-class kgraphviewerPart : public KParts::ReadOnlyPart, public KGraphViewerInterface
+class KGraphViewerPart : public KParts::ReadOnlyPart, public KGraphViewerInterface
 {
     Q_OBJECT
-    Q_INTERFACES(KGraphViewerInterface) 
+    Q_INTERFACES(KGraphViewer::KGraphViewerInterface)
 
 //BEGIN: KGraphViewerInterface
 public:
@@ -60,19 +67,17 @@ public:
     /**
      * Default constructor
      */
-    kgraphviewerPart(QWidget *parentWidget, QObject *parent);
+    KGraphViewerPart(QWidget *parentWidget, QObject *parent);
 
     
     /**
      * Destructor
      */
-    virtual ~kgraphviewerPart();
+    virtual ~KGraphViewerPart();
 
   // Return information about the part
   static KAboutData* createAboutData();
 
-  inline DotGraph* graph() {return m_widget->graph();}
-  inline const DotGraph* graph() const {return m_widget->graph();}
 
 Q_SIGNALS:
   void graphLoaded();
@@ -127,29 +132,42 @@ public slots:
   void slotUnsetCursor();
   virtual bool closeUrl();
   void slotSetLayoutMethod(LayoutMethod method);
+  void slotRenameNode(const QString& oldNodeName, const QString& newNodeName);
   
-protected:
+  QList<QString> nodesIds()
+  {
+//     return nodesIdsPrivate();
+  }
+  
+  QMap<QString,QString> nodeAtributes(const QString& nodeId)
+  {
+//     return nodeAtributesPrivate(nodeId);
+  }
+  
+/*  inline DotGraph* graph() {return m_widget->graph();}
+  inline const DotGraph* graph() const {return m_widget->graph();}*/
+  
+  
+  protected:
     /**
      * This must be implemented by each part. Use openUrl to open a file
      */
     virtual bool openFile();
     
 private:
-  DotGraphView *m_widget;
-  KDirWatch* m_watch;
-  QString m_file;
-  LayoutMethod m_layoutMethod;
+  KGraphViewerPartPrivate * const d;
+
+  QList<QString> nodesIdsPrivate();
+  QMap<QString,QString> nodeAtributesPrivate(const QString& nodeId);
+  
 };
 
-class KComponentData;
-class KAboutData;
-
-class kgraphviewerPartFactory : public KParts::Factory
+class KGraphViewerPartFactory : public KParts::Factory
 {
     Q_OBJECT
 public:
-    kgraphviewerPartFactory();
-    virtual ~kgraphviewerPartFactory();
+    KGraphViewerPartFactory(QObject* parent = 0);
+    ~KGraphViewerPartFactory();
     virtual KParts::Part* createPartObject( QWidget *parentWidget,
                                             QObject *parent,
                                             const char *classname, const QStringList &args );
@@ -160,4 +178,5 @@ private:
     static KAboutData* s_about;
 };
 
+}
 #endif // _KGRAPHVIEWERPART_H_

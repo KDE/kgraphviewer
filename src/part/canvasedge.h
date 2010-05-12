@@ -38,11 +38,6 @@
 #include "graphexporter.h"
 
 
-class CanvasNode;
-class CanvasEdge;
-class GraphEdge;
-class DotGraphView;
-
 class QMenu;
 
 /*
@@ -52,6 +47,13 @@ class QMenu;
  * - CanvasEdgeLabel  (Label for edges)
  * - CanvasEdgeArrow  (Arrows at the end of the edge spline)
  */
+namespace KGraphViewer
+{
+
+class CanvasNode;
+class CanvasEdge;
+class GraphEdge;
+class DotGraphView;
 
 
 class CanvasEdge : public QObject, public QAbstractGraphicsShapeItem
@@ -107,7 +109,7 @@ private:
   mutable QPainterPath m_boundingRegion;
 };
 
-
+}
 
 #endif
 

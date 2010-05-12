@@ -19,7 +19,10 @@
 
 #include "canvassubgraph.h"
 
-
+namespace KGraphViewer
+{
+  
+  
 CanvasSubgraph::CanvasSubgraph(
                               DotGraphView* v,
                               GraphSubgraph* gsubgraph,
@@ -29,3 +32,4 @@ CanvasSubgraph::CanvasSubgraph(
 {
 }
 
+}

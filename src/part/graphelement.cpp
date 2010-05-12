@@ -27,6 +27,9 @@
 #include <QRegExp>
 #include <graphviz/gvc.h>
 
+namespace KGraphViewer
+{
+  
 GraphElement::GraphElement() :
     QObject(),
     m_attributes(),
@@ -193,5 +196,6 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
   return s;
 }
 
+}
 
 #include "graphelement.moc"

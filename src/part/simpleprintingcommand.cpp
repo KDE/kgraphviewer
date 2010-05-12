@@ -61,6 +61,8 @@
 
 #include <iostream>
 
+namespace KGraphViewer
+{
 KGVSimplePrintingCommand::KGVSimplePrintingCommand(
   DotGraphView* mainWin, int objectId, QObject* parent)
  : QObject(parent, "KGVSimplePrintCommand")
@@ -291,6 +293,8 @@ void KGVSimplePrintingCommand::showPageSetup(const QString& aTitleText)
 {
   init(aTitleText);
   emit showPageSetupRequested();
+}
+
 }
 
 #include "simpleprintingcommand.moc"

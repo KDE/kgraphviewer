@@ -53,7 +53,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-KGraphViewer::KGraphViewer()
+KGraphViewerWindow::KGraphViewerWindow()
     : KParts::MainWindow(),
       m_rfa(0)
 {
@@ -106,14 +106,14 @@ KGraphViewer::KGraphViewer()
   setAutoSaveSettings();
 }
 
-KGraphViewer::~KGraphViewer()
+KGraphViewerWindow::~KGraphViewerWindow()
 {
   KSharedConfig::Ptr config = KGlobal::config();
   if (m_rfa != 0)
     m_rfa->saveEntries(KConfigGroup(config, "kgraphviewer recent files"));
 }
 
-void KGraphViewer::reloadPreviousFiles()
+void KGraphViewerWindow::reloadPreviousFiles()
 {
   QStringList previouslyOpenedFiles = KGraphViewerSettings::previouslyOpenedFiles();
   if ( (previouslyOpenedFiles.empty() == false) 
@@ -135,22 +135,22 @@ void KGraphViewer::reloadPreviousFiles()
   
 }
 
-void KGraphViewer::openUrl(const KUrl& url)
+void KGraphViewerWindow::openUrl(const KUrl& url)
 {
   kDebug() << url;
   KLibFactory *factory = KLibLoader::self()->factory("kgraphviewerpart");
   if (factory)
   {
     KParts::ReadOnlyPart* part = static_cast<KParts::ReadOnlyPart*>(factory->create(this, "kgraphviewerpart"));
-    KGraphViewerInterface* kgv = qobject_cast<KGraphViewerInterface*>( part );
+    KGraphViewer::KGraphViewerInterface* kgv = qobject_cast<KGraphViewer::KGraphViewerInterface*>( part );
     if( ! kgv )
     {
       // This should not happen
       return;
     }
     (KGraphViewerSettings::parsingMode() == "external")
-      ?kgv->setLayoutMethod(KGraphViewerInterface::ExternalProgram)
-      :kgv->setLayoutMethod(KGraphViewerInterface::InternalLibrary);
+        ?kgv->setLayoutMethod(KGraphViewer::KGraphViewerInterface::ExternalProgram)
+        :kgv->setLayoutMethod(KGraphViewer::KGraphViewerInterface::InternalLibrary);
 
     if (part)
     {
@@ -184,7 +184,7 @@ void KGraphViewer::openUrl(const KUrl& url)
   }
 }
 
-void KGraphViewer::fileOpen()
+void KGraphViewerWindow::fileOpen()
 {
   kDebug() ;
   // this slot is called whenever the File->Open menu is selected,
@@ -207,7 +207,7 @@ void KGraphViewer::fileOpen()
   }
 }
 
-void KGraphViewer::setupActions()
+void KGraphViewerWindow::setupActions()
 {
   // create our actions
   KAction* newAction = actionCollection()->addAction( KStandardAction::New, "file_new", this, SLOT( fileNew() ) );
@@ -241,7 +241,7 @@ void KGraphViewer::setupActions()
 
 }
 
-bool KGraphViewer::queryExit()
+bool KGraphViewerWindow::queryExit()
 {
 //   std::cerr << "queryExit" << std::endl;
   KGraphViewerSettings::setPreviouslyOpenedFiles(m_openedFiles);
@@ -249,17 +249,17 @@ bool KGraphViewer::queryExit()
   return true;
 }
 
-void KGraphViewer::fileNew()
+void KGraphViewerWindow::fileNew()
 {
   // this slot is called whenever the File->New menu is selected,
   // the New shortcut is pressed (usually CTRL+N) or the New toolbar
   // button is clicked
 
-  (new KGraphViewer)->show();
+  (new KGraphViewerWindow())->show();
 }
 
 
-void KGraphViewer::optionsShowToolbar()
+void KGraphViewerWindow::optionsShowToolbar()
 {
   // this is all very cut and paste code for showing/hiding the
   // toolbar
@@ -269,7 +269,7 @@ void KGraphViewer::optionsShowToolbar()
       toolBar()->hide();
 }
 
-void KGraphViewer::optionsShowStatusbar()
+void KGraphViewerWindow::optionsShowStatusbar()
 {
   // this is all very cut and paste code for showing/hiding the
   // statusbar
@@ -279,12 +279,12 @@ void KGraphViewer::optionsShowStatusbar()
       statusBar()->hide();
 }
 
-void KGraphViewer::optionsConfigureKeys()
+void KGraphViewerWindow::optionsConfigureKeys()
 {
   KShortcutsDialog::configure(actionCollection());
 }
 
-void KGraphViewer::optionsConfigureToolbars()
+void KGraphViewerWindow::optionsConfigureToolbars()
 {
     saveMainWindowSettings(KGlobal::config()->group("kgraphviewer") );
 
@@ -295,7 +295,7 @@ void KGraphViewer::optionsConfigureToolbars()
   dlg.exec();
 }
 
-void KGraphViewer::optionsConfigure()
+void KGraphViewerWindow::optionsConfigure()
 {
   //An instance of your dialog could be already created and could be cached, 
   //in which case you want to display the cached dialog instead of creating 
@@ -381,12 +381,12 @@ void KGraphViewer::optionsConfigure()
   dialog->show();
 }
 
-void KGraphViewer::applyNewToolbarConfig()
+void KGraphViewerWindow::applyNewToolbarConfig()
 {
   applyMainWindowSettings(KGlobal::config()->group("kgraphviewer"));
 }
 
-void KGraphViewer::slotReloadOnChangeModeYesToggled(bool value)
+void KGraphViewerWindow::slotReloadOnChangeModeYesToggled(bool value)
 {
   kDebug();
   if (value)
@@ -398,7 +398,7 @@ void KGraphViewer::slotReloadOnChangeModeYesToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotReloadOnChangeModeNoToggled(bool value)
+void KGraphViewerWindow::slotReloadOnChangeModeNoToggled(bool value)
 {
   kDebug();
   if (value)
@@ -410,7 +410,7 @@ void KGraphViewer::slotReloadOnChangeModeNoToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotReloadOnChangeModeAskToggled(bool value)
+void KGraphViewerWindow::slotReloadOnChangeModeAskToggled(bool value)
 {
   kDebug();
   if (value)
@@ -422,7 +422,7 @@ void KGraphViewer::slotReloadOnChangeModeAskToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotOpenInExistingWindowModeYesToggled(bool value)
+void KGraphViewerWindow::slotOpenInExistingWindowModeYesToggled(bool value)
 {
   kDebug() << value;
   if (value)
@@ -432,7 +432,7 @@ void KGraphViewer::slotOpenInExistingWindowModeYesToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotOpenInExistingWindowModeNoToggled(bool value)
+void KGraphViewerWindow::slotOpenInExistingWindowModeNoToggled(bool value)
 {
   kDebug() << value;
   if (value)
@@ -442,7 +442,7 @@ void KGraphViewer::slotOpenInExistingWindowModeNoToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotOpenInExistingWindowModeAskToggled(bool value)
+void KGraphViewerWindow::slotOpenInExistingWindowModeAskToggled(bool value)
 {
   kDebug() << value;
   if (value)
@@ -452,7 +452,7 @@ void KGraphViewer::slotOpenInExistingWindowModeAskToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotReopenPreviouslyOpenedFilesModeYesToggled(bool value)
+void KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeYesToggled(bool value)
 {
   kDebug() << value;
   if (value)
@@ -462,7 +462,7 @@ void KGraphViewer::slotReopenPreviouslyOpenedFilesModeYesToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotReopenPreviouslyOpenedFilesModeNoToggled(bool value)
+void KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeNoToggled(bool value)
 {
   kDebug() << value;
   if (value)
@@ -472,7 +472,7 @@ void KGraphViewer::slotReopenPreviouslyOpenedFilesModeNoToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotReopenPreviouslyOpenedFilesModeAskToggled(bool value)
+void KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeAskToggled(bool value)
 {
   kDebug() << value;
   if (value)
@@ -482,7 +482,7 @@ void KGraphViewer::slotReopenPreviouslyOpenedFilesModeAskToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotParsingModeExternalToggled(bool value)
+void KGraphViewerWindow::slotParsingModeExternalToggled(bool value)
 {
   kDebug();
   if (value)
@@ -494,7 +494,7 @@ void KGraphViewer::slotParsingModeExternalToggled(bool value)
   KGraphViewerSettings::self()->writeConfig();
 }
 
-void KGraphViewer::slotParsingModeInternalToggled(bool value)
+void KGraphViewerWindow::slotParsingModeInternalToggled(bool value)
 {
   kDebug();
   if (value)
@@ -508,12 +508,12 @@ void KGraphViewer::slotParsingModeInternalToggled(bool value)
 
 
 
-void KGraphViewer::slotURLSelected(const KUrl& url)
+void KGraphViewerWindow::slotURLSelected(const KUrl& url)
 {
   openUrl(url);
 }
 
-void KGraphViewer::close(QWidget* tab)
+void KGraphViewerWindow::close(QWidget* tab)
 {
   kDebug() << tab;
   m_openedFiles.remove(m_tabsFilesMap[tab]);
@@ -528,7 +528,7 @@ void KGraphViewer::close(QWidget* tab)
   tab = 0;*/
 }
 
-void KGraphViewer::close()
+void KGraphViewerWindow::close()
 {
   kDebug();
   QWidget* currentPage = m_widget->currentPage();
@@ -538,7 +538,7 @@ void KGraphViewer::close()
   }
 }
 
-void KGraphViewer::newTabSelectedSlot(QWidget* tab)
+void KGraphViewerWindow::newTabSelectedSlot(QWidget* tab)
 {
   kDebug() << tab;
   emit(hide((KParts::Part*)(m_manager->activePart())));
@@ -548,13 +548,13 @@ void KGraphViewer::newTabSelectedSlot(QWidget* tab)
   }
 }
 
-void KGraphViewer::slotHoverEnter(const QString& id)
+void KGraphViewerWindow::slotHoverEnter(const QString& id)
 {
   kDebug() << id;
   statusBar()->showMessage(id);
 }
 
-void KGraphViewer::slotHoverLeave(const QString& id)
+void KGraphViewerWindow::slotHoverLeave(const QString& id)
 {
   kDebug() << id;
   statusBar()->showMessage("");

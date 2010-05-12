@@ -49,6 +49,8 @@
 
 #include <math.h>
 
+namespace KGraphViewer
+{
 KGVSimplePrintingEngine::KGVSimplePrintingEngine(
                                     KGVSimplePrintingSettings* settings, 
                                     QObject* parent) : 
@@ -427,6 +429,8 @@ uint KGVSimplePrintingEngine::maxVertFit() const
 //   kDebug() << "maxVertFit: " << m_painting.height() << " / " << h
 //     << " = " << m_painting.height()/h;
   return (uint)ceil(((double)m_painting.height()))/h + 1;
+}
+
 }
 
 #include "simpleprintingengine.moc"

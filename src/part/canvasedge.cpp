@@ -45,6 +45,9 @@
 // CanvasEdge
 //
 
+namespace KGraphViewer
+{
+
 CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
                        qreal scaleX, qreal scaleY,
                        qreal xMargin, qreal yMargin, qreal gh,
@@ -566,5 +569,6 @@ void CanvasEdge::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
   emit hoverLeave(this);
 }
 
+}
 
 #include "canvasedge.moc"

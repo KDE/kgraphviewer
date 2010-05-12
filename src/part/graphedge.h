@@ -43,6 +43,9 @@
 #include <QMap>
 #include <QTextStream>
 
+namespace KGraphViewer
+{
+  
 class CanvasEdge;
 class GraphNode;
 
@@ -110,6 +113,8 @@ private:
 typedef QMap<QString, GraphEdge*> GraphEdgeMap;
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e);
+
+}
 
 #endif
 

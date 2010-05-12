@@ -60,6 +60,9 @@
 
 #include <iostream>
 
+namespace KGraphViewer
+{
+  
 
 KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
     KGVSimplePrintingCommand* command, DotGraphView *mainWin, QWidget *parent, 
@@ -386,6 +389,8 @@ void KGVSimplePrintingPageSetup::slotVertFitChanged(int newValue)
   m_settings->vertFitting = newValue;
   m_printPreviewNeedsReloading = true;
   emit needsRedraw();
+}
+
 }
 
 #include "simpleprintingpagesetup.moc"

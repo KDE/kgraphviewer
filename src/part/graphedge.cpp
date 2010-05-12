@@ -30,6 +30,9 @@
 #include "canvasedge.h"
 #include "dotdefaults.h"
 
+namespace KGraphViewer
+{
+  
 /*
  * Graph Edge
  */
@@ -159,4 +162,6 @@ QTextStream& operator<<(QTextStream& s, const GraphEdge& e)
     << dynamic_cast<const GraphElement&>(e) << "];" << endl;
 
   return s;
+}
+
 }

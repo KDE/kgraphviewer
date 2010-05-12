@@ -35,10 +35,12 @@
 
 #include <graphviz/gvc.h>
 
-class DotGraph;
 class KTemporaryFile;
 
-
+namespace KGraphViewer
+{
+class DotGraph;
+  
 /**
  * GraphExporter
  *
@@ -54,6 +56,7 @@ public:
   graph_t* exportToGraphviz(const DotGraph* graph);
 };
 
+}
 
 #endif
 

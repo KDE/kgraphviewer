@@ -61,4 +61,5 @@ private:
   QTreeWidgetItem* m_item;
 };
 
+
 #endif // _KGRAPHEDITORELEMENTTREEWIDGET_H_

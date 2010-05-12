@@ -39,6 +39,9 @@
 
 #include <kdebug.h>
 
+namespace KGraphViewer
+{
+  
 //
 // GraphNode
 //
@@ -109,3 +112,4 @@ QTextStream& operator<<(QTextStream& s, const GraphNode& n)
   return s;
 }
 
+}

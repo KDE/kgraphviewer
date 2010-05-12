@@ -20,9 +20,19 @@
 #define KDELIBS_KDE_TERMINAL_INTERFACE_H
 
 #include <QtCore/QObject>
+#include <QtCore/QMap>
+#include <QtGui/QCursor>
+
+namespace KParts
+{
+  class Part;
+}
 
 class QStringList;
 
+namespace KGraphViewer
+{
+class DotGraph;
 /**
  * KGraphViewerInterface is an interface implemented by KGraphViewer to
  * allow developers access to the KGraphViewerPart in ways that are not
@@ -83,8 +93,43 @@ public:
 
   virtual void selectNode(const QString& nodeId) = 0;
   virtual void centerOnNode(const QString& nodeId) = 0;
+
+  // Slots
+  virtual void slotHide(KParts::Part* part) = 0;
+  virtual void slotUpdate() = 0;
+  virtual void prepareAddNewElement(QMap<QString,QString> attribs) = 0;
+  virtual void prepareAddNewEdge(QMap<QString,QString> attribs) = 0;
+  virtual void setReadOnly() = 0;
+  virtual void setReadWrite() = 0;
+  virtual void saveTo(const QString& fileName) = 0;
+  virtual void slotRemoveNode(const QString&) = 0;
+  virtual void slotRemoveNodeFromSubgraph(const QString& nodeName, const QString& subgraphName) = 0;
+  virtual void slotRemoveSubgraph(const QString&) = 0;
+  virtual void slotAddAttribute(const QString&) = 0;
+  virtual void slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue) = 0;
+  virtual void slotRemoveAttribute(const QString&,const QString&) = 0;
+  virtual void slotSetGraphAttributes(QMap<QString,QString> attribs) = 0;
+  virtual void slotAddNewNode(QMap<QString,QString> attribs) = 0;
+  virtual void slotAddNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph) = 0;
+  virtual void slotAddExistingNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph) = 0;
+  virtual void slotMoveExistingNodeToMainGraph(QMap<QString,QString>) = 0;
+  virtual void slotAddNewSubgraph(QMap<QString,QString> attribs) = 0;
+  virtual void slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs) = 0;
+  virtual void slotRemoveEdge(const QString& id) = 0;
+  virtual void slotRemoveElement(const QString& id) = 0;
+  virtual void slotClose() = 0;
+  virtual void slotSelectNode(const QString&) = 0;
+  virtual void slotSetHighlighting(bool highlightingValue) = 0;
+  virtual void slotPrepareToSelect() = 0;
+  virtual void slotSetCursor(const QCursor& cursor) = 0;
+  virtual void slotUnsetCursor() = 0;
+  virtual void slotSetLayoutMethod(LayoutMethod method) = 0;
+  virtual void slotRenameNode(const QString& oldName, const QString& newName) = 0;
+  
 };
 
-Q_DECLARE_INTERFACE(KGraphViewerInterface, "org.kde.KGraphViewerInterface")
+}
+
+Q_DECLARE_INTERFACE(KGraphViewer::KGraphViewerInterface, "org.kde.KGraphViewerInterface")
 
 #endif

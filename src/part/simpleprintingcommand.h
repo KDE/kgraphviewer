@@ -32,6 +32,8 @@
 #include <dotgraphview.h>
 #include <kgraphviewer_part.h>
 
+namespace KGraphViewer
+{
 class KGVSimplePrintPreviewWindow;
 
 /*! @short A command for simple printing and print preview. 
@@ -79,5 +81,7 @@ protected:
   bool m_printPreviewNeedsReloading : 1;
   QDialog* m_pageSetupDialog;
 };
+
+}
 
 #endif

@@ -36,6 +36,9 @@
 
 #include "canvaselement.h"
 
+namespace KGraphViewer
+{
+  
 class GraphNode;
 
 class CanvasNode : public CanvasElement
@@ -79,7 +82,7 @@ public:
 //   int m_xMovedTo, m_yMovedTo;
 // };
 
-
+}
 #endif
 
 

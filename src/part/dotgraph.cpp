@@ -39,14 +39,18 @@
 #include <QByteArray>
 #include <QProcess>
 #include <QMutexLocker>
-
-
+#include <QUuid>
 
 using namespace boost;
 using namespace boost::spirit::classic;
 
-extern DotGraphParsingHelper* phelper;
+extern KGraphViewer::DotGraphParsingHelper* phelper;
 
+
+namespace KGraphViewer
+{
+  
+  
 const distinct_parser<> keyword_p("0-9a-zA-Z_");
 
 DotGraph::DotGraph() :
@@ -794,6 +798,180 @@ GraphElement* DotGraph::elementNamed(const QString& id)
     }
   }
   return 0;
+}
+
+void DotGraph::setGraphAttributes(QMap<QString,QString> attribs)
+{
+  kDebug() << attribs;
+  attributes() = attribs;
+}
+
+
+void DotGraph::addNewNode(QMap<QString,QString> attribs)
+{
+  kDebug() << attribs;
+  GraphNode* newNode = new GraphNode();
+  newNode->attributes() = attribs;
+  nodes().insert(newNode->id(), newNode);
+  kDebug() << "node added as" << newNode->id();
+}
+
+void DotGraph::addNewSubgraph(QMap<QString,QString> attribs)
+{
+  kDebug() << attribs;
+  GraphSubgraph* newSG = new GraphSubgraph();
+  newSG->attributes() = attribs;
+  subgraphs()[newSG->id()] = newSG;
+  kDebug() << "subgraph added as" << newSG->id();
+}
+
+void DotGraph::addNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph)
+{
+  kDebug() << attribs << "to" << subgraph;
+  GraphNode* newNode = new GraphNode();
+  newNode->attributes() = attribs;
+  subgraphs()[subgraph]->content().push_back(newNode);
+
+  kDebug() << "node added as" << newNode->id() << "in" << subgraph;
+}
+
+void DotGraph::addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph)
+{
+  kDebug() << attribs << "to" << subgraph;
+  GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(attribs["id"]));
+  if (node == 0)
+  {
+    kError() << "No such node" << attribs["id"];
+    return;
+  }
+  if (nodes().contains(attribs["id"]))
+  {
+    nodes().remove(attribs["id"]);
+    node->attributes() = attribs;
+    subgraphs()[subgraph]->content().push_back(node);
+    kDebug() << "node " << node->id() << " added in " << subgraph;
+  }
+  else
+  {
+    foreach(GraphSubgraph* gs, subgraphs())
+    {
+      GraphElement* elt = 0;
+      foreach(GraphElement* element, gs->content())
+      {
+        if (element == node)
+        {
+          elt = element;
+          break;
+        }
+      }
+      if (elt != 0)
+      {
+        kDebug() << "removing node " << elt->id() << " from " << gs->id();
+        gs->removeElement(elt);
+        subgraphs()[subgraph]->content().push_back(elt);
+        kDebug() << "node " << elt->id() << " added in " << subgraph;
+        break;
+      }
+    }
+  }
+}
+
+void DotGraph::moveExistingNodeToMainGraph(QMap<QString,QString> attribs)
+{
+  kDebug() << attribs;
+  GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(attribs["id"]));
+  if (node == 0)
+  {
+    kError() << "No such node" << attribs["id"];
+    return;
+  }
+  else if (nodes().contains(attribs["id"]))
+  {
+    kError() << "Node" << attribs["id"] << "already in main graph";
+    return;
+  }
+  else
+  {
+    foreach(GraphSubgraph* gs, subgraphs())
+    {
+      bool found = false;
+      foreach(GraphElement* element, gs->content())
+      {
+        if (element == node)
+        {
+          found = true;
+          break;
+        }
+      }
+      if (found)
+      {
+        kDebug() << "removing node " << node->id() << " from " << gs->id();
+        gs->removeElement(node);
+        nodes()[node->id()] = node;
+        kDebug() << "node " << node->id() << " moved to main graph";
+        break;
+      }
+    }
+  }
+}
+
+void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString,QString> attribs)
+{
+  kDebug() << src << tgt << attribs;
+  GraphEdge* newEdge = new GraphEdge();
+  newEdge->attributes() = attribs;
+  GraphElement* srcElement = elementNamed(src);
+  if (srcElement == 0)
+  {
+    srcElement = elementNamed(QString("cluster_")+src);
+  }
+  GraphElement* tgtElement = elementNamed(tgt);
+  if (tgtElement == 0)
+  {
+    tgtElement = elementNamed(QString("cluster_")+tgt);
+  }
+  
+  if (srcElement == 0 || tgtElement == 0)
+  {
+    kError() << src << "or" << tgt << "missing";
+    return;
+  }
+  if (attribs.contains("id"))
+  {
+    newEdge->setId(attribs["id"]);
+  }
+  else
+  {
+    newEdge->setId(src+tgt+QUuid::createUuid().toString().remove("{").remove("}").remove("-"));
+  }
+  newEdge->setFromNode(srcElement);
+  newEdge->setToNode(tgtElement);
+  edges().insert(newEdge->id(), newEdge);
+}
+
+void DotGraph::removeAttribute(const QString& nodeName, const QString& attribName)
+{
+  kDebug();
+  GraphElement* element = elementNamed(nodeName);
+  if (element != 0)
+  {
+    element->removeAttribute(attribName);
+  }
+}
+
+void DotGraph::renameNode(const QString& oldNodeName, const QString& newNodeName)
+{
+  if (oldNodeName != newNodeName)
+  {
+    kDebug() << "Renaming " << oldNodeName << " into " << newNodeName;
+    GraphNode* node = nodes()[oldNodeName];
+    nodes().remove(oldNodeName);
+    node->setId(newNodeName);
+    nodes()[newNodeName] = node;
+  }
+}
+
+
 }
 
 #include "dotgraph.moc"

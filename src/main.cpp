@@ -58,19 +58,19 @@ int main(int argc, char **argv)
 // see if we are starting with session management
   if (app.isSessionRestored())
   {
-      RESTORE(KGraphViewer);
+    RESTORE(KGraphViewerWindow);
   }
   else
   {
       // no session.. just start up normally
       KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-      KGraphViewer *widget = 0;
+      KGraphViewerWindow *widget = 0;
       if ( args->count() == 0 )
       {
-        widget = new KGraphViewer;
-	new KgraphviewerAdaptor(widget);
-	QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
+        widget = new KGraphViewerWindow;
+        new KgraphviewerAdaptor(widget);
+        QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
         widget->show();
       }
       else
@@ -115,7 +115,7 @@ int main(int argc, char **argv)
           }
           else
           {
-            widget = new KGraphViewer;
+            widget = new KGraphViewerWindow;
             new KgraphviewerAdaptor(widget);
             QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
             widget->show();

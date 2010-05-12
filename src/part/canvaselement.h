@@ -29,10 +29,14 @@
 
 #include "dotgrammar.h"
 
+class QMenu;
+class QGraphicsScene;
+
+
+namespace KGraphViewer
+{
 class GraphElement;
 class DotGraphView;
-class QGraphicsScene;
-class QMenu;
 
 class CanvasElement: public QObject, public QAbstractGraphicsShapeItem
 {
@@ -91,8 +95,9 @@ public Q_SLOTS:
   void slotRemoveElement();
 };
 
-  
-  #endif // CANVAS_ELEMENT_H
+}
+
+#endif // CANVAS_ELEMENT_H
 
 
 

@@ -44,6 +44,8 @@
 
 #include "dotgraphview.h"
 
+namespace KGraphViewer
+{
 //
 // PannerView
 //
@@ -181,6 +183,8 @@ void PannerView::mouseReleaseEvent(QMouseEvent* e)
 void PannerView::contextMenuEvent(QContextMenuEvent* event)
 {
   m_parent->contextMenuEvent(event);
+}
+
 }
 
 #include "pannerview.moc"

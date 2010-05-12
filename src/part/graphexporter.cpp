@@ -34,6 +34,9 @@
 #include <kdebug.h>
 #include <ktemporaryfile.h>
 
+namespace KGraphViewer
+{
+  
 GraphExporter::GraphExporter()
 {
 }
@@ -156,3 +159,4 @@ graph_t* GraphExporter::exportToGraphviz(const DotGraph* graph)
   return agraph;
 }
 
+}

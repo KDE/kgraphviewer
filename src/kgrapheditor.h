@@ -21,7 +21,7 @@
 #define _KGRAPHEDITOR_H_
 
 #include <kapplication.h>
-#include <kparts/mainwindow.h>
+#include <kxmlguiwindow.h>
 #include <ktabwidget.h>
 #include <kaction.h>
 #include <krecentfilesaction.h>
@@ -33,18 +33,21 @@ class QTreeWidgetItem;
 
 class KToggleAction;
 
-class kgraphviewerPart;
 class KGraphEditorNodesTreeWidget;
 class KGraphEditorElementTreeWidget;
 
-/**
+namespace KGraphViewer
+{
+  class DotGraphView;
+}
+  /**
  * This is the application "Shell".  It has a menubar, toolbar, and
  * statusbar but relies on the "Part" to do all the real work.
  *
  * @short Application Shell
  * @author Gael de Chalendar <kleag@free.fr>
  */
-class KGraphEditor : public KParts::MainWindow
+class KGraphEditor : public KXmlGuiWindow
 {
   Q_OBJECT
 public:
@@ -69,7 +72,7 @@ protected:
   bool queryExit(); 
 
 Q_SIGNALS:
-  void hide(KParts::Part* part);
+  void hide(KGraphViewer::DotGraphView* part);
   void prepareAddNewElement(QMap<QString,QString> attribs);
   void prepareAddNewEdge(QMap<QString,QString> attribs);
   void setReadWrite();
@@ -80,16 +83,18 @@ Q_SIGNALS:
   void removeElement(const QString&);
   void addAttribute(const QString&);
   void removeAttribute(const QString&,const QString&);
+  void setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
   void update();
   void saddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
-
+  void renameNode(const QString& oldName, const QString& newName);
+  
 public Q_SLOTS:
   /**
     * Use this method to load whatever file/URL you have
     */
   void openUrl(const QString& url) {openUrl(KUrl(url));}
 
-  void slotSetActiveGraph( KParts::Part* part);
+  void slotSetActiveGraph( KGraphViewer::DotGraphView* part);
 
   void slotGraphLoaded();
   
@@ -138,7 +143,7 @@ private Q_SLOTS:
   void slotHoverEnter(const QString&);
   void slotHoverLeave(const QString&);
 
-  KParts::ReadOnlyPart* slotNewGraph();
+  KGraphViewer::DotGraphView* slotNewGraph();
   
 private:
   void setupAccel();
@@ -149,16 +154,15 @@ private:
   KGraphEditorElementTreeWidget* m_newElementAttributesWidget;
   KTabWidget* m_widget;
   KRecentFilesAction* m_rfa;
-  KParts::PartManager* m_manager;
   
   KToggleAction *m_toolbarAction;
   KToggleAction *m_statusbarAction;
 
   QStringList m_openedFiles;
   
-  QMap<QWidget*, KParts::Part*> m_tabsPartsMap;
+  QMap<QWidget*, KGraphViewer::DotGraphView*> m_tabsPartsMap;
   QMap<QWidget*, QString> m_tabsFilesMap;
-  kgraphviewerPart* m_currentPart;
+  KGraphViewer::DotGraphView* m_currentPart;
 
   QMap<QString, QString> m_newElementAttributes;
 

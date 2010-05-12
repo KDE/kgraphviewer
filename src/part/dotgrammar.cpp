@@ -41,6 +41,8 @@ using namespace std;
 using namespace boost;
 using namespace boost::spirit::classic;
 
+using namespace KGraphViewer;
+
 #define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<size_t>::max()
 #define BOOST_SPIRIT_DEBUG 1
 
