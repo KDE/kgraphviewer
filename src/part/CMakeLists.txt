@@ -10,7 +10,7 @@ kde4_add_kcfg_files( kgraphviewerlib_LIB_SRCS kgraphviewer_partsettings.kcfgc )
 
 set( kgraphviewerprinting_UI simpleprintingpagesetupbase.ui KgvPageLayoutColumnsBase.ui KgvPageLayoutHeaderBase.ui )
 
-kde4_add_ui_files(kgraphviewer_LIB_SRCS ${kgraphviewerprinting_UI} )
+kde4_add_ui_files(kgraphviewerlib_LIB_SRCS ${kgraphviewerprinting_UI} )
 
 
 kde4_add_library(kgraphviewerlib SHARED ${kgraphviewerlib_LIB_SRCS})
