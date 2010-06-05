@@ -176,6 +176,15 @@ bool KGraphViewerPart::closeUrl()
   return d->m_widget->initEmpty();
 }
 
+bool KGraphViewerPart::slotLoadLibrary(graph_t* graph) 	 
+{ 	 
+  kDebug(); 	 
+  bool res = d->m_widget->slotLoadLibrary(graph); 	 
+  if (res) 	 
+    d->m_widget->show(); 	 
+  return res; 	 
+}
+
 KGraphViewerPart::~KGraphViewerPart()
 {
   delete d;
