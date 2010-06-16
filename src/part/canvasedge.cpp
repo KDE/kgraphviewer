@@ -81,6 +81,8 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
   
   connect(this, SIGNAL(edgeContextMenuEvent(const QString&, const QPoint&)), view, SLOT(slotContextMenuEvent(const QString&, const QPoint&)));
 
+  setAcceptHoverEvents ( true );
+
   kDebug() << "connect slotElementHoverEnter";
   connect(this, SIGNAL(hoverEnter(CanvasEdge*)), view, SLOT(slotElementHoverEnter(CanvasEdge*)));
   connect(this, SIGNAL(hoverLeave(CanvasEdge*)), view, SLOT(slotElementHoverLeave(CanvasEdge*)));
