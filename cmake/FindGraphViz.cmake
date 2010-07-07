@@ -20,6 +20,11 @@
 # 
 # For more information, contact the authors of this software at
 # moab@sandia.gov.
+# 
+# this will set the following variables:
+# graphviz_LIBRARIES
+# graphviz_FOUND
+# graphviz_INCLUDE_DIRECTORIES
 
 if ( NOT WIN32 )
   
@@ -37,6 +42,7 @@ find_path( graphviz_INCLUDE_DIRECTORIES
     ${graphviz_INCLUDE_DIRS}
     /usr/local/include
     /usr/include
+    PATH_SUFFIXES graphviz
     )
     
 find_library( graphviz_GVC_LIBRARY
@@ -156,4 +162,4 @@ include(FindPackageHandleStandardArgs)
 
 # handle the QUIETLY and REQUIRED arguments and set GRAPHVIZ_FOUND to TRUE if 
 # all listed variables are TRUE
-find_package_handle_standard_args(GraphViz DEFAULT_MSG GRAPHVIZ_LIBRARIES GRAPHVIZ_INCLUDE_DIR)
+find_package_handle_standard_args(GraphViz DEFAULT_MSG graphviz_LIBRARIES graphviz_INCLUDE_DIRECTORIES)
