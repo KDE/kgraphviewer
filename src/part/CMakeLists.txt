@@ -1,4 +1,4 @@
-include_directories( ../ ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIRS}  )
+include_directories( ../ ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIRS} ${graphviz_INCLUDE_DIRECTORIES} )
 
 link_directories(${CMAKE_BINARY_DIR}/lib)
 
@@ -16,7 +16,7 @@ kde4_add_ui_files(kgraphviewerlib_LIB_SRCS ${kgraphviewerprinting_UI} )
 kde4_add_library(kgraphviewerlib SHARED ${kgraphviewerlib_LIB_SRCS})
 
 add_definitions(-DQT_STL)
-target_link_libraries(kgraphviewerlib  ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} ${GRAPHVIZ_LIBRARIES})
+target_link_libraries(kgraphviewerlib  ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} ${graphviz_LIBRARIES})
 
 set_target_properties(kgraphviewerlib PROPERTIES VERSION 2.0.90
                                           SOVERSION 3 )

@@ -16,15 +16,15 @@ endif (APPLE)
 find_package(Boost 1.36 REQUIRED)
 find_package(GraphViz REQUIRED)
 
-if(NOT GRAPHVIZ_DOT_EXECUTABLE)
+if(NOT DOT)
    MESSAGE(STATUS "GraphViz not found. You will need it at runtime")
-endif(NOT GRAPHVIZ_DOT_EXECUTABLE)
+endif(NOT DOT)
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT3_SUPPORT)
 
 remove_definitions(-DQT_NO_STL) 
 
-include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES} ${Boost_INCLUDE_DIR})
+include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES})
 
 
 configure_file (config-kgraphviewer.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h )
