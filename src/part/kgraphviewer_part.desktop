@@ -49,3 +49,4 @@ MimeType=application/graphviz;
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=libkgraphviewerpart
 Type=Service
+Categories=Qt;KDE;Graphics;Viewer;2DGraphics;DataVisualization;
