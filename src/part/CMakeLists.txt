@@ -22,7 +22,7 @@ set_target_properties(kgraphviewerlib PROPERTIES VERSION 2.0.3
                                           SOVERSION 2 )
 
 
-install( TARGETS kgraphviewerlib DESTINATION ${INSTALL_TARGETS_DEFAULT_ARGS})
+install( TARGETS kgraphviewerlib ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 
 ########### next target ###############
