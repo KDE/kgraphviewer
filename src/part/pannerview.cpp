@@ -58,6 +58,10 @@ PannerView::PannerView(DotGraphView * parent, const char * name)
   // viewport()->setBackgroundMode(Qt::NoBackground);
   setBackgroundMode(Qt::NoBackground);
 
+  // if there are ever graphic glitches to be found, remove this again
+  setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing | QGraphicsView::DontClipPainter |
+                        QGraphicsView::DontSavePainterState);
+
   setToolTip(i18n("View of the complete graph. Click and drag to move the visible part."));
   setWhatsThis(i18n("<h1>View of the Complete Graph</h1>"
     "<p>Single clicking somewhere without the red square will move the center of the "

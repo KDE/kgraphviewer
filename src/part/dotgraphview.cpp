@@ -114,6 +114,10 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   m_birdEyeView = new PannerView(this);
   m_cvZoom = 1;
 
+  // if there are ever graphic glitches to be found, remove this again
+  setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing | QGraphicsView::DontClipPainter |
+                        QGraphicsView::DontSavePainterState);
+
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
   setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
   
