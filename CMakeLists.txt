@@ -1,6 +1,6 @@
 project(kgraphviewer)
 
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules )
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/)
 
 # search packages used by KDE
 find_package(KDE4 REQUIRED)
@@ -14,11 +14,11 @@ if (APPLE)
 endif (APPLE)
 
 find_package(Boost 1.36 REQUIRED)
+find_package(GraphViz REQUIRED)
 
-FIND_PROGRAM(DOT_EXECUTABLE NAMES dot  PATHS /usr/bin/  )
-if(NOT DOT_EXECUTABLE)
+if(NOT GRAPHVIZ_DOT_EXECUTABLE)
    MESSAGE(STATUS "GraphViz not found. You will need it at runtime")
-endif(NOT DOT_EXECUTABLE)
+endif(NOT GRAPHVIZ_DOT_EXECUTABLE)
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT3_SUPPORT)
 
