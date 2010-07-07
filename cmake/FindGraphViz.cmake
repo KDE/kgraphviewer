@@ -151,3 +151,9 @@ ENDIF (GRAPHVIZVERSION)
 
 
 endif (DOT)
+
+include(FindPackageHandleStandardArgs)
+
+# handle the QUIETLY and REQUIRED arguments and set GRAPHVIZ_FOUND to TRUE if 
+# all listed variables are TRUE
+find_package_handle_standard_args(GraphViz DEFAULT_MSG GRAPHVIZ_LIBRARIES GRAPHVIZ_INCLUDE_DIR)
