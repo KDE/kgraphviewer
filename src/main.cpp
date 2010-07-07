@@ -37,7 +37,7 @@
 static const char description[] =
 I18N_NOOP("A Graphviz dot graph viewer for KDE");
 
-static const char version[] = "2.0.2";
+static const char version[] = "2.0.90";
 
 int main(int argc, char **argv)
 {
@@ -47,6 +47,7 @@ int main(int argc, char **argv)
   about.addAuthor( ki18n("Reimar Döffinger"), ki18n("Contributor"), "Reimar.Doeffinger@stud.uni-karlsruhe.de" );
   about.addAuthor( ki18n("Matthias Peinhardt"), ki18n("Contributor"), "matthias.peinhardt@googlemail.com" );
   about.addAuthor( ki18n("Sandro Andrade"), ki18n("Contributor"), "sandro.andrade@gmail.com" );
+  about.addAuthor( ki18n("Milian Wolff"), ki18n("Contributor"), "mail@milianw.de" );
   
   KCmdLineArgs::init(argc, argv, &about);
 
