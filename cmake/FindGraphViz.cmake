@@ -39,7 +39,7 @@ find_path( graphviz_INCLUDE_DIRECTORIES
     /usr/include
     )
     
-    find_library( graphviz_GVC_LIBRARY
+find_library( graphviz_GVC_LIBRARY
     NAMES gvc
     PATHS
     ${graphviz_LIBRARY_DIRS}
@@ -48,7 +48,8 @@ find_path( graphviz_INCLUDE_DIRECTORIES
     /usr/local/lib
     /usr/lib
     )
-    find_library( graphviz_CDT_LIBRARY
+
+find_library( graphviz_CDT_LIBRARY
     NAMES cdt
     PATHS
     ${graphviz_LIBRARY_DIRS}
@@ -57,7 +58,8 @@ find_path( graphviz_INCLUDE_DIRECTORIES
     /usr/local/lib
     /usr/lib
     )
-    find_library( graphviz_GRAPH_LIBRARY
+
+find_library( graphviz_GRAPH_LIBRARY
     NAMES graph
     PATHS
     ${graphviz_LIBRARY_DIRS}
@@ -66,7 +68,8 @@ find_path( graphviz_INCLUDE_DIRECTORIES
     /usr/local/lib
     /usr/lib
     )
-    find_library( graphviz_PATHPLAN_LIBRARY
+
+find_library( graphviz_PATHPLAN_LIBRARY
     NAMES pathplan
     PATHS
     ${graphviz_LIBRARY_DIRS}
@@ -75,19 +78,20 @@ find_path( graphviz_INCLUDE_DIRECTORIES
     /usr/local/lib
     /usr/lib
     )
-    if ( graphviz_INCLUDE_DIRECTORIES AND
+
+if ( graphviz_INCLUDE_DIRECTORIES AND
       graphviz_GVC_LIBRARY AND graphviz_CDT_LIBRARY AND
       graphviz_GRAPH_LIBRARY AND graphviz_PATHPLAN_LIBRARY )
-      set ( graphviz_FOUND 1 )
-      set ( graphviz_LIBRARIES
+  set ( graphviz_FOUND 1 )
+  set ( graphviz_LIBRARIES
       "${graphviz_GVC_LIBRARY};${graphviz_GRAPH_LIBRARY};"
       "${graphviz_CDT_LIBRARY};${graphviz_PATHPLAN_LIBRARY}"
       CACHE FILEPATH "Libraries for graphviz" )
-      else ( graphviz_INCLUDE_DIRECTORIES AND
+else ( graphviz_INCLUDE_DIRECTORIES AND
         graphviz_GVC_LIBRARY AND graphviz_CDT_LIBRARY AND
         graphviz_GRAPH_LIBRARY AND graphviz_PATHPLAN_LIBRARY )
-        set ( graphviz_FOUND 0 )
-        endif ( graphviz_INCLUDE_DIRECTORIES AND
+  set ( graphviz_FOUND 0 )
+endif ( graphviz_INCLUDE_DIRECTORIES AND
         graphviz_GVC_LIBRARY AND graphviz_CDT_LIBRARY AND
         graphviz_GRAPH_LIBRARY AND graphviz_PATHPLAN_LIBRARY )
 
