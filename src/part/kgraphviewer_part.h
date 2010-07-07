@@ -136,16 +136,6 @@ public slots:
   void slotSetLayoutMethod(LayoutMethod method);
   void slotRenameNode(const QString& oldNodeName, const QString& newNodeName);
   
-  QList<QString> nodesIds()
-  {
-//     return nodesIdsPrivate();
-  }
-  
-  QMap<QString,QString> nodeAtributes(const QString& nodeId)
-  {
-//     return nodeAtributesPrivate(nodeId);
-  }
-  
 /*  inline DotGraph* graph() {return m_widget->graph();}
   inline const DotGraph* graph() const {return m_widget->graph();}*/
   
