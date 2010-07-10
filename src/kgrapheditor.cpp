@@ -146,7 +146,7 @@ void KGraphEditor::reloadPreviousFiles()
   if ( (previouslyOpenedFiles.empty() == false) 
        && (KMessageBox::questionYesNo(this, 
               i18n("Do you want to reload files from previous session?"),
-              i18n("Reload Confirmation"),
+              i18n("Session Restore"),
               KStandardGuiItem::yes(),
               KStandardGuiItem::no(),
               "reopenPreviouslyOpenedFilesMode"   ) == KMessageBox::Yes) )
@@ -164,8 +164,8 @@ void KGraphEditor::reloadPreviousFiles()
 DotGraphView*  KGraphEditor::slotNewGraph()
 {
   kDebug();
-  DotGraphView* view = new DotGraphView(0, m_widget);
-
+  DotGraphView* view = new DotGraphView(actionCollection(), m_widget);
+  view->initEmpty();
   view->setReadWrite();
 
     m_widget-> insertTab(view, QIcon( DesktopIcon("kgraphviewer") ), "");

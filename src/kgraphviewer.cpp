@@ -119,7 +119,7 @@ void KGraphViewerWindow::reloadPreviousFiles()
   if ( (previouslyOpenedFiles.empty() == false) 
        && (KMessageBox::questionYesNo(this, 
               i18n("Do you want to reload files from the previous session?"),
-              i18n("Reload Confirmation"),
+              i18n("Session Restore"),
               KStandardGuiItem::yes(),
               KStandardGuiItem::no(),
               "reopenPreviouslyOpenedFilesMode"   ) == KMessageBox::Yes) )
