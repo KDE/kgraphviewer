@@ -276,7 +276,7 @@ const KgvKWHeaderFooter& KgvPageLayoutDia::headerFooter()
 void KgvPageLayoutDia::setupTab1( bool enableBorders )
 {
   KHBox *page = new KHBox();
-  addPage(page, i18n( "Page Size && &Margins" ));
+  addPage(page, i18n( "Page Size & Margins" ));
 // QWidget *tab1 = addPage(i18n( "Page Size && &Margins" ));
 //     QHBoxLayout *lay = new QHBoxLayout(tab1);
     m_pageSizeTab = new KgvPageLayoutSize(page, m_layout, m_unit, m_column, !(flags & DISABLE_UNIT), enableBorders );
