@@ -23,6 +23,7 @@
 #include "ui_preferencesParsing.h"
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
+#include "ui_preferencesAppearance.h"
 
 #include <kfiledialog.h>
 #include <kconfig.h>
@@ -52,8 +53,11 @@ KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& 
   parsingWidget(new Ui::KGraphViewerPreferencesParsingWidget()),
   reloadWidget(new Ui::KGraphViewerPreferencesReloadWidget()),
   openingWidget(new Ui::KGraphViewerPreferencesOpenInExistingWindowWidget()),
-  reopeningWidget(new Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget())
+  reopeningWidget(new Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget()),
+  appearanceWidget(new Ui::KGraphViewerPreferencesAppearanceWidget())
 {
+  QWidget* page4 = new QWidget();
+  appearanceWidget->setupUi(page4);
   QWidget* page0 = new QWidget();
   parsingWidget->setupUi(page0);
   QWidget* page1 = new QWidget();
@@ -62,6 +66,7 @@ KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& 
   openingWidget->setupUi(page2);
   QWidget* page3 = new QWidget();
   reopeningWidget->setupUi(page3);
+  addPage( page4, i18n("Appearance"), "preferences-other", i18n("Appearance"), false);
   addPage( page0, i18n("Parsing"), "preferences-other", i18n("Parsing"), false);
   addPage( page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
   addPage( page2, i18n("Opening"), "document-open", i18n("Opening"), false); 
@@ -70,6 +75,7 @@ KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& 
   connect(reloadWidget->reloadOnChangeMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
   connect(openingWidget->openInExistingWindowMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
   connect(reopeningWidget->reopenPreviouslyOpenedFilesMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
+  connect(appearanceWidget->kcolorbutton, SIGNAL(changed(QColor)), this, SLOT(backgroundColorChanged(QColor)));
 }
 
 KgvConfigurationDialog::~KgvConfigurationDialog () 
@@ -166,4 +172,8 @@ void KgvConfigurationDialog::updateWidgets()
     reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(2);*/
 }
 
+void KgvConfigurationDialog::backgroundColorChanged(const QColor& color)
+{
+  KGraphViewerSettings::setBackgroundColor(color);
+}
 #include "kgraphviewerConfigDialog.moc"

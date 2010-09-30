@@ -214,7 +214,7 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
 
   kDebug() << "string content is:" << endl << result << endl << "=====================" << result.size();
   std::string s =  result.data();
-//   std::cerr << "stdstring content is:" << std::endl << s << std::endl << "===================== " << s.size() << std::endl;
+  //   std::cerr << "stdstring content is:" << std::endl << s << std::endl << "===================== " << s.size() << std::endl;
   if (phelper != 0)
   {
     phelper->graph = 0;
@@ -393,8 +393,32 @@ void DotGraph::saveTo(const QString& fileName)
 void DotGraph::updateWithGraph(graph_t* newGraph)
 {
   kDebug();
+
+  // copy global graph render operations and attributes
+  renderOperations().clear();
+  if (agget(newGraph, (char*)"_draw_") != NULL)
+  {
+    parse_renderop(agget(newGraph, (char*)"_draw_"), renderOperations());
+    kDebug() << "_draw_: element renderOperations size is now " << renderOperations().size();
+  }
+  if (agget(newGraph, (char*)"_ldraw_") != NULL)
+  {
+    parse_renderop(agget(newGraph, (char*)"_ldraw_"), renderOperations());
+    kDebug() << "_ldraw_: element renderOperations size is now " << renderOperations().size();
+  }
+  
+  Agsym_t *attr = agfstattr(newGraph);
+  while(attr)
+  {
+    kDebug() << newGraph->name << ":" << attr->name << agxget(newGraph,attr->index);
+    m_attributes[attr->name] = agxget(newGraph,attr->index);
+    attr = agnxtattr(newGraph,attr);
+  }
+  
+  // copy subgraphs
   for (edge_t* e = agfstout(newGraph->meta_node->graph, newGraph->meta_node); e;
-      e = agnxtout(newGraph->meta_node->graph, e)) {
+      e = agnxtout(newGraph->meta_node->graph, e))
+  {
     graph_t* sg = agusergraph(e->head);
     kDebug() << "subgraph:" << sg->name;
     if (subgraphs().contains(sg->name))
@@ -418,7 +442,8 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     }
 
   }
-  
+
+  // copy nodes
   node_t* ngn = agfstnode(newGraph);
   kDebug() << "first node:" << (void*)ngn;
   
@@ -446,6 +471,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
       //       kDebug() << "new inserted";
     }
 
+    // copy node edges
     edge_t* nge = agfstout(newGraph, ngn);
     while (nge != NULL)
     {
@@ -708,7 +734,8 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
 void DotGraph::removeEdge(const QString& id)
 {
   kDebug() << id;
-  foreach (const QString& eid, edges().keys())
+  QList<QString> edgesKeys = edges().keys();
+  foreach (const QString& eid, edgesKeys)
   {
     GraphEdge* edge = edges()[eid];
     if (edge->id() ==id)
@@ -728,7 +755,8 @@ void DotGraph::removeEdge(const QString& id)
 void DotGraph::removeElement(const QString& id)
 {
   kDebug() << id;
-  foreach (const QString& eid, nodes().keys())
+  QList<QString> nodesKeys = nodes().keys();
+  foreach (const QString& eid, nodesKeys)
   {
     GraphNode* node = nodes()[eid];
     if (node->id() == id)
@@ -737,7 +765,8 @@ void DotGraph::removeElement(const QString& id)
       return;
     }
   }
-  foreach (const QString& eid, edges().keys())
+  QList<QString> edgesKeys = edges().keys();
+  foreach (const QString& eid, edgesKeys)
   {
     GraphEdge* edge = edges()[eid];
     if (edge->id() == id)
@@ -746,7 +775,8 @@ void DotGraph::removeElement(const QString& id)
       return;
     }
   }
-  foreach (const QString& sid, subgraphs().keys())
+  QList<QString> subgraphsKeys = subgraphs().keys();
+  foreach (const QString& sid, subgraphsKeys)
   {
     GraphSubgraph* subgraph = subgraphs()[sid];
     if (subgraph->id() == id)
@@ -775,21 +805,24 @@ void DotGraph::setAttribute(const QString& elementId, const QString& attributeNa
 
 GraphElement* DotGraph::elementNamed(const QString& id)
 {
-  foreach (const QString& nid, nodes().keys())
+  QList<QString> nodesKeys = nodes().keys();
+  foreach (const QString& nid, nodesKeys)
   {
     if (nid == id)
     {
       return nodes()[nid];
     }
   }
-  foreach (const QString& eid, edges().keys())
+  QList<QString> edgesKeys = edges().keys();
+  foreach (const QString& eid, edgesKeys)
   {
     if (eid == id)
     {
       return edges()[eid];
     }
   }
-  foreach (const QString& sid, subgraphs().keys())
+  QList<QString> subgraphsKeys = subgraphs().keys();
+  foreach (const QString& sid, subgraphsKeys)
   {
     GraphElement* element = subgraphs()[sid]->elementNamed(id);
     if (element != 0)
@@ -942,7 +975,7 @@ void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString,QString> attrib
   }
   else
   {
-    newEdge->setId(src+tgt+QUuid::createUuid().toString().remove("{").remove("}").remove("-"));
+    newEdge->setId(src+tgt+QUuid::createUuid().toString().remove('{').remove('}').remove('-'));
   }
   newEdge->setFromNode(srcElement);
   newEdge->setToNode(tgtElement);
@@ -968,6 +1001,19 @@ void DotGraph::renameNode(const QString& oldNodeName, const QString& newNodeName
     nodes().remove(oldNodeName);
     node->setId(newNodeName);
     nodes()[newNodeName] = node;
+  }
+}
+
+QString DotGraph::backColor() const
+{
+  kDebug();
+  if (m_attributes.find("bgcolor") != m_attributes.end())
+  {
+    return m_attributes["bgcolor"];
+  }
+  else
+  {
+    return QString();
   }
 }
 

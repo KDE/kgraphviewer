@@ -63,6 +63,7 @@ public:
     virtual void setZoomFactor(double factor);
     virtual void zoomIn();
     virtual void zoomOut();
+    virtual void setBackgroundColor(const QColor& color);
 
 public:
     /**
@@ -100,7 +101,7 @@ Q_SIGNALS:
   /// emited when the mouse leaves a node, a subgraph or an edge. The parameter is the hovered element id
   void hoverLeave(const QString&);
 
-public slots:
+public Q_SLOTS:
   void slotHide(KParts::Part* part);
   void slotUpdate();
   void prepareAddNewElement(QMap<QString,QString> attribs);

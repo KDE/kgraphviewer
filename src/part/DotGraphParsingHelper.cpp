@@ -316,9 +316,9 @@ void DotGraphParsingHelper::createedges()
 //     kDebug() << ge->fromNode()->id() << " -> " << ge->toNode()->id();
     setedgeattributes();
 //     kDebug() << ge->id();
-    if (ge->id() == "")
+    if (ge->id().isEmpty())
     {
-      ge->setId(QString::fromStdString(node1Name)+QString::fromStdString(node2Name)+QUuid::createUuid().toString().remove("{").remove("}").remove("-"));
+      ge->setId(QString::fromStdString(node1Name)+QString::fromStdString(node2Name)+QUuid::createUuid().toString().remove('{').remove('}').remove('-'));
     }
 //     kDebug() << ge->id();
 //     kDebug() << "num before=" << graph->edges().size();

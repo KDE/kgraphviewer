@@ -152,6 +152,11 @@ const DotGraph* KGraphViewerPart::graph() const
 }
 */
 
+void KGraphViewerPart::setBackgroundColor(const QColor& color)
+{
+  d->m_widget->setBackgroundColor(color);
+}
+
 QList<QString> KGraphViewerPart::nodesIdsPrivate()
 {
   QList<QString> result;

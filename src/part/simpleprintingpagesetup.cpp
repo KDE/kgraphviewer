@@ -110,7 +110,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 	connect(m_contents->printPreviewButton, SIGNAL(clicked()), this, SLOT(slotPrintPreview()));
 
 	m_contents->iconLabel->setFixedWidth(32+6);
-	m_contents->iconLabel->setPixmap( DesktopIcon("document", 32) );
+  m_contents->iconLabel->setPixmap( DesktopIcon("distribute-horizontal-page", 32) );
 	m_contents->headerTitleFontButton->setWhatsThis(i18n("Changes font for title text."));
 	connect(m_contents->headerTitleFontButton, SIGNAL(clicked()), 
 		this, SLOT(slotChangeTitleFont()));

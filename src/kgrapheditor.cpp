@@ -571,13 +571,13 @@ void KGraphEditor::slotSetActiveGraph( DotGraphView* part)
   
   QList<QString> nodesIds;//TODO = m_currentPart->nodesIds();
   QList<QTreeWidgetItem *> items;
-  foreach (QString nodeId, nodesIds)
+  foreach (const QString& nodeId, nodesIds)
   {
     kDebug()<< "new item " << nodeId;
     QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(nodeId));
     item->setFlags(item->flags() | Qt::ItemIsEditable);
     QMap<QString,QString> attributes;//TODO = m_currentPart->nodeAtributes(nodeId);
-    foreach (const QString &attrib, attributes.keys())
+    foreach (const QString& attrib, attributes.keys())
     {
       if (attrib != "_draw_" && attrib != "_ldraw_")
       {
@@ -648,7 +648,7 @@ void KGraphEditor::slotGraphLoaded()
 
   QList<QString> nodesIds;//TODO = m_currentPart->nodesIds();
   QList<QTreeWidgetItem *> items;
-  foreach (QString nodeId, nodesIds)
+  foreach (const QString& nodeId, nodesIds)
   {
     kDebug()<< "item " << nodeId;
     QTreeWidgetItem* item;

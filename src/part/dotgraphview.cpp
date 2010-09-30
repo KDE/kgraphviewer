@@ -106,7 +106,8 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
     m_leavedTimer(std::numeric_limits<int>::max()),
     m_highlighting(false),
     m_loadThread(),
-    m_layoutThread()
+    m_layoutThread(),
+    m_backgroundColor(QColor("white"))
 {
   kDebug() << "New node pic=" << KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png");
   m_canvas = 0;
@@ -360,7 +361,8 @@ bool DotGraphView::loadLibrary(const QString& dotFileName)
 {
   kDebug() << "'" << dotFileName << "'";
 
-  m_canvas->clear();
+  if (m_canvas)
+    m_canvas->clear();
   QGraphicsSimpleTextItem* loadingLabel = m_canvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
   loadingLabel->setZValue(100);
   centerOn(loadingLabel);
@@ -422,10 +424,14 @@ void DotGraphView::slotSelectionChanged()
 
 bool DotGraphView::displayGraph()
 {
-  kDebug();
+  kDebug() << m_graph->backColor();
 //   hide();
   viewport()->setUpdatesEnabled(false);
 
+  if (m_graph->backColor().size() != 0)
+  {
+    setBackgroundColor(QColor(m_graph->backColor()));
+  }
   m_canvas->clear();
 
   if (m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
@@ -447,8 +453,9 @@ bool DotGraphView::displayGraph()
 
 
 //   m_canvas->setSceneRect(0,0,w+2*m_xMargin, h+2*m_yMargin);
-  m_canvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
-
+//   m_canvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
+  m_canvas->setBackgroundBrush(QBrush(m_backgroundColor));
+  
 //   kDebug() << "sceneRect is now " << m_canvas->sceneRect();
   
   kDebug() << "Creating" << m_graph->subgraphs().size() << "CanvasSubgraphs from" << m_graph;
@@ -715,6 +722,7 @@ void DotGraphView::updateBirdEyeView()
     QPointF br1Pos = mapToScene(QPoint(x,y));
     QPointF br2Pos = mapToScene(QPoint(x+cvW,y+cvH));
     int tlCols = m_canvas->items(QRectF(tl1Pos.x(),tl1Pos.y(),tl2Pos.x(),tl2Pos.y())).count();
+    kDebug() << tr1Pos.x() << tr1Pos.y() << tr2Pos.x() << tr2Pos.y();
     int trCols = m_canvas->items(QRectF(tr1Pos.x(),tr1Pos.y(),tr2Pos.x(),tr2Pos.y())).count();
     int blCols = m_canvas->items(QRectF(bl1Pos.x(),bl1Pos.y(),bl2Pos.x(),bl2Pos.y())).count();
     int brCols = m_canvas->items(QRectF(br1Pos.x(),br1Pos.y(),br2Pos.x(),br2Pos.y())).count();

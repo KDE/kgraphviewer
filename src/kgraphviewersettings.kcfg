@@ -27,4 +27,10 @@
       <label>The list of files that were opened in past instances of kgraphviewer</label> 
     </entry> 
   </group> 
+  <group name="Appearance">
+    <entry name="backgroundColor" type="Color">
+      <label>Background color of the graph view.</label>
+      <default>true</default>
+    </entry>
+  </group>
 </kcfg>

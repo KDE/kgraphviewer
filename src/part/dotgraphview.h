@@ -143,7 +143,7 @@ public:
 
   EditingMode editingMode() const {return m_editingMode;}
 
-void KGRAPHVIEWER_EXPORT setReadOnly();
+  void KGRAPHVIEWER_EXPORT setReadOnly();
   void KGRAPHVIEWER_EXPORT setReadWrite();
   inline bool isReadWrite() {return m_readWrite;}
   inline bool isReadOnly() {return !m_readWrite;}
@@ -159,6 +159,8 @@ void KGRAPHVIEWER_EXPORT setReadOnly();
   // public so that the panner view can bubble through
   void contextMenuEvent(QContextMenuEvent*);
 
+  inline void setBackgroundColor(const QColor& color) {m_backgroundColor = color;}
+  
 Q_SIGNALS:
   void zoomed(double factor);
   void sigViewBevEnabledToggled(bool value);
@@ -309,6 +311,9 @@ private:
   
   /// A thread to layout graphviz agraph files
   LayoutAGraphThread m_layoutThread;
+
+  /// The graph background color
+  QColor m_backgroundColor;
 };
 
 }

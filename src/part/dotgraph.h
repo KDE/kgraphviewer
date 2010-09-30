@@ -74,6 +74,7 @@ public:
   void width(double w) {m_width = w;}
   void height(double h) {m_height = h;}
   void scale(double s) {m_scale = s;}
+  virtual QString backColor() const;
   
   inline void strict(bool s) {m_strict = s;}
   inline void directed(bool d) {m_directed = d;}

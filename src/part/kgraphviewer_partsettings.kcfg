@@ -4,10 +4,10 @@
 	            xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
 		    http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name="kgraphviewer_partrc"/> 
-  <group name="Notification Messages"> 
-    <entry name="birdsEyeViewEnabled" type="Bool"> 
-      <label>If true, the bird's eye view will be shown if needed.</label> 
+  <group name="Notification Messages">
+    <entry name="birdsEyeViewEnabled" type="Bool">
+      <label>If true, the bird's eye view will be shown if needed.</label>
       <default>true</default>
-    </entry> 
-  </group> 
+    </entry>
+  </group>
 </kcfg>

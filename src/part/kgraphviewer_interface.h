@@ -16,8 +16,8 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 // 02110-1301  USA
 
-#ifndef KDELIBS_KDE_TERMINAL_INTERFACE_H
-#define KDELIBS_KDE_TERMINAL_INTERFACE_H
+#ifndef KGRAPHVIEWER_INTERFACE_H
+#define KGRAPHVIEWER_INTERFACE_H
 
 #include <QtCore/QObject>
 #include <QtCore/QMap>
@@ -77,7 +77,6 @@ public:
     ExternalProgram,
     InternalLibrary
   };
-  virtual ~KGraphViewerInterface(){}
 
   virtual void setLayoutMethod(LayoutMethod method) = 0;
   virtual void zoomIn() = 0;
@@ -125,11 +124,15 @@ public:
   virtual void slotUnsetCursor() = 0;
   virtual void slotSetLayoutMethod(LayoutMethod method) = 0;
   virtual void slotRenameNode(const QString& oldName, const QString& newName) = 0;
+  virtual void setBackgroundColor(const QColor& color) = 0;
   
+
+protected:
+  KGraphViewerInterface() {}
 };
 
 }
 
 Q_DECLARE_INTERFACE(KGraphViewer::KGraphViewerInterface, "org.kde.KGraphViewerInterface")
 
-#endif
+#endif // KGRAPHVIEWER_INTERFACE_H

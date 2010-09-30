@@ -1,7 +1,11 @@
 Current bugs;
 * kge: save should not ask to reload due to the change
+* If you set the color of an edge, KGraphViewer only changes the color of the arrow instead of the entire edge. I am using the edge attribute: 
+ 
+
 
 URGENT (for 2.x)
+  * [DONE] should be able to set background color
   * loading of big and huge graphes (currently, there is performance problems
     around 1000 nodes). Will be done through the use of another layout algorithm. Should the be able to switch to graphviz to display part of thhe graph ;
   * progress bar for the layout in background

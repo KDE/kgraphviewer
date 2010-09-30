@@ -11,7 +11,14 @@ qt4_add_dbus_adaptor(kgraphviewer_SRCS org.kde.kgraphviewer.xml kgraphviewer.h K
 
 kde4_add_kcfg_files( kgraphviewer_SRCS kgraphviewersettings.kcfgc )
 
-kde4_add_ui_files( kgraphviewer_SRCS preferencesReload.ui preferencesParsing.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui )
+kde4_add_ui_files(
+  kgraphviewer_SRCS
+  preferencesReload.ui
+  preferencesParsing.ui
+  preferencesOpenInExistingWindow.ui
+  preferencesReopenPreviouslyOpenedFiles.ui
+  preferencesAppearance.ui
+)
 
 kde4_add_executable(kgraphviewer ${kgraphviewer_SRCS})
 
@@ -50,4 +57,7 @@ install( FILES kgrapheditorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
 install( FILES kgrapheditorui.rc DESTINATION ${DATA_INSTALL_DIR}/kgrapheditor )
 install( FILES kgrapheditor.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 
+
+
+#add_subdirectory(plasmaapplet)
 

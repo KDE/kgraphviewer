@@ -27,6 +27,7 @@ class KGraphViewerPreferencesParsingWidget;
 class KGraphViewerPreferencesReloadWidget;
 class KGraphViewerPreferencesOpenInExistingWindowWidget;
 class KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget;
+class KGraphViewerPreferencesAppearanceWidget;
 }
 
 /**
@@ -61,6 +62,7 @@ public:
   Ui::KGraphViewerPreferencesReloadWidget*  m_reloadWidget;
   Ui::KGraphViewerPreferencesOpenInExistingWindowWidget* m_openingWidget;
   Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget* m_reopeningWidget;
+  Ui::KGraphViewerPreferencesAppearanceWidget* m_appearanceWidget;
 };
 
 #endif

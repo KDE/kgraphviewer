@@ -148,6 +148,7 @@ void KGraphViewerWindow::openUrl(const KUrl& url)
       // This should not happen
       return;
     }
+    kgv->setBackgroundColor(KGraphViewerSettings::backgroundColor());
     (KGraphViewerSettings::parsingMode() == "external")
         ?kgv->setLayoutMethod(KGraphViewer::KGraphViewerInterface::ExternalProgram)
         :kgv->setLayoutMethod(KGraphViewer::KGraphViewerInterface::InternalLibrary);
