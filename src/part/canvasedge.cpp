@@ -356,6 +356,17 @@ Q_UNUSED(widget)
         lineWidth = edge()->style().mid(12, edge()->style().length()-1-12).toInt(&ok);
         pen.setWidth(int(lineWidth * widthScaleFactor));
       }
+      if (edge()->attributes().contains("penwidth"))
+      {
+        bool ok;
+        lineWidth = edge()->attributes()["penwidth"].toInt(&ok);
+        pen.setWidth(int(lineWidth * widthScaleFactor));
+      }
+      if (edge()->attributes().contains("color"))
+      {
+        kDebug() << "set edge color to " << QColor(edge()->attributes()["color"]).name();
+        lineColor = QColor(edge()->attributes()["color"]);
+      }
       for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum==0 && edge()->colors().count()==0); splineNum++)
       {
         QPolygonF points(dro.integers[0]);
@@ -398,10 +409,10 @@ Q_UNUSED(widget)
 //           kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << p;
           allPoints.append(p);
         }
-//         kDebug() << "Setting pen color to " << edge()->color(splineNum);
+        kDebug() << "Setting pen color to " << edge()->color(splineNum);
         if (splineNum != 0)
           lineColor = Dot2QtConsts::componentData().qtColor(edge()->color(splineNum));
-        pen.setColor(splineNum);
+        pen.setColor(lineColor);
         p->save();
 //         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
         p->setBrush(Qt::NoBrush);

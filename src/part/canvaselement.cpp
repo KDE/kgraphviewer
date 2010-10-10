@@ -211,6 +211,13 @@ QWidget *widget)
 {
   Q_UNUSED(option)
   Q_UNUSED(widget)
+  /// computes the scaling of line width
+  qreal widthScaleFactor = (m_scaleX+m_scaleY)/2;
+  if (widthScaleFactor < 1)
+  {
+    widthScaleFactor = 1;
+  }
+  
   QString msg;
   QTextStream dd(&msg);
   foreach (const DotRenderOp &op, element()->renderOperations())
@@ -265,6 +272,7 @@ QWidget *widget)
     }
     else if (dro.renderop == "e" || dro.renderop == "E")
     {
+      QPen pen = p->pen();
       qreal w = m_scaleX * dro.integers[2] * 2;
       qreal h = m_scaleY * dro.integers[3] * 2;
       qreal x = m_xMargin + ((dro.integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
@@ -272,7 +280,15 @@ QWidget *widget)
       QRectF rect(x,y,w,h);
       p->save();
       p->setBrush(backColor);
-      p->setPen(lineColor);
+      pen.setColor(lineColor);
+      if (element()->attributes().contains("penwidth"))
+      {
+        bool ok;
+        int lineWidth = element()->attributes()["penwidth"].toInt(&ok);
+        pen.setWidth(int(lineWidth * widthScaleFactor));
+      }
+      p->setPen(pen);
+      
 //       kDebug() << element()->id() << "drawEllipse" << lineColor << backColor << rect;
 //       rect = QRectF(0,0,100,100);
       p->drawEllipse(rect);
@@ -303,6 +319,12 @@ QWidget *widget)
       {
         pen.setStyle(Qt::SolidLine);
         pen.setWidth(2);
+      }
+      if (element()->attributes().contains("penwidth"))
+      {
+        bool ok;
+        int lineWidth = element()->attributes()["penwidth"].toInt(&ok);
+        pen.setWidth(int(lineWidth * widthScaleFactor));
       }
       else if (element()->style() != "filled")
       {

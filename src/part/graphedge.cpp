@@ -140,6 +140,7 @@ void GraphEdge::updateWithEdge(edge_t* edge)
   Agsym_t *attr = agfstattr(edge);
   while(attr)
   {
+    kDebug() /*<< edge->name*/ << ":" << attr->name << agxget(edge,attr->index);
     m_attributes[attr->name] = agxget(edge,attr->index);
     attr = agnxtattr(edge,attr);
   }
