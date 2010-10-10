@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2010 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -37,12 +37,12 @@
 static const char description[] =
 I18N_NOOP("A Graphviz dot graph viewer for KDE");
 
-static const char version[] = "2.0.90";
+static const char version[] = "2.1";
 
 int main(int argc, char **argv)
 {
   KAboutData about("kgraphviewer", 0, ki18n("KGraphViewer"), version, ki18n(description),
-                    KAboutData::License_GPL, ki18n("(C) 2005-2006 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
+                    KAboutData::License_GPL, ki18n("(C) 2005-2010 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
   about.addAuthor( ki18n("Gaël de Chalendar"), ki18n("Original Author and current maintainer"), "kleag@free.fr" );
   about.addAuthor( ki18n("Reimar Döffinger"), ki18n("Contributor"), "Reimar.Doeffinger@stud.uni-karlsruhe.de" );
   about.addAuthor( ki18n("Matthias Peinhardt"), ki18n("Contributor"), "matthias.peinhardt@googlemail.com" );

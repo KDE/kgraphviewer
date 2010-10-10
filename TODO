@@ -1,6 +1,6 @@
 Current bugs;
 * kge: save should not ask to reload due to the change
-* If you set the color of an edge, KGraphViewer only changes the color of the arrow instead of the entire edge. I am using the edge attribute: 
+* [DONE] If you set the color of an edge, KGraphViewer only changes the color of the arrow instead of the entire edge. I am using the edge attribute: 
  
 
 

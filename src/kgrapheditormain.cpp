@@ -1,5 +1,5 @@
 /* This file is part of KGraphViewer.
-   Copyright (C) 2005-2007 Gael de Chalendar <kleag@free.fr>
+   Copyright (C) 2005-2010 Gael de Chalendar <kleag@free.fr>
 
    KGraphViewer is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -44,7 +44,7 @@ static const char version[] = "0.1";
 int main(int argc, char **argv)
 {
   KAboutData about("kgrapheditor", 0, ki18n("KGraphEditor"), version, ki18n(description),
-                    KAboutData::License_GPL, ki18n("(C) 2005-2006 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
+                    KAboutData::License_GPL, ki18n("(C) 2005-2010 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
   about.addAuthor( ki18n("Gaël de Chalendar"), KLocalizedString(), "kleag@free.fr" );
   KCmdLineArgs::init(argc, argv, &about);
 

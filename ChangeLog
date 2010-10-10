@@ -1,3 +1,7 @@
+2010/10/10
+  * Set version to 2.1
+  * Bug corrected: edges line width and color and nodes line width correctly handled
+
 2010/09/19
   * new background color option
 
