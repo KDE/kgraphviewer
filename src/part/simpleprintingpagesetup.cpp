@@ -217,6 +217,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 
 KGVSimplePrintingPageSetup::~KGVSimplePrintingPageSetup()
 {
+  delete m_contents;
 }
 
 void KGVSimplePrintingPageSetup::updatePageLayoutAndUnitInfo()
