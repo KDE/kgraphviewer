@@ -39,11 +39,10 @@
 #include <QGraphicsView>
 #include <QSet>
 
+#include <graphviz/types.h>
+
 #include "kgraphviewer_export.h"
-#include "graphexporter.h"
 #include "kgraphviewer_interface.h"
-#include "loadagraphthread.h"
-#include "layoutagraphthread.h"
 
 class KSelectAction;
 class KToggleAction;
@@ -69,6 +68,8 @@ class DotGraph;
 class KGVSimplePrintingCommand;
 
 #define DEFAULT_DETAILLEVEL 1
+
+class DotGraphViewPrivate;
 /**
  * A CanvasView showing a part of the call graph
  * and another zoomed out CanvasView in a border acting as
@@ -95,7 +96,7 @@ public:
   QWidget* widget() { return this; }
 
   //TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
-  KGraphViewerInterface::PannerPosition zoomPos() const { return m_zoomPosition; }
+  KGraphViewerInterface::PannerPosition zoomPos() const;
   static KGraphViewerInterface::PannerPosition zoomPos(const QString&);
   static QString zoomPosString(KGraphViewerInterface::PannerPosition);
   void setPannerEnabled(bool enabled);
@@ -122,17 +123,17 @@ public:
   const QString& dotFileName();
 
   void hideToolsWindows();
-  inline double zoom() const {return m_zoom;}
-  inline KSelectAction* bevPopup() {return m_bevPopup;}
+  double zoom() const;
+  KSelectAction* bevPopup();
 
-  inline DotGraph* graph() {return m_graph;}
-  inline const DotGraph* graph() const {return m_graph;}
+  DotGraph* graph();
+  const DotGraph* graph() const;
 
-  inline const GraphElement* defaultNewElement() const {return m_defaultNewElement;}
-  inline QPixmap defaultNewElementPixmap() const {return m_defaultNewElementPixmap;}
+  const GraphElement* defaultNewElement() const;
+  QPixmap defaultNewElementPixmap() const;
 
-  inline void setDefaultNewElement(GraphElement* elem) {m_defaultNewElement = elem;}
-  inline void setDefaultNewElementPixmap(const QPixmap& pm) {m_defaultNewElementPixmap = pm;}
+  void setDefaultNewElement(GraphElement* elem);
+  void setDefaultNewElementPixmap(const QPixmap& pm);
 
   void prepareAddNewElement(QMap<QString,QString> attribs);
   void prepareAddNewEdge(QMap<QString,QString> attribs);
@@ -141,25 +142,25 @@ public:
   void createNewEdgeDraftFrom(CanvasElement* node);
   void finishNewEdgeTo(CanvasElement* node);
 
-  EditingMode editingMode() const {return m_editingMode;}
+  EditingMode editingMode() const;
 
   void KGRAPHVIEWER_EXPORT setReadOnly();
   void KGRAPHVIEWER_EXPORT setReadWrite();
-  inline bool isReadWrite() {return m_readWrite;}
-  inline bool isReadOnly() {return !m_readWrite;}
+  bool isReadWrite() const;
+  bool isReadOnly() const;
   
   void removeSelectedNodes();
   void removeSelectedEdges();
   void removeSelectedSubgraphs();
   void removeSelectedElements();
   
-  inline bool highlighting() {return m_highlighting;}
-  inline void setHighlighting(bool highlightingValue) {m_highlighting = highlightingValue;}
+  bool highlighting() const;
+  void setHighlighting(bool highlightingValue);
 
   // public so that the panner view can bubble through
   void contextMenuEvent(QContextMenuEvent*);
 
-  inline void setBackgroundColor(const QColor& color) {m_backgroundColor = color;}
+  void setBackgroundColor(const QColor& color);
   
 Q_SIGNALS:
   void zoomed(double factor);
@@ -224,11 +225,7 @@ public Q_SLOTS:
   void slotElementHoverLeave(CanvasEdge*);
   void slotSelectNode(const QString& nodeName);
   void centerOnNode(const QString& nodeId);
-  
-private Q_SLOTS:
-  void slotAGraphReadFinished();
-  void slotAGraphLayoutFinished();
-  
+
 protected:
   void scrollContentsBy(int dx, int dy);
   void resizeEvent(QResizeEvent*);
@@ -239,81 +236,21 @@ protected:
   void keyPressEvent(QKeyEvent*);
   void focusInEvent(QFocusEvent*);
   void focusOutEvent(QFocusEvent*);
-
+  
   void timerEvent ( QTimerEvent * event );
   void leaveEvent ( QEvent * event );
   void enterEvent ( QEvent * event );
   
+private Q_SLOTS:
+  void slotAGraphReadFinished();
+  void slotAGraphLayoutFinished();
   
+protected:
+  DotGraphViewPrivate * const d_ptr;
+
 private:
-  void updateSizes(QSizeF s = QSizeF(0,0));
-  void updateBirdEyeView();
-  void setupPopup();
-  void exportToImage();
-  KActionCollection* actionCollection() {return m_actions;}
-  int displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent = 0);
+  Q_DECLARE_PRIVATE(DotGraphView);
   
-  
-  QSet<QGraphicsSimpleTextItem*> m_labelViews;
-  QGraphicsScene* m_canvas;
-  QMenu* m_popup;
-  KSelectAction* m_bevPopup;
-  KSelectAction* m_layoutAlgoSelectAction;
-  int m_xMargin, m_yMargin;
-  PannerView *m_birdEyeView;
-  double m_cvZoom;
-  double m_zoom;
-  bool m_isMoving;
-  QPoint m_lastPos;
-
-  GraphExporter m_exporter;
-
-  // widget options
-  KGraphViewerInterface::PannerPosition m_zoomPosition, m_lastAutoPosition;
-  
-  DotGraph* m_graph;
-  
-  KGVSimplePrintingCommand* m_printCommand;
-  
-  KToggleAction* m_bevEnabledAction;
-  KActionCollection* m_actions;
-
-  int m_detailLevel;
-
-  GraphElement* m_defaultNewElement;
-  
-  /** image used for a new node just added in an edited graph because this new node has
-  still no attribute and thus no render operation */
-  QPixmap m_defaultNewElementPixmap;
-  EditingMode m_editingMode;
-
-  CanvasElement* m_newEdgeSource;
-  QGraphicsLineItem* m_newEdgeDraft;
-
-  bool m_readWrite;
-
-  QMap<QString, QString> m_newElementAttributes;
-
-  /// identifier of the timer started when the mouse leaves the view during
-  /// edge drawing
-  int m_leavedTimer;
-
-  ScrollDirection m_scrollDirection;
-
-  QPoint m_pressPos;
-  QPoint m_pressScrollBarsPos;
-
-  /// true if elements should be highlighted on hover; false otherwise
-  bool m_highlighting;
-
-  /// A thread to load graphviz agraph files
-  LoadAGraphThread m_loadThread;
-  
-  /// A thread to layout graphviz agraph files
-  LayoutAGraphThread m_layoutThread;
-
-  /// The graph background color
-  QColor m_backgroundColor;
 };
 
 }
