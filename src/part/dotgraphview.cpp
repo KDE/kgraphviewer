@@ -90,7 +90,33 @@ class DotGraphViewPrivate
 {
 
 public:
-  DotGraphViewPrivate(DotGraphView* parent) : q_ptr( parent ) {}
+  DotGraphViewPrivate(KActionCollection* actions, DotGraphView* parent) : 
+   m_labelViews(),
+    m_popup(0),
+    m_zoom(1),
+    m_isMoving(false),
+    m_exporter(),
+    m_zoomPosition(DEFAULT_ZOOMPOS),
+    m_lastAutoPosition(KGraphViewerInterface::TopLeft),
+    m_graph(0),
+    m_printCommand(0),
+    m_actions(actions),
+    m_detailLevel(DEFAULT_DETAILLEVEL),
+    m_defaultNewElement(0),
+    m_defaultNewElementPixmap(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png")),
+    m_editingMode(DotGraphView::None),
+    m_newEdgeSource(0),
+    m_newEdgeDraft(0),
+    m_readWrite(false),
+    m_leavedTimer(std::numeric_limits<int>::max()),
+    m_highlighting(false),
+    m_loadThread(),
+    m_layoutThread(),
+    m_backgroundColor(QColor("white")),
+    q_ptr( parent )
+  {
+    
+  }
   virtual ~DotGraphViewPrivate()
   {
     delete m_birdEyeView;
@@ -569,7 +595,7 @@ void DotGraphViewPrivate::exportToImage()
 // DotGraphView
 //
 DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) : 
-    QGraphicsView(parent), d_ptr(new DotGraphViewPrivate(this))
+    QGraphicsView(parent), d_ptr(new DotGraphViewPrivate(actions, this))
 {
   kDebug() << "New node pic=" << KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png");
   Q_D(DotGraphView);
@@ -662,7 +688,7 @@ void DotGraphView::setDefaultNewElementPixmap(const QPixmap& pm) {Q_D(DotGraphVi
 bool DotGraphView::isReadWrite() const {Q_D(const DotGraphView); return d->m_readWrite;}
 bool DotGraphView::isReadOnly() const {Q_D(const DotGraphView); return !d->m_readWrite;}
 
-bool DotGraphView::highlighting() const {Q_D(const DotGraphView); return d->m_highlighting;}
+bool DotGraphView::highlighting() {Q_D(DotGraphView); return d->m_highlighting;}
 void DotGraphView::setHighlighting(bool highlightingValue) {Q_D(DotGraphView); d->m_highlighting = highlightingValue;}
 
 DotGraphView::EditingMode DotGraphView::editingMode() const {Q_D(const DotGraphView); return d->m_editingMode;}

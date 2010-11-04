@@ -154,7 +154,7 @@ public:
   void removeSelectedSubgraphs();
   void removeSelectedElements();
   
-  bool highlighting() const;
+  bool highlighting();
   void setHighlighting(bool highlightingValue);
 
   // public so that the panner view can bubble through
