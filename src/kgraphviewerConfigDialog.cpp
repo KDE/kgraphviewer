@@ -66,6 +66,9 @@ KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& 
   openingWidget->setupUi(page2);
   QWidget* page3 = new QWidget();
   reopeningWidget->setupUi(page3);
+
+  appearanceWidget->kcolorbutton->setColor(KGraphViewerSettings::backgroundColor());
+  appearanceWidget->kcolorbutton->setDefaultColor(KGraphViewerSettings::backgroundColor());
   addPage( page4, i18n("Appearance"), "preferences-other", i18n("Appearance"), false);
   addPage( page0, i18n("Parsing"), "preferences-other", i18n("Parsing"), false);
   addPage( page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
