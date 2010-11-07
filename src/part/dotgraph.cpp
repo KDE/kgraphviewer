@@ -734,10 +734,10 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
 void DotGraph::removeEdge(const QString& id)
 {
   kDebug() << id;
-  QList<QString> edgesKeys = edges().keys();
-  foreach (const QString& eid, edgesKeys)
+  GraphEdgeMap::iterator it = edges().begin();
+  for (; it != edges().end(); it++)
   {
-    GraphEdge* edge = edges()[eid];
+    GraphEdge* edge = it.value();
     if (edge->id() ==id)
     {
       if (edge->canvasEdge() != 0)
@@ -746,7 +746,7 @@ void DotGraph::removeEdge(const QString& id)
         delete edge->canvasEdge();
         delete edge;
       }
-      edges().remove(eid);
+      edges().remove(id);
       break;
     }
   }
@@ -755,30 +755,30 @@ void DotGraph::removeEdge(const QString& id)
 void DotGraph::removeElement(const QString& id)
 {
   kDebug() << id;
-  QList<QString> nodesKeys = nodes().keys();
-  foreach (const QString& eid, nodesKeys)
+  GraphNodeMap::const_iterator itN = nodes().constBegin();
+  for (; itN != nodes().constEnd(); itN++)
   {
-    GraphNode* node = nodes()[eid];
+    const GraphNode* node = itN.value();
     if (node->id() == id)
     {
       removeNodeNamed(id);
       return;
     }
   }
-  QList<QString> edgesKeys = edges().keys();
-  foreach (const QString& eid, edgesKeys)
+  GraphEdgeMap::const_iterator itE = edges().constBegin();
+  for (; itE != edges().constEnd(); itE++)
   {
-    GraphEdge* edge = edges()[eid];
+    const GraphEdge* edge = itE.value();
     if (edge->id() == id)
     {
       removeEdge(id);
       return;
     }
   }
-  QList<QString> subgraphsKeys = subgraphs().keys();
-  foreach (const QString& sid, subgraphsKeys)
+  GraphSubgraphMap::const_iterator itS = subgraphs().constBegin();
+  for (; itS != subgraphs().constEnd(); itS++)
   {
-    GraphSubgraph* subgraph = subgraphs()[sid];
+    const GraphSubgraph* subgraph = itS.value();
     if (subgraph->id() == id)
     {
       removeSubgraphNamed(id);

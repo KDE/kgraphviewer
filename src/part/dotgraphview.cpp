@@ -971,9 +971,11 @@ bool DotGraphView::displayGraph()
   }
 
   kDebug() << "Creating" << d->m_graph->nodes().size() << "nodes from" << d->m_graph;
-  foreach (QString id, d->m_graph->nodes().keys())
+  GraphNodeMap::const_iterator it = d->m_graph->nodes().constBegin();
+  for (; it != d->m_graph->nodes().constEnd();it++)
   {
-    GraphNode* gnode = d->m_graph->nodes()[id];
+    const QString& id = it.key();
+    GraphNode* gnode = it.value();
     kDebug() << "Handling" << id << (void*)gnode;
     kDebug() << "  gnode id=" << gnode->id();
     kDebug()<<  "  canvasNode=" << (void*)gnode->canvasNode();
@@ -1838,9 +1840,10 @@ void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
     if (edge->isSelected())
     {
       anySelected = true;
-      foreach(const QString& k, attribs.keys())
+      QMap<QString,QString>::const_iterator it = attribs.constBegin();
+      for(; it != attribs.constEnd(); it++)
       {
-        edge->attributes()[k] = attribs[k];
+        edge->attributes()[it.key()] = it.value();
       }
     }
   }

@@ -60,6 +60,7 @@ public:
   GraphEdge(edge_t* edge);
   
   CanvasEdge* canvasEdge() { return (CanvasEdge*)canvasElement(); }
+  const CanvasEdge* canvasEdge() const { return (CanvasEdge*)canvasElement(); }
   void setCanvasEdge(CanvasEdge* ce) { setCanvasElement((CanvasElement*)ce); }
 
   bool isVisible() { return m_visible; }

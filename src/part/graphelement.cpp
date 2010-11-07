@@ -73,11 +73,13 @@ void GraphElement::updateWithElement(const GraphElement& element)
     m_z = element.z();
     modified = true;
   }
-  foreach (const QString &attrib, element.attributes().keys())
+  QMap <QString, QString >::const_iterator it = element.attributes().constBegin();
+  for (;it != element.attributes().constEnd(); it++)
   {
-    if ( (!m_attributes.contains(attrib)) || (m_attributes[attrib] != element.attributes()[attrib]) )
+    const QString &attrib = it.key();
+    if ( (!m_attributes.contains(attrib)) || (m_attributes[attrib] != it.value()) )
     {
-      m_attributes[attrib] = element.attributes()[attrib];
+      m_attributes[attrib] = it.value();
       if (attrib == "z")
       {
         bool ok;
