@@ -805,29 +805,16 @@ void DotGraph::setAttribute(const QString& elementId, const QString& attributeNa
 
 GraphElement* DotGraph::elementNamed(const QString& id)
 {
-  QList<QString> nodesKeys = nodes().keys();
-  foreach (const QString& nid, nodesKeys)
-  {
-    if (nid == id)
-    {
-      return nodes()[nid];
-    }
+  GraphElement* ret = 0;
+  if ((ret = m_nodesMap.value(id, 0))) {
+    return ret;
   }
-  QList<QString> edgesKeys = edges().keys();
-  foreach (const QString& eid, edgesKeys)
-  {
-    if (eid == id)
-    {
-      return edges()[eid];
-    }
+  if ((ret = m_edgesMap.value(id, 0))) {
+    return ret;
   }
-  QList<QString> subgraphsKeys = subgraphs().keys();
-  foreach (const QString& sid, subgraphsKeys)
-  {
-    GraphElement* element = subgraphs()[sid]->elementNamed(id);
-    if (element != 0)
-    {
-      return element;
+  foreach(GraphSubgraph* subGraph, m_subgraphsMap) {
+    if ((ret = subGraph->elementNamed(id))) {
+      return ret;
     }
   }
   return 0;
