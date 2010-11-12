@@ -4,7 +4,7 @@
 #define PACKAGE "kgraphviewer"
 
 /* Version number of package */
-#define VERSION "2.0.90"
+#define VERSION "2.1.1"
 
 
 
