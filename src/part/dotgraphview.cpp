@@ -631,7 +631,7 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
         "panner is shown in one edge. Choose through the context menu "
         "if the optimal position of this overview should be automatically "
         "computed or put it where you want.</p>"
-    "<h2>How to work with it ?</h2>"
+    "<h2>How to work with it?</h2>"
     "<ul>"
         "<li>To move the graph, you can:"
             "  <ul>"
@@ -1603,7 +1603,7 @@ void DotGraphView::dirty(const QString& dotFileName)
   if (dotFileName == d->m_graph->dotFileName())
   {
     if (KMessageBox::questionYesNo(this, 
-                                i18n("The file %1 has been modified on disk.\nDo you want to reload it ?",dotFileName),
+                                i18n("The file %1 has been modified on disk.\nDo you want to reload it?",dotFileName),
                                 i18n("Reload Confirmation"),
                                 KStandardGuiItem::yes(),
                                 KStandardGuiItem::no(),

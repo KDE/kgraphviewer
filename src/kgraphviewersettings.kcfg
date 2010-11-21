@@ -12,11 +12,11 @@
     <default>internal</default>
     </entry>
     <entry name="openInExistingWindowMode" type="String"> 
-      <label>The answer to the question 'If another window already exist when launching kgraphviewer, should we open in it, open a new window or ask ?'</label> 
+      <label>The answer to the question 'If another window already exist when launching kgraphviewer, should we open in it, open a new window or ask?'</label>
       <default>ask</default>
     </entry> 
     <entry name="reopenPreviouslyOpenedFilesMode" type="String"> 
-      <label>The answer to the question 'Should the files that where opened in previous sessions be reopened at startup ?'</label> 
+      <label>The answer to the question 'Should the files that were opened in previous sessions be reopened at startup?'</label>
       <default>ask</default>
     </entry> 
     <entry name="birdsEyeViewEnabled" type="Bool"> 
