@@ -30,7 +30,7 @@
   <group name="Appearance">
     <entry name="backgroundColor" type="Color">
       <label>Background color of the graph view.</label>
-      <default>true</default>
+      <default>#DCDCDC</default>
     </entry>
   </group>
 </kcfg>
