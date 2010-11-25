@@ -47,11 +47,14 @@ public:
 
   virtual ~KgvConfigurationDialog ();
 
-protected slots:
+Q_SIGNALS:
+  void backgroundColorChanged(const QColor& color);
+  
+protected Q_SLOTS:
   virtual void updateSettings();
   virtual void updateWidgets();
   void settingChanged(int);
-  void backgroundColorChanged(const QColor& color);
+  void slotBackgroundColorChanged(const QColor& color);
 
 protected:
   virtual bool hasChanged();

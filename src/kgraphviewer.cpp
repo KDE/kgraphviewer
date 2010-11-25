@@ -52,6 +52,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <KColorScheme>
 
 KGraphViewerWindow::KGraphViewerWindow()
     : KParts::MainWindow(),
@@ -308,7 +309,7 @@ void KGraphViewerWindow::optionsConfigure()
   KPageDialog::FaceType ft = KPageDialog::Auto;
   KgvConfigurationDialog* dialog = new KgvConfigurationDialog( this, "settings", 
                                              KGraphViewerSettings::self(),ft ); 
-
+  connect(dialog,SIGNAL(backgroundColorChanged(QColor)),this,SLOT(slotBackgroundColorChanged(QColor)));
   Ui::KGraphViewerPreferencesParsingWidget*  parsingWidget = dialog->parsingWidget;
   kDebug() << KGraphViewerSettings::parsingMode();
   if (KGraphViewerSettings::parsingMode() == "external")
@@ -559,6 +560,21 @@ void KGraphViewerWindow::slotHoverLeave(const QString& id)
 {
   kDebug() << id;
   statusBar()->showMessage("");
+}
+
+void KGraphViewerWindow::slotBackgroundColorChanged(const QColor&)
+{
+  kDebug();
+  foreach(KParts::Part* part, m_tabsPartsMap)
+  {
+    KGraphViewer::KGraphViewerInterface* kgv = qobject_cast<KGraphViewer::KGraphViewerInterface*>( part );
+    if( ! kgv )
+    {
+      // This should not happen
+      return;
+    }
+    kgv->setBackgroundColor(KGraphViewerSettings::backgroundColor());
+  }
 }
 
 #include "kgraphviewer.moc"

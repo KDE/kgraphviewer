@@ -78,7 +78,7 @@ KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& 
   connect(reloadWidget->reloadOnChangeMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
   connect(openingWidget->openInExistingWindowMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
   connect(reopeningWidget->reopenPreviouslyOpenedFilesMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
-  connect(appearanceWidget->kcolorbutton, SIGNAL(changed(QColor)), this, SLOT(backgroundColorChanged(QColor)));
+  connect(appearanceWidget->kcolorbutton, SIGNAL(changed(QColor)), this, SLOT(slotBackgroundColorChanged(QColor)));
 }
 
 KgvConfigurationDialog::~KgvConfigurationDialog () 
@@ -175,8 +175,9 @@ void KgvConfigurationDialog::updateWidgets()
     reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(2);*/
 }
 
-void KgvConfigurationDialog::backgroundColorChanged(const QColor& color)
+void KgvConfigurationDialog::slotBackgroundColorChanged(const QColor& color)
 {
   KGraphViewerSettings::setBackgroundColor(color);
+  emit backgroundColorChanged(color);
 }
 #include "kgraphviewerConfigDialog.moc"

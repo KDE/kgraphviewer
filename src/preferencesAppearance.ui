@@ -46,7 +46,22 @@
       </widget>
      </item>
      <item>
-      <widget class="KColorButton" name="kcolorbutton"/>
+      <widget class="KColorButton" name="kcolorbutton">
+       <property name="color">
+        <color>
+         <red>220</red>
+         <green>220</green>
+         <blue>220</blue>
+        </color>
+       </property>
+       <property name="defaultColor">
+        <color>
+         <red>220</red>
+         <green>220</green>
+         <blue>220</blue>
+        </color>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer">

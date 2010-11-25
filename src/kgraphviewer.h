@@ -103,6 +103,7 @@ private slots:
 
   void slotHoverEnter(const QString&);
   void slotHoverLeave(const QString&);
+  void slotBackgroundColorChanged(const QColor&);
   
 private:
   void setupAccel();

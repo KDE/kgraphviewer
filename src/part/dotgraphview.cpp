@@ -693,7 +693,12 @@ void DotGraphView::setHighlighting(bool highlightingValue) {Q_D(DotGraphView); d
 
 DotGraphView::EditingMode DotGraphView::editingMode() const {Q_D(const DotGraphView); return d->m_editingMode;}
 
-void DotGraphView::setBackgroundColor(const QColor& color) {Q_D(DotGraphView); d->m_backgroundColor = color;}
+void DotGraphView::setBackgroundColor(const QColor& color)
+{
+  Q_D(DotGraphView);
+  d->m_backgroundColor = color;
+  d->m_canvas->setBackgroundBrush(QBrush(d->m_backgroundColor));
+}
 
 bool DotGraphView::initEmpty()
 {
