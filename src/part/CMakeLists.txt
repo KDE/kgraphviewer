@@ -1,6 +1,9 @@
 include_directories( ../ ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIRS} ${graphviz_INCLUDE_DIRECTORIES} )
 
-link_directories(${CMAKE_BINARY_DIR}/lib)
+link_directories(
+    ${CMAKE_BINARY_DIR}/lib
+    ${LIB_INSTALL_DIR}
+)
 
 ########### next target ###############
 
