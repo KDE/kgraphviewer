@@ -38,16 +38,14 @@
 #include <QtCore/QTextStream>
 
 #include "dotrenderop.h"
-#include "dotgrammar.h"
 #include "graphelement.h"
-#include "canvaselement.h"
-#include "canvasnode.h"
 
 class Agnode_t;
 
 namespace KGraphViewer
 {
-  
+
+class CanvasElement;
 class CanvasNode;
 
 /**
@@ -63,8 +61,8 @@ public:
   
   virtual ~GraphNode() {}  
   
-  inline CanvasNode* canvasNode() { return dynamic_cast<CanvasNode*>(canvasElement()); }
-  inline const CanvasNode* canvasNode() const { return dynamic_cast<const CanvasNode*>(canvasElement()); }
+  CanvasNode* canvasNode();
+  const CanvasNode* canvasNode() const;
   inline void setCanvasNode(CanvasNode* cn) { setCanvasElement((CanvasElement*)cn); }
 
   virtual void updateWithNode(const GraphNode& node);

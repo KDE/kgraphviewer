@@ -27,8 +27,6 @@
 #include <QPen>
 #include <QBrush>
 
-#include "dotgrammar.h"
-
 class QMenu;
 class QGraphicsScene;
 

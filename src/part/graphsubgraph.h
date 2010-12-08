@@ -26,9 +26,7 @@
 #include <QMap>
 #include <QTextStream>
 
-#include "dotgrammar.h"
 #include "graphelement.h"
-#include "dotrenderop.h"
 
 class Agraph_t;
 

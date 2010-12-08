@@ -26,6 +26,7 @@
 
 
 #include "canvasedge.h"
+#include "canvaselement.h"
 #include "graphedge.h"
 #include "graphnode.h"
 #include "dotdefaults.h"
@@ -34,6 +35,8 @@
 #include "FontsCache.h"
 
 #include <KAction>
+#include <KDebug>
+#include <KLocale>
 
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>

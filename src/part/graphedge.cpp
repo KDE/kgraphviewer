@@ -29,8 +29,11 @@
 #include "graphsubgraph.h"
 #include "canvasedge.h"
 #include "dotdefaults.h"
+#include "dotgrammar.h"
 
 #include <graphviz/gvc.h>
+
+#include <KDebug>
 
 namespace KGraphViewer
 {

@@ -21,6 +21,7 @@
 #include "graphexporter.h"
 #include "DotGraphParsingHelper.h"
 #include "canvasedge.h"
+#include "canvasnode.h"
 #include "canvassubgraph.h"
 
 #include <math.h>
@@ -35,7 +36,8 @@
 
 #include <graphviz/gvc.h>
 
-#include <kdebug.h>
+#include <KDebug>
+#include <KLocale>
 #include <KMessageBox>
 
 #include <QFile>

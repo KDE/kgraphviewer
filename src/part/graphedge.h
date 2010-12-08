@@ -32,9 +32,7 @@
 #ifndef GRAPH_EDGE_H
 #define GRAPH_EDGE_H
 
-#include "canvasnode.h"
 #include "graphelement.h"
-#include "dotgrammar.h"
 #include "dotrenderop.h"
 
 #include <QStringList>
@@ -47,6 +45,7 @@ namespace KGraphViewer
 {
   
 class CanvasEdge;
+class CanvasNode;
 class GraphNode;
 
 class GraphEdge : public GraphElement
