@@ -51,6 +51,8 @@
 #include <math.h>
 #include <iostream>
 
+#include <graphviz/types.h>
+
 #include <QMatrix>
 #include <QPainter>
 #include <QStyle>

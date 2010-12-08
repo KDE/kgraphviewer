@@ -26,8 +26,6 @@
 #include <kaction.h>
 #include <krecentfilesaction.h>
 
-#include <graphviz/gvc.h>
-
 class QTreeWidget;
 class QTreeWidgetItem;
 

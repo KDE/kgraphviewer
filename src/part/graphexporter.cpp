@@ -28,6 +28,8 @@
 #include "graphexporter.h"
 #include "dotgraph.h"
 
+#include <graphviz/gvc.h>
+
 #include <QFile>
 #include <QTextStream>
 

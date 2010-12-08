@@ -24,7 +24,6 @@
 
 #include <graphviz/gvc.h>
 
-
 class LoadAGraphThread : public QThread
 {
 public:

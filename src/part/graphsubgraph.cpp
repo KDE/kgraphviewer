@@ -25,6 +25,8 @@
 #include "canvassubgraph.h"
 #include "dotdefaults.h"
 
+#include "graphviz/gvc.h"
+
 #include <kdebug.h>
 
 namespace KGraphViewer

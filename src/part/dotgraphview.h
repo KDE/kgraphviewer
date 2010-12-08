@@ -32,6 +32,9 @@
 #ifndef DOTGRAPHVIEW_H
 #define DOTGRAPHVIEW_H
 
+#include "kgraphviewer_export.h"
+#include "kgraphviewer_interface.h"
+
 #include <kconfig.h>
 #include <kactioncollection.h>
 #include <kconfiggroup.h>
@@ -39,10 +42,7 @@
 #include <QGraphicsView>
 #include <QSet>
 
-#include <graphviz/types.h>
-
-#include "kgraphviewer_export.h"
-#include "kgraphviewer_interface.h"
+class Agraph_t;
 
 class KSelectAction;
 class KToggleAction;
@@ -88,7 +88,7 @@ public:
 
   bool KGRAPHVIEWER_EXPORT loadDot(const QString& dotFileName);
   bool KGRAPHVIEWER_EXPORT loadLibrary(const QString& dotFileName);
-  bool loadLibrary(graph_t* graph, const QString& layoutCommand = "dot");
+  bool loadLibrary(Agraph_t* graph, const QString& layoutCommand = "dot");
 
   void readViewConfig();
   void saveViewConfig();
@@ -191,7 +191,7 @@ public Q_SLOTS:
   void zoomRectMovedTo(QPointF newZoomPos);
   void zoomRectMoveFinished();
   bool initEmpty();
-  bool slotLoadLibrary(graph_t* graph);
+  bool slotLoadLibrary(Agraph_t* graph);
   bool reload();
   void dirty(const QString& dotFileName);
   void pageSetup();

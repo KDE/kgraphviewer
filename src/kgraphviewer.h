@@ -28,8 +28,6 @@
 #include <kaction.h>
 #include <krecentfilesaction.h>
 
-#include <graphviz/gvc.h>
-
 class KToggleAction;
 
 /**

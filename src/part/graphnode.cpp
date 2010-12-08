@@ -37,6 +37,8 @@
 
 #include <math.h>
 
+#include <graphviz/gvc.h>
+
 #include <kdebug.h>
 
 namespace KGraphViewer

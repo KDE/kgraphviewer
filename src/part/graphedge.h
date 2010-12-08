@@ -37,11 +37,11 @@
 #include "dotgrammar.h"
 #include "dotrenderop.h"
 
-#include <graphviz/gvc.h>
-
 #include <QStringList>
 #include <QMap>
 #include <QTextStream>
+
+class Agedge_t;
 
 namespace KGraphViewer
 {
@@ -57,7 +57,7 @@ public:
   virtual ~GraphEdge();
 
   GraphEdge(const GraphEdge& edge);
-  GraphEdge(edge_t* edge);
+  GraphEdge(Agedge_t* edge);
   
   CanvasEdge* canvasEdge() { return (CanvasEdge*)canvasElement(); }
   const CanvasEdge* canvasEdge() const { return (CanvasEdge*)canvasElement(); }
@@ -94,7 +94,7 @@ public:
   inline const QList< DotRenderOp >&  arrowheads() const {return m_arrowheads;}
 
   virtual void updateWithEdge(const GraphEdge& edge);
-  virtual void updateWithEdge(edge_t* edge);
+  virtual void updateWithEdge(Agedge_t* edge);
 
 private:
   // we have a _ce *and* _from/_to because for collapsed edges,

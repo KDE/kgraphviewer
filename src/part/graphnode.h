@@ -37,13 +37,13 @@
 #include <QMap>
 #include <QtCore/QTextStream>
 
-#include <graphviz/gvc.h>
-
 #include "dotrenderop.h"
 #include "dotgrammar.h"
 #include "graphelement.h"
 #include "canvaselement.h"
 #include "canvasnode.h"
+
+class Agnode_t;
 
 namespace KGraphViewer
 {
@@ -59,7 +59,7 @@ class GraphNode : public GraphElement
 public:
   GraphNode();
   GraphNode(const GraphNode& gn);
-  GraphNode(node_t* gn);
+  GraphNode(Agnode_t* gn);
   
   virtual ~GraphNode() {}  
   
@@ -68,7 +68,7 @@ public:
   inline void setCanvasNode(CanvasNode* cn) { setCanvasElement((CanvasElement*)cn); }
 
   virtual void updateWithNode(const GraphNode& node);
-  virtual void updateWithNode(node_t* node);
+  virtual void updateWithNode(Agnode_t* node);
 
   
 private:

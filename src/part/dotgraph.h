@@ -29,14 +29,14 @@
 #include <QProcess>
 #include <QMutex>
 
-#include <graphviz/gvc.h>
-
 #include "kgraphviewer_export.h"
 #include "graphelement.h"
 #include "graphsubgraph.h"
 #include "graphnode.h"
 #include "graphedge.h"
 #include "dotdefaults.h"
+
+class Agraph_t;
 
 namespace KGraphViewer
 {
@@ -103,7 +103,7 @@ public:
 
   void KGRAPHVIEWER_EXPORT saveTo(const QString& fileName);
 
-  virtual void updateWithGraph(graph_t* newGraph);
+  virtual void updateWithGraph(Agraph_t* newGraph);
   virtual void updateWithGraph(const DotGraph& graph);
 
   void KGRAPHVIEWER_EXPORT setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);

@@ -23,12 +23,13 @@
 #include "canvasedge.h"
 #include "canvassubgraph.h"
 
-
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "fdstream.hpp"
 #include <boost/spirit/include/classic_confix.hpp>
+
 #include <graphviz/gvc.h>
 
 #include <kdebug.h>
@@ -49,8 +50,7 @@ extern KGraphViewer::DotGraphParsingHelper* phelper;
 
 namespace KGraphViewer
 {
-  
-  
+
 const distinct_parser<> keyword_p("0-9a-zA-Z_");
 
 DotGraph::DotGraph() :

@@ -30,6 +30,8 @@
 #include "canvasedge.h"
 #include "dotdefaults.h"
 
+#include <graphviz/gvc.h>
+
 namespace KGraphViewer
 {
   
