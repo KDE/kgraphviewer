@@ -129,6 +129,7 @@ public:
 
 protected:
   KGraphViewerInterface() {}
+  virtual ~KGraphViewerInterface() {}
 };
 
 }

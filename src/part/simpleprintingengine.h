@@ -70,7 +70,7 @@ public:
   bool eof() const { return m_eof; }
 
   //! \return number of pages. Can be used after calculatePagesCount().
-  uint pagesCount() { return m_pagesCount; }
+  int pagesCount() { return m_pagesCount; }
 
   uint maxHorizFit() const;
   uint maxVertFit() const;
@@ -99,7 +99,7 @@ protected:
   QRect m_headerTextRect;
   int m_mainLineSpacing;
   int m_footerHeight;
-  uint m_pagesCount;
+  int m_pagesCount;
   bool m_eof;
   bool m_paintInitialized; //!< used by paintPage()
   double leftMargin;
