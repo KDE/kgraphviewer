@@ -25,10 +25,9 @@
 
 #include "dotrenderop.h"
 
-#include <boost/throw_exception.hpp>
-#include <boost/spirit/include/classic_core.hpp>
-#include <boost/spirit/include/classic_distinct.hpp>
-#include <boost/spirit/include/classic_loops.hpp>
+#include <boost/spirit/include/classic_actions.hpp>
+#include <boost/spirit/include/classic_grammar.hpp>
+#include <boost/spirit/include/classic_rule.hpp>
 
 #include <QPoint>
 #include <QColor>

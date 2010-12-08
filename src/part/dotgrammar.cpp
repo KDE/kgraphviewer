@@ -26,11 +26,15 @@
 #include <iostream>
 
 #include <kdebug.h>
-    
+
 #include <QFile>
 
+#include <boost/spirit/include/classic_core.hpp>
+#include <boost/spirit/include/classic_distinct.hpp>
+#include <boost/spirit/include/classic_loops.hpp>
 #include <boost/spirit/include/classic_confix.hpp>
-#include <boost/throw_exception.hpp> 
+#include <boost/throw_exception.hpp>
+
 namespace boost
 {
   void throw_exception(std::exception const &) {}

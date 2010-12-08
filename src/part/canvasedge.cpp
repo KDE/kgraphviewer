@@ -39,6 +39,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QMenu>
 
+#include <math.h>
 #include <iostream>
 
 //
