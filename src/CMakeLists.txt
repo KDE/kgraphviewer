@@ -1,6 +1,6 @@
 add_subdirectory( part )
 
-include_directories( part ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( part ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${graphviz_INCLUDE_DIRECTORIES} )
 
 
 ########### kgraphviewer target ###############
