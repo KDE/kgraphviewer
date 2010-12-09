@@ -171,3 +171,5 @@ QTextStream& operator<<(QTextStream& s, const GraphEdge& e)
 }
 
 }
+
+#include "graphedge.moc"

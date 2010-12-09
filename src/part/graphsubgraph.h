@@ -44,7 +44,8 @@ typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;
  */
 class GraphSubgraph : public GraphElement
 {
-//   Q_OBJECT
+  Q_OBJECT
+
 public:
   GraphSubgraph();
   explicit GraphSubgraph(Agraph_t* sg);

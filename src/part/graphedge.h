@@ -50,7 +50,8 @@ class GraphNode;
 
 class GraphEdge : public GraphElement
 {
-//   Q_OBJECT
+  Q_OBJECT
+
 public:
   GraphEdge();
   virtual ~GraphEdge();
