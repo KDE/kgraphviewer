@@ -37,10 +37,8 @@
 #include <klocale.h>
 #include <KAction>
 
-namespace KGraphViewer
-{
-  
-  
+using namespace KGraphViz;
+
 CanvasElement::CanvasElement(
                               DotGraphView* v,
                               GraphElement* gelement,
@@ -568,8 +566,6 @@ void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
   m_hovered = false;
   update();
   emit hoverLeave(this);
-}
-
 }
 
 #include "canvaselement.moc"

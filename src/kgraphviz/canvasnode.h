@@ -33,7 +33,7 @@
 
 #include "canvaselement.h"
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 class GraphNode;

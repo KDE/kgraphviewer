@@ -19,7 +19,7 @@
 
 #include "canvassubgraph.h"
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
   

@@ -57,6 +57,7 @@
 #include <iostream>
 
 using namespace KGraphViewer;
+using namespace KGraphViz;
 
 KGraphEditor::KGraphEditor() :
     KXmlGuiWindow(), 
@@ -162,7 +163,7 @@ void KGraphEditor::reloadPreviousFiles()
   
 }
 
-DotGraphView*  KGraphEditor::slotNewGraph()
+DotGraphView* KGraphEditor::slotNewGraph()
 {
   kDebug();
   DotGraphView* view = new DotGraphView(actionCollection(), m_widget);

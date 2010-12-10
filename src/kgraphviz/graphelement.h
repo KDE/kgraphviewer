@@ -27,7 +27,7 @@
 #include <QMap>
 #include <QtCore/QTextStream>
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 class CanvasElement;

@@ -66,7 +66,7 @@ namespace KGraphViewer
   
 
 KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
-    KGVSimplePrintingCommand* command, DotGraphView *mainWin, QWidget *parent, 
+    KGVSimplePrintingCommand* command, KGraphViz::DotGraphView *mainWin, QWidget *parent, 
 	  QMap<QString,QString>* args )
 	: QWidget( parent, "KGVSimplePrintingPageSetup" )
 	, m_settings( command->engine()->settings() )

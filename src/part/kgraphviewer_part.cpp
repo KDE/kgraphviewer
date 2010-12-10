@@ -57,7 +57,7 @@ public:
     delete m_watch;
   }
   
-  DotGraphView *m_widget;
+  KGraphViz::DotGraphView *m_widget;
   KDirWatch* m_watch;
   KGraphViewerPart::LayoutMethod m_layoutMethod;
   
@@ -71,7 +71,7 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent)
   setComponentData( KGraphViewerPartFactory::componentData() );
 
   // this should be your custom internal widget
-  d->m_widget = new DotGraphView( actionCollection(), parentWidget);
+  d->m_widget = new KGraphViz::DotGraphView( actionCollection(), parentWidget);
   d->m_widget->initEmpty();
   d->m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
   connect( d->m_widget, SIGNAL( graphLoaded() ),

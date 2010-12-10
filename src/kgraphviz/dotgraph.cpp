@@ -50,10 +50,9 @@
 using namespace boost;
 using namespace boost::spirit::classic;
 
-extern KGraphViewer::DotGraphParsingHelper* phelper;
+extern KGraphViz::DotGraphParsingHelper* phelper;
 
-
-namespace KGraphViewer
+namespace KGraphViz
 {
 
 const distinct_parser<> keyword_p("0-9a-zA-Z_");

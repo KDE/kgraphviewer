@@ -43,7 +43,7 @@ class QMenu;
  * - CanvasEdgeLabel  (Label for edges)
  * - CanvasEdgeArrow  (Arrows at the end of the edge spline)
  */
-namespace KGraphViewer
+namespace KGraphViz
 {
 
 class CanvasNode;

@@ -30,9 +30,9 @@
 class QMenu;
 class QGraphicsScene;
 
-
-namespace KGraphViewer
+namespace KGraphViz
 {
+
 class GraphElement;
 class DotGraphView;
 

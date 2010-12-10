@@ -42,7 +42,7 @@
 
 class Agedge_t;
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 class CanvasEdge;

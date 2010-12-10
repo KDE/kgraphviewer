@@ -27,7 +27,7 @@
 #include <QRegExp>
 #include <graphviz/gvc.h>
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 GraphElement::GraphElement() :

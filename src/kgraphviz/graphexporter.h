@@ -37,7 +37,7 @@ class Agraph_t;
 
 class KTemporaryFile;
 
-namespace KGraphViewer
+namespace KGraphViz
 {
 class DotGraph;
   

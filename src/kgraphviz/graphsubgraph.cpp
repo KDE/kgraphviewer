@@ -30,7 +30,7 @@
 
 #include <kdebug.h>
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 //

@@ -39,6 +39,8 @@ class QPaintDevice;
 
 #include <kgraphviz/dotgraphview.h>
 
+
+
 namespace KGraphViewer
 {
 class KGVSimplePrintingSettings;
@@ -53,7 +55,7 @@ public:
   KGVSimplePrintingEngine( KGVSimplePrintingSettings* settings, QObject* parent );
   ~KGVSimplePrintingEngine();
 
-  bool init(DotGraphView& data,
+  bool init(KGraphViz::DotGraphView& data,
     const QString& titleText, QString& errorMessage);
 
   void setTitleText(const QString& titleText);
@@ -75,7 +77,7 @@ public:
   uint maxHorizFit() const;
   uint maxVertFit() const;
 
-	inline DotGraphView* data() {return m_data;}
+  inline KGraphViz::DotGraphView* data() {return m_data;}
 
 
 public slots:
@@ -92,7 +94,7 @@ protected:
   int m_dpiX, m_dpiY;
   uint m_pageWidth, m_pageHeight;
   //QFontMetrics m_headerFM, m_mainFM;
-  DotGraphView* m_data;
+  KGraphViz::DotGraphView* m_data;
   QString m_headerText;
   QString m_dateTimeText;
   uint m_dateTimeWidth;

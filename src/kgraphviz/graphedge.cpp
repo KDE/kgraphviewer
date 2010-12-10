@@ -35,7 +35,7 @@
 
 #include <KDebug>
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 /*

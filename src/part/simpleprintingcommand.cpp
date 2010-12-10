@@ -34,6 +34,8 @@
 // #include <kexiutils/utils.h>
 // #include <kexi_version.h>
 
+#include <kgraphviz/dotgraphview.h>
+
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <kiconloader.h>
@@ -63,16 +65,19 @@
 
 namespace KGraphViewer
 {
+
 KGVSimplePrintingCommand::KGVSimplePrintingCommand(
-  DotGraphView* mainWin, int objectId, QObject* parent)
- : QObject(parent, "KGVSimplePrintCommand")
- , m_previewEngine(0)
- , m_graphView(mainWin)
- , m_objectId(objectId)
- , m_settings(new KGVSimplePrintingSettings(KGVSimplePrintingSettings::load()))
- , m_previewWindow(0)
- , m_printPreviewNeedsReloading(true)
- , m_pageSetupDialog(0)
+  KGraphViz::DotGraphView* mainWin,
+  int objectId,
+  QObject* parent)
+  : QObject(parent, "KGVSimplePrintCommand")
+  , m_previewEngine(0)
+  , m_graphView(mainWin)
+  , m_objectId(objectId)
+  , m_settings(new KGVSimplePrintingSettings(KGVSimplePrintingSettings::load()))
+  , m_previewWindow(0)
+  , m_printPreviewNeedsReloading(true)
+  , m_pageSetupDialog(0)
 {
   connect(this, SIGNAL(showPageSetupRequested()), 
     this, SLOT(slotShowPageSetupRequested()));

@@ -38,7 +38,7 @@
 
 class Agraph_t;
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 /**

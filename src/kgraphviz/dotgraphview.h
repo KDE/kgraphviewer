@@ -57,7 +57,9 @@ class QWheelEvent;
 class QContextMenuEvent;
 class QWidget;
 
-namespace KGraphViewer
+using namespace KGraphViewer;
+
+namespace KGraphViz
 {
 
 class GraphElement;

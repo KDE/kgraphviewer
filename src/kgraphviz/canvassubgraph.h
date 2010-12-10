@@ -27,7 +27,7 @@
 
 class QGraphicsScene;
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 class GraphSubgraph;

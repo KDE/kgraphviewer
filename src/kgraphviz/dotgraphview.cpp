@@ -84,11 +84,10 @@
 #include <kactionmenu.h>
 
 // DotGraphView defaults
-
 #define DEFAULT_ZOOMPOS      KGraphViewerInterface::Auto
 #define KGV_MAX_PANNER_NODES 100
 
-namespace KGraphViewer
+namespace KGraphViz
 {
 
 class DotGraphViewPrivate

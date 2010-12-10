@@ -32,13 +32,16 @@
 
 #include <QButtonGroup>
 
-namespace Ui {
+namespace KGraphViz
+{
+class DotGraphView;
+}
+namespace Ui
+{
   class KGVSimplePrintingPageSetupBase;
 }
 namespace KGraphViewer
 {
-
-class DotGraphView;
 class KGVSimplePrintingCommand;
 class KgvPageLayoutSize;
 
@@ -48,9 +51,11 @@ class KGVSimplePrintingPageSetup : public QWidget
 	Q_OBJECT
 
 	public:
-		KGVSimplePrintingPageSetup(KGVSimplePrintingCommand* command, 
-      DotGraphView *mainWin, QWidget *parent, QMap<QString,QString>* args );
-		~KGVSimplePrintingPageSetup();
+      KGVSimplePrintingPageSetup(KGVSimplePrintingCommand* command, 
+                                   KGraphViz::DotGraphView *mainWin,
+                                   QWidget *parent,
+                                   QMap<QString,QString>* args);
+      ~KGVSimplePrintingPageSetup();
 
 	public slots:
 		void slotPrint();
@@ -90,7 +95,7 @@ class KGVSimplePrintingPageSetup : public QWidget
 		KgvUnit::Unit m_unit;
 		Ui::KGVSimplePrintingPageSetupBase *m_contents;
 		KgvPageLayoutSize *m_pageLayoutWidget;
-		DotGraphView *m_graphView;
+		KGraphViz::DotGraphView *m_graphView;
 		KGVSimplePrintingCommand *m_command;
 		bool m_printPreviewNeedsReloading : 1;
   

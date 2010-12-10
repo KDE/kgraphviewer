@@ -49,7 +49,7 @@
 #include <kdebug.h>
 #include <klocale.h>
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 CanvasNode::CanvasNode(DotGraphView* v,

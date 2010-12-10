@@ -34,11 +34,12 @@ class KToggleAction;
 class KGraphEditorNodesTreeWidget;
 class KGraphEditorElementTreeWidget;
 
-namespace KGraphViewer
+namespace KGraphViz
 {
-  class DotGraphView;
+class DotGraphView;
 }
-  /**
+
+/**
  * This is the application "Shell".  It has a menubar, toolbar, and
  * statusbar but relies on the "Part" to do all the real work.
  *
@@ -70,7 +71,7 @@ protected:
   bool queryExit(); 
 
 Q_SIGNALS:
-  void hide(KGraphViewer::DotGraphView* part);
+  void hide(KGraphViz::DotGraphView* part);
   void prepareAddNewElement(QMap<QString,QString> attribs);
   void prepareAddNewEdge(QMap<QString,QString> attribs);
   void setReadWrite();
@@ -92,7 +93,7 @@ public Q_SLOTS:
     */
   void openUrl(const QString& url) {openUrl(KUrl(url));}
 
-  void slotSetActiveGraph( KGraphViewer::DotGraphView* part);
+  void slotSetActiveGraph( KGraphViz::DotGraphView* part);
 
   void slotGraphLoaded();
   
@@ -141,7 +142,7 @@ private Q_SLOTS:
   void slotHoverEnter(const QString&);
   void slotHoverLeave(const QString&);
 
-  KGraphViewer::DotGraphView* slotNewGraph();
+  KGraphViz::DotGraphView* slotNewGraph();
   
 private:
   void setupAccel();
@@ -158,9 +159,9 @@ private:
 
   QStringList m_openedFiles;
   
-  QMap<QWidget*, KGraphViewer::DotGraphView*> m_tabsPartsMap;
+  QMap<QWidget*, KGraphViz::DotGraphView*> m_tabsPartsMap;
   QMap<QWidget*, QString> m_tabsFilesMap;
-  KGraphViewer::DotGraphView* m_currentPart;
+  KGraphViz::DotGraphView* m_currentPart;
 
   QMap<QString, QString> m_newElementAttributes;
 

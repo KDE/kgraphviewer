@@ -31,12 +31,12 @@
 
 #include <QUuid>
 
-extern KGraphViewer::DotGraphParsingHelper* phelper;
-
-namespace KGraphViewer
-{
-
 #define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<int>::max()
+
+extern KGraphViz::DotGraphParsingHelper* phelper;
+
+namespace KGraphViz
+{
 
 DotGraphParsingHelper::DotGraphParsingHelper():
   attrid(),

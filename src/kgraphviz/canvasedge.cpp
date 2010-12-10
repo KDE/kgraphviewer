@@ -44,12 +44,7 @@
 #include <math.h>
 #include <iostream>
 
-//
-// CanvasEdge
-//
-
-namespace KGraphViewer
-{
+using namespace KGraphViz;
 
 CanvasEdge::CanvasEdge(DotGraphView* view,
                        GraphEdge* e,
@@ -586,8 +581,6 @@ void CanvasEdge::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
   Q_UNUSED(event)
   kDebug() << edge()->id();
   emit hoverLeave(this);
-}
-
 }
 
 #include "canvasedge.moc"

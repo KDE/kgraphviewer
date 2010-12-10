@@ -36,7 +36,7 @@
 #include <kdebug.h>
 #include <ktemporaryfile.h>
 
-namespace KGraphViewer
+namespace KGraphViz
 {
   
 GraphExporter::GraphExporter()

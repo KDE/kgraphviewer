@@ -30,13 +30,18 @@
 
 #include "simpleprintingengine.h"
 
-#include <kgraphviz/dotgraphview.h>
-
 #include <kgraphviewer_part.h>
+
+namespace KGraphViz
+{
+class DotGraphView;
+}
 
 namespace KGraphViewer
 {
 class KGVSimplePrintPreviewWindow;
+class KGVSimplePrintingEngine;
+class KGVSimplePrintingSettings;
 
 /*! @short A command for simple printing and print preview. 
  This class is instantiated in KGVMainWindowImpl so there's:
@@ -48,10 +53,10 @@ class KGVSimplePrintPreviewWindow;
 */
 class KGVSimplePrintingCommand : public QObject
 {
-Q_OBJECT
+  Q_OBJECT
 
 public:
-  KGVSimplePrintingCommand(DotGraphView* mainWin, int objectId, 
+  KGVSimplePrintingCommand(KGraphViz::DotGraphView* mainWin, int objectId, 
       QObject* parent = 0);
   ~KGVSimplePrintingCommand();
 
@@ -76,7 +81,7 @@ protected:
   bool init(const QString& aTitleText = QString());
 
   KGVSimplePrintingEngine* m_previewEngine;
-  DotGraphView* m_graphView;
+  KGraphViz::DotGraphView* m_graphView;
   int m_objectId;
   KGVSimplePrintingSettings* m_settings;
   KGVSimplePrintPreviewWindow *m_previewWindow;

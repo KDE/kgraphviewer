@@ -65,7 +65,9 @@ KGVSimplePrintingEngine::~KGVSimplePrintingEngine()
   done();
 }
 
-bool KGVSimplePrintingEngine::init(DotGraphView& data, const QString& titleText, QString& errorMessage)
+bool KGVSimplePrintingEngine::init(KGraphViz::DotGraphView& data,
+                                   const QString& titleText,
+                                   QString& errorMessage)
 {
 	errorMessage.clear();
 	done();

@@ -44,7 +44,7 @@
 
 #include "dotgraphview.h"
 
-namespace KGraphViewer
+namespace KGraphViz
 {
 //
 // PannerView

@@ -43,7 +43,7 @@
 
 class Agnode_t;
 
-namespace KGraphViewer
+namespace KGraphViz
 {
 
 class CanvasElement;

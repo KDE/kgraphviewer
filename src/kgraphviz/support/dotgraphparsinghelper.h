@@ -23,7 +23,7 @@
 #include <list>
 #include <string>
 
-namespace KGraphViewer
+namespace KGraphViz
 {
 
 class DotGraph;
