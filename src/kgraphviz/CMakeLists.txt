@@ -15,8 +15,6 @@ link_directories(
     ${LIB_INSTALL_DIR}
 )
 
-add_subdirectory(support)
-
 set( kgraphvz_LIB_SRCS
   canvasedge.cpp
   canvaselement.cpp

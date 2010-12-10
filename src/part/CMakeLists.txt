@@ -17,7 +17,7 @@ kde4_add_ui_files(kgraphviewerlib_LIB_SRCS ${kgraphviewerprinting_UI} )
 
 kde4_add_library(kgraphviewerlib SHARED ${kgraphviewerlib_LIB_SRCS})
 
-set(kgraphviewerlib_DEPENDS "kgraphviz")
+add_dependencies(kgraphviewerlib kgraphviz)
 
 add_definitions(-DQT_STL)
 target_link_libraries(kgraphviewerlib ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} ${graphviz_LIBRARIES} kgraphviz)
