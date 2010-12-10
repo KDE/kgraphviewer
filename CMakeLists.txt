@@ -35,5 +35,6 @@ include_directories(
 
 configure_file (config-kgraphviewer.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h )
 
-add_subdirectory(src)
 add_subdirectory(doc)
+add_subdirectory(src)
+add_subdirectory(tests)
