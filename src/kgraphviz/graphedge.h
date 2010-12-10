@@ -55,14 +55,10 @@ class KGRAPHVIZ_EXPORT GraphEdge : public GraphElement
 
 public:
   GraphEdge();
-  virtual ~GraphEdge();
-
   GraphEdge(const GraphEdge& edge);
   GraphEdge(Agedge_t* edge);
-  
-  CanvasEdge* canvasEdge() { return (CanvasEdge*)canvasElement(); }
-  const CanvasEdge* canvasEdge() const { return (CanvasEdge*)canvasElement(); }
-  void setCanvasEdge(CanvasEdge* ce) { setCanvasElement((CanvasElement*)ce); }
+
+  virtual ~GraphEdge();
 
   bool isVisible() { return m_visible; }
   void setVisible(bool v) { m_visible = v; }

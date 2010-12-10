@@ -492,9 +492,9 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
         kDebug() << "edge known" << nge->id;
 //         edges()[nge->name]->setZ(nge->z());
         edges()[edgeName]->updateWithEdge(nge);
-        if (edges()[edgeName]->canvasEdge()!=0)
+        if (edges()[edgeName]->canvasElement()!=0)
         {
-          //         edges()[nge->id()]->canvasEdge()->setGh(m_height);
+          //         edges()[nge->id()]->canvasElement()->setGh(m_height);
         }
       }
       else
@@ -591,9 +591,9 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
       kDebug() << "edge known" << nge->id();
       edges()[nge->id()]->setZ(nge->z());
       edges()[nge->id()]->updateWithEdge(*nge);
-      if (edges()[nge->id()]->canvasEdge()!=0)
+      if (edges()[nge->id()]->canvasElement()!=0)
       {
-//         edges()[nge->id()]->canvasEdge()->setGh(m_height);
+//         edges()[nge->id()]->canvasElement()->setGh(m_height);
       }
     }
     else
@@ -631,10 +631,10 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
         || it.value()->toNode() == node )
     {
       GraphEdge* edge = it.value();
-      if (edge->canvasEdge() != 0)
+      if (edge->canvasElement() != 0)
       {
-        edge->canvasEdge()->hide();
-        delete edge->canvasEdge();
+        edge->canvasElement()->hide();
+        delete edge->canvasElement();
         delete edge;
       }
       it = edges().erase(it);
@@ -645,11 +645,11 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
     }
   }
 
-  if (node->canvasNode() != 0)
+  if (node->canvasElement() != 0)
   {
-    node->canvasNode()->hide();
-    delete node->canvasNode();
-    node->setCanvasNode(0);
+    node->canvasElement()->hide();
+    delete node->canvasElement();
+    node->setCanvasElement(0);
   }
   nodes().remove(nodeName);
   delete node;
@@ -700,10 +700,10 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
         || it.value()->toNode() == subgraph )
     {
       GraphEdge* edge = it.value();
-      if (edge->canvasEdge() != 0)
+      if (edge->canvasElement() != 0)
       {
-        edge->canvasEdge()->hide();
-        delete edge->canvasEdge();
+        edge->canvasElement()->hide();
+        delete edge->canvasElement();
         delete edge;
       }
       it = edges().erase(it);
@@ -750,10 +750,10 @@ void DotGraph::removeEdge(const QString& id)
     GraphEdge* edge = it.value();
     if (edge->id() ==id)
     {
-      if (edge->canvasEdge() != 0)
+      if (edge->canvasElement() != 0)
       {
-        edge->canvasEdge()->hide();
-        delete edge->canvasEdge();
+        edge->canvasElement()->hide();
+        delete edge->canvasElement();
         delete edge;
       }
       edges().remove(id);

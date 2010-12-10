@@ -62,16 +62,9 @@ public:
   GraphNode(Agnode_t* gn);
   
   virtual ~GraphNode() {}  
-  
-  CanvasNode* canvasNode();
-  const CanvasNode* canvasNode() const;
-  inline void setCanvasNode(CanvasNode* cn) { setCanvasElement((CanvasElement*)cn); }
 
   virtual void updateWithNode(const GraphNode& node);
   virtual void updateWithNode(Agnode_t* node);
-
-  
-private:
 };
 
 /** A map associating the ids of a graph's nodes to these nodes */

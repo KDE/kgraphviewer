@@ -28,16 +28,12 @@
 #ifndef CANVAS_EDGE_H
 #define CANVAS_EDGE_H
 
-#include <QGraphicsScene>
-#include <QGraphicsPathItem>
-#include <QAbstractGraphicsShapeItem>
-#include <QWidget>
-#include <QMap>
-#include <QFont>
+#include "canvaselement.h"
 
 #include "graphexporter.h"
 
-
+class QGraphicsScene;
+class QFont;
 class QMenu;
 
 /*
@@ -56,14 +52,18 @@ class GraphEdge;
 class DotGraphView;
 
 
-class CanvasEdge : public QObject, public QAbstractGraphicsShapeItem
+class CanvasEdge : public CanvasElement
 {
-Q_OBJECT
+  Q_OBJECT
+
 public:
-  explicit CanvasEdge(DotGraphView* v, GraphEdge*,
+  explicit CanvasEdge(DotGraphView* v,
+                      GraphEdge*,
+                      QGraphicsScene* scene,
              qreal scaleX, qreal scaleY,
              qreal xMargin, qreal yMargin, qreal gh,
-             qreal wdhcf, qreal hdvcf, QGraphicsItem* parent = 0);
+             qreal wdhcf, qreal hdvcf,
+             QGraphicsItem* parent = 0);
 
   virtual ~CanvasEdge();
   

@@ -70,10 +70,10 @@ void GraphNode::updateWithNode(const GraphNode& node)
 {
   kDebug() << id() << node.id();
   GraphElement::updateWithElement(node);
-  if (canvasNode())
+  if (canvasElement())
   {
-    canvasNode()->computeBoundingRect();
-    canvasNode()->modelChanged();
+    canvasElement()->computeBoundingRect();
+    canvasElement()->modelChanged();
   }
 //   kDebug() << "done";
 }
@@ -104,16 +104,6 @@ void GraphNode::updateWithNode(node_t* node)
     m_attributes[attr->name] = agxget(node,attr->index);
     attr = agnxtattr(node,attr);
   }
-}
-
-CanvasNode* GraphNode::canvasNode()
-{
-    return dynamic_cast<CanvasNode*>(canvasElement());
-}
-
-const KGraphViewer::CanvasNode* GraphNode::canvasNode() const
-{
-    return dynamic_cast<const CanvasNode*>(canvasElement());
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphNode& n)

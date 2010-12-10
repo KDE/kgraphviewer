@@ -382,7 +382,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
   foreach (GraphElement* element, gsubgraph->content())
   {
     GraphNode* gnode = dynamic_cast<GraphNode*>(element);
-    if (gnode->canvasNode()==0)
+    if (gnode->canvasElement()==0)
     {
       kDebug() << "Creating canvas node for:" << gnode->id();
       CanvasNode *cnode = new CanvasNode(q, gnode, m_canvas);
@@ -390,13 +390,13 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
       cnode->initialize(
         scaleX, scaleY, m_xMargin, m_yMargin, gh,
         m_graph->wdhcf(), m_graph->hdvcf());
-      gnode->setCanvasNode(cnode);
+      gnode->setCanvasElement(cnode);
       m_canvas->addItem(cnode);
       //       cnode->setZValue(gnode->z());
       cnode->setZValue(zValue+1);
       cnode->show();
     }
-    gnode->canvasNode()->computeBoundingRect();
+    gnode->canvasElement()->computeBoundingRect();
   }
   gsubgraph->canvasSubgraph()->computeBoundingRect();
   
@@ -843,7 +843,8 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 
 bool DotGraphView::loadLibrary(const QString& dotFileName)
 {
-  kDebug() << "'" << dotFileName << "'";
+  kDebug() << "Load file:" << dotFileName;
+  
   Q_D(DotGraphView);
   if (d->m_canvas)
     d->m_canvas->clear();
@@ -960,8 +961,8 @@ bool DotGraphView::displayGraph()
     GraphNode* gnode = it.value();
     kDebug() << "Handling" << id << (void*)gnode;
     kDebug() << "  gnode id=" << gnode->id();
-    kDebug()<<  "  canvasNode=" << (void*)gnode->canvasNode();
-    if (gnode->canvasNode()==0)
+    kDebug()<<  "  canvasElement=" << (void*)gnode->canvasElement();
+    if (gnode->canvasElement()==0)
     {
       kDebug() << "Creating canvas node for" << gnode->id();
       CanvasNode *cnode = new CanvasNode(this, gnode, d->m_canvas);
@@ -969,20 +970,20 @@ bool DotGraphView::displayGraph()
       cnode->initialize(
         scaleX, scaleY, d->m_xMargin, d->m_yMargin, gh,
         d->m_graph->wdhcf(), d->m_graph->hdvcf());
-      gnode->setCanvasNode(cnode);
+      gnode->setCanvasElement(cnode);
       d->m_canvas->addItem(cnode);
 //       cnode->setZValue(gnode->z());
       cnode->setZValue(zvalue+1);
       cnode->show();
     }
-    gnode->canvasNode()->computeBoundingRect();
+    gnode->canvasElement()->computeBoundingRect();
   }
 
   kDebug() << "Creating" << d->m_graph->edges().size() << "edges from" << d->m_graph;
   foreach (GraphEdge* gedge, d->m_graph->edges())
   {
     kDebug() << "One GraphEdge:" << gedge->id();
-    if (gedge->canvasEdge() == 0
+    if (gedge->canvasElement() == 0
       && gedge->fromNode() != 0
       && gedge->toNode() != 0)
     {
@@ -991,18 +992,18 @@ bool DotGraphView::displayGraph()
       kDebug() << "              "<< gedge->fromNode()->id();
       kDebug() << "edge toNode=" << (void*)gedge->toNode();
       kDebug() << "              "<< gedge->toNode()->id();
-      CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, d->m_xMargin,
+      CanvasEdge* cedge = new CanvasEdge(this, gedge, d->m_canvas, scaleX, scaleY, d->m_xMargin,
           d->m_yMargin, gh, d->m_graph->wdhcf(), d->m_graph->hdvcf());
 
-      gedge->setCanvasEdge(cedge);
+      gedge->setCanvasElement(cedge);
   //     std::cerr << "setting z = " << gedge->z() << std::endl;
   //    cedge->setZValue(gedge->z());
       cedge->setZValue(zvalue+2);
       cedge->show();
       d->m_canvas->addItem(cedge);
     }
-    if (gedge->canvasEdge() != 0)
-      gedge->canvasEdge()->computeBoundingRect();
+    if (gedge->canvasElement() != 0)
+      gedge->canvasElement()->computeBoundingRect();
   }
   kDebug() << "Adding graph render operations: " << d->m_graph->renderOperations().size();
   foreach (const DotRenderOp& dro, d->m_graph->renderOperations())
@@ -1274,7 +1275,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     newCNode->initialize(
       scaleX, scaleY, d->m_xMargin, d->m_yMargin, gh,
       d->m_graph->wdhcf(), d->m_graph->hdvcf());
-    newNode->setCanvasNode(newCNode);
+    newNode->setCanvasElement(newCNode);
     scene()->addItem(newCNode);
     kDebug() << "setting pos to " << pos;
     newCNode->setPos(pos);
@@ -1313,7 +1314,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
       {
         if (e->isSelected()) {
           e->setSelected(false);
-          e->canvasEdge()->update();
+          e->canvasElement()->update();
         }
       }
       foreach(GraphNode* n, d->m_graph->nodes())
@@ -1881,7 +1882,7 @@ void DotGraphView::finishNewEdgeTo(CanvasElement* node)
 //   CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, d->m_xMargin,
 //         d->m_yMargin, gh, d->m_graph->wdhcf(), d->m_graph->hdvcf());
 // 
-//   gedge->setCanvasEdge(cedge);
+//   gedge->setCanvasElement(cedge);
 // //     std::cerr << "setting z = " << gedge->z() << std::endl;
 //   cedge->setZValue(gedge->z());
 //   cedge->show();
@@ -1922,16 +1923,16 @@ void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modi
   {
     foreach(GraphEdge* e, d->m_graph->edges())
     {
-      if (e->canvasEdge() != edge)
+      if (e->canvasElement() != edge)
       {
         e->setSelected(false);
-        e->canvasEdge()->update();
+        e->canvasElement()->update();
       }
     }
     foreach(GraphNode* n, d->m_graph->nodes())
     {
       n->setSelected(false);
-      n->canvasNode()->update();
+      n->canvasElement()->update();
     }
     foreach(GraphSubgraph* s, d->m_graph->subgraphs())
     {
@@ -1942,7 +1943,7 @@ void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modi
   {
     foreach(GraphEdge* e, d->m_graph->edges())
     {
-      if (e->canvasEdge() != edge)
+      if (e->canvasElement() != edge)
       {
         if (e->isSelected())
         {
@@ -1980,7 +1981,7 @@ void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModif
     {
       if (e->isSelected()) {
         e->setSelected(false);
-        e->canvasEdge()->update();
+        e->canvasElement()->update();
       }
     }
     foreach(GraphNode* e, d->m_graph->nodes())
@@ -2172,10 +2173,10 @@ void DotGraphView::slotSelectNode(const QString& nodeName)
   GraphNode* node = dynamic_cast<GraphNode*>(graph()->elementNamed(nodeName));
   if (node == 0) return;
   node->setSelected(true);
-  if (node->canvasNode()!=0)
+  if (node->canvasElement()!=0)
   {
-    node->canvasNode()->modelChanged();
-    slotElementSelected(node->canvasNode(),Qt::NoModifier);
+    node->canvasElement()->modelChanged();
+    slotElementSelected(node->canvasElement(),Qt::NoModifier);
   }
 }
 
@@ -2183,9 +2184,9 @@ void DotGraphView::centerOnNode(const QString& nodeId)
 {
   GraphNode* node = dynamic_cast<GraphNode*>(graph()->elementNamed(nodeId));
   if (node == 0) return;
-  if (node->canvasNode()!=0)
+  if (node->canvasElement()!=0)
   {
-    centerOn(node->canvasNode());
+    centerOn(node->canvasElement());
   }
 }
 

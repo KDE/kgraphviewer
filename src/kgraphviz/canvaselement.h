@@ -38,7 +38,8 @@ class DotGraphView;
 
 class CanvasElement: public QObject, public QAbstractGraphicsShapeItem
 {
-Q_OBJECT
+  Q_OBJECT
+
 public:
   CanvasElement(
       DotGraphView* v, 

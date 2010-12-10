@@ -101,10 +101,10 @@ void GraphEdge::updateWithEdge(const GraphEdge& edge)
   m_colors = edge.colors();
   m_dir = edge.dir();
   GraphElement::updateWithElement(edge);
-  if (canvasEdge())
+  if (canvasElement())
   {
-    canvasEdge()->computeBoundingRect();
-    canvasEdge()->modelChanged();
+    canvasElement()->computeBoundingRect();
+    canvasElement()->modelChanged();
   }
 }
 

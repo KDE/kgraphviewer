@@ -29,7 +29,6 @@
 #include "canvaselement.h"
 #include "dotgraphview.h"
 #include "graphedge.h"
-#include "graphnode.h"
 #include "support/dotdefaults.h"
 #include "support/dot2qtconsts.h"
 #include "support/FontsCache.h"
@@ -52,12 +51,14 @@
 namespace KGraphViewer
 {
 
-CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
+CanvasEdge::CanvasEdge(DotGraphView* view,
+                       GraphEdge* e,
+                       QGraphicsScene* scene,
                        qreal scaleX, qreal scaleY,
                        qreal xMargin, qreal yMargin, qreal gh,
                        qreal wdhcf, qreal hdvcf,
-                       QGraphicsItem* parent)
-                       : QAbstractGraphicsShapeItem(parent),
+                       QGraphicsItem* parent) :
+    CanvasElement(view, e, scene, parent),
     m_scaleX(scaleX), m_scaleY(scaleY),
     m_xMargin(xMargin), m_yMargin(yMargin),
     m_gh(/*gh*/0), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
