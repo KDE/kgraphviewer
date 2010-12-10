@@ -1,5 +1,5 @@
 apidocs
-.kdev4
+*.kdev4
 *~
 *.orig
 *.rej
