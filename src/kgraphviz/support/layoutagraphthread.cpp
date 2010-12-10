@@ -25,8 +25,16 @@ void LayoutAGraphThread::run()
 {
   kDebug();
   m_gvc = gvContext();
-  gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
+
+  int rc = gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
+  if (rc != 0) {
+    kWarning() << "gvLayout failed with returncode:" << rc;
+    m_success = false;
+    return;
+  }
+
   gvRender (m_gvc, m_g, "xdot", NULL);
+  m_success = true;
 }
 
 void LayoutAGraphThread::layoutGraph(graph_t* graph, const QString& layoutCommand)
@@ -35,6 +43,7 @@ void LayoutAGraphThread::layoutGraph(graph_t* graph, const QString& layoutComman
   if (isRunning())
     return;
   m_g = graph;
+  m_success = false;
   m_layoutCommand = layoutCommand;
   start();
 }

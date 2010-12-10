@@ -2183,6 +2183,11 @@ void DotGraphView::slotAGraphReadFinished()
 void DotGraphView::slotAGraphLayoutFinished()
 {
   Q_D(DotGraphView);
+  if (!d->m_layoutThread.success()) {
+    kWarning() << "Thread failed to layout graph properly, not doing anything.";
+    return;
+  }
+  
   bool result = loadLibrary(d->m_layoutThread.g(), d->m_layoutThread.layoutCommand());
   if (result)
     d->m_graph->dotFileName(d->m_loadThread.dotFileName());
