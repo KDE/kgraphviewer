@@ -1,0 +1,11 @@
+apidocs
+.kdev4
+*~
+*.orig
+*.rej
+doxygen.log
+Doxyfile
+*.kdevelop
+*.kdevelop.filelist
+*.kdevelop.pcs
+*.kdevses
