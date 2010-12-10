@@ -25,6 +25,7 @@
 
 namespace KGraphViewer
 {
+
 class DotGraph;
 class GraphSubgraph;
 class GraphNode;

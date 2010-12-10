@@ -25,25 +25,17 @@
 #include "graphnode.h"
 #include "graphedge.h"
 
-#include <boost/throw_exception.hpp>
-#include <boost/spirit/core.hpp>
-#include <boost/spirit/utility/distinct.hpp>
-#include <boost/spirit/utility/loops.hpp>
-#include <boost/spirit/utility/confix.hpp>
-
-#include <iostream>
+#include <limits>
 
 #include <kdebug.h>
 
-#include <QFile>
 #include <QUuid>
-
-using namespace std;
 
 extern KGraphViewer::DotGraphParsingHelper* phelper;
 
 namespace KGraphViewer
 {
+
 #define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<int>::max()
 
 DotGraphParsingHelper::DotGraphParsingHelper():
