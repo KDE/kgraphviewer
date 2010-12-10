@@ -99,6 +99,7 @@ public:
   KGraphViewerInterface::PannerPosition zoomPos() const;
   static KGraphViewerInterface::PannerPosition zoomPos(const QString&);
   static QString zoomPosString(KGraphViewerInterface::PannerPosition);
+
   void setPannerEnabled(bool enabled);
   
   static KConfigGroup* configGroup(KConfig*, const QString& prefix, const QString& postfix);

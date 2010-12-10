@@ -82,7 +82,7 @@
 #include <ktoggleaction.h>
 #include <kstandarddirs.h>
 #include <kactionmenu.h>
-    
+
 // DotGraphView defaults
 
 #define DEFAULT_ZOOMPOS      KGraphViewerInterface::Auto
@@ -218,27 +218,29 @@ public:
   
 void DotGraphViewPrivate::updateSizes(QSizeF s)
 {
-  kDebug() ;
+  kDebug();
+
   Q_Q(DotGraphView);
   if (m_canvas == 0)
     return;
+
   if (s == QSizeF(0,0)) s = q->size();
-  
+
   // the part of the canvas that should be visible
   qreal cWidth  = m_canvas->width()  - 2*m_xMargin + 100;
   qreal cHeight = m_canvas->height() - 2*m_yMargin + 100;
 
-  // TODO: Re-enable
   // hide birds eye view if no overview needed
-//   if (//!_data || !_activeItem ||
-//       !KGraphViewerPartSettings::birdsEyeViewEnabled() ||
-//       (((cWidth * m_zoom) < s.width()) && (cHeight * m_zoom) < s.height()))
-//   {
-//     m_birdEyeView->hide();
-//     return;
-//   }
-//   m_birdEyeView->hide();
-  
+  if (!m_bevEnabledAction->isChecked() ||
+      (((cWidth * m_zoom) < s.width()) && (cHeight * m_zoom) < s.height())) {
+    kDebug() << "Hide the panner view";
+    m_birdEyeView->hide();
+    return;
+  }
+
+  kDebug() << "Show the panner view";
+  m_birdEyeView->hide();
+
   // first, assume use of 1/3 of width/height (possible larger)
   double zoom = .33 * s.width() / cWidth;
   if (zoom * cHeight < .33 * s.height()) zoom = .33 * s.height() / cHeight;
@@ -511,7 +513,7 @@ void DotGraphViewPrivate::setupPopup()
     QObject::connect(m_bevEnabledAction,
             SIGNAL(toggled(bool)),
             q,
-            SLOT(slotBevToggled()));
+            SLOT(setPannerEnabled(bool)));
     m_bevEnabledAction->setCheckable(true);
     m_popup->addAction(m_bevEnabledAction);
     
@@ -573,11 +575,6 @@ void DotGraphViewPrivate::setupPopup()
       bba->setChecked(true);
       break;
   }
-
-  // TODO: Re-enable
-//   kDebug() << "    m_bevEnabledAction setting checked to : " << KGraphViewerPartSettings::birdsEyeViewEnabled();
-//   m_bevEnabledAction->setChecked(KGraphViewerPartSettings::birdsEyeViewEnabled());
-//   m_bevPopup->setEnabled(KGraphViewerPartSettings::birdsEyeViewEnabled());
 }
 
 void DotGraphViewPrivate::exportToImage()
@@ -1515,17 +1512,18 @@ KGraphViewerInterface::PannerPosition DotGraphView::zoomPos(const QString& s)
 void DotGraphView::setPannerEnabled(bool enabled)
 {
   Q_D(DotGraphView);
-  d->m_bevPopup->setEnabled(d->m_bevEnabledAction->isChecked());
 
-  // TODO: Re-enable
-//   KGraphViewerPartSettings::setBirdsEyeViewEnabled(d->m_bevEnabledAction->isChecked());
-//   KGraphViewerPartSettings::self()->writeConfig();
+  if (d->m_birdEyeView->isVisible() == enabled)
+    return;
 
   d->updateSizes();
+  emit(sigViewBevEnabledToggled(enabled));
 }
 
 void DotGraphView::viewBevActivated(int newZoomPos)
 {
+  kDebug() << "Zoom position:" << newZoomPos;
+  
   Q_D(DotGraphView);
   d->m_zoomPosition = (KGraphViewerInterface::PannerPosition)newZoomPos;
   d->updateSizes();
@@ -1802,9 +1800,9 @@ void DotGraphView::slotSelectLayoutCirco()
 void DotGraphView::slotBevToggled()
 {
   Q_D(DotGraphView);
-  kDebug() << "DotGraphView::slotBevToggled";
-  kDebug() << "    d->m_bevEnabledAction is checked ? " << d->m_bevEnabledAction->isChecked();
-  setPannerEnabled(d->m_bevEnabledAction->isChecked());
+  const bool isToggleEnabled = d->m_bevEnabledAction->isChecked();
+  kDebug() << "Is bird eye view toggle enabled?" << isToggleEnabled;
+  setPannerEnabled(isToggleEnabled);
 }
 
 void DotGraphView::slotBevTopLeft()
