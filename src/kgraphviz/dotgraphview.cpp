@@ -1717,36 +1717,6 @@ void DotGraphView::slotSelectLayoutAlgo(const QString& algorithm)
   setLayoutCommand(algorithm);
 }
 
-void DotGraphView::slotSelectLayoutDot()
-{
-  kDebug() << "DotGraphView::slotSelectLayoutDot";
-  setLayoutCommand("dot -Txdot");
-}
-
-void DotGraphView::slotSelectLayoutNeato()
-{
-  kDebug() << "DotGraphView::slotSelectLayoutNeato";
-  setLayoutCommand("neato -Txdot");
-}
-
-void DotGraphView::slotSelectLayoutTwopi()
-{
-  kDebug() << "DotGraphView::slotSelectLayoutTwopi";
-  setLayoutCommand("twopi -Txdot");
-}
-
-void DotGraphView::slotSelectLayoutFdp()
-{
-  kDebug() << "DotGraphView::slotSelectLayoutFdp";
-  setLayoutCommand("fdp -Txdot");
-}
-
-void DotGraphView::slotSelectLayoutCirco()
-{
-  kDebug() << "DotGraphView::slotSelectLayoutCirco";
-  setLayoutCommand("circo -Txdot");
-}
-
 void DotGraphView::slotBevToggled()
 {
   Q_D(DotGraphView);

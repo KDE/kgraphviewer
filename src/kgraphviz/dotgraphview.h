@@ -203,11 +203,6 @@ public Q_SLOTS:
   void slotSelectLayoutAlgo(const QString& text);
   void slotLayoutSpecify();
   void slotLayoutReset();
-  void slotSelectLayoutDot();
-  void slotSelectLayoutNeato();
-  void slotSelectLayoutTwopi();
-  void slotSelectLayoutFdp();
-  void slotSelectLayoutCirco();
   void slotBevToggled();
   void slotBevTopLeft();
   void slotBevTopRight();
