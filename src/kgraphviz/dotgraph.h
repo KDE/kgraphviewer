@@ -111,7 +111,7 @@ public:
   GraphElement* elementNamed(const QString& id);
 
   inline void setUseLibrary(bool value) {m_useLibrary = value;}
-  inline bool useLibrary() {return m_useLibrary;}
+  inline bool useLibrary() const {return m_useLibrary;}
 
   void setGraphAttributes(QMap<QString,QString> attribs);
   void addNewNode(QMap<QString,QString> attribs);

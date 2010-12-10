@@ -35,6 +35,7 @@ GraphElement::GraphElement() :
     m_attributes(),
     m_originalAttributes(),
     m_ce(0),
+    m_visible(true),
     m_z(1.0),
     m_renderOperations(),
     m_selected(false)
@@ -57,6 +58,7 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
   m_originalAttributes(),
   m_ce(element.m_ce),
   m_z(element.m_z),
+  m_visible(element.m_visible),
   m_renderOperations(),
   m_selected(element.m_selected)
 {

@@ -114,6 +114,7 @@ protected:
   QList<QString> m_originalAttributes;
   
   CanvasElement* m_ce;
+
 private:
   double m_z;
   bool m_visible;

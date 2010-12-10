@@ -60,13 +60,8 @@ public:
 
   virtual ~GraphEdge();
 
-  bool isVisible() { return m_visible; }
-  void setVisible(bool v) { m_visible = v; }
-
-  GraphElement* fromNode() { return m_fromNode; }
-  GraphElement* toNode() { return m_toNode; }
-  const GraphElement* fromNode() const { return m_fromNode; }
-  const GraphElement* toNode() const { return m_toNode; }
+  GraphElement* fromNode() const { return m_fromNode; }
+  GraphElement* toNode() const { return m_toNode; }
 
   void setFromNode(GraphElement* n) { m_fromNode = n; }
   void setToNode(GraphElement* n) { m_toNode = n; }
@@ -97,7 +92,6 @@ private:
   // we have a _ce *and* _from/_to because for collapsed edges,
   // only _to or _from will be unequal NULL
   GraphElement *m_fromNode, *m_toNode;
-  bool m_visible;
   QStringList m_colors;
   QString m_dir;
 //   QVector< QPair< float, float > > m_edgePoints;

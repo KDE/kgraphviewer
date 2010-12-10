@@ -128,10 +128,9 @@ public:
 
   void hideToolsWindows();
   double zoom() const;
-  KSelectAction* bevPopup();
+  KSelectAction* bevPopup() const;
 
-  DotGraph* graph();
-  const DotGraph* graph() const;
+  DotGraph* graph() const;
 
   const GraphElement* defaultNewElement() const;
   QPixmap defaultNewElementPixmap() const;
@@ -158,7 +157,7 @@ public:
   void removeSelectedSubgraphs();
   void removeSelectedElements();
   
-  bool highlighting();
+  bool highlighting() const;
   void setHighlighting(bool highlightingValue);
 
   // public so that the panner view can bubble through

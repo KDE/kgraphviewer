@@ -44,8 +44,6 @@ public:
       QGraphicsScene* c,
       QGraphicsItem* parent = 0);
   virtual ~CanvasSubgraph() {}
-  
-protected:
 };
 
 }

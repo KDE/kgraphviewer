@@ -33,8 +33,6 @@
 #define PANNER_VIEW_H
 
 #include <QGraphicsView>
-#include <QWidget>
-//Added by qt3to4:
 #include <QMouseEvent>
 
 namespace KGraphViz
@@ -69,6 +67,7 @@ protected:
   virtual void drawForeground(QPainter * p, const QRectF & rect );
   virtual void contextMenuEvent(QContextMenuEvent* event);
 
+private:
   QRectF m_zoomRect;
   bool m_movingZoomRect;
   QPointF m_lastPos;

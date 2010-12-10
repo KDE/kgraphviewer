@@ -649,10 +649,9 @@ DotGraphView::~DotGraphView()
 KGraphViewerInterface::PannerPosition DotGraphView::zoomPos() const { Q_D(const DotGraphView); return d->m_zoomPosition; }
 
 double DotGraphView::zoom() const {Q_D(const DotGraphView); return d->m_zoom;}
-KSelectAction* DotGraphView::bevPopup() {Q_D(DotGraphView); return d->m_bevPopup;}
+KSelectAction* DotGraphView::bevPopup() const {Q_D(const DotGraphView); return d->m_bevPopup;}
 
-DotGraph* DotGraphView::graph() {Q_D(DotGraphView); return d->m_graph;}
-const DotGraph* DotGraphView::graph() const {Q_D(const DotGraphView); return d->m_graph;}
+DotGraph* DotGraphView::graph() const {Q_D(const DotGraphView); return d->m_graph;}
 
 const GraphElement* DotGraphView::defaultNewElement() const {Q_D(const DotGraphView); return d->m_defaultNewElement;}
 QPixmap DotGraphView::defaultNewElementPixmap() const {Q_D(const DotGraphView); return d->m_defaultNewElementPixmap;}
@@ -663,7 +662,7 @@ void DotGraphView::setDefaultNewElementPixmap(const QPixmap& pm) {Q_D(DotGraphVi
 bool DotGraphView::isReadWrite() const {Q_D(const DotGraphView); return d->m_readWrite;}
 bool DotGraphView::isReadOnly() const {Q_D(const DotGraphView); return !d->m_readWrite;}
 
-bool DotGraphView::highlighting() {Q_D(DotGraphView); return d->m_highlighting;}
+bool DotGraphView::highlighting() const {Q_D(const DotGraphView); return d->m_highlighting;}
 void DotGraphView::setHighlighting(bool highlightingValue) {Q_D(DotGraphView); d->m_highlighting = highlightingValue;}
 
 DotGraphView::EditingMode DotGraphView::editingMode() const {Q_D(const DotGraphView); return d->m_editingMode;}
