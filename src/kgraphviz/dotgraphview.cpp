@@ -422,44 +422,17 @@ void DotGraphViewPrivate::setupPopup()
   
   m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"),q);
   actionCollection()->addAction("view_layout_algo",m_layoutAlgoSelectAction);
-  
-  QStringList layoutAlgos;
-  KAction* lea = new KAction(i18n(" "), q);
-  lea->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
-  actionCollection()->addAction("layout_specifiy",lea);
-  lea->setCheckable(false);
-  
-  KAction* lda = new KAction(i18n("Dot"), q);
-  lda->setWhatsThis(i18n("Layout the graph using the dot program."));
-  actionCollection()->addAction("layout_dot",lda);
-  lda->setCheckable(false);
-  
-  KAction* lna = new KAction(i18n("Neato"), q);
-  lna->setWhatsThis(i18n("Layout the graph using the neato program."));
-  actionCollection()->addAction("layout_neato",lna);
-  lna->setCheckable(false);
-  
-  KAction* lta = new KAction(i18n("Twopi"), q);
-  lta->setWhatsThis(i18n("Layout the graph using the twopi program."));
-  actionCollection()->addAction("layout_twopi",lta);
-  lta->setCheckable(false);
-  
-  KAction* lfa = new KAction(i18n("Fdp"), q);
-  lfa->setWhatsThis(i18n("Layout the graph using the fdp program."));
-  actionCollection()->addAction("layout_fdp",lfa);
-  lfa->setCheckable(false);
-  
-  KAction* lca = new KAction(i18n("Circo"), q);
-  lca->setWhatsThis(i18n("Layout the graph using the circo program."));
-  actionCollection()->addAction("layout_c",lca);
-  lca->setCheckable(false);
-  
-  m_layoutAlgoSelectAction->addAction(lea);
-  m_layoutAlgoSelectAction->addAction(lda);
-  m_layoutAlgoSelectAction->addAction(lna);
-  m_layoutAlgoSelectAction->addAction(lta);
-  m_layoutAlgoSelectAction->addAction(lfa);
-  m_layoutAlgoSelectAction->addAction(lca);
+
+  QStringList algorithms;
+  algorithms << "dot" << "neato" << "twopi" << "fdp" << "circo";
+  foreach (const QString& algorithm, algorithms) {
+    KAction* action = new KAction(algorithm, q);
+    action->setWhatsThis(i18n("Layout the graph using the %1 program.", algorithm));
+    actionCollection()->addAction(QString("layout_%1").arg(algorithm), action);
+    m_layoutAlgoSelectAction->addAction(action);
+
+    qDebug() << QString("layout_%1").arg(algorithm);
+  }
   
   m_layoutAlgoSelectAction->setCurrentItem(1);
   m_layoutAlgoSelectAction->setEditable(true);
@@ -469,7 +442,7 @@ void DotGraphViewPrivate::setupPopup()
     "generate a graph in the xdot format on its standard output. For example, to "
     "manually specify the <tt>G</tt> option to the dot command, type in: "
     "<tt>dot -Gname=MyGraphName -Txdot </tt>"));
-  QObject::connect(m_layoutAlgoSelectAction, SIGNAL(triggered (const QString &)),
+  QObject::connect(m_layoutAlgoSelectAction, SIGNAL(triggered (const QString&)),
           q, SLOT(slotSelectLayoutAlgo(const QString&)));
   
   
@@ -885,7 +858,8 @@ bool DotGraphView::loadLibrary(const QString& dotFileName)
 
 bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
 {
-  kDebug() << "graph_t";
+  kDebug() << "Agraph_t:" << graph << "- Layout command:" << layoutCommand;
+
   Q_D(DotGraphView);
   d->m_birdEyeView->setScene(0);
   
@@ -1737,34 +1711,10 @@ void DotGraphView::slotLayoutReset()
   setLayoutCommand("");
 }
 
-void DotGraphView::slotSelectLayoutAlgo(const QString& ttext)
+void DotGraphView::slotSelectLayoutAlgo(const QString& algorithm)
 {
-  QString text = ttext;//.mid(1);
-  kDebug() << "DotGraphView::slotSelectLayoutAlgo '" << text << "'";
-  if (text == "Dot")
-  {
-    setLayoutCommand("dot");
-  }
-  else if (text == "Neato")
-  {
-    setLayoutCommand("neato");
-  }
-  else if (text == "Twopi")
-  {
-    setLayoutCommand("twopi");
-  }
-  else if (text == "Fdp")
-  {
-    setLayoutCommand("fdp");
-  }
-  else if (text == "Circo")
-  {
-    setLayoutCommand("circo");
-  }
-  else 
-  {
-    setLayoutCommand(text);
-  }
+  kDebug() << "Layout selected:" << algorithm;
+  setLayoutCommand(algorithm);
 }
 
 void DotGraphView::slotSelectLayoutDot()
