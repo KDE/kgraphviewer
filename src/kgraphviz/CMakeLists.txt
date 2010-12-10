@@ -1,0 +1,52 @@
+include_directories(
+  # TODO: Remove these include dirs
+  ${CMAKE_CURRENT_SOURCE_DIR}/../part
+  ${CMAKE_CURRENT_SOURCE_DIR}/../..
+  ${CMAKE_CURRENT_SOURCE_DIR}/..
+
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  #${CMAKE_CURRENT_BINARY_DIR}
+  ${Boost_INCLUDE_DIRS}
+  ${graphviz_INCLUDE_DIRECTORIES}
+)
+
+link_directories(
+    ${CMAKE_BINARY_DIR}/lib
+    ${LIB_INSTALL_DIR}
+)
+
+add_subdirectory(support)
+
+set( kgraphvz_LIB_SRCS
+  canvasedge.cpp
+  canvaselement.cpp
+  canvasnode.cpp
+  canvassubgraph.cpp
+
+  graphedge.cpp
+  graphexporter.cpp
+  graphelement.cpp
+  graphnode.cpp
+  graphsubgraph.cpp
+  dotgraph.cpp
+
+  dotgraphview.cpp
+  pannerview.cpp
+
+  support/loadagraphthread.cpp
+  support/layoutagraphthread.cpp
+  support/dot2qtconsts.cpp
+  support/dotgrammar.cpp
+  support/DotGraphParsingHelper.cpp
+  support/FontsCache.cpp
+)
+
+kde4_add_library(kgraphviz SHARED ${kgraphvz_LIB_SRCS})
+
+add_definitions(-DQT_STL)
+target_link_libraries(kgraphviz ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${KDE4_KDEUI_LIBRARY} ${KDE4_KFILE_LIBRARY} ${KDE4_KDECORE_LIBRARY} ${graphviz_LIBRARIES})
+set_target_properties(kgraphviz PROPERTIES VERSION 1.0 SOVERSION 1 OUTPUT_NAME kgraphviz )
+
+
+### install
+install(TARGETS kgraphviz ${INSTALL_TARGETS_DEFAULT_ARGS})
