@@ -20,14 +20,22 @@
 #include "loadagraphthread.h"
 
 #include <kdebug.h>
+#include <kurl.h>
 
 void LoadAGraphThread::run()
 {
   kDebug() << m_dotFileName;
-  GVC_t *gvc;
-  FILE* fp;
-  gvc = gvContext();
-  fp = fopen(m_dotFileName.toUtf8().data(), "r");
+
+  // FIXME: Fix this for remote files, work-around for crash in agread
+  KUrl url(m_dotFileName);
+  if (!url.isLocalFile()) {
+    kWarning() << "Loading remote files not supported";
+    return;
+  }
+
+  const QString sanitizedFilename = url.path();
+  GVC_t *gvc = gvContext();
+  FILE* fp = fopen(sanitizedFilename.toUtf8().data(), "r");
   m_g = agread(fp);
 }
 
@@ -36,6 +44,7 @@ void LoadAGraphThread::loadFile(const QString& dotFileName)
   kDebug();
   if (isRunning())
     return;
+
   m_dotFileName = dotFileName;
   start();
 }
