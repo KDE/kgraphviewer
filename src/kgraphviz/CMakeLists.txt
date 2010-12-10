@@ -1,11 +1,7 @@
 include_directories(
-  # TODO: Remove these include dirs
-  ${CMAKE_CURRENT_SOURCE_DIR}/../part
-  ${CMAKE_CURRENT_SOURCE_DIR}/../..
-  ${CMAKE_CURRENT_SOURCE_DIR}/..
-
+  ${CMAKE_SOURCE_DIR}/src
   ${CMAKE_CURRENT_SOURCE_DIR}
-  #${CMAKE_CURRENT_BINARY_DIR}
+
   ${Boost_INCLUDE_DIRS}
   ${graphviz_INCLUDE_DIRECTORIES}
 )
