@@ -33,7 +33,7 @@
 #include "graphsubgraph.h"
 #include "graphnode.h"
 #include "graphedge.h"
-#include "shared/kgraphviewer_export.h"
+#include "kgraphviz_export.h"
 #include "support/dotdefaults.h"
 
 class Agraph_t;
@@ -44,7 +44,7 @@ namespace KGraphViewer
 /**
   * A class representing the model of a GraphViz dot graph
   */
-class DotGraph : public GraphElement
+class KGRAPHVIZ_EXPORT DotGraph : public GraphElement
 {
   Q_OBJECT
 public:
@@ -101,32 +101,32 @@ public:
 
   virtual void storeOriginalAttributes();
 
-  void KGRAPHVIEWER_EXPORT saveTo(const QString& fileName);
+  void saveTo(const QString& fileName);
 
   virtual void updateWithGraph(Agraph_t* newGraph);
   virtual void updateWithGraph(const DotGraph& graph);
 
-  void KGRAPHVIEWER_EXPORT setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
+  void setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
 
   GraphElement* elementNamed(const QString& id);
 
   inline void setUseLibrary(bool value) {m_useLibrary = value;}
   inline bool useLibrary() {return m_useLibrary;}
 
-  void KGRAPHVIEWER_EXPORT setGraphAttributes(QMap<QString,QString> attribs);
-  void KGRAPHVIEWER_EXPORT addNewNode(QMap<QString,QString> attribs);
-  void KGRAPHVIEWER_EXPORT addNewSubgraph(QMap<QString,QString> attribs);
-  void KGRAPHVIEWER_EXPORT addNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph);
-  void KGRAPHVIEWER_EXPORT addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph);
-  void KGRAPHVIEWER_EXPORT moveExistingNodeToMainGraph(QMap<QString,QString> attribs);
-  void KGRAPHVIEWER_EXPORT addNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
-  void KGRAPHVIEWER_EXPORT removeAttribute(const QString& nodeName, const QString& attribName);
-  void KGRAPHVIEWER_EXPORT renameNode(const QString& oldNodeName, const QString& newNodeName);
-  void KGRAPHVIEWER_EXPORT removeNodeNamed(const QString& nodeName);
-  void KGRAPHVIEWER_EXPORT removeNodeFromSubgraph(const QString& nodeName, const QString& subgraphName);
-  void KGRAPHVIEWER_EXPORT removeSubgraphNamed(const QString& subgraphName);
-  void KGRAPHVIEWER_EXPORT removeEdge(const QString& id);
-  void KGRAPHVIEWER_EXPORT removeElement(const QString& id);
+  void setGraphAttributes(QMap<QString,QString> attribs);
+  void addNewNode(QMap<QString,QString> attribs);
+  void addNewSubgraph(QMap<QString,QString> attribs);
+  void addNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph);
+  void addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph);
+  void moveExistingNodeToMainGraph(QMap<QString,QString> attribs);
+  void addNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
+  void removeAttribute(const QString& nodeName, const QString& attribName);
+  void renameNode(const QString& oldNodeName, const QString& newNodeName);
+  void removeNodeNamed(const QString& nodeName);
+  void removeNodeFromSubgraph(const QString& nodeName, const QString& subgraphName);
+  void removeSubgraphNamed(const QString& subgraphName);
+  void removeEdge(const QString& id);
+  void removeElement(const QString& id);
 
 Q_SIGNALS:
   void readyToDisplay();

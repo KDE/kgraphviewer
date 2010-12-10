@@ -33,6 +33,7 @@
 #define GRAPH_EDGE_H
 
 #include "graphelement.h"
+#include "kgraphviz_export.h"
 #include "support/dotrenderop.h"
 
 #include <QStringList>
@@ -48,7 +49,7 @@ class CanvasEdge;
 class CanvasNode;
 class GraphNode;
 
-class GraphEdge : public GraphElement
+class KGRAPHVIZ_EXPORT GraphEdge : public GraphElement
 {
   Q_OBJECT
 

@@ -32,8 +32,9 @@
 #ifndef DOTGRAPHVIEW_H
 #define DOTGRAPHVIEW_H
 
+#include "kgraphviz_export.h"
+
 #include "shared/kgraphviewer_interface.h"
-#include "shared/kgraphviewer_export.h"
 
 #include <kconfig.h>
 #include <kactioncollection.h>
@@ -75,7 +76,7 @@ class DotGraphViewPrivate;
  * and another zoomed out CanvasView in a border acting as
  * a panner to select to visible part (only if needed)
  */
-class KGRAPHVIEWER_EXPORT DotGraphView: public QGraphicsView
+class KGRAPHVIZ_EXPORT DotGraphView: public QGraphicsView
 {
  Q_OBJECT
 
@@ -83,11 +84,11 @@ public:
   enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge, SelectingElements };
   enum ScrollDirection { Here, Left, Right, Top, Bottom };
   
-  explicit KGRAPHVIEWER_EXPORT DotGraphView(KActionCollection* actions, QWidget* parent=0);
+  explicit DotGraphView(KActionCollection* actions, QWidget* parent=0);
   virtual ~DotGraphView();
 
-  bool KGRAPHVIEWER_EXPORT loadDot(const QString& dotFileName);
-  bool KGRAPHVIEWER_EXPORT loadLibrary(const QString& dotFileName);
+  bool loadDot(const QString& dotFileName);
+  bool loadLibrary(const QString& dotFileName);
   bool loadLibrary(Agraph_t* graph, const QString& layoutCommand = "dot");
 
   void readViewConfig();
@@ -145,8 +146,8 @@ public:
 
   EditingMode editingMode() const;
 
-  void KGRAPHVIEWER_EXPORT setReadOnly();
-  void KGRAPHVIEWER_EXPORT setReadWrite();
+  void setReadOnly();
+  void setReadWrite();
   bool isReadWrite() const;
   bool isReadOnly() const;
   

@@ -19,6 +19,7 @@
 #ifndef GRAPH_ELEMENT_H
 #define GRAPH_ELEMENT_H
 
+#include "kgraphviz_export.h"
 #include "support/dotrenderop.h"
 
 #include <QVector>
@@ -35,7 +36,7 @@ class CanvasElement;
  * The base of all GraphViz dot graph elements (nodes, edges, subgraphs,
  * graphs). It is used to store the element attributes
  */
-class GraphElement: public QObject
+class KGRAPHVIZ_EXPORT GraphElement: public QObject
 {
   Q_OBJECT
 public:

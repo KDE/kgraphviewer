@@ -32,13 +32,14 @@
 #ifndef GRAPH_NODE_H
 #define GRAPH_NODE_H
 
+#include "graphelement.h"
+#include "kgraphviz_export.h"
+#include "support/dotrenderop.h"
+
 #include <QVector>
 #include <QList>
 #include <QMap>
 #include <QtCore/QTextStream>
-
-#include "support/dotrenderop.h"
-#include "graphelement.h"
 
 class Agnode_t;
 
@@ -51,7 +52,7 @@ class CanvasNode;
 /**
  * Colors and styles are dot names
  */
-class GraphNode : public GraphElement
+class KGRAPHVIZ_EXPORT GraphNode : public GraphElement
 {
   Q_OBJECT
 

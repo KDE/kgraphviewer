@@ -23,10 +23,11 @@
 #ifndef GRAPH_SUBGRAPH_H
 #define GRAPH_SUBGRAPH_H
 
+#include "graphelement.h"
+#include "kgraphviz_export.h"
+
 #include <QMap>
 #include <QTextStream>
-
-#include "graphelement.h"
 
 class Agraph_t;
 
@@ -42,7 +43,7 @@ typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;
 /**
  * Colors and styles are dot names
  */
-class GraphSubgraph : public GraphElement
+class KGRAPHVIZ_EXPORT GraphSubgraph : public GraphElement
 {
   Q_OBJECT
 
