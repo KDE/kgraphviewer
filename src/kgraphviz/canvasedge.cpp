@@ -413,7 +413,8 @@ Q_UNUSED(widget)
 //           kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << p;
           allPoints.append(p);
         }
-        kDebug() << "Setting pen color to " << edge()->color(splineNum);
+
+//        kDebug() << "Setting pen color to " << edge()->color(splineNum);
         if (splineNum != 0)
           lineColor = Dot2QtConsts::componentData().qtColor(edge()->color(splineNum));
         pen.setColor(lineColor);
