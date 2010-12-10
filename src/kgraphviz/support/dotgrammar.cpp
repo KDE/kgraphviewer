@@ -21,7 +21,7 @@
 #include "dotdefaults.h"
 #include "graphnode.h"
 #include "graphedge.h"
-#include "DotGraphParsingHelper.h"
+#include "dotgraphparsinghelper.h"
 
 #include <iostream>
 

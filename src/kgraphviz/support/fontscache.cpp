@@ -17,7 +17,7 @@
 */
 
 
-#include "FontsCache.h"
+#include "fontscache.h"
 
 #include "dot2qtconsts.h"
 

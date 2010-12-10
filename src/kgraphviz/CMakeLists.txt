@@ -31,8 +31,8 @@ set( kgraphvz_LIB_SRCS
   support/layoutagraphthread.cpp
   support/dot2qtconsts.cpp
   support/dotgrammar.cpp
-  support/DotGraphParsingHelper.cpp
-  support/FontsCache.cpp
+  support/dotgraphparsinghelper.cpp
+  support/fontscache.cpp
 )
 
 kde4_add_library(kgraphviz SHARED ${kgraphvz_LIB_SRCS})

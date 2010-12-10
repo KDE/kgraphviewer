@@ -17,11 +17,11 @@
 */
 
 
-#include "DotGraphParsingHelper.h"
+#include "dotgraphparsinghelper.h"
+
 #include "dotgraph.h"
 #include "dotgrammar.h"
 #include "dotdefaults.h"
-//#include "graphsubgraph.h"
 #include "graphnode.h"
 #include "graphedge.h"
 
@@ -31,13 +31,12 @@
 #include <boost/spirit/utility/loops.hpp>
 #include <boost/spirit/utility/confix.hpp>
 
-
 #include <iostream>
 
 #include <kdebug.h>
-    
+
 #include <QFile>
-#include<QUuid>
+#include <QUuid>
 
 using namespace std;
 

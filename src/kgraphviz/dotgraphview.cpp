@@ -45,7 +45,7 @@
 
 #include "graphexporter.h"
 #include "support/dot2qtconsts.h"
-#include "support/FontsCache.h"
+#include "support/fontscache.h"
 #include "support/loadagraphthread.h"
 #include "support/layoutagraphthread.h"
 

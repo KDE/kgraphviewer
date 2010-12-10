@@ -31,7 +31,7 @@
 #include "graphedge.h"
 #include "support/dotdefaults.h"
 #include "support/dot2qtconsts.h"
-#include "support/FontsCache.h"
+#include "support/fontscache.h"
 
 #include <KAction>
 #include <KDebug>
