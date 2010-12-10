@@ -32,8 +32,8 @@
 #ifndef DOTGRAPHVIEW_H
 #define DOTGRAPHVIEW_H
 
-#include "kgraphviewer_export.h"
-#include "kgraphviewer_interface.h"
+#include "shared/kgraphviewer_interface.h"
+#include "shared/kgraphviewer_export.h"
 
 #include <kconfig.h>
 #include <kactioncollection.h>

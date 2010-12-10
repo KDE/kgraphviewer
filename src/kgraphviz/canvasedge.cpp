@@ -27,12 +27,12 @@
 
 #include "canvasedge.h"
 #include "canvaselement.h"
+#include "dotgraphview.h"
 #include "graphedge.h"
 #include "graphnode.h"
-#include "dotdefaults.h"
-#include "dot2qtconsts.h"
-#include "dotgraphview.h"
-#include "FontsCache.h"
+#include "support/dotdefaults.h"
+#include "support/dot2qtconsts.h"
+#include "support/FontsCache.h"
 
 #include <KAction>
 #include <KDebug>

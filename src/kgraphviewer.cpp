@@ -18,7 +18,7 @@
 
 
 #include "kgraphviewer.h"
-#include "part/kgraphviewer_interface.h"
+#include "shared/kgraphviewer_interface.h"
 #include "kgraphviewerConfigDialog.h"
 #include "kgraphviewersettings.h"
 #include "ui_preferencesParsing.h"
@@ -36,6 +36,7 @@
 #include <kdebug.h>
 #include <kstandarddirs.h>
 #include <kstandardaction.h>
+#include <ktabwidget.h>
 #include <ktoggleaction.h>
 #include <klibloader.h>
 #include <kmessagebox.h>

@@ -18,8 +18,9 @@
 
 
 #include "kgraphviewer_part.h"
-#include "dotgraphview.h"
-#include "dotgraph.h"
+
+#include <kgraphviz/dotgraphview.h>
+#include <kgraphviz/dotgraph.h>
 
 #include <KDirWatch>
 #include <kcomponentdata.h>
@@ -36,9 +37,6 @@
 #include <kstandarddirs.h>
 
 #include <iostream>
-
-#include <graphviz/gvc.h>
-
 
 // #include "kgraphviewersettings.h"
 #include "kgraphviewer_partsettings.h"

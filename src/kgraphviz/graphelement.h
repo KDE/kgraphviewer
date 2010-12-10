@@ -19,7 +19,7 @@
 #ifndef GRAPH_ELEMENT_H
 #define GRAPH_ELEMENT_H
 
-#include "dotrenderop.h"
+#include "support/dotrenderop.h"
 
 #include <QVector>
 #include <QList>

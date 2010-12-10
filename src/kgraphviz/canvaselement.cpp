@@ -20,9 +20,9 @@
 #include "canvaselement.h"
 #include "dotgraphview.h"
 #include "graphelement.h"
-#include "dotdefaults.h"
-#include "dot2qtconsts.h"
-#include "FontsCache.h"
+#include "support/dotdefaults.h"
+#include "support/dot2qtconsts.h"
+#include "support/FontsCache.h"
 
 #include <stdlib.h>
 #include <math.h>

@@ -17,19 +17,20 @@
 */
 
 #include "dotgraph.h"
-#include "dotgrammar.h"
+
 #include "graphexporter.h"
-#include "DotGraphParsingHelper.h"
 #include "canvasedge.h"
 #include "canvasnode.h"
 #include "canvassubgraph.h"
+#include "support/dotgrammar.h"
+#include "support/DotGraphParsingHelper.h"
 
 #include <math.h>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "fdstream.hpp"
+#include "part/fdstream.hpp"
 #include <boost/spirit/include/classic_assign_actor.hpp>
 #include <boost/spirit/include/classic_confix.hpp>
 #include <boost/spirit/include/classic_distinct.hpp>

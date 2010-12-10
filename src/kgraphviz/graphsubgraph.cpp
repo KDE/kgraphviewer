@@ -20,11 +20,11 @@
  * Graph Subgraph
  */
 
+#include "canvassubgraph.h"
 #include "graphsubgraph.h"
 #include "graphnode.h"
-#include "canvassubgraph.h"
-#include "dotdefaults.h"
-#include "dotgrammar.h"
+#include "support/dotdefaults.h"
+#include "support/dotgrammar.h"
 
 #include "graphviz/gvc.h"
 

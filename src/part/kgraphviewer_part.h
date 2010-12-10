@@ -19,11 +19,12 @@
 #ifndef _KGRAPHVIEWERPART_H_
 #define _KGRAPHVIEWERPART_H_
 
+#include "shared/kgraphviewer_interface.h"
+
 #include <kparts/part.h>
 #include <kparts/genericfactory.h>
 
 #include <graphviz/gvc.h>
-#include "kgraphviewer_interface.h"
 
 class KComponentData;
 class KAboutData;

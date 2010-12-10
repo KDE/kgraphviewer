@@ -33,7 +33,7 @@
 #define GRAPH_EDGE_H
 
 #include "graphelement.h"
-#include "dotrenderop.h"
+#include "support/dotrenderop.h"
 
 #include <QStringList>
 #include <QMap>

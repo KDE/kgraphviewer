@@ -29,7 +29,9 @@
 #define KGVSIMPLEPRINTINGCOMMAND_H
 
 #include "simpleprintingengine.h"
-#include <dotgraphview.h>
+
+#include <kgraphviz/dotgraphview.h>
+
 #include <kgraphviewer_part.h>
 
 namespace KGraphViewer

@@ -37,7 +37,7 @@
 
 class QPaintDevice;
 
-#include "dotgraphview.h"
+#include <kgraphviz/dotgraphview.h>
 
 namespace KGraphViewer
 {

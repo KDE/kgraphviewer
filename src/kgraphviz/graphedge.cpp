@@ -28,8 +28,8 @@
 #include "graphnode.h"
 #include "graphsubgraph.h"
 #include "canvasedge.h"
-#include "dotdefaults.h"
-#include "dotgrammar.h"
+#include "support/dotdefaults.h"
+#include "support/dotgrammar.h"
 
 #include <graphviz/gvc.h>
 

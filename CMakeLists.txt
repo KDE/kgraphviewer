@@ -37,4 +37,3 @@ configure_file (config-kgraphviewer.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-k
 
 add_subdirectory(src)
 add_subdirectory(doc)
-

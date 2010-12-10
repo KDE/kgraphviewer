@@ -33,19 +33,21 @@
 
 #include "dotgraph.h"
 #include "graphelement.h"
-#include "pannerview.h"
 #include "canvassubgraph.h"
 #include "canvasedge.h"
-#include "dot2qtconsts.h"
 #include "graphnode.h"
 #include "canvasnode.h"
 #include "graphedge.h"
-#include "FontsCache.h"
-#include "kgraphviewer_partsettings.h"
-#include "simpleprintingcommand.h"
+#include "pannerview.h"
+
+// TODO: Re-enable
+//#include "part/simpleprintingcommand.h"
+
 #include "graphexporter.h"
-#include "loadagraphthread.h"
-#include "layoutagraphthread.h"
+#include "support/dot2qtconsts.h"
+#include "support/FontsCache.h"
+#include "support/loadagraphthread.h"
+#include "support/layoutagraphthread.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -225,16 +227,17 @@ void DotGraphViewPrivate::updateSizes(QSizeF s)
   // the part of the canvas that should be visible
   qreal cWidth  = m_canvas->width()  - 2*m_xMargin + 100;
   qreal cHeight = m_canvas->height() - 2*m_yMargin + 100;
-  
+
+  // TODO: Re-enable
   // hide birds eye view if no overview needed
-  if (//!_data || !_activeItem ||
-      !KGraphViewerPartSettings::birdsEyeViewEnabled() ||
-      (((cWidth * m_zoom) < s.width()) && (cHeight * m_zoom) < s.height()))
-  {
-    m_birdEyeView->hide();
-    return;
-  }
-  m_birdEyeView->hide();
+//   if (//!_data || !_activeItem ||
+//       !KGraphViewerPartSettings::birdsEyeViewEnabled() ||
+//       (((cWidth * m_zoom) < s.width()) && (cHeight * m_zoom) < s.height()))
+//   {
+//     m_birdEyeView->hide();
+//     return;
+//   }
+//   m_birdEyeView->hide();
   
   // first, assume use of 1/3 of width/height (possible larger)
   double zoom = .33 * s.width() / cWidth;
@@ -570,11 +573,11 @@ void DotGraphViewPrivate::setupPopup()
       bba->setChecked(true);
       break;
   }
-  
-  
-  kDebug() << "    m_bevEnabledAction setting checked to : " << KGraphViewerPartSettings::birdsEyeViewEnabled();
-  m_bevEnabledAction->setChecked(KGraphViewerPartSettings::birdsEyeViewEnabled());
-  m_bevPopup->setEnabled(KGraphViewerPartSettings::birdsEyeViewEnabled());
+
+  // TODO: Re-enable
+//   kDebug() << "    m_bevEnabledAction setting checked to : " << KGraphViewerPartSettings::birdsEyeViewEnabled();
+//   m_bevEnabledAction->setChecked(KGraphViewerPartSettings::birdsEyeViewEnabled());
+//   m_bevPopup->setEnabled(KGraphViewerPartSettings::birdsEyeViewEnabled());
 }
 
 void DotGraphViewPrivate::exportToImage()
@@ -1513,8 +1516,11 @@ void DotGraphView::setPannerEnabled(bool enabled)
 {
   Q_D(DotGraphView);
   d->m_bevPopup->setEnabled(d->m_bevEnabledAction->isChecked());
-  KGraphViewerPartSettings::setBirdsEyeViewEnabled(d->m_bevEnabledAction->isChecked());
-  KGraphViewerPartSettings::self()->writeConfig();
+
+  // TODO: Re-enable
+//   KGraphViewerPartSettings::setBirdsEyeViewEnabled(d->m_bevEnabledAction->isChecked());
+//   KGraphViewerPartSettings::self()->writeConfig();
+
   d->updateSizes();
 }
 
@@ -1563,35 +1569,38 @@ void DotGraphView::saveViewConfig()
 
 void DotGraphView::pageSetup()
 {
+  /*
   Q_D(DotGraphView);
   if (d->m_printCommand == 0)
   {
     d->m_printCommand = new KGVSimplePrintingCommand(this, 0);
   }
   d->m_printCommand->showPageSetup(d->m_graph->dotFileName());
-  return;
+  */
 }
 
 void DotGraphView::print()
 {
+  /*
   Q_D(DotGraphView);
   if (d->m_printCommand == 0)
   {
     d->m_printCommand = new KGVSimplePrintingCommand(this, 0);
   }
   d->m_printCommand->print(d->m_graph->dotFileName());
-  return;
+  */
 }
 
 void DotGraphView::printPreview()
 {
+  /*
   Q_D(DotGraphView);
   if (d->m_printCommand == 0)
   {
     d->m_printCommand = new KGVSimplePrintingCommand(this, 0);
   }
   d->m_printCommand->showPrintPreview(d->m_graph->dotFileName(), false);
-  return;
+  */
 }
 
 bool DotGraphView::reload()
@@ -1683,12 +1692,14 @@ const QString& DotGraphView::dotFileName()
 
 void DotGraphView::hideToolsWindows()
 {
+  /*
   Q_D(DotGraphView);
   if (d->m_printCommand != 0)
   {
     d->m_printCommand->hidePageSetup();
     d->m_printCommand->hidePrintPreview();
   }
+  */
 }
 
 void DotGraphView::slotExportImage()

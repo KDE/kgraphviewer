@@ -29,12 +29,12 @@
 #include <QProcess>
 #include <QMutex>
 
-#include "kgraphviewer_export.h"
 #include "graphelement.h"
 #include "graphsubgraph.h"
 #include "graphnode.h"
 #include "graphedge.h"
-#include "dotdefaults.h"
+#include "shared/kgraphviewer_export.h"
+#include "support/dotdefaults.h"
 
 class Agraph_t;
 

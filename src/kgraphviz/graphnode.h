@@ -37,7 +37,7 @@
 #include <QMap>
 #include <QtCore/QTextStream>
 
-#include "dotrenderop.h"
+#include "support/dotrenderop.h"
 #include "graphelement.h"
 
 class Agnode_t;

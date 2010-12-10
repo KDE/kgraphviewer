@@ -29,12 +29,11 @@
  * Graph Node
  */
 
-#include "graphnode.h"
-#include "dotgrammar.h"
-#include "dotgraphview.h"
-#include "pannerview.h"
 #include "canvasnode.h"
-#include "dotdefaults.h"
+#include "dotgraphview.h"
+#include "graphnode.h"
+#include "support/dotdefaults.h"
+#include "support/dotgrammar.h"
 
 #include <math.h>
 

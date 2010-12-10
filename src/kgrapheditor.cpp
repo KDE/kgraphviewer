@@ -26,8 +26,9 @@
 #include "ui_preferencesParsing.h"
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
-#include "part/dotgraph.h"
-#include "part/dotgraphview.h"
+
+#include <kgraphviz/dotgraph.h>
+#include <kgraphviz/dotgraphview.h>
 
 #include <kshortcutsdialog.h>
 #include <kfiledialog.h>

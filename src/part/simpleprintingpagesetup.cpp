@@ -30,7 +30,8 @@
 #include "simpleprintingsettings.h"
 #include "simpleprintingcommand.h"
 #include "simpleprintpreviewwindow.h"
-#include "dotgraphview.h"
+
+#include <kgraphviz/dotgraphview.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
