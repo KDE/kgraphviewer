@@ -25,6 +25,7 @@
 
 #include <KDebug>
 #include <KLocale>
+#include <KTemporaryFile>
 
 #include "dotgraph.h"
 #include "graphexporter.h"
@@ -149,11 +150,70 @@ void GraphIO::loadFromDotFile(const QString& fileName, const QString& layoutComm
   d->m_process.start(layoutCommandForFile, args, QIODevice::ReadOnly);
 }
 
-/* TODO: Merge GraphExporter here */
 void GraphIO::saveToDotFile(const DotGraph* dotGraph, const QString& fileName)
 {
-  GraphExporter exporter;
-  exporter.writeDot(dotGraph, fileName);
+  kDebug() << fileName;
+
+  QFile f(fileName);
+  if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
+  {
+    kError() << "Unable to open file for writing:" << fileName;
+    return;
+  }
+
+  QTextStream stream(&f);
+  stream << "digraph \"";
+  if (dotGraph->id()!="\"\"")
+  {
+    stream <<dotGraph->id();
+  }
+  stream <<"\" {\n";
+
+  stream << "graph [" << *dotGraph <<"]" << endl;
+
+  /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
+  /// possible to save them back : to be changed !
+//   kDebug() << "writing subgraphs";
+  GraphSubgraphMap::const_iterator sit;
+  for ( sit = dotGraph->subgraphs().begin();
+  sit != dotGraph->subgraphs().end(); ++sit )
+  {
+    const GraphSubgraph& s = **sit;
+    (stream) << s;
+  }
+
+//   kDebug() << "writing nodes";
+  GraphNodeMap::const_iterator nit;
+  for ( nit = dotGraph->nodes().begin();
+        nit != dotGraph->nodes().end(); ++nit )
+  {
+    (stream) << **nit;
+  }
+
+  kDebug() << "writing edges";
+  GraphEdgeMap::const_iterator eit;
+  for ( eit = dotGraph->edges().begin();
+        eit != dotGraph->edges().end(); ++eit )
+  {
+    kDebug() << "writing edge" << (*eit)->id();
+    stream << **eit;
+  }
+
+  stream << "}\n";
+
+  f.close();
+}
+
+void GraphIO::updateDot(const DotGraph* dotGraph)
+{
+  KTemporaryFile tempFile;
+  tempFile.setSuffix(".dot");
+
+  const QString fileName = tempFile.name();
+  kDebug() << "Using temporary file:" << fileName;
+
+  saveToDotFile(dotGraph, fileName);
+  loadFromDotFile(fileName);
 }
 
 QString GraphIO::internalLayoutCommandForFile(const QString& fileName)

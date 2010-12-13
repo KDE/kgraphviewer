@@ -17,45 +17,19 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef GRAPHIO_H
-#define GRAPHIO_H
+#ifndef KGRAPHVIZ_TESTS_UTILS_H
+#define KGRAPHVIZ_TESTS_UTILS_H
 
-#include <QObject>
+#include <kgraphviz/dotgraph.h>
 
-#include "kgraphviz_export.h"
-
-namespace KGraphViz
+namespace Utilities
 {
-
-class DotGraph;
-class GraphIOPrivate;
-
-class KGRAPHVIZ_EXPORT GraphIO : public QObject
-{
-  Q_OBJECT
-
-public:
-  explicit GraphIO(QObject* parent = 0);
-  virtual ~GraphIO();
-
-  DotGraph* readData();
-
-  void loadFromDotFile(const QString& fileName, const QString& layoutCommand = QString());
-  void saveToDotFile(const DotGraph* graph, const QString& fileName);
-
-  void updateDot(const DotGraph* dotGraph);
-
-  static QString internalLayoutCommandForFile(const QString& fileName);
-
-Q_SIGNALS:
-  void finished();
-  void error(QString);
-
-private:
-  Q_DECLARE_PRIVATE(GraphIO)
-  GraphIOPrivate* const d_ptr;
-};
-
+  bool haveSameElementCount(const KGraphViz::DotGraph* left,
+                            const KGraphViz::DotGraph* right)
+  {
+    return (left->nodes().size() == right->nodes().size())
+        && (left->edges().size() == right->edges().size());
+  }
 }
 
-#endif // GRAPHIO_H
+#endif

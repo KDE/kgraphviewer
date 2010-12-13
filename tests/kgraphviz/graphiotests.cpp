@@ -17,6 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "utils.h"
+
 #include <kgraphviz/graphio.h>
 #include <kgraphviz/dotgraph.h>
 
@@ -35,6 +37,8 @@ private Q_SLOTS:
   void testImportGraphFromInvalidFile();
 
   void testExportImportGraph();
+
+  void testUpdateDotGraph();
 };
 
 using namespace KGraphViz;
@@ -95,6 +99,28 @@ void GraphIOTests::testExportImportGraph()
 
   // cleanup
   QFile::remove(TEST_FILENAME);
+}
+
+void GraphIOTests::testUpdateDotGraph()
+{
+  // populate
+  QMap <QString, QString> map;
+  DotGraph graph;
+  map["id"] = "State1";
+  graph.addNewNode(map);
+  map["id"] = "State2";
+  graph.addNewNode(map);
+  map.clear();
+  graph.addNewEdge("State1", "State2", map);
+
+  GraphIO io;
+  io.updateDot(&graph);
+  QSignalSpy spy(&io, SIGNAL(finished()));
+  QVERIFY(QTest::kWaitForSignal(&io, SIGNAL(finished()), 3000) == true);
+
+  DotGraph* updatedGraph = io.readData();
+  QVERIFY(updatedGraph != 0);
+  QVERIFY(Utilities::haveSameElementCount(&graph, updatedGraph) == true);
 }
 
 QTEST_KDEMAIN_CORE(GraphIOTests)
