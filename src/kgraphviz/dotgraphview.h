@@ -194,7 +194,6 @@ public Q_SLOTS:
   void zoomRectMovedTo(QPointF newZoomPos);
   void zoomRectMoveFinished();
   bool initEmpty();
-  bool slotLoadLibrary(Agraph_t* graph);
   bool reload();
   void dirty(const QString& dotFileName);
   void pageSetup();

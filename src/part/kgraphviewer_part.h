@@ -24,8 +24,6 @@
 #include <kparts/part.h>
 #include <kparts/genericfactory.h>
 
-#include <graphviz/gvc.h>
-
 class KComponentData;
 class KAboutData;
 class KDirWatch;
@@ -134,7 +132,6 @@ public Q_SLOTS:
   void slotSetCursor(const QCursor& cursor);
   void slotUnsetCursor();
   virtual bool closeUrl();
-  bool slotLoadLibrary(graph_t* graph);
   void slotSetLayoutMethod(LayoutMethod method);
   void slotRenameNode(const QString& oldNodeName, const QString& newNodeName);
   
