@@ -19,7 +19,7 @@
 
 #include <kgraphviz/dotgraph.h>
 
-#include <QtTest/QtTest>
+#include <qtest_kde.h>
 
 class DotGraphTests : public QObject
 {
@@ -40,5 +40,5 @@ void DotGraphTests::testCreateGraph()
   QVERIFY(graph.subgraphs().size() == 0);
 }
 
-QTEST_MAIN(DotGraphTests)
+QTEST_KDEMAIN_CORE(DotGraphTests)
 #include "dotgraphtests.moc"
