@@ -20,6 +20,7 @@ set( kgraphvz_LIB_SRCS
   graphedge.cpp
   graphexporter.cpp
   graphelement.cpp
+  graphio.cpp
   graphnode.cpp
   graphsubgraph.cpp
   dotgraph.cpp
