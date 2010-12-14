@@ -173,8 +173,8 @@ void DotGraphParsingHelper::setattributedlist()
       if (v.size()>=4)
       {
 //         kDebug() << "setting width and height to " << v[2] << v[3];
-        graph->width(v[2]);
-        graph->height(v[3]);
+        graph->setWidth(v[2]);
+        graph->setHeight(v[3]);
       }
     }
     AttributesMap::const_iterator it, it_end;

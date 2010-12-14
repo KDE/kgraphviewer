@@ -72,13 +72,13 @@ public:
   double width() const {return m_width;}
   double height() const {return m_height;}
   double scale() const {return m_scale;}
-  void width(double w) {m_width = w;}
-  void height(double h) {m_height = h;}
-  void scale(double s) {m_scale = s;}
+  void setWidth(double w) {m_width = w;}
+  void setHeight(double h) {m_height = h;}
+  void setScale(double s) {m_scale = s;}
   virtual QString backColor() const;
   
-  inline void strict(bool s) {m_strict = s;}
-  inline void directed(bool d) {m_directed = d;}
+  inline void setStrict(bool s) {m_strict = s;}
+  inline void setDirected(bool d) {m_directed = d;}
   inline bool strict() const {return m_strict;}
   inline bool directed() const {return m_directed;}
 
@@ -89,10 +89,10 @@ public:
   inline double wdhcf() const {return m_wdhcf;}
   inline double hdvcf() const {return m_hdvcf;}
   
-  inline void layoutCommand(const QString& command) {m_layoutCommand = command;}
-  inline const QString& layoutCommand() {return m_layoutCommand;}
+  inline void setLayoutCommand(const QString& command) {m_layoutCommand = command;}
+  inline const QString& layoutCommand() const {return m_layoutCommand;}
   
-  inline void dotFileName(const QString& fileName) {m_dotFileName = fileName;}
+  inline void setDotFileName(const QString& fileName) {m_dotFileName = fileName;}
   inline const QString& dotFileName() const {return m_dotFileName;}
 
   bool update();

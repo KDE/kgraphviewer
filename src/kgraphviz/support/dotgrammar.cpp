@@ -141,7 +141,7 @@ void dump(char const* first, char const* last)
 
 void strict(char const* /*first*/, char const* /*last*/)
 {
-  if (phelper) phelper->graph->strict(true);
+  if (phelper) phelper->graph->setStrict(true);
 }
 
 void gotid(char const* first, char const* last)
@@ -153,13 +153,13 @@ void gotid(char const* first, char const* last)
 void undigraph(char const* /*first*/, char const* /*last*/)
 {
 //   kDebug() << "Setting graph as undirected";
-  if (phelper) phelper->graph->directed(false);
+  if (phelper) phelper->graph->setDirected(false);
 }
 
 void digraph(char const* /*first*/, char const* /*last*/)
 {
 //   kDebug() << "Setting graph as directed";
-  if (phelper) phelper->graph->directed(true);
+  if (phelper) phelper->graph->setDirected(true);
 }
 
 void graphid(char const* first, char const* last)

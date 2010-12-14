@@ -1239,7 +1239,7 @@ void DotGraphView::slotElementHoverLeave(CanvasEdge* element)
 void DotGraphView::setLayoutCommand(const QString& command)
 {
   Q_D(DotGraphView);
-  d->m_graph->layoutCommand(command);
+  d->m_graph->setLayoutCommand(command);
   reload();
 }
 
@@ -1934,7 +1934,7 @@ void DotGraphView::slotAGraphLayoutFinished()
   
   bool result = loadLibrary(d->m_layoutThread.g(), d->m_layoutThread.layoutCommand());
   if (result)
-    d->m_graph->dotFileName(d->m_loadThread.dotFileName());
+    d->m_graph->setDotFileName(d->m_loadThread.dotFileName());
 
   gvFreeLayout(d->m_layoutThread.gvc(), d->m_layoutThread.g());
   agclose(d->m_layoutThread.g());
