@@ -37,6 +37,24 @@ public:
 
   GraphIO m_graphIO;
 
+  QString m_fileName;
+  QString m_layoutCommand;
+
+  GraphSubgraphMap m_subgraphsMap;
+  GraphNodeMap m_nodesMap;
+  GraphEdgeMap m_edgesMap;
+  double m_width, m_height;
+  double m_scale;
+  bool m_directed;
+  bool m_strict;
+
+  unsigned int m_horizCellFactor, m_vertCellFactor;
+  double m_wdhcf, m_hdvcf;
+
+  QVector< QSet< GraphNode* > > m_cells;
+  
+  bool m_useLibrary;
+
 private:
   Q_DECLARE_PUBLIC(DotGraph);
   DotGraph* q_ptr;

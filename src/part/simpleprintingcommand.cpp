@@ -35,6 +35,7 @@
 // #include <kexi_version.h>
 
 #include <kgraphviz/dotgraphview.h>
+#include <kgraphviz/dotgraph.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -277,7 +278,7 @@ void KGVSimplePrintingCommand::slotShowPageSetupRequested()
     m_pageSetupDialog = new QDialog(0,"glurp",false);
     QMap<QString,QString> map;
     map["action"]=="pageSetup";
-    map["title"]==m_graphView->dotFileName();
+    map["title"]==m_graphView->graph()->dotFileName();
     QVBoxLayout *lyr = new QVBoxLayout(m_pageSetupDialog);
     KGVSimplePrintingPageSetup* sppsb = new KGVSimplePrintingPageSetup(this, m_graphView, m_pageSetupDialog, &map);
     if (m_previewWindow != 0)

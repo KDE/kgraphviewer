@@ -93,8 +93,6 @@ public:
   void setZoomFactor(double factor);
   
   void setLayoutCommand(const QString& command);
-    
-  const QString& dotFileName();
 
   void hideToolsWindows();
   double zoom() const;

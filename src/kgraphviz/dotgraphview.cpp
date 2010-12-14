@@ -635,7 +635,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   loadingLabel->setZValue(100);
   centerOn(loadingLabel);
 
-  if (!d->m_graph->parseDot(d->m_graph->dotFileName())) {
+  if (!d->m_graph->parseDot(dotFileName)) {
     kError() << "NOT successfully parsed!" << endl;
     loadingLabel->setText(i18n("error parsing file %1", dotFileName));
     return false;
@@ -1321,11 +1321,7 @@ void DotGraphView::printPreview()
 bool DotGraphView::reload()
 {
   Q_D(DotGraphView);
-  QString fileName = d->m_graph->dotFileName();
-  if (d->m_graph->useLibrary())
-    return loadLibrary(fileName);
-  else
-    return loadDot(fileName);
+  d->m_graph->update();
 }
 
 void DotGraphView::initEmpty()
@@ -1336,29 +1332,16 @@ void DotGraphView::initEmpty()
 
 void DotGraphView::dirty(const QString& dotFileName)
 {
-  Q_D(DotGraphView);
-//   std::cerr << "SLOT dirty for " << dotFileName << std::endl;
-  if (dotFileName == d->m_graph->dotFileName())
-  {
-    if (KMessageBox::questionYesNo(this, 
+  kDebug() << "Filename:" << dotFileName;
+
+  if (KMessageBox::questionYesNo(this,
                                 i18n("The file %1 has been modified on disk.\nDo you want to reload it?",dotFileName),
                                 i18n("Reload Confirmation"),
                                 KStandardGuiItem::yes(),
                                 KStandardGuiItem::no(),
-                                "reloadOnChangeMode"   ) == KMessageBox::Yes)
-    {
-      if (d->m_graph->useLibrary())
-        loadLibrary(dotFileName);
-      else
-        loadDot(dotFileName);
+                                "reloadOnChangeMode"   ) == KMessageBox::Yes) {
+      reload();
     }
-  }
-}
-
-const QString& DotGraphView::dotFileName() 
-{
-  Q_D(DotGraphView);
-  return d->m_graph->dotFileName();
 }
 
 void DotGraphView::hideToolsWindows()
@@ -1853,9 +1836,7 @@ void DotGraphView::slotAGraphLayoutFinished()
     return;
   }
   
-  bool result = loadLibrary(d->m_layoutThread.g(), d->m_layoutThread.layoutCommand());
-  if (result)
-    d->m_graph->setDotFileName(d->m_loadThread.dotFileName());
+  loadLibrary(d->m_layoutThread.g(), d->m_layoutThread.layoutCommand());
 
   gvFreeLayout(d->m_layoutThread.gvc(), d->m_layoutThread.g());
   agclose(d->m_layoutThread.g());

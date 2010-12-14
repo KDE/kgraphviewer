@@ -49,56 +49,58 @@ class DotGraphPrivate;
 class KGRAPHVIZ_EXPORT DotGraph : public GraphElement
 {
   Q_OBJECT
+
 public:
   enum ParsePhase {Initial, Final};
-  
+
   DotGraph();
-  DotGraph(const QString& command, const QString& fileName);
+  DotGraph(const QString& layoutCommand, const QString& fileName);
 
   virtual ~DotGraph();
   
   bool parseDot(const QString& fileName);
-  
+
+  const GraphNodeMap& nodes() const;
+  const GraphEdgeMap& edges() const;
+  const GraphSubgraphMap& subgraphs() const;
+
   /** Constant accessor to the nodes of this graph */
-  inline const GraphNodeMap& nodes() const {return m_nodesMap;}
+  GraphNodeMap& nodes();
   /** Constant accessor to the edges of this graph */
-  inline const GraphEdgeMap& edges() const {return m_edgesMap;}
-  inline const GraphSubgraphMap& subgraphs() const {return m_subgraphsMap;}
-  /** Accessor to the nodes of this graph */
-  inline GraphNodeMap& nodes() {return m_nodesMap;}
-  /** Accessor to the edges of this graph */
-  inline GraphEdgeMap& edges() {return m_edgesMap;}
-  inline GraphSubgraphMap& subgraphs() {return m_subgraphsMap;}
-  double width() const {return m_width;}
-  double height() const {return m_height;}
-  double scale() const {return m_scale;}
-  void setWidth(double w) {m_width = w;}
-  void setHeight(double h) {m_height = h;}
-  void setScale(double s) {m_scale = s;}
+  GraphEdgeMap& edges();
+  GraphSubgraphMap& subgraphs();
+
+  double width() const;
+  double height() const;
+  double scale() const;
+  void setWidth(double w);
+  void setHeight(double h);
+  void setScale(double s);
+
   virtual QString backColor() const;
   
-  inline void setStrict(bool s) {m_strict = s;}
-  inline void setDirected(bool d) {m_directed = d;}
-  inline bool strict() const {return m_strict;}
-  inline bool directed() const {return m_directed;}
+  void setStrict(bool isStrict);
+  void setDirected(bool isDirected);
+  bool strict() const;
+  bool directed() const;
 
   QSet< GraphNode* >& nodesOfCell(unsigned int id);
   
-  inline unsigned int horizCellFactor() const {return m_horizCellFactor;}
-  inline unsigned int vertCellFactor() const {return m_vertCellFactor;}
-  inline double wdhcf() const {return m_wdhcf;}
-  inline double hdvcf() const {return m_hdvcf;}
+  unsigned int horizCellFactor() const;
+  unsigned int vertCellFactor() const;
+  double wdhcf() const;
+  double hdvcf() const;
   
-  inline void setLayoutCommand(const QString& command) {m_layoutCommand = command;}
-  inline const QString& layoutCommand() const {return m_layoutCommand;}
-  
-  inline void setDotFileName(const QString& fileName) {m_dotFileName = fileName;}
-  inline const QString& dotFileName() const {return m_dotFileName;}
+  void setLayoutCommand(const QString& layoutCommand);
+  QString layoutCommand() const;
+
+  void setDotFileName(const QString& fileName);
+  QString dotFileName() const;
 
   bool update();
 
-  inline void setReadWrite() {m_readWrite = true;}
-  inline void setReadOnly() {m_readWrite = false;}
+  void setReadWrite() {m_readWrite = true;}
+  void setReadOnly() {m_readWrite = false;}
 
   virtual void storeOriginalAttributes();
 
@@ -109,10 +111,10 @@ public:
 
   void setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
 
-  GraphElement* elementNamed(const QString& id);
+  GraphElement* elementNamed(const QString& id) const;
 
-  inline void setUseLibrary(bool value) {m_useLibrary = value;}
-  inline bool useLibrary() const {return m_useLibrary;}
+  void setUseLibrary(bool value);
+  bool useLibrary() const;
 
   void setGraphAttributes(QMap<QString,QString> attribs);
   void addNewNode(QMap<QString,QString> attribs);
@@ -120,6 +122,7 @@ public:
   void addNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph);
   void addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph);
   void moveExistingNodeToMainGraph(QMap<QString,QString> attribs);
+
   void addNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
   void removeAttribute(const QString& nodeName, const QString& attribName);
   void renameNode(const QString& oldNodeName, const QString& newNodeName);
@@ -138,31 +141,10 @@ private:
 
   unsigned int cellNumber(int x, int y);
   void computeCells();
-  QByteArray getDotResult(int exitCode, QProcess::ExitStatus exitStatus);
-    
-  QString m_dotFileName;
-  GraphSubgraphMap m_subgraphsMap;
-  GraphNodeMap m_nodesMap;
-  GraphEdgeMap m_edgesMap;
-  double m_width, m_height;
-  double m_scale;
-  bool m_directed;
-  bool m_strict;
-  QString m_layoutCommand;
-  
-  unsigned int m_horizCellFactor, m_vertCellFactor;
-  QVector< QSet< GraphNode* > > m_cells;
-  
-  double m_wdhcf, m_hdvcf;
 
   bool m_readWrite;
-  QProcess* m_dot;
 
   ParsePhase m_phase;
-
-  QMutex m_dotProcessMutex;
-
-  bool m_useLibrary;
 };
 
 }

@@ -32,6 +32,7 @@
 #include "simpleprintpreviewwindow.h"
 
 #include <kgraphviz/dotgraphview.h>
+#include <kgraphviz/dotgraph.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -121,7 +122,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
       m_contents->headerTitleLineEdit->setText((*args)["title"]);
       QString origCaptionLabelText = m_contents->captionLabel->text();
       m_contents->captionLabel->setText( i18n("<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>", 
-            KUrl::fromPathOrUrl(m_graphView->dotFileName()).fileName() 
+            KUrl::fromPathOrUrl(m_graphView->graph()->dotFileName()).fileName()
             ) );
 	}
 	connect(m_contents->headerTitleLineEdit,SIGNAL(textChanged(const QString&)), 

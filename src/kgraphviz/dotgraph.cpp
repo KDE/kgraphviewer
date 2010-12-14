@@ -57,7 +57,12 @@ using namespace KGraphViz;
 
 const distinct_parser<> keyword_p("0-9a-zA-Z_");
 
-DotGraphPrivate::DotGraphPrivate()
+DotGraphPrivate::DotGraphPrivate() :
+  m_width(0.0), m_height(0.0),m_scale(1.0),
+  m_directed(true), m_strict(false),
+  m_horizCellFactor(0), m_vertCellFactor(0),
+  m_wdhcf(0), m_hdvcf(0),
+  m_useLibrary(false)
 {
 }
 
@@ -74,52 +79,193 @@ void DotGraphPrivate::init()
 DotGraph::DotGraph() :
   GraphElement(),
   d_ptr(new DotGraphPrivate),
-  m_dotFileName(""),m_width(0.0), m_height(0.0),m_scale(1.0),
-  m_directed(true),m_strict(false),
-  m_layoutCommand(""),
-  m_horizCellFactor(0), m_vertCellFactor(0),
-  m_wdhcf(0), m_hdvcf(0),
   m_readWrite(false),
-  m_dot(0),
-  m_phase(Initial),
-  m_useLibrary(false)
+  m_phase(Initial)
 {
   setId("unnamed");
 }
 
-DotGraph::DotGraph(const QString& command, const QString& fileName) :
+DotGraph::DotGraph(const QString& layoutCommand, const QString& fileName) :
   GraphElement(),
   d_ptr(new DotGraphPrivate),
-  m_dotFileName(fileName),m_width(0.0), m_height(0.0),m_scale(1.0),
-  m_directed(true),m_strict(false),
-  m_layoutCommand(command),
-  m_horizCellFactor(0), m_vertCellFactor(0),
-  m_wdhcf(0), m_hdvcf(0),
   m_readWrite(false),
-  m_dot(0),
-  m_phase(Initial),
-  m_useLibrary(false)
+  m_phase(Initial)
 {
   setId("unnamed");
+
+  Q_D(DotGraph);
+  d->m_fileName = fileName;
+  d->m_layoutCommand = layoutCommand;
 }
 
 DotGraph::~DotGraph()  
 {
+  Q_D(DotGraph); 
   GraphNodeMap::iterator itn, itn_end;
-  itn = m_nodesMap.begin(); itn_end = m_nodesMap.end();
+  itn = d->m_nodesMap.begin(); itn_end = d->m_nodesMap.end();
   for (; itn != itn_end; itn++)
   {
     delete *itn;
   }
 
   GraphEdgeMap::iterator ite, ite_end;
-  ite = m_edgesMap.begin(); ite_end = m_edgesMap.end();
+  ite = d->m_edgesMap.begin(); ite_end = d->m_edgesMap.end();
   for (; ite != ite_end; ite++)
   {
     delete (*ite);
   }
 
   delete d_ptr;
+}
+
+QString DotGraph::dotFileName() const
+{
+  Q_D(const DotGraph);
+  return d->m_fileName;
+}
+
+void DotGraph::setDotFileName(const QString& fileName)
+{
+  Q_D(DotGraph);
+  d->m_fileName = fileName;
+}
+
+QString DotGraph::layoutCommand() const
+{
+  Q_D(const DotGraph);
+  return d->m_layoutCommand;
+}
+
+void DotGraph::setLayoutCommand(const QString& layoutCommand)
+{
+  Q_D(DotGraph);
+  d->m_layoutCommand = layoutCommand;
+}
+
+const KGraphViz::GraphNodeMap& DotGraph::nodes() const
+{
+  Q_D(const DotGraph);
+  return d->m_nodesMap;
+}
+
+const KGraphViz::GraphEdgeMap& DotGraph::edges() const
+{
+  Q_D(const DotGraph);
+  return d->m_edgesMap;
+}
+
+const KGraphViz::GraphSubgraphMap& DotGraph::subgraphs() const
+{
+  Q_D(const DotGraph);
+  return d->m_subgraphsMap;
+}
+
+KGraphViz::GraphNodeMap& DotGraph::nodes()
+{
+  Q_D(DotGraph);
+  return d->m_nodesMap;
+}
+
+KGraphViz::GraphEdgeMap& DotGraph::edges()
+{
+  Q_D(DotGraph);
+  return d->m_edgesMap;
+}
+
+KGraphViz::GraphSubgraphMap& DotGraph::subgraphs()
+{
+  Q_D(DotGraph);
+  return d->m_subgraphsMap;
+}
+
+double DotGraph::width() const
+{
+  Q_D(const DotGraph);
+  return d->m_width;
+}
+void DotGraph::setWidth(double width)
+{
+  Q_D(DotGraph);
+  d->m_width = width;
+}
+
+double DotGraph::height() const
+{
+  Q_D(const DotGraph);
+  return d->m_height;
+}
+void DotGraph::setHeight(double height)
+{
+  Q_D(DotGraph);
+  d->m_height = height;
+}
+
+double DotGraph::scale() const
+{
+  Q_D(const DotGraph);
+  return d->m_scale;
+}
+void DotGraph::setScale(double scale)
+{
+  Q_D(DotGraph);
+  d->m_scale = scale;
+}
+
+bool DotGraph::strict() const
+{
+  Q_D(const DotGraph);
+  return d->m_strict;
+}
+void DotGraph::setStrict(bool isStrict)
+{
+  Q_D(DotGraph);
+  d->m_strict = isStrict;
+}
+
+bool DotGraph::directed() const
+{
+  Q_D(const DotGraph);
+  return d->m_directed;
+}
+void DotGraph::setDirected(bool isDirected)
+{
+  Q_D(DotGraph);
+  d->m_directed = isDirected;
+}
+
+double DotGraph::hdvcf() const
+{
+  Q_D(const DotGraph);
+  return d->m_hdvcf;
+}
+
+double DotGraph::wdhcf() const
+{
+  Q_D(const DotGraph);
+  return d->m_wdhcf;
+}
+
+unsigned int DotGraph::horizCellFactor() const
+{
+  Q_D(const DotGraph);
+  return d->m_horizCellFactor;
+}
+
+unsigned int DotGraph::vertCellFactor() const
+{
+  Q_D(const DotGraph);
+  return d->m_vertCellFactor;
+}
+
+bool DotGraph::useLibrary() const
+{
+  Q_D(const DotGraph);
+  return d->m_useLibrary;
+}
+void DotGraph::setUseLibrary(bool value)
+{
+  Q_D(DotGraph);
+  d->m_useLibrary = value;
 }
 
 bool DotGraph::parseDot(const QString& fileName)
@@ -134,8 +280,10 @@ bool DotGraph::parseDot(const QString& fileName)
 
 bool DotGraph::update()
 {
+  Q_D(DotGraph);
+  
   GraphExporter exporter;
-  if (!m_useLibrary)
+  if (!useLibrary())
   {
     kDebug() << "command";
     QString str = exporter.writeDot(this);
@@ -147,7 +295,7 @@ bool DotGraph::update()
     graph_t* graph = exporter.exportToGraphviz(this);
 
     GVC_t* gvc = gvContext();
-    gvLayout(gvc, graph, m_layoutCommand.toUtf8().data());
+    gvLayout(gvc, graph, layoutCommand().toUtf8().data());
     gvRender (gvc, graph, "xdot", NULL);
 
     updateWithGraph(graph);
@@ -163,13 +311,13 @@ unsigned int DotGraph::cellNumber(int x, int y)
 {
 /*  kDebug() << "x= " << x << ", y= " << y << ", m_width= " << m_width << ", m_height= " << m_height << ", m_horizCellFactor= " << m_horizCellFactor << ", m_vertCellFactor= " << m_vertCellFactor  << ", m_wdhcf= " << m_wdhcf << ", m_hdvcf= " << m_hdvcf;*/
   
-  unsigned int nx = (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
-  unsigned int ny = (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
+  unsigned int nx = (unsigned int)(( x - ( x % int(wdhcf()) ) ) / wdhcf());
+  unsigned int ny = (unsigned int)(( y - ( y % int(hdvcf()) ) ) / hdvcf());
 /*  kDebug() << "nx = " << (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
   kDebug() << "ny = " << (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
   kDebug() << "res = " << ny * m_horizCellFactor + nx;*/
   
-  unsigned int res = ny * m_horizCellFactor + nx;
+  unsigned int res = ny * horizCellFactor() + nx;
   return res;
 }
 
@@ -178,6 +326,8 @@ unsigned int DotGraph::cellNumber(int x, int y)
 void DotGraph::computeCells()
 {
   return;
+  
+/* FIXME: Is this used?
   kDebug() << m_width << m_height << endl;
   m_horizCellFactor = m_vertCellFactor = 1;
   m_wdhcf = (int)ceil(((double)m_width) / m_horizCellFactor)+1;
@@ -226,11 +376,13 @@ void DotGraph::computeCells()
   } while (!stop);
   kDebug() << "m_wdhcf=" << m_wdhcf << "; m_hdvcf=" << m_hdvcf << endl;
   kDebug() << "finished" << endl;
+*/
 }
 
 QSet< GraphNode* >& DotGraph::nodesOfCell(unsigned int id)
 {
-  return m_cells[id];
+  Q_D(DotGraph);
+  return d->m_cells[id];
 }
 
 void DotGraph::storeOriginalAttributes()
@@ -252,10 +404,10 @@ void DotGraph::storeOriginalAttributes()
 
 void DotGraph::saveTo(const QString& fileName)
 {
-  kDebug() << fileName;
-  m_dotFileName = fileName;
-  GraphExporter exporter;
-  exporter.writeDot(this, fileName);
+  kDebug() << "Filename:" << fileName;
+
+  Q_D(DotGraph);
+  d->m_graphIO.saveToDotFile(this, fileName);
 }
 
 void DotGraph::updateWithGraph(graph_t* newGraph)
@@ -390,13 +542,15 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
 
 void DotGraph::updateWithGraph(const DotGraph& newGraph)
 {
+  Q_D(DotGraph);
   kDebug();
   GraphElement::updateWithElement(newGraph);
-  m_width=newGraph.width();
-  m_height=newGraph.height();
-  m_scale=newGraph.scale();
-  m_directed=newGraph.directed();
-  m_strict=newGraph.strict();
+  d->m_width = newGraph.width();
+  d->m_height = newGraph.height();
+  d->m_scale = newGraph.scale();
+  d->m_directed = newGraph.directed();
+  d->m_strict = newGraph.strict();
+
   computeCells();
   foreach (GraphSubgraph* nsg, newGraph.subgraphs())
   {
@@ -473,6 +627,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
 
 void DotGraph::removeNodeNamed(const QString& nodeName)
 {
+  Q_D(DotGraph);
   kDebug() << nodeName;
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(nodeName));
   if (node == 0)
@@ -482,7 +637,7 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
   }
   
   GraphEdgeMap::iterator it, it_end;
-  it = m_edgesMap.begin(); it_end = m_edgesMap.end();
+  it = d->m_edgesMap.begin(); it_end = d->m_edgesMap.end();
   while (it != it_end)
   {
     if ( it.value()->fromNode() == node
@@ -542,6 +697,7 @@ void DotGraph::removeNodeFromSubgraph(
 
 void DotGraph::removeSubgraphNamed(const QString& subgraphName)
 {
+  Q_D(DotGraph);
   kDebug() << subgraphName << " from " << subgraphs().keys();
   GraphSubgraph* subgraph = subgraphs()[subgraphName];
 
@@ -551,7 +707,7 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
     return;
   }
   GraphEdgeMap::iterator it, it_end;
-  it = m_edgesMap.begin(); it_end = m_edgesMap.end();
+  it = d->m_edgesMap.begin(); it_end = d->m_edgesMap.end();
   while (it != it_end)
   {
     if ( it.value()->fromNode() == subgraph
@@ -671,16 +827,17 @@ void DotGraph::setAttribute(const QString& elementId, const QString& attributeNa
   }
 }
 
-GraphElement* DotGraph::elementNamed(const QString& id)
+GraphElement* DotGraph::elementNamed(const QString& id) const
 {
+  Q_D(const DotGraph);
   GraphElement* ret = 0;
-  if ((ret = m_nodesMap.value(id, 0))) {
+  if ((ret = d->m_nodesMap.value(id, 0))) {
     return ret;
   }
-  if ((ret = m_edgesMap.value(id, 0))) {
+  if ((ret = d->m_edgesMap.value(id, 0))) {
     return ret;
   }
-  foreach(GraphSubgraph* subGraph, m_subgraphsMap) {
+  foreach(GraphSubgraph* subGraph, subgraphs()) {
     if ((ret = subGraph->elementNamed(id))) {
       return ret;
     }
