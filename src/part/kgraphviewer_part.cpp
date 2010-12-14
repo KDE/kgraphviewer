@@ -178,7 +178,8 @@ void KGraphViewerPart::slotClose()
 
 bool KGraphViewerPart::closeUrl()
 {
-  return d->m_widget->initEmpty();
+  d->m_widget->initEmpty();
+  return true;
 }
 
 KGraphViewerPart::~KGraphViewerPart()

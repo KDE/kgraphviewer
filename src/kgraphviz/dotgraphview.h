@@ -193,10 +193,10 @@ public Q_SLOTS:
   void zoomOut();  
   void zoomRectMovedTo(QPointF newZoomPos);
   void zoomRectMoveFinished();
-  bool initEmpty();
   bool reload();
   void dirty(const QString& dotFileName);
   void pageSetup();
+  void initEmpty();
   void print();
   void printPreview();
   void viewBevActivated(int newPos);

@@ -144,6 +144,7 @@ public:
 
   void updateSizes(QSizeF s = QSizeF(0,0));
   void updateBirdEyeView();
+  void setupCanvas();
   void setupPopup();
   void exportToImage();
   KActionCollection* actionCollection() {return m_actions;}
@@ -674,99 +675,56 @@ void DotGraphView::setBackgroundColor(const QColor& color)
   d->m_canvas->setBackgroundBrush(QBrush(d->m_backgroundColor));
 }
 
-bool DotGraphView::initEmpty()
+void DotGraphViewPrivate::setupCanvas()
 {
+  Q_Q(DotGraphView);
   kDebug();
-  Q_D(DotGraphView);
-  d->m_birdEyeView->hide();
-  d->m_birdEyeView->setScene(0);
+  m_birdEyeView->hide();
+  m_birdEyeView->setScene(0);
   
-  if (d->m_canvas) 
-  {
-    delete d->m_canvas;
-    d->m_canvas = 0;
+  if (m_canvas) {
+    delete m_canvas;
+    m_canvas = 0;
   }
 
-  if (d->m_graph != 0)
-    delete d->m_graph;
-  d->m_graph = new DotGraph();
-  connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+  if (m_graph != 0)
+    delete m_graph;
+  m_graph = new DotGraph();
+  q->connect(m_graph,SIGNAL(readyToDisplay()),q,SLOT(displayGraph()));
 
-  if (d->m_readWrite)
-  {
-    d->m_graph->setReadWrite();
+  if (m_readWrite) {
+    m_graph->setReadWrite();
   }
   
 //   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
-  d->m_xMargin = 50;
-  d->m_yMargin = 50;
+  m_xMargin = 50;
+  m_yMargin = 50;
 
   QGraphicsScene* newCanvas = new QGraphicsScene();
   QGraphicsSimpleTextItem* item = newCanvas->addSimpleText(i18n("no graph loaded"));
 //   kDebug() << "Created canvas " << newCanvas;
   
-  d->m_birdEyeView->setScene(newCanvas);
+  m_birdEyeView->setScene(newCanvas);
 //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
   
-  setScene(newCanvas);
-  d->m_canvas = newCanvas;
-  centerOn(item);
+  q->setScene(newCanvas);
+  m_canvas = newCanvas;
+  q->centerOn(item);
 
-  d->m_cvZoom = 0;
-
-  return true;
+  m_cvZoom = 0;
 }
 
 bool DotGraphView::loadDot(const QString& dotFileName)
 {
-  kDebug() << "'" << dotFileName << "'";
+  kDebug() << "Filename:" << dotFileName;
   Q_D(DotGraphView);
-  d->m_birdEyeView->setScene(0);
+  d->setupCanvas();
 
-  if (d->m_canvas)
-  {
-    d->m_canvas->deleteLater();
-    d->m_canvas = 0;
-  }
-
-  QString layoutCommand = (d->m_graph!=0?d->m_graph->layoutCommand():"");
-  if (d->m_graph != 0)
-    delete d->m_graph;
-  d->m_graph = new DotGraph(layoutCommand,dotFileName);
-  connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
-
-  if (d->m_readWrite)
-  {
-    d->m_graph->setReadWrite();
-  }
-  if (layoutCommand.isEmpty())
-  {
-    layoutCommand = d->m_graph->chooseLayoutProgramForFile(d->m_graph->dotFileName());
-  }
-  d->m_graph->layoutCommand(layoutCommand);
-
-//   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
-  d->m_xMargin = 50;
-  d->m_yMargin = 50;
-
-  QGraphicsScene* newCanvas = new QGraphicsScene();
-  kDebug() << "Created canvas " << newCanvas;
-
-  d->m_birdEyeView->setScene(newCanvas);
-//   std::cerr << "After m_birdEyeView set canvas" << std::endl;
-
-  setScene(newCanvas);
-  connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
-  d->m_canvas = newCanvas;
-
-  QGraphicsSimpleTextItem* loadingLabel = newCanvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
+  QGraphicsSimpleTextItem* loadingLabel = d->m_canvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
   loadingLabel->setZValue(100);
   centerOn(loadingLabel);
 
-  d->m_cvZoom = 0;
-
-  if (!d->m_graph->parseDot(d->m_graph->dotFileName()))
-  {
+  if (!d->m_graph->parseDot(d->m_graph->dotFileName())) {
     kError() << "NOT successfully parsed!" << endl;
     loadingLabel->setText(i18n("error parsing file %1", dotFileName));
     return false;
@@ -795,43 +753,8 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
   kDebug() << "Agraph_t:" << graph << "- Layout command:" << layoutCommand;
 
   Q_D(DotGraphView);
-  d->m_birdEyeView->setScene(0);
-  
-  if (d->m_canvas)
-  {
-    d->m_canvas->deleteLater();
-    d->m_canvas = 0;
-  }
-  
-  if (d->m_graph != 0)
-    delete d->m_graph;
-
-  kDebug() << "layoutCommand:" << layoutCommand;
-  d->m_graph = new DotGraph(layoutCommand,"");
-  d->m_graph->setUseLibrary(true);
-  
-  connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
-  
-  if (d->m_readWrite)
-  {
-    d->m_graph->setReadWrite();
-  }
-  
-  d->m_xMargin = 50;
-  d->m_yMargin = 50;
-  
-  QGraphicsScene* newCanvas = new QGraphicsScene();
-  kDebug() << "Created canvas " << newCanvas;
-  
-  d->m_birdEyeView->setScene(newCanvas);
-  setScene(newCanvas);
-  connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
-  d->m_canvas = newCanvas;
-  
-  d->m_cvZoom = 0;
-                                 
+  d->setupCanvas();
   d->m_graph->updateWithGraph(graph);
-
   return true;
 }
 
@@ -1517,6 +1440,12 @@ bool DotGraphView::reload()
     return loadLibrary(fileName);
   else
     return loadDot(fileName);
+}
+
+void DotGraphView::initEmpty()
+{
+  Q_D(DotGraphView);
+  d->setupCanvas();
 }
 
 void DotGraphView::dirty(const QString& dotFileName)
