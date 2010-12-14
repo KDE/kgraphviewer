@@ -31,9 +31,7 @@
 
 #include "shared/kgraphviewer_interface.h"
 
-#include <kconfig.h>
 #include <kactioncollection.h>
-#include <kconfiggroup.h>
 
 #include <QGraphicsView>
 #include <QSet>
@@ -80,27 +78,12 @@ public:
   bool loadLibrary(const QString& dotFileName);
   bool loadLibrary(Agraph_t* graph, const QString& layoutCommand = "dot");
 
-  void readViewConfig();
-  void saveViewConfig();
-
-  QWidget* widget() { return this; }
-
   //TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
   KGraphViewer::KGraphViewerInterface::PannerPosition zoomPos() const;
   static KGraphViewer::KGraphViewerInterface::PannerPosition zoomPos(const QString&);
   static QString zoomPosString(KGraphViewer::KGraphViewerInterface::PannerPosition);
 
   void setPannerEnabled(bool enabled);
-  
-  static KConfigGroup* configGroup(KConfig*, const QString& prefix, const QString& postfix);
-  static void writeConfigEntry(KConfigGroup*, const char* pKey, const QString& value,
-                               const char* def);
-  static void writeConfigEntry(KConfigGroup*, const char* pKey,
-                               int value, int def);
-  static void writeConfigEntry(KConfigGroup*, const char* pKey,
-                               bool value, bool def);
-  static void writeConfigEntry(KConfigGroup*, const char* pKey,
-                               double value, double def);
 
   virtual void wheelEvent(QWheelEvent* e);
 

@@ -541,8 +541,6 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
                 "</ul>"
             ) );
 
-  readViewConfig();
-  
   QMatrix m;
   m.scale(d->m_zoom,d->m_zoom);
   setMatrix(m);
@@ -557,9 +555,7 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
 
 DotGraphView::~DotGraphView()
 {
-  saveViewConfig();
-  Q_D(DotGraphView);
-  delete d;
+  delete d_ptr;
 }
 
 KGraphViewerInterface::PannerPosition DotGraphView::zoomPos() const { Q_D(const DotGraphView); return d->m_zoomPosition; }
@@ -1286,31 +1282,6 @@ QString DotGraphView::zoomPosString(KGraphViewerInterface::PannerPosition p)
     return QString("KGraphViewerInterface::TopLeft");
 }
 
-void DotGraphView::readViewConfig()
-{
-  Q_D(DotGraphView);
-  KConfigGroup g(KGlobal::config(),"GraphViewLayout");
-  
-  QVariant dl = DEFAULT_DETAILLEVEL;
-  d->m_detailLevel     = g.readEntry("DetailLevel", dl).toInt();
-  d->m_zoomPosition  = zoomPos(g.readEntry("KGraphViewerInterface::PannerPosition",
-            zoomPosString(DEFAULT_ZOOMPOS)));
-  emit(sigViewBevActivated(d->m_zoomPosition));
-}
-
-void DotGraphView::saveViewConfig()
-{
-  Q_D(DotGraphView);
-//   kDebug() << "Saving view config";  
-  KConfigGroup g(KGlobal::config(), "GraphViewLayout");
-
-    writeConfigEntry(&g, "DetailLevel", d->m_detailLevel, DEFAULT_DETAILLEVEL);
-    writeConfigEntry(&g, "KGraphViewerInterface::PannerPosition",
-         zoomPosString(d->m_zoomPosition),
-         zoomPosString(DEFAULT_ZOOMPOS).utf8().data());
-  g.sync();
-}
-
 void DotGraphView::pageSetup()
 {
   /*
@@ -1382,56 +1353,6 @@ void DotGraphView::dirty(const QString& dotFileName)
         loadDot(dotFileName);
     }
   }
-}
-
-KConfigGroup* DotGraphView::configGroup(KConfig* c,
-                                         const QString& group, const QString& post)
-{
-  QStringList gList = c->groupList();
-  QString res = group;
-  if (gList.contains((group+post).ascii()) ) res += post;
-  return new KConfigGroup(c, res);
-}
-
-void DotGraphView::writeConfigEntry(KConfigGroup* c, const char* pKey,
-                                     const QString& value, const char* def)
-{
-  if (!c) return;
-  if ((value.isEmpty() && ((def == 0) || (*def == 0))) ||
-      (value == QString(def)))
-    c->deleteEntry(pKey);
-  else
-    c->writeEntry(pKey, value);
-}
-
-void DotGraphView::writeConfigEntry(KConfigGroup* c, const char* pKey,
-                                     int value, int def)
-{
-  if (!c) return;
-  if (value == def)
-    c->deleteEntry(pKey);
-  else
-    c->writeEntry(pKey, value);
-}
-
-void DotGraphView::writeConfigEntry(KConfigGroup* c, const char* pKey,
-                                     double value, double def)
-{
-  if (!c) return;
-  if (value == def)
-    c->deleteEntry(pKey);
-  else
-    c->writeEntry(pKey, value);
-}
-
-void DotGraphView::writeConfigEntry(KConfigGroup* c, const char* pKey,
-                                     bool value, bool def)
-{
-  if (!c) return;
-  if (value == def)
-    c->deleteEntry(pKey);
-  else
-    c->writeEntry(pKey, value);
 }
 
 const QString& DotGraphView::dotFileName() 
