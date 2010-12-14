@@ -24,11 +24,6 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
-/*
- * Callgraph View
- */
-
 #ifndef DOTGRAPHVIEW_H
 #define DOTGRAPHVIEW_H
 
@@ -49,15 +44,6 @@ class KSelectAction;
 class KToggleAction;
 
 class QMenu;
-class QKeyEvent;
-class QMouseEvent;
-class QFocusEvent;
-class QResizeEvent;
-class QWheelEvent;
-class QContextMenuEvent;
-class QWidget;
-
-using namespace KGraphViewer;
 
 namespace KGraphViz
 {
@@ -73,12 +59,13 @@ class KGVSimplePrintingCommand;
 #define DEFAULT_DETAILLEVEL 1
 
 class DotGraphViewPrivate;
+
 /**
  * A CanvasView showing a part of the call graph
  * and another zoomed out CanvasView in a border acting as
  * a panner to select to visible part (only if needed)
  */
-class KGRAPHVIZ_EXPORT DotGraphView: public QGraphicsView
+class KGRAPHVIZ_EXPORT DotGraphView : public QGraphicsView
 {
  Q_OBJECT
 
@@ -99,9 +86,9 @@ public:
   QWidget* widget() { return this; }
 
   //TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
-  KGraphViewerInterface::PannerPosition zoomPos() const;
-  static KGraphViewerInterface::PannerPosition zoomPos(const QString&);
-  static QString zoomPosString(KGraphViewerInterface::PannerPosition);
+  KGraphViewer::KGraphViewerInterface::PannerPosition zoomPos() const;
+  static KGraphViewer::KGraphViewerInterface::PannerPosition zoomPos(const QString&);
+  static QString zoomPosString(KGraphViewer::KGraphViewerInterface::PannerPosition);
 
   void setPannerEnabled(bool enabled);
   

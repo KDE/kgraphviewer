@@ -24,12 +24,8 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
-/*
- * Callgraph View
- */
-
 #include "dotgraphview.h"
+#include "dotgraphview_p.h"
 
 #include "dotgraph.h"
 #include "graphelement.h"
@@ -43,11 +39,8 @@
 // TODO: Re-enable
 //#include "part/simpleprintingcommand.h"
 
-#include "graphexporter.h"
 #include "support/dot2qtconsts.h"
 #include "support/fontscache.h"
-#include "support/loadagraphthread.h"
-#include "support/layoutagraphthread.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -87,135 +80,56 @@
 #define DEFAULT_ZOOMPOS      KGraphViewerInterface::Auto
 #define KGV_MAX_PANNER_NODES 100
 
-namespace KGraphViz
+using namespace KGraphViz;
+using namespace KGraphViewer;
+
+DotGraphViewPrivate::DotGraphViewPrivate(KActionCollection* actions, DotGraphView* parent) :
+  m_labelViews(),
+  m_popup(0),
+  m_zoom(1),
+  m_isMoving(false),
+  m_exporter(),
+  m_zoomPosition(DEFAULT_ZOOMPOS),
+  m_lastAutoPosition(KGraphViewer::KGraphViewerInterface::TopLeft),
+  m_graph(0),
+  m_printCommand(0),
+  m_actions(actions),
+  m_detailLevel(DEFAULT_DETAILLEVEL),
+  m_defaultNewElement(0),
+  m_defaultNewElementPixmap(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png")),
+  m_editingMode(DotGraphView::None),
+  m_newEdgeSource(0),
+  m_newEdgeDraft(0),
+  m_readWrite(false),
+  m_leavedTimer(std::numeric_limits<int>::max()),
+  m_highlighting(false),
+  m_loadThread(),
+  m_layoutThread(),
+  m_backgroundColor(QColor("white")),
+  q_ptr( parent )
 {
+}
 
-class DotGraphViewPrivate
+DotGraphViewPrivate::~DotGraphViewPrivate()
 {
+  Q_Q(DotGraphView);
 
-public:
-  DotGraphViewPrivate(KActionCollection* actions, DotGraphView* parent) : 
-   m_labelViews(),
-    m_popup(0),
-    m_zoom(1),
-    m_isMoving(false),
-    m_exporter(),
-    m_zoomPosition(DEFAULT_ZOOMPOS),
-    m_lastAutoPosition(KGraphViewerInterface::TopLeft),
-    m_graph(0),
-    m_printCommand(0),
-    m_actions(actions),
-    m_detailLevel(DEFAULT_DETAILLEVEL),
-    m_defaultNewElement(0),
-    m_defaultNewElementPixmap(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png")),
-    m_editingMode(DotGraphView::None),
-    m_newEdgeSource(0),
-    m_newEdgeDraft(0),
-    m_readWrite(false),
-    m_leavedTimer(std::numeric_limits<int>::max()),
-    m_highlighting(false),
-    m_loadThread(),
-    m_layoutThread(),
-    m_backgroundColor(QColor("white")),
-    q_ptr( parent )
-  {
-    
+  delete m_birdEyeView;
+  m_birdEyeView = 0;
+
+  if (m_popup != 0) {
+    delete m_popup;
   }
-  virtual ~DotGraphViewPrivate()
-  {
-    delete m_birdEyeView;
-    m_birdEyeView = 0;
-    if (m_popup != 0)
-    {
-      delete m_popup;
-    }
-    if (m_canvas)
-    {
-      Q_Q(DotGraphView);
-      q->setScene(0);
-      delete m_canvas;
-    }
-    if (m_graph != 0)
-    {
-      delete m_graph;
-    }
+
+  if (m_canvas) {
+    q->setScene(0);
+    delete m_canvas;
   }
-  
+  if (m_graph != 0) {
+    delete m_graph;
+  }
+}
 
-  void updateSizes(QSizeF s = QSizeF(0,0));
-  void updateBirdEyeView();
-  void setupCanvas();
-  void setupPopup();
-  void exportToImage();
-  KActionCollection* actionCollection() {return m_actions;}
-  int displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent = 0);
-
-
-  QSet<QGraphicsSimpleTextItem*> m_labelViews;
-  QGraphicsScene* m_canvas;
-  QMenu* m_popup;
-  KSelectAction* m_bevPopup;
-  KSelectAction* m_layoutAlgoSelectAction;
-  int m_xMargin, m_yMargin;
-  PannerView *m_birdEyeView;
-  double m_cvZoom;
-  double m_zoom;
-  bool m_isMoving;
-  QPoint m_lastPos;
-
-  GraphExporter m_exporter;
-
-  // widget options
-  KGraphViewerInterface::PannerPosition m_zoomPosition, m_lastAutoPosition;
-
-  DotGraph* m_graph;
-
-  KGVSimplePrintingCommand* m_printCommand;
-
-  KToggleAction* m_bevEnabledAction;
-  KActionCollection* m_actions;
-
-  int m_detailLevel;
-
-  GraphElement* m_defaultNewElement;
-
-  /** image used for a new node just added in an edited graph because this new node has
-    *  still no attribute and thus no render operation */
-  QPixmap m_defaultNewElementPixmap;
-  DotGraphView::EditingMode m_editingMode;
-
-  CanvasElement* m_newEdgeSource;
-  QGraphicsLineItem* m_newEdgeDraft;
-
-  bool m_readWrite;
-
-  QMap<QString, QString> m_newElementAttributes;
-
-  /// identifier of the timer started when the mouse leaves the view during
-  /// edge drawing
-  int m_leavedTimer;
-
-  DotGraphView::ScrollDirection m_scrollDirection;
-
-  QPoint m_pressPos;
-  QPoint m_pressScrollBarsPos;
-
-  /// true if elements should be highlighted on hover; false otherwise
-  bool m_highlighting;
-
-  /// A thread to load graphviz agraph files
-  LoadAGraphThread m_loadThread;
-
-  /// A thread to layout graphviz agraph files
-  LayoutAGraphThread m_layoutThread;
-
-  /// The graph background color
-  QColor m_backgroundColor;
-
-  DotGraphView * const q_ptr;
-  Q_DECLARE_PUBLIC(DotGraphView);
-};
-  
 void DotGraphViewPrivate::updateSizes(QSizeF s)
 {
   kDebug();
@@ -2052,8 +1966,4 @@ void DotGraphView::centerOnNode(const QString& nodeId)
   }
 }
 
-
-}
-
 #include "dotgraphview.moc"
-
