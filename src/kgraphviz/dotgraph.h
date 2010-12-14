@@ -57,8 +57,7 @@ public:
 
   virtual ~DotGraph();
   
-  QString chooseLayoutProgramForFile(const QString& str);
-  bool parseDot(const QString& str);
+  bool parseDot(const QString& fileName);
   
   /** Constant accessor to the nodes of this graph */
   inline const GraphNodeMap& nodes() const {return m_nodesMap;}
@@ -133,10 +132,6 @@ public:
 Q_SIGNALS:
   void readyToDisplay();
 
-private Q_SLOTS:
-  void slotDotRunningDone(int,QProcess::ExitStatus);
-  void slotDotRunningError(QProcess::ProcessError);
-  
 private:
   Q_DECLARE_PRIVATE(DotGraph);
   DotGraphPrivate* d_ptr;

@@ -20,11 +20,26 @@
 #ifndef DOTGRAPH_P_H
 #define DOTGRAPH_P_H
 
+#include "graphio.h"
+
 namespace KGraphViz
 {
 
+class DotGraph;
+
 class DotGraphPrivate
 {
+public:
+  explicit DotGraphPrivate();
+  virtual ~DotGraphPrivate();
+
+  void init();
+
+  GraphIO m_graphIO;
+
+private:
+  Q_DECLARE_PUBLIC(DotGraph);
+  DotGraph* q_ptr;
 };
 
 }

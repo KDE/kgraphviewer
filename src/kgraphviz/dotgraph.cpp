@@ -53,13 +53,27 @@ using namespace boost::spirit::classic;
 
 extern KGraphViz::DotGraphParsingHelper* phelper;
 
-namespace KGraphViz
-{
+using namespace KGraphViz;
 
 const distinct_parser<> keyword_p("0-9a-zA-Z_");
 
+DotGraphPrivate::DotGraphPrivate()
+{
+}
+
+DotGraphPrivate::~DotGraphPrivate()
+{
+}
+
+void DotGraphPrivate::init()
+{
+  Q_Q(DotGraph);
+  q->connect(&m_graphIO, SIGNAL(finished()), q, SIGNAL(readyToDisplay()));
+}
+
 DotGraph::DotGraph() :
   GraphElement(),
+  d_ptr(new DotGraphPrivate),
   m_dotFileName(""),m_width(0.0), m_height(0.0),m_scale(1.0),
   m_directed(true),m_strict(false),
   m_layoutCommand(""),
@@ -75,6 +89,7 @@ DotGraph::DotGraph() :
 
 DotGraph::DotGraph(const QString& command, const QString& fileName) :
   GraphElement(),
+  d_ptr(new DotGraphPrivate),
   m_dotFileName(fileName),m_width(0.0), m_height(0.0),m_scale(1.0),
   m_directed(true),m_strict(false),
   m_layoutCommand(command),
@@ -103,73 +118,18 @@ DotGraph::~DotGraph()
   {
     delete (*ite);
   }
+
+  delete d_ptr;
 }
 
-QString DotGraph::chooseLayoutProgramForFile(const QString& str)
+bool DotGraph::parseDot(const QString& fileName)
 {
-  QFile iFILE(str);
+  kDebug() << fileName;
 
-  if (!iFILE.open(QIODevice::ReadOnly))
-  {
-    kError() << "Can't test dot file. Will try to use the dot command on the file: '" << str << "'" << endl;
-    return "dot";// -Txdot";
-  }
+  Q_D(DotGraph);
+  d->m_graphIO.loadFromDotFile(fileName);
 
-  QByteArray fileContent = iFILE.readAll();
-  if (fileContent.isEmpty()) return "";
-  std::string s =  fileContent.data();
-  std::string cmd = "dot";
-  parse(s.c_str(),
-        (
-          !(keyword_p("strict")) >> (keyword_p("graph")[assign_a(cmd,"neato")])
-        ), (space_p|comment_p("/*", "*/")) );
-
-  return  QString::fromStdString(cmd);// + " -Txdot" ;
-}
-
-bool DotGraph::parseDot(const QString& str)
-{
-  kDebug() << str;
-  m_useLibrary = false;
-  if (m_layoutCommand.isEmpty())
-  {
-    m_layoutCommand = chooseLayoutProgramForFile(str);
-    if (m_layoutCommand.isEmpty())
-    {
-      m_layoutCommand = chooseLayoutProgramForFile(str);
-      return false;
-    }
-  }
-
-  kDebug() << "Running " << m_layoutCommand  << str;
-  QStringList options;
-  /// @TODO handle the non-dot commands that could don't know the -T option
-//  if (m_readWrite && m_phase == Initial)
-//  {
-//    options << "-Tdot";
-//  }
-//  else
-//  {
-    options << "-Txdot";
-//   }
-  options << str;
-
-  kDebug() << "m_dot is " << m_dot  << ". Acquiring mutex";
-  QMutexLocker locker(&m_dotProcessMutex);
-  kDebug() << "mutex acquired ";
-  if (m_dot != 0)
-  {
-    disconnect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
-    disconnect(m_dot,SIGNAL(error(QProcess::ProcessError)),this,SLOT(slotDotRunningError(QProcess::ProcessError)));
-    m_dot->kill();
-    delete m_dot;
-  }
-  m_dot = new QProcess();
-  connect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
-  connect(m_dot,SIGNAL(error(QProcess::ProcessError)),this,SLOT(slotDotRunningError(QProcess::ProcessError)));
-  m_dot->start(m_layoutCommand, options);
-  kDebug() << "process started";
- return true;
+  return true;
 }
 
 bool DotGraph::update()
@@ -196,107 +156,6 @@ bool DotGraph::update()
     agclose(graph);
     bool result = (gvFreeContext(gvc) == 0);
     return result;
-  }
-}
-
-QByteArray DotGraph::getDotResult(int , QProcess::ExitStatus )
-{
-  kDebug();
-
-  QMutexLocker locker(&m_dotProcessMutex);
-  if (m_dot == 0)
-  {
-    return QByteArray();
-  }
-  QByteArray result = m_dot->readAll();
-  delete m_dot;
-  m_dot = 0;
-  return result;
-}
-
-void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
-{
-  kDebug();
-  
-  QByteArray result = getDotResult(exitCode, exitStatus);
-  result.replace("\\\n","");
-
-  kDebug() << "string content is:" << endl << result << endl << "=====================" << result.size();
-  std::string s =  result.data();
-  //   std::cerr << "stdstring content is:" << std::endl << s << std::endl << "===================== " << s.size() << std::endl;
-  if (phelper != 0)
-  {
-    phelper->graph = 0;
-    delete phelper;
-  }
-//   if (parsingResult)
-//   {
-//     if (m_readWrite)
-//     {
-//       storeOriginalAttributes();
-//       update();
-//     }
-//     computeCells();
-//   }
-
-  DotGraph newGraph(m_layoutCommand, m_dotFileName);
-  phelper = new DotGraphParsingHelper;
-  phelper->graph = &newGraph;
-  phelper->z = 1;
-  phelper->maxZ = 1;
-  phelper->uniq = 0;
-
-  kDebug() << "parsing new dot";
-  bool parsingResult = parse(s);
-  delete phelper;
-  phelper = 0;
-  kDebug() << "phelper deleted";
-
-  if (parsingResult)
-  {
-    kDebug() << "calling updateWithGraph";
-    updateWithGraph(newGraph);
-  }
-  else
-  {
-    kDebug() << "parsing failed";
-    kError() << "parsing failed";
-  }
-//   return parsingResult;
-//   if (m_readWrite && m_phase == Initial)
-//   {
-//     m_phase = Final;
-//     update();
-//   }
-//   else
-//   {
-    kDebug() << "emiting readyToDisplay";
-    emit(readyToDisplay());
-//   }
-}
-
-void DotGraph::slotDotRunningError(QProcess::ProcessError error)
-{
-  kError() << "DotGraph::slotDotRunningError" << error;
-  switch (error)
-  {
-    case QProcess::FailedToStart:
-      KMessageBox::error(0, i18n("Unable to start %1.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-    break;
-    case QProcess::Crashed:
-      KMessageBox::error(0, i18n("%1 crashed.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-    break;
-    case QProcess::Timedout:
-      KMessageBox::error(0, i18n("%1 timed out.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-    break;
-    case QProcess::WriteError:
-      KMessageBox::error(0, i18n("Was not able to write data to the %1 process.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-    break;
-    case QProcess::ReadError:
-      KMessageBox::error(0, i18n("Was not able to read data from the %1 process.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
-    break;
-    default:
-      KMessageBox::error(0, i18n("Unknown error running %1.", m_layoutCommand),i18n("Layout process failed"),KMessageBox::Notify);
   }
 }
 
@@ -1011,9 +870,6 @@ QString DotGraph::backColor() const
   {
     return QString();
   }
-}
-
-
 }
 
 #include "dotgraph.moc"

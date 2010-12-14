@@ -29,6 +29,7 @@
 
 #include "dotgraph.h"
 #include "graphelement.h"
+#include "graphio.h"
 #include "canvassubgraph.h"
 #include "canvasedge.h"
 #include "graphnode.h"
@@ -1917,12 +1918,8 @@ void DotGraphView::slotAGraphReadFinished()
 {
   Q_D(DotGraphView);
   QString layoutCommand = (d->m_graph!=0?d->m_graph->layoutCommand():"");
-  if (layoutCommand.isEmpty())
-  {
-    if (!d->m_loadThread.dotFileName().isEmpty())
-      layoutCommand = d->m_graph->chooseLayoutProgramForFile(d->m_loadThread.dotFileName());
-    else
-      layoutCommand = "dot";
+  if (layoutCommand.isEmpty()) {
+      layoutCommand = GraphIO::internalLayoutCommandForFile(d->m_loadThread.dotFileName());
   }
   d->m_layoutThread.layoutGraph(d->m_loadThread.g(), layoutCommand);
 }
