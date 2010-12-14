@@ -17,6 +17,7 @@
 */
 
 #include "dotgraph.h"
+#include "dotgraph_p.h"
 
 #include "graphexporter.h"
 #include "canvasedge.h"

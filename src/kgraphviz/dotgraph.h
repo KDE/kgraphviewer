@@ -40,7 +40,9 @@ class Agraph_t;
 
 namespace KGraphViz
 {
-  
+
+class DotGraphPrivate;
+
 /**
   * A class representing the model of a GraphViz dot graph
   */
@@ -136,6 +138,9 @@ private Q_SLOTS:
   void slotDotRunningError(QProcess::ProcessError);
   
 private:
+  Q_DECLARE_PRIVATE(DotGraph);
+  DotGraphPrivate* d_ptr;
+
   unsigned int cellNumber(int x, int y);
   void computeCells();
   QByteArray getDotResult(int exitCode, QProcess::ExitStatus exitStatus);
