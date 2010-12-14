@@ -47,7 +47,6 @@ namespace KGraphViewer
 {
   
 class CanvasEdge;
-class GraphNode;
 
 class GraphEdge : public GraphElement
 {

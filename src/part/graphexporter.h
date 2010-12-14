@@ -35,7 +35,6 @@
 
 #include <graphviz/gvc.h>
 
-class KTemporaryFile;
 
 namespace KGraphViewer
 {

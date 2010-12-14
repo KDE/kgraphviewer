@@ -27,7 +27,6 @@
 
 class KComponentData;
 class KAboutData;
-class KDirWatch;
 
 class QWidget;
 
@@ -35,7 +34,6 @@ namespace KGraphViewer
 {
 
 class DotGraph;
-class DotGraphView;
 
 class KGraphViewerPartPrivate;
 

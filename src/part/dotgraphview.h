@@ -45,9 +45,7 @@
 #include "kgraphviewer_interface.h"
 
 class KSelectAction;
-class KToggleAction;
 
-class QMenu;
 class QKeyEvent;
 class QMouseEvent;
 class QFocusEvent;
@@ -60,12 +58,9 @@ namespace KGraphViewer
 {
 
 class GraphElement;
-class GraphSubgraph;
 class CanvasElement;
 class CanvasEdge;
-class PannerView;
 class DotGraph;
-class KGVSimplePrintingCommand;
 
 #define DEFAULT_DETAILLEVEL 1
 

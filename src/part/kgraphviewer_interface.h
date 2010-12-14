@@ -28,11 +28,9 @@ namespace KParts
   class Part;
 }
 
-class QStringList;
 
 namespace KGraphViewer
 {
-class DotGraph;
 /**
  * KGraphViewerInterface is an interface implemented by KGraphViewer to
  * allow developers access to the KGraphViewerPart in ways that are not
