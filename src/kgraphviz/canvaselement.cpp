@@ -555,18 +555,6 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
   }
 }
 
-void CanvasElement::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
-{
-  Q_UNUSED(event)
-//   kDebug() ;
-}
-
-void CanvasElement::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
-{
-  Q_UNUSED(event)
-//   kDebug() ;
-}
-
 void CanvasElement::slotRemoveElement()
 {
   Q_D(CanvasElement);
