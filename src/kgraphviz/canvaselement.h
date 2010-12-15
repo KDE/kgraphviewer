@@ -71,7 +71,6 @@ protected:
   
 Q_SIGNALS:
   void selected(CanvasElement*, Qt::KeyboardModifiers);
-  void elementContextMenuEvent(const QString&, const QPoint&);
   void hoverEnter(CanvasElement*);
   void hoverLeave(CanvasElement*);
   

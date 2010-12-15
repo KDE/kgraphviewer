@@ -42,7 +42,6 @@ public:
   QPen m_pen;
   QBrush m_brush;
   QRectF m_boundingRect;
-  QMenu* m_popup;
 
   bool m_hovered;
 };

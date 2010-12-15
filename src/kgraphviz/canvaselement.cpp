@@ -44,7 +44,6 @@ CanvasElementPrivate::CanvasElementPrivate() :
   m_scaleX(0), m_scaleY(0),
   m_xMargin(0), m_yMargin(0), m_gh(0), m_wdhcf(0), m_hdvcf(0),
   m_font(0),
-  m_popup(new QMenu()),
   m_hovered(false)
 {
 }
@@ -98,27 +97,18 @@ CanvasElement::CanvasElement(
   {
     d->m_brush = c->backgroundBrush();
   }
-  
-  // the message should be given (or possible to be given) by the part user
-  KAction* removeElementAction = new KAction(i18n("Remove selected element(s)"), this);
-  d->m_popup->addAction(removeElementAction);
-  connect(removeElementAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveElement()));
 
   connect(this, SIGNAL(selected(CanvasElement*, Qt::KeyboardModifiers)), v, SLOT(slotElementSelected(CanvasElement*, Qt::KeyboardModifiers)));
 
-  connect(this, SIGNAL(elementContextMenuEvent(const QString&, const QPoint&)), v, SLOT(slotContextMenuEvent(const QString&, const QPoint&)));
-
-  setAcceptHoverEvents ( true );
-
   connect(this, SIGNAL(hoverEnter(CanvasElement*)), v, SLOT(slotElementHoverEnter(CanvasElement*)));
   connect(this, SIGNAL(hoverLeave(CanvasElement*)), v, SLOT(slotElementHoverLeave(CanvasElement*)));
-  
+
+  setAcceptHoverEvents ( true );
 }
 
 CanvasElement::~CanvasElement()
 {
   Q_D(CanvasElement);
-  delete d->m_popup;
   delete d_ptr;
 }
 
@@ -562,10 +552,6 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
       emit(selected(this,event->modifiers()));
       update();
     }
-    
-//     kDebug() << "opens the contextual menu";
-//     d->m_popup->exec(event->screenPos());
-    emit(elementContextMenuEvent(d->m_element->id(), event->screenPos() ));
   }
 }
 
