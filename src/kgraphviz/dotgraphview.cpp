@@ -1216,22 +1216,6 @@ void DotGraphView::slotElementHoverLeave(CanvasElement* element)
   emit (hoverLeave(element->element()->id()));
 }
 
-void DotGraphView::slotElementHoverEnter(CanvasEdge* element)
-{
-  kDebug() << element->edge()->id();
-  //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
-  
-  emit (hoverEnter(element->edge()->id()));
-}
-
-void DotGraphView::slotElementHoverLeave(CanvasEdge* element)
-{
-  kDebug() << element->edge()->id();
-  //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
-  
-  emit (hoverLeave(element->edge()->id()));
-}
-
 void DotGraphView::setLayoutCommand(const QString& command)
 {
   Q_D(DotGraphView);
@@ -1594,66 +1578,10 @@ void DotGraphView::setReadWrite()
   }
 }
 
-void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modifiers)
-{
-  Q_D(DotGraphView);
-  kDebug() << edge->edge()->id();
-  QList<QString> selection;
-  selection.push_back(edge->edge()->id());
-  if (!modifiers.testFlag(Qt::ControlModifier))
-  {
-    foreach(GraphEdge* e, d->m_graph->edges())
-    {
-      if (e->canvasElement() != edge)
-      {
-        e->setSelected(false);
-        e->canvasElement()->update();
-      }
-    }
-    foreach(GraphNode* n, d->m_graph->nodes())
-    {
-      n->setSelected(false);
-      n->canvasElement()->update();
-    }
-    foreach(GraphSubgraph* s, d->m_graph->subgraphs())
-    {
-      s->setElementSelected(0, false, true);
-    }
-  }
-  else
-  {
-    foreach(GraphEdge* e, d->m_graph->edges())
-    {
-      if (e->canvasElement() != edge)
-      {
-        if (e->isSelected())
-        {
-          selection.push_back(e->id());
-        }
-      }
-    }
-    foreach(GraphNode* n, d->m_graph->nodes())
-    {
-      if (n->isSelected())
-      {
-        selection.push_back(n->id());
-      }
-    }
-    foreach(GraphSubgraph* s, d->m_graph->subgraphs())
-    {
-      if (s->isSelected())
-      {
-        selection.push_back(s->id());
-      }
-    }
-  }
-  emit selectionIs(selection, QPoint());
-}
-
 void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModifiers modifiers)
 {
   Q_D(DotGraphView);
-  kDebug();
+  kDebug() << "Element:" << element->element()->id();
   QList<QString> selection;
   selection.push_back(element->element()->id());
   if (!modifiers.testFlag(Qt::ControlModifier))

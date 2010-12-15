@@ -171,14 +171,11 @@ public Q_SLOTS:
   void slotBevAutomatic();
   void slotUpdate();
   bool displayGraph();
-  void slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers);
   void slotElementSelected(CanvasElement*, Qt::KeyboardModifiers);
   void slotSelectionChanged();
   void slotContextMenuEvent(const QString&, const QPoint&);
   void slotElementHoverEnter(CanvasElement*);
   void slotElementHoverLeave(CanvasElement*);
-  void slotElementHoverEnter(CanvasEdge*);
-  void slotElementHoverLeave(CanvasEdge*);
   void slotSelectNode(const QString& nodeName);
   void centerOnNode(const QString& nodeId);
 

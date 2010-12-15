@@ -74,19 +74,6 @@ CanvasEdge::CanvasEdge(DotGraphView* view,
   KAction* removeEdgeAction = new KAction(i18n("Remove selected edge(s)"), this);
   m_popup->addAction(removeEdgeAction);
   connect(removeEdgeAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveEdge()));
-  
-  
-  connect(e,SIGNAL(changed()),this,SLOT(modelChanged()));
-  connect(this, SIGNAL(selected(CanvasEdge*, Qt::KeyboardModifiers)), view, SLOT(slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers)));
-  
-  connect(this, SIGNAL(edgeContextMenuEvent(const QString&, const QPoint&)), view, SLOT(slotContextMenuEvent(const QString&, const QPoint&)));
-
-  setAcceptHoverEvents ( true );
-
-  kDebug() << "connect slotElementHoverEnter";
-  connect(this, SIGNAL(hoverEnter(CanvasEdge*)), view, SLOT(slotElementHoverEnter(CanvasEdge*)));
-  connect(this, SIGNAL(hoverLeave(CanvasEdge*)), view, SLOT(slotElementHoverLeave(CanvasEdge*)));
-  
 } 
 
 CanvasEdge::~CanvasEdge()
@@ -172,13 +159,12 @@ QPainterPath CanvasEdge::shape () const
 void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
                    QWidget* widget)
 {
-//   kDebug();
-Q_UNUSED(option)
-Q_UNUSED(widget)
+  Q_UNUSED(option)
+  Q_UNUSED(widget)
+
   if (m_boundingRect == QRectF())
-  {
     return;
-  }
+
   /// computes the scaling of line width
   qreal widthScaleFactor = (m_scaleX+m_scaleY)/2;
   if (widthScaleFactor < 1)
@@ -460,13 +446,6 @@ Q_UNUSED(widget)
   }
 }
 
-void CanvasEdge::modelChanged()
-{
-//   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
-  prepareGeometryChange();
-  computeBoundingRect();
-}
-
 void CanvasEdge::computeBoundingRect()
 {
 //   kDebug();
@@ -526,38 +505,6 @@ void CanvasEdge::computeBoundingRect()
   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
 }
 
-void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
-{
-  kDebug() << event;
-  if (m_view->isReadOnly())
-  {
-    return;
-  }
-  if (event->button() == Qt::LeftButton)
-  {
-    edge()->setSelected(!edge()->isSelected());
-    if (edge()->isSelected())
-    {
-      emit(selected(this,event->modifiers()));
-    }
-    update();
-  }
-  else if (event->button() == Qt::RightButton)
-  {
-    if (!edge()->isSelected())
-    {
-      edge()->setSelected(true);
-      emit(selected(this,event->modifiers()));
-      update();
-    }
-    kDebug() << "emiting edgeContextMenuEvent("<<m_edge->id()<<","<<event->screenPos()<<")";
-    emit(edgeContextMenuEvent(m_edge->id(), event->screenPos() ));
-// opens the selected edge contextual menu and if necessary select the edge
-/*    kDebug() << "opens the contextual menu";
-    m_popup->exec(event->screenPos());*/
-  }
-}
-
 qreal CanvasEdge::distance(const QPointF& point1, const QPointF& point2)
 {
   return sqrt(pow(point1.x()-point2.x(),2)+pow(point1.y()-point2.y(),2));
@@ -567,20 +514,6 @@ void CanvasEdge::slotRemoveEdge()
 {
   kDebug();
   m_view->removeSelectedElements();
-}
-
-void CanvasEdge::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
-{
-  Q_UNUSED(event)
-  kDebug() << edge()->id();
-  emit hoverEnter(this);
-}
-
-void CanvasEdge::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
-{
-  Q_UNUSED(event)
-  kDebug() << edge()->id();
-  emit hoverLeave(this);
 }
 
 #include "canvasedge.moc"

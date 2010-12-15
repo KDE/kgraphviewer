@@ -507,6 +507,7 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
     m_view->finishNewEdgeTo(this);
     return;
   }
+
   if (event->button() == Qt::LeftButton)
   {
     m_element->setSelected(!m_element->isSelected());
@@ -553,7 +554,7 @@ void CanvasElement::slotRemoveElement()
 void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
-//   kDebug();
+  kDebug() << "Element:" << element()->id();
   m_hovered = true;
   update();
   emit hoverEnter(this);
@@ -562,7 +563,7 @@ void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
-//   kDebug();
+  kDebug() << "Element:" << element()->id();
   m_hovered = false;
   update();
   emit hoverLeave(this);
