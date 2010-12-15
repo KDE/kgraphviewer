@@ -33,13 +33,10 @@
 #include "support/dot2qtconsts.h"
 #include "support/fontscache.h"
 
-#include <KAction>
 #include <KDebug>
 #include <KLocale>
 
 #include <QPainter>
-#include <QGraphicsSceneMouseEvent>
-#include <QMenu>
 
 #include <math.h>
 #include <iostream>
@@ -57,7 +54,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view,
     m_scaleX(scaleX), m_scaleY(scaleY),
     m_xMargin(xMargin), m_yMargin(yMargin),
     m_gh(/*gh*/0), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
-    m_font(0), m_view(view), m_popup(new QMenu())
+    m_font(0), m_view(view)
 {
   kDebug() << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << m_gh;
   setBoundingRegionGranularity(0.9);
@@ -69,18 +66,11 @@ CanvasEdge::CanvasEdge(DotGraphView* view,
   QString tipStr = i18n("%1 -> %2\nlabel='%3'",
       edge()->fromNode()->id(),edge()->toNode()->id(),e->label());
   setToolTip(tipStr);
-
-  // the message should be given (or possible to be given) by the part user
-  KAction* removeEdgeAction = new KAction(i18n("Remove selected edge(s)"), this);
-  m_popup->addAction(removeEdgeAction);
-  connect(removeEdgeAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveEdge()));
 } 
 
 CanvasEdge::~CanvasEdge()
 {
-  delete m_popup;
 }
-
 
 QRectF CanvasEdge::boundingRect() const
 {
@@ -508,12 +498,6 @@ void CanvasEdge::computeBoundingRect()
 qreal CanvasEdge::distance(const QPointF& point1, const QPointF& point2)
 {
   return sqrt(pow(point1.x()-point2.x(),2)+pow(point1.y()-point2.y(),2));
-}
-
-void CanvasEdge::slotRemoveEdge()
-{
-  kDebug();
-  m_view->removeSelectedElements();
 }
 
 #include "canvasedge.moc"

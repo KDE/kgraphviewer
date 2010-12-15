@@ -34,7 +34,6 @@
 
 class QGraphicsScene;
 class QFont;
-class QMenu;
 
 /*
  * Canvas Items:
@@ -80,9 +79,6 @@ public:
   inline void setGh(qreal gh) {m_gh = gh;}
   
   void computeBoundingRect();
-
-public Q_SLOTS:
-  void slotRemoveEdge();
   
 private:
   qreal distance(const QPointF& point1, const QPointF& point2);
@@ -93,7 +89,6 @@ private:
   QRectF m_boundingRect;
   QFont* m_font;
   DotGraphView* m_view;
-  QMenu* m_popup;
   mutable QPainterPath m_boundingRegion;
 };
 
