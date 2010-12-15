@@ -26,6 +26,7 @@
 #include <QAbstractGraphicsShapeItem>
 
 class QGraphicsScene;
+class QFont;
 
 namespace KGraphViz
 {
@@ -52,12 +53,12 @@ public:
   virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         QWidget *widget = 0 );
 
+  virtual void computeBoundingRect();
   virtual QRectF boundingRect () const;
-
-  void computeBoundingRect();
   
   void initialize(qreal scaleX, qreal scaleY,
-                  qreal xMargin, qreal yMargin, qreal gh,
+                  qreal marginX, qreal marginY,
+                  qreal gh,
                   qreal wdhcf, qreal hdvcf);
 
   void setGh(qreal gh);
@@ -66,7 +67,18 @@ protected:
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
   virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
   virtual void hoverLeaveEvent( QGraphicsSceneHoverEvent * event );
-  
+
+  QFont font() const;
+  void setFont(const QFont& font);
+  qreal scaleX() const;
+  void setScaleX(qreal scaleX);
+  qreal scaleY() const;
+  void setScaleY(qreal scaleY);
+  qreal marginX() const;
+  void setMarginX(qreal marginX);
+  qreal marginY() const;
+  void setMarginY(qreal marginY);
+
 Q_SIGNALS:
   void selected(CanvasElement*, Qt::KeyboardModifiers);
   void hoverEnter(CanvasElement*);

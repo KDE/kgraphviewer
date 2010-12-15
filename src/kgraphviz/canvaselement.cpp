@@ -43,7 +43,6 @@ using namespace KGraphViz;
 CanvasElementPrivate::CanvasElementPrivate() :
   m_scaleX(0), m_scaleY(0),
   m_xMargin(0), m_yMargin(0), m_gh(0), m_wdhcf(0), m_hdvcf(0),
-  m_font(0),
   m_hovered(false)
 {
 }
@@ -67,7 +66,7 @@ CanvasElement::CanvasElement(
   d->m_pen = Dot2QtConsts::componentData().qtColor(gelement->fontColor());
   
 //   kDebug();
-  d->m_font = FontsCache::changeable().fromName(gelement->fontName());
+  d->m_font = *FontsCache::changeable().fromName(gelement->fontName());
 /*  kDebug() << "Creating CanvasElement for "<<gelement->id();
   kDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
     << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
@@ -124,12 +123,67 @@ void CanvasElement::setGh(qreal gh)
   d->m_gh = gh;
 }
 
+qreal CanvasElement::marginX() const
+{
+  Q_D(const CanvasElement);
+  return d->m_xMargin;
+}
+void CanvasElement::setMarginX(qreal marginX)
+{
+  Q_D(CanvasElement);
+  d->m_xMargin = marginX;
+}
+
+qreal CanvasElement::marginY() const
+{
+  Q_D(const CanvasElement);
+  return d->m_yMargin;
+}
+void CanvasElement::setMarginY(qreal marginY)
+{
+  Q_D(CanvasElement);
+  d->m_yMargin = marginY;
+}
+
+qreal CanvasElement::scaleX() const
+{
+  Q_D(const CanvasElement);
+  return d->m_scaleX;
+}
+void CanvasElement::setScaleX(qreal scaleX)
+{
+  Q_D(CanvasElement);
+  d->m_scaleX = scaleX;
+}
+
+qreal CanvasElement::scaleY() const
+{
+  Q_D(const CanvasElement);
+  return d->m_scaleY;
+}
+void CanvasElement::setScaleY(qreal scaleY)
+{
+  Q_D(CanvasElement);
+  d->m_scaleY = scaleY;
+}
+
+QFont CanvasElement::font() const
+{
+  Q_D(const CanvasElement);
+  return d->m_font;
+}
+void CanvasElement::setFont(const QFont& font)
+{
+  Q_D(CanvasElement);
+  d->m_font = font;
+}
+
 void CanvasElement::modelChanged()
 {
   Q_D(CanvasElement);
   kDebug() ;//<< id();
   d->m_pen = QPen(Dot2QtConsts::componentData().qtColor(d->m_element->fontColor()));
-  d->m_font = FontsCache::changeable().fromName(d->m_element->fontName());
+  d->m_font = *FontsCache::changeable().fromName(d->m_element->fontName());
   prepareGeometryChange();
   computeBoundingRect();
 }
@@ -231,7 +285,7 @@ QWidget *widget)
   Q_UNUSED(option)
   Q_UNUSED(widget)
 
-  Q_D(const CanvasElement);
+  Q_D(CanvasElement);
 
   /// computes the scaling of line width
   qreal widthScaleFactor = (d->m_scaleX+d->m_scaleY)/2;
@@ -472,16 +526,16 @@ QWidget *widget)
       int stringWidthGoal = int(dro.integers[3] * d->m_scaleX);
       int fontSize = element()->fontSize();
 //       kDebug() << element()->id() << " initial fontSize " << fontSize;
-      d->m_font->setPointSize(fontSize);
-      QFontMetrics fm(*d->m_font);
+      d->m_font.setPointSize(fontSize);
+      QFontMetrics fm(d->m_font);
       while (fm.width(dro.str) > stringWidthGoal && fontSize > 1)
       {
         fontSize--;
-        d->m_font->setPointSize(fontSize);
-        fm = QFontMetrics(*d->m_font);
+        d->m_font.setPointSize(fontSize);
+        fm = QFontMetrics(d->m_font);
       }
       p->save();
-      p->setFont(*d->m_font);
+      p->setFont(d->m_font);
       QPen pen(d->m_pen);
       pen.setColor(element()->fontColor());
       p->setPen(pen);

@@ -22,8 +22,9 @@
 
 #include "canvaselement.h"
 
-#include <QPen>
 #include <QBrush>
+#include <QPen>
+#include <QFont>
 
 namespace KGraphViz
 {
@@ -38,7 +39,7 @@ public:
   qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
   GraphElement* m_element;
   DotGraphView* m_view;
-  QFont* m_font;
+  QFont m_font;
   QPen m_pen;
   QBrush m_brush;
   QRectF m_boundingRect;
