@@ -97,8 +97,8 @@ public:
 
   bool update();
 
-  void setReadWrite() {m_readWrite = true;}
-  void setReadOnly() {m_readWrite = false;}
+  void setReadWrite();
+  void setReadOnly();
 
   virtual void storeOriginalAttributes();
 
@@ -136,11 +136,6 @@ Q_SIGNALS:
 private:
   Q_DECLARE_PRIVATE(DotGraph);
   DotGraphPrivate* d_ptr;
-
-  unsigned int cellNumber(int x, int y);
-  void computeCells();
-
-  bool m_readWrite;
 };
 
 }

@@ -62,7 +62,8 @@ DotGraphPrivate::DotGraphPrivate() :
   m_directed(true), m_strict(false),
   m_horizCellFactor(0), m_vertCellFactor(0),
   m_wdhcf(0), m_hdvcf(0),
-  m_useLibrary(false)
+  m_useLibrary(false),
+  m_readWrite(false)
 {
 }
 
@@ -78,16 +79,14 @@ void DotGraphPrivate::init()
 
 DotGraph::DotGraph() :
   GraphElement(),
-  d_ptr(new DotGraphPrivate),
-  m_readWrite(false)
+  d_ptr(new DotGraphPrivate)
 {
   setId("unnamed");
 }
 
 DotGraph::DotGraph(const QString& layoutCommand, const QString& fileName) :
   GraphElement(),
-  d_ptr(new DotGraphPrivate),
-  m_readWrite(false)
+  d_ptr(new DotGraphPrivate)
 {
   setId("unnamed");
 
@@ -266,6 +265,18 @@ void DotGraph::setUseLibrary(bool value)
   d->m_useLibrary = value;
 }
 
+void DotGraph::setReadWrite()
+{
+  Q_D(DotGraph);
+  d->m_readWrite = true;
+}
+
+void DotGraph::setReadOnly()
+{
+  Q_D(DotGraph);
+  d->m_readWrite = false;
+}
+
 bool DotGraph::parseDot(const QString& fileName)
 {
   kDebug() << fileName;
@@ -278,8 +289,6 @@ bool DotGraph::parseDot(const QString& fileName)
 
 bool DotGraph::update()
 {
-  Q_D(DotGraph);
-  
   GraphExporter exporter;
   if (!useLibrary())
   {
@@ -305,24 +314,25 @@ bool DotGraph::update()
   }
 }
 
-unsigned int DotGraph::cellNumber(int x, int y)
+unsigned int DotGraphPrivate::cellNumber(int x, int y) const
 {
 /*  kDebug() << "x= " << x << ", y= " << y << ", m_width= " << m_width << ", m_height= " << m_height << ", m_horizCellFactor= " << m_horizCellFactor << ", m_vertCellFactor= " << m_vertCellFactor  << ", m_wdhcf= " << m_wdhcf << ", m_hdvcf= " << m_hdvcf;*/
   
-  unsigned int nx = (unsigned int)(( x - ( x % int(wdhcf()) ) ) / wdhcf());
-  unsigned int ny = (unsigned int)(( y - ( y % int(hdvcf()) ) ) / hdvcf());
+  const unsigned int nx = (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
+  const unsigned int ny = (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
 /*  kDebug() << "nx = " << (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
   kDebug() << "ny = " << (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
   kDebug() << "res = " << ny * m_horizCellFactor + nx;*/
   
-  unsigned int res = ny * horizCellFactor() + nx;
+  const unsigned int res = ny * m_horizCellFactor + nx;
   return res;
 }
 
 #define MAXCELLWEIGHT 800
 
-void DotGraph::computeCells()
+void DotGraphPrivate::computeCells()
 {
+  kWarning() << "Not implemented";
   return;
   
 /* FIXME: Is this used?
@@ -410,6 +420,7 @@ void DotGraph::saveTo(const QString& fileName)
 
 void DotGraph::updateWithGraph(graph_t* newGraph)
 {
+  Q_D(DotGraph);
   kDebug();
 
   // copy global graph render operations and attributes
@@ -535,7 +546,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
   }
   kDebug() << "Done";
   emit readyToDisplay();
-  computeCells();
+  d->computeCells();
 }
 
 void DotGraph::updateWithGraph(const DotGraph& newGraph)
@@ -549,7 +560,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
   d->m_directed = newGraph.directed();
   d->m_strict = newGraph.strict();
 
-  computeCells();
+  d->computeCells();
   foreach (GraphSubgraph* nsg, newGraph.subgraphs())
   {
     kDebug() << "subgraph" << nsg->id();
@@ -620,7 +631,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
     }
   }
   kDebug() << "Done";
-  computeCells();
+  d->computeCells();
 }
 
 void DotGraph::removeNodeNamed(const QString& nodeName)

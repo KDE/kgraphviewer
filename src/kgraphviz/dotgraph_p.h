@@ -35,6 +35,9 @@ public:
 
   void init();
 
+  unsigned int cellNumber(int x, int y) const;
+  void computeCells();
+
   GraphIO m_graphIO;
 
   QString m_fileName;
@@ -43,6 +46,7 @@ public:
   GraphSubgraphMap m_subgraphsMap;
   GraphNodeMap m_nodesMap;
   GraphEdgeMap m_edgesMap;
+
   double m_width, m_height;
   double m_scale;
   bool m_directed;
@@ -52,8 +56,10 @@ public:
   double m_wdhcf, m_hdvcf;
 
   QVector< QSet< GraphNode* > > m_cells;
-  
+
   bool m_useLibrary;
+
+  bool m_readWrite;
 
 private:
   Q_DECLARE_PUBLIC(DotGraph);
