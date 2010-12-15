@@ -513,6 +513,7 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
     m_element->setSelected(!m_element->isSelected());
     if (m_element->isSelected())
     {
+      kDebug() << "Element selected:" << m_element->id() << m_element;
       emit(selected(this,event->modifiers()));
     }
     update();

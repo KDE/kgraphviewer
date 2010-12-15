@@ -1581,16 +1581,19 @@ void DotGraphView::setReadWrite()
 void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModifiers modifiers)
 {
   Q_D(DotGraphView);
-  kDebug() << "Element:" << element->element()->id();
+  kDebug() << "Element:" << element->element()->id() << element->element();
   QList<QString> selection;
   selection.push_back(element->element()->id());
   if (!modifiers.testFlag(Qt::ControlModifier))
   {
     foreach(GraphEdge* e, d->m_graph->edges())
     {
-      if (e->isSelected()) {
-        e->setSelected(false);
-        e->canvasElement()->update();
+      if (e->canvasElement() != element)
+      {
+        if (e->isSelected()) {
+          e->setSelected(false);
+          e->canvasElement()->update();
+        }
       }
     }
     foreach(GraphNode* e, d->m_graph->nodes())
