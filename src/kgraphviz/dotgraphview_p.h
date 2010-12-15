@@ -26,8 +26,17 @@
 #include "support/loadagraphthread.h"
 #include "support/layoutagraphthread.h"
 
+#include <QSet>
+
+class QMenu;
+
+class KToggleAction;
+
 namespace KGraphViz
 {
+
+class PannerView;
+class KGVSimplePrintingCommand;
 
 class DotGraphViewPrivate
 {

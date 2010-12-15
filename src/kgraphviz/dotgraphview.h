@@ -31,17 +31,12 @@
 
 #include "shared/kgraphviewer_interface.h"
 
-#include <kactioncollection.h>
-
 #include <QGraphicsView>
-#include <QSet>
 
 class Agraph_t;
 
+class KActionCollection;
 class KSelectAction;
-class KToggleAction;
-
-class QMenu;
 
 namespace KGraphViz
 {
@@ -50,11 +45,7 @@ class GraphElement;
 class GraphSubgraph;
 class CanvasElement;
 class CanvasEdge;
-class PannerView;
 class DotGraph;
-class KGVSimplePrintingCommand;
-
-#define DEFAULT_DETAILLEVEL 1
 
 class DotGraphViewPrivate;
 
@@ -209,13 +200,10 @@ protected:
 private Q_SLOTS:
   void slotAGraphReadFinished();
   void slotAGraphLayoutFinished();
-  
-protected:
-  DotGraphViewPrivate * const d_ptr;
 
 private:
   Q_DECLARE_PRIVATE(DotGraphView);
-  
+  DotGraphViewPrivate * const d_ptr;
 };
 
 }

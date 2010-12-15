@@ -52,8 +52,6 @@
 
 #include <QMatrix>
 #include <QPainter>
-#include <QStyle>
-#include <QImage>
 #include <QContextMenuEvent>
 #include <QKeyEvent>
 #include <QPixmap>
@@ -67,6 +65,7 @@
 #include <QScrollBar>
 #include <QUuid>
 
+#include <kactioncollection.h>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kfiledialog.h>
@@ -78,7 +77,8 @@
 #include <kactionmenu.h>
 
 // DotGraphView defaults
-#define DEFAULT_ZOOMPOS      KGraphViewerInterface::Auto
+#define DEFAULT_DETAILLEVEL 1
+#define DEFAULT_ZOOMPOS KGraphViewerInterface::Auto
 #define KGV_MAX_PANNER_NODES 100
 
 using namespace KGraphViz;

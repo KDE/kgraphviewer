@@ -22,7 +22,6 @@
 #include "kgraphviz_export.h"
 #include "support/dotrenderop.h"
 
-#include <QVector>
 #include <QList>
 #include <QMap>
 #include <QtCore/QTextStream>

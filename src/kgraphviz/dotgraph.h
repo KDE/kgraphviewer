@@ -23,11 +23,7 @@
 #ifndef DOT_GRAPH_H
 #define DOT_GRAPH_H
 
-#include <QList>
-#include <QSet>
-#include <QString>
-#include <QProcess>
-#include <QMutex>
+#include <QMap>
 
 #include "graphelement.h"
 #include "graphsubgraph.h"
@@ -62,9 +58,7 @@ public:
   const GraphEdgeMap& edges() const;
   const GraphSubgraphMap& subgraphs() const;
 
-  /** Constant accessor to the nodes of this graph */
   GraphNodeMap& nodes();
-  /** Constant accessor to the edges of this graph */
   GraphEdgeMap& edges();
   GraphSubgraphMap& subgraphs();
 
