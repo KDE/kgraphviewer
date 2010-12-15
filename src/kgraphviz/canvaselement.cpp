@@ -16,8 +16,9 @@
    02110-1301, USA
 */
 
-
 #include "canvaselement.h"
+#include "canvaselement_p.h"
+
 #include "dotgraphview.h"
 #include "graphelement.h"
 #include "support/dotdefaults.h"
@@ -39,56 +40,68 @@
 
 using namespace KGraphViz;
 
+CanvasElementPrivate::CanvasElementPrivate() :
+  m_scaleX(0), m_scaleY(0),
+  m_xMargin(0), m_yMargin(0), m_gh(0), m_wdhcf(0), m_hdvcf(0),
+  m_font(0),
+  m_popup(new QMenu()),
+  m_hovered(false)
+{
+}
+
+CanvasElementPrivate::~CanvasElementPrivate()
+{
+}
+
 CanvasElement::CanvasElement(
                               DotGraphView* v,
                               GraphElement* gelement,
                               QGraphicsScene* c,
                               QGraphicsItem* parent
                             )
-  : QObject(), QAbstractGraphicsShapeItem(parent),
-    m_scaleX(0), m_scaleY(0),
-    m_xMargin(0), m_yMargin(0), m_gh(0), m_wdhcf(0), m_hdvcf(0),
-    m_element(gelement), m_view(v),
-    m_font(0),
-    m_pen(Dot2QtConsts::componentData().qtColor(gelement->fontColor())),
-    m_popup(new QMenu()),
-    m_hovered(false)
+  : QAbstractGraphicsShapeItem(parent)
+  , d_ptr(new CanvasElementPrivate)
 {
+  Q_D(CanvasElement);
+  d->m_element = gelement;
+  d->m_view = v;
+  d->m_pen = Dot2QtConsts::componentData().qtColor(gelement->fontColor());
+  
 //   kDebug();
-  m_font = FontsCache::changeable().fromName(gelement->fontName());
+  d->m_font = FontsCache::changeable().fromName(gelement->fontName());
 /*  kDebug() << "Creating CanvasElement for "<<gelement->id();
   kDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
     << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
   
   if (element()->style() == "bold")
   {
-    m_pen.setStyle(Qt::SolidLine);
-    m_pen.setWidth(int(2*((m_scaleX+m_scaleY)/2)));
+    d->m_pen.setStyle(Qt::SolidLine);
+    d->m_pen.setWidth(int(2*((d->m_scaleX+d->m_scaleY)/2)));
   }
   else if (element()->style() != "filled")
   {
-    m_pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(m_element->style()));
-    m_pen.setWidth(int((m_scaleX+m_scaleY)/2));
+    d->m_pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(d->m_element->style()));
+    d->m_pen.setWidth(int((d->m_scaleX+d->m_scaleY)/2));
     if (element()->style().left(12) == "setlinewidth")
     {
       bool ok;
-      uint lineWidth = element()->style().mid(13, m_element->style().length()-1-13).toInt(&ok);
-      m_pen.setWidth(lineWidth * int((m_scaleX+m_scaleY)/2));
+      uint lineWidth = element()->style().mid(13, d->m_element->style().length()-1-13).toInt(&ok);
+      d->m_pen.setWidth(lineWidth * int((d->m_scaleX+d->m_scaleY)/2));
     }
   }
-  if (m_element->style() == "filled")
+  if (d->m_element->style() == "filled")
   {
-    m_brush = Dot2QtConsts::componentData().qtColor(element()->backColor());
+    d->m_brush = Dot2QtConsts::componentData().qtColor(element()->backColor());
 //     QCanvasPolygon::drawShape(p);
   }
   else
   {
-    m_brush = c->backgroundBrush();
+    d->m_brush = c->backgroundBrush();
   }
   
   // the message should be given (or possible to be given) by the part user
   KAction* removeElementAction = new KAction(i18n("Remove selected element(s)"), this);
-  m_popup->addAction(removeElementAction);
+  d->m_popup->addAction(removeElementAction);
   connect(removeElementAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveElement()));
 
   connect(this, SIGNAL(selected(CanvasElement*, Qt::KeyboardModifiers)), v, SLOT(slotElementSelected(CanvasElement*, Qt::KeyboardModifiers)));
@@ -104,14 +117,29 @@ CanvasElement::CanvasElement(
 
 CanvasElement::~CanvasElement()
 {
-  delete m_popup;
+  Q_D(CanvasElement);
+  delete d->m_popup;
+  delete d_ptr;
+}
+
+GraphElement* CanvasElement::element() const
+{
+  Q_D(const CanvasElement);
+  return d->m_element;
+}
+
+void CanvasElement::setGh(qreal gh)
+{
+  Q_D(CanvasElement);
+  d->m_gh = gh;
 }
 
 void CanvasElement::modelChanged()
 {
+  Q_D(CanvasElement);
   kDebug() ;//<< id();
-  m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_element->fontColor()));
-  m_font = FontsCache::changeable().fromName(m_element->fontName());
+  d->m_pen = QPen(Dot2QtConsts::componentData().qtColor(d->m_element->fontColor()));
+  d->m_font = FontsCache::changeable().fromName(d->m_element->fontName());
   prepareGeometryChange();
   computeBoundingRect();
 }
@@ -120,27 +148,30 @@ void CanvasElement::initialize(qreal scaleX, qreal scaleY,
                             qreal xMargin, qreal yMargin, qreal gh,
                             qreal wdhcf, qreal hdvcf)
 {
-//   kDebug();
+  Q_D(CanvasElement);
+  kDebug();
   setFlag(QGraphicsItem::ItemIsMovable, true);
   setFlag(QGraphicsItem::ItemIsSelectable, true);
 
-  m_scaleX = scaleX; m_scaleY = scaleY;
-  m_xMargin = xMargin; m_yMargin = yMargin;
-//   m_gh = gh;
-  m_wdhcf = wdhcf; m_hdvcf = hdvcf;
+  d->m_scaleX = scaleX; d->m_scaleY = scaleY;
+  d->m_xMargin = xMargin; d->m_yMargin = yMargin;
+//   d->m_gh = gh;
+  d->m_wdhcf = wdhcf; d->m_hdvcf = hdvcf;
 
-  setZValue(m_element->z());
+  setZValue(d->m_element->z());
 
   computeBoundingRect();
 }
 
 QRectF CanvasElement::boundingRect () const
 {
-  return m_boundingRect;
+  Q_D(const CanvasElement);
+  return d->m_boundingRect;
 }
 
 void CanvasElement::computeBoundingRect()
 {
+  Q_D(CanvasElement);
 //   kDebug() << element();
   kDebug() << element()->id() << zValue();
   
@@ -149,8 +180,8 @@ void CanvasElement::computeBoundingRect()
   if (element()->renderOperations().isEmpty())
   {
     kDebug() << "no render operation";
-    rect = QRectF(0,0,(m_view->defaultNewElementPixmap().size().width())*m_scaleX,(m_view->defaultNewElementPixmap().size().height())*m_scaleY);
-    m_boundingRect = rect;
+    rect = QRectF(0,0,(d->m_view->defaultNewElementPixmap().size().width())*d->m_scaleX,(d->m_view->defaultNewElementPixmap().size().height())*d->m_scaleY);
+    d->m_boundingRect = rect;
   }
   else
   {
@@ -170,13 +201,13 @@ void CanvasElement::computeBoundingRect()
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
       {
-//         kDebug() << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
-//             << "(*it).integers[0]/*%m_wdhcf*/=" << (*it).integers[0]/*%m_wdhcf*/;
-        qreal w = m_scaleX * (*it).integers[2] * 2;
-        qreal h = m_scaleY * (*it).integers[3] * 2;
-        qreal x = m_xMargin + (((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
-        qreal y = ((m_gh - (*it).integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
-        m_boundingRect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
+//         kDebug() << "integers[0]=" << (*it).integers[0] << "; d->m_wdhcf=" << d->m_wdhcf
+//             << "(*it).integers[0]/*%d->m_wdhcf*/=" << (*it).integers[0]/*%d->m_wdhcf*/;
+        qreal w = d->m_scaleX * (*it).integers[2] * 2;
+        qreal h = d->m_scaleY * (*it).integers[3] * 2;
+        qreal x = d->m_xMargin + (((*it).integers[0]/*%d->m_wdhcf*/)*d->m_scaleX) - w/2;
+        qreal y = ((d->m_gh - (*it).integers[1]/*%d->m_hdvcf*/)*d->m_scaleY) + d->m_yMargin - h/2;
+        d->m_boundingRect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
 //         kDebug() << "'" << element()->id() << "' set rect for ellipse to " << rect;
       }
       else if  ((*it).renderop == "p" || (*it).renderop == "P")
@@ -185,18 +216,18 @@ void CanvasElement::computeBoundingRect()
         for (int i = 0; i < (*it).integers[0]; i++)
         {
           qreal x,y;
-          x = ((*it).integers[2*i+1] == m_wdhcf)?(*it).integers[2*i+1]:(*it).integers[2*i+1]/*%m_wdhcf*/;
-          y = ((*it).integers[2*i+2] == m_hdvcf)?(*it).integers[2*i+2]:(*it).integers[2*i+2]/*%m_hdvcf*/;
+          x = ((*it).integers[2*i+1] == d->m_wdhcf)?(*it).integers[2*i+1]:(*it).integers[2*i+1]/*%d->m_wdhcf*/;
+          y = ((*it).integers[2*i+2] == d->m_hdvcf)?(*it).integers[2*i+2]:(*it).integers[2*i+2]/*%d->m_hdvcf*/;
           {
 
           }
           QPointF p(
-                    x*m_scaleX +m_xMargin,
-                    (m_gh-y)*m_scaleY + m_yMargin
+                    x*d->m_scaleX +d->m_xMargin,
+                    (d->m_gh-y)*d->m_scaleY + d->m_yMargin
                   );
           polygon[i] = p;
         }
-        m_boundingRect = polygon.boundingRect();
+        d->m_boundingRect = polygon.boundingRect();
 //         kDebug() << "'" << element()->id() << "' set rect for polygon to " << rect;
       }
     }
@@ -209,8 +240,11 @@ QWidget *widget)
 {
   Q_UNUSED(option)
   Q_UNUSED(widget)
+
+  Q_D(const CanvasElement);
+
   /// computes the scaling of line width
-  qreal widthScaleFactor = (m_scaleX+m_scaleY)/2;
+  qreal widthScaleFactor = (d->m_scaleX+d->m_scaleY)/2;
   if (widthScaleFactor < 1)
   {
     widthScaleFactor = 1;
@@ -229,7 +263,7 @@ QWidget *widget)
   }
 //   kDebug() << msg;
 
-  if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
+  if (element()->renderOperations().isEmpty() && d->m_view->isReadWrite())
   {
     kError() << element()->id() << ": no render operation. This should not happen.";
     return;
@@ -240,7 +274,7 @@ QWidget *widget)
 
   QColor lineColor = Dot2QtConsts::componentData().qtColor(element()->lineColor());
   QColor backColor = Dot2QtConsts::componentData().qtColor(element()->backColor());
-  if (m_hovered && m_view->highlighting())
+  if (d->m_hovered && d->m_view->highlighting())
   {
     backColor = backColor.lighter();
   }
@@ -261,7 +295,7 @@ QWidget *widget)
       QColor c(dro.str.mid(0,7));
       bool ok;
       c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
-      if (m_hovered && m_view->highlighting())
+      if (d->m_hovered && d->m_view->highlighting())
       {
         c = c.lighter();
       }
@@ -271,10 +305,10 @@ QWidget *widget)
     else if (dro.renderop == "e" || dro.renderop == "E")
     {
       QPen pen = p->pen();
-      qreal w = m_scaleX * dro.integers[2] * 2;
-      qreal h = m_scaleY * dro.integers[3] * 2;
-      qreal x = m_xMargin + ((dro.integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
-      qreal y = ((m_gh - dro.integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
+      qreal w = d->m_scaleX * dro.integers[2] * 2;
+      qreal h = d->m_scaleY * dro.integers[3] * 2;
+      qreal x = d->m_xMargin + ((dro.integers[0]/*%d->m_wdhcf*/)*d->m_scaleX) - w/2;
+      qreal y = ((d->m_gh - dro.integers[1]/*%d->m_hdvcf*/)*d->m_scaleY) + d->m_yMargin - h/2;
       QRectF rect(x,y,w,h);
       p->save();
       p->setBrush(backColor);
@@ -299,14 +333,14 @@ QWidget *widget)
       for (int i = 0; i < dro.integers[0]; i++)
       {
         qreal x,y;
-        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
-        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
+        x = (dro.integers[2*i+1] == d->m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%d->m_wdhcf*/;
+        y = (dro.integers[2*i+2] == d->m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%d->m_hdvcf*/;
         QPointF p(
-                  (x*m_scaleX) + m_xMargin,
-                  ((m_gh-y)*m_scaleY) + m_yMargin
+                  (x*d->m_scaleX) + d->m_xMargin,
+                  ((d->m_gh-y)*d->m_scaleY) + d->m_yMargin
                 );
 /*        kDebug() << "    point: (" << dro.integers[2*i+1] << ","
-                  << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf;*/
+                  << dro.integers[2*i+2] << ") " << d->m_wdhcf << "/" << d->m_hdvcf;*/
         points[i] = p;
       }
       p->save();
@@ -377,7 +411,7 @@ QWidget *widget)
       QColor c(dro.str.mid(0,7));
       bool ok;
       c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
-      if (m_hovered && m_view->highlighting())
+      if (d->m_hovered && d->m_view->highlighting())
       {
         c = c.lighter();
       }
@@ -391,11 +425,11 @@ QWidget *widget)
       for (int i = 0; i < dro.integers[0]; i++)
       {
         qreal x,y;
-        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
-        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
+        x = (dro.integers[2*i+1] == d->m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%d->m_wdhcf*/;
+        y = (dro.integers[2*i+2] == d->m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%d->m_hdvcf*/;
         QPointF p(
-                  (x*m_scaleX) +m_xMargin,
-                  ((m_gh-y)*m_scaleY) + m_yMargin
+                  (x*d->m_scaleX) +d->m_xMargin,
+                  ((d->m_gh-y)*d->m_scaleY) + d->m_yMargin
                 );
         points[i] = p;
       }
@@ -445,31 +479,31 @@ QWidget *widget)
 //         << " (" << element()->fontName() << ", " << element()->fontSize()
 //         << ", " << element()->fontColor() << ")";
 
-      int stringWidthGoal = int(dro.integers[3] * m_scaleX);
+      int stringWidthGoal = int(dro.integers[3] * d->m_scaleX);
       int fontSize = element()->fontSize();
 //       kDebug() << element()->id() << " initial fontSize " << fontSize;
-      m_font->setPointSize(fontSize);
-      QFontMetrics fm(*m_font);
+      d->m_font->setPointSize(fontSize);
+      QFontMetrics fm(*d->m_font);
       while (fm.width(dro.str) > stringWidthGoal && fontSize > 1)
       {
         fontSize--;
-        m_font->setPointSize(fontSize);
-        fm = QFontMetrics(*m_font);
+        d->m_font->setPointSize(fontSize);
+        fm = QFontMetrics(*d->m_font);
       }
       p->save();
-      p->setFont(*m_font);
-      QPen pen(m_pen);
+      p->setFont(*d->m_font);
+      QPen pen(d->m_pen);
       pen.setColor(element()->fontColor());
       p->setPen(pen);
-      qreal x = (m_scaleX *
+      qreal x = (d->m_scaleX *
                        (
                          (dro.integers[0])
                          + (((-dro.integers[2])*(fm.width(dro.str)))/2)
                          - ( (fm.width(dro.str))/2 )
                        )
                       )
-                      + m_xMargin;
-      qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
+                      + d->m_xMargin;
+      qreal y = ((d->m_gh - (dro.integers[1]))*d->m_scaleY)+ d->m_yMargin;
       QPointF point(x,y);
 //       kDebug() << element()->id() << "drawText" << point << " " << fontSize;
       p->drawText(point, dro.str);
@@ -482,38 +516,39 @@ QWidget *widget)
     p->save();
     p->setBrush(Qt::black);
     p->setPen(Qt::black);
-    p->drawRect(QRectF(m_boundingRect.topLeft(),QSizeF(6,6)));
-    p->drawRect(QRectF(m_boundingRect.topRight()-QPointF(6,0),QSizeF(6,6)));
-    p->drawRect(QRectF(m_boundingRect.bottomLeft()-QPointF(0,6),QSizeF(6,6)));
-    p->drawRect(QRectF(m_boundingRect.bottomRight()-QPointF(6,6),QSizeF(6,6)));
+    p->drawRect(QRectF(d->m_boundingRect.topLeft(),QSizeF(6,6)));
+    p->drawRect(QRectF(d->m_boundingRect.topRight()-QPointF(6,0),QSizeF(6,6)));
+    p->drawRect(QRectF(d->m_boundingRect.bottomLeft()-QPointF(0,6),QSizeF(6,6)));
+    p->drawRect(QRectF(d->m_boundingRect.bottomRight()-QPointF(6,6),QSizeF(6,6)));
     p->restore();
   }
 }
 
 void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-  kDebug() << m_element->id() << boundingRect();
-  if (m_view->isReadOnly())
+  Q_D(CanvasElement);
+  kDebug() << d->m_element->id() << boundingRect();
+  if (d->m_view->isReadOnly())
   {
     return;
   }
-  if (m_view->editingMode() == DotGraphView::AddNewEdge)
+  if (d->m_view->editingMode() == DotGraphView::AddNewEdge)
   {
-    m_view->createNewEdgeDraftFrom(this);
+    d->m_view->createNewEdgeDraftFrom(this);
     return;
   }
-  else if (m_view->editingMode() == DotGraphView::DrawNewEdge)
+  else if (d->m_view->editingMode() == DotGraphView::DrawNewEdge)
   {
-    m_view->finishNewEdgeTo(this);
+    d->m_view->finishNewEdgeTo(this);
     return;
   }
 
   if (event->button() == Qt::LeftButton)
   {
-    m_element->setSelected(!m_element->isSelected());
-    if (m_element->isSelected())
+    d->m_element->setSelected(!d->m_element->isSelected());
+    if (d->m_element->isSelected())
     {
-      kDebug() << "Element selected:" << m_element->id() << m_element;
+      kDebug() << "Element selected:" << d->m_element->id() << d->m_element;
       emit(selected(this,event->modifiers()));
     }
     update();
@@ -521,16 +556,16 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
   else if (event->button() == Qt::RightButton)
   {
     // opens the selected edge contextual menu and if necessary select the edge
-    if (!m_element->isSelected())
+    if (!d->m_element->isSelected())
     {
-      m_element->setSelected(true);
+      d->m_element->setSelected(true);
       emit(selected(this,event->modifiers()));
       update();
     }
     
 //     kDebug() << "opens the contextual menu";
-//     m_popup->exec(event->screenPos());
-    emit(elementContextMenuEvent(m_element->id(), event->screenPos() ));
+//     d->m_popup->exec(event->screenPos());
+    emit(elementContextMenuEvent(d->m_element->id(), event->screenPos() ));
   }
 }
 
@@ -548,15 +583,17 @@ void CanvasElement::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 
 void CanvasElement::slotRemoveElement()
 {
+  Q_D(CanvasElement);
   kDebug();
-  m_view->removeSelectedElements();
+  d->m_view->removeSelectedElements();
 }
 
 void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
+  Q_D(CanvasElement);
   kDebug() << "Element:" << element()->id();
-  m_hovered = true;
+  d->m_hovered = true;
   update();
   emit hoverEnter(this);
 }
@@ -564,8 +601,9 @@ void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
+  Q_D(CanvasElement);
   kDebug() << "Element:" << element()->id();
-  m_hovered = false;
+  d->m_hovered = false;
   update();
   emit hoverLeave(this);
 }

@@ -24,15 +24,13 @@
 #define CANVAS_ELEMENT_H
 
 #include <QAbstractGraphicsShapeItem>
-#include <QPen>
-#include <QBrush>
 
-class QMenu;
 class QGraphicsScene;
 
 namespace KGraphViz
 {
 
+class CanvasElementPrivate;
 class GraphElement;
 class DotGraphView;
 
@@ -49,7 +47,7 @@ public:
       
   virtual ~CanvasElement();
   
-  GraphElement* element() { return m_element; }
+  GraphElement* element() const;
 
   virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         QWidget *widget = 0 );
@@ -62,26 +60,14 @@ public:
                   qreal xMargin, qreal yMargin, qreal gh,
                   qreal wdhcf, qreal hdvcf);
 
-  inline void setGh(qreal gh) {m_gh = gh;}
-  
-  protected:
+  void setGh(qreal gh);
+
+protected:
   virtual void mouseMoveEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
   virtual void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
   virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
   virtual void hoverLeaveEvent( QGraphicsSceneHoverEvent * event );
-
-  qreal m_scaleX, m_scaleY;
-  qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
-  GraphElement* m_element;
-  DotGraphView* m_view;
-  QFont* m_font;
-  QPen m_pen;
-  QBrush m_brush;
-  QRectF m_boundingRect;
-  QMenu* m_popup;
-
-  bool m_hovered;
   
 Q_SIGNALS:
   void selected(CanvasElement*, Qt::KeyboardModifiers);
@@ -92,6 +78,10 @@ Q_SIGNALS:
 public Q_SLOTS:
   void modelChanged();
   void slotRemoveElement();
+
+private:
+  Q_DECLARE_PRIVATE(CanvasElement)
+  CanvasElementPrivate* const d_ptr;
 };
 
 }
