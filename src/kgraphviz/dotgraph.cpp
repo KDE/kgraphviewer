@@ -79,8 +79,7 @@ void DotGraphPrivate::init()
 DotGraph::DotGraph() :
   GraphElement(),
   d_ptr(new DotGraphPrivate),
-  m_readWrite(false),
-  m_phase(Initial)
+  m_readWrite(false)
 {
   setId("unnamed");
 }
@@ -88,8 +87,7 @@ DotGraph::DotGraph() :
 DotGraph::DotGraph(const QString& layoutCommand, const QString& fileName) :
   GraphElement(),
   d_ptr(new DotGraphPrivate),
-  m_readWrite(false),
-  m_phase(Initial)
+  m_readWrite(false)
 {
   setId("unnamed");
 

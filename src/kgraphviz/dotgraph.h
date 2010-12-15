@@ -51,8 +51,6 @@ class KGRAPHVIZ_EXPORT DotGraph : public GraphElement
   Q_OBJECT
 
 public:
-  enum ParsePhase {Initial, Final};
-
   DotGraph();
   DotGraph(const QString& layoutCommand, const QString& fileName);
 
@@ -143,8 +141,6 @@ private:
   void computeCells();
 
   bool m_readWrite;
-
-  ParsePhase m_phase;
 };
 
 }
