@@ -17,6 +17,8 @@
 */
 
 #include "graphelement.h"
+#include "graphelement_p.h"
+
 #include "canvaselement.h"
 #include "support/dotdefaults.h"
 
@@ -29,15 +31,31 @@
 
 namespace KGraphViz
 {
-  
+
+GraphElementPrivate::GraphElementPrivate() :
+  m_selected(false),
+  m_z(1.0),
+  m_canvasElement(0)
+{
+}
+
+GraphElementPrivate::~GraphElementPrivate()
+{
+}
+
+GraphElementPrivate::GraphElementPrivate(const GraphElementPrivate& other) :
+  m_selected(other.m_selected),
+  m_z(other.m_z),
+  m_renderOperations(other.m_renderOperations),
+  m_canvasElement(other.m_canvasElement)
+{
+}
+
 GraphElement::GraphElement() :
     QObject(),
+    d_ptr(new GraphElementPrivate),
     m_attributes(),
-    m_originalAttributes(),
-    m_ce(0),
-    m_z(1.0),
-    m_renderOperations(),
-    m_selected(false)
+    m_originalAttributes()
 {
 /*  label("");
   id("");
@@ -52,25 +70,82 @@ GraphElement::GraphElement() :
   setFontSize(DOT_DEFAULT_FONTSIZE);
 }
 
-GraphElement::GraphElement(const GraphElement& element) : QObject(),
+GraphElement::GraphElement(const GraphElement& element) :
+  QObject(),
+  d_ptr(element.d_ptr),
   m_attributes(),
-  m_originalAttributes(),
-  m_ce(element.m_ce),
-  m_z(element.m_z),
-  m_renderOperations(),
-  m_selected(element.m_selected)
+  m_originalAttributes()
 {
   kDebug() ;
   updateWithElement(element);
+}
+
+GraphElement::~GraphElement()
+{
+  delete d_ptr;
+}
+
+CanvasElement* GraphElement::canvasElement() const
+{
+  Q_D(const GraphElement);
+  return d->m_canvasElement;
+}
+
+void GraphElement::setCanvasElement(CanvasElement* canvasElement)
+{
+  Q_D(GraphElement);
+  d->m_canvasElement = canvasElement;
+}
+
+bool GraphElement::isSelected() const
+{
+  Q_D(const GraphElement);
+  return d->m_selected;
+}
+
+void GraphElement::setSelected(bool selected)
+{
+  Q_D(GraphElement);
+  d->m_selected = selected;
+}
+
+double GraphElement::z() const
+{
+  Q_D(const GraphElement);
+  return d->m_z;
+}
+
+void GraphElement::setZ(double z)
+{
+  Q_D(GraphElement);
+  d->m_z = z;
+}
+
+DotRenderOpVec& GraphElement::renderOperations()
+{
+  Q_D(GraphElement);
+  return d->m_renderOperations;
+}
+
+DotRenderOpVec GraphElement::renderOperations() const
+{
+  Q_D(const GraphElement);
+  return d->m_renderOperations;
+}
+
+void GraphElement::setRenderOperations(const DotRenderOpVec& dotRenderOpVec)
+{
+  Q_D(GraphElement);
+  d->m_renderOperations = dotRenderOpVec;
 }
 
 void GraphElement::updateWithElement(const GraphElement& element)
 {
   kDebug() << element.id();
   bool modified = false;
-  if (element.z() != m_z)
+  if (element.z() != z())
   {
-    m_z = element.z();
+    setZ(element.z());
     modified = true;
   }
   QMap <QString, QString >::const_iterator it = element.attributes().constBegin();
@@ -91,7 +166,7 @@ void GraphElement::updateWithElement(const GraphElement& element)
   if (modified)
   {
     kDebug() << "modified: update render operations";
-    m_renderOperations = element.m_renderOperations;
+    setRenderOperations(element.renderOperations());
 /*    foreach (DotRenderOp op, m_renderOperations)
     {
       QString msg;
@@ -107,7 +182,7 @@ void GraphElement::updateWithElement(const GraphElement& element)
     kDebug() << "modified: emiting changed";*/
     emit changed();
   }
-  kDebug() << "done" << m_renderOperations.size();
+  kDebug() << "done" << renderOperations().size();
 }
 
 

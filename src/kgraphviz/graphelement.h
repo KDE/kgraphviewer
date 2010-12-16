@@ -28,8 +28,9 @@
 
 namespace KGraphViz
 {
-  
+
 class CanvasElement;
+class GraphElementPrivate;
 
 /**
  * The base of all GraphViz dot graph elements (nodes, edges, subgraphs,
@@ -38,11 +39,12 @@ class CanvasElement;
 class KGRAPHVIZ_EXPORT GraphElement: public QObject
 {
   Q_OBJECT
+
 public:
   GraphElement();
   GraphElement(const GraphElement& element);
-  
-  virtual ~GraphElement() {}
+
+  virtual ~GraphElement();
   
   inline void setId(const QString& id) {m_attributes["id"]=id;}
   inline void setStyle(const QString& ls) {m_attributes["style"]=ls;}
@@ -68,13 +70,10 @@ public:
   inline QString fontColor() const {return m_attributes["fontcolor"];}
   inline void setFontColor(const QString& fc) {m_attributes["fontcolor"] = fc;}
 
-  inline DotRenderOpVec& renderOperations() {return m_renderOperations;};
-  inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
-  inline void setRenderOperations(DotRenderOpVec& drov) {m_renderOperations = drov;};
-  
-  inline double z() const {return m_z;}
-  inline void setZ(double thez) {m_z = thez;}
-  
+  DotRenderOpVec& renderOperations();
+  DotRenderOpVec renderOperations() const;
+  void setRenderOperations(const DotRenderOpVec& dotRenderOpVec);
+
   inline QString shapeFile() const {return m_attributes["shapefile"];}
   inline void setShapeFile(const QString& sf) {m_attributes["shapefile"] = sf;}
   
@@ -93,12 +92,14 @@ public:
 
   virtual void removeAttribute(const QString& attribName);
 
-  inline CanvasElement* canvasElement() {return m_ce;}
-  inline const CanvasElement* canvasElement() const {return m_ce;}
-  inline void setCanvasElement(CanvasElement* ce) {m_ce = ce;}
+  CanvasElement* canvasElement() const;
+  void setCanvasElement(CanvasElement* canvasElement);
 
-  inline void setSelected(bool s) {m_selected=s;}
-  inline bool isSelected() {return m_selected;}
+  double z() const;
+  void setZ(double z);
+
+  void setSelected(bool selected);
+  bool isSelected() const;
 
   void exportToGraphviz(void* element)  const;
 
@@ -108,15 +109,10 @@ Q_SIGNALS:
 protected:
   QMap<QString,QString> m_attributes;
   QList<QString> m_originalAttributes;
-  
-  CanvasElement* m_ce;
 
 private:
-  double m_z;
-
-  DotRenderOpVec m_renderOperations;
-
-  bool m_selected;
+  Q_DECLARE_PRIVATE(GraphElement);
+  GraphElementPrivate* const d_ptr;
 };
 
 
