@@ -100,9 +100,6 @@ public:
   inline void setSelected(bool s) {m_selected=s;}
   inline bool isSelected() {return m_selected;}
 
-  bool isVisible() const { return m_visible; }
-  void setVisible(bool v) { m_visible = v; }
-
   void exportToGraphviz(void* element)  const;
 
 Q_SIGNALS:
@@ -116,7 +113,6 @@ protected:
 
 private:
   double m_z;
-  bool m_visible;
 
   DotRenderOpVec m_renderOperations;
 
