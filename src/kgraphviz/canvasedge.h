@@ -72,8 +72,6 @@ public:
 private:
   Q_DECLARE_PRIVATE(CanvasEdge);
   CanvasEdgePrivate* const d_ptr;
-
-  qreal distance(const QPointF& point1, const QPointF& point2);
 };
 
 }

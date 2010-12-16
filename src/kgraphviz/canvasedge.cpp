@@ -426,9 +426,9 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
     {
       foreach(const QPointF& point2, allPoints)
       {
-        if (distance(point1, point2) > maxDist)
+        if (QLineF(point1, point2).length() > maxDist)
         {
-          maxDist = distance(point1, point2);
+          maxDist = QLineF(point1, point2).length();
           pointsPair = qMakePair(point1, point2);
         }
       }
@@ -509,11 +509,6 @@ void CanvasEdge::computeBoundingRect()
 GraphEdge* CanvasEdge::edge() const
 {
   return qobject_cast<GraphEdge*>(element());
-}
-
-qreal CanvasEdge::distance(const QPointF& point1, const QPointF& point2)
-{
-  return sqrt(pow(point1.x()-point2.x(),2)+pow(point1.y()-point2.y(),2));
 }
 
 #include "canvasedge.moc"
