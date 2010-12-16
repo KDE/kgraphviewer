@@ -74,7 +74,8 @@ KGraphEditor::KGraphEditor() :
   
   setCentralWidget(m_widget);
 
-  QDockWidget* topLeftDockWidget = new QDockWidget(this);
+  QDockWidget* topLeftDockWidget = new QDockWidget(i18n("Node tree"), this);
+  topLeftDockWidget->setObjectName("nodesTreeWidget");
   m_treeWidget = new KGraphEditorNodesTreeWidget(topLeftDockWidget);
   connect(m_treeWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
@@ -92,14 +93,15 @@ KGraphEditor::KGraphEditor() :
   topLeftDockWidget->setWidget(m_treeWidget);
   addDockWidget ( Qt::LeftDockWidgetArea, topLeftDockWidget );
 
-  QDockWidget* bottomLeftDockWidget = new QDockWidget(this);
+  QDockWidget* bottomLeftDockWidget = new QDockWidget(i18n("Element tree"), this);
+  bottomLeftDockWidget->setObjectName("elementTreeWidget");
   m_newElementAttributesWidget = new KGraphEditorElementTreeWidget(bottomLeftDockWidget);
   connect(m_newElementAttributesWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this,SLOT(slotNewElementItemChanged(QTreeWidgetItem*,int)));
-  connect(m_newElementAttributesWidget, SIGNAL(addAttribute()),
-          this, SLOT(slotAddNewElementAttribute()));
-  connect(m_newElementAttributesWidget, SIGNAL(removeAttribute(const QString&)),
-          this, SLOT(slotRemoveNewElementAttribute(const QString&)));
+  connect(m_newElementAttributesWidget, SIGNAL(addAttribute(QString)),
+          this, SLOT(slotAddNewElementAttribute(QString)));
+  connect(m_newElementAttributesWidget, SIGNAL(removeAttribute(QString)),
+          this, SLOT(slotRemoveNewElementAttribute(QString)));
   m_newElementAttributesWidget->setColumnCount(2);
   bottomLeftDockWidget->setWidget(m_newElementAttributesWidget);
   addDockWidget ( Qt::LeftDockWidgetArea, bottomLeftDockWidget );
@@ -232,7 +234,7 @@ void KGraphEditor::setupActions()
   actionCollection()->addAction( KStandardAction::Save, "file_save", this, SLOT( fileSave() ) );
   actionCollection()->addAction( KStandardAction::SaveAs, "file_save_as", this, SLOT( fileSaveAs() ) );
 
-  actionCollection()->addAction( KStandardAction::Quit, "file_quit", this, SLOT( quit() ) );
+  actionCollection()->addAction( KStandardAction::Quit, "file_quit", qApp, SLOT( quit() ) );
 
   m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
 

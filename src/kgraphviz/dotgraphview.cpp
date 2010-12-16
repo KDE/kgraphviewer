@@ -343,6 +343,7 @@ void DotGraphViewPrivate::setupPopup()
   foreach (const QString& algorithm, algorithms) {
     KAction* action = new KAction(algorithm, q);
     action->setWhatsThis(i18n("Layout the graph using the %1 program.", algorithm));
+    action->setCheckable(true);
     actionCollection()->addAction(QString("layout_%1").arg(algorithm), action);
     m_layoutAlgoSelectAction->addAction(action);
 

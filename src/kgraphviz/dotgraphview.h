@@ -74,8 +74,6 @@ public:
   static KGraphViewer::KGraphViewerInterface::PannerPosition zoomPos(const QString&);
   static QString zoomPosString(KGraphViewer::KGraphViewerInterface::PannerPosition);
 
-  void setPannerEnabled(bool enabled);
-
   virtual void wheelEvent(QWheelEvent* e);
 
   /// multiplies current zoom factor with @p factor
@@ -159,6 +157,7 @@ public Q_SLOTS:
   void print();
   void printPreview();
   void viewBevActivated(int newPos);
+  void setPannerEnabled(bool enabled);
   void slotExportImage();
   void slotSelectLayoutAlgo(const QString& text);
   void slotLayoutSpecify();

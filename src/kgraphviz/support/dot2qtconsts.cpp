@@ -932,7 +932,7 @@ QFont Dot2QtConsts::qtFont(const QString& dotFont) const
     return (*(m_psFonts.find(dotFont)));
   else
   {
-    qWarning() << "Unknown dot font '" << dotFont << "'. returning Qt default.";
+    kWarning() << "Unknown dot font '" << dotFont << "'. returning Qt default.";
     return QFont(QFont::substitute(dotFont));
   }
 }
