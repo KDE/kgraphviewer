@@ -107,7 +107,6 @@ CanvasElement::CanvasElement(
 
 CanvasElement::~CanvasElement()
 {
-  Q_D(CanvasElement);
   delete d_ptr;
 }
 
@@ -117,6 +116,11 @@ GraphElement* CanvasElement::element() const
   return d->m_element;
 }
 
+qreal CanvasElement::gh() const
+{
+  Q_D(const CanvasElement);
+  return d->m_gh;
+}
 void CanvasElement::setGh(qreal gh)
 {
   Q_D(CanvasElement);
@@ -178,6 +182,12 @@ void CanvasElement::setFont(const QFont& font)
   d->m_font = font;
 }
 
+void CanvasElement::setBoundingRect(const QRectF& rect)
+{
+  Q_D(CanvasElement);
+  d->m_boundingRect = rect;
+}
+
 void CanvasElement::modelChanged()
 {
   Q_D(CanvasElement);
@@ -216,7 +226,6 @@ QRectF CanvasElement::boundingRect () const
 void CanvasElement::computeBoundingRect()
 {
   Q_D(CanvasElement);
-//   kDebug() << element();
   kDebug() << element()->id() << zValue();
   
   qreal adjust = 0.5;

@@ -26,6 +26,8 @@
 
 
 #include "canvasedge.h"
+#include "canvasedge_p.h"
+
 #include "canvaselement.h"
 #include "dotgraphview.h"
 #include "graphedge.h"
@@ -43,6 +45,14 @@
 
 using namespace KGraphViz;
 
+CanvasEdgePrivate::CanvasEdgePrivate()
+{
+}
+
+CanvasEdgePrivate::~CanvasEdgePrivate()
+{
+}
+
 CanvasEdge::CanvasEdge(DotGraphView* view,
                        GraphEdge* e,
                        QGraphicsScene* scene,
@@ -50,18 +60,17 @@ CanvasEdge::CanvasEdge(DotGraphView* view,
                        qreal xMargin, qreal yMargin, qreal gh,
                        qreal wdhcf, qreal hdvcf,
                        QGraphicsItem* parent) :
-    CanvasElement(view, e, scene, parent),
-    m_scaleX(scaleX), m_scaleY(scaleY),
-    m_xMargin(xMargin), m_yMargin(yMargin),
-    m_gh(/*gh*/0), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
-    m_font(0), m_view(view)
+  CanvasElement(view, e, scene, parent),
+  d_ptr(new CanvasEdgePrivate)
 {
-  kDebug() << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << m_gh;
+  kDebug() << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << CanvasEdge::gh();
   setBoundingRegionGranularity(0.9);
-  m_font = FontsCache::changeable().fromName(e->fontName());
+  setFont(*FontsCache::changeable().fromName(e->fontName()));
 
-  computeBoundingRect();
-//   kDebug() << "boundingRect computed: " << m_boundingRect;
+  kDebug() << scaleX << scaleY << xMargin << yMargin << /*gh*/0 << wdhcf << hdvcf << font();
+
+  initialize(scaleX, scaleY, xMargin, yMargin, /*gh*/0, wdhcf, hdvcf);
+  kDebug() << "boundingRect computed: " << boundingRect();
   
   QString tipStr = i18n("%1 -> %2\nlabel='%3'",
       edge()->fromNode()->id(),edge()->toNode()->id(),e->label());
@@ -70,20 +79,17 @@ CanvasEdge::CanvasEdge(DotGraphView* view,
 
 CanvasEdge::~CanvasEdge()
 {
-}
-
-QRectF CanvasEdge::boundingRect() const
-{
-  return m_boundingRect;
+  delete d_ptr;
 }
 
 QPainterPath CanvasEdge::shape () const
 {
+  Q_D(const CanvasEdge);
 //   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
-  if (m_boundingRegion.isEmpty()) {
-    m_boundingRegion.addRegion(boundingRegion(QTransform()));
+  if (d->m_boundingRegion.isEmpty()) {
+    d->m_boundingRegion.addRegion(boundingRegion(QTransform()));
   }
-  return m_boundingRegion;
+  return d->m_boundingRegion;
   /*
   foreach (const DotRenderOp& dro, edge()->renderOperations())
   {
@@ -123,8 +129,8 @@ QPainterPath CanvasEdge::shape () const
           }
           QPointF p(
               //NOTE: when uncommenting, fix nested comments in here:
-              (dro.integers[2*i+1]/ *%m_wdhcf* /*m_scaleX) +m_xMargin + diffX,
-              (m_gh-dro.integers[2*i+2]/ *%m_hdvcf* /)*m_scaleY + m_yMargin + diffY
+              (dro.integers[2*i+1]/ *%m_wdhcf* /*scaleX()) +marginX() + diffX,
+              (gh()-dro.integers[2*i+2]/ *%m_hdvcf* /)*scaleY() + marginY() + diffY
                   );
           points[i] = p;
         }
@@ -152,11 +158,11 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
   Q_UNUSED(option)
   Q_UNUSED(widget)
 
-  if (m_boundingRect == QRectF())
+  if (boundingRect() == QRectF())
     return;
 
   /// computes the scaling of line width
-  qreal widthScaleFactor = (m_scaleX+m_scaleY)/2;
+  qreal widthScaleFactor = (scaleX()+scaleY())/2;
   if (widthScaleFactor < 1)
   {
     widthScaleFactor = 1;
@@ -209,35 +215,39 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
     {
       const QString& str = dro.str;
     
-      qreal stringWidthGoal = dro.integers[3] * m_scaleX;
+      qreal stringWidthGoal = dro.integers[3] * scaleX();
       int fontSize = edge()->fontSize();
-      m_font->setPointSize(fontSize);
-      QFontMetrics fm(*m_font);
+      QFont font = CanvasElement::font();
+      font.setPointSize(fontSize);
+      QFontMetrics fm(font);
       while (fm.width(str) > stringWidthGoal && fontSize > 1)
       {
         fontSize--;
-        m_font->setPointSize(fontSize);
-        fm = QFontMetrics(*m_font);
+        font.setPointSize(fontSize);
+        fm = QFontMetrics(font);
       }
       p->save();
-      p->setFont(*m_font);
+      p->setFont(font);
       
       p->setPen(Dot2QtConsts::componentData().qtColor(edge()->fontColor()));
 
-      qreal x = (m_scaleX *
+      qreal x = (scaleX() *
                        (
                          (dro.integers[0])
                          + (((-dro.integers[2])*(fm.width(dro.str)))/2)
                          - ( (fm.width(dro.str))/2 )
                        )
                       )
-                      + m_xMargin;
-      qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
+                      + marginX();
+      qreal y = ((gh() - (dro.integers[1]))*scaleY())+ marginY();
       QPointF point(x,y);
 //       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawText" << edge()->fontColor() << point;
 
       p->drawText(point,str);
       p->restore();
+
+      // save back
+      setFont(font);
     }      
     else if (( dro.renderop == "p" ) || (dro.renderop == "P" ))
     {
@@ -245,8 +255,8 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
       for (int i = 0; i < dro.integers[0]; i++)
       {
         QPointF point(
-            (int(dro.integers[2*i+1])/*%m_wdhcf*/)*m_scaleX +m_xMargin,
-            (int(m_gh-dro.integers[2*i+2])/*%m_hdvcf*/)*m_scaleY + m_yMargin
+            (int(dro.integers[2*i+1])/*%m_wdhcf*/)*scaleX() +marginX(),
+            (int(gh()-dro.integers[2*i+2])/*%m_hdvcf*/)*scaleY() + marginY()
                 );
         polygon[i] = point;
 //         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << point;
@@ -283,10 +293,10 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
     }
     else if (( dro.renderop == "e" ) || (dro.renderop == "E" ))
     {
-      qreal w = m_scaleX * dro.integers[2] * 2;
-      qreal h = m_scaleY *  dro.integers[3] * 2;
-      qreal x = (m_xMargin + (dro.integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
-      qreal y = ((m_gh -  dro.integers[1]/*%m_hdvcf*/)*m_scaleY + m_yMargin) - h/2;
+      qreal w = scaleX() * dro.integers[2] * 2;
+      qreal h = scaleY() *  dro.integers[3] * 2;
+      qreal x = (marginX() + (dro.integers[0]/*%m_wdhcf*/)*scaleX()) - w/2;
+      qreal y = ((gh() -  dro.integers[1]/*%m_hdvcf*/)*scaleY() + marginY()) - h/2;
       p->save();
       if (dro.renderop == "E" )
       {
@@ -378,8 +388,8 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
             }
           }
           QPointF p(
-              (dro.integers[2*i+1]/*%m_wdhcf*/*m_scaleX) +m_xMargin + diffX,
-              (m_gh-dro.integers[2*i+2]/*%m_hdvcf*/)*m_scaleY + m_yMargin + diffY
+              (dro.integers[2*i+1]/*%m_wdhcf*/*scaleX()) +marginX() + diffX,
+              (gh()-dro.integers[2*i+2]/*%m_hdvcf*/)*scaleY() + marginY() + diffY
                   );
           points[i] = p;
 //           kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << p;
@@ -438,16 +448,17 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
 
 void CanvasEdge::computeBoundingRect()
 {
-//   kDebug();
+  Q_D(CanvasEdge);
+  kDebug();
   //invalidate bounding region cache
-  m_boundingRegion = QPainterPath();
+  d->m_boundingRegion = QPainterPath();
   if (edge()->renderOperations().isEmpty())
   {
     if ((edge()->fromNode()->canvasElement()==0)
       || (edge()->toNode()->canvasElement()==0)
       || edge()->style()=="invis")
     {
-      m_boundingRect = QRectF();
+      setBoundingRect(QRectF());
     }
     else
     {
@@ -455,7 +466,7 @@ void CanvasEdge::computeBoundingRect()
       edge()->fromNode()->canvasElement()->boundingRect().center()+edge()->fromNode()->canvasElement()->pos(),
                 edge()->toNode()->canvasElement()->boundingRect().center()+edge()->toNode()->canvasElement()->pos());
 //       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
-      m_boundingRect = br;
+      setBoundingRect(br);
     }
   }
   else
@@ -470,8 +481,8 @@ void CanvasEdge::computeBoundingRect()
       for (int i = 0; i < dro.integers[0]; i++)
       {
         QPointF p(
-            ((dro.integers[2*i+1]/*%m_wdhcf*/)*m_scaleX) +m_xMargin,
-            ((m_gh-dro.integers[2*i+2]/*%m_hdvcf*/)*m_scaleY) + m_yMargin
+            ((dro.integers[2*i+1]/*%m_wdhcf*/)*scaleX()) +marginX(),
+            ((gh()-dro.integers[2*i+2]/*%m_hdvcf*/)*scaleY()) + marginY()
                 );
         points[previousSize+i] = p;
       }
@@ -490,9 +501,14 @@ void CanvasEdge::computeBoundingRect()
     }
 //     kDebug() << a.size() << "points";
 
-    m_boundingRect = a.boundingRect();
+    setBoundingRect(a.boundingRect());
   }
-  kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
+  kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << boundingRect();
+}
+
+GraphEdge* CanvasEdge::edge() const
+{
+  return qobject_cast<GraphEdge*>(element());
 }
 
 qreal CanvasEdge::distance(const QPointF& point1, const QPointF& point2)

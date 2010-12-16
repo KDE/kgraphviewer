@@ -32,9 +32,6 @@
 
 #include "graphexporter.h"
 
-class QGraphicsScene;
-class QFont;
-
 /*
  * Canvas Items:
  * - CanvasNode       (Rectangular Area)
@@ -45,11 +42,8 @@ class QFont;
 namespace KGraphViz
 {
 
-class CanvasNode;
-class CanvasEdge;
+class CanvasEdgePrivate;
 class GraphEdge;
-class DotGraphView;
-
 
 class CanvasEdge : public CanvasElement
 {
@@ -59,42 +53,29 @@ public:
   explicit CanvasEdge(DotGraphView* v,
                       GraphEdge*,
                       QGraphicsScene* scene,
-             qreal scaleX, qreal scaleY,
-             qreal xMargin, qreal yMargin, qreal gh,
-             qreal wdhcf, qreal hdvcf,
-             QGraphicsItem* parent = 0);
+                      qreal scaleX, qreal scaleY,
+                      qreal xMargin, qreal yMargin, qreal gh,
+                      qreal wdhcf, qreal hdvcf,
+                      QGraphicsItem* parent = 0);
 
   virtual ~CanvasEdge();
-  
-  QRectF boundingRect() const;
+
+  virtual void computeBoundingRect();
 
   QPainterPath shape () const;
 
   void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         QWidget *widget);
 
-  inline GraphEdge* edge() { return m_edge; }
-  inline const GraphEdge* edge() const { return m_edge; }
+  GraphEdge* edge() const;
 
-  inline void setGh(qreal gh) {m_gh = gh;}
-  
-  void computeBoundingRect();
-  
 private:
+  Q_DECLARE_PRIVATE(CanvasEdge);
+  CanvasEdgePrivate* const d_ptr;
+
   qreal distance(const QPointF& point1, const QPointF& point2);
-  
-  qreal m_scaleX, m_scaleY;
-  qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
-  GraphEdge* m_edge;
-  QRectF m_boundingRect;
-  QFont* m_font;
-  DotGraphView* m_view;
-  mutable QPainterPath m_boundingRegion;
 };
 
 }
 
 #endif
-
-
-

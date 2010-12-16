@@ -61,6 +61,7 @@ public:
                   qreal gh,
                   qreal wdhcf, qreal hdvcf);
 
+  qreal gh() const;
   void setGh(qreal gh);
 
 protected:
@@ -78,6 +79,8 @@ protected:
   void setMarginX(qreal marginX);
   qreal marginY() const;
   void setMarginY(qreal marginY);
+
+  void setBoundingRect(const QRectF& rect);
 
 Q_SIGNALS:
   void selected(CanvasElement*, Qt::KeyboardModifiers);
