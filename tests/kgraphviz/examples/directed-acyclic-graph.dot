@@ -1,3 +1,5 @@
+// http://en.wikipedia.org/w/index.php?title=DOT_language&oldid=401084448#Graph_types
+
 digraph graphname {
     a -> b -> c;
     b -> d;

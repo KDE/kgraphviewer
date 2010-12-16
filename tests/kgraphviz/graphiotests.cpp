@@ -21,6 +21,7 @@
 
 #include <kgraphviz/graphio.h>
 #include <kgraphviz/dotgraph.h>
+#include <kgraphviz/graphsubgraph.h>
 
 #include <qtest_kde.h>
 
@@ -33,7 +34,9 @@ class GraphIOTests : public QObject
   Q_OBJECT
 
 private Q_SLOTS:
-  void testImportGraphFromFile();
+  void testImportGraph();
+  void testImportSubGraph();
+
   void testImportGraphFromInvalidFile();
 
   void testExportImportGraph();
@@ -43,7 +46,7 @@ private Q_SLOTS:
 
 using namespace KGraphViz;
 
-void GraphIOTests::testImportGraphFromFile()
+void GraphIOTests::testImportGraph()
 {
   GraphIO io;
   io.loadFromDotFile("examples/directed-acyclic-graph.dot");
@@ -53,6 +56,31 @@ void GraphIOTests::testImportGraphFromFile()
   QVERIFY(graph != 0);
   QVERIFY(graph->nodes().size() == 4);
   QVERIFY(graph->edges().size() == 3);
+}
+
+void GraphIOTests::testImportSubGraph()
+{
+  GraphIO io;
+  io.loadFromDotFile("examples/subgraph.dot");
+  QVERIFY(QTest::kWaitForSignal(&io, SIGNAL(finished()), 3000) == true);
+
+  DotGraph* graph = io.readData();
+  QVERIFY(graph != 0);
+
+  // test root
+  QCOMPARE(graph->nodes().size(), 2);
+  QCOMPARE(graph->edges().size(), 13);
+  QCOMPARE(graph->subgraphs().size(), 2);
+
+  // test first subgraph
+  GraphSubgraph* subgraph1 = graph->subgraphs()["cluster_0"];
+  QVERIFY(subgraph1 != 0);
+  QCOMPARE(subgraph1->content().size(), 4);
+
+  // test second subgraph
+  GraphSubgraph* subgraph2 = graph->subgraphs()["cluster_1"];
+  QVERIFY(subgraph2 != 0);
+  QCOMPARE(subgraph2->content().size(), 4);
 }
 
 void GraphIOTests::testImportGraphFromInvalidFile()
