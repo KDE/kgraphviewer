@@ -33,5 +33,3 @@ CanvasSubgraph::CanvasSubgraph(
 }
 
 }
-
-#include "canvassubgraph.moc"

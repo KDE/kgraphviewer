@@ -40,7 +40,6 @@ class GraphNode;
 
 class CanvasNode : public CanvasElement
 {
-  Q_OBJECT
 public:
   CanvasNode(DotGraphView* v,
             GraphNode* s,

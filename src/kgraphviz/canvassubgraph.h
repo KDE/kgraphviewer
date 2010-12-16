@@ -35,8 +35,6 @@ class DotGraphView;
 
 class CanvasSubgraph: public CanvasElement
 {
-  Q_OBJECT
-
 public:
   CanvasSubgraph(
       DotGraphView* v, 

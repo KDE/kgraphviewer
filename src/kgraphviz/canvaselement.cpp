@@ -97,11 +97,6 @@ CanvasElement::CanvasElement(
     d->m_brush = c->backgroundBrush();
   }
 
-  connect(this, SIGNAL(selected(CanvasElement*, Qt::KeyboardModifiers)), v, SLOT(slotElementSelected(CanvasElement*, Qt::KeyboardModifiers)));
-
-  connect(this, SIGNAL(hoverEnter(CanvasElement*)), v, SLOT(slotElementHoverEnter(CanvasElement*)));
-  connect(this, SIGNAL(hoverLeave(CanvasElement*)), v, SLOT(slotElementHoverLeave(CanvasElement*)));
-
   setAcceptHoverEvents ( true );
 }
 
@@ -602,7 +597,6 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
     if (d->m_element->isSelected())
     {
       kDebug() << "Element selected:" << d->m_element->id() << d->m_element;
-      emit(selected(this,event->modifiers()));
     }
     update();
   }
@@ -612,17 +606,9 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
     if (!d->m_element->isSelected())
     {
       d->m_element->setSelected(true);
-      emit(selected(this,event->modifiers()));
       update();
     }
   }
-}
-
-void CanvasElement::slotRemoveElement()
-{
-  Q_D(CanvasElement);
-  kDebug();
-  d->m_view->removeSelectedElements();
 }
 
 void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
@@ -632,7 +618,6 @@ void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
   kDebug() << "Element:" << element()->id();
   d->m_hovered = true;
   update();
-  emit hoverEnter(this);
 }
 
 void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
@@ -642,7 +627,4 @@ void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
   kDebug() << "Element:" << element()->id();
   d->m_hovered = false;
   update();
-  emit hoverLeave(this);
 }
-
-#include "canvaselement.moc"

@@ -60,8 +60,6 @@ CanvasNode::CanvasNode(DotGraphView* v,
 
 {
   kDebug() << s->id();
-  connect(s,SIGNAL(changed()),this,SLOT(modelChanged()));
-
   QString tipStr;
   QString id = s->id();
   QString label = s->label();
@@ -143,5 +141,3 @@ CanvasNode::CanvasNode(DotGraphView* v,
 // }
 
 }
-
-#include "canvasnode.moc"

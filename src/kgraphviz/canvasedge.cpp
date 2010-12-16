@@ -510,5 +510,3 @@ GraphEdge* CanvasEdge::edge() const
 {
   return qobject_cast<GraphEdge*>(element());
 }
-
-#include "canvasedge.moc"

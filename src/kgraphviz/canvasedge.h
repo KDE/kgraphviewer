@@ -47,8 +47,6 @@ class GraphEdge;
 
 class CanvasEdge : public CanvasElement
 {
-  Q_OBJECT
-
 public:
   explicit CanvasEdge(DotGraphView* v,
                       GraphEdge*,

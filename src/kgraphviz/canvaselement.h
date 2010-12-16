@@ -37,8 +37,6 @@ class DotGraphView;
 
 class CanvasElement: public QObject, public QAbstractGraphicsShapeItem
 {
-  Q_OBJECT
-
 public:
   CanvasElement(
       DotGraphView* v, 
@@ -64,6 +62,8 @@ public:
   qreal gh() const;
   void setGh(qreal gh);
 
+  virtual void modelChanged();
+
 protected:
   virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
   virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
@@ -81,15 +81,6 @@ protected:
   void setMarginY(qreal marginY);
 
   void setBoundingRect(const QRectF& rect);
-
-Q_SIGNALS:
-  void selected(CanvasElement*, Qt::KeyboardModifiers);
-  void hoverEnter(CanvasElement*);
-  void hoverLeave(CanvasElement*);
-  
-public Q_SLOTS:
-  void modelChanged();
-  void slotRemoveElement();
 
 private:
   Q_DECLARE_PRIVATE(CanvasElement)
