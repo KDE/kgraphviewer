@@ -45,9 +45,7 @@ namespace KGraphViz
 GraphEdge::GraphEdge() : 
     GraphElement(),
     m_fromNode(0),m_toNode(0),
-    m_colors(),
-    m_dir(DOT_DEFAULT_EDGE_DIR),
-    m_arrowheads()
+    m_dir(DOT_DEFAULT_EDGE_DIR)
 {
 //   kDebug() ;
 }

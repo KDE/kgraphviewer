@@ -53,9 +53,7 @@ GraphElementPrivate::GraphElementPrivate(const GraphElementPrivate& other) :
 
 GraphElement::GraphElement() :
     QObject(),
-    d_ptr(new GraphElementPrivate),
-    m_attributes(),
-    m_originalAttributes()
+    d_ptr(new GraphElementPrivate)
 {
 /*  label("");
   id("");
@@ -72,9 +70,7 @@ GraphElement::GraphElement() :
 
 GraphElement::GraphElement(const GraphElement& element) :
   QObject(),
-  d_ptr(element.d_ptr),
-  m_attributes(),
-  m_originalAttributes()
+  d_ptr(element.d_ptr)
 {
   kDebug() ;
   updateWithElement(element);

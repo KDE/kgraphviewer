@@ -38,12 +38,12 @@ namespace KGraphViz
 //
 
 GraphSubgraph::GraphSubgraph() :
-  GraphElement(), m_content()
+  GraphElement()
 {
 }
 
 GraphSubgraph::GraphSubgraph(graph_t* sg) :
-  GraphElement(), m_content()
+  GraphElement()
 {
   updateWithSubgraph(sg);
 }
