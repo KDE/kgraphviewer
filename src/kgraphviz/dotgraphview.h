@@ -29,8 +29,6 @@
 
 #include "kgraphviz_export.h"
 
-#include "shared/kgraphviewer_interface.h"
-
 #include <QGraphicsView>
 
 class Agraph_t;
@@ -60,19 +58,20 @@ class KGRAPHVIZ_EXPORT DotGraphView : public QGraphicsView
 
 public:
   enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge, SelectingElements };
+  enum PannerPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
   enum ScrollDirection { Here, Left, Right, Top, Bottom };
   
   explicit DotGraphView(KActionCollection* actions, QWidget* parent=0);
   virtual ~DotGraphView();
 
+    //TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
+  DotGraphView::PannerPosition zoomPos() const;
+  static DotGraphView::PannerPosition zoomPos(const QString&);
+  static QString zoomPosString(DotGraphView::PannerPosition);
+
   bool loadDot(const QString& dotFileName);
   bool loadLibrary(const QString& dotFileName);
   bool loadLibrary(Agraph_t* graph, const QString& layoutCommand = "dot");
-
-  //TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
-  KGraphViewer::KGraphViewerInterface::PannerPosition zoomPos() const;
-  static KGraphViewer::KGraphViewerInterface::PannerPosition zoomPos(const QString&);
-  static QString zoomPosString(KGraphViewer::KGraphViewerInterface::PannerPosition);
 
   virtual void wheelEvent(QWheelEvent* e);
 

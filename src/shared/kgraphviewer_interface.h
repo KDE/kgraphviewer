@@ -19,6 +19,8 @@
 #ifndef KGRAPHVIEWER_INTERFACE_H
 #define KGRAPHVIEWER_INTERFACE_H
 
+#include <kgraphviz/dotgraphview.h>
+
 #include <QtCore/QObject>
 #include <QtCore/QMap>
 #include <QtGui/QCursor>
@@ -84,8 +86,7 @@ public:
   virtual void zoomBy(double factor) = 0;
   virtual void setZoomFactor(double factor) = 0;
 
-  enum PannerPosition { TopLeft, TopRight, BottomLeft, BottomRight, Auto };
-  virtual void setPannerPosition(PannerPosition position) = 0;
+  virtual void setPannerPosition(KGraphViz::DotGraphView::PannerPosition position) = 0;
   virtual void setPannerEnabled(bool enabled) = 0;
 
   virtual void setLayoutCommand(const QString& command) = 0;

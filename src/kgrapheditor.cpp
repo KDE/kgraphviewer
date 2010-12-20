@@ -56,7 +56,6 @@
 
 #include <iostream>
 
-using namespace KGraphViewer;
 using namespace KGraphViz;
 
 KGraphEditor::KGraphEditor() :

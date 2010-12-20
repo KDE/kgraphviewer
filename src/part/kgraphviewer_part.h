@@ -21,6 +21,8 @@
 
 #include "shared/kgraphviewer_interface.h"
 
+#include <kgraphviz/dotgraphview.h>
+
 #include <kparts/part.h>
 #include <kparts/genericfactory.h>
 
@@ -56,7 +58,7 @@ public:
     virtual void centerOnNode(const QString& nodeId);
     virtual void selectNode(const QString& nodeId);
     virtual void setLayoutCommand(const QString& command);
-    virtual void setPannerPosition(PannerPosition position);
+    virtual void setPannerPosition(KGraphViz::DotGraphView::PannerPosition position);
     virtual void setPannerEnabled(bool enabled);
     virtual void zoomBy(double factor);
     virtual void setZoomFactor(double factor);

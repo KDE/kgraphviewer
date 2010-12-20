@@ -384,7 +384,7 @@ void KGraphViewerPart::setLayoutCommand(const QString& command)
   d->m_widget->setLayoutCommand(command);
 }
 
-void KGraphViewerPart::setPannerPosition(KGraphViewerInterface::PannerPosition position)
+void KGraphViewerPart::setPannerPosition(KGraphViz::DotGraphView::PannerPosition position)
 {
   d->m_widget->viewBevActivated(position);
 }

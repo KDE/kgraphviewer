@@ -78,11 +78,10 @@
 
 // DotGraphView defaults
 #define DEFAULT_DETAILLEVEL 1
-#define DEFAULT_ZOOMPOS KGraphViewerInterface::Auto
+#define DEFAULT_ZOOMPOS DotGraphView::Auto
 #define KGV_MAX_PANNER_NODES 100
 
 using namespace KGraphViz;
-using namespace KGraphViewer;
 
 DotGraphViewPrivate::DotGraphViewPrivate(KActionCollection* actions, DotGraphView* parent) :
   m_labelViews(),
@@ -91,7 +90,7 @@ DotGraphViewPrivate::DotGraphViewPrivate(KActionCollection* actions, DotGraphVie
   m_isMoving(false),
   m_exporter(),
   m_zoomPosition(DEFAULT_ZOOMPOS),
-  m_lastAutoPosition(KGraphViewer::KGraphViewerInterface::TopLeft),
+  m_lastAutoPosition(DotGraphView::TopLeft),
   m_graph(0),
   m_printCommand(0),
   m_actions(actions),
@@ -215,8 +214,8 @@ void DotGraphViewPrivate::updateBirdEyeView()
   qreal y = q->height()-cvH - q->horizontalScrollBar()->height() -2;
   QPoint oldZoomPos = m_birdEyeView->pos();
   QPoint newZoomPos = QPoint(0,0);
-  KGraphViewerInterface::PannerPosition zp = m_zoomPosition;
-  if (zp == KGraphViewerInterface::Auto)
+  DotGraphView::PannerPosition zp = m_zoomPosition;
+  if (zp == DotGraphView::Auto)
   {
     QPointF tl1Pos = q->mapToScene(QPoint(0,0));
     QPointF tl2Pos = q->mapToScene(QPoint(cvW,cvH));
@@ -235,29 +234,29 @@ void DotGraphViewPrivate::updateBirdEyeView()
     zp = m_lastAutoPosition;
     switch(zp)
     {
-      case KGraphViewerInterface::TopRight:    minCols = trCols; break;
-      case KGraphViewerInterface::BottomLeft:  minCols = blCols; break;
-      case KGraphViewerInterface::BottomRight: minCols = brCols; break;
-      default:
-      case KGraphViewerInterface::TopLeft:     minCols = tlCols; break;
+      case DotGraphView::TopRight:    minCols = trCols; break;
+      case DotGraphView::BottomLeft:  minCols = blCols; break;
+      case DotGraphView::BottomRight: minCols = brCols; break;
+    default:
+      case DotGraphView::TopLeft:     minCols = tlCols; break;
     }
-    if (minCols > tlCols) { minCols = tlCols; zp = KGraphViewerInterface::TopLeft; }
-    if (minCols > trCols) { minCols = trCols; zp = KGraphViewerInterface::TopRight; }
-    if (minCols > blCols) { minCols = blCols; zp = KGraphViewerInterface::BottomLeft; }
-    if (minCols > brCols) { minCols = brCols; zp = KGraphViewerInterface::BottomRight; }
+    if (minCols > tlCols) { minCols = tlCols; zp = DotGraphView::TopLeft; }
+    if (minCols > trCols) { minCols = trCols; zp = DotGraphView::TopRight; }
+    if (minCols > blCols) { minCols = blCols; zp = DotGraphView::BottomLeft; }
+    if (minCols > brCols) { minCols = brCols; zp = DotGraphView::BottomRight; }
     
     m_lastAutoPosition = zp;
   }
   
   switch(zp)
   {
-    case KGraphViewerInterface::TopRight:
+    case DotGraphView::TopRight:
       newZoomPos = QPoint(x,0);
       break;
-    case KGraphViewerInterface::BottomLeft:
+    case DotGraphView::BottomLeft:
       newZoomPos = QPoint(0,y);
       break;
-    case KGraphViewerInterface::BottomRight:
+    case DotGraphView::BottomRight:
       newZoomPos = QPoint(x,y);
       break;
     default:
@@ -448,19 +447,19 @@ void DotGraphViewPrivate::setupPopup()
   m_bevPopup->addAction(bba);
   switch (m_zoomPosition)
   {
-    case KGraphViewerInterface::TopLeft:
+    case DotGraphView::TopLeft:
       btla->setChecked(true);
       break;
-    case KGraphViewerInterface::TopRight:
+    case DotGraphView::TopRight:
       btra->setChecked(true);
       break;
-    case KGraphViewerInterface::BottomLeft:
+    case DotGraphView::BottomLeft:
       bbla->setChecked(true);
       break;
-    case KGraphViewerInterface::BottomRight:
+    case DotGraphView::BottomRight:
       bbra->setChecked(true);
       break;
-    case KGraphViewerInterface::Auto:
+    case DotGraphView::Auto:
       bba->setChecked(true);
       break;
   }
@@ -559,7 +558,7 @@ DotGraphView::~DotGraphView()
   delete d_ptr;
 }
 
-KGraphViewerInterface::PannerPosition DotGraphView::zoomPos() const { Q_D(const DotGraphView); return d->m_zoomPosition; }
+DotGraphView::PannerPosition DotGraphView::zoomPos() const { Q_D(const DotGraphView); return d->m_zoomPosition; }
 
 double DotGraphView::zoom() const {Q_D(const DotGraphView); return d->m_zoom;}
 KSelectAction* DotGraphView::bevPopup() const {Q_D(const DotGraphView); return d->m_bevPopup;}
@@ -1224,18 +1223,22 @@ void DotGraphView::setLayoutCommand(const QString& command)
   reload();
 }
 
-KGraphViewerInterface::PannerPosition DotGraphView::zoomPos(const QString& s)
+DotGraphView::PannerPosition DotGraphView::zoomPos(const QString& s)
 {
-  KGraphViewerInterface::PannerPosition  res = DEFAULT_ZOOMPOS;
-  if (s == QString("KGraphViewerInterface::TopLeft")) res = KGraphViewerInterface::TopLeft;
-  if (s == QString("KGraphViewerInterface::TopRight")) res = KGraphViewerInterface::TopRight;
-  if (s == QString("KGraphViewerInterface::BottomLeft")) res = KGraphViewerInterface::BottomLeft;
-  if (s == QString("KGraphViewerInterface::BottomRight")) res = KGraphViewerInterface::BottomRight;
-  if (s == QString("Automatic")) res = KGraphViewerInterface::Auto;
+  PannerPosition  res = DEFAULT_ZOOMPOS;
+  if (s == QString("KGraphViewerInterface::TopLeft"))
+    res = TopLeft;
+  if (s == QString("KGraphViewerInterface::TopRight"))
+    res = TopRight;
+  if (s == QString("KGraphViewerInterface::BottomLeft"))
+    res = BottomLeft;
+  if (s == QString("KGraphViewerInterface::BottomRight"))
+    res = BottomRight;
+  if (s == QString("Automatic"))
+    res = Auto;
 
   return res;
 }
-
 void DotGraphView::setPannerEnabled(bool enabled)
 {
   Q_D(DotGraphView);
@@ -1252,19 +1255,8 @@ void DotGraphView::viewBevActivated(int newZoomPos)
   kDebug() << "Zoom position:" << newZoomPos;
   
   Q_D(DotGraphView);
-  d->m_zoomPosition = (KGraphViewerInterface::PannerPosition)newZoomPos;
   d->updateSizes();
   emit(sigViewBevActivated(newZoomPos));
-}
-
-QString DotGraphView::zoomPosString(KGraphViewerInterface::PannerPosition p)
-{
-    if (p == KGraphViewerInterface::TopRight) return QString("KGraphViewerInterface::TopRight");
-    if (p == KGraphViewerInterface::BottomLeft) return QString("KGraphViewerInterface::BottomLeft");
-    if (p == KGraphViewerInterface::BottomRight) return QString("KGraphViewerInterface::BottomRight");
-    if (p == KGraphViewerInterface::Auto) return QString("Automatic");
-
-    return QString("KGraphViewerInterface::TopLeft");
 }
 
 void DotGraphView::pageSetup()
@@ -1394,27 +1386,27 @@ void DotGraphView::slotBevToggled()
 
 void DotGraphView::slotBevTopLeft()
 {
-  viewBevActivated(KGraphViewerInterface::TopLeft);
+  viewBevActivated(TopLeft);
 }
 
 void DotGraphView::slotBevTopRight()
 {
-  viewBevActivated(KGraphViewerInterface::TopRight);
+  viewBevActivated(TopRight);
 }
 
 void DotGraphView::slotBevBottomLeft()
 {
-  viewBevActivated(KGraphViewerInterface::BottomLeft);
+  viewBevActivated(BottomLeft);
 }
 
 void DotGraphView::slotBevBottomRight()
 {
-  viewBevActivated(KGraphViewerInterface::BottomRight); 
+  viewBevActivated(BottomRight);
 }
 
 void DotGraphView::slotBevAutomatic()
 {
-  viewBevActivated(KGraphViewerInterface::Auto);
+  viewBevActivated(Auto);
 }
 
 void DotGraphView::slotUpdate()

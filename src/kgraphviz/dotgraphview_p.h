@@ -26,6 +26,7 @@
 #include "support/loadagraphthread.h"
 #include "support/layoutagraphthread.h"
 
+#include <QMap>
 #include <QSet>
 
 class QMenu;
@@ -68,7 +69,7 @@ public:
   GraphExporter m_exporter;
 
   // widget options
-  KGraphViewer::KGraphViewerInterface::PannerPosition m_zoomPosition, m_lastAutoPosition;
+  DotGraphView::PannerPosition m_zoomPosition, m_lastAutoPosition;
 
   DotGraph* m_graph;
 
