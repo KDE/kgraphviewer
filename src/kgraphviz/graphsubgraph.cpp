@@ -95,10 +95,10 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
     }
   }
 
-  if (canvasSubgraph())
+  if (canvasElement())
   {
-    canvasSubgraph()->modelChanged();
-    canvasSubgraph()->computeBoundingRect();
+    canvasElement()->modelChanged();
+    canvasElement()->computeBoundingRect();
   }
 //   kDebug() << "done";
 }

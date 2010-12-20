@@ -502,5 +502,5 @@ void CanvasEdge::computeBoundingRect()
 
 GraphEdge* CanvasEdge::edge() const
 {
-  return qobject_cast<GraphEdge*>(element());
+  return dynamic_cast<GraphEdge*>(element());
 }

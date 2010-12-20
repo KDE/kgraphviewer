@@ -738,11 +738,11 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
     }
   }
 
-  if (subgraph->canvasSubgraph() != 0)
+  if (subgraph->canvasElement() != 0)
   {
-    subgraph->canvasSubgraph()->hide();
-    delete subgraph->canvasSubgraph();
-    subgraph->setCanvasSubgraph(0);
+    subgraph->canvasElement()->hide();
+    delete subgraph->canvasElement();
+    subgraph->setCanvasElement(0);
   }
   foreach(GraphElement* element, subgraph->content())
   {

@@ -279,14 +279,14 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
   
   qreal gh = m_graph->height();
   
-  if (gsubgraph->canvasSubgraph() == 0)
+  if (gsubgraph->canvasElement() == 0)
   {
     kDebug() << "Creating canvas subgraph for" << gsubgraph->id();
     CanvasSubgraph* csubgraph = new CanvasSubgraph(q, gsubgraph, m_canvas, parent);
     csubgraph->initialize(
       scaleX, scaleY, m_xMargin, m_yMargin, gh,
       m_graph->wdhcf(), m_graph->hdvcf());
-    gsubgraph->setCanvasSubgraph(csubgraph);
+    gsubgraph->setCanvasElement(csubgraph);
     //       csubgraph->setZValue(gsubgraph->z());
     csubgraph->setZValue(zValue+=2);
     csubgraph->show();
@@ -312,12 +312,12 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
     }
     gnode->canvasElement()->computeBoundingRect();
   }
-  gsubgraph->canvasSubgraph()->computeBoundingRect();
+  gsubgraph->canvasElement()->computeBoundingRect();
   
   int newZvalue = zValue;
   foreach(GraphSubgraph* ssg, gsubgraph->subgraphs())
   {
-    int hereZvalue = displaySubgraph(ssg, zValue, gsubgraph->canvasSubgraph());
+    int hereZvalue = displaySubgraph(ssg, zValue, gsubgraph->canvasElement());
     if (hereZvalue > newZvalue)
       newZvalue = hereZvalue;
   }

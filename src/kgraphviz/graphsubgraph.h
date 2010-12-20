@@ -58,9 +58,6 @@ public:
   
   void updateWithSubgraph(const GraphSubgraph& subgraph);
   void updateWithSubgraph(Agraph_t* subgraph);
-  
-  CanvasSubgraph* canvasSubgraph() { return (CanvasSubgraph*)canvasElement();  }
-  void setCanvasSubgraph(CanvasSubgraph* cs) { setCanvasElement((CanvasElement*)cs); }
 
   virtual QString backColor() const;
 

@@ -19,6 +19,8 @@
 
 #include "canvassubgraph.h"
 
+#include "graphsubgraph.h"
+
 namespace KGraphViz
 {
   
@@ -28,7 +30,8 @@ CanvasSubgraph::CanvasSubgraph(
                               GraphSubgraph* gsubgraph,
                               QGraphicsScene* c,
                               QGraphicsItem* parent
-                            ) : CanvasElement(v,(GraphElement*)gsubgraph,c,parent)
+                            )
+  : CanvasElement(v, gsubgraph, c, parent)
 {
 }
 
