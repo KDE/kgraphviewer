@@ -1,8 +1,12 @@
-include_directories( ../ ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIRS} ${graphviz_INCLUDE_DIRECTORIES} )
+include_directories(
+  ../
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${CMAKE_CURRENT_BINARY_DIR}
+)
 
 link_directories(
-    ${CMAKE_BINARY_DIR}/lib
-    ${LIB_INSTALL_DIR}
+  ${CMAKE_BINARY_DIR}/lib
+  ${LIB_INSTALL_DIR}
 )
 
 ########### next target ###############
@@ -20,7 +24,7 @@ kde4_add_library(kgraphviewerlib SHARED ${kgraphviewerlib_LIB_SRCS})
 add_dependencies(kgraphviewerlib kgraphviz)
 
 add_definitions(-DQT_STL)
-target_link_libraries(kgraphviewerlib ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} ${graphviz_LIBRARIES} kgraphviz)
+target_link_libraries(kgraphviewerlib ${KDE4_KDE3SUPPORT_LIBS} ${graphviz_LIBRARIES} kgraphviz)
 
 set_target_properties(kgraphviewerlib PROPERTIES VERSION 2.1 SOVERSION 3 OUTPUT_NAME kgraphviewer )
 
@@ -34,7 +38,7 @@ set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
 kde4_add_plugin(kgraphviewerpart ${kgraphviewerpart_PART_SRCS})
 
 add_definitions(-DQT_STL)
-target_link_libraries(kgraphviewerpart ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} gvc graph pathplan cdt kgraphviewerlib kgraphviz)
+target_link_libraries(kgraphviewerpart ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} kgraphviewerlib kgraphviz)
 
 install( TARGETS kgraphviewerpart DESTINATION ${PLUGIN_INSTALL_DIR})
 

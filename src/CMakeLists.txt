@@ -2,7 +2,7 @@ add_subdirectory(kgraphviz)
 add_subdirectory(part)
 add_subdirectory(shared)
 
-include_directories( part ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${graphviz_INCLUDE_DIRECTORIES} )
+include_directories( part ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} )
 
 
 ########### kgraphviewer target ###############
@@ -58,7 +58,3 @@ install( TARGETS kgrapheditor ${INSTALL_TARGETS_DEFAULT_ARGS})
 install( FILES kgrapheditorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
 install( FILES kgrapheditorui.rc DESTINATION ${DATA_INSTALL_DIR}/kgrapheditor )
 install( FILES kgrapheditor.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
-
-
-
-#add_subdirectory(plasmaapplet)

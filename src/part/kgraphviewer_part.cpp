@@ -36,8 +36,6 @@
 #include <kiconloader.h>
 #include <kstandarddirs.h>
 
-#include <graphviz/gvc.h>
-
 #include <iostream>
 
 // #include "kgraphviewersettings.h"
@@ -448,7 +446,6 @@ KGraphViewerPartFactory::KGraphViewerPartFactory(QObject* parent)
 
 KGraphViewerPartFactory::~KGraphViewerPartFactory()
 {
-gvFreeContext(gvContext());
 delete s_about;
 }
 
