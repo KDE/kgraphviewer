@@ -18,7 +18,7 @@
 
 
 #include "kgraphviewer.h"
-#include "shared/kgraphviewer_interface.h"
+#include "kgraphviewer_interface.h"
 #include "kgraphviewerConfigDialog.h"
 #include "kgraphviewersettings.h"
 #include "ui_preferencesParsing.h"

@@ -19,7 +19,7 @@
 #ifndef _KGRAPHVIEWERPART_H_
 #define _KGRAPHVIEWERPART_H_
 
-#include "shared/kgraphviewer_interface.h"
+#include "kgraphviewer_interface.h"
 
 #include <kgraphviz/dotgraphview.h>
 
