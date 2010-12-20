@@ -28,10 +28,8 @@ namespace KGraphViz
 class DotGraphPrivate
 {
 public:
-  explicit DotGraphPrivate();
+  explicit DotGraphPrivate(DotGraph* parent);
   virtual ~DotGraphPrivate();
-
-  void init();
 
   unsigned int cellNumber(int x, int y) const;
   void computeCells();

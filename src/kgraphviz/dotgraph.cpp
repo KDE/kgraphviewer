@@ -49,6 +49,8 @@
 #include <QMutexLocker>
 #include <QUuid>
 
+#define AGINIT() aginitlib(sizeof(Agraph_t),sizeof(Agnode_t),sizeof(Agedge_t))
+
 using namespace boost;
 using namespace boost::spirit::classic;
 
@@ -58,7 +60,8 @@ using namespace KGraphViz;
 
 const distinct_parser<> keyword_p("0-9a-zA-Z_");
 
-DotGraphPrivate::DotGraphPrivate() :
+DotGraphPrivate::DotGraphPrivate(DotGraph* parent) :
+  q_ptr(parent),
   m_width(0.0), m_height(0.0),m_scale(1.0),
   m_directed(true), m_strict(false),
   m_horizCellFactor(0), m_vertCellFactor(0),
@@ -66,28 +69,26 @@ DotGraphPrivate::DotGraphPrivate() :
   m_useLibrary(false),
   m_readWrite(false)
 {
+  AGINIT();
+
+  Q_Q(DotGraph);
+  q->connect(&m_graphIO, SIGNAL(finished()), q, SIGNAL(readyToDisplay()));
 }
 
 DotGraphPrivate::~DotGraphPrivate()
 {
 }
 
-void DotGraphPrivate::init()
-{
-  Q_Q(DotGraph);
-  q->connect(&m_graphIO, SIGNAL(finished()), q, SIGNAL(readyToDisplay()));
-}
-
 DotGraph::DotGraph() :
   GraphElement(),
-  d_ptr(new DotGraphPrivate)
+  d_ptr(new DotGraphPrivate(this))
 {
   setId("unnamed");
 }
 
 DotGraph::DotGraph(const QString& layoutCommand, const QString& fileName) :
   GraphElement(),
-  d_ptr(new DotGraphPrivate)
+  d_ptr(new DotGraphPrivate(this))
 {
   setId("unnamed");
 
