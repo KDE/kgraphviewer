@@ -82,9 +82,10 @@ protected:
 
   void setBoundingRect(const QRectF& rect);
 
+  CanvasElementPrivate* const d_ptr;
+
 private:
   Q_DECLARE_PRIVATE(CanvasElement)
-  CanvasElementPrivate* const d_ptr;
 };
 
 }

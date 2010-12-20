@@ -67,9 +67,11 @@ public:
 
   GraphEdge* edge() const;
 
+protected:
+  CanvasEdgePrivate* const d_ptr;
+
 private:
   Q_DECLARE_PRIVATE(CanvasEdge);
-  CanvasEdgePrivate* const d_ptr;
 };
 
 }

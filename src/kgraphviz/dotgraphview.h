@@ -191,14 +191,15 @@ protected:
   void timerEvent ( QTimerEvent * event );
   void leaveEvent ( QEvent * event );
   void enterEvent ( QEvent * event );
-  
+
+  DotGraphViewPrivate * const d_ptr;
+
 private Q_SLOTS:
   void slotAGraphReadFinished();
   void slotAGraphLayoutFinished();
 
 private:
   Q_DECLARE_PRIVATE(DotGraphView);
-  DotGraphViewPrivate * const d_ptr;
 };
 
 }

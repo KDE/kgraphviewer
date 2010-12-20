@@ -84,6 +84,7 @@
 using namespace KGraphViz;
 
 DotGraphViewPrivate::DotGraphViewPrivate(KActionCollection* actions, DotGraphView* parent) :
+  q_ptr( parent ),
   m_labelViews(),
   m_popup(0),
   m_zoom(1),
@@ -105,8 +106,7 @@ DotGraphViewPrivate::DotGraphViewPrivate(KActionCollection* actions, DotGraphVie
   m_highlighting(false),
   m_loadThread(),
   m_layoutThread(),
-  m_backgroundColor(QColor("white")),
-  q_ptr( parent )
+  m_backgroundColor(QColor("white"))
 {
 }
 

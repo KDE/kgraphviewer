@@ -126,9 +126,11 @@ public:
 Q_SIGNALS:
   void readyToDisplay();
 
+protected:
+  DotGraphPrivate* const d_ptr;
+
 private:
   Q_DECLARE_PRIVATE(DotGraph);
-  DotGraphPrivate* d_ptr;
 };
 
 }

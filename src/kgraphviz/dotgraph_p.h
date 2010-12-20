@@ -25,8 +25,6 @@
 namespace KGraphViz
 {
 
-class DotGraph;
-
 class DotGraphPrivate
 {
 public:
@@ -37,6 +35,9 @@ public:
 
   unsigned int cellNumber(int x, int y) const;
   void computeCells();
+
+  Q_DECLARE_PUBLIC(DotGraph);
+  DotGraph* q_ptr;
 
   GraphIO m_graphIO;
 
@@ -60,10 +61,6 @@ public:
   bool m_useLibrary;
 
   bool m_readWrite;
-
-private:
-  Q_DECLARE_PUBLIC(DotGraph);
-  DotGraph* q_ptr;
 };
 
 }

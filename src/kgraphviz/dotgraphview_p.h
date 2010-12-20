@@ -54,6 +54,9 @@ public:
   KActionCollection* actionCollection() {return m_actions;}
   int displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent = 0);
 
+  DotGraphView * const q_ptr;
+  Q_DECLARE_PUBLIC(DotGraphView);
+
   QSet<QGraphicsSimpleTextItem*> m_labelViews;
   QGraphicsScene* m_canvas;
   QMenu* m_popup;
@@ -114,10 +117,6 @@ public:
 
   /// The graph background color
   QColor m_backgroundColor;
-
-private:
-  DotGraphView * const q_ptr;
-  Q_DECLARE_PUBLIC(DotGraphView);
 };
 
 }
