@@ -73,8 +73,6 @@ public:
   bool loadLibrary(const QString& dotFileName);
   bool loadLibrary(Agraph_t* graph, const QString& layoutCommand = "dot");
 
-  virtual void wheelEvent(QWheelEvent* e);
-
   /// multiplies current zoom factor with @p factor
   void applyZoom(double factor);
   /// sets zoom factor to @p factor
@@ -187,6 +185,7 @@ protected:
   void keyPressEvent(QKeyEvent*);
   void focusInEvent(QFocusEvent*);
   void focusOutEvent(QFocusEvent*);
+  void wheelEvent(QWheelEvent* e);
   
   void timerEvent ( QTimerEvent * event );
   void leaveEvent ( QEvent * event );
