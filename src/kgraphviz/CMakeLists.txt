@@ -15,7 +15,7 @@ link_directories(
     ${LIB_INSTALL_DIR}
 )
 
-set( kgraphvz_LIB_SRCS
+set(kgraphvz_LIB_SRCS
   canvasedge.cpp
   canvaselement.cpp
   canvasnode.cpp
@@ -49,3 +49,30 @@ set_target_properties(kgraphviz PROPERTIES VERSION 1.0 SOVERSION 1 OUTPUT_NAME k
 
 ### install
 install(TARGETS kgraphviz ${INSTALL_TARGETS_DEFAULT_ARGS})
+
+install(FILES
+  kgraphviz_export.h
+
+  canvasedge.h
+  canvaselement.h
+  canvasnode.h
+  canvassubgraph.h
+
+  graphedge.h
+  graphexporter.h
+  graphelement.h
+  graphio.h
+  graphnode.h
+  graphsubgraph.h
+  dotgraph.h
+
+  dotgraphview.h
+  pannerview.h
+  DESTINATION ${INCLUDE_INSTALL_DIR}/kgraphviz COMPONENT Devel
+)
+
+install(FILES
+  # TODO: Get rid off this header here
+  support/dotrenderop.h
+  DESTINATION ${INCLUDE_INSTALL_DIR}/kgraphviz/support COMPONENT Devel
+)
