@@ -1,6 +1,5 @@
 add_subdirectory(kgraphviz)
 add_subdirectory(part)
-add_subdirectory(shared)
 
 include_directories( part ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} )
 

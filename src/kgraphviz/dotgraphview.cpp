@@ -1298,7 +1298,7 @@ void DotGraphView::printPreview()
 bool DotGraphView::reload()
 {
   Q_D(DotGraphView);
-  d->m_graph->update();
+  return d->m_graph->update();
 }
 
 void DotGraphView::initEmpty()

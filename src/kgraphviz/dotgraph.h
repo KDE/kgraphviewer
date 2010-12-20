@@ -115,7 +115,7 @@ public:
   void moveExistingNodeToMainGraph(QMap<QString,QString> attribs);
 
   void addNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
-  void removeAttribute(const QString& nodeName, const QString& attribName);
+  void removeElementAttribute(const QString& nodeName, const QString& attribName);
   void renameNode(const QString& oldNodeName, const QString& newNodeName);
   void removeNodeNamed(const QString& nodeName);
   void removeNodeFromSubgraph(const QString& nodeName, const QString& subgraphName);

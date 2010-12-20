@@ -323,7 +323,7 @@ void KGraphViewerPart::slotSetAttribute(const QString& elementId, const QString&
 
 void KGraphViewerPart::slotRemoveAttribute(const QString& nodeName, const QString& attribName)
 {
-  d->m_widget->graph()->removeAttribute(nodeName, attribName);
+  d->m_widget->graph()->removeElementAttribute(nodeName, attribName);
 }
 
 void KGraphViewerPart::slotRemoveEdge(const QString& id)
