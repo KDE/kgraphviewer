@@ -759,8 +759,10 @@ bool DotGraphView::displayGraph()
       kDebug() << "              "<< gedge->fromNode()->id();
       kDebug() << "edge toNode=" << (void*)gedge->toNode();
       kDebug() << "              "<< gedge->toNode()->id();
-      CanvasEdge* cedge = new CanvasEdge(this, gedge, d->m_canvas, scaleX, scaleY, d->m_xMargin,
-          d->m_yMargin, gh, d->m_graph->wdhcf(), d->m_graph->hdvcf());
+      CanvasEdge* cedge = new CanvasEdge(this, gedge, d->m_canvas);
+      cedge->initialize(scaleX, scaleY,
+                        d->m_xMargin, d->m_yMargin, gh,
+                        d->m_graph->wdhcf(), d->m_graph->hdvcf());
 
       gedge->setCanvasElement(cedge);
   //     std::cerr << "setting z = " << gedge->z() << std::endl;

@@ -56,9 +56,6 @@ CanvasEdgePrivate::~CanvasEdgePrivate()
 CanvasEdge::CanvasEdge(DotGraphView* view,
                        GraphEdge* e,
                        QGraphicsScene* scene,
-                       qreal scaleX, qreal scaleY,
-                       qreal xMargin, qreal yMargin, qreal gh,
-                       qreal wdhcf, qreal hdvcf,
                        QGraphicsItem* parent) :
   CanvasElement(view, e, scene, parent),
   d_ptr(new CanvasEdgePrivate)
@@ -67,11 +64,8 @@ CanvasEdge::CanvasEdge(DotGraphView* view,
   setBoundingRegionGranularity(0.9);
   setFont(*FontsCache::changeable().fromName(e->fontName()));
 
-  kDebug() << scaleX << scaleY << xMargin << yMargin << /*gh*/0 << wdhcf << hdvcf << font();
-
-  initialize(scaleX, scaleY, xMargin, yMargin, /*gh*/0, wdhcf, hdvcf);
   kDebug() << "boundingRect computed: " << boundingRect();
-  
+
   QString tipStr = i18n("%1 -> %2\nlabel='%3'",
       edge()->fromNode()->id(),edge()->toNode()->id(),e->label());
   setToolTip(tipStr);
