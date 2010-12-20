@@ -20,11 +20,12 @@
 #ifndef KGRAPHVIEWER_FONTSCACHE_H
 #define KGRAPHVIEWER_FONTSCACHE_H
 
-#include "Singleton.h"
+#include "singleton.h"
 
-#include <qfont.h>
-#include <qmap.h>
-#include <qstring.h>
+#include <QMap>
+#include <QString>
+
+class QFont;
 
 /**
  * This is a map of fonts used in KgraphViewer

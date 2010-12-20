@@ -3,7 +3,6 @@ add_definitions(-DQT_USE_FAST_CONCATENATION)
 add_definitions(-DQT_USE_FAST_OPERATOR_PLUS)
 
 include_directories(
-  ${CMAKE_SOURCE_DIR}/src
   ${CMAKE_CURRENT_SOURCE_DIR}
 
   ${Boost_INCLUDE_DIRS}
