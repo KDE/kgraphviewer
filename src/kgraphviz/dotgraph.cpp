@@ -80,14 +80,12 @@ DotGraphPrivate::~DotGraphPrivate()
 }
 
 DotGraph::DotGraph() :
-  GraphElement(),
   d_ptr(new DotGraphPrivate(this))
 {
   setId("unnamed");
 }
 
 DotGraph::DotGraph(const QString& layoutCommand, const QString& fileName) :
-  GraphElement(),
   d_ptr(new DotGraphPrivate(this))
 {
   setId("unnamed");

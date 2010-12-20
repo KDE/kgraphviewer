@@ -39,19 +39,7 @@ namespace KGraphViz
 {
 
 DotGraphParsingHelper::DotGraphParsingHelper():
-  attrid(),
-  valid(),
-  attributed(),
-  subgraphid(),
   uniq(0),
-  attributes(),
-  graphAttributes(),
-  nodesAttributes(),
-  edgesAttributes(),
-  graphAttributesStack(),
-  nodesAttributesStack(),
-  edgesAttributesStack(),
-  edgebounds(),
   z(0),
   maxZ(0),
   graph(0),
