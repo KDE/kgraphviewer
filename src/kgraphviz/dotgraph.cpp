@@ -505,7 +505,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     while (nge != NULL)
     {
       kDebug() << "edge " << nge->id;
-      QString edgeName = QString(nge->head->name) + nge->tail->name;
+      const QString edgeName = QLatin1String(nge->head->name) + QLatin1String(nge->tail->name);
       if (edges().contains(edgeName))
       {
         kDebug() << "edge known" << nge->id;
