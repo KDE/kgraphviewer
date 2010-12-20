@@ -24,21 +24,16 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
-/*
- * Callgraph View
- */
-
 #ifndef PANNER_VIEW_H
 #define PANNER_VIEW_H
 
 #include <QGraphicsView>
-#include <QMouseEvent>
 
 namespace KGraphViz
 {
 
 class DotGraphView;
+class PannerViewPrivate;
 
 /**
  * A panner layed over a QCanvas
@@ -49,14 +44,15 @@ class PannerView: public QGraphicsView
 
 public:
   explicit PannerView(DotGraphView * parent, const char * name = 0);
+  virtual ~PannerView();
 
-  inline void setDrawingEnabled(bool val) {m_drawContents = val;}
+  void setDrawingEnabled(bool enabled);
 
-public slots:
-  void setZoomRect(QRectF r);
+public Q_SLOTS:
+  void setZoomRect(QRectF rectangle);
   void moveZoomRectTo(const QPointF& newPos, const bool notify = true);
 
-signals:
+Q_SIGNALS:
   void zoomRectMovedTo(QPointF newPos);
   void zoomRectMoveFinished();
 
@@ -67,12 +63,10 @@ protected:
   virtual void drawForeground(QPainter * p, const QRectF & rect );
   virtual void contextMenuEvent(QContextMenuEvent* event);
 
+  PannerViewPrivate* const d_ptr;
+
 private:
-  QRectF m_zoomRect;
-  bool m_movingZoomRect;
-  QPointF m_lastPos;
-  bool m_drawContents;
-  DotGraphView* m_parent;
+  Q_DECLARE_PRIVATE(PannerView)
 };
 
 }

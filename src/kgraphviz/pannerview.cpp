@@ -44,16 +44,42 @@
 
 #include "dotgraphview.h"
 
-namespace KGraphViz
-{
-//
-// PannerView
-//
-PannerView::PannerView(DotGraphView * parent, const char * name)
-  : QGraphicsView(parent), m_drawContents(true), m_parent(parent)
-{
-  m_movingZoomRect = false;
+using namespace KGraphViz;
 
+class KGraphViz::PannerViewPrivate
+{
+public:
+  PannerViewPrivate(DotGraphView* parent);
+  ~PannerViewPrivate();
+
+  inline DotGraphView* parent() const { return q_ptr; }
+
+  Q_DECLARE_PUBLIC(DotGraphView)
+  DotGraphView* const q_ptr;
+
+  QRectF m_zoomRect;
+  bool m_movingZoomRect;
+  QPointF m_lastPos;
+  bool m_drawContents;
+};
+
+PannerViewPrivate::PannerViewPrivate(DotGraphView* parent)
+  : q_ptr(parent)
+  , m_movingZoomRect(false)
+  , m_drawContents(true)
+{
+
+}
+
+PannerViewPrivate::~PannerViewPrivate()
+{
+
+}
+
+PannerView::PannerView(DotGraphView * parent, const char * name)
+  : QGraphicsView(parent)
+  , d_ptr(new PannerViewPrivate(parent))
+{
   // why doesn't this avoid flicker ?
   // viewport()->setBackgroundMode(Qt::NoBackground);
   setBackgroundMode(Qt::NoBackground);
@@ -69,34 +95,40 @@ PannerView::PannerView(DotGraphView * parent, const char * name)
     "will cause the view to follow the movement.</p>"));
 }
 
-void PannerView::setZoomRect(QRectF r)
+PannerView::~PannerView()
 {
+  delete d_ptr;
+}
+
+void PannerView::setZoomRect(QRectF rectangle)
+{
+  Q_D(PannerView);
 //   kDebug() << "PannerView::setZoomRect " << r;
-  if (r == m_zoomRect) {
+  if (rectangle == d->m_zoomRect) {
     return;
   }
-  scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
+  scene()->invalidate(d->m_zoomRect, QGraphicsScene::ForegroundLayer);
   // get new zoom rect
-  m_zoomRect = r;
-  qreal q = mapToScene(15,0).x();
-  qreal d = mapToScene(10,0).x();
-  if (!m_zoomRect.isValid() || m_zoomRect.width() < q || m_zoomRect.height() < q) 
+  d->m_zoomRect = rectangle;
+  const qreal q1 = mapToScene(15,0).x();
+  const qreal d1 = mapToScene(10,0).x();
+  if (!d->m_zoomRect.isValid() || d->m_zoomRect.width() < q1 || d->m_zoomRect.height() < q1)
   {
-    double factor = ((double)m_zoomRect.width())/m_zoomRect.height();
+    double factor = ((double)d->m_zoomRect.width())/d->m_zoomRect.height();
     qreal newWidth, newHeight;
     if (factor > 1.0)
     {
-      newWidth = q;
+      newWidth = q1;
       newHeight = newWidth/factor;
-      if (newHeight < d) newHeight = d;
+      if (newHeight < d1) newHeight = d1;
     }
     else
     {
-      newHeight = q;
+      newHeight = q1;
       newWidth = newHeight*factor;
-      if (newWidth < d) newWidth = d;
+      if (newWidth < d1) newWidth = d1;
     }
-    QRectF newRect = m_zoomRect;
+    QRectF newRect = d->m_zoomRect;
     qreal newXPos = newRect.x() + (newRect.width()/2) - newWidth/2;
     newXPos = (newXPos<0)?0:newXPos;
     newRect.setX(newXPos);
@@ -105,48 +137,56 @@ void PannerView::setZoomRect(QRectF r)
     newRect.setY(newYPos);
     newRect.setWidth(newWidth);
     newRect.setHeight(newHeight);
-    m_zoomRect = newRect;
+    d->m_zoomRect = newRect;
   }
-  scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
+  scene()->invalidate(d->m_zoomRect, QGraphicsScene::ForegroundLayer);
 }
 
 void PannerView::moveZoomRectTo(const QPointF& newPos, bool notify)
 {
-  if (!m_zoomRect.isValid()) {
+  Q_D(PannerView);
+  if (!d->m_zoomRect.isValid()) {
     return;
   }
 
-  if (m_zoomRect.center() == newPos) {
+  if (d->m_zoomRect.center() == newPos) {
     kDebug() << "same pos, don't do anything";
     return;
   }
 
-  scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
-  m_zoomRect.moveCenter(newPos);
-  scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
+  scene()->invalidate(d->m_zoomRect, QGraphicsScene::ForegroundLayer);
+  d->m_zoomRect.moveCenter(newPos);
+  scene()->invalidate(d->m_zoomRect, QGraphicsScene::ForegroundLayer);
 
-  if (m_zoomRect.isValid() && notify) {
+  if (d->m_zoomRect.isValid() && notify) {
     emit zoomRectMovedTo(newPos);
-    m_lastPos = newPos;
+    d->m_lastPos = newPos;
   }
+}
+
+void PannerView::setDrawingEnabled(bool enabled)
+{
+  Q_D(PannerView);
+  d->m_drawContents = enabled;
 }
 
 void PannerView::drawForeground(QPainter * p, const QRectF & rect )
 {
-  if (m_zoomRect.isValid() && rect.intersects(m_zoomRect))
+  Q_D(const PannerView);
+  if (d->m_zoomRect.isValid() && rect.intersects(d->m_zoomRect))
   {
     p->save();
-    if (m_zoomRect.width() > 10 && m_zoomRect.height() > 10)
+    if (d->m_zoomRect.width() > 10 && d->m_zoomRect.height() > 10)
     {
       p->setPen(Qt::red);
       // substract pen width, i.e. draw inside
       qreal penWidth = p->pen().widthF();
-      p->drawRect(m_zoomRect.adjusted(-penWidth, -penWidth, -penWidth, -penWidth));
+      p->drawRect(d->m_zoomRect.adjusted(-penWidth, -penWidth, -penWidth, -penWidth));
     }
     else
     {
       QBrush brush(Qt::red);
-      p->fillRect(m_zoomRect, brush);
+      p->fillRect(d->m_zoomRect, brush);
     }
     p->restore();
   }
@@ -154,18 +194,20 @@ void PannerView::drawForeground(QPainter * p, const QRectF & rect )
 
 void PannerView::mousePressEvent(QMouseEvent* e)
 {
+  Q_D(PannerView);
   if (e->button() != Qt::LeftButton) {
     return;
   }
 /*  kDebug() << "PannerView::mousePressEvent " 
-              << mapToScene(e->pos()) << " / " << m_zoomRect << " / " << m_zoomRect.center() <<endl;*/
+              << mapToScene(e->pos()) << " / " << d->m_zoomRect << " / " << d->m_zoomRect.center() <<endl;*/
   moveZoomRectTo(mapToScene(e->pos()));
-  m_movingZoomRect = true;
+  d->m_movingZoomRect = true;
 }
 
 void PannerView::mouseMoveEvent(QMouseEvent* e)
 {
-  if (!m_movingZoomRect) {
+  Q_D(const PannerView);
+  if (!d->m_movingZoomRect) {
     return;
   }
 
@@ -175,20 +217,20 @@ void PannerView::mouseMoveEvent(QMouseEvent* e)
 
 void PannerView::mouseReleaseEvent(QMouseEvent* e)
 {
+  Q_D(PannerView);
   if (e->button() != Qt::LeftButton) {
     return;
   }
   moveZoomRectTo(mapToScene(e->pos()));
 //   kDebug() << "PannerView::mouseReleaseEvent " << pos;
-  m_movingZoomRect = false;
+  d->m_movingZoomRect = false;
   emit zoomRectMoveFinished();
 }
 
 void PannerView::contextMenuEvent(QContextMenuEvent* event)
 {
-  m_parent->contextMenuEvent(event);
-}
-
+  Q_D(const PannerView);
+  d->parent()->contextMenuEvent(event);
 }
 
 #include "pannerview.moc"
