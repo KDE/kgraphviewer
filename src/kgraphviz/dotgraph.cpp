@@ -23,6 +23,7 @@
 #include "canvasedge.h"
 #include "canvasnode.h"
 #include "canvassubgraph.h"
+#include "support/dotdefaults.h"
 #include "support/dotgrammar.h"
 #include "support/dotgraphparsinghelper.h"
 

@@ -30,7 +30,6 @@
 #include "graphnode.h"
 #include "graphedge.h"
 #include "kgraphviz_export.h"
-#include "support/dotdefaults.h"
 
 class Agraph_t;
 
