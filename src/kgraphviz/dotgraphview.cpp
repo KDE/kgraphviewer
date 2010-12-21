@@ -648,8 +648,7 @@ bool DotGraphView::loadLibrary(const QString& dotFileName)
   kDebug() << "Load file:" << dotFileName;
   
   Q_D(DotGraphView);
-  if (d->m_canvas)
-    d->m_canvas->clear();
+  // TODO: Clear canvas
   QGraphicsSimpleTextItem* loadingLabel = d->m_canvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
   loadingLabel->setZValue(100);
   centerOn(loadingLabel);
@@ -685,7 +684,7 @@ bool DotGraphView::displayGraph()
   {
     setBackgroundColor(QColor(d->m_graph->backColor()));
   }
-  d->m_canvas->clear();
+  // TODO: Clear canvas
 
   if (d->m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
   {
