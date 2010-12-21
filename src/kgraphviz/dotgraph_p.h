@@ -59,6 +59,10 @@ public:
   bool m_useLibrary;
 
   bool m_readWrite;
+
+private:
+  void graphIOFinished();
+  void graphIOError(const QString& error);
 };
 
 }

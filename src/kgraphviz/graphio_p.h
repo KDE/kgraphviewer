@@ -35,6 +35,8 @@ public:
 
   void reset();
 
+  static QString toString(QProcess::ProcessError error);
+
   DotGraph* m_dotGraph;
 
   QProcess m_process;
@@ -45,6 +47,7 @@ Q_SIGNALS:
 
 private Q_SLOTS:
   void processFinished(int, QProcess::ExitStatus);
+  void processError(QProcess::ProcessError);
 };
 
 #endif

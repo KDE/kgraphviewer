@@ -72,11 +72,27 @@ DotGraphPrivate::DotGraphPrivate(DotGraph* parent) :
   AGINIT();
 
   Q_Q(DotGraph);
-  q->connect(&m_graphIO, SIGNAL(finished()), q, SIGNAL(readyToDisplay()));
+  q->connect(&m_graphIO, SIGNAL(finished()), SLOT(graphIOFinished()));
+  q->connect(&m_graphIO, SIGNAL(error(QString)), SLOT(graphIOError(QString)));
 }
 
 DotGraphPrivate::~DotGraphPrivate()
 {
+}
+
+void DotGraphPrivate::graphIOFinished()
+{
+  kDebug();
+
+  Q_Q(DotGraph);
+  DotGraph* updatedGraph = m_graphIO.readData();
+  q->updateWithGraph(*updatedGraph);
+}
+
+void DotGraphPrivate::graphIOError(const QString& error)
+{
+  // TODO: add error handling here
+  kDebug() << "Error message from graph IO:" << error;
 }
 
 DotGraph::DotGraph() :
@@ -282,7 +298,7 @@ bool DotGraph::parseDot(const QString& fileName)
   kDebug() << fileName;
 
   Q_D(DotGraph);
-  d->m_graphIO.loadFromDotFile(fileName);
+  d->m_graphIO.loadFromDotFile(fileName, layoutCommand());
 
   return true;
 }
@@ -631,6 +647,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
     }
   }
   kDebug() << "Done";
+  emit readyToDisplay();
   d->computeCells();
 }
 

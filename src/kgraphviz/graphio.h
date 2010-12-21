@@ -21,6 +21,7 @@
 #define GRAPHIO_H
 
 #include <QObject>
+#include <QProcess>
 
 #include "kgraphviz_export.h"
 

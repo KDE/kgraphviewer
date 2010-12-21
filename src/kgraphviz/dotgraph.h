@@ -131,11 +131,11 @@ protected:
 
 private:
   Q_DECLARE_PRIVATE(DotGraph);
+
+  Q_PRIVATE_SLOT(d_func(), void graphIOFinished());
+  Q_PRIVATE_SLOT(d_func(), void graphIOError(QString));
 };
 
 }
 
 #endif
-
-
-

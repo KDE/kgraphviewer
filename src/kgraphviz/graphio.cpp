@@ -34,6 +34,7 @@
 #include <boost/spirit/include/classic_assign_actor.hpp>
 #include <boost/spirit/include/classic_confix.hpp>
 #include <boost/spirit/include/classic_distinct.hpp>
+#include <kurl.h>
 
 using namespace boost;
 using namespace boost::spirit::classic;
@@ -51,6 +52,9 @@ GraphIOPrivate::GraphIOPrivate(QObject* parent)
   connect(&m_process,
           SIGNAL(finished(int, QProcess::ExitStatus)),
           SLOT(processFinished(int, QProcess::ExitStatus)));
+  connect(&m_process,
+          SIGNAL(error(QProcess::ProcessError)),
+          SLOT(processError(QProcess::ProcessError)));
 }
 
 GraphIOPrivate::~GraphIOPrivate()
@@ -65,18 +69,37 @@ void GraphIOPrivate::reset()
   }
 }
 
+QString GraphIOPrivate::toString(QProcess::ProcessError error)
+{
+  switch (error)
+  {
+  case QProcess::FailedToStart:
+    return i18n("Unable to start process.");
+  case QProcess::Crashed:
+    return i18n("Process crashed.");
+  case QProcess::Timedout:
+    return i18n("Process timed out.");
+  case QProcess::WriteError:
+    return i18n("Was not able to write data to the process.");
+  case QProcess::ReadError:
+    return i18n("Was not able to read data from the process.");
+  default:
+    return i18n("Unknown error running the process.");
+  }
+}
+
 void GraphIOPrivate::processFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  qDebug() << "Exit status:" << exitStatus;
+  kDebug() << "Error message:" << toString(m_process.error()) << m_process.errorString();
 
+  // TODO: Better error handling here
+  QByteArray result = m_process.readAll();
   if (exitCode != 0) {
-    emit error(i18n("Failed to load from dot file"));
+    emit error(i18n("Failed to load from dot file: %1", result.data()));
     return;
   }
 
-  QByteArray result = m_process.readAll();
   result.replace("\\\n", "");
-
   kDebug() << "String size is:" << result.size();
   kDebug() << "String content is:" << result;
   const std::string content =  result.data();
@@ -111,6 +134,12 @@ void GraphIOPrivate::processFinished(int exitCode, QProcess::ExitStatus exitStat
   }
 }
 
+void GraphIOPrivate::processError(QProcess::ProcessError error)
+{
+  kDebug();
+  emit(toString(error));
+}
+
 GraphIO::GraphIO(QObject* parent)
   : QObject(parent)
   , d_ptr(new GraphIOPrivate)
@@ -138,16 +167,21 @@ void GraphIO::loadFromDotFile(const QString& fileName, const QString& layoutComm
 {
   Q_D(GraphIO);
 
+  // TODO: Better file handling here
+  KUrl url(fileName);
+  QString localFile = url.toLocalFile();
+
   const QString layoutCommandForFile = (layoutCommand.isEmpty()
     ? internalLayoutCommandForFile(fileName)
     : layoutCommand);
 
   QStringList args;
-  args << fileName;
+  args << "-Txdot";
+  args << localFile;
 
-  kDebug() << "Loading from" << fileName << "with" << layoutCommandForFile << "executable.";
+  kDebug() << "Running:" << qPrintable(layoutCommandForFile) << qPrintable(localFile);
   d->m_process.start(layoutCommandForFile, args, QIODevice::ReadOnly);
-  //kDebug() << "Started:" << d->m_process.waitForStarted(3000) << d->m_process.error();
+  kDebug() << "Started:" << d->m_process.waitForStarted(3000) << d->m_process.error();
 }
 
 void GraphIO::saveToDotFile(const DotGraph* dotGraph, const QString& fileName)
@@ -232,7 +266,7 @@ QString GraphIO::internalLayoutCommandForFile(const QString& fileName)
   std::string cmd = "dot";
   parse(s.c_str(),
         (
-          !(keyword_p("strict")) >> (keyword_p("graph")[assign_a(cmd,"neato")])
+          !(keyword_p("strict")) >> (keyword_p("graph")[assign_a(cmd,"dot")])
         ), (space_p|comment_p("/*", "*/")) );
 
   return QString::fromStdString(cmd); // + " -Txdot" ;
