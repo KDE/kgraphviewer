@@ -35,7 +35,7 @@ class CanvasElementPrivate;
 class GraphElement;
 class DotGraphView;
 
-class CanvasElement: public QObject, public QAbstractGraphicsShapeItem
+class CanvasElement : public QAbstractGraphicsShapeItem
 {
 public:
   CanvasElement(
