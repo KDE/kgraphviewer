@@ -28,7 +28,6 @@
 #include <KTemporaryFile>
 
 #include "dotgraph.h"
-#include "graphexporter.h"
 #include "support/dotgrammar.h"
 #include "support/dotgraphparsinghelper.h"
 
@@ -87,9 +86,9 @@ void GraphIOPrivate::processFinished(int exitCode, QProcess::ExitStatus exitStat
     phelper = 0;
   }
 
-  DotGraph graph;
+  DotGraph* graph = new DotGraph;
   phelper = new DotGraphParsingHelper;
-  phelper->graph = &graph;
+  phelper->graph = graph;
   phelper->z = 1;
   phelper->maxZ = 1;
   phelper->uniq = 0;
@@ -101,15 +100,15 @@ void GraphIOPrivate::processFinished(int exitCode, QProcess::ExitStatus exitStat
 
   if (parsingResult)
   {
-    m_dotGraph = new DotGraph;
-    m_dotGraph->updateWithGraph(graph);
+    m_dotGraph = graph;
+    emit(finished());
   }
   else
   {
+    delete graph;
     kError() << "parsing failed";
+    emit(error("Parsing failed"));
   }
-
-  emit(finished());
 }
 
 GraphIO::GraphIO(QObject* parent)
@@ -148,6 +147,7 @@ void GraphIO::loadFromDotFile(const QString& fileName, const QString& layoutComm
 
   kDebug() << "Loading from" << fileName << "with" << layoutCommandForFile << "executable.";
   d->m_process.start(layoutCommandForFile, args, QIODevice::ReadOnly);
+  //kDebug() << "Started:" << d->m_process.waitForStarted(3000) << d->m_process.error();
 }
 
 void GraphIO::saveToDotFile(const DotGraph* dotGraph, const QString& fileName)
@@ -182,11 +182,12 @@ void GraphIO::saveToDotFile(const DotGraph* dotGraph, const QString& fileName)
     (stream) << s;
   }
 
-//   kDebug() << "writing nodes";
+  kDebug() << "writing nodes";
   GraphNodeMap::const_iterator nit;
   for ( nit = dotGraph->nodes().begin();
         nit != dotGraph->nodes().end(); ++nit )
   {
+    kDebug() << "writing node" << (*nit)->id();
     (stream) << **nit;
   }
 
