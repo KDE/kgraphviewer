@@ -24,10 +24,8 @@
 #define GRAPH_SUBGRAPH_H
 
 #include "graphelement.h"
-#include "kgraphviz_export.h"
 
 #include <QMap>
-#include <QTextStream>
 
 class Agraph_t;
 
@@ -83,7 +81,7 @@ public:
 
   void retrieveSelectedElementsIds(QList<QString> selection);
   
- private:
+private:
   QList<GraphElement*> m_content;
   GraphSubgraphMap m_subgraphsMap;
 };
@@ -93,6 +91,3 @@ QTextStream& operator<<(QTextStream& stream, const GraphSubgraph& s);
 }
 
 #endif
-
-
-

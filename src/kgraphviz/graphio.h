@@ -21,7 +21,6 @@
 #define GRAPHIO_H
 
 #include <QObject>
-#include <QProcess>
 
 #include "kgraphviz_export.h"
 
@@ -48,13 +47,15 @@ public:
 
   static QString internalLayoutCommandForFile(const QString& fileName);
 
+protected:
+  GraphIOPrivate* const d_ptr;
+
 Q_SIGNALS:
   void finished();
   void error(QString);
 
 private:
   Q_DECLARE_PRIVATE(GraphIO)
-  GraphIOPrivate* const d_ptr;
 };
 
 }

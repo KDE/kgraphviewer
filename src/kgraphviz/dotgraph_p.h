@@ -22,6 +22,8 @@
 
 #include "graphio.h"
 
+#include <QVector>
+
 namespace KGraphViz
 {
 

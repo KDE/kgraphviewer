@@ -91,6 +91,3 @@ private:
 }
 
 #endif // CANVAS_ELEMENT_H
-
-
-

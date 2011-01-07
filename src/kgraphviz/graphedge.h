@@ -33,12 +33,9 @@
 #define GRAPH_EDGE_H
 
 #include "graphelement.h"
-#include "kgraphviz_export.h"
-#include "support/dotrenderop.h"
 
 #include <QStringList>
 #include <QMap>
-#include <QTextStream>
 
 class Agedge_t;
 

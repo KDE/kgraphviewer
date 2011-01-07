@@ -24,14 +24,6 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
-#ifndef CANVAS_EDGE_H
-#define CANVAS_EDGE_H
-
-#include "canvaselement.h"
-
-#include "graphexporter.h"
-
 /*
  * Canvas Items:
  * - CanvasNode       (Rectangular Area)
@@ -39,6 +31,12 @@
  * - CanvasEdgeLabel  (Label for edges)
  * - CanvasEdgeArrow  (Arrows at the end of the edge spline)
  */
+
+#ifndef CANVAS_EDGE_H
+#define CANVAS_EDGE_H
+
+#include "canvaselement.h"
+
 namespace KGraphViz
 {
 

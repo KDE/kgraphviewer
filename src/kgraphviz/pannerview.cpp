@@ -102,7 +102,7 @@ PannerView::~PannerView()
   delete d_ptr;
 }
 
-void PannerView::setZoomRect(QRectF rectangle)
+void PannerView::setZoomRect(const QRectF& rectangle)
 {
   Q_D(PannerView);
 //   kDebug() << "PannerView::setZoomRect " << r;

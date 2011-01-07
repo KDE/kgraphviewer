@@ -119,29 +119,6 @@ public:
 
   void setBackgroundColor(const QColor& color);
   
-Q_SIGNALS:
-  void zoomed(double factor);
-  void sigViewBevEnabledToggled(bool value);
-  void sigViewBevActivated(int newPos);
-  void graphLoaded();
-  void newNodeAdded(const QString&);
-  void newEdgeAdded(const QString&, const QString&);
-  /** signals that the user has activated a remove edge command */
-  void removeEdge(const QString&);
-  /** signals that the user has activated a remove edge command */
-  void removeNodeNamed(const QString&);
-  /** signals that the user has activated a remove element command */
-  void removeElement(const QString&);
-  /** signals the content of the new selection */
-  void selectionIs(const QList<QString>, const QPoint&);
-  /** let the application tweak the created edge if necessary */
-  void newEdgeFinished(
-      const QString&, const QString&,
-      const QMap<QString, QString>&);
-  void contextMenuEvent(const QString&, const QPoint&);
-  void hoverEnter(const QString&);
-  void hoverLeave(const QString&);
-  
 public Q_SLOTS:
   void zoomIn();
   void zoomOut();  
@@ -192,6 +169,29 @@ protected:
   void enterEvent ( QEvent * event );
 
   DotGraphViewPrivate * const d_ptr;
+
+Q_SIGNALS:
+  void zoomed(double factor);
+  void sigViewBevEnabledToggled(bool value);
+  void sigViewBevActivated(int newPos);
+  void graphLoaded();
+  void newNodeAdded(const QString&);
+  void newEdgeAdded(const QString&, const QString&);
+  /** signals that the user has activated a remove edge command */
+  void removeEdge(const QString&);
+  /** signals that the user has activated a remove edge command */
+  void removeNodeNamed(const QString&);
+  /** signals that the user has activated a remove element command */
+  void removeElement(const QString&);
+  /** signals the content of the new selection */
+  void selectionIs(const QList<QString>, const QPoint&);
+  /** let the application tweak the created edge if necessary */
+  void newEdgeFinished(
+      const QString&, const QString&,
+      const QMap<QString, QString>&);
+  void contextMenuEvent(const QString&, const QPoint&);
+  void hoverEnter(const QString&);
+  void hoverLeave(const QString&);
 
 private Q_SLOTS:
   void slotAGraphReadFinished();

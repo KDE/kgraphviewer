@@ -19,12 +19,14 @@
 #ifndef GRAPH_ELEMENT_H
 #define GRAPH_ELEMENT_H
 
+#include <QObject>
+
 #include "kgraphviz_export.h"
 #include "support/dotrenderop.h"
 
 #include <QList>
 #include <QMap>
-#include <QtCore/QTextStream>
+#include <QTextStream>
 
 namespace KGraphViz
 {
@@ -110,17 +112,14 @@ protected:
   QMap<QString,QString> m_attributes;
   QList<QString> m_originalAttributes;
 
+  GraphElementPrivate* const d_ptr;
+
 private:
   Q_DECLARE_PRIVATE(GraphElement);
-  GraphElementPrivate* const d_ptr;
 };
-
 
 QTextStream& operator<<(QTextStream& s, const GraphElement& n);
 
 }
 
 #endif
-
-
-

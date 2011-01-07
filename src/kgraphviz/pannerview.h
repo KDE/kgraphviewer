@@ -49,7 +49,7 @@ public:
   void setDrawingEnabled(bool enabled);
 
 public Q_SLOTS:
-  void setZoomRect(QRectF rectangle);
+  void setZoomRect(const QRectF& rectangle);
   void moveZoomRectTo(const QPointF& newPos, const bool notify = true);
 
 Q_SIGNALS:
@@ -72,6 +72,3 @@ private:
 }
 
 #endif
-
-
-

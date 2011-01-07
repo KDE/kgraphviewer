@@ -33,13 +33,8 @@
 #define GRAPH_NODE_H
 
 #include "graphelement.h"
-#include "kgraphviz_export.h"
-#include "support/dotrenderop.h"
 
-#include <QVector>
-#include <QList>
 #include <QMap>
-#include <QtCore/QTextStream>
 
 class Agnode_t;
 
@@ -75,6 +70,3 @@ QTextStream& operator<<(QTextStream& s, const GraphNode& n);
 }
 
 #endif
-
-
-
