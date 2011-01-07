@@ -489,9 +489,6 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing | QGraphicsView::DontClipPainter |
                         QGraphicsView::DontSavePainterState);
 
-  setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-  setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-  
   d->m_birdEyeView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   d->m_birdEyeView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   d->m_birdEyeView->raise();
