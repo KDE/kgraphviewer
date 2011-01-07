@@ -68,6 +68,10 @@ CanvasNode::CanvasNode(DotGraphView* v,
   setToolTip(tipStr);
 }
 
+CanvasNode::~CanvasNode()
+{
+}
+
 // CanvasHtmlNode::CanvasHtmlNode(
 //                                           DotGraphView* v, 
 //                                           GraphNode* n,

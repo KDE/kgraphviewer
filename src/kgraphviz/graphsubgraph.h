@@ -51,7 +51,7 @@ public:
   GraphSubgraph();
   explicit GraphSubgraph(Agraph_t* sg);
   
-  virtual ~GraphSubgraph() {}  
+  virtual ~GraphSubgraph();
 
   inline const GraphSubgraphMap& subgraphs() const {return m_subgraphsMap;}
   inline GraphSubgraphMap& subgraphs() {return m_subgraphsMap;}

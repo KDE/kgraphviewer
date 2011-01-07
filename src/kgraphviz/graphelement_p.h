@@ -22,6 +22,10 @@
 
 #include "graphelement.h"
 
+#include "canvaselement.h"
+
+#include <QSharedPointer>
+
 namespace KGraphViz
 {
 
@@ -37,7 +41,7 @@ public:
   double m_z;
 
   DotRenderOpVec m_renderOperations;
-  CanvasElement* m_canvasElement;
+  QSharedPointer<KGraphViz::CanvasElement> m_canvasElement;
 };
 
 }

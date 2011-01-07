@@ -59,6 +59,7 @@ GraphIOPrivate::GraphIOPrivate(QObject* parent)
 
 GraphIOPrivate::~GraphIOPrivate()
 {
+  kDebug();
 }
 
 void GraphIOPrivate::reset()

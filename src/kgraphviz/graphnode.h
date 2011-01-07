@@ -61,7 +61,7 @@ public:
   GraphNode(const GraphNode& gn);
   GraphNode(Agnode_t* gn);
   
-  virtual ~GraphNode() {}  
+  virtual ~GraphNode();
 
   virtual void updateWithNode(const GraphNode& node);
   virtual void updateWithNode(Agnode_t* node);

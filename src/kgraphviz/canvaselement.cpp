@@ -102,6 +102,8 @@ CanvasElement::CanvasElement(DotGraphView* v,
 
 CanvasElement::~CanvasElement()
 {
+  kDebug() << element()->label();
+  
   delete d_ptr;
 }
 

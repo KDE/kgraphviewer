@@ -48,6 +48,10 @@ GraphSubgraph::GraphSubgraph(graph_t* sg) :
   updateWithSubgraph(sg);
 }
 
+GraphSubgraph::~GraphSubgraph()
+{
+}
+
 void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
 {
   kDebug() << id() << subgraph.id();

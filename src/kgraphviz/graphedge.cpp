@@ -52,7 +52,7 @@ GraphEdge::GraphEdge() :
 
 GraphEdge::~GraphEdge()
 {
-//   kDebug() ;
+  kDebug();
 }
 
 GraphEdge::GraphEdge(const GraphEdge& edge) :
@@ -96,6 +96,8 @@ void GraphEdge::updateWithEdge(const GraphEdge& edge)
   m_arrowheads = edge.arrowheads();
   m_colors = edge.colors();
   m_dir = edge.dir();
+  m_fromNode = edge.m_fromNode;
+  m_toNode = edge.m_toNode;
   GraphElement::updateWithElement(edge);
   if (canvasElement())
   {

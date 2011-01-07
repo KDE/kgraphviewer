@@ -112,22 +112,12 @@ DotGraphViewPrivate::DotGraphViewPrivate(KActionCollection* actions, DotGraphVie
 
 DotGraphViewPrivate::~DotGraphViewPrivate()
 {
-  Q_Q(DotGraphView);
+  kDebug() << "enter";
 
-  delete m_birdEyeView;
-  m_birdEyeView = 0;
+  delete m_graph;
+  m_graph = 0;
 
-  if (m_popup != 0) {
-    delete m_popup;
-  }
-
-  if (m_canvas) {
-    q->setScene(0);
-    delete m_canvas;
-  }
-  if (m_graph != 0) {
-    delete m_graph;
-  }
+  kDebug() << "leave";
 }
 
 void DotGraphViewPrivate::updateSizes(QSizeF s)
@@ -332,7 +322,7 @@ void DotGraphViewPrivate::setupPopup()
     return;
   }
   kDebug() << "DotGraphView::setupPopup";
-  m_popup = new QMenu();
+  m_popup = new QMenu(q);
   
   m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"),q);
   actionCollection()->addAction("view_layout_algo",m_layoutAlgoSelectAction);
@@ -555,6 +545,8 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
 
 DotGraphView::~DotGraphView()
 {
+  kDebug();
+
   delete d_ptr;
 }
 
@@ -611,7 +603,7 @@ void DotGraphViewPrivate::setupCanvas()
   m_xMargin = 50;
   m_yMargin = 50;
 
-  QGraphicsScene* newCanvas = new QGraphicsScene();
+  QGraphicsScene* newCanvas = new QGraphicsScene(q);
   QGraphicsSimpleTextItem* item = newCanvas->addSimpleText(i18n("no graph loaded"));
 //   kDebug() << "Created canvas " << newCanvas;
   

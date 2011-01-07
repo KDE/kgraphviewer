@@ -73,7 +73,7 @@ PannerViewPrivate::PannerViewPrivate(DotGraphView* parent)
 
 PannerViewPrivate::~PannerViewPrivate()
 {
-
+  kDebug();
 }
 
 PannerView::PannerView(DotGraphView * parent, const char * name)
@@ -97,6 +97,8 @@ PannerView::PannerView(DotGraphView * parent, const char * name)
 
 PannerView::~PannerView()
 {
+  kDebug();
+  
   delete d_ptr;
 }
 

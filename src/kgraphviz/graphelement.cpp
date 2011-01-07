@@ -70,7 +70,7 @@ GraphElement::GraphElement() :
 
 GraphElement::GraphElement(const GraphElement& element) :
   QObject(),
-  d_ptr(element.d_ptr)
+  d_ptr(new GraphElementPrivate(*element.d_ptr))
 {
   kDebug() ;
   updateWithElement(element);
@@ -78,19 +78,21 @@ GraphElement::GraphElement(const GraphElement& element) :
 
 GraphElement::~GraphElement()
 {
+  kDebug() << id();
+  
   delete d_ptr;
 }
 
 CanvasElement* GraphElement::canvasElement() const
 {
   Q_D(const GraphElement);
-  return d->m_canvasElement;
+  return d->m_canvasElement.data();
 }
 
 void GraphElement::setCanvasElement(CanvasElement* canvasElement)
 {
   Q_D(GraphElement);
-  d->m_canvasElement = canvasElement;
+  d->m_canvasElement = QSharedPointer<CanvasElement>(canvasElement);
 }
 
 bool GraphElement::isSelected() const

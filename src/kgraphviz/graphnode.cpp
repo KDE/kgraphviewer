@@ -63,7 +63,12 @@ GraphElement(gn)
 GraphNode::GraphNode(node_t* gn) : GraphElement()
 {
   kDebug();
+
   updateWithNode(gn);
+}
+
+GraphNode::~GraphNode()
+{
 }
 
 void GraphNode::updateWithNode(const GraphNode& node)
@@ -83,7 +88,6 @@ void GraphNode::updateWithNode(node_t* node)
   kDebug() << node->name;
   m_attributes["id"] = node->name;
   m_attributes["label"] = ND_label(node)->text;
-
 
   renderOperations().clear();
   if (agget(node, (char*)"_draw_") != NULL)

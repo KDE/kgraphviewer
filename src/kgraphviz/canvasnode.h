@@ -46,7 +46,7 @@ public:
             QGraphicsScene* c,
             QGraphicsItem* parent = 0);
   
-  virtual ~CanvasNode() {}
+  virtual ~CanvasNode();
   
 };
 
