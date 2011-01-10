@@ -439,6 +439,7 @@ void DotGraph::saveTo(const QString& fileName)
 void DotGraph::updateWithGraph(graph_t* newGraph)
 {
   Q_D(DotGraph);
+  
   kDebug();
 
   // copy global graph render operations and attributes
@@ -522,8 +523,8 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     edge_t* nge = agfstout(newGraph, ngn);
     while (nge != NULL)
     {
-      kDebug() << "edge " << nge->id;
-      const QString edgeName = QLatin1String(nge->head->name) + QLatin1String(nge->tail->name);
+      kDebug() << "edge" << nge->id << edges();
+      const QString edgeName = QString::number(nge->id);
       if (edges().contains(edgeName))
       {
         kDebug() << "edge known" << nge->id;
@@ -1015,7 +1016,7 @@ void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString,QString> attrib
   }
   else
   {
-    newEdge->setId(src+tgt+QUuid::createUuid().toString().remove('{').remove('}').remove('-'));
+    newEdge->setId(QString::number(edges().size()+1));
   }
   newEdge->setFromNode(srcElement);
   newEdge->setToNode(tgtElement);

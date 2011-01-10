@@ -182,6 +182,10 @@ void CanvasElement::setFont(const QFont& font)
 void CanvasElement::setBoundingRect(const QRectF& rect)
 {
   Q_D(CanvasElement);
+  if (d->m_boundingRect == rect)
+    return;
+
+  prepareGeometryChange();
   d->m_boundingRect = rect;
 }
 
@@ -191,7 +195,6 @@ void CanvasElement::modelChanged()
   kDebug() ;//<< id();
   d->m_pen = QPen(Dot2QtConsts::componentData().qtColor(d->m_element->fontColor()));
   d->m_font = *FontsCache::changeable().fromName(d->m_element->fontName());
-  prepareGeometryChange();
   computeBoundingRect();
 }
 
@@ -214,7 +217,7 @@ void CanvasElement::initialize(qreal scaleX, qreal scaleY,
   computeBoundingRect();
 }
 
-QRectF CanvasElement::boundingRect () const
+QRectF CanvasElement::boundingRect() const
 {
   Q_D(const CanvasElement);
   return d->m_boundingRect;
@@ -572,6 +575,13 @@ QWidget *widget)
     p->drawRect(QRectF(d->m_boundingRect.bottomRight()-QPointF(6,6),QSizeF(6,6)));
     p->restore();
   }
+
+#ifdef KGRAPHVIZ_GRAPHICSVIEW_DEBUG
+  p->save();
+  p->setPen(Qt::red);
+  p->drawRect(boundingRect());
+  p->restore();
+#endif
 }
 
 void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)

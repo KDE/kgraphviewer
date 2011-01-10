@@ -2,6 +2,10 @@
 add_definitions(-DQT_USE_FAST_CONCATENATION)
 add_definitions(-DQT_USE_FAST_OPERATOR_PLUS)
 
+if(KGRAPHVIZ_GRAPHICSVIEW_DEBUG)
+  add_definitions(-DKGRAPHVIZ_GRAPHICSVIEW_DEBUG)
+endif()
+
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
 

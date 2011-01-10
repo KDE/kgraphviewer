@@ -63,7 +63,6 @@
 #include <QMenu>
 #include <QGraphicsSimpleTextItem>
 #include <QScrollBar>
-#include <QUuid>
 
 #include <kactioncollection.h>
 #include <kdebug.h>
@@ -731,7 +730,9 @@ bool DotGraphView::displayGraph()
       cnode->setZValue(zvalue+1);
       cnode->show();
     }
-    gnode->canvasElement()->computeBoundingRect();
+
+    CanvasElement* element = gnode->canvasElement();
+    element->computeBoundingRect();
   }
 
   kDebug() << "Creating" << d->m_graph->edges().size() << "edges from" << d->m_graph;
@@ -759,9 +760,10 @@ bool DotGraphView::displayGraph()
       cedge->show();
       d->m_canvas->addItem(cedge);
     }
-    if (gedge->canvasElement() != 0)
-      gedge->canvasElement()->computeBoundingRect();
+    CanvasElement* element = gedge->canvasElement();
+    element->computeBoundingRect();
   }
+
   kDebug() << "Adding graph render operations: " << d->m_graph->renderOperations().size();
   foreach (const DotRenderOp& dro, d->m_graph->renderOperations())
   {

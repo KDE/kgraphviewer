@@ -438,6 +438,13 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
       p->restore();
     }
   }
+
+#ifdef KGRAPHVIZ_GRAPHICSVIEW_DEBUG
+  p->save();
+  p->setPen(Qt::green);
+  p->drawRect(boundingRect());
+  p->restore();
+#endif
 }
 
 void CanvasEdge::computeBoundingRect()

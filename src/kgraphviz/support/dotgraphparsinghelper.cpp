@@ -29,8 +29,6 @@
 
 #include <kdebug.h>
 
-#include <QUuid>
-
 #define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<int>::max()
 
 extern KGraphViz::DotGraphParsingHelper* phelper;
@@ -297,7 +295,7 @@ void DotGraphParsingHelper::createedges()
 //     kDebug() << ge->id();
     if (ge->id().isEmpty())
     {
-      ge->setId(QString::fromStdString(node1Name)+QString::fromStdString(node2Name)+QUuid::createUuid().toString().remove('{').remove('}').remove('-'));
+      ge->setId(QString::number(graph->edges().size()+1));
     }
 //     kDebug() << ge->id();
 //     kDebug() << "num before=" << graph->edges().size();
