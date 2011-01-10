@@ -113,6 +113,8 @@ DotGraph::DotGraph(const QString& layoutCommand, const QString& fileName) :
 
 DotGraph::~DotGraph()  
 {
+  kDebug();
+  
   Q_D(DotGraph); 
   GraphNodeMap::iterator itn, itn_end;
   itn = d->m_nodesMap.begin(); itn_end = d->m_nodesMap.end();

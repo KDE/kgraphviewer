@@ -25,7 +25,7 @@
 
 /**
  * members are interpreted in function of render operations definitions given at:
- * @URL http://www.graphviz.org/cvs/doc/info/output.html#d:dot
+ * @URL http://www.graphviz.org/doc/info/output.html#d:dot
  */
 struct DotRenderOp
 {
