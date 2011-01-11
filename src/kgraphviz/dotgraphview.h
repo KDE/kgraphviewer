@@ -101,9 +101,7 @@ public:
 
   EditingMode editingMode() const;
 
-  void setReadOnly();
-  void setReadWrite();
-  bool isReadWrite() const;
+  void setReadOnly(bool readOnly = true);
   bool isReadOnly() const;
   
   void removeSelectedNodes();

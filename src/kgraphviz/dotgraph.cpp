@@ -283,18 +283,6 @@ void DotGraph::setUseLibrary(bool value)
   d->m_useLibrary = value;
 }
 
-void DotGraph::setReadWrite()
-{
-  Q_D(DotGraph);
-  d->m_readWrite = true;
-}
-
-void DotGraph::setReadOnly()
-{
-  Q_D(DotGraph);
-  d->m_readWrite = false;
-}
-
 bool DotGraph::parseDot(const QString& fileName)
 {
   kDebug() << fileName;

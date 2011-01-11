@@ -90,9 +90,6 @@ public:
 
   bool update();
 
-  void setReadWrite();
-  void setReadOnly();
-
   virtual void storeOriginalAttributes();
 
   void saveTo(const QString& fileName);

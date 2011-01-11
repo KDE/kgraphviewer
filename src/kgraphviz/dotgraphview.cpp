@@ -100,7 +100,7 @@ DotGraphViewPrivate::DotGraphViewPrivate(KActionCollection* actions, DotGraphVie
   m_editingMode(DotGraphView::None),
   m_newEdgeSource(0),
   m_newEdgeDraft(0),
-  m_readWrite(false),
+  m_readOnly(true),
   m_leavedTimer(std::numeric_limits<int>::max()),
   m_highlighting(false),
   m_loadThread(),
@@ -275,6 +275,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
     csubgraph->initialize(
       scaleX, scaleY, m_xMargin, m_yMargin, gh,
       m_graph->wdhcf(), m_graph->hdvcf());
+    csubgraph->setFlag(QGraphicsItem::ItemIsMovable, !q->isReadOnly());
     gsubgraph->setCanvasElement(csubgraph);
     //       csubgraph->setZValue(gsubgraph->z());
     csubgraph->setZValue(zValue+=2);
@@ -293,6 +294,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
       cnode->initialize(
         scaleX, scaleY, m_xMargin, m_yMargin, gh,
         m_graph->wdhcf(), m_graph->hdvcf());
+      cnode->setFlag(QGraphicsItem::ItemIsMovable, !q->isReadOnly());
       gnode->setCanvasElement(cnode);
       m_canvas->addItem(cnode);
       //       cnode->setZValue(gnode->z());
@@ -559,8 +561,21 @@ QPixmap DotGraphView::defaultNewElementPixmap() const {Q_D(const DotGraphView); 
 void DotGraphView::setDefaultNewElement(GraphElement* elem) {Q_D(DotGraphView); d->m_defaultNewElement = elem;}
 void DotGraphView::setDefaultNewElementPixmap(const QPixmap& pm) {Q_D(DotGraphView); d->m_defaultNewElementPixmap = pm;}
 
-bool DotGraphView::isReadWrite() const {Q_D(const DotGraphView); return d->m_readWrite;}
-bool DotGraphView::isReadOnly() const {Q_D(const DotGraphView); return !d->m_readWrite;}
+bool DotGraphView::isReadOnly() const
+{
+  Q_D(const DotGraphView);
+  return d->m_readOnly;
+}
+void DotGraphView::setReadOnly(bool readOnly)
+{
+  Q_D(DotGraphView);
+  kDebug() << readOnly;
+  d->m_readOnly = readOnly;
+
+  foreach(QGraphicsItem* item, items()) {
+    item->setFlag(QGraphicsItem::ItemIsMovable, !readOnly);
+  }
+}
 
 bool DotGraphView::highlighting() const {Q_D(const DotGraphView); return d->m_highlighting;}
 void DotGraphView::setHighlighting(bool highlightingValue) {Q_D(DotGraphView); d->m_highlighting = highlightingValue;}
@@ -590,10 +605,6 @@ void DotGraphViewPrivate::setupCanvas()
     delete m_graph;
   m_graph = new DotGraph();
   q->connect(m_graph,SIGNAL(readyToDisplay()),q,SLOT(displayGraph()));
-
-  if (m_readWrite) {
-    m_graph->setReadWrite();
-  }
   
 //   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
   m_xMargin = 50;
@@ -724,6 +735,7 @@ bool DotGraphView::displayGraph()
       cnode->initialize(
         scaleX, scaleY, d->m_xMargin, d->m_yMargin, gh,
         d->m_graph->wdhcf(), d->m_graph->hdvcf());
+      cnode->setFlag(QGraphicsItem::ItemIsMovable, !isReadOnly());
       gnode->setCanvasElement(cnode);
       d->m_canvas->addItem(cnode);
 //       cnode->setZValue(gnode->z());
@@ -752,7 +764,7 @@ bool DotGraphView::displayGraph()
       cedge->initialize(scaleX, scaleY,
                         d->m_xMargin, d->m_yMargin, gh,
                         d->m_graph->wdhcf(), d->m_graph->hdvcf());
-
+      cedge->setFlag(QGraphicsItem::ItemIsMovable, !isReadOnly());
       gedge->setCanvasElement(cedge);
   //     std::cerr << "setting z = " << gedge->z() << std::endl;
   //    cedge->setZValue(gedge->z());
@@ -1540,28 +1552,6 @@ void DotGraphView::finishNewEdgeTo(CanvasElement* node)
 // 
 //   emit newEdgeAdded(gedge->fromNode()->id(),gedge->toNode()->id());
 // }
-
-void DotGraphView::setReadOnly()
-{
-  Q_D(DotGraphView);
-  kDebug() ;
- d-> m_readWrite = false;
-  if (d->m_graph != 0)
-  {
-    d->m_graph->setReadOnly();
-  }
-}
-
-void DotGraphView::setReadWrite()
-{
-  Q_D(DotGraphView);
-  kDebug() ;
-  d->m_readWrite = true;
-  if (d->m_graph != 0)
-  {
-    d->m_graph->setReadWrite();
-  }
-}
 
 void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModifiers modifiers)
 {

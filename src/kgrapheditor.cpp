@@ -169,7 +169,7 @@ DotGraphView* KGraphEditor::slotNewGraph()
   kDebug();
   DotGraphView* view = new DotGraphView(actionCollection(), m_widget);
   view->initEmpty();
-  view->setReadWrite();
+  view->setReadOnly(false);
 
     m_widget-> insertTab(view, QIcon( DesktopIcon("kgraphviewer") ), "");
     m_widget->setCurrentPage(m_widget->indexOf(view));

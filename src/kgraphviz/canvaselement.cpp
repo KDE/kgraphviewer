@@ -204,7 +204,6 @@ void CanvasElement::initialize(qreal scaleX, qreal scaleY,
 {
   Q_D(CanvasElement);
   kDebug();
-  setFlag(QGraphicsItem::ItemIsMovable, true);
   setFlag(QGraphicsItem::ItemIsSelectable, true);
 
   d->m_scaleX = scaleX; d->m_scaleY = scaleY;
@@ -316,7 +315,7 @@ QWidget *widget)
   }
 //   kDebug() << msg;
 
-  if (element()->renderOperations().isEmpty() && d->m_view->isReadWrite())
+  if (element()->renderOperations().isEmpty() && !d->m_view->isReadOnly())
   {
     kError() << element()->id() << ": no render operation. This should not happen.";
     return;

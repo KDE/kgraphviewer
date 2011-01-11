@@ -278,12 +278,12 @@ void KGraphViewerPart::prepareAddNewEdge(QMap<QString,QString> attribs)
 
 void KGraphViewerPart::setReadOnly()
 {
-  d->m_widget->setReadOnly();
+  d->m_widget->setReadOnly(true);
 }
 
 void KGraphViewerPart::setReadWrite()
 {
-  d->m_widget->setReadWrite();
+  d->m_widget->setReadOnly(false);
 }
 
 void KGraphViewerPart::saveTo(const QString& fileName)

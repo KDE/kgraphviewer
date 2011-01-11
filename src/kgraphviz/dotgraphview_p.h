@@ -93,7 +93,7 @@ public:
   CanvasElement* m_newEdgeSource;
   QGraphicsLineItem* m_newEdgeDraft;
 
-  bool m_readWrite;
+  bool m_readOnly;
 
   QMap<QString, QString> m_newElementAttributes;
 
