@@ -1232,7 +1232,7 @@ void DotGraphView::setLayoutCommand(const QString& command)
 
 DotGraphView::PannerPosition DotGraphView::zoomPos(const QString& s)
 {
-  PannerPosition  res = DEFAULT_ZOOMPOS;
+  PannerPosition res = DEFAULT_ZOOMPOS;
   if (s == QString("KGraphViewerInterface::TopLeft"))
     res = TopLeft;
   if (s == QString("KGraphViewerInterface::TopRight"))
@@ -1264,6 +1264,20 @@ void DotGraphView::viewBevActivated(int newZoomPos)
   Q_D(DotGraphView);
   d->updateSizes();
   emit(sigViewBevActivated(newZoomPos));
+}
+
+QString DotGraphView::zoomPosString(DotGraphView::PannerPosition position)
+{
+    if (position == TopRight)
+      return QString("KGraphViewerInterface::TopRight");
+    if (position == BottomLeft)
+      return QString("KGraphViewerInterface::BottomLeft");
+    if (position == BottomRight)
+      return QString("KGraphViewerInterface::BottomRight");
+    if (position == Auto)
+      return QString("Automatic");
+
+    return QString("KGraphViewerInterface::TopLeft");
 }
 
 void DotGraphView::pageSetup()
