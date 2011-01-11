@@ -58,7 +58,6 @@ public:
   Q_DECLARE_PUBLIC(DotGraphView);
 
   QSet<QGraphicsSimpleTextItem*> m_labelViews;
-  QGraphicsScene* m_canvas;
   QMenu* m_popup;
   KSelectAction* m_bevPopup;
   KSelectAction* m_layoutAlgoSelectAction;
