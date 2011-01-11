@@ -54,7 +54,9 @@ class DotGraphViewPrivate;
  */
 class KGRAPHVIZ_EXPORT DotGraphView : public QGraphicsView
 {
- Q_OBJECT
+  Q_OBJECT
+
+  Q_ENUMS(PannerPosition);
 
 public:
   enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge, SelectingElements };
@@ -67,7 +69,7 @@ public:
     //TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
   DotGraphView::PannerPosition zoomPos() const;
   static DotGraphView::PannerPosition zoomPos(const QString&);
-  static QString zoomPosString(DotGraphView::PannerPosition);
+  static QString toString(DotGraphView::PannerPosition);
 
   bool loadDot(const QString& dotFileName);
   bool loadLibrary(const QString& dotFileName);
@@ -128,7 +130,7 @@ public Q_SLOTS:
   void initEmpty();
   void print();
   void printPreview();
-  void viewBevActivated(int newPos);
+  void setPannerPosition(DotGraphView::PannerPosition pos);
   void setPannerEnabled(bool enabled);
   void slotExportImage();
   void slotSelectLayoutAlgo(const QString& text);

@@ -1257,16 +1257,19 @@ void DotGraphView::setPannerEnabled(bool enabled)
   emit(sigViewBevEnabledToggled(enabled));
 }
 
-void DotGraphView::viewBevActivated(int newZoomPos)
+void DotGraphView::setPannerPosition(DotGraphView::PannerPosition position)
 {
-  kDebug() << "Zoom position:" << newZoomPos;
-  
   Q_D(DotGraphView);
+  if (d->m_zoomPosition == position)
+    return;
+
+  kDebug() << toString(position);
+  d->m_zoomPosition = position;
   d->updateSizes();
-  emit(sigViewBevActivated(newZoomPos));
+  emit(sigViewBevActivated(position));
 }
 
-QString DotGraphView::zoomPosString(DotGraphView::PannerPosition position)
+QString DotGraphView::toString(DotGraphView::PannerPosition position)
 {
     if (position == TopRight)
       return QString("KGraphViewerInterface::TopRight");
@@ -1407,27 +1410,27 @@ void DotGraphView::slotBevToggled()
 
 void DotGraphView::slotBevTopLeft()
 {
-  viewBevActivated(TopLeft);
+  setPannerPosition(TopLeft);
 }
 
 void DotGraphView::slotBevTopRight()
 {
-  viewBevActivated(TopRight);
+  setPannerPosition(TopRight);
 }
 
 void DotGraphView::slotBevBottomLeft()
 {
-  viewBevActivated(BottomLeft);
+  setPannerPosition(BottomLeft);
 }
 
 void DotGraphView::slotBevBottomRight()
 {
-  viewBevActivated(BottomRight);
+  setPannerPosition(BottomRight);
 }
 
 void DotGraphView::slotBevAutomatic()
 {
-  viewBevActivated(Auto);
+  setPannerPosition(Auto);
 }
 
 void DotGraphView::slotUpdate()
