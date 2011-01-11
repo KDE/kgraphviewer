@@ -92,6 +92,7 @@ public:
 
   CanvasElement* m_newEdgeSource;
   QGraphicsLineItem* m_newEdgeDraft;
+  QGraphicsItem* m_textItem;
 
   bool m_readOnly;
 

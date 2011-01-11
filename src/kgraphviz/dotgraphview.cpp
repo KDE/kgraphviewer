@@ -611,18 +611,18 @@ void DotGraphViewPrivate::setupCanvas()
   m_yMargin = 50;
 
   QGraphicsScene* newCanvas = new QGraphicsScene(q);
-  QGraphicsSimpleTextItem* item = newCanvas->addSimpleText(i18n("no graph loaded"));
-//   kDebug() << "Created canvas " << newCanvas;
-  
+  m_textItem = newCanvas->addSimpleText(i18n("No graph loaded"));
+
   m_birdEyeView->setScene(newCanvas);
-//   std::cerr << "After m_birdEyeView set canvas" << std::endl;
   
   q->setScene(newCanvas);
   m_canvas = newCanvas;
-  q->centerOn(item);
+  q->centerOn(m_textItem);
 
   m_cvZoom = 0;
 }
+
+
 
 bool DotGraphView::loadDot(const QString& dotFileName)
 {
@@ -817,6 +817,9 @@ bool DotGraphView::displayGraph()
   d->updateSizes();
 
   centerOn(d->m_canvas->sceneRect().center());
+
+  // hide text item again
+  d->m_textItem->hide();
 
   viewport()->setUpdatesEnabled(true);
   QSet<QGraphicsSimpleTextItem*>::iterator labelViewsIt, labelViewsIt_end;
