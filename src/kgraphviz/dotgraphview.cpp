@@ -851,7 +851,6 @@ bool DotGraphView::displayGraph()
 
 void DotGraphView::focusInEvent(QFocusEvent*)
 {
-  Q_D(DotGraphView);
   if (!scene())
     return;
 
@@ -871,8 +870,12 @@ void DotGraphView::keyPressEvent(QKeyEvent* e)
     return;
   }
 
+  // give a hint about drag mode when pressing control
+  if (e->modifiers() == Qt::ShiftModifier) {
+    setCursor(Qt::CrossCursor);
+  }
   // move canvas...
-  if (e->key() == Qt::Key_Home)
+  else if (e->key() == Qt::Key_Home)
     scrollContentsBy(int(-scene()->width()),0);
   else if (e->key() == Qt::Key_End)
     scrollContentsBy(int(scene()->width()),0);
@@ -895,14 +898,23 @@ void DotGraphView::keyPressEvent(QKeyEvent* e)
   }
 }
 
-void DotGraphView::wheelEvent(QWheelEvent* e)
+void DotGraphView::keyReleaseEvent(QKeyEvent* e)
 {
   Q_D(DotGraphView);
+  if (d->m_editingMode != SelectingElements)
+    unsetCursor();
+  
+  QGraphicsView::keyReleaseEvent(e);
+}
+
+void DotGraphView::wheelEvent(QWheelEvent* e)
+{
   if (!scene())
   {
     e->ignore();
     return;
   }
+
   e->accept();
   if (e->state() == Qt::ShiftModifier)
   {
@@ -1094,6 +1106,11 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
       else if (d->m_editingMode == AddNewEdge)
       {
         d->m_editingMode = None;
+      }
+      else {
+        if (e->modifiers() == Qt::ShiftModifier) {
+          prepareSelectElements();
+        }
       }
     }
   }
@@ -1705,6 +1722,7 @@ void DotGraphView::slotSelectNode(const QString& nodeName)
 
   CanvasElement* canvasElement = node->canvasElement();
   if (canvasElement !=0) {
+    scene()->clearSelection();
     canvasElement->setSelected(true);
   }
 }
