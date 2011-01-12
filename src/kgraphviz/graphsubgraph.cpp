@@ -225,16 +225,16 @@ bool GraphSubgraph::setElementSelected(
   bool res = false;
   if (element == this)
   {
-    if (isSelected() != selectValue)
+    if (canvasElement()->isSelected() != selectValue)
     {
-      setSelected(selectValue);
+      canvasElement()->setSelected(selectValue);
       canvasElement()->update();
     }
     res = true;
   }
-  else if (isSelected() && unselectOthers)
+  else if (canvasElement()->isSelected() && unselectOthers)
   {
-    setSelected(false);
+    canvasElement()->setSelected(false);
     canvasElement()->update();
   }
   foreach (GraphElement* el, content())
@@ -247,17 +247,17 @@ bool GraphSubgraph::setElementSelected(
     else if (element == el)
     {
       res = true;
-      if (el->isSelected() != selectValue)
+      if (el->canvasElement()->isSelected() != selectValue)
       {
-        el->setSelected(selectValue);
+        el->canvasElement()->setSelected(selectValue);
         el->canvasElement()->update();
       }
     }
     else 
     {
-      if (unselectOthers && el->isSelected())
+      if (unselectOthers && el->canvasElement()->isSelected())
       {
-        el->setSelected(false);
+        el->canvasElement()->setSelected(false);
         el->canvasElement()->update();
       }
     }
@@ -267,7 +267,7 @@ bool GraphSubgraph::setElementSelected(
 
 void GraphSubgraph::retrieveSelectedElementsIds(QList<QString> selection)
 {
-  if (isSelected())
+  if (canvasElement()->isSelected())
   {
     selection.push_back(id());
   }
@@ -277,7 +277,7 @@ void GraphSubgraph::retrieveSelectedElementsIds(QList<QString> selection)
     {
       dynamic_cast<GraphSubgraph*>(el)->retrieveSelectedElementsIds(selection);
     }
-    else  if (el->isSelected())
+    else if (el->canvasElement()->isSelected())
     {
       selection.push_back(el->id());
     }

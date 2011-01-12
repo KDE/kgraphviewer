@@ -100,9 +100,6 @@ public:
   double z() const;
   void setZ(double z);
 
-  void setSelected(bool selected);
-  bool isSelected() const;
-
   void exportToGraphviz(void* element)  const;
 
 Q_SIGNALS:

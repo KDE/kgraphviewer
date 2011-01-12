@@ -125,6 +125,7 @@ public Q_SLOTS:
   void zoomRectMovedTo(QPointF newZoomPos);
   void zoomRectMoveFinished();
   bool reload();
+  bool displayGraph();
   void dirty(const QString& dotFileName);
   void pageSetup();
   void initEmpty();
@@ -143,8 +144,6 @@ public Q_SLOTS:
   void slotBevBottomRight();
   void slotBevAutomatic();
   void slotUpdate();
-  bool displayGraph();
-  void slotElementSelected(CanvasElement*, Qt::KeyboardModifiers);
   void slotSelectionChanged();
   void slotContextMenuEvent(const QString&, const QPoint&);
   void slotElementHoverEnter(CanvasElement*);
@@ -199,6 +198,8 @@ private Q_SLOTS:
 
 private:
   Q_DECLARE_PRIVATE(DotGraphView);
+
+  Q_PRIVATE_SLOT(d_func(), void selectionChanged());
 };
 
 }

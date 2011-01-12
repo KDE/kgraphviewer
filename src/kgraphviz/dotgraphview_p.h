@@ -54,6 +54,8 @@ public:
   KActionCollection* actionCollection() {return m_actions;}
   int displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent = 0);
 
+  void selectionChanged(); // private slot
+
   DotGraphView * const q_ptr;
   Q_DECLARE_PUBLIC(DotGraphView);
 

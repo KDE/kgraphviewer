@@ -37,7 +37,6 @@ public:
   
   ~GraphElementPrivate();
 
-  bool m_selected;
   double m_z;
 
   DotRenderOpVec m_renderOperations;

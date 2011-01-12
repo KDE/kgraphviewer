@@ -562,7 +562,7 @@ QWidget *widget)
       p->restore();
     }
   }
-  if (element()->isSelected())
+  if (isSelected())
   {
 //     kDebug() << "element is selected: draw selection marks";
     p->save();
@@ -587,38 +587,17 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
   Q_D(CanvasElement);
   kDebug() << d->m_element->id() << boundingRect();
-  if (d->m_view->isReadOnly())
-  {
+
+  if (event->button() != Qt::LeftButton)
     return;
-  }
+
   if (d->m_view->editingMode() == DotGraphView::AddNewEdge)
   {
     d->m_view->createNewEdgeDraftFrom(this);
-    return;
   }
   else if (d->m_view->editingMode() == DotGraphView::DrawNewEdge)
   {
     d->m_view->finishNewEdgeTo(this);
-    return;
-  }
-
-  if (event->button() == Qt::LeftButton)
-  {
-    d->m_element->setSelected(!d->m_element->isSelected());
-    if (d->m_element->isSelected())
-    {
-      kDebug() << "Element selected:" << d->m_element->id() << d->m_element;
-    }
-    update();
-  }
-  else if (event->button() == Qt::RightButton)
-  {
-    // opens the selected edge contextual menu and if necessary select the edge
-    if (!d->m_element->isSelected())
-    {
-      d->m_element->setSelected(true);
-      update();
-    }
   }
 }
 

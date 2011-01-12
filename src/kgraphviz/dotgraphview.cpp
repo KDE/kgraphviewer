@@ -84,11 +84,9 @@ using namespace KGraphViz;
 
 DotGraphViewPrivate::DotGraphViewPrivate(KActionCollection* actions, DotGraphView* parent) :
   q_ptr( parent ),
-  m_labelViews(),
   m_popup(0),
   m_zoom(1),
   m_isMoving(false),
-  m_exporter(),
   m_zoomPosition(DEFAULT_ZOOMPOS),
   m_lastAutoPosition(DotGraphView::TopLeft),
   m_graph(0),
@@ -104,8 +102,6 @@ DotGraphViewPrivate::DotGraphViewPrivate(KActionCollection* actions, DotGraphVie
   m_readOnly(true),
   m_leavedTimer(std::numeric_limits<int>::max()),
   m_highlighting(false),
-  m_loadThread(),
-  m_layoutThread(),
   m_backgroundColor(QColor("white"))
 {
 }
@@ -475,6 +471,18 @@ void DotGraphViewPrivate::exportToImage()
   }
 }
 
+void DotGraphViewPrivate::selectionChanged()
+{
+  Q_Q(DotGraphView);
+  kDebug();
+  QList<QString> selection;
+  foreach(QGraphicsItem* item, q->scene()->selectedItems()) {
+    CanvasElement* ce = dynamic_cast<CanvasElement*>(item);
+    if (ce)
+      selection << ce->element()->id();
+  }
+  emit q->selectionIs(selection, QPoint());
+}
 
 //
 // DotGraphView
@@ -617,6 +625,8 @@ void DotGraphViewPrivate::setupCanvas()
   m_birdEyeView->setScene(newCanvas);
   
   q->setScene(newCanvas);
+  q->connect(newCanvas, SIGNAL(selectionChanged()), SLOT(selectionChanged()));
+  
   q->centerOn(m_textItem);
 
   m_cvZoom = 0;
@@ -819,9 +829,11 @@ bool DotGraphView::displayGraph()
   centerOn(scene()->sceneRect().center());
 
   // hide text item again
-  scene()->removeItem(d->m_textItem);
-  delete d->m_textItem;
-  d->m_textItem = 0;
+  if (d->m_textItem) {
+    scene()->removeItem(d->m_textItem);
+    delete d->m_textItem;
+    d->m_textItem = 0;
+  }
 
   viewport()->setUpdatesEnabled(true);
   QSet<QGraphicsSimpleTextItem*>::iterator labelViewsIt, labelViewsIt_end;
@@ -1018,8 +1030,6 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     return;
   }
   kDebug() << e << d->m_editingMode;
-  QGraphicsView::mousePressEvent(e);
-
   if (d->m_editingMode == AddNewElement)
   {
     double scaleX = 1.0, scaleY = 1.0;
@@ -1065,9 +1075,9 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
   else if (d->m_editingMode == SelectingElements)
   {
   }
-  else
-  {
-    if (d->m_editingMode != None && itemAt(e->pos()) == 0) // click outside any item: unselect all
+  else {
+    CanvasElement* topMostItem = dynamic_cast<CanvasElement*>(itemAt(e->pos()));
+    if (!topMostItem) // click outside any item: QGraphicsView unselects all
     {
       if (d->m_editingMode == DrawNewEdge) // was drawing an edge; cancel it
       {
@@ -1085,33 +1095,14 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
       {
         d->m_editingMode = None;
       }
-      foreach(GraphEdge* e, d->m_graph->edges())
-      {
-        if (e->isSelected()) {
-          e->setSelected(false);
-          e->canvasElement()->update();
-        }
-      }
-      foreach(GraphNode* n, d->m_graph->nodes())
-      {
-        if (n->isSelected()) {
-          n->setSelected(false);
-          n->canvasElement()->update();
-        }
-      }
-      foreach(GraphSubgraph* s, d->m_graph->subgraphs())
-      {
-        if (s->isSelected()) {
-          s->setSelected(false);
-          s->canvasElement()->update();
-        }
-      }
-      emit selectionIs(QList<QString>(),QPoint());
     }
-    d->m_pressPos = e->globalPos();
-    d->m_pressScrollBarsPos = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
   }
+
+  d->m_pressPos = e->globalPos();
+  d->m_pressScrollBarsPos = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
   d->m_isMoving = true;
+
+  QGraphicsView::mousePressEvent(e);
 }
 
 void DotGraphView::mouseMoveEvent(QMouseEvent* e)
@@ -1161,10 +1152,8 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
     kDebug() << "Stopping selection" << scene();
     QList<QGraphicsItem *> items = scene()->selectedItems();
     QList<QString> selection;
-    foreach (QGraphicsItem * item, items)
-    {
+    foreach (QGraphicsItem * item, items) {
       CanvasElement* element = dynamic_cast<CanvasElement*>(item);
-      element->element()->setSelected(true);
       if (element != 0)
       {
         selection.push_back(element->element()->id());
@@ -1173,11 +1162,6 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
     d->m_editingMode = None;
     unsetCursor();
     setDragMode(NoDrag);
-    if (!selection.isEmpty())
-    {
-      update();
-      emit selectionIs(selection, mapToGlobal( e->pos() ));
-    }
   }
   else
   {
@@ -1444,7 +1428,7 @@ void DotGraphView::slotUpdate()
 void DotGraphView::prepareAddNewElement(QMap<QString,QString> attribs)
 {
   Q_D(DotGraphView);
-  kDebug() ;
+  kDebug();
   d->m_editingMode = AddNewElement;
   d->m_newElementAttributes = attribs;
   unsetCursor();
@@ -1458,7 +1442,7 @@ void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
   bool anySelected = false;
   foreach (GraphEdge* edge, d->m_graph->edges())
   {
-    if (edge->isSelected())
+    if (edge->canvasElement()->isSelected())
     {
       anySelected = true;
       QMap<QString,QString>::const_iterator it = attribs.constBegin();
@@ -1574,70 +1558,13 @@ void DotGraphView::finishNewEdgeTo(CanvasElement* node)
 //   emit newEdgeAdded(gedge->fromNode()->id(),gedge->toNode()->id());
 // }
 
-void DotGraphView::slotElementSelected(CanvasElement* element, Qt::KeyboardModifiers modifiers)
-{
-  Q_D(DotGraphView);
-  kDebug() << "Element:" << element->element()->id() << element->element();
-  QList<QString> selection;
-  selection.push_back(element->element()->id());
-  if (!modifiers.testFlag(Qt::ControlModifier))
-  {
-    foreach(GraphEdge* e, d->m_graph->edges())
-    {
-      if (e->canvasElement() != element)
-      {
-        if (e->isSelected()) {
-          e->setSelected(false);
-          e->canvasElement()->update();
-        }
-      }
-    }
-    foreach(GraphNode* e, d->m_graph->nodes())
-    {
-      if (e->canvasElement() != element)
-      {
-        if (e->isSelected()) {
-          e->setSelected(false);
-          e->canvasElement()->update();
-        }
-      }
-    }
-    foreach(GraphSubgraph* s, d->m_graph->subgraphs())
-    {
-      s->setElementSelected(element->element(), true, true);
-    }
-  }
-  else
-  {
-    foreach(GraphEdge* e, d->m_graph->edges())
-    {
-      if (e->isSelected())
-      {
-        selection.push_back(e->id());
-      }
-    }
-    foreach(GraphNode* n, d->m_graph->nodes())
-    {
-      if (n->isSelected())
-      {
-        selection.push_back(n->id());
-      }
-    }
-    foreach(GraphSubgraph* s, d->m_graph->subgraphs())
-    {
-      s->retrieveSelectedElementsIds(selection);
-    }
-  }
-  emit selectionIs(selection, QPoint());
-}
-
 void DotGraphView::removeSelectedEdges()
 {
   Q_D(DotGraphView);
   kDebug();
   foreach(GraphEdge* e, d->m_graph->edges())
   {
-    if (e->isSelected())
+    if (e->canvasElement()->isSelected())
     {
       kDebug() << "emiting removeEdge " << e->id();
       d->m_graph->removeEdge(e->id());
@@ -1652,7 +1579,7 @@ void DotGraphView::removeSelectedNodes()
   kDebug();
   foreach(GraphNode* e, d->m_graph->nodes())
   {
-    if (e->isSelected())
+    if (e->canvasElement()->isSelected())
     {
       kDebug() << "emiting removeElement " << e->id();
       d->m_graph->removeElement(e->id());
@@ -1667,7 +1594,7 @@ void DotGraphView::removeSelectedSubgraphs()
   kDebug();
   foreach(GraphSubgraph* e, d->m_graph->subgraphs())
   {
-    if (e->isSelected())
+    if (e->canvasElement()->isSelected())
     {
       kDebug() << "emiting removeElement " << e->id();
       d->m_graph->removeElement(e->id());
@@ -1773,21 +1700,22 @@ void DotGraphView::slotSelectNode(const QString& nodeName)
 {
   kDebug() << nodeName;
   GraphNode* node = dynamic_cast<GraphNode*>(graph()->elementNamed(nodeName));
-  if (node == 0) return;
-  node->setSelected(true);
-  if (node->canvasElement()!=0)
-  {
-    node->canvasElement()->modelChanged();
-    slotElementSelected(node->canvasElement(),Qt::NoModifier);
+  if (!node)
+    return;
+
+  CanvasElement* canvasElement = node->canvasElement();
+  if (canvasElement !=0) {
+    canvasElement->setSelected(true);
   }
 }
 
 void DotGraphView::centerOnNode(const QString& nodeId)
 {
   GraphNode* node = dynamic_cast<GraphNode*>(graph()->elementNamed(nodeId));
-  if (node == 0) return;
-  if (node->canvasElement()!=0)
-  {
+  if (!node)
+    return;
+
+  if (node->canvasElement()) {
     centerOn(node->canvasElement());
   }
 }

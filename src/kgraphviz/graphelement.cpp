@@ -33,7 +33,6 @@ namespace KGraphViz
 {
 
 GraphElementPrivate::GraphElementPrivate() :
-  m_selected(false),
   m_z(1.0),
   m_canvasElement(0)
 {
@@ -44,7 +43,6 @@ GraphElementPrivate::~GraphElementPrivate()
 }
 
 GraphElementPrivate::GraphElementPrivate(const GraphElementPrivate& other) :
-  m_selected(other.m_selected),
   m_z(other.m_z),
   m_renderOperations(other.m_renderOperations),
   m_canvasElement(other.m_canvasElement)
@@ -93,18 +91,6 @@ void GraphElement::setCanvasElement(CanvasElement* canvasElement)
 {
   Q_D(GraphElement);
   d->m_canvasElement = QSharedPointer<CanvasElement>(canvasElement);
-}
-
-bool GraphElement::isSelected() const
-{
-  Q_D(const GraphElement);
-  return d->m_selected;
-}
-
-void GraphElement::setSelected(bool selected)
-{
-  Q_D(GraphElement);
-  d->m_selected = selected;
 }
 
 double GraphElement::z() const
@@ -231,7 +217,7 @@ void GraphElement::exportToGraphviz(void* element) const
       }
       else if (originalAttributes().isEmpty() || originalAttributes().contains(it.key()))
       {
-        //         kDebug() << it.key() << it.value();
+        kDebug() << it.key() << it.value();
         
         agsafeset(element, it.key().toUtf8().data(), it.value().toUtf8().data(), QString().toUtf8().data());
       }

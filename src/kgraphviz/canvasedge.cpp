@@ -410,7 +410,7 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
       }
     }
   }
-  if (edge()->isSelected())
+  if (isSelected())
   {
 //     kDebug() << "draw square";
 //     p->drawRect(m_boundingRect);
