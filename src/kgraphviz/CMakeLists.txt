@@ -18,7 +18,7 @@ link_directories(
     ${LIB_INSTALL_DIR}
 )
 
-set(kgraphvz_LIB_SRCS
+set(kgraphviz_LIB_SRCS
   canvasedge.cpp
   canvaselement.cpp
   canvasnode.cpp
@@ -32,6 +32,7 @@ set(kgraphvz_LIB_SRCS
   graphsubgraph.cpp
   dotgraph.cpp
 
+  dotgraphscene.cpp
   dotgraphview.cpp
   pannerview.cpp
 
@@ -43,7 +44,7 @@ set(kgraphvz_LIB_SRCS
   support/fontscache.cpp
 )
 
-kde4_add_library(kgraphviz SHARED ${kgraphvz_LIB_SRCS})
+kde4_add_library(kgraphviz SHARED ${kgraphviz_LIB_SRCS})
 
 add_definitions(-DQT_STL)
 target_link_libraries(kgraphviz ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${KDE4_KDEUI_LIBRARY} ${KDE4_KFILE_LIBRARY} ${KDE4_KDECORE_LIBRARY} ${graphviz_LIBRARIES})

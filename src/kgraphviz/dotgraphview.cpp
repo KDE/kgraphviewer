@@ -28,6 +28,7 @@
 #include "dotgraphview_p.h"
 
 #include "dotgraph.h"
+#include "dotgraphscene.h"
 #include "graphelement.h"
 #include "graphio.h"
 #include "canvassubgraph.h"
@@ -617,7 +618,7 @@ void DotGraphViewPrivate::setupCanvas()
   m_xMargin = 50;
   m_yMargin = 50;
 
-  QGraphicsScene* newCanvas = new QGraphicsScene(q);
+  QGraphicsScene* newCanvas = new DotGraphScene(q);
 
   // add text item
   m_textItem = newCanvas->addSimpleText(i18n("No graph loaded."));

@@ -574,13 +574,6 @@ void CanvasElement::paint(QPainter* p,
     p->drawRect(QRectF(d->m_boundingRect.bottomRight()-QPointF(6,6),QSizeF(6,6)));
     p->restore();
   }
-
-#ifdef KGRAPHVIZ_GRAPHICSVIEW_DEBUG
-  p->save();
-  p->setPen(Qt::red);
-  p->drawRect(boundingRect());
-  p->restore();
-#endif
 }
 
 void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
