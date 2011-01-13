@@ -287,8 +287,9 @@ void CanvasElement::computeBoundingRect()
   setPos(0,0);
 }
 
-void CanvasElement::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-QWidget *widget)
+void CanvasElement::paint(QPainter* p,
+                          const QStyleOptionGraphicsItem* option,
+                          QWidget* widget)
 {
   Q_UNUSED(option)
   Q_UNUSED(widget)
@@ -322,13 +323,12 @@ QWidget *widget)
   }
 
   QListIterator<DotRenderOp> it(element()->renderOperations());
-//   it.toBack();
 
-  QColor lineColor = Dot2QtConsts::componentData().qtColor(element()->lineColor());
-  QColor backColor = Dot2QtConsts::componentData().qtColor(element()->backColor());
+  QColor lineColor(Dot2QtConsts::componentData().qtColor(element()->lineColor()));
+  QColor backColor(Dot2QtConsts::componentData().qtColor(element()->backColor()));
   if (d->m_hovered && d->m_view->highlighting())
   {
-    backColor = backColor.lighter();
+    backColor = backColor.lighter(110);
   }
   
   while (it.hasNext())
