@@ -49,8 +49,6 @@
 #include <iostream>
 #include <limits>
 
-#include <graphviz/types.h>
-
 #include <QMatrix>
 #include <QPainter>
 #include <QContextMenuEvent>
@@ -64,6 +62,7 @@
 #include <QMenu>
 #include <QGraphicsSimpleTextItem>
 #include <QScrollBar>
+#include <QString>
 
 #include <kactioncollection.h>
 #include <kdebug.h>
@@ -316,16 +315,18 @@ void DotGraphViewPrivate::setupPopup()
   QStringList algorithms;
   algorithms << "dot" << "neato" << "twopi" << "fdp" << "circo";
   foreach (const QString& algorithm, algorithms) {
+    const QString layoutName = QString("layout_%1").arg(algorithm);
     KAction* action = new KAction(algorithm, q);
+    action->setText(algorithm);
     action->setWhatsThis(i18n("Layout the graph using the %1 program.", algorithm));
     action->setCheckable(true);
-    actionCollection()->addAction(QString("layout_%1").arg(algorithm), action);
+    actionCollection()->addAction(layoutName, action);
     m_layoutAlgoSelectAction->addAction(action);
 
-    qDebug() << QString("layout_%1").arg(algorithm);
+    qDebug() << "Add selection for layout:" << layoutName;
   }
   
-  m_layoutAlgoSelectAction->setCurrentItem(1);
+  m_layoutAlgoSelectAction->setCurrentItem(0);
   m_layoutAlgoSelectAction->setEditable(true);
   m_layoutAlgoSelectAction->setToolTip(i18n("Choose a GraphViz layout algorithm or edit your own one."));
   m_layoutAlgoSelectAction->setWhatsThis(i18n(
@@ -336,7 +337,7 @@ void DotGraphViewPrivate::setupPopup()
   QObject::connect(m_layoutAlgoSelectAction, SIGNAL(triggered (const QString&)),
           q, SLOT(slotSelectLayoutAlgo(const QString&)));
   
-  
+
   QMenu* layoutPopup = m_popup->addMenu(i18n("Layout"));
   layoutPopup->addAction(m_layoutAlgoSelectAction);
   QAction* slc = layoutPopup->addAction(i18n("Specify layout command"), q, SLOT(slotLayoutSpecify()));
@@ -371,17 +372,17 @@ void DotGraphViewPrivate::setupPopup()
   m_bevEnabledAction = new KToggleAction(
     KIcon(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-bev.png")),
                                         i18n("Enable Bird's-eye View"), q);
-    actionCollection()->addAction("view_bev_enabled",m_bevEnabledAction);
-    m_bevEnabledAction->setShortcut(Qt::CTRL+Qt::Key_B);
-    m_bevEnabledAction->setWhatsThis(i18n("Enables or disables the Bird's-eye View"));
-    QObject::connect(m_bevEnabledAction,
-            SIGNAL(toggled(bool)),
-            q,
-            SLOT(setPannerEnabled(bool)));
-    m_bevEnabledAction->setCheckable(true);
-    m_popup->addAction(m_bevEnabledAction);
+  actionCollection()->addAction("view_bev_enabled",m_bevEnabledAction);
+  m_bevEnabledAction->setShortcut(Qt::CTRL+Qt::Key_B);
+  m_bevEnabledAction->setWhatsThis(i18n("Enables or disables the Bird's-eye View"));
+  QObject::connect(m_bevEnabledAction,
+          SIGNAL(toggled(bool)),
+          q,
+          SLOT(setPannerEnabled(bool)));
+  m_bevEnabledAction->setCheckable(true);
+  m_popup->addAction(m_bevEnabledAction);
     
-    m_bevPopup = new KSelectAction(i18n("Birds-eye View"), q);
+  m_bevPopup = new KSelectAction(i18n("Birds-eye View"), q);
   m_bevPopup->setWhatsThis(i18n("Allows the Bird's-eye View to be setup."));
   m_popup->addAction(m_bevPopup);
   actionCollection()->addAction("view_bev",m_bevPopup);
@@ -421,6 +422,7 @@ void DotGraphViewPrivate::setupPopup()
   m_bevPopup->addAction(bbla);
   m_bevPopup->addAction(bbra);
   m_bevPopup->addAction(bba);
+
   switch (m_zoomPosition)
   {
     case DotGraphView::TopLeft:
@@ -823,6 +825,12 @@ bool DotGraphView::displayGraph()
   for (; labelViewsIt != labelViewsIt_end; labelViewsIt++)
   {
     (*labelViewsIt)->show();
+  }
+
+  // update combo box if layout command is set
+  const QString layoutCommand = graph()->layoutCommand();
+  if (!layoutCommand.isEmpty()) {
+    d->m_layoutAlgoSelectAction->setCurrentAction(layoutCommand);
   }
 
   scene()->update();
