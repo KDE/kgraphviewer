@@ -428,28 +428,10 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
 {
   Q_D(DotGraph);
   
-  kDebug();
-
-  // copy global graph render operations and attributes
-  renderOperations().clear();
-  if (agget(newGraph, (char*)"_draw_") != NULL)
-  {
-    parse_renderop(agget(newGraph, (char*)"_draw_"), renderOperations());
-    kDebug() << "_draw_: element renderOperations size is now " << renderOperations().size();
-  }
-  if (agget(newGraph, (char*)"_ldraw_") != NULL)
-  {
-    parse_renderop(agget(newGraph, (char*)"_ldraw_"), renderOperations());
-    kDebug() << "_ldraw_: element renderOperations size is now " << renderOperations().size();
-  }
-  
-  Agsym_t *attr = agfstattr(newGraph);
-  while(attr)
-  {
-    kDebug() << newGraph->name << ":" << attr->name << agxget(newGraph,attr->index);
-    m_attributes[attr->name] = agxget(newGraph,attr->index);
-    attr = agnxtattr(newGraph,attr);
-  }
+  kDebug() << newGraph;
+  QList<QString> drawingAttributes;
+  drawingAttributes << "_draw_" << "_ldraw_";
+  importFromGraphviz(newGraph, drawingAttributes);
   
   // copy subgraphs
   for (edge_t* e = agfstout(newGraph->meta_node->graph, newGraph->meta_node); e;
@@ -481,10 +463,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
 
   // copy nodes
   node_t* ngn = agfstnode(newGraph);
-  kDebug() << "first node:" << (void*)ngn;
-  
   while (ngn != NULL)
-//   foreach (GraphNode* ngn, newGraph.nodes())
   {
     kDebug() << "node " << ngn->name;
     if (nodes().contains(ngn->name))
@@ -511,7 +490,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     edge_t* nge = agfstout(newGraph, ngn);
     while (nge != NULL)
     {
-      kDebug() << "edge" << nge->id << edges();
+      kDebug() << "edge" << nge->id;
       const QString edgeName = QString::number(nge->id);
       if (edges().contains(edgeName))
       {
@@ -591,7 +570,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
   }
   foreach (GraphNode* ngn, newGraph.nodes())
   {
-    kDebug() << "node " << ngn->id();
+    kDebug() << "node" << ngn->id();
     if (nodes().contains(ngn->id()))
     {
       kDebug() << "known";
@@ -1035,7 +1014,6 @@ void DotGraph::renameNode(const QString& oldNodeName, const QString& newNodeName
 
 QString DotGraph::backColor() const
 {
-  kDebug();
   if (m_attributes.find("bgcolor") != m_attributes.end())
   {
     return m_attributes["bgcolor"];

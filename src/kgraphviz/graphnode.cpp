@@ -73,14 +73,14 @@ GraphNode::~GraphNode()
 
 void GraphNode::updateWithNode(const GraphNode& node)
 {
-  kDebug() << id() << node.id();
   GraphElement::updateWithElement(node);
-  if (canvasElement())
-  {
-    canvasElement()->computeBoundingRect();
-    canvasElement()->modelChanged();
-  }
-//   kDebug() << "done";
+}
+
+double GraphNode::width() const
+{
+  bool ok = false;
+  double result = m_attributes.value("width").toDouble(&ok);
+  return (ok ? result : -1.0);
 }
 
 void GraphNode::updateWithNode(node_t* node)
@@ -89,25 +89,9 @@ void GraphNode::updateWithNode(node_t* node)
   m_attributes["id"] = node->name;
   m_attributes["label"] = ND_label(node)->text;
 
-  renderOperations().clear();
-  if (agget(node, (char*)"_draw_") != NULL)
-  {
-    parse_renderop(agget(node, (char*)"_draw_"), renderOperations());
-    kDebug() << "_draw_: element renderOperations size is now " << renderOperations().size();
-  }
-  if (agget(node, (char*)"_ldraw_") != NULL)
-  {
-    parse_renderop(agget(node, (char*)"_ldraw_"), renderOperations());
-    kDebug() << "_ldraw_: element renderOperations size is now " << renderOperations().size();
-  }
-
-  Agsym_t *attr = agfstattr(node);
-  while(attr)
-  {
-    kDebug() << node->name << ":" << attr->name << agxget(node,attr->index);
-    m_attributes[attr->name] = agxget(node,attr->index);
-    attr = agnxtattr(node,attr);
-  }
+  QList<QString> drawingAttributes;
+  drawingAttributes << "_draw_" << "_ldraw_";
+  importFromGraphviz(node, drawingAttributes);
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphNode& n)

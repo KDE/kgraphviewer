@@ -60,6 +60,8 @@ public:
 
   virtual void updateWithNode(const GraphNode& node);
   virtual void updateWithNode(Agnode_t* node);
+
+  double width() const;
 };
 
 /** A map associating the ids of a graph's nodes to these nodes */

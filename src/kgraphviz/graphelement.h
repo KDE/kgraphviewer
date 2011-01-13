@@ -101,6 +101,7 @@ public:
   void setZ(double z);
 
   void exportToGraphviz(void* element)  const;
+  void importFromGraphviz(void* element, QList<QString> drawingAttributes);
 
 Q_SIGNALS:
   void changed();

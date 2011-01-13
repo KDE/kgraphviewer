@@ -686,15 +686,12 @@ void DotGraphView::slotSelectionChanged()
 bool DotGraphView::displayGraph()
 {
   Q_D(DotGraphView);
-  kDebug() << d->m_graph->backColor();
-//   hide();
   viewport()->setUpdatesEnabled(false);
 
   if (d->m_graph->backColor().size() != 0)
   {
     setBackgroundColor(QColor(d->m_graph->backColor()));
   }
-  // TODO: Clear canvas
 
   if (d->m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
   {
@@ -720,7 +717,7 @@ bool DotGraphView::displayGraph()
   
 //   kDebug() << "sceneRect is now " << scene()->sceneRect();
   
-  kDebug() << "Creating" << d->m_graph->subgraphs().size() << "CanvasSubgraphs from" << d->m_graph;
+  kDebug() << "Handling" << d->m_graph->subgraphs().size() << "CanvasSubgraphs from" << d->m_graph;
   int zvalue = -1;
   foreach (GraphSubgraph* gsubgraph, d->m_graph->subgraphs())
   {
@@ -729,7 +726,7 @@ bool DotGraphView::displayGraph()
       zvalue = newZvalue;
   }
 
-  kDebug() << "Creating" << d->m_graph->nodes().size() << "nodes from" << d->m_graph;
+  kDebug() << "Handling" << d->m_graph->nodes().size() << "nodes from" << d->m_graph;
   GraphNodeMap::const_iterator it = d->m_graph->nodes().constBegin();
   for (; it != d->m_graph->nodes().constEnd();it++)
   {
@@ -758,10 +755,10 @@ bool DotGraphView::displayGraph()
     element->computeBoundingRect();
   }
 
-  kDebug() << "Creating" << d->m_graph->edges().size() << "edges from" << d->m_graph;
+  kDebug() << "Handling" << d->m_graph->edges().size() << "edges from" << d->m_graph;
   foreach (GraphEdge* gedge, d->m_graph->edges())
   {
-    kDebug() << "One GraphEdge:" << gedge->id();
+    kDebug() << "GraphEdge:" << gedge->id();
     if (gedge->canvasElement() == 0
       && gedge->fromNode() != 0
       && gedge->toNode() != 0)
@@ -787,7 +784,7 @@ bool DotGraphView::displayGraph()
     element->computeBoundingRect();
   }
 
-  kDebug() << "Adding graph render operations: " << d->m_graph->renderOperations().size();
+//   kDebug() << "Adding graph render operations: " << d->m_graph->renderOperations().size();
   foreach (const DotRenderOp& dro, d->m_graph->renderOperations())
   {
     if ( dro.renderop == "T" )

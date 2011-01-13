@@ -450,7 +450,6 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
 void CanvasEdge::computeBoundingRect()
 {
   Q_D(CanvasEdge);
-  kDebug();
   //invalidate bounding region cache
   d->m_boundingRegion = QPainterPath();
   if (edge()->renderOperations().isEmpty())

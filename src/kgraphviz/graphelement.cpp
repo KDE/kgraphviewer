@@ -21,6 +21,7 @@
 
 #include "canvaselement.h"
 #include "support/dotdefaults.h"
+#include "support/dotgrammar.h"
 
 #include <math.h>
 
@@ -166,6 +167,11 @@ void GraphElement::updateWithElement(const GraphElement& element)
     kDebug() << "modified: emiting changed";*/
     emit changed();
   }
+
+  if (canvasElement())
+  {
+    canvasElement()->modelChanged();
+  }
   kDebug() << "done" << renderOperations().size();
 }
 
@@ -222,6 +228,24 @@ void GraphElement::exportToGraphviz(void* element) const
         agsafeset(element, it.key().toUtf8().data(), it.value().toUtf8().data(), QString().toUtf8().data());
       }
     }
+  }
+}
+
+void GraphElement::importFromGraphviz(void* element, QList<QString> drawingAttributes)
+{
+  if (!element) {
+    kWarning() << "Cannot import from null element";
+    return;
+  }
+  
+  renderOperations().clear();
+  foreach(const QString& attribute, drawingAttributes) {
+    const char* value = agget(element, const_cast<char*>(qPrintable(attribute)));
+    if (!value)
+      continue;
+
+    parse_renderop(value, renderOperations());
+    kDebug() << attribute << "element renderOperations size is now " << renderOperations().size();
   }
 }
 

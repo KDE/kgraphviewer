@@ -92,62 +92,20 @@ const QString GraphEdge::color(uint i)
 
 void GraphEdge::updateWithEdge(const GraphEdge& edge)
 {
-  kDebug() << id() << edge.id();
   m_arrowheads = edge.arrowheads();
   m_colors = edge.colors();
   m_dir = edge.dir();
   m_fromNode = edge.m_fromNode;
   m_toNode = edge.m_toNode;
+
   GraphElement::updateWithElement(edge);
-  if (canvasElement())
-  {
-    canvasElement()->computeBoundingRect();
-    canvasElement()->modelChanged();
-  }
 }
 
 void GraphEdge::updateWithEdge(edge_t* edge)
 {
-  kDebug();
-  renderOperations().clear();
-  if (agget(edge, (char*)"_draw_") != NULL)
-  {
-    parse_renderop(agget(edge, (char*)"_draw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
-  }
-  if (agget(edge, (char*)"_ldraw_") != NULL)
-  {
-    parse_renderop(agget(edge, (char*)"_ldraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
-  }
-  if (agget(edge, (char*)"_hdraw_") != NULL)
-  {
-    parse_renderop(agget(edge, (char*)"_hdraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
-  }
-  if (agget(edge, (char*)"_tdraw_") != NULL)
-  {
-    parse_renderop(agget(edge, (char*)"_tdraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
-  }
-  if (agget(edge, (char*)"_hldraw_") != NULL)
-  {
-    parse_renderop(agget(edge, (char*)"_hldraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
-  }
-  if (agget(edge, (char*)"_tldraw_") != NULL)
-  {
-    parse_renderop(agget(edge, (char*)"_tldraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
-  }
-  Agsym_t *attr = agfstattr(edge);
-  while(attr)
-  {
-    kDebug() /*<< edge->name*/ << ":" << attr->name << agxget(edge,attr->index);
-    m_attributes[attr->name] = agxget(edge,attr->index);
-    attr = agnxtattr(edge,attr);
-  }
-  
+  QList<QString> drawingAttributes;
+  drawingAttributes << "_draw_" << "_ldraw_" << "_hdraw_" << "_tdraw_" << "_hldraw_" << "_tldraw_";
+  importFromGraphviz(edge, drawingAttributes);
 }
 
 QTextStream& operator<<(QTextStream& s, const GraphEdge& e)
