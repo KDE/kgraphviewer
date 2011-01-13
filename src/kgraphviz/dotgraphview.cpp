@@ -172,6 +172,7 @@ void DotGraphViewPrivate::updateSizes(QSizeF s)
   updateBirdEyeView();
   m_birdEyeView->setZoomRect(q->mapToScene(q->viewport()->rect()).boundingRect());
   m_birdEyeView->show();
+
   QSizeF newCanvasSize = q->scene()->sceneRect().size();
   if (newCanvasSize.width() < q->viewport()->width())
   {
@@ -695,7 +696,7 @@ bool DotGraphView::displayGraph()
 
   if (d->m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
   {
-    d->m_birdEyeView->setDrawingEnabled(false);
+    d->m_birdEyeView->hide();
   }
   //  QCanvasEllipse* eItem;
   double scaleX = 1.0, scaleY = 1.0;

@@ -60,13 +60,11 @@ public:
   QRectF m_zoomRect;
   bool m_movingZoomRect;
   QPointF m_lastPos;
-  bool m_drawContents;
 };
 
 PannerViewPrivate::PannerViewPrivate(DotGraphView* parent)
   : q_ptr(parent)
   , m_movingZoomRect(false)
-  , m_drawContents(true)
 {
 
 }
@@ -164,12 +162,6 @@ void PannerView::moveZoomRectTo(const QPointF& newPos, bool notify)
     emit zoomRectMovedTo(newPos);
     d->m_lastPos = newPos;
   }
-}
-
-void PannerView::setDrawingEnabled(bool enabled)
-{
-  Q_D(PannerView);
-  d->m_drawContents = enabled;
 }
 
 void PannerView::drawForeground(QPainter * p, const QRectF & rect )

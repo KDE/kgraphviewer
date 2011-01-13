@@ -46,8 +46,6 @@ public:
   explicit PannerView(DotGraphView * parent, const char * name = 0);
   virtual ~PannerView();
 
-  void setDrawingEnabled(bool enabled);
-
 public Q_SLOTS:
   void setZoomRect(const QRectF& rectangle);
   void moveZoomRectTo(const QPointF& newPos, const bool notify = true);
