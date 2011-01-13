@@ -46,7 +46,7 @@ public:
   DotGraphViewPrivate(KActionCollection* actions, DotGraphView* parent);
   virtual ~DotGraphViewPrivate();
 
-  void updateSizes(QSizeF s = QSizeF(0,0));
+  void updateSizes(const QSizeF& size = QSizeF(0,0));
   void updateBirdEyeView();
   void setupCanvas();
   void setupPopup();

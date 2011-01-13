@@ -117,7 +117,7 @@ DotGraphViewPrivate::~DotGraphViewPrivate()
   kDebug() << "leave";
 }
 
-void DotGraphViewPrivate::updateSizes(QSizeF s)
+void DotGraphViewPrivate::updateSizes(const QSizeF& size)
 {
   kDebug();
 
@@ -125,7 +125,9 @@ void DotGraphViewPrivate::updateSizes(QSizeF s)
   if (q->scene() == 0)
     return;
 
-  if (s == QSizeF(0,0)) s = q->size();
+  QSizeF adjustedSize = size;
+  if (size == QSizeF(0,0))
+    adjustedSize = q->size();
 
   // the part of the canvas that should be visible
   qreal cWidth  = q->scene()->width()  - 2*m_xMargin + 100;
@@ -133,7 +135,7 @@ void DotGraphViewPrivate::updateSizes(QSizeF s)
 
   // hide birds eye view if no overview needed
   if (!m_bevEnabledAction->isChecked() ||
-      (((cWidth * m_zoom) < s.width()) && (cHeight * m_zoom) < s.height())) {
+      (((cWidth * m_zoom) < adjustedSize.width()) && (cHeight * m_zoom) < adjustedSize.height())) {
     kDebug() << "Hide the panner view";
     m_birdEyeView->hide();
     return;
@@ -143,54 +145,37 @@ void DotGraphViewPrivate::updateSizes(QSizeF s)
   m_birdEyeView->hide();
 
   // first, assume use of 1/3 of width/height (possible larger)
-  double zoom = .33 * s.width() / cWidth;
-  if (zoom * cHeight < .33 * s.height()) zoom = .33 * s.height() / cHeight;
-  
+  double zoom = .33 * adjustedSize.width() / cWidth;
+  if (zoom * cHeight < .33 * adjustedSize.height()) zoom = .33 * adjustedSize.height() / cHeight;
+
   // fit to widget size
-  if (cWidth  * zoom  > s.width())   zoom = s.width() / (double)cWidth;
-  if (cHeight * zoom  > s.height())  zoom = s.height() / (double)cHeight;
-  
+  if (cWidth  * zoom  > adjustedSize.width())
+    zoom = adjustedSize.width() / (double)cWidth;
+  if (cHeight * zoom  > adjustedSize.height())
+    zoom = adjustedSize.height() / (double)cHeight;
+
   // scale to never use full height/width
   zoom = zoom * 3/4;
-  
+
   // at most a zoom of 1/3
-  if (zoom > .33) zoom = .33;
-  
+  if (zoom > .33)
+    zoom = .33;
+
   if (zoom != m_cvZoom)
   {
     m_cvZoom = zoom;
-    
+
     QMatrix wm;
     wm.scale( zoom, zoom );
     m_birdEyeView->setMatrix(wm);
-    
+
     // make it a little bigger to compensate for widget frame
     m_birdEyeView->resize((cWidth * zoom) + 4,
                           (cHeight * zoom) + 4);
-    
   }
   updateBirdEyeView();
   m_birdEyeView->setZoomRect(q->mapToScene(q->viewport()->rect()).boundingRect());
   m_birdEyeView->show();
-
-  QSizeF newCanvasSize = q->scene()->sceneRect().size();
-  if (newCanvasSize.width() < q->viewport()->width())
-  {
-    newCanvasSize.setWidth(q->viewport()->width());
-  }
-  else if (q->viewport()->width() < q->scene()->sceneRect().size().width())
-  {
-    newCanvasSize.setWidth(q->scene()->sceneRect().size().width());
-  }
-  if (newCanvasSize.height() < q->viewport()->height())
-  {
-    newCanvasSize.setHeight(q->viewport()->height());
-  }
-  else if (q->viewport()->height() < q->scene()->sceneRect().size().height())
-  {
-    newCanvasSize.setHeight(q->scene()->sceneRect().size().height());
-  }
-  //   std::cerr << "done." << std::endl;
 }
 
 void DotGraphViewPrivate::updateBirdEyeView()
@@ -257,6 +242,7 @@ void DotGraphViewPrivate::updateBirdEyeView()
 int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent)
 {
   kDebug();
+
   Q_Q(DotGraphView);
   double scaleX = 1.0, scaleY = 1.0;
   
@@ -710,10 +696,7 @@ bool DotGraphView::displayGraph()
 
   d->m_xMargin = 50;
   d->m_yMargin = 50;
-
-
-//   scene()->setSceneRect(0,0,w+2*m_xMargin, h+2*m_yMargin);
-//   scene()->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
+  
   scene()->setBackgroundBrush(QBrush(d->m_backgroundColor));
   
 //   kDebug() << "sceneRect is now " << scene()->sceneRect();
@@ -841,7 +824,13 @@ bool DotGraphView::displayGraph()
   {
     (*labelViewsIt)->show();
   }
+
   scene()->update();
+
+  // add some margin to the scene rect
+  const int margin = 20;
+  const QRectF newSceneRect = scene()->itemsBoundingRect().adjusted(-margin, -margin, margin, margin);
+  scene()->setSceneRect(newSceneRect);
   
   emit graphLoaded();
 
