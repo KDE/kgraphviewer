@@ -22,7 +22,6 @@
 
 #include "dotgraphview.h"
 
-#include "graphexporter.h"
 #include "support/loadagraphthread.h"
 #include "support/layoutagraphthread.h"
 
@@ -69,8 +68,6 @@ public:
   double m_zoom;
   bool m_isMoving;
   QPoint m_lastPos;
-
-  GraphExporter m_exporter;
 
   // widget options
   DotGraphView::PannerPosition m_zoomPosition, m_lastAutoPosition;

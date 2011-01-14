@@ -42,10 +42,11 @@ class DotGraph;
 class GraphExporter
 {
 public:
+  static Agraph_t* exportToGraphviz(const DotGraph* graph);
+
+private:
   GraphExporter();
   virtual ~GraphExporter();
-
-  Agraph_t* exportToGraphviz(const DotGraph* graph);
 };
 
 }

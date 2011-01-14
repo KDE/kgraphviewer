@@ -59,13 +59,20 @@ graph_t* GraphExporter::exportToGraphviz(const DotGraph* graph)
   graph->exportToGraphviz(agraph);
   /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
   /// possible to save them back : to be changed !
-  GraphSubgraphMap::const_iterator sit;
-  for ( sit = graph->subgraphs().begin();
-  sit != graph->subgraphs().end(); ++sit )
+  foreach(const GraphSubgraph* s, graph->subgraphs())
   {
-    const GraphSubgraph& s = **sit;
-    graph_t* subgraph = agsubg(agraph, s.id().toUtf8().data());
-    s.exportToGraphviz(subgraph);
+    graph_t* subgraph = agsubg(agraph, s->id().toUtf8().data());
+    s->exportToGraphviz(subgraph);
+
+    // TODO: Fix me, refactor this
+    foreach(const GraphElement* element, s->content()) {
+      const GraphNode* n = dynamic_cast<const GraphNode*>(element);
+      if (!n)
+        continue;
+
+      node_t* node = agnode(agraph, n->id().toUtf8().data());
+      n->exportToGraphviz(node);
+    }
   }
   
   GraphNodeMap::const_iterator nit;

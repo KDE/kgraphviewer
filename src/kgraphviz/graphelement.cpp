@@ -235,7 +235,7 @@ void GraphElement::importFromGraphviz(void* element, QList<QString> drawingAttri
     kWarning() << "Cannot import from null element";
     return;
   }
-  
+
   renderOperations().clear();
   foreach(const QString& attribute, drawingAttributes) {
     const char* value = agget(element, const_cast<char*>(qPrintable(attribute)));

@@ -304,9 +304,8 @@ bool DotGraph::update()
   }
   else
   {
-    kDebug() << "using library";
-    GraphExporter exporter;
-    graph_t* graph = exporter.exportToGraphviz(this);
+    kDebug() << "using library, layout command:" << layoutCommand();
+    graph_t* graph = GraphExporter::exportToGraphviz(this);
 
     GVC_t* gvc = gvContext();
     gvLayout(gvc, graph, layoutCommand().toUtf8().data());
