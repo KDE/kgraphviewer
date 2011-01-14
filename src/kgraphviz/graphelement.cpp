@@ -24,6 +24,7 @@
 #include "support/dotgrammar.h"
 
 #include <math.h>
+#include <string.h>
 
 #include <kdebug.h>
 
@@ -217,6 +218,11 @@ void GraphElement::exportToGraphviz(void* element) const
       }
       else if (it.key() == "_draw_" || it.key() == "_ldraw_")
       {
+      }
+      else if (it.key() == "width" || it.key() == "height")
+      {
+        // work around bug, see: http://www.graphviz.org/bugs/b901.html
+        // on each new layout node size increases for some reason, not saving node height/width fixes this
       }
       else if (originalAttributes().isEmpty() || originalAttributes().contains(it.key()))
       {
