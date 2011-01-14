@@ -16,10 +16,6 @@
    02110-1301, USA
 */
 
-/*
- * Graph Subgraph
- */
-
 #include "canvassubgraph.h"
 #include "graphsubgraph.h"
 #include "graphnode.h"
@@ -32,18 +28,12 @@
 
 namespace KGraphViz
 {
-  
-//
-// GraphSubgraph
-//
 
-GraphSubgraph::GraphSubgraph() :
-  GraphElement()
+GraphSubgraph::GraphSubgraph()
 {
 }
 
-GraphSubgraph::GraphSubgraph(graph_t* sg) :
-  GraphElement()
+GraphSubgraph::GraphSubgraph(graph_t* sg)
 {
   updateWithSubgraph(sg);
 }
@@ -100,10 +90,7 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
   }
 
   if (canvasElement())
-  {
     canvasElement()->modelChanged();
-    canvasElement()->computeBoundingRect();
-  }
 //   kDebug() << "done";
 }
 
@@ -114,25 +101,9 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
   if (GD_label(subgraph))
     m_attributes["label"] = GD_label(subgraph)->text;
 
-  renderOperations().clear();
-  if (agget(subgraph, (char*)"_draw_") != NULL)
-  {
-    parse_renderop(agget(subgraph, (char*)"_draw_"), renderOperations());
-    kDebug() << "_draw_: element renderOperations size is now " << renderOperations().size();
-  }
-  if (agget(subgraph, (char*)"_ldraw_") != NULL)
-  {
-    parse_renderop(agget(subgraph, (char*)"_ldraw_"), renderOperations());
-    kDebug() << "_ldraw_: element renderOperations size is now " << renderOperations().size();
-  }
-  
-  Agsym_t *attr = agfstattr(subgraph);
-  while(attr)
-  {
-    kDebug() << subgraph->name << ":" << attr->name << agxget(subgraph,attr->index);
-    m_attributes[attr->name] = agxget(subgraph,attr->index);
-    attr = agnxtattr(subgraph,attr);
-  }
+  QList<QString> drawingAttributes;
+  drawingAttributes << "_draw_" << "_ldraw_";
+  importFromGraphviz(subgraph, drawingAttributes);
 
   for (edge_t* e = agfstout(subgraph->meta_node->graph, subgraph->meta_node); e;
       e = agnxtout(subgraph->meta_node->graph, e))

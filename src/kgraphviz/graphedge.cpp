@@ -37,14 +37,10 @@
 
 namespace KGraphViz
 {
-  
-/*
- * Graph Edge
- */
 
 GraphEdge::GraphEdge() : 
-    GraphElement(),
-    m_fromNode(0),m_toNode(0),
+    m_fromNode(0),
+    m_toNode(0),
     m_dir(DOT_DEFAULT_EDGE_DIR)
 {
 //   kDebug() ;

@@ -51,7 +51,6 @@ GraphElementPrivate::GraphElementPrivate(const GraphElementPrivate& other) :
 }
 
 GraphElement::GraphElement() :
-    QObject(),
     d_ptr(new GraphElementPrivate)
 {
 /*  label("");
@@ -68,7 +67,6 @@ GraphElement::GraphElement() :
 }
 
 GraphElement::GraphElement(const GraphElement& element) :
-  QObject(),
   d_ptr(new GraphElementPrivate(*element.d_ptr))
 {
   kDebug() ;
@@ -172,7 +170,7 @@ void GraphElement::updateWithElement(const GraphElement& element)
   {
     canvasElement()->modelChanged();
   }
-  kDebug() << "done" << renderOperations().size();
+  kDebug() << "done: render operations size:" << renderOperations().size();
 }
 
 
@@ -214,7 +212,7 @@ void GraphElement::exportToGraphviz(void* element) const
         if (label != "label")
         {
           label.replace(QRegExp("\n"),"\\n");
-          //           kDebug() << it.key() << "=\"" << label << "\",";
+          kDebug() << id() << it.key() << label;
           agsafeset(element, it.key().toUtf8().data(), label.toUtf8().data(), QString().toUtf8().data());
         }
       }
@@ -223,9 +221,9 @@ void GraphElement::exportToGraphviz(void* element) const
       }
       else if (originalAttributes().isEmpty() || originalAttributes().contains(it.key()))
       {
-        kDebug() << it.key() << it.value();
-        
-        agsafeset(element, it.key().toUtf8().data(), it.value().toUtf8().data(), QString().toUtf8().data());
+        kDebug() << id() << it.key() << it.value();
+
+        agsafeset(element, it.key().toUtf8().data(), it.value().toUtf8().data(), it.value().toUtf8().data());
       }
     }
   }
@@ -245,7 +243,14 @@ void GraphElement::importFromGraphviz(void* element, QList<QString> drawingAttri
       continue;
 
     parse_renderop(value, renderOperations());
-    kDebug() << attribute << "element renderOperations size is now " << renderOperations().size();
+    kDebug() << attribute << "element renderOperations size is now" << renderOperations().size();
+  }
+
+  Agsym_t *attr = agfstattr(element);
+  while(attr) {
+    kDebug() << id() << attr->name << agxget(element, attr->index);
+    m_attributes[attr->name] = agxget(element,attr->index);
+    attr = agnxtattr(element,attr);
   }
 }
 

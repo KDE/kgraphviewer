@@ -24,12 +24,8 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
-/*
- * Graph Node
- */
-
 #include "canvasnode.h"
+
 #include "dotgraphview.h"
 #include "graphnode.h"
 #include "support/dotdefaults.h"
@@ -43,13 +39,8 @@
 
 namespace KGraphViz
 {
-  
-//
-// GraphNode
-//
 
-GraphNode::GraphNode() :
-    GraphElement()
+GraphNode::GraphNode()
 {
 //   kDebug() ;
 }
@@ -60,7 +51,7 @@ GraphElement(gn)
   //   kDebug() ;
 }
 
-GraphNode::GraphNode(node_t* gn) : GraphElement()
+GraphNode::GraphNode(node_t* gn)
 {
   kDebug();
 
