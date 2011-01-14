@@ -295,16 +295,17 @@ bool DotGraph::parseDot(const QString& fileName)
 
 bool DotGraph::update()
 {
-  GraphExporter exporter;
+  Q_D(DotGraph);
   if (!useLibrary())
   {
-    kDebug() << "command";
-    QString str = exporter.writeDot(this);
-    return parseDot(str);
+    kDebug() << "using command line";
+    d->m_graphIO.updateDot(this);
+    return true;
   }
   else
   {
-    kDebug() << "library";
+    kDebug() << "using library";
+    GraphExporter exporter;
     graph_t* graph = exporter.exportToGraphviz(this);
 
     GVC_t* gvc = gvContext();

@@ -91,11 +91,10 @@ QString GraphIOPrivate::toString(QProcess::ProcessError error)
 
 void GraphIOPrivate::processFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  kDebug() << "Error message:" << toString(m_process.error()) << m_process.errorString();
-
-  // TODO: Better error handling here
   QByteArray result = m_process.readAll();
   if (exitCode != 0) {
+    kDebug() << "Error message:" << toString(m_process.error()) << m_process.errorString();
+    kWarning() << "Exit code not okay:" << exitCode;
     emit error(i18n("Failed to load from dot file: %1", result.data()));
     return;
   }
@@ -137,7 +136,7 @@ void GraphIOPrivate::processFinished(int exitCode, QProcess::ExitStatus exitStat
 
 void GraphIOPrivate::processError(QProcess::ProcessError error)
 {
-  kDebug();
+  kDebug() << toString(error) << '-' << m_process.errorString();
   emit(toString(error));
 }
 
@@ -190,53 +189,13 @@ void GraphIO::saveToDotFile(const DotGraph* dotGraph, const QString& fileName)
   kDebug() << fileName;
 
   QFile f(fileName);
-  if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
-  {
+  if (!f.open(QIODevice::WriteOnly | QIODevice::Text)) {
     kError() << "Unable to open file for writing:" << fileName;
     return;
   }
 
   QTextStream stream(&f);
-  stream << "digraph \"";
-  if (dotGraph->id()!="\"\"")
-  {
-    stream <<dotGraph->id();
-  }
-  stream <<"\" {\n";
-
-  stream << "graph [" << *dotGraph <<"]" << endl;
-
-  /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
-  /// possible to save them back : to be changed !
-//   kDebug() << "writing subgraphs";
-  GraphSubgraphMap::const_iterator sit;
-  for ( sit = dotGraph->subgraphs().begin();
-  sit != dotGraph->subgraphs().end(); ++sit )
-  {
-    const GraphSubgraph& s = **sit;
-    (stream) << s;
-  }
-
-  kDebug() << "writing nodes";
-  GraphNodeMap::const_iterator nit;
-  for ( nit = dotGraph->nodes().begin();
-        nit != dotGraph->nodes().end(); ++nit )
-  {
-    kDebug() << "writing node" << (*nit)->id();
-    (stream) << **nit;
-  }
-
-  kDebug() << "writing edges";
-  GraphEdgeMap::const_iterator eit;
-  for ( eit = dotGraph->edges().begin();
-        eit != dotGraph->edges().end(); ++eit )
-  {
-    kDebug() << "writing edge" << (*eit)->id();
-    stream << **eit;
-  }
-
-  stream << "}\n";
-
+  stream << *dotGraph;
   f.close();
 }
 

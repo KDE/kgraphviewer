@@ -24,23 +24,16 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-/*
- * Graph Exporter
- */
-
 #ifndef GRAPH_EXPORTER_H
 #define GRAPH_EXPORTER_H
 
-#include <QString>
-
 class Agraph_t;
-
-class KTemporaryFile;
 
 namespace KGraphViz
 {
+
 class DotGraph;
-  
+
 /**
  * GraphExporter
  *
@@ -52,13 +45,9 @@ public:
   GraphExporter();
   virtual ~GraphExporter();
 
-  QString writeDot(const DotGraph* graph, const QString& fileName = QString());
   Agraph_t* exportToGraphviz(const DotGraph* graph);
 };
 
 }
 
 #endif
-
-
-
