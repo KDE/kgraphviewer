@@ -113,8 +113,7 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
   m_attributes["id"] = subgraph->name;
   if (GD_label(subgraph))
     m_attributes["label"] = GD_label(subgraph)->text;
-  
-  
+
   renderOperations().clear();
   if (agget(subgraph, (char*)"_draw_") != NULL)
   {
@@ -134,7 +133,6 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
     m_attributes[attr->name] = agxget(subgraph,attr->index);
     attr = agnxtattr(subgraph,attr);
   }
-
 
   for (edge_t* e = agfstout(subgraph->meta_node->graph, subgraph->meta_node); e;
       e = agnxtout(subgraph->meta_node->graph, e))
@@ -160,7 +158,6 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
       subgraphs().insert(sg->name, newsg);
       //       kDebug() << "new inserted";
     }
-    
   }
 }
 
@@ -286,13 +283,14 @@ void GraphSubgraph::retrieveSelectedElementsIds(QList<QString> selection)
 
 QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
 {
-  s << "subgraph " << sg.id() << "  {"
-    << dynamic_cast<const GraphElement&>(sg);
+  s << "subgraph " << sg.id() << " {" << endl;
+  // TODO: Fix me, produces invalid dot syntax because of the ',' separators
+  //s << dynamic_cast<const GraphElement&>(sg);
   foreach (const GraphElement* el, sg.content())
   {
     s << *(dynamic_cast<const GraphNode*>(el));
   }
-  s <<"}"<<endl;
+  s << "}" <<endl;
   return s;
 }
 

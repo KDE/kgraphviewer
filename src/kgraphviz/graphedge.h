@@ -97,15 +97,10 @@ private:
   QList< DotRenderOp > m_arrowheads;
 };
 
-
 /** A map associating the bounds nodes of a graph's edges to these edges */
 typedef QMap<QString, GraphEdge*> GraphEdgeMap;
 
-QTextStream& operator<<(QTextStream& s, const GraphEdge& e);
-
+KGRAPHVIZ_EXPORT QTextStream& operator<<(QTextStream& s, const GraphEdge& e);
 }
 
 #endif
-
-
-

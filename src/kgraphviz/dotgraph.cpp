@@ -111,11 +111,11 @@ DotGraph::DotGraph(const QString& layoutCommand, const QString& fileName) :
   d->m_layoutCommand = layoutCommand;
 }
 
-DotGraph::~DotGraph()  
+DotGraph::~DotGraph()
 {
   kDebug();
-  
-  Q_D(DotGraph); 
+
+  Q_D(DotGraph);
   GraphNodeMap::iterator itn, itn_end;
   itn = d->m_nodesMap.begin(); itn_end = d->m_nodesMap.end();
   for (; itn != itn_end; itn++)
@@ -312,7 +312,7 @@ bool DotGraph::update()
     gvRender (gvc, graph, "xdot", NULL);
 
     updateWithGraph(graph);
-    
+
     gvFreeLayout(gvc, graph);
     agclose(graph);
     bool result = (gvFreeContext(gvc) == 0);
@@ -323,13 +323,13 @@ bool DotGraph::update()
 unsigned int DotGraphPrivate::cellNumber(int x, int y) const
 {
 /*  kDebug() << "x= " << x << ", y= " << y << ", m_width= " << m_width << ", m_height= " << m_height << ", m_horizCellFactor= " << m_horizCellFactor << ", m_vertCellFactor= " << m_vertCellFactor  << ", m_wdhcf= " << m_wdhcf << ", m_hdvcf= " << m_hdvcf;*/
-  
+
   const unsigned int nx = (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
   const unsigned int ny = (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
 /*  kDebug() << "nx = " << (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
   kDebug() << "ny = " << (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
   kDebug() << "res = " << ny * m_horizCellFactor + nx;*/
-  
+
   const unsigned int res = ny * m_horizCellFactor + nx;
   return res;
 }
@@ -340,7 +340,7 @@ void DotGraphPrivate::computeCells()
 {
   kWarning() << "Not implemented";
   return;
-  
+
 /* FIXME: Is this used?
   kDebug() << m_width << m_height << endl;
   m_horizCellFactor = m_vertCellFactor = 1;
@@ -352,7 +352,7 @@ void DotGraphPrivate::computeCells()
     stop = true;
     m_cells.clear();
 //     m_cells.resize(m_horizCellFactor * m_vertCellFactor);
-    
+
     GraphNodeMap::iterator it, it_end;
     it = m_nodesMap.begin(); it_end = m_nodesMap.end();
     for (; it != it_end; it++)
@@ -367,7 +367,7 @@ void DotGraphPrivate::computeCells()
         m_cells.resize(cellNum+1);
       }
       m_cells[cellNum].insert(gn);
-      
+
       kDebug() << "after insert";
       if ( m_cells[cellNum].size() > MAXCELLWEIGHT )
       {
@@ -427,12 +427,12 @@ void DotGraph::saveTo(const QString& fileName)
 void DotGraph::updateWithGraph(graph_t* newGraph)
 {
   Q_D(DotGraph);
-  
+
   kDebug() << newGraph;
   QList<QString> drawingAttributes;
   drawingAttributes << "_draw_" << "_ldraw_";
   importFromGraphviz(newGraph, drawingAttributes);
-  
+
   // copy subgraphs
   for (edge_t* e = agfstout(newGraph->meta_node->graph, newGraph->meta_node); e;
       e = agnxtout(newGraph->meta_node->graph, e))
@@ -631,7 +631,7 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
     kError() << "No such node " << nodeName;
     return;
   }
-  
+
   GraphEdgeMap::iterator it, it_end;
   it = d->m_edgesMap.begin(); it_end = d->m_edgesMap.end();
   while (it != it_end)
@@ -683,7 +683,7 @@ void DotGraph::removeNodeFromSubgraph(
     kError() << "No such subgraph " << subgraphName;
     return;
   }
-  
+
   subgraph->removeElement(node);
   if (subgraph->content().isEmpty())
   {
@@ -869,10 +869,14 @@ void DotGraph::addNewSubgraph(QMap<QString,QString> attribs)
 void DotGraph::addNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph)
 {
   kDebug() << attribs << "to" << subgraph;
+  if (!subgraphs().contains(subgraph)) {
+    kWarning() << "Invalid subgraph:" << subgraph;
+    return;
+  }
+
   GraphNode* newNode = new GraphNode();
   newNode->attributes() = attribs;
   subgraphs()[subgraph]->content().push_back(newNode);
-
   kDebug() << "node added as" << newNode->id() << "in" << subgraph;
 }
 
@@ -971,7 +975,7 @@ void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString,QString> attrib
   {
     tgtElement = elementNamed(QString("cluster_")+tgt);
   }
-  
+
   if (srcElement == 0 || tgtElement == 0)
   {
     kError() << src << "or" << tgt << "missing";
@@ -1022,6 +1026,25 @@ QString DotGraph::backColor() const
   {
     return QString();
   }
+}
+
+QTextStream& KGraphViz::operator<<(QTextStream& s, const KGraphViz::DotGraph& graph)
+{
+  if (graph.strict())
+    s << "strict ";
+
+  s << (graph.directed() ? "digraph " : "graph ") << graph.id() << " {" << endl;
+  foreach(const GraphSubgraph* subgraph, graph.subgraphs()) {
+    s << *subgraph;
+  }
+  foreach(const GraphNode* node, graph.nodes()) {
+    s << *node;
+  }
+  foreach(const GraphEdge* edge, graph.edges()) {
+    s << *edge;
+  }
+  s << "}" << endl;
+  return s;
 }
 
 #include "dotgraph.moc"

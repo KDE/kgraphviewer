@@ -133,6 +133,7 @@ private:
   Q_PRIVATE_SLOT(d_func(), void graphIOError(QString));
 };
 
+KGRAPHVIZ_EXPORT QTextStream& operator<<(QTextStream& s, const DotGraph& n);
 }
 
 #endif

@@ -116,7 +116,7 @@ private:
   Q_DECLARE_PRIVATE(GraphElement);
 };
 
-QTextStream& operator<<(QTextStream& s, const GraphElement& n);
+KGRAPHVIZ_EXPORT QTextStream& operator<<(QTextStream& s, const GraphElement& n);
 
 }
 

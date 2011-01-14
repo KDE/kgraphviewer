@@ -67,8 +67,7 @@ public:
 /** A map associating the ids of a graph's nodes to these nodes */
 typedef QMap<QString, GraphNode*> GraphNodeMap;
 
-QTextStream& operator<<(QTextStream& s, const GraphNode& n);
-
+KGRAPHVIZ_EXPORT QTextStream& operator<<(QTextStream& s, const GraphNode& n);
 }
 
 #endif

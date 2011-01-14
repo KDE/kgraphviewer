@@ -86,7 +86,7 @@ private:
   GraphSubgraphMap m_subgraphsMap;
 };
 
-QTextStream& operator<<(QTextStream& stream, const GraphSubgraph& s);
+KGRAPHVIZ_EXPORT QTextStream& operator<<(QTextStream& stream, const GraphSubgraph& s);
 
 }
 
