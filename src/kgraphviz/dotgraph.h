@@ -100,6 +100,7 @@ public:
   void setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
 
   GraphElement* elementNamed(const QString& id) const;
+  GraphNode* nodeNamed(const QString& id) const;
 
   void setUseLibrary(bool value);
   bool useLibrary() const;

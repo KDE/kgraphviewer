@@ -30,8 +30,7 @@
 #include <QRegExp>
 #include <graphviz/gvc.h>
 
-namespace KGraphViz
-{
+using namespace KGraphViz;
 
 GraphElementPrivate::GraphElementPrivate() :
   m_z(1.0),
@@ -66,10 +65,10 @@ GraphElement::GraphElement() :
   setFontSize(DOT_DEFAULT_FONTSIZE);
 }
 
-GraphElement::GraphElement(const GraphElement& element) :
-  d_ptr(new GraphElementPrivate(*element.d_ptr))
+GraphElement::GraphElement(const GraphElement& element)
+  : d_ptr(new GraphElementPrivate(*element.d_ptr))
 {
-  kDebug() ;
+  kDebug();
   updateWithElement(element);
 }
 
@@ -254,7 +253,7 @@ void GraphElement::importFromGraphviz(void* element, QList<QString> drawingAttri
   }
 }
 
-QTextStream& operator<<(QTextStream& s, const GraphElement& n)
+QTextStream& KGraphViz::operator<<(QTextStream& s, const GraphElement& n)
 {
   QMap<QString,QString>::const_iterator it, it_end;
   it = n.attributes().begin(); it_end = n.attributes().end();
@@ -284,8 +283,6 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
     }
   }
   return s;
-}
-
 }
 
 #include "graphelement.moc"

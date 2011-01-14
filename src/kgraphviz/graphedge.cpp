@@ -25,6 +25,8 @@
 */
 
 #include "graphedge.h"
+#include "graphedge_p.h"
+
 #include "graphnode.h"
 #include "graphsubgraph.h"
 #include "canvasedge.h"
@@ -35,49 +37,114 @@
 
 #include <KDebug>
 
-namespace KGraphViz
-{
+using namespace KGraphViz;
 
-GraphEdge::GraphEdge() : 
-    m_fromNode(0),
-    m_toNode(0),
-    m_dir(DOT_DEFAULT_EDGE_DIR)
+GraphEdgePrivate::GraphEdgePrivate()
+  : m_fromNode(0)
+  , m_toNode(0)
 {
-//   kDebug() ;
+}
+
+GraphEdgePrivate::GraphEdgePrivate(const GraphEdgePrivate& other)
+  : m_fromNode(other.m_fromNode)
+  , m_toNode(other.m_toNode)
+  , m_arrowHeads(other.m_arrowHeads)
+{
+}
+
+GraphEdgePrivate::~GraphEdgePrivate()
+{
+  kDebug();
+}
+
+GraphEdge::GraphEdge()
+  : d_ptr(new GraphEdgePrivate)
+{
+  kDebug();
 }
 
 GraphEdge::~GraphEdge()
 {
   kDebug();
+
+  delete d_ptr;
 }
 
-GraphEdge::GraphEdge(const GraphEdge& edge) :
-  GraphElement(edge)
+GraphEdge::GraphEdge(const GraphEdge& other)
+  : GraphElement(other)
+  , d_ptr(new GraphEdgePrivate(*other.d_ptr))
 {
-    m_fromNode = 0;
-    m_toNode = 0;
-    m_colors = edge.m_colors;
-    m_dir = edge.m_dir;
-    m_arrowheads = edge.m_arrowheads;
+}
+
+GraphEdge::GraphEdge(Agedge_t* edge)
+  : d_ptr(new GraphEdgePrivate)
+{
+  kDebug();
+
+  updateWithEdge(edge);
+}
+
+QList< DotRenderOp >& GraphEdge::arrowheads()
+{
+  Q_D(GraphEdge);
+  return d->m_arrowHeads;
+}
+
+const QList< DotRenderOp >& GraphEdge::arrowheads() const
+{
+  Q_D(const GraphEdge);
+  return d->m_arrowHeads;
+}
+
+const QStringList& GraphEdge::colors() const
+{
+  Q_D(const GraphEdge);
+  return d->m_colors;
 }
 
 void GraphEdge::colors(const QString& cs)
 {
-  m_colors = QStringList::split(":", cs);
-//   kDebug() << fromNode()->id() << " -> " << toNode()->id() << ": nb colors: " << m_colors.size();
+  Q_D(GraphEdge);
+  d->m_colors = QStringList::split(":", cs);
+//   kDebug() << fromNode()->id() << " -> " << toNode()->id() << ": nb colors: " << d->m_colors.size();
+}
+
+GraphNode* GraphEdge::fromNode() const
+{
+  Q_D(const GraphEdge);
+  return d->m_fromNode;
+}
+
+void GraphEdge::setFromNode(GraphNode* node)
+{
+  Q_D(GraphEdge);
+  d->m_fromNode = node;
+}
+
+void GraphEdge::setToNode(GraphNode* node)
+{
+  Q_D(GraphEdge);
+  d->m_toNode = node;
+}
+
+GraphNode* GraphEdge::toNode() const
+{
+  Q_D(const GraphEdge);
+  return d->m_toNode;
 }
 
 const QString GraphEdge::color(uint i) 
 {
-  if (i >= (uint)m_colors.count() && m_attributes.find("color") != m_attributes.end())
+  Q_D(const GraphEdge);
+  if (i >= (uint)d->m_colors.count() && m_attributes.find("color") != m_attributes.end())
   {
     colors(m_attributes["color"]);
   }
-  if (i < (uint)m_colors.count())
+  if (i < (uint)d->m_colors.count())
   {
-//     std::cerr << "edge color " << i << " is " << m_colors[i] << std::endl;
-//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "color" << i << "is" << m_colors[i];
-    return m_colors[i];
+//     std::cerr << "edge color " << i << " is " << d->m_colors[i] << std::endl;
+//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "color" << i << "is" << d->m_colors[i];
+    return d->m_colors[i];
   }
   else
   {
@@ -88,11 +155,11 @@ const QString GraphEdge::color(uint i)
 
 void GraphEdge::updateWithEdge(const GraphEdge& edge)
 {
-  m_arrowheads = edge.arrowheads();
-  m_colors = edge.colors();
-  m_dir = edge.dir();
-  m_fromNode = edge.m_fromNode;
-  m_toNode = edge.m_toNode;
+  Q_D(GraphEdge);
+  d->m_arrowHeads = edge.arrowheads();
+  d->m_colors = edge.colors();
+  d->m_fromNode = edge.fromNode();
+  d->m_toNode = edge.toNode();
 
   GraphElement::updateWithElement(edge);
 }
@@ -104,7 +171,7 @@ void GraphEdge::updateWithEdge(edge_t* edge)
   importFromGraphviz(edge, drawingAttributes);
 }
 
-QTextStream& operator<<(QTextStream& s, const GraphEdge& e)
+QTextStream& KGraphViz::operator<<(QTextStream& s, const GraphEdge& e)
 {
   QString srcLabel = e.fromNode()->id();
   if (dynamic_cast<const GraphSubgraph*>(e.fromNode()))
@@ -120,8 +187,6 @@ QTextStream& operator<<(QTextStream& s, const GraphEdge& e)
     << dynamic_cast<const GraphElement&>(e) << "];" << endl;
 
   return s;
-}
-
 }
 
 #include "graphedge.moc"

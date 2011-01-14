@@ -28,7 +28,7 @@
 #include "canvasedge.h"
 #include "canvasedge_p.h"
 
-#include "canvaselement.h"
+#include "graphnode.h"
 #include "dotgraphview.h"
 #include "graphedge.h"
 #include "support/dotdefaults.h"

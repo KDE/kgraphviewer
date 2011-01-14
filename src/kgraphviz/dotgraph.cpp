@@ -20,6 +20,8 @@
 #include "dotgraph_p.h"
 
 #include "graphexporter.h"
+#include "graphedge.h"
+#include "graphnode.h"
 #include "canvasedge.h"
 #include "canvasnode.h"
 #include "canvassubgraph.h"
@@ -515,14 +517,14 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
             //       kDebug() << "new created";
             nodes().insert(nge->tail->name, newgn);
           }
-          newEdge->setFromNode(elementNamed(nge->tail->name));
+          newEdge->setFromNode(nodeNamed(nge->tail->name));
           if (elementNamed(nge->head->name) == 0)
           {
             GraphNode* newgn = new GraphNode();
             //       kDebug() << "new created";
             nodes().insert(nge->head->name, newgn);
           }
-          newEdge->setToNode(elementNamed(nge->head->name));
+          newEdge->setToNode(nodeNamed(nge->head->name));
           edges().insert(edgeName, newEdge);
         }
       }
@@ -610,8 +612,8 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
         GraphEdge* newEdge = new GraphEdge();
         newEdge->setId(nge->id());
         newEdge->updateWithEdge(*nge);
-        newEdge->setFromNode(elementNamed(nge->fromNode()->id()));
-        newEdge->setToNode(elementNamed(nge->toNode()->id()));
+        newEdge->setFromNode(nodeNamed(nge->fromNode()->id()));
+        newEdge->setToNode(nodeNamed(nge->toNode()->id()));
         edges().insert(nge->id(), newEdge);
       }
     }
@@ -706,8 +708,9 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
   it = d->m_edgesMap.begin(); it_end = d->m_edgesMap.end();
   while (it != it_end)
   {
-    if ( it.value()->fromNode() == subgraph
-        || it.value()->toNode() == subgraph )
+    GraphElement* element = subgraph;
+    if ( it.value()->fromNode() == element
+        || it.value()->toNode() == element )
     {
       GraphEdge* edge = it.value();
       if (edge->canvasElement() != 0)
@@ -841,6 +844,22 @@ GraphElement* DotGraph::elementNamed(const QString& id) const
   return 0;
 }
 
+GraphNode* DotGraph::nodeNamed(const QString& id) const
+{
+  Q_D(const DotGraph);
+  GraphNode* ret = 0;
+  if ((ret = d->m_nodesMap.value(id, 0))) {
+    return ret;
+  }
+  foreach(GraphSubgraph* subGraph, subgraphs()) {
+    GraphNode* node = 0;
+    if ((ret = dynamic_cast<GraphNode*>(subGraph->elementNamed(id)))) {
+      return ret;
+    }
+  }
+  return 0;
+}
+
 void DotGraph::setGraphAttributes(QMap<QString,QString> attribs)
 {
   kDebug() << attribs;
@@ -965,15 +984,15 @@ void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString,QString> attrib
   kDebug() << src << tgt << attribs;
   GraphEdge* newEdge = new GraphEdge();
   newEdge->attributes() = attribs;
-  GraphElement* srcElement = elementNamed(src);
+  GraphNode* srcElement = nodeNamed(src);
   if (srcElement == 0)
   {
-    srcElement = elementNamed(QString("cluster_")+src);
+    srcElement = nodeNamed(QString("cluster_")+src);
   }
-  GraphElement* tgtElement = elementNamed(tgt);
+  GraphNode* tgtElement = nodeNamed(tgt);
   if (tgtElement == 0)
   {
-    tgtElement = elementNamed(QString("cluster_")+tgt);
+    tgtElement = nodeNamed(QString("cluster_")+tgt);
   }
 
   if (srcElement == 0 || tgtElement == 0)

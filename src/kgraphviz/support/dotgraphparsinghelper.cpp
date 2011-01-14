@@ -267,7 +267,7 @@ void DotGraphParsingHelper::createedges()
     }
 //     kDebug() << QString::fromStdString(node1Name) << ", " << QString::fromStdString(node2Name);
     ge = new GraphEdge();
-    GraphElement* gn1 = graph->elementNamed(QString::fromStdString(node1Name));
+    GraphNode* gn1 = graph->nodeNamed(QString::fromStdString(node1Name));
     if (gn1 == 0)
     {
 //       kDebug() << "new node 1";
@@ -275,7 +275,7 @@ void DotGraphParsingHelper::createedges()
       gn1->setId(QString::fromStdString(node1Name));
       graph->nodes()[QString::fromStdString(node1Name)] = dynamic_cast<GraphNode*>(gn1);
     }
-    GraphElement* gn2 = graph->elementNamed(QString::fromStdString(node2Name));
+    GraphNode* gn2 = graph->nodeNamed(QString::fromStdString(node2Name));
     if (gn2 == 0)
     {
 //       kDebug() << "new node 2";

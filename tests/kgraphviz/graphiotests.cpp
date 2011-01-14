@@ -68,7 +68,7 @@ void GraphIOTests::testImportSubGraph()
   QVERIFY(graph != 0);
 
   // test root
-  QCOMPARE(graph->nodes().size(), 2);
+  QCOMPARE(graph->nodes().size(), 2); // 2 local ones
   QCOMPARE(graph->edges().size(), 13);
   QCOMPARE(graph->subgraphs().size(), 2);
 

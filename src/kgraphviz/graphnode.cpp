@@ -37,8 +37,7 @@
 
 #include <kdebug.h>
 
-namespace KGraphViz
-{
+using namespace KGraphViz;
 
 GraphNode::GraphNode()
 {
@@ -78,21 +77,20 @@ void GraphNode::updateWithNode(node_t* node)
 {
   kDebug() << node->name;
   m_attributes["id"] = node->name;
-  m_attributes["label"] = ND_label(node)->text;
+  if (ND_label(node))
+    m_attributes["label"] = ND_label(node)->text;
 
   QList<QString> drawingAttributes;
   drawingAttributes << "_draw_" << "_ldraw_";
   importFromGraphviz(node, drawingAttributes);
 }
 
-QTextStream& operator<<(QTextStream& s, const GraphNode& n)
+QTextStream& KGraphViz::operator<<(QTextStream& s, const GraphNode& n)
 {
   s << n.id() << " ["
     << dynamic_cast<const GraphElement&>(n)
     <<"];"<<endl;
   return s;
-}
-
 }
 
 #include "graphnode.moc"
