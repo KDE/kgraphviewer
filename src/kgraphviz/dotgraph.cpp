@@ -860,14 +860,20 @@ GraphNode* DotGraph::nodeNamed(const QString& id) const
   return 0;
 }
 
-void DotGraph::setGraphAttributes(QMap<QString,QString> attribs)
+void DotGraph::setGraphAttributes(const QMap<QString,QString>& attribs)
 {
   kDebug() << attribs;
   attributes() = attribs;
 }
 
+void DotGraph::addNewNode(const QString& id)
+{
+  QMap<QString, QString> attribs;
+  attribs["id"] = id;
+  addNewNode(attribs);
+}
 
-void DotGraph::addNewNode(QMap<QString,QString> attribs)
+void DotGraph::addNewNode(const QMap<QString,QString>& attribs)
 {
   kDebug() << attribs;
   GraphNode* newNode = new GraphNode();
@@ -876,7 +882,14 @@ void DotGraph::addNewNode(QMap<QString,QString> attribs)
   kDebug() << "node added as" << newNode->id();
 }
 
-void DotGraph::addNewSubgraph(QMap<QString,QString> attribs)
+void DotGraph::addNewSubgraph(const QString& id)
+{
+  QMap<QString, QString> attribs;
+  attribs["id"] = id;
+  addNewSubgraph(attribs);
+}
+
+void DotGraph::addNewSubgraph(const QMap<QString,QString>& attribs)
 {
   kDebug() << attribs;
   GraphSubgraph* newSG = new GraphSubgraph();
@@ -885,7 +898,15 @@ void DotGraph::addNewSubgraph(QMap<QString,QString> attribs)
   kDebug() << "subgraph added as" << newSG->id();
 }
 
-void DotGraph::addNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph)
+void DotGraph::addNewNodeToSubgraph(const QString& id, const QString& subgraph)
+{
+  QMap<QString, QString> attribs;
+  attribs["id"] = id;
+  addNewNodeToSubgraph(attribs, subgraph);
+}
+
+void DotGraph::addNewNodeToSubgraph(const QMap<QString,QString>& attribs,
+                                    const QString& subgraph)
 {
   kDebug() << attribs << "to" << subgraph;
   if (!subgraphs().contains(subgraph)) {
@@ -899,7 +920,8 @@ void DotGraph::addNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgr
   kDebug() << "node added as" << newNode->id() << "in" << subgraph;
 }
 
-void DotGraph::addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph)
+void DotGraph::addExistingNodeToSubgraph(const QMap<QString,QString>& attribs,
+                                         const QString& subgraph)
 {
   kDebug() << attribs << "to" << subgraph;
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(attribs["id"]));
@@ -940,7 +962,7 @@ void DotGraph::addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString s
   }
 }
 
-void DotGraph::moveExistingNodeToMainGraph(QMap<QString,QString> attribs)
+void DotGraph::moveExistingNodeToMainGraph(const QMap<QString,QString>& attribs)
 {
   kDebug() << attribs;
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(attribs["id"]));
@@ -979,25 +1001,27 @@ void DotGraph::moveExistingNodeToMainGraph(QMap<QString,QString> attribs)
   }
 }
 
-void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString,QString> attribs)
+void DotGraph::addNewEdge(const QString& sourceState,
+                          const QString& targetState,
+                          const QMap<QString,QString>& attribs)
 {
-  kDebug() << src << tgt << attribs;
+  kDebug() << sourceState << targetState << attribs;
   GraphEdge* newEdge = new GraphEdge();
   newEdge->attributes() = attribs;
-  GraphNode* srcElement = nodeNamed(src);
+  GraphNode* srcElement = nodeNamed(sourceState);
   if (srcElement == 0)
   {
-    srcElement = nodeNamed(QString("cluster_")+src);
+    srcElement = nodeNamed(QString("cluster_") + sourceState);
   }
-  GraphNode* tgtElement = nodeNamed(tgt);
+  GraphNode* tgtElement = nodeNamed(targetState);
   if (tgtElement == 0)
   {
-    tgtElement = nodeNamed(QString("cluster_")+tgt);
+    tgtElement = nodeNamed(QString("cluster_") + targetState);
   }
 
   if (srcElement == 0 || tgtElement == 0)
   {
-    kError() << src << "or" << tgt << "missing";
+    kError() << sourceState << "or" << targetState << "missing";
     return;
   }
   if (attribs.contains("id"))

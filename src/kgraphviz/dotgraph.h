@@ -105,14 +105,18 @@ public:
   void setUseLibrary(bool value);
   bool useLibrary() const;
 
-  void setGraphAttributes(QMap<QString,QString> attribs);
-  void addNewNode(QMap<QString,QString> attribs);
-  void addNewSubgraph(QMap<QString,QString> attribs);
-  void addNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph);
-  void addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph);
-  void moveExistingNodeToMainGraph(QMap<QString,QString> attribs);
+  void setGraphAttributes(const QMap<QString,QString>& attribs); // TODO: Redundant, GraphElement already has setter
 
-  void addNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
+  void addNewNode(const QString& id);
+  void addNewNode(const QMap<QString,QString>& attribs);
+  void addNewSubgraph(const QString& id);
+  void addNewSubgraph(const QMap<QString,QString>& attribs);
+  void addNewNodeToSubgraph(const QString& id, const QString& subgraph);
+  void addNewNodeToSubgraph(const QMap<QString,QString>& attribs, const QString& subgraph);
+  void addExistingNodeToSubgraph(const QMap<QString,QString>& attribs, const QString& subgraph);
+  void moveExistingNodeToMainGraph(const QMap<QString,QString>& attribs);
+
+  void addNewEdge(const QString& sourceState, const QString& targetState, const QMap<QString,QString>& attribs = QMap<QString,QString>());
   void removeElementAttribute(const QString& nodeName, const QString& attribName);
   void renameNode(const QString& oldNodeName, const QString& newNodeName);
   void removeNodeNamed(const QString& nodeName);
