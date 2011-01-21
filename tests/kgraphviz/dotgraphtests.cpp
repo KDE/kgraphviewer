@@ -26,18 +26,31 @@ class DotGraphTests : public QObject
   Q_OBJECT
 
 private Q_SLOTS:
-  void testCreateGraph();
+  void testCreateEmptyGraph();
+  void testCreateSelfLoopedGraph();
 };
 
 using namespace KGraphViz;
 
-void DotGraphTests::testCreateGraph()
+void DotGraphTests::testCreateEmptyGraph()
 {
   DotGraph graph;
 
-  QVERIFY(graph.nodes().size() == 0);
-  QVERIFY(graph.edges().size() == 0);
-  QVERIFY(graph.subgraphs().size() == 0);
+  QCOMPARE(graph.nodes().size(), 0);
+  QCOMPARE(graph.edges().size(), 0);
+  QCOMPARE(graph.subgraphs().size(), 0);
+}
+
+void DotGraphTests::testCreateSelfLoopedGraph()
+{
+  DotGraph graph;
+
+  graph.addNewNode("A");
+  graph.addNewEdge("A", "A");
+  QCOMPARE(graph.edges().size(), 1);
+
+  graph.addNewEdge("A", "A");
+  QCOMPARE(graph.edges().size(), 2);
 }
 
 QTEST_KDEMAIN_CORE(DotGraphTests)

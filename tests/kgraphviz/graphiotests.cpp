@@ -34,8 +34,10 @@ class GraphIOTests : public QObject
   Q_OBJECT
 
 private Q_SLOTS:
-  void testImportGraph();
+  void testImportDirectedAcyclicGraph();
   void testImportSubGraph();
+  void testImportDirectedSelfLoopedGraph();
+  void testImportUndirectedSelfLoopedGraph();
 
   void testImportGraphFromInvalidFile();
 
@@ -46,13 +48,22 @@ private Q_SLOTS:
 
 using namespace KGraphViz;
 
-void GraphIOTests::testImportGraph()
+static DotGraph* loadGraphFromFile(const QString& fileName)
 {
   GraphIO io;
-  io.loadFromDotFile("examples/directed-acyclic-graph.dot");
-  QVERIFY(QTest::kWaitForSignal(&io, SIGNAL(finished()), 3000) == true);
+  io.loadFromDotFile(fileName);
+  const bool ret = QTest::kWaitForSignal(&io, SIGNAL(finished()), 100);
+  if (!ret) {
+    qWarning() << "Loading failed";
+    return 0;
+  }
 
-  DotGraph* graph = io.readData();
+  return io.readData();
+}
+
+void GraphIOTests::testImportDirectedAcyclicGraph()
+{
+  DotGraph* graph = loadGraphFromFile("examples/directed-acyclic-graph.dot");
   QVERIFY(graph != 0);
   QVERIFY(graph->nodes().size() == 4);
   QVERIFY(graph->edges().size() == 3);
@@ -60,11 +71,7 @@ void GraphIOTests::testImportGraph()
 
 void GraphIOTests::testImportSubGraph()
 {
-  GraphIO io;
-  io.loadFromDotFile("examples/subgraph.dot");
-  QVERIFY(QTest::kWaitForSignal(&io, SIGNAL(finished()), 3000) == true);
-
-  DotGraph* graph = io.readData();
+  DotGraph* graph = loadGraphFromFile("examples/subgraph.dot");
   QVERIFY(graph != 0);
 
   // test root
@@ -83,13 +90,25 @@ void GraphIOTests::testImportSubGraph()
   QCOMPARE(subgraph2->content().size(), 4);
 }
 
+void GraphIOTests::testImportDirectedSelfLoopedGraph()
+{
+  DotGraph* graph = loadGraphFromFile("examples/directed-self-looped-graph.dot");
+  QVERIFY(graph != 0);
+  QCOMPARE(graph->edges().size(), 4);
+  QCOMPARE(graph->nodes().size(), 3);
+}
+
+void GraphIOTests::testImportUndirectedSelfLoopedGraph()
+{
+  DotGraph* graph = loadGraphFromFile("examples/undirected-self-looped-graph.dot");
+  QVERIFY(graph != 0);
+  QCOMPARE(graph->edges().size(), 4);
+  QCOMPARE(graph->nodes().size(), 3);
+}
+
 void GraphIOTests::testImportGraphFromInvalidFile()
 {
-  GraphIO io;
-  io.loadFromDotFile("examples/DOES_NOT_EXIST.abc");
-  QVERIFY(QTest::kWaitForSignal(&io, SIGNAL(error(QString)), 3000) == true);
-
-  DotGraph* graph = io.readData();
+  DotGraph* graph = loadGraphFromFile("examples/DOES_NOT_EXIST.abc");
   QVERIFY(graph == 0);
 }
 
@@ -114,12 +133,7 @@ void GraphIOTests::testExportImportGraph()
 
   // read graph from dot file and check attributes
   {
-    GraphIO io;
-    io.loadFromDotFile(TEST_FILENAME);
-    QSignalSpy spy(&io, SIGNAL(finished()));
-    QVERIFY(QTest::kWaitForSignal(&io, SIGNAL(finished()), 3000) == true);
-
-    DotGraph* graph = io.readData();
+    DotGraph* graph = loadGraphFromFile(TEST_FILENAME);
     QVERIFY(graph != 0);
     QVERIFY(graph->nodes().size() == 2);
     QVERIFY(graph->edges().size() == 1);

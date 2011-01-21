@@ -1,3 +1,5 @@
 install( FILES directed-acyclic-graph.dot DESTINATION ${CMAKE_CURRENT_BINARY_DIR} )
+install( FILES directed-self-looped-graph.dot DESTINATION ${CMAKE_CURRENT_BINARY_DIR} )
 install( FILES subgraph.dot DESTINATION ${CMAKE_CURRENT_BINARY_DIR} )
 install( FILES undirected-acyclic-graph.dot DESTINATION ${CMAKE_CURRENT_BINARY_DIR} )
+install( FILES undirected-self-looped-graph.dot DESTINATION ${CMAKE_CURRENT_BINARY_DIR} )
