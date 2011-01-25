@@ -53,7 +53,7 @@ public:
   inline void setShape(const QString& lc) {m_attributes["shape"]=lc;}
   inline void setColor(const QString& nt) {m_attributes["color"]=nt;}
   inline void setLineColor(const QString& nt) {m_attributes["color"]=nt;}
-  inline void setBackColor(const QString& nc) {m_attributes["bgcolor"]=nc;}
+  inline void setBackColor(const QString& nc) {m_attributes["fillcolor"]=nc;}
   
   inline QString id() const {return m_attributes["id"];}
   inline QString style() const {return m_attributes["style"];}

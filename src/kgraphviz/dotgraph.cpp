@@ -1061,14 +1061,7 @@ void DotGraph::renameNode(const QString& oldNodeName, const QString& newNodeName
 
 QString DotGraph::backColor() const
 {
-  if (m_attributes.find("bgcolor") != m_attributes.end())
-  {
-    return m_attributes["bgcolor"];
-  }
-  else
-  {
-    return QString();
-  }
+  return m_attributes.value("bgcolor");
 }
 
 QTextStream& KGraphViz::operator<<(QTextStream& s, const KGraphViz::DotGraph& graph)
