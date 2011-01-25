@@ -42,7 +42,8 @@
 
 using namespace KGraphViz;
 
-CanvasElementPrivate::CanvasElementPrivate() :
+CanvasElementPrivate::CanvasElementPrivate(CanvasElement* parent) :
+  q_ptr(parent),
   m_scaleX(0), m_scaleY(0),
   m_xMargin(0), m_yMargin(0),
   m_gh(0),
@@ -54,12 +55,38 @@ CanvasElementPrivate::~CanvasElementPrivate()
 {
 }
 
+void CanvasElementPrivate::colors(const QString& cs)
+{
+  m_colors = QStringList::split(":", cs);
+//   kDebug() << fromNode()->id() << " -> " << toNode()->id() << ": nb colors: " << d->m_colors.size();
+}
+
+QString CanvasElementPrivate::color(uint i)
+{
+  Q_Q(const CanvasElement);
+  if (i >= (uint)m_colors.count() && q->element()->attributes().contains("color"))
+  {
+    colors(q->element()->attributes()["color"]);
+  }
+  if (i < (uint)m_colors.count())
+  {
+//     std::cerr << "edge color " << i << " is " << d->m_colors[i] << std::endl;
+//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "color" << i << "is" << d->m_colors[i];
+    return m_colors[i];
+  }
+  else
+  {
+//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "no edge color " << i << ". returning " << DOT_DEFAULT_EDGE_COLOR;
+    return DOT_DEFAULT_EDGE_COLOR;
+  }
+}
+
 CanvasElement::CanvasElement(DotGraphView* v,
                              GraphElement* gelement,
                              QGraphicsScene* c,
                              QGraphicsItem* parent)
   : QAbstractGraphicsShapeItem(parent)
-  , d_ptr(new CanvasElementPrivate)
+  , d_ptr(new CanvasElementPrivate(this))
 {
   Q_D(CanvasElement);
   d->m_element = gelement;
@@ -254,8 +281,6 @@ void CanvasElement::computeBoundingRect()
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
       {
-//         kDebug() << "integers[0]=" << (*it).integers[0] << "; d->m_wdhcf=" << d->m_wdhcf
-//             << "(*it).integers[0]/*%d->m_wdhcf*/=" << (*it).integers[0]/*%d->m_wdhcf*/;
         qreal w = d->m_scaleX * (*it).integers[2] * 2;
         qreal h = d->m_scaleY * (*it).integers[3] * 2;
         qreal x = d->m_xMargin + (((*it).integers[0]/*%d->m_wdhcf*/)*d->m_scaleX) - w/2;
@@ -302,19 +327,6 @@ void CanvasElement::paint(QPainter* p,
   {
     widthScaleFactor = 1;
   }
-  
-  QString msg;
-  QTextStream dd(&msg);
-  foreach (const DotRenderOp &op, element()->renderOperations())
-  {
-    dd << element()->id() << " an op: " << op.renderop << " ";
-    foreach (int i, op.integers)
-    {
-      dd << i << " ";
-    }
-    dd << op.str << endl;
-  }
-//   kDebug() << msg;
 
   if (element()->renderOperations().isEmpty() && !d->m_view->isReadOnly())
   {
@@ -333,13 +345,107 @@ void CanvasElement::paint(QPainter* p,
   
   while (it.hasNext())
   {
+    p->save();
     const DotRenderOp& dro = it.next();
-    if (dro.renderop == "c")
+    if ( dro.renderop == "B" )
+    {
+      uint lineWidth = 1;
+      QPen pen = p->pen();
+      if (element()->style() == "bold")
+      {
+        pen.setStyle(Qt::SolidLine);
+        pen.setWidth(int(2 * widthScaleFactor));
+      }
+      else if (element()->style() != "filled")
+      {
+        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));
+      }
+      if (element()->style().left(12) == "setlinewidth")
+      {
+        bool ok;
+        lineWidth = element()->style().mid(12, element()->style().length()-1-12).toInt(&ok);
+        pen.setWidth(int(lineWidth * widthScaleFactor));
+      }
+      if (element()->attributes().contains("penwidth"))
+      {
+        bool ok;
+        lineWidth = element()->attributes()["penwidth"].toInt(&ok);
+        pen.setWidth(int(lineWidth * widthScaleFactor));
+      }
+      if (element()->attributes().contains("color"))
+      {
+        kDebug() << "set edge color to " << QColor(element()->attributes()["color"]).name();
+        lineColor = QColor(element()->attributes()["color"]);
+      }
+
+      const int count = d->m_colors.count();
+      for (int splineNum = 0; splineNum < count || (splineNum==0 && count==0); splineNum++)
+      {
+        QPolygonF points(dro.integers[0]);
+        for (int i = 0; i < dro.integers[0]; i++)
+        {
+          // computing of diffX and diffY to draw parallel edges
+          // when asked through the corresponding GraphViz feature
+          qreal nom = (dro.integers[2*dro.integers[0]]-dro.integers[2]);
+          qreal denom = (dro.integers[2*dro.integers[0]-1]-dro.integers[1]);
+          qreal diffX, diffY;
+          if (nom == 0)
+          {
+            diffX = 0;
+            diffY = 2*(count/2 - splineNum);
+          }
+          else if (denom ==0)
+          {
+            diffX = 2*(count/2 - splineNum);
+            diffY = 0;
+          }
+          else
+          {
+            double pente = nom/denom;
+            if (pente < 0)
+            {
+              diffX = 2*(count/2 - splineNum);
+              diffY = count/2 + splineNum;
+            }
+            else
+            {
+              diffX = 2*(count/2 - splineNum);
+              diffY = 2*(count/2 - splineNum);
+            }
+          }
+          QPointF p(
+              (dro.integers[2*i+1]/*%m_wdhcf*/*scaleX()) +marginX() + diffX,
+              (gh()-dro.integers[2*i+2]/*%m_hdvcf*/)*scaleY() + marginY() + diffY
+                  );
+          points[i] = p;
+//           kDebug() << element()->fromNode()->id() << "->" << element()->toNode()->id()  << p;
+        }
+
+//        kDebug() << "Setting pen color to " << element()->color(splineNum);
+        if (splineNum != 0)
+          lineColor = Dot2QtConsts::componentData().qtColor(d->color(splineNum));
+        pen.setColor(lineColor);
+        p->save();
+//         p->setBrush(Dot2QtConsts::componentData().qtColor(element()->color(0)));
+        p->setBrush(Qt::NoBrush);
+        p->setPen(pen);
+        QPainterPath path;
+        path.moveTo(points[0]);
+        for (int j = 0; j < (points.size()-1)/3; j++)
+        {
+          path.cubicTo(points[3*j + 1],points[3*j+1 + 1], points[3*j+2 + 1]);
+        }
+//         kDebug() << element()->fromNode()->id() << "->" << element()->toNode()->id() << "drawPath" << element()->color(splineNum) << points.first() << points.last();
+        p->drawPath(path);
+        p->restore();
+      }
+    }
+    else if (dro.renderop == "c")
     {
       QColor c(dro.str.mid(0,7));
       bool ok;
       c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
-      lineColor = c;
+      p->setPen(c);
 //       kDebug() << "c" << dro.str.mid(0,7) << lineColor;
     }
     else if (dro.renderop == "C")
@@ -351,34 +457,72 @@ void CanvasElement::paint(QPainter* p,
       {
         c = c.lighter();
       }
-      backColor = c;
-//       kDebug() << "C" << dro.str.mid(0,7) << backColor;
+      p->setBrush(c);
+      kDebug() << "C" << dro.str.mid(0,7) << backColor;
     }
     else if (dro.renderop == "e" || dro.renderop == "E")
     {
-      QPen pen = p->pen();
-      qreal w = d->m_scaleX * dro.integers[2] * 2;
-      qreal h = d->m_scaleY * dro.integers[3] * 2;
-      qreal x = d->m_xMargin + ((dro.integers[0]/*%d->m_wdhcf*/)*d->m_scaleX) - w/2;
-      qreal y = ((d->m_gh - dro.integers[1]/*%d->m_hdvcf*/)*d->m_scaleY) + d->m_yMargin - h/2;
-      QRectF rect(x,y,w,h);
+      const qreal w = scaleX() * dro.integers[2] * 2;
+      const qreal h = scaleY() *  dro.integers[3] * 2;
+      const qreal x = (marginX() + (dro.integers[0]/*%m_wdhcf*/)*scaleX()) - w/2;
+      const qreal y = ((gh() -  dro.integers[1]/*%m_hdvcf*/)*scaleY() + marginY()) - h/2;
       p->save();
-      p->setBrush(backColor);
-      pen.setColor(lineColor);
-      if (element()->attributes().contains("penwidth"))
+      if (dro.renderop == "E" )
       {
-        bool ok;
-        int lineWidth = element()->attributes()["penwidth"].toInt(&ok);
-        pen.setWidth(int(lineWidth * widthScaleFactor));
+        p->setBrush(backColor);
+      }
+      else
+      {
+        p->setBrush(Dot2QtConsts::componentData().qtColor("white"));
+      }
+      QPen pen = p->pen();
+      if (element()->style() == "bold")
+      {
+        pen.setStyle(Qt::SolidLine);
+        pen.setWidth(int(2 * widthScaleFactor));
+      }
+      else
+      {
+        pen.setWidth(int(1 * widthScaleFactor));
+        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));
       }
       p->setPen(pen);
-      
-//       kDebug() << element()->id() << "drawEllipse" << lineColor << backColor << rect;
-//       rect = QRectF(0,0,100,100);
+      QRectF rect(x,y,w,h);
       p->drawEllipse(rect);
       p->restore();
     }
-    else if(dro.renderop == "p" || dro.renderop == "P")
+    else if ( dro.renderop == "L" )
+    {
+//       kDebug() << "Label";
+      QPolygonF points(dro.integers[0]);
+      for (int i = 0; i < dro.integers[0]; i++)
+      {
+        qreal x,y;
+        x = (dro.integers[2*i+1] == d->m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%d->m_wdhcf*/;
+        y = (dro.integers[2*i+2] == d->m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%d->m_hdvcf*/;
+        QPointF p(
+                  (x*d->m_scaleX) +d->m_xMargin,
+                  ((d->m_gh-y)*d->m_scaleY) + d->m_yMargin
+                );
+        points[i] = p;
+      }
+      p->save();
+      QPen pen(lineColor);
+      if (element()->style() == "bold")
+      {
+        pen.setStyle(Qt::SolidLine);
+        pen.setWidth(2);
+      }
+      else if (element()->style() != "filled")
+      {
+        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));
+      }
+      p->setPen(pen);
+//       kDebug() << element()->id() << "drawPolyline" << points;
+      p->drawPolyline(points);
+      p->restore();
+    }
+    else if (dro.renderop == "p" || dro.renderop == "P")
     {
 //       std::cerr << "Drawing polygon for node '"<<element()->id()<<"': ";
       QPolygonF points(dro.integers[0]);
@@ -443,77 +587,6 @@ void CanvasElement::paint(QPainter* p,
         }
       }
     }
-
-  }
-
-  it.toFront();
-  while (it.hasNext())
-  {
-    const DotRenderOp& dro = it.next();
-    if (dro.renderop == "c")
-    {
-      QColor c(dro.str.mid(0,7));
-      bool ok;
-      c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
-      lineColor = c;
-//       kDebug() << "c" << dro.str.mid(0,7) << lineColor;
-    }
-    else if (dro.renderop == "C")
-    {
-      QColor c(dro.str.mid(0,7));
-      bool ok;
-      c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
-      if (d->m_view->highlighting() && option->state & QStyle::State_MouseOver)
-      {
-        c = c.lighter();
-      }
-      backColor = c;
-//       kDebug() << "C" << dro.str.mid(0,7) << backColor;
-    }
-    else if ( dro.renderop == "L" )
-    {
-//       kDebug() << "Label";
-      QPolygonF points(dro.integers[0]);
-      for (int i = 0; i < dro.integers[0]; i++)
-      {
-        qreal x,y;
-        x = (dro.integers[2*i+1] == d->m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%d->m_wdhcf*/;
-        y = (dro.integers[2*i+2] == d->m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%d->m_hdvcf*/;
-        QPointF p(
-                  (x*d->m_scaleX) +d->m_xMargin,
-                  ((d->m_gh-y)*d->m_scaleY) + d->m_yMargin
-                );
-        points[i] = p;
-      }
-      p->save();
-      QPen pen(lineColor);
-      if (element()->style() == "bold")
-      {
-        pen.setStyle(Qt::SolidLine);
-        pen.setWidth(2);
-      }
-      else if (element()->style() != "filled")
-      {
-        pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));
-      }
-      p->setPen(pen);
-//       kDebug() << element()->id() << "drawPolyline" << points;
-      p->drawPolyline(points);
-      p->restore();
-    }
-  }
-
-//   kDebug() << "Drawing" << element()->id() << "labels";
-  QString color = lineColor.name();
-  it.toFront();
-  while (it.hasNext())
-  {
-    const DotRenderOp& dro = it.next();
-    if (dro.renderop == "c" || dro.renderop == "C")
-    {
-      color = dro.str.mid(0,7);
-//       kDebug() << dro.renderop << color;
-    }
     else if (dro.renderop == "F")
     {
       element()->setFontName(dro.str);
@@ -522,28 +595,21 @@ void CanvasElement::paint(QPainter* p,
     }
     else if ( dro.renderop == "T" )
     {
-      // we suppose here that the color has been set just before
-      element()->setFontColor(color);
-      // draw a label
-//       kDebug() << "Drawing a label " << dro.integers[0]
-//       << " " << dro.integers[1] << " " << dro.integers[2]
-//       << " " << dro.integers[3] << " " << dro.str
-//         << " (" << element()->fontName() << ", " << element()->fontSize()
-//         << ", " << element()->fontColor() << ")";
-
-      int stringWidthGoal = int(dro.integers[3] * d->m_scaleX);
+      const qreal stringWidthGoal = dro.integers[3] * scaleX();
       int fontSize = element()->fontSize();
-//       kDebug() << element()->id() << " initial fontSize " << fontSize;
-      d->m_font.setPointSize(fontSize);
-      QFontMetrics fm(d->m_font);
+      QFont font = CanvasElement::font();
+      if (fontSize > 0)
+        font.setPointSize(fontSize);
+      QFontMetrics fm(font);
       while (fm.width(dro.str) > stringWidthGoal && fontSize > 1)
       {
         fontSize--;
-        d->m_font.setPointSize(fontSize);
-        fm = QFontMetrics(d->m_font);
+        font.setPointSize(fontSize);
+        fm = QFontMetrics(font);
       }
       p->save();
-      p->setFont(d->m_font);
+      p->setFont(font);
+
       QPen pen(d->m_pen);
       pen.setColor(element()->fontColor());
       p->setPen(pen);
@@ -561,7 +627,9 @@ void CanvasElement::paint(QPainter* p,
       p->drawText(point, dro.str);
       p->restore();
     }
+    p->restore();
   }
+
   if (isSelected())
   {
 //     kDebug() << "element is selected: draw selection marks";

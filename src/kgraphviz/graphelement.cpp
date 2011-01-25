@@ -29,6 +29,8 @@
 #include <kdebug.h>
 
 #include <QRegExp>
+#include <QStringList>
+
 #include <graphviz/gvc.h>
 
 using namespace KGraphViz;

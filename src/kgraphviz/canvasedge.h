@@ -55,10 +55,7 @@ public:
 
   virtual void computeBoundingRect();
 
-  QPainterPath shape () const;
-
-  void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-        QWidget *widget);
+  QPainterPath shape() const;
 
   GraphEdge* edge() const;
 

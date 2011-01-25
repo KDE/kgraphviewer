@@ -61,10 +61,6 @@ public:
 //   inline QVector< QPair< float, float > >& edgePoints() {return m_edgePoints;}
 //   inline void edgePoints(const QVector< QPair< float, float > >& ep) {m_edgePoints = ep;}
   
-  const QStringList& colors() const;
-  const QString color(uint i);
-  void colors(const QString& cs); 
-  
 /*  inline void labelX(float x) {m_labelX = x;}
   inline void labelY(float y) {m_labelY = y;}
   inline float labelX() const {return m_labelX;}

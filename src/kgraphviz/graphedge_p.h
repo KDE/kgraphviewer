@@ -36,7 +36,7 @@ public:
   ~GraphEdgePrivate();
 
   GraphNode *m_fromNode, *m_toNode;
-  QStringList m_colors;
+  
 
   QList< DotRenderOp > m_arrowHeads;
 };

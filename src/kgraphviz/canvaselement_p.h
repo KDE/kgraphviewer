@@ -32,8 +32,16 @@ namespace KGraphViz
 class CanvasElementPrivate
 {
 public:
-  CanvasElementPrivate();
+  CanvasElementPrivate(CanvasElement* parent);
   ~CanvasElementPrivate();
+
+  Q_DECLARE_PUBLIC(CanvasElement);
+  CanvasElement* q_ptr;
+
+  QString color(uint i);
+  void colors(const QString& cs);
+
+  QStringList m_colors;
 
   qreal m_scaleX, m_scaleY;
   qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;

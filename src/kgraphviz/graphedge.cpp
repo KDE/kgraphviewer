@@ -96,19 +96,6 @@ const QList< DotRenderOp >& GraphEdge::arrowheads() const
   return d->m_arrowHeads;
 }
 
-const QStringList& GraphEdge::colors() const
-{
-  Q_D(const GraphEdge);
-  return d->m_colors;
-}
-
-void GraphEdge::colors(const QString& cs)
-{
-  Q_D(GraphEdge);
-  d->m_colors = QStringList::split(":", cs);
-//   kDebug() << fromNode()->id() << " -> " << toNode()->id() << ": nb colors: " << d->m_colors.size();
-}
-
 GraphNode* GraphEdge::fromNode() const
 {
   Q_D(const GraphEdge);
@@ -133,31 +120,10 @@ GraphNode* GraphEdge::toNode() const
   return d->m_toNode;
 }
 
-const QString GraphEdge::color(uint i) 
-{
-  Q_D(const GraphEdge);
-  if (i >= (uint)d->m_colors.count() && m_attributes.find("color") != m_attributes.end())
-  {
-    colors(m_attributes["color"]);
-  }
-  if (i < (uint)d->m_colors.count())
-  {
-//     std::cerr << "edge color " << i << " is " << d->m_colors[i] << std::endl;
-//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "color" << i << "is" << d->m_colors[i];
-    return d->m_colors[i];
-  }
-  else
-  {
-//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "no edge color " << i << ". returning " << DOT_DEFAULT_EDGE_COLOR;
-    return DOT_DEFAULT_EDGE_COLOR;
-  }
-}
-
 void GraphEdge::updateWithEdge(const GraphEdge& edge)
 {
   Q_D(GraphEdge);
   d->m_arrowHeads = edge.arrowheads();
-  d->m_colors = edge.colors();
   d->m_fromNode = edge.fromNode();
   d->m_toNode = edge.toNode();
 
