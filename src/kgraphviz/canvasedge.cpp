@@ -212,7 +212,8 @@ void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
       qreal stringWidthGoal = dro.integers[3] * scaleX();
       int fontSize = edge()->fontSize();
       QFont font = CanvasElement::font();
-      font.setPointSize(fontSize);
+      if (fontSize > 0)
+        font.setPointSize(fontSize);
       QFontMetrics fm(font);
       while (fm.width(str) > stringWidthGoal && fontSize > 1)
       {
