@@ -33,6 +33,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QMenu>
+#include <QStyle>
+#include <QStyleOptionGraphicsItem>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -44,8 +46,7 @@ CanvasElementPrivate::CanvasElementPrivate() :
   m_scaleX(0), m_scaleY(0),
   m_xMargin(0), m_yMargin(0),
   m_gh(0),
-  m_wdhcf(0), m_hdvcf(0),
-  m_hovered(false)
+  m_wdhcf(0), m_hdvcf(0)
 {
 }
 
@@ -291,7 +292,6 @@ void CanvasElement::paint(QPainter* p,
                           const QStyleOptionGraphicsItem* option,
                           QWidget* widget)
 {
-  Q_UNUSED(option)
   Q_UNUSED(widget)
 
   Q_D(CanvasElement);
@@ -326,7 +326,7 @@ void CanvasElement::paint(QPainter* p,
 
   QColor lineColor(Dot2QtConsts::componentData().qtColor(element()->lineColor()));
   QColor backColor(Dot2QtConsts::componentData().qtColor(element()->backColor()));
-  if (d->m_hovered && d->m_view->highlighting())
+  if (d->m_view->highlighting() && option->state & QStyle::State_MouseOver)
   {
     backColor = backColor.lighter(110);
   }
@@ -347,7 +347,7 @@ void CanvasElement::paint(QPainter* p,
       QColor c(dro.str.mid(0,7));
       bool ok;
       c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
-      if (d->m_hovered && d->m_view->highlighting())
+      if (d->m_view->highlighting() && option->state & QStyle::State_MouseOver)
       {
         c = c.lighter();
       }
@@ -463,7 +463,7 @@ void CanvasElement::paint(QPainter* p,
       QColor c(dro.str.mid(0,7));
       bool ok;
       c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
-      if (d->m_hovered && d->m_view->highlighting())
+      if (d->m_view->highlighting() && option->state & QStyle::State_MouseOver)
       {
         c = c.lighter();
       }
@@ -596,18 +596,12 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
 void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 {
-  Q_UNUSED(event)
-  Q_D(CanvasElement);
-  kDebug() << "Element:" << element()->id();
-  d->m_hovered = true;
   update();
+  QGraphicsItem::hoverEnterEvent(event);
 }
 
 void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
 {
-  Q_UNUSED(event)
-  Q_D(CanvasElement);
-  kDebug() << "Element:" << element()->id();
-  d->m_hovered = false;
   update();
+  QGraphicsItem::hoverLeaveEvent(event);
 }

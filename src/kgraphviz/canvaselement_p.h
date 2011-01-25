@@ -43,8 +43,6 @@ public:
   QPen m_pen;
   QBrush m_brush;
   QRectF m_boundingRect;
-
-  bool m_hovered;
 };
 
 }
