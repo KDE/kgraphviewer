@@ -23,6 +23,7 @@
 #include "graphio.h"
 
 #include <QVector>
+#include <QTimer>
 
 namespace KGraphViz
 {
@@ -38,6 +39,8 @@ public:
 
   Q_DECLARE_PUBLIC(DotGraph);
   DotGraph* q_ptr;
+
+  QTimer m_updateTimer;
 
   GraphIO m_graphIO;
 
@@ -65,6 +68,8 @@ public:
 private:
   void graphIOFinished();
   void graphIOError(const QString& error);
+
+  void doUpdate();
 };
 
 }

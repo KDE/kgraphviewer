@@ -89,6 +89,7 @@ public:
   QString dotFileName() const;
 
   bool update();
+  void scheduleUpdate();
 
   virtual void storeOriginalAttributes();
 
@@ -136,6 +137,8 @@ private:
 
   Q_PRIVATE_SLOT(d_func(), void graphIOFinished());
   Q_PRIVATE_SLOT(d_func(), void graphIOError(QString));
+
+  Q_PRIVATE_SLOT(d_func(), void doUpdate());
 };
 
 KGRAPHVIZ_EXPORT QTextStream& operator<<(QTextStream& s, const DotGraph& n);
