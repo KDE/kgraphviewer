@@ -92,5 +92,3 @@ QTextStream& KGraphViz::operator<<(QTextStream& s, const GraphNode& n)
     <<"];"<<endl;
   return s;
 }
-
-#include "graphnode.moc"

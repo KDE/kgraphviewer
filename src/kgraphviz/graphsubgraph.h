@@ -37,14 +37,11 @@ class GraphSubgraph;
 
 typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;
 
-
 /**
  * Colors and styles are dot names
  */
 class KGRAPHVIZ_EXPORT GraphSubgraph : public GraphElement
 {
-  Q_OBJECT
-
 public:
   GraphSubgraph();
   explicit GraphSubgraph(Agraph_t* sg);

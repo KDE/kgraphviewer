@@ -165,7 +165,6 @@ void GraphElement::updateWithElement(const GraphElement& element)
       kDebug() << msg;
     }
     kDebug() << "modified: emiting changed";*/
-    emit changed();
   }
 
   if (canvasElement())
@@ -197,7 +196,6 @@ void GraphElement::removeAttribute(const QString& attribName)
 {
   kDebug() << attribName;
   m_attributes.remove(attribName);
-  emit changed();
 }
 
 void GraphElement::exportToGraphviz(void* element) const
@@ -292,5 +290,3 @@ QTextStream& KGraphViz::operator<<(QTextStream& s, const GraphElement& n)
   }
   return s;
 }
-
-#include "graphelement.moc"

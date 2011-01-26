@@ -29,7 +29,6 @@
 
 #include "graphelement.h"
 
-#include <QString>
 #include <QMap>
 
 class Agedge_t;
@@ -42,8 +41,6 @@ class GraphNode;
 
 class KGRAPHVIZ_EXPORT GraphEdge : public GraphElement
 {
-  Q_OBJECT
-
 public:
   GraphEdge();
   GraphEdge(const GraphEdge& edge);

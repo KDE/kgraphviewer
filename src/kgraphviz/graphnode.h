@@ -49,8 +49,6 @@ class CanvasNode;
  */
 class KGRAPHVIZ_EXPORT GraphNode : public GraphElement
 {
-  Q_OBJECT
-
 public:
   GraphNode();
   GraphNode(const GraphNode& gn);

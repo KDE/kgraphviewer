@@ -266,5 +266,3 @@ QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
 }
 
 }
-
-#include "graphsubgraph.moc"

@@ -19,8 +19,6 @@
 #ifndef GRAPH_ELEMENT_H
 #define GRAPH_ELEMENT_H
 
-#include <QObject>
-
 #include "kgraphviz_export.h"
 #include "support/dotrenderop.h"
 
@@ -38,10 +36,8 @@ class GraphElementPrivate;
  * The base of all GraphViz dot graph elements (nodes, edges, subgraphs,
  * graphs). It is used to store the element attributes
  */
-class KGRAPHVIZ_EXPORT GraphElement: public QObject
+class KGRAPHVIZ_EXPORT GraphElement
 {
-  Q_OBJECT
-
 public:
   GraphElement();
   GraphElement(const GraphElement& element);
@@ -87,8 +83,7 @@ public:
   inline QMap<QString,QString>& attributes() {return m_attributes;}
   inline const QMap<QString,QString>& attributes() const {return m_attributes;}
 
-  inline QList<QString>& originalAttributes() {return m_originalAttributes;}
-  inline const QList<QString>& originalAttributes() const {return m_originalAttributes;}
+  inline QList<QString> originalAttributes() const {return m_originalAttributes;}
 
   virtual inline void storeOriginalAttributes() {m_originalAttributes = m_attributes.keys();}
 
@@ -102,9 +97,6 @@ public:
 
   void exportToGraphviz(void* element)  const;
   void importFromGraphviz(void* element, QList<QString> drawingAttributes);
-
-Q_SIGNALS:
-  void changed();
 
 protected:
   QMap<QString,QString> m_attributes;

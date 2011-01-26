@@ -41,7 +41,7 @@ class DotGraphPrivate;
 /**
   * A class representing the model of a GraphViz dot graph
   */
-class KGRAPHVIZ_EXPORT DotGraph : public GraphElement
+class KGRAPHVIZ_EXPORT DotGraph : public QObject, public GraphElement
 {
   Q_OBJECT
 

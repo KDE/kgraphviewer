@@ -154,5 +154,3 @@ QTextStream& KGraphViz::operator<<(QTextStream& s, const GraphEdge& e)
 
   return s;
 }
-
-#include "graphedge.moc"
