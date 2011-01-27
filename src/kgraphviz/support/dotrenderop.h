@@ -19,9 +19,9 @@
 #ifndef DOT_RENDEROP_H
 #define DOT_RENDEROP_H
 
-#include <QString>
+#include <QChar>
 #include <QList>
-#include <QTextStream>
+#include <QString>
 
 /**
  * members are interpreted in function of render operations definitions given at:
@@ -29,7 +29,7 @@
  */
 struct DotRenderOp
 {
-  QString renderop;
+  QChar renderop;
   QList< int > integers;
   QString str;
 };

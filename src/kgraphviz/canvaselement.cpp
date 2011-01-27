@@ -279,7 +279,7 @@ void CanvasElement::computeBoundingRect()
 //       dd << (*it).str;
 //       kDebug() << msg;
 
-      if ((*it).renderop == "e" || (*it).renderop == "E")
+      if ((*it).renderop == 'e' || (*it).renderop == 'E')
       {
         qreal w = d->m_scaleX * (*it).integers[2] * 2;
         qreal h = d->m_scaleY * (*it).integers[3] * 2;
@@ -288,7 +288,7 @@ void CanvasElement::computeBoundingRect()
         d->m_boundingRect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
 //         kDebug() << "'" << element()->id() << "' set rect for ellipse to " << rect;
       }
-      else if  ((*it).renderop == "p" || (*it).renderop == "P")
+      else if  ((*it).renderop == 'p' || (*it).renderop == 'P')
       {
         QPolygonF polygon((*it).integers[0]);
         for (int i = 0; i < (*it).integers[0]; i++)
@@ -347,7 +347,7 @@ void CanvasElement::paint(QPainter* p,
   {
     p->save();
     const DotRenderOp& dro = it.next();
-    if ( dro.renderop == "B" )
+    if ( dro.renderop == 'B' )
     {
       uint lineWidth = 1;
       QPen pen = p->pen();
@@ -374,7 +374,7 @@ void CanvasElement::paint(QPainter* p,
       }
       if (element()->attributes().contains("color"))
       {
-        kDebug() << "set edge color to " << QColor(element()->attributes()["color"]).name();
+//         kDebug() << "set edge color to " << QColor(element()->attributes()["color"]).name();
         lineColor = QColor(element()->attributes()["color"]);
       }
 
@@ -440,7 +440,7 @@ void CanvasElement::paint(QPainter* p,
         p->restore();
       }
     }
-    else if (dro.renderop == "c")
+    else if (dro.renderop == 'c')
     {
       QColor c(dro.str.mid(0,7));
       bool ok;
@@ -448,7 +448,7 @@ void CanvasElement::paint(QPainter* p,
       p->setPen(c);
 //       kDebug() << "c" << dro.str.mid(0,7) << lineColor;
     }
-    else if (dro.renderop == "C")
+    else if (dro.renderop == 'C')
     {
       QColor c(dro.str.mid(0,7));
       bool ok;
@@ -458,16 +458,16 @@ void CanvasElement::paint(QPainter* p,
         c = c.lighter();
       }
       p->setBrush(c);
-      kDebug() << "C" << dro.str.mid(0,7) << backColor;
+//       kDebug() << "C" << dro.str.mid(0,7) << backColor;
     }
-    else if (dro.renderop == "e" || dro.renderop == "E")
+    else if (dro.renderop == 'e' || dro.renderop == 'E')
     {
       const qreal w = scaleX() * dro.integers[2] * 2;
       const qreal h = scaleY() *  dro.integers[3] * 2;
       const qreal x = (marginX() + (dro.integers[0]/*%m_wdhcf*/)*scaleX()) - w/2;
       const qreal y = ((gh() -  dro.integers[1]/*%m_hdvcf*/)*scaleY() + marginY()) - h/2;
       p->save();
-      if (dro.renderop == "E" )
+      if (dro.renderop == 'E' )
       {
         p->setBrush(backColor);
       }
@@ -491,7 +491,7 @@ void CanvasElement::paint(QPainter* p,
       p->drawEllipse(rect);
       p->restore();
     }
-    else if ( dro.renderop == "L" )
+    else if ( dro.renderop == 'L' )
     {
 //       kDebug() << "Label";
       QPolygonF points(dro.integers[0]);
@@ -522,7 +522,7 @@ void CanvasElement::paint(QPainter* p,
       p->drawPolyline(points);
       p->restore();
     }
-    else if (dro.renderop == "p" || dro.renderop == "P")
+    else if (dro.renderop == 'p' || dro.renderop == 'P')
     {
 //       std::cerr << "Drawing polygon for node '"<<element()->id()<<"': ";
       QPolygonF points(dro.integers[0]);
@@ -587,13 +587,13 @@ void CanvasElement::paint(QPainter* p,
         }
       }
     }
-    else if (dro.renderop == "F")
+    else if (dro.renderop == 'F')
     {
       element()->setFontName(dro.str);
       element()->setFontSize(dro.integers[0]);
 //       kDebug() << "F" << element()->fontName() << element()->fontColor() << element()->fontSize();
     }
-    else if ( dro.renderop == "T" )
+    else if ( dro.renderop == 'T' )
     {
       const qreal stringWidthGoal = dro.integers[3] * scaleX();
       int fontSize = element()->fontSize();

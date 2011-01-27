@@ -773,7 +773,7 @@ bool DotGraphView::displayGraph()
 //   kDebug() << "Adding graph render operations: " << d->m_graph->renderOperations().size();
   foreach (const DotRenderOp& dro, d->m_graph->renderOperations())
   {
-    if ( dro.renderop == "T" )
+    if ( dro.renderop == 'T' )
     {
 //       std::cerr << "Adding graph label '"<<dro.str<<"'" << std::endl;
       const QString& str = dro.str;

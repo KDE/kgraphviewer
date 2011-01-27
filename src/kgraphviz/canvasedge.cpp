@@ -172,7 +172,7 @@ void CanvasEdge::computeBoundingRect()
     foreach (const DotRenderOp& dro, edge()->renderOperations())
     {
 //       kDebug() << dro.renderop  << ", ";
-      if ( (dro.renderop != "B") && (dro.renderop != "p") &&  (dro.renderop != "P") ) continue;
+      if ( (dro.renderop != 'B') && (dro.renderop != 'p') &&  (dro.renderop != 'P') ) continue;
       uint previousSize = points.size();
       points.resize(previousSize+dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)

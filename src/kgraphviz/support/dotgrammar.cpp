@@ -461,12 +461,12 @@ void init_op()
 void valid_op(char const* first, char const* last)
 {
   std::string s(first, last);
-  renderop.renderop = QString::fromUtf8(therenderop.c_str());
+  renderop.renderop = therenderop.c_str()[0];
   renderop.str = QString::fromUtf8(thestr.c_str());
 
 //   kDebug() << "Validating render operation '"<<QString::fromStdString(s)<<"': '"<<renderop.renderop<<"/"<<renderop.str<<"'";
   renderopvec->push_back(renderop);
-  renderop.renderop = "";
+  renderop.renderop = ' ';
   renderop.integers = QList<int>();
   renderop.str = "";
 }
