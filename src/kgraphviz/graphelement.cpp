@@ -212,7 +212,7 @@ void GraphElement::exportToGraphviz(void* element) const
         if (label != "label")
         {
           label.replace(QRegExp("\n"),"\\n");
-          kDebug() << id() << it.key() << label;
+//           kDebug() << id() << it.key() << label;
           agsafeset(element, it.key().toUtf8().data(), label.toUtf8().data(), QString().toUtf8().data());
         }
       }
@@ -226,8 +226,7 @@ void GraphElement::exportToGraphviz(void* element) const
       }
       else if (originalAttributes().isEmpty() || originalAttributes().contains(it.key()))
       {
-        kDebug() << id() << it.key() << it.value();
-
+//         kDebug() << id() << it.key() << it.value();
         agsafeset(element, it.key().toUtf8().data(), it.value().toUtf8().data(), it.value().toUtf8().data());
       }
     }
@@ -248,12 +247,12 @@ void GraphElement::importFromGraphviz(void* element, QList<QString> drawingAttri
       continue;
 
     parse_renderop(value, renderOperations());
-    kDebug() << attribute << "element renderOperations size is now" << renderOperations().size();
+//     kDebug() << attribute << "element renderOperations size is now" << renderOperations().size();
   }
 
   Agsym_t *attr = agfstattr(element);
   while(attr) {
-    kDebug() << id() << attr->name << agxget(element, attr->index);
+//     kDebug() << id() << attr->name << agxget(element, attr->index);
     m_attributes[attr->name] = agxget(element,attr->index);
     attr = agnxtattr(element,attr);
   }

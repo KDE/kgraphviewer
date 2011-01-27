@@ -445,8 +445,13 @@ void DotGraph::saveTo(const QString& fileName)
 void DotGraph::updateWithGraph(graph_t* newGraph)
 {
   Q_D(DotGraph);
+  kDebug();
 
-  kDebug() << newGraph;
+  if (!newGraph) {
+    kWarning() << "Invalid graph passed";
+    return;
+  }
+
   QList<QString> drawingAttributes;
   drawingAttributes << "_draw_" << "_ldraw_";
   importFromGraphviz(newGraph, drawingAttributes);
@@ -459,24 +464,15 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     kDebug() << "subgraph:" << sg->name;
     if (subgraphs().contains(sg->name))
     {
-      kDebug() << "known";
-      // ???
-      //       nodes()[ngn->name]->setZ(ngn->z());
+      kDebug() << "  known subgraph";
       subgraphs()[sg->name]->updateWithSubgraph(sg);
-      if (subgraphs()[sg->name]->canvasElement()!=0)
-      {
-        //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
-      }
     }
     else
     {
-      kDebug() << "new";
+      kDebug() << "  new subgraph";
       GraphSubgraph* newsg = new GraphSubgraph(sg);
-      //       kDebug() << "new created";
       subgraphs().insert(sg->name, newsg);
-      //       kDebug() << "new inserted";
     }
-
   }
 
   // copy nodes
@@ -486,33 +482,27 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     kDebug() << "node " << ngn->name;
     if (nodes().contains(ngn->name))
     {
-      kDebug() << "known";
-// ???
-//       nodes()[ngn->name]->setZ(ngn->z());
+      kDebug() << "  node known";
       nodes()[ngn->name]->updateWithNode(ngn);
-      if (nodes()[ngn->name]->canvasElement()!=0)
-      {
-        //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
-      }
     }
     else
     {
-      kDebug() << "new";
+      kDebug() << "  new node";
       GraphNode* newgn = new GraphNode(ngn);
-      //       kDebug() << "new created";
       nodes().insert(ngn->name, newgn);
-      //       kDebug() << "new inserted";
     }
 
     // copy node edges
     edge_t* nge = agfstout(newGraph, ngn);
     while (nge != NULL)
     {
+      Q_ASSERT(nge->head->name != 0);
+      Q_ASSERT(nge->tail->name != 0);
       kDebug() << "edge" << nge->id;
       const QString edgeName = QString::number(nge->id);
       if (edges().contains(edgeName))
       {
-        kDebug() << "edge known" << nge->id;
+        kDebug() << "  edge known" << nge->id;
 //         edges()[nge->name]->setZ(nge->z());
         edges()[edgeName]->updateWithEdge(nge);
         if (edges()[edgeName]->canvasElement()!=0)
@@ -522,26 +512,27 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
       }
       else
       {
-        kDebug() << "new edge" << edgeName;
+        kDebug() << "  new edge" << edgeName;
         {
           GraphEdge* newEdge = new GraphEdge();
           newEdge->setId(edgeName);
           newEdge->updateWithEdge(nge);
-          if (elementNamed(nge->tail->name) == 0)
+          if (nodeNamed(nge->tail->name) == 0)
           {
             GraphNode* newgn = new GraphNode();
-            //       kDebug() << "new created";
             nodes().insert(nge->tail->name, newgn);
           }
           newEdge->setFromNode(nodeNamed(nge->tail->name));
-          if (elementNamed(nge->head->name) == 0)
+          if (nodeNamed(nge->head->name) == 0)
           {
             GraphNode* newgn = new GraphNode();
-            //       kDebug() << "new created";
             nodes().insert(nge->head->name, newgn);
           }
           newEdge->setToNode(nodeNamed(nge->head->name));
           edges().insert(edgeName, newEdge);
+
+          Q_ASSERT(newEdge->toNode());
+          Q_ASSERT(newEdge->fromNode());
         }
       }
       nge = agnxtedge(newGraph, nge, ngn);
