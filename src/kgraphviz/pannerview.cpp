@@ -57,6 +57,7 @@ public:
   Q_DECLARE_PUBLIC(DotGraphView)
   DotGraphView* const q_ptr;
 
+  QPixmap m_backgroundPixmap;
   QRectF m_zoomRect;
   bool m_movingZoomRect;
   QPointF m_lastPos;
@@ -66,7 +67,6 @@ PannerViewPrivate::PannerViewPrivate(DotGraphView* parent)
   : q_ptr(parent)
   , m_movingZoomRect(false)
 {
-
 }
 
 PannerViewPrivate::~PannerViewPrivate()
@@ -74,17 +74,18 @@ PannerViewPrivate::~PannerViewPrivate()
   kDebug();
 }
 
-PannerView::PannerView(DotGraphView * parent, const char * name)
+PannerView::PannerView(DotGraphView * parent)
   : QGraphicsView(parent)
   , d_ptr(new PannerViewPrivate(parent))
 {
-  // why doesn't this avoid flicker ?
-  // viewport()->setBackgroundMode(Qt::NoBackground);
-  setBackgroundMode(Qt::NoBackground);
+  setScene(new QGraphicsScene);
+  setCacheMode(QGraphicsView::CacheBackground);
+  setRenderHints(QPainter::Antialiasing);
 
   // if there are ever graphic glitches to be found, remove this again
-  setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing | QGraphicsView::DontClipPainter |
-                        QGraphicsView::DontSavePainterState);
+  setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing |
+                       QGraphicsView::DontClipPainter |
+                       QGraphicsView::DontSavePainterState);
 
   setToolTip(i18n("View of the complete graph. Click and drag to move the visible part."));
   setWhatsThis(i18n("<h1>View of the Complete Graph</h1>"
@@ -107,7 +108,6 @@ void PannerView::setZoomRect(const QRectF& rectangle)
   if (rectangle == d->m_zoomRect) {
     return;
   }
-  scene()->invalidate(d->m_zoomRect, QGraphicsScene::ForegroundLayer);
   // get new zoom rect
   d->m_zoomRect = rectangle;
   const qreal q1 = mapToScene(15,0).x();
@@ -139,18 +139,18 @@ void PannerView::setZoomRect(const QRectF& rectangle)
     newRect.setHeight(newHeight);
     d->m_zoomRect = newRect;
   }
-  scene()->invalidate(d->m_zoomRect, QGraphicsScene::ForegroundLayer);
 }
 
 void PannerView::moveZoomRectTo(const QPointF& newPos, bool notify)
 {
   Q_D(PannerView);
+//   kDebug() << newPos << d->m_zoomRect;
   if (!d->m_zoomRect.isValid()) {
     return;
   }
 
   if (d->m_zoomRect.center() == newPos) {
-    kDebug() << "same pos, don't do anything";
+    kDebug() << "Same position, don't do anything";
     return;
   }
 
@@ -159,13 +159,14 @@ void PannerView::moveZoomRectTo(const QPointF& newPos, bool notify)
   scene()->invalidate(d->m_zoomRect, QGraphicsScene::ForegroundLayer);
 
   if (d->m_zoomRect.isValid() && notify) {
-    emit zoomRectMovedTo(newPos);
     d->m_lastPos = newPos;
+	emit zoomRectMovedTo(newPos);
   }
 }
 
 void PannerView::drawForeground(QPainter * p, const QRectF & rect )
 {
+  kDebug();
   Q_D(const PannerView);
   if (d->m_zoomRect.isValid() && rect.intersects(d->m_zoomRect))
   {
@@ -184,6 +185,29 @@ void PannerView::drawForeground(QPainter * p, const QRectF & rect )
     }
     p->restore();
   }
+}
+
+
+void PannerView::drawBackground(QPainter* painter, const QRectF& rect)
+{
+  Q_D(const PannerView);
+//   kDebug() << rect << viewport()->rect() << sceneRect() << d->m_backgroundPixmap.rect();
+  
+  painter->eraseRect(viewport()->rect());
+  painter->drawPixmap(rect, d->m_backgroundPixmap, d->m_backgroundPixmap.rect());
+}
+
+void PannerView::updateBackground()
+{
+  Q_D(PannerView);
+  const DotGraphView* view = d->parent();
+  QPixmap pixmap(viewport()->rect().size());
+  QPainter p(&pixmap);
+  view->scene()->render(&p, pixmap.rect(), view->sceneRect(), Qt::IgnoreAspectRatio);
+  setSceneRect(view->sceneRect());
+
+  d->m_backgroundPixmap = pixmap;
+  invalidateScene(QRectF(), QGraphicsScene::BackgroundLayer);
 }
 
 void PannerView::mousePressEvent(QMouseEvent* e)
@@ -223,7 +247,7 @@ void PannerView::mouseReleaseEvent(QMouseEvent* e)
 
 void PannerView::contextMenuEvent(QContextMenuEvent* event)
 {
-  Q_D(const PannerView);
+  Q_D(PannerView);
   d->parent()->contextMenuEvent(event);
 }
 

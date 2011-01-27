@@ -141,7 +141,7 @@ void DotGraphViewPrivate::updateSizes(const QSizeF& size)
   }
 
   kDebug() << "Show the panner view";
-  m_birdEyeView->hide();
+  m_birdEyeView->show();
 
   // first, assume use of 1/3 of width/height (possible larger)
   double zoom = .33 * adjustedSize.width() / cWidth;
@@ -174,12 +174,15 @@ void DotGraphViewPrivate::updateSizes(const QSizeF& size)
   }
   updateBirdEyeView();
   m_birdEyeView->setZoomRect(q->mapToScene(q->viewport()->rect()).boundingRect());
-  m_birdEyeView->show();
 }
 
 void DotGraphViewPrivate::updateBirdEyeView()
 {
+  kDebug();
   Q_Q(DotGraphView);
+
+  m_birdEyeView->updateBackground();
+
   qreal cvW = m_birdEyeView->width();
   qreal cvH = m_birdEyeView->height();
   qreal x = q->width()- cvW - q->verticalScrollBar()->width()    -2;
@@ -594,7 +597,6 @@ void DotGraphViewPrivate::setupCanvas()
   Q_Q(DotGraphView);
   kDebug();
   m_birdEyeView->hide();
-  m_birdEyeView->setScene(0);
   
   q->setScene(0);
 
@@ -611,8 +613,6 @@ void DotGraphViewPrivate::setupCanvas()
 
   // add text item
   m_textItem = newCanvas->addSimpleText(i18n("No graph loaded."));
-
-  m_birdEyeView->setScene(newCanvas);
   
   q->setScene(newCanvas);
   q->connect(newCanvas, SIGNAL(selectionChanged()), SLOT(selectionChanged()));
@@ -1002,6 +1002,7 @@ void DotGraphView::applyZoom(double factor)
 void DotGraphView::scrollContentsBy(int dx, int dy)
 {
   Q_D(DotGraphView);
+//   kDebug() << dx << dy << viewport()->rect() << sceneRect() << d->m_birdEyeView->sceneRect();
   QGraphicsView::scrollContentsBy(dx, dy);
   if (d->m_birdEyeView && scene()) { // we might be shutting down
     d->m_birdEyeView->moveZoomRectTo(mapToScene(viewport()->rect()).boundingRect().center(), false);
@@ -1019,14 +1020,14 @@ void DotGraphView::resizeEvent(QResizeEvent* e)
 
 void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
 {
-//   kDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos;
+  kDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos;
   centerOn(newZoomPos);
 }
                     
 void DotGraphView::zoomRectMoveFinished()
 {
   Q_D(DotGraphView);
-//    kDebug() << "zoomRectMoveFinished";
+    kDebug() << "zoomRectMoveFinished";
   d->updateBirdEyeView();
 //   std::cerr << "zoomRectMoveFinished end" << std::endl;
 }

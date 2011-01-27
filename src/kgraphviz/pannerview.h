@@ -43,8 +43,10 @@ class PannerView: public QGraphicsView
   Q_OBJECT
 
 public:
-  explicit PannerView(DotGraphView * parent, const char * name = 0);
+  explicit PannerView(DotGraphView * parent);
   virtual ~PannerView();
+
+  void updateBackground();
 
 public Q_SLOTS:
   void setZoomRect(const QRectF& rectangle);
@@ -59,6 +61,7 @@ protected:
   virtual void mouseMoveEvent(QMouseEvent*);
   virtual void mouseReleaseEvent(QMouseEvent*);
   virtual void drawForeground(QPainter * p, const QRectF & rect );
+  virtual void drawBackground(QPainter* painter, const QRectF& rect);
   virtual void contextMenuEvent(QContextMenuEvent* event);
 
   PannerViewPrivate* const d_ptr;
