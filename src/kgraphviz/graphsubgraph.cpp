@@ -162,9 +162,8 @@ void GraphSubgraph::removeElement(GraphElement* element)
   m_content.removeAll(element);
 }
 
-GraphElement* GraphSubgraph::elementNamed(const QString& id)
+GraphElement* GraphSubgraph::elementNamed(const QString& id) const
 {
-  if (this->id() == id) return this;
   foreach (GraphElement* element, content())
   {
     if (element->id() == id)

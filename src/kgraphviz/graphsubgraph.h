@@ -64,7 +64,7 @@ public:
 
   /// Recursively walk through this subgraph and its subsubgraphs to find an element named id
   /// @return the node found or 0 if there is no such node
-  GraphElement* elementNamed(const QString& id);
+  GraphElement* elementNamed(const QString& id) const;
 
 
   /// Recursively walk through this subgraph and its subsubgraphs to make

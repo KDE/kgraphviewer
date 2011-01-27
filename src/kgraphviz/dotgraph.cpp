@@ -836,16 +836,16 @@ void DotGraph::setAttribute(const QString& elementId, const QString& attributeNa
 GraphElement* DotGraph::elementNamed(const QString& id) const
 {
   Q_D(const DotGraph);
-  GraphElement* ret = 0;
-  if ((ret = d->m_nodesMap.value(id, 0))) {
-    return ret;
+  GraphElement* graphElement = 0;
+  if (graphElement = d->m_nodesMap.value(id, 0)) {
+    return graphElement;
   }
-  if ((ret = d->m_edgesMap.value(id, 0))) {
-    return ret;
+  if (graphElement = d->m_edgesMap.value(id, 0)) {
+    return graphElement;
   }
-  foreach(GraphSubgraph* subGraph, subgraphs()) {
-    if ((ret = subGraph->elementNamed(id))) {
-      return ret;
+  foreach(const GraphSubgraph* subGraph, subgraphs()) {
+    if ((graphElement = subGraph->elementNamed(id))) {
+      return graphElement;
     }
   }
   return 0;
@@ -858,8 +858,7 @@ GraphNode* DotGraph::nodeNamed(const QString& id) const
   if ((ret = d->m_nodesMap.value(id, 0))) {
     return ret;
   }
-  foreach(GraphSubgraph* subGraph, subgraphs()) {
-    GraphNode* node = 0;
+  foreach(const GraphSubgraph* subGraph, subgraphs()) {
     if ((ret = dynamic_cast<GraphNode*>(subGraph->elementNamed(id)))) {
       return ret;
     }
@@ -873,58 +872,61 @@ void DotGraph::setGraphAttributes(const QMap<QString,QString>& attribs)
   attributes() = attribs;
 }
 
-void DotGraph::addNewNode(const QString& id)
+GraphNode* DotGraph::addNewNode(const QString& id)
 {
   QMap<QString, QString> attribs;
   attribs["id"] = id;
-  addNewNode(attribs);
+  return addNewNode(attribs);
 }
 
-void DotGraph::addNewNode(const QMap<QString,QString>& attribs)
+GraphNode* DotGraph::addNewNode(const QMap<QString,QString>& attribs)
 {
   kDebug() << attribs;
   GraphNode* newNode = new GraphNode();
   newNode->attributes() = attribs;
   nodes().insert(newNode->id(), newNode);
   kDebug() << "node added as" << newNode->id();
+  return newNode;
 }
 
-void DotGraph::addNewSubgraph(const QString& id)
+GraphSubgraph* DotGraph::addNewSubgraph(const QString& id)
 {
   QMap<QString, QString> attribs;
   attribs["id"] = id;
-  addNewSubgraph(attribs);
+  return addNewSubgraph(attribs);
 }
 
-void DotGraph::addNewSubgraph(const QMap<QString,QString>& attribs)
+GraphSubgraph* DotGraph::addNewSubgraph(const QMap<QString,QString>& attribs)
 {
   kDebug() << attribs;
   GraphSubgraph* newSG = new GraphSubgraph();
   newSG->attributes() = attribs;
   subgraphs()[newSG->id()] = newSG;
   kDebug() << "subgraph added as" << newSG->id();
+  return newSG;
 }
 
-void DotGraph::addNewNodeToSubgraph(const QString& id, const QString& subgraph)
+GraphNode* DotGraph::addNewNodeToSubgraph(const QString& id, const QString& subgraph)
 {
   QMap<QString, QString> attribs;
   attribs["id"] = id;
-  addNewNodeToSubgraph(attribs, subgraph);
+  return addNewNodeToSubgraph(attribs, subgraph);
 }
 
-void DotGraph::addNewNodeToSubgraph(const QMap<QString,QString>& attribs,
+GraphNode* DotGraph::addNewNodeToSubgraph(const QMap<QString,QString>& attribs,
                                     const QString& subgraph)
 {
   kDebug() << attribs << "to" << subgraph;
   if (!subgraphs().contains(subgraph)) {
     kWarning() << "Invalid subgraph:" << subgraph;
-    return;
+    return 0;
   }
 
   GraphNode* newNode = new GraphNode();
   newNode->attributes() = attribs;
   subgraphs()[subgraph]->content().push_back(newNode);
   kDebug() << "node added as" << newNode->id() << "in" << subgraph;
+  return newNode;
 }
 
 void DotGraph::addExistingNodeToSubgraph(const QMap<QString,QString>& attribs,
@@ -1008,7 +1010,7 @@ void DotGraph::moveExistingNodeToMainGraph(const QMap<QString,QString>& attribs)
   }
 }
 
-void DotGraph::addNewEdge(const QString& sourceState,
+GraphEdge* DotGraph::addNewEdge(const QString& sourceState,
                           const QString& targetState,
                           const QMap<QString,QString>& attribs)
 {
@@ -1028,8 +1030,8 @@ void DotGraph::addNewEdge(const QString& sourceState,
 
   if (srcElement == 0 || tgtElement == 0)
   {
-    kError() << sourceState << "or" << targetState << "missing";
-    return;
+    kWarning() << sourceState << "or" << targetState << "missing";
+    return 0;
   }
   if (attribs.contains("id"))
   {
@@ -1042,6 +1044,7 @@ void DotGraph::addNewEdge(const QString& sourceState,
   newEdge->setFromNode(srcElement);
   newEdge->setToNode(tgtElement);
   edges().insert(newEdge->id(), newEdge);
+  return newEdge;
 }
 
 void DotGraph::removeElementAttribute(const QString& nodeName, const QString& attribName)
