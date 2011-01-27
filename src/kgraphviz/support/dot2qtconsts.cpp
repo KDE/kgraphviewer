@@ -809,10 +809,17 @@ static const struct {
 
 Dot2QtConsts::Dot2QtConsts()
 {
+  // see: http://www.graphviz.org/doc/info/attrs.html
+  
+  // for nodes and edges
   m_penStyles["solid"] = Qt::SolidLine;
   m_penStyles["dashed"] = Qt::DashLine;
   m_penStyles["dotted"] = Qt::DotLine;
   m_penStyles["invis"] = Qt::NoPen;
+
+  m_penStyles["filled"] = Qt::SolidLine; // node + cluster
+  m_penStyles["diagonals"] = Qt::SolidLine; // node
+  m_penStyles["rounded"] = Qt::SolidLine; // node + cluster
 
   m_colors["crimson"] = "#DC143C";
   m_colors["hot_pink"] = "#FF69B4";
@@ -915,12 +922,12 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
 
 Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString& dotLineStyle) const
 {
-  if (m_penStyles.find(dotLineStyle) != m_penStyles.end())
-    return (*(m_penStyles.find(dotLineStyle)));
+  QMap<QString, Qt::PenStyle>::const_iterator it = m_penStyles.find(dotLineStyle);
+  if (it != m_penStyles.end())
+    return it.value();
   else 
   {
-    if (!dotLineStyle.left(12).isEmpty()
-	&& dotLineStyle.left(12) != "setlinewidth")
+    if (!dotLineStyle.left(12).isEmpty() && dotLineStyle.left(12) != "setlinewidth")
       kWarning() << "Unknown dot line style '" << dotLineStyle << "'. returning Qt solid line";
     return Qt::SolidLine;
   }
@@ -928,8 +935,9 @@ Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString& dotLineStyle) const
 
 QFont Dot2QtConsts::qtFont(const QString& dotFont) const
 {
-  if (m_psFonts.find(dotFont) != m_psFonts.end())
-    return (*(m_psFonts.find(dotFont)));
+  QMap<QString, QFont>::const_iterator it = m_psFonts.find(dotFont);
+  if (it != m_psFonts.end())
+    return it.value();
   else
   {
     kWarning() << "Unknown dot font '" << dotFont << "'. returning Qt default.";
