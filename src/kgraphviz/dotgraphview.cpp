@@ -78,7 +78,6 @@
 // DotGraphView defaults
 #define DEFAULT_DETAILLEVEL 1
 #define DEFAULT_ZOOMPOS DotGraphView::Auto
-#define KGV_MAX_PANNER_NODES 100
 
 using namespace KGraphViz;
 
@@ -682,10 +681,6 @@ bool DotGraphView::displayGraph()
     setBackgroundColor(QColor(d->m_graph->backColor()));
   }
 
-  if (d->m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
-  {
-    d->m_birdEyeView->hide();
-  }
   //  QCanvasEllipse* eItem;
   double scaleX = 1.0, scaleY = 1.0;
 
@@ -698,11 +693,9 @@ bool DotGraphView::displayGraph()
 
   d->m_xMargin = 50;
   d->m_yMargin = 50;
-  
+
   scene()->setBackgroundBrush(QBrush(d->m_backgroundColor));
-  
-//   kDebug() << "sceneRect is now " << scene()->sceneRect();
-  
+
   kDebug() << "Handling" << d->m_graph->subgraphs().size() << "CanvasSubgraphs from" << d->m_graph;
   int zvalue = -1;
   foreach (GraphSubgraph* gsubgraph, d->m_graph->subgraphs())
