@@ -810,8 +810,6 @@ bool DotGraphView::displayGraph()
   d->m_cvZoom = 0;
   d->updateSizes();
 
-  centerOn(scene()->sceneRect().center());
-
   // hide text item again
   if (d->m_textItem) {
     scene()->removeItem(d->m_textItem);
@@ -820,11 +818,8 @@ bool DotGraphView::displayGraph()
   }
 
   viewport()->setUpdatesEnabled(true);
-  QSet<QGraphicsSimpleTextItem*>::iterator labelViewsIt, labelViewsIt_end;
-  labelViewsIt = d->m_labelViews.begin(); labelViewsIt_end = d->m_labelViews.end();
-  for (; labelViewsIt != labelViewsIt_end; labelViewsIt++)
-  {
-    (*labelViewsIt)->show();
+  foreach(QGraphicsSimpleTextItem* item, d->m_labelViews) {
+    item->show();
   }
 
   // update combo box if layout command is set
@@ -833,13 +828,11 @@ bool DotGraphView::displayGraph()
     d->m_layoutAlgoSelectAction->setCurrentAction(layoutCommand);
   }
 
-  scene()->update();
-
   // add some margin to the scene rect
   const int margin = 20;
   const QRectF newSceneRect = scene()->itemsBoundingRect().adjusted(-margin, -margin, margin, margin);
   scene()->setSceneRect(newSceneRect);
-  
+
   emit graphLoaded();
 
   return true;
