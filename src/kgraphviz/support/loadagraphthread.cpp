@@ -22,6 +22,8 @@
 #include <kdebug.h>
 #include <kurl.h>
 
+#include <QFile>
+
 void LoadAGraphThread::run()
 {
   kDebug() << m_dotFileName;
@@ -33,8 +35,13 @@ void LoadAGraphThread::run()
     return;
   }
 
+  if (!QFile(url.toLocalFile()).exists()) {
+    kWarning() << "File does not exist:" << url.toLocalFile();
+    return;
+  }
+
   const QString sanitizedFilename = url.path();
-  GVC_t *gvc = gvContext();
+  m_gvc = gvContext();
   FILE* fp = fopen(sanitizedFilename.toUtf8().data(), "r");
   m_g = agread(fp);
 }
@@ -45,6 +52,8 @@ void LoadAGraphThread::loadFile(const QString& dotFileName)
   if (isRunning())
     return;
 
+  m_g = 0;
+  m_gvc = 0;
   m_dotFileName = dotFileName;
   start();
 }

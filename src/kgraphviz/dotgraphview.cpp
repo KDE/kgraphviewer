@@ -1679,20 +1679,26 @@ void DotGraphView::slotAGraphReadFinished()
   if (layoutCommand.isEmpty()) {
       layoutCommand = GraphIO::internalLayoutCommandForFile(d->m_loadThread.dotFileName());
   }
-  d->m_layoutThread.layoutGraph(d->m_loadThread.g(), layoutCommand);
+
+  Agraph_t* graph = d->m_loadThread.g();
+  if (graph)
+    d->m_layoutThread.layoutGraph(graph, layoutCommand);
+  else
+    kWarning() << "Graph loading failed";
 }
 
 void DotGraphView::slotAGraphLayoutFinished()
 {
   Q_D(DotGraphView);
-  if (!d->m_layoutThread.success()) {
+  Agraph_t* graph = d->m_layoutThread.g();
+  if (!graph) {
     kWarning() << "Thread failed to layout graph properly, not doing anything.";
     return;
   }
   
-  loadLibrary(d->m_layoutThread.g(), d->m_layoutThread.layoutCommand());
+  loadLibrary(graph, d->m_layoutThread.layoutCommand());
 
-  gvFreeLayout(d->m_layoutThread.gvc(), d->m_layoutThread.g());
+  gvFreeLayout(d->m_layoutThread.gvc(), graph);
   agclose(d->m_layoutThread.g());
 }
 

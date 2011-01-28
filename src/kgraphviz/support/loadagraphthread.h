@@ -29,8 +29,8 @@ class LoadAGraphThread : public QThread
 public:
   void loadFile(const QString& dotFileName);
   inline graph_t* g() {return m_g;}
+  inline GVC_t* gvc() const {return m_gvc;}
   inline const QString& dotFileName() {return m_dotFileName;}
-  inline GVC_t* gvc() {return m_gvc;}
   
 protected:
   virtual void run();
