@@ -195,7 +195,7 @@ void KGraphEditor::openUrl(const KUrl& url)
   m_widget-> insertTab(part, QIcon( DesktopIcon("kgraphviewer") ), label);
   m_widget->setCurrentPage(m_widget->indexOf(part));
   m_tabsFilesMap[m_widget->currentPage()] = url.url();
-  part->loadLibrary(url.url());
+  part->loadFromFile(url.url());
 
   m_openedFiles.push_back(url.url());
 }

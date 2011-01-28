@@ -22,9 +22,6 @@
 
 #include "dotgraphview.h"
 
-#include "support/loadagraphthread.h"
-#include "support/layoutagraphthread.h"
-
 #include <QMap>
 #include <QSet>
 
@@ -107,12 +104,6 @@ public:
 
   /// true if elements should be highlighted on hover; false otherwise
   bool m_highlighting;
-
-  /// A thread to load graphviz agraph files
-  LoadAGraphThread m_loadThread;
-
-  /// A thread to layout graphviz agraph files
-  LayoutAGraphThread m_layoutThread;
 
   /// The graph background color
   QColor m_backgroundColor;

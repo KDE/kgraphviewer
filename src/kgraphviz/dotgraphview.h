@@ -71,9 +71,7 @@ public:
   static DotGraphView::PannerPosition zoomPos(const QString&);
   static QString toString(DotGraphView::PannerPosition);
 
-  bool loadDot(const QString& dotFileName);
-  bool loadLibrary(const QString& dotFileName);
-  bool loadLibrary(Agraph_t* graph, const QString& layoutCommand = "dot");
+  void loadFromFile(const QString& fileName);
 
   /// multiplies current zoom factor with @p factor
   void applyZoom(double factor);
@@ -192,10 +190,6 @@ Q_SIGNALS:
   void contextMenuEvent(const QString&, const QPoint&);
   void hoverEnter(const QString&);
   void hoverLeave(const QString&);
-
-private Q_SLOTS:
-  void slotAGraphReadFinished();
-  void slotAGraphLayoutFinished();
 
 private:
   Q_DECLARE_PRIVATE(DotGraphView);

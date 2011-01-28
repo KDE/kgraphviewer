@@ -50,8 +50,8 @@ public:
   DotGraph(const QString& layoutCommand, const QString& fileName);
 
   virtual ~DotGraph();
-  
-  bool parseDot(const QString& fileName);
+
+  void loadFromFile(const QString& fileName);
 
   const GraphNodeMap& nodes() const;
   const GraphEdgeMap& edges() const;
@@ -76,7 +76,7 @@ public:
   bool directed() const;
 
   QSet< GraphNode* >& nodesOfCell(unsigned int id);
-  
+
   unsigned int horizCellFactor() const;
   unsigned int vertCellFactor() const;
   double wdhcf() const;
@@ -137,6 +137,8 @@ private:
 
   Q_PRIVATE_SLOT(d_func(), void graphIOFinished());
   Q_PRIVATE_SLOT(d_func(), void graphIOError(QString));
+  Q_PRIVATE_SLOT(d_func(), void slotAGraphReadFinished());
+  Q_PRIVATE_SLOT(d_func(), void slotAGraphLayoutFinished());
 
   Q_PRIVATE_SLOT(d_func(), void doUpdate());
 };

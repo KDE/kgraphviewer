@@ -47,7 +47,7 @@ namespace KGraphViewer
 class KGraphViewerPartPrivate
 {
 public:
-  KGraphViewerPartPrivate() : m_watch(new KDirWatch()), m_layoutMethod(KGraphViewerInterface::InternalLibrary)
+  KGraphViewerPartPrivate() : m_watch(new KDirWatch())
   {
     
   }
@@ -59,8 +59,6 @@ public:
   
   KGraphViz::DotGraphView *m_widget;
   KDirWatch* m_watch;
-  KGraphViewerPart::LayoutMethod m_layoutMethod;
-  
 };
 
 KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent)
@@ -188,20 +186,7 @@ KGraphViewerPart::~KGraphViewerPart()
 bool KGraphViewerPart::openFile()
 {
   kDebug() << " " << localFilePath();
-  //    d->m_widget->loadedDot( localFilePath() );
-  switch (d->m_layoutMethod)
-  {
-    case ExternalProgram:
-      if (!d->m_widget->loadDot(localFilePath()))
-        return false;
-      break;
-    case InternalLibrary:
-      if (!d->m_widget->loadLibrary(localFilePath()))
-        return false;
-      break;
-    default:
-      kError() << "Unsupported layout method " << d->m_layoutMethod;
-  }
+  d->m_widget->loadFromFile(localFilePath());
   
   // deletes the existing file watcher because we have no way know here the name of the
   // previously watched file and thus we cannot use removeFile... :-(
@@ -364,7 +349,7 @@ void KGraphViewerPart::slotSetLayoutMethod(LayoutMethod method)
 
 void KGraphViewerPart::setLayoutMethod(LayoutMethod method)
 {
-  d->m_layoutMethod = method;
+  d->m_widget->graph()->setUseLibrary(method == InternalLibrary);
 }
 
 void KGraphViewerPart::centerOnNode(const QString& nodeId)

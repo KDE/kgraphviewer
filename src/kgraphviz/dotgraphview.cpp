@@ -538,9 +538,6 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   setInteractive(true);
   setDragMode(NoDrag);
   setRenderHint(QPainter::Antialiasing);
-
-  connect(&d->m_loadThread, SIGNAL(finished()), this, SLOT(slotAGraphReadFinished()));
-  connect(&d->m_layoutThread, SIGNAL(finished()), this, SLOT(slotAGraphLayoutFinished()));
 }
 
 DotGraphView::~DotGraphView()
@@ -623,47 +620,17 @@ void DotGraphViewPrivate::setupCanvas()
 
 
 
-bool DotGraphView::loadDot(const QString& dotFileName)
+void DotGraphView::loadFromFile(const QString& fileName)
 {
-  kDebug() << "Filename:" << dotFileName;
+  kDebug() << "Filename:" << fileName;
   Q_D(DotGraphView);
   d->setupCanvas();
 
-  QGraphicsSimpleTextItem* loadingLabel = scene()->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
+  QGraphicsSimpleTextItem* loadingLabel = scene()->addSimpleText(i18n("Graph %1 is getting loaded...", fileName));
   loadingLabel->setZValue(100);
   centerOn(loadingLabel);
 
-  if (!d->m_graph->parseDot(dotFileName)) {
-    kError() << "NOT successfully parsed!" << endl;
-    loadingLabel->setText(i18n("error parsing file %1", dotFileName));
-    return false;
-  }
-  return true;
-}
-
-bool DotGraphView::loadLibrary(const QString& dotFileName)
-{
-  kDebug() << "Load file:" << dotFileName;
-  
-  Q_D(DotGraphView);
-  // TODO: Clear canvas
-  QGraphicsSimpleTextItem* loadingLabel = scene()->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
-  loadingLabel->setZValue(100);
-  centerOn(loadingLabel);
-
-  d->m_loadThread.loadFile(dotFileName);
-  
-  return true;
-}
-
-bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
-{
-  kDebug() << "Agraph_t:" << graph << "- Layout command:" << layoutCommand;
-
-  Q_D(DotGraphView);
-  d->setupCanvas();
-  d->m_graph->updateWithGraph(graph);
-  return true;
+  graph()->loadFromFile(fileName);
 }
 
 void DotGraphView::slotSelectionChanged()
@@ -1670,36 +1637,6 @@ void DotGraphView::enterEvent ( QEvent * /*event*/ )
     killTimer(d->m_leavedTimer);
     d->m_leavedTimer = std::numeric_limits<int>::max();
   }
-}
-
-void DotGraphView::slotAGraphReadFinished()
-{
-  Q_D(DotGraphView);
-  QString layoutCommand = (d->m_graph!=0?d->m_graph->layoutCommand():"");
-  if (layoutCommand.isEmpty()) {
-      layoutCommand = GraphIO::internalLayoutCommandForFile(d->m_loadThread.dotFileName());
-  }
-
-  Agraph_t* graph = d->m_loadThread.g();
-  if (graph)
-    d->m_layoutThread.layoutGraph(graph, layoutCommand);
-  else
-    kWarning() << "Graph loading failed";
-}
-
-void DotGraphView::slotAGraphLayoutFinished()
-{
-  Q_D(DotGraphView);
-  Agraph_t* graph = d->m_layoutThread.g();
-  if (!graph) {
-    kWarning() << "Thread failed to layout graph properly, not doing anything.";
-    return;
-  }
-  
-  loadLibrary(graph, d->m_layoutThread.layoutCommand());
-
-  gvFreeLayout(d->m_layoutThread.gvc(), graph);
-  agclose(d->m_layoutThread.g());
 }
 
 void DotGraphView::slotSelectNode(const QString& nodeName)

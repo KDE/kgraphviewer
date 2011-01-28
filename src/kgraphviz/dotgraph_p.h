@@ -22,6 +22,9 @@
 
 #include "graphio.h"
 
+#include "support/loadagraphthread.h"
+#include "support/layoutagraphthread.h"
+
 #include <QVector>
 #include <QTimer>
 
@@ -37,8 +40,17 @@ public:
   unsigned int cellNumber(int x, int y) const;
   void computeCells();
 
+  void slotAGraphReadFinished();
+  void slotAGraphLayoutFinished();
+
   Q_DECLARE_PUBLIC(DotGraph);
   DotGraph* q_ptr;
+
+  /// A thread to load graphviz agraph files
+  LoadAGraphThread m_loadThread;
+
+  /// A thread to layout graphviz agraph files
+  LayoutAGraphThread m_layoutThread;
 
   QTimer m_updateTimer;
 

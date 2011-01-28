@@ -80,6 +80,9 @@ DotGraphPrivate::DotGraphPrivate(DotGraph* parent) :
   q->connect(&m_updateTimer, SIGNAL(timeout()), SLOT(doUpdate()));
   m_updateTimer.setInterval(0);
   m_updateTimer.setSingleShot(true);
+
+  q->connect(&m_loadThread, SIGNAL(finished()), SLOT(slotAGraphReadFinished()));
+  q->connect(&m_layoutThread, SIGNAL(finished()), SLOT(slotAGraphLayoutFinished()));
 }
 
 DotGraphPrivate::~DotGraphPrivate()
@@ -99,6 +102,38 @@ void DotGraphPrivate::graphIOError(const QString& error)
 {
   // TODO: add error handling here
   kDebug() << "Error message from graph IO:" << error;
+}
+
+void DotGraphPrivate::slotAGraphReadFinished()
+{
+  Q_Q(DotGraph);
+  QString layoutCommand = (q  ? q->layoutCommand() : "");
+  if (layoutCommand.isEmpty()) {
+      layoutCommand = GraphIO::internalLayoutCommandForFile(m_loadThread.dotFileName());
+  }
+
+  Agraph_t* graph = m_loadThread.g();
+  if (graph)
+    m_layoutThread.layoutGraph(graph, layoutCommand);
+  else
+    kWarning() << "Graph loading failed";
+}
+
+void DotGraphPrivate::slotAGraphLayoutFinished()
+{
+  Q_Q(DotGraph);
+  Agraph_t* graph = m_layoutThread.g();
+  if (!graph) {
+    kWarning() << "Thread failed to layout graph properly, not doing anything.";
+    return;
+  }
+
+  q->updateWithGraph(graph);
+
+  gvFreeLayout(m_layoutThread.gvc(), graph);
+  agclose(graph);
+
+  q->readyToDisplay();
 }
 
 void DotGraphPrivate::doUpdate()
@@ -295,14 +330,17 @@ void DotGraph::setUseLibrary(bool value)
   d->m_useLibrary = value;
 }
 
-bool DotGraph::parseDot(const QString& fileName)
+void DotGraph::loadFromFile(const QString& fileName)
 {
-  kDebug() << fileName;
-
   Q_D(DotGraph);
-  d->m_graphIO.loadFromDotFile(fileName, layoutCommand());
-
-  return true;
+  if (!useLibrary()) {
+    kDebug() << "Loading from file, using command line:" << fileName;
+    d->m_graphIO.loadFromDotFile(fileName, layoutCommand());
+  }
+  else {
+    kDebug() << "Loading from file, using library:" << fileName;
+    d->m_loadThread.loadFile(fileName);
+  }
 }
 
 void DotGraph::scheduleUpdate()
