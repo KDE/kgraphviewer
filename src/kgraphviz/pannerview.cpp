@@ -174,6 +174,9 @@ void PannerView::drawForeground(QPainter * p, const QRectF & rect )
     if (d->m_zoomRect.width() > 10 && d->m_zoomRect.height() > 10)
     {
       p->setPen(Qt::red);
+      p->setOpacity(0.2);
+      p->setBrush(Qt::red);
+
       // substract pen width, i.e. draw inside
       qreal penWidth = p->pen().widthF();
       p->drawRect(d->m_zoomRect.adjusted(-penWidth, -penWidth, -penWidth, -penWidth));
