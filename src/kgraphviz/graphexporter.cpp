@@ -46,7 +46,7 @@ GraphExporter::~GraphExporter()
 
 graph_t* GraphExporter::exportToGraphviz(const DotGraph* graph)
 {
-  kDebug() << graph;
+  kDebug() << graph << graph->edges().size();
 
   int type = graph->directed()
       ?(graph->strict()?AGDIGRAPHSTRICT:AGDIGRAPH)
@@ -70,7 +70,7 @@ graph_t* GraphExporter::exportToGraphviz(const DotGraph* graph)
       if (!n)
         continue;
 
-      node_t* node = agnode(agraph, n->id().toUtf8().data());
+      node_t* node = agnode(subgraph, n->id().toUtf8().data());
       n->exportToGraphviz(node);
     }
   }

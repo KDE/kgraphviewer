@@ -334,6 +334,7 @@ void CanvasElement::paint(QPainter* p,
     return;
   }
 
+  p->save();
   QListIterator<DotRenderOp> it(element()->renderOperations());
 
   QColor lineColor(Dot2QtConsts::componentData().qtColor(element()->lineColor()));
@@ -589,17 +590,18 @@ void CanvasElement::paint(QPainter* p,
     }
     else if (dro.renderop == 'F')
     {
-      element()->setFontName(dro.str);
-      element()->setFontSize(dro.integers[0]);
-//       kDebug() << "F" << element()->fontName() << element()->fontColor() << element()->fontSize();
+      QFont font = Dot2QtConsts::componentData().qtFont(dro.str);
+      font.setPixelSize(dro.integers[0]);
+      p->setFont(font);
     }
     else if ( dro.renderop == 'T' )
     {
       const qreal stringWidthGoal = dro.integers[3] * scaleX();
       int fontSize = element()->fontSize();
       QFont font = CanvasElement::font();
-      if (fontSize > 0)
+      if (fontSize > 0) {
         font.setPointSize(fontSize);
+      }
       QFontMetrics fm(font);
       while (fm.width(dro.str) > stringWidthGoal && fontSize > 1)
       {
@@ -607,6 +609,7 @@ void CanvasElement::paint(QPainter* p,
         font.setPointSize(fontSize);
         fm = QFontMetrics(font);
       }
+
       p->save();
       p->setFont(font);
 
@@ -629,6 +632,7 @@ void CanvasElement::paint(QPainter* p,
     }
     p->restore();
   }
+  p->restore();
 
   if (isSelected())
   {

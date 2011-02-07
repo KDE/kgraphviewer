@@ -536,11 +536,11 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     {
       Q_ASSERT(nge->head->name != 0);
       Q_ASSERT(nge->tail->name != 0);
-      kDebug() << "edge" << nge->id;
+      kDebug() << "edge" << nge->id<< nge->head->name;
       const QString edgeName = QString::number(nge->id);
       if (edges().contains(edgeName))
       {
-        kDebug() << "  edge known" << nge->id;
+        kDebug() << "  edge known" << nge->id ;
 //         edges()[nge->name]->setZ(nge->z());
         edges()[edgeName]->updateWithEdge(nge);
         if (edges()[edgeName]->canvasElement()!=0)
@@ -1056,15 +1056,7 @@ GraphEdge* DotGraph::addNewEdge(const QString& sourceState,
   GraphEdge* newEdge = new GraphEdge();
   newEdge->attributes() = attribs;
   GraphNode* srcElement = nodeNamed(sourceState);
-  if (srcElement == 0)
-  {
-    srcElement = nodeNamed(QString("cluster_") + sourceState);
-  }
   GraphNode* tgtElement = nodeNamed(targetState);
-  if (tgtElement == 0)
-  {
-    tgtElement = nodeNamed(QString("cluster_") + targetState);
-  }
 
   if (srcElement == 0 || tgtElement == 0)
   {
