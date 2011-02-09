@@ -16,10 +16,6 @@
    02110-1301, USA
 */
 
-/*
- * GraphViz dot Graph model
- */
-
 #ifndef DOT_GRAPH_H
 #define DOT_GRAPH_H
 

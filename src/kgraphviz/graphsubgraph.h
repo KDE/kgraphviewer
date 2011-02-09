@@ -16,10 +16,6 @@
    02110-1301, USA
 */
 
-/*
- * Subgraph model
- */
-
 #ifndef GRAPH_SUBGRAPH_H
 #define GRAPH_SUBGRAPH_H
 
@@ -66,7 +62,6 @@ public:
   /// @return the node found or 0 if there is no such node
   GraphElement* elementNamed(const QString& id) const;
 
-
   /// Recursively walk through this subgraph and its subsubgraphs to make
   /// the given element selected or not depending on the selectValue parameter
   /// and unselect other elements depending on the  unselect others parameter
@@ -84,7 +79,6 @@ private:
 };
 
 KGRAPHVIZ_EXPORT QTextStream& operator<<(QTextStream& stream, const GraphSubgraph& s);
-
 }
 
 #endif

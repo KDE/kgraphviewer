@@ -16,15 +16,12 @@
    02110-1301, USA
 */
 
-
 #include "canvassubgraph.h"
 
 #include "graphsubgraph.h"
 
-namespace KGraphViz
-{
-  
-  
+using namespace KGraphViz;
+
 CanvasSubgraph::CanvasSubgraph(
                               DotGraphView* v,
                               GraphSubgraph* gsubgraph,
@@ -34,5 +31,8 @@ CanvasSubgraph::CanvasSubgraph(
   : CanvasElement(v, gsubgraph, c, parent)
 {
 }
+
+CanvasSubgraph::~CanvasSubgraph()
+{
 
 }

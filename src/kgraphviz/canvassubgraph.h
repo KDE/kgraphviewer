@@ -16,22 +16,15 @@
    02110-1301, USA
 */
 
-/*
- * Canvas Subgraph (subgraph node view)
- */
-
 #ifndef CANVAS_SUBGRAPH_H
 #define CANVAS_SUBGRAPH_H
 
 #include "canvaselement.h"
 
-class QGraphicsScene;
-
 namespace KGraphViz
 {
-  
+
 class GraphSubgraph;
-class DotGraphView;
 
 class CanvasSubgraph: public CanvasElement
 {
@@ -41,7 +34,7 @@ public:
       GraphSubgraph* s,
       QGraphicsScene* c,
       QGraphicsItem* parent = 0);
-  virtual ~CanvasSubgraph() {}
+  virtual ~CanvasSubgraph();
 };
 
 }

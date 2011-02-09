@@ -112,25 +112,30 @@ public:
   bool highlighting() const;
   void setHighlighting(bool highlightingValue);
 
-  // public so that the panner view can bubble through
+  /// public so that the panner view can bubble through
   void contextMenuEvent(QContextMenuEvent*);
 
   void setBackgroundColor(const QColor& color);
-  
+
 public Q_SLOTS:
   void zoomIn();
   void zoomOut();  
   void zoomRectMovedTo(QPointF newZoomPos);
   void zoomRectMoveFinished();
+
+  void initEmpty();
   bool reload();
   bool displayGraph();
+
   void dirty(const QString& dotFileName);
   void pageSetup();
-  void initEmpty();
+
   void print();
   void printPreview();
+
   void setPannerPosition(DotGraphView::PannerPosition pos);
   void setPannerEnabled(bool enabled);
+
   void slotExportImage();
   void slotSelectLayoutAlgo(const QString& text);
   void slotLayoutSpecify();
@@ -152,21 +157,25 @@ public Q_SLOTS:
 protected:
   void scrollContentsBy(int dx, int dy);
   void resizeEvent(QResizeEvent*);
+
   void mousePressEvent(QMouseEvent*);
   void mouseMoveEvent(QMouseEvent*);
   void mouseReleaseEvent(QMouseEvent*);
   void mouseDoubleClickEvent(QMouseEvent*);
+
   void keyPressEvent(QKeyEvent*);
   void keyReleaseEvent(QKeyEvent*);
+
   void focusInEvent(QFocusEvent*);
   void focusOutEvent(QFocusEvent*);
+
   void wheelEvent(QWheelEvent* e);
   
   void timerEvent ( QTimerEvent * event );
   void leaveEvent ( QEvent * event );
   void enterEvent ( QEvent * event );
 
-  DotGraphViewPrivate * const d_ptr;
+  DotGraphViewPrivate* const d_ptr;
 
 Q_SIGNALS:
   void zoomed(double factor);
@@ -188,6 +197,7 @@ Q_SIGNALS:
       const QString&, const QString&,
       const QMap<QString, QString>&);
   void contextMenuEvent(const QString&, const QPoint&);
+
   void hoverEnter(const QString&);
   void hoverLeave(const QString&);
 

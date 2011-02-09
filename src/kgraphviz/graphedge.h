@@ -50,18 +50,9 @@ public:
 
   GraphNode* fromNode() const;
   void setFromNode(GraphNode* node);
-  
+
   GraphNode* toNode() const;
   void setToNode(GraphNode* node);
-
-//   inline const QVector< QPair< float, float > >& edgePoints() const {return m_edgePoints;}
-//   inline QVector< QPair< float, float > >& edgePoints() {return m_edgePoints;}
-//   inline void edgePoints(const QVector< QPair< float, float > >& ep) {m_edgePoints = ep;}
-  
-/*  inline void labelX(float x) {m_labelX = x;}
-  inline void labelY(float y) {m_labelY = y;}
-  inline float labelX() const {return m_labelX;}
-  inline float labelY() const {return m_labelY;}*/
 
   QList<DotRenderOp>& arrowheads();
   const QList<DotRenderOp>& arrowheads() const;

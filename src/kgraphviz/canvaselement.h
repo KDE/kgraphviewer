@@ -16,10 +16,6 @@
    02110-1301, USA
 */
 
-/*
- * Canvas Subgraph (subgraph node view)
- */
-
 #ifndef CANVAS_ELEMENT_H
 #define CANVAS_ELEMENT_H
 
@@ -43,23 +39,20 @@ public:
       GraphElement* s,
       QGraphicsScene* c,
       QGraphicsItem* parent = 0);
-      
+
   virtual ~CanvasElement();
-  
+
   GraphElement* element() const;
 
   virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         QWidget *widget = 0 );
 
-  virtual QRectF boundingRect () const;
-  
+  virtual QRectF boundingRect() const;
+
   void initialize(qreal scaleX, qreal scaleY,
                   qreal marginX, qreal marginY,
                   qreal gh,
                   qreal wdhcf, qreal hdvcf);
-
-  qreal gh() const;
-  void setGh(qreal gh);
 
   virtual void modelChanged();
 
@@ -71,6 +64,8 @@ protected:
   virtual void computeBoundingRect();
   void setBoundingRect(const QRectF& rect);
 
+  qreal gh() const;
+  void setGh(qreal gh);
   QFont font() const;
   void setFont(const QFont& font);
   qreal scaleX() const;
