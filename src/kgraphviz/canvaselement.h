@@ -51,7 +51,6 @@ public:
   virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
         QWidget *widget = 0 );
 
-  virtual void computeBoundingRect();
   virtual QRectF boundingRect () const;
   
   void initialize(qreal scaleX, qreal scaleY,
@@ -69,6 +68,9 @@ protected:
   virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
   virtual void hoverLeaveEvent( QGraphicsSceneHoverEvent * event );
 
+  virtual void computeBoundingRect();
+  void setBoundingRect(const QRectF& rect);
+
   QFont font() const;
   void setFont(const QFont& font);
   qreal scaleX() const;
@@ -79,8 +81,6 @@ protected:
   void setMarginX(qreal marginX);
   qreal marginY() const;
   void setMarginY(qreal marginY);
-
-  void setBoundingRect(const QRectF& rect);
 
   CanvasElementPrivate* const d_ptr;
 

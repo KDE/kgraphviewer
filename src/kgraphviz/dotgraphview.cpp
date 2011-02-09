@@ -287,9 +287,9 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
       cnode->setZValue(zValue+1);
       cnode->show();
     }
-    gnode->canvasElement()->computeBoundingRect();
+    gnode->canvasElement()->modelChanged();
   }
-  gsubgraph->canvasElement()->computeBoundingRect();
+  gsubgraph->canvasElement()->modelChanged();
   
   int newZvalue = zValue;
   foreach(GraphSubgraph* ssg, gsubgraph->subgraphs())
@@ -698,7 +698,7 @@ bool DotGraphView::displayGraph()
     }
 
     CanvasElement* element = gnode->canvasElement();
-    element->computeBoundingRect();
+    element->modelChanged();
   }
 
   kDebug() << "Handling" << d->m_graph->edges().size() << "edges from" << d->m_graph;
@@ -727,7 +727,7 @@ bool DotGraphView::displayGraph()
       scene()->addItem(cedge);
     }
     CanvasElement* element = gedge->canvasElement();
-    element->computeBoundingRect();
+    element->modelChanged();
   }
 
 //   kDebug() << "Adding graph render operations: " << d->m_graph->renderOperations().size();

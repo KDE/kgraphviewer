@@ -53,13 +53,13 @@ public:
 
   virtual ~CanvasEdge();
 
-  virtual void computeBoundingRect();
-
-  QPainterPath shape() const;
+  virtual QPainterPath shape() const;
 
   GraphEdge* edge() const;
 
 protected:
+  virtual void computeBoundingRect();
+
   CanvasEdgePrivate* const d_ptr;
 
 private:
