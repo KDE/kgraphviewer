@@ -16,8 +16,8 @@
    02110-1301, USA
 */
 
-#ifndef GRAPH_SUBGRAPH_H
-#define GRAPH_SUBGRAPH_H
+#ifndef KGRAPHVIZ_GRAPH_SUBGRAPH_H
+#define KGRAPHVIZ_GRAPH_SUBGRAPH_H
 
 #include "graphelement.h"
 

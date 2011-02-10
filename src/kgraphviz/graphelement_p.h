@@ -17,8 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef GRAPHELEMENT_P_H
-#define GRAPHELEMENT_P_H
+#ifndef KGRAPHVIZ_GRAPHELEMENT_P_H
+#define KGRAPHVIZ_GRAPHELEMENT_P_H
 
 #include "graphelement.h"
 

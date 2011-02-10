@@ -17,8 +17,8 @@
 */
 
 
-#ifndef KGRAPHVIEWER_FONTSCACHE_H
-#define KGRAPHVIEWER_FONTSCACHE_H
+#ifndef KGRAPHVIZ_FONTSCACHE_H
+#define KGRAPHVIZ_FONTSCACHE_H
 
 #include "singleton.h"
 

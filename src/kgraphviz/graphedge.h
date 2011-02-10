@@ -24,8 +24,8 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-#ifndef GRAPH_EDGE_H
-#define GRAPH_EDGE_H
+#ifndef KGRAPHVIZ_GRAPH_EDGE_H
+#define KGRAPHVIZ_GRAPH_EDGE_H
 
 #include "graphelement.h"
 

@@ -24,8 +24,8 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-#ifndef GRAPH_EXPORTER_H
-#define GRAPH_EXPORTER_H
+#ifndef KGRAPHVIZ_GRAPH_EXPORTER_H
+#define KGRAPHVIZ_GRAPH_EXPORTER_H
 
 class Agraph_t;
 

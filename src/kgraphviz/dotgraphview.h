@@ -24,8 +24,8 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-#ifndef DOTGRAPHVIEW_H
-#define DOTGRAPHVIEW_H
+#ifndef KGRAPHVIZ_DOTGRAPHVIEW_H
+#define KGRAPHVIZ_DOTGRAPHVIEW_H
 
 #include "kgraphviz_export.h"
 
@@ -209,4 +209,4 @@ private:
 
 }
 
-#endif // DOTGRAPHVIEW_H
+#endif // KGRAPHVIZ_DOTGRAPHVIEW_H

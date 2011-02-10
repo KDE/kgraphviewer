@@ -16,8 +16,8 @@
    02110-1301, USA
 */
 
-#ifndef DOT_RENDEROP_H
-#define DOT_RENDEROP_H
+#ifndef KGRAPHVIZ_DOT_RENDEROP_H
+#define KGRAPHVIZ_DOT_RENDEROP_H
 
 #include <QChar>
 #include <QList>

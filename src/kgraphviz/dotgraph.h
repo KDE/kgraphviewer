@@ -16,8 +16,8 @@
    02110-1301, USA
 */
 
-#ifndef DOT_GRAPH_H
-#define DOT_GRAPH_H
+#ifndef KGRAPHVIZ_DOT_GRAPH_H
+#define KGRAPHVIZ_DOT_GRAPH_H
 
 #include <QMap>
 

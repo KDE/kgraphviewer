@@ -24,8 +24,8 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-#ifndef CANVAS_NODE_H
-#define CANVAS_NODE_H
+#ifndef KGRAPHVIZ_CANVAS_NODE_H
+#define KGRAPHVIZ_CANVAS_NODE_H
 
 #include "canvaselement.h"
 

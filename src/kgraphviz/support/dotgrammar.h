@@ -20,8 +20,8 @@
  * GraphViz dot Graph parsing grammar implemented with boost Spirit
  */
 
-#ifndef DOT_GRAMMAR_H
-#define DOT_GRAMMAR_H
+#ifndef KGRAPHVIZ_DOT_GRAMMAR_H
+#define KGRAPHVIZ_DOT_GRAMMAR_H
 
 #include "dotrenderop.h"
 

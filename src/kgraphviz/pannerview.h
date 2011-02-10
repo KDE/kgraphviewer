@@ -24,8 +24,8 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-#ifndef PANNER_VIEW_H
-#define PANNER_VIEW_H
+#ifndef KGRAPHVIZ_PANNER_VIEW_H
+#define KGRAPHVIZ_PANNER_VIEW_H
 
 #include <QGraphicsView>
 

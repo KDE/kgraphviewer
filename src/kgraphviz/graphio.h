@@ -17,8 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef GRAPHIO_H
-#define GRAPHIO_H
+#ifndef KGRAPHVIZ_GRAPHIO_H
+#define KGRAPHVIZ_GRAPHIO_H
 
 #include <QObject>
 
@@ -60,4 +60,4 @@ private:
 
 }
 
-#endif // GRAPHIO_H
+#endif // KGRAPHVIZ_GRAPHIO_H

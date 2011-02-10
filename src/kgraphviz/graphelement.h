@@ -16,8 +16,8 @@
    02110-1301, USA
 */
 
-#ifndef GRAPH_ELEMENT_H
-#define GRAPH_ELEMENT_H
+#ifndef KGRAPHVIZ_GRAPH_ELEMENT_H
+#define KGRAPHVIZ_GRAPH_ELEMENT_H
 
 #include "kgraphviz_export.h"
 #include "support/dotrenderop.h"

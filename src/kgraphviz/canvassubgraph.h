@@ -16,8 +16,8 @@
    02110-1301, USA
 */
 
-#ifndef CANVAS_SUBGRAPH_H
-#define CANVAS_SUBGRAPH_H
+#ifndef KGRAPHVIZ_CANVAS_SUBGRAPH_H
+#define KGRAPHVIZ_CANVAS_SUBGRAPH_H
 
 #include "canvaselement.h"
 

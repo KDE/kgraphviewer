@@ -17,8 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef GRAPHEDGE_P_H
-#define GRAPHEDGE_P_H
+#ifndef KGRAPHVIZ_GRAPHEDGE_P_H
+#define KGRAPHVIZ_GRAPHEDGE_P_H
 
 #include "graphedge.h"
 

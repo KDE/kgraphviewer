@@ -29,8 +29,8 @@
  * Graph Node model
  */
 
-#ifndef GRAPH_NODE_H
-#define GRAPH_NODE_H
+#ifndef KGRAPHVIZ_GRAPH_NODE_H
+#define KGRAPHVIZ_GRAPH_NODE_H
 
 #include "graphelement.h"
 

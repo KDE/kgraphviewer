@@ -16,8 +16,8 @@
    02110-1301, USA
 */
 
-#ifndef CANVAS_ELEMENT_H
-#define CANVAS_ELEMENT_H
+#ifndef KGRAPHVIZ_CANVAS_ELEMENT_H
+#define KGRAPHVIZ_CANVAS_ELEMENT_H
 
 #include <QAbstractGraphicsShapeItem>
 
@@ -85,4 +85,4 @@ private:
 
 }
 
-#endif // CANVAS_ELEMENT_H
+#endif // KGRAPHVIZ_CANVAS_ELEMENT_H

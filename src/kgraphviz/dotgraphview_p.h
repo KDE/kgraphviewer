@@ -17,8 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef DOTGRAPHVIEW_P_H
-#define DOTGRAPHVIEW_P_H
+#ifndef KGRAPHVIZ_DOTGRAPHVIEW_P_H
+#define KGRAPHVIZ_DOTGRAPHVIEW_P_H
 
 #include "dotgraphview.h"
 

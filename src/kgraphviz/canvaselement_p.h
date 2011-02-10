@@ -17,8 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef CANVAS_ELEMENT_P_H
-#define CANVAS_ELEMENT_P_H
+#ifndef KGRAPHVIZ_CANVAS_ELEMENT_P_H
+#define KGRAPHVIZ_CANVAS_ELEMENT_P_H
 
 #include "canvaselement.h"
 

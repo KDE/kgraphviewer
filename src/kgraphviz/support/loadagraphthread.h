@@ -17,8 +17,8 @@
 
 */
 
-#ifndef LOADAGRAPHTHREAD_H
-#define LOADAGRAPHTHREAD_H
+#ifndef KGRAPHVIZ_LOADAGRAPHTHREAD_H
+#define KGRAPHVIZ_LOADAGRAPHTHREAD_H
 
 #include <QThread>
 
@@ -41,4 +41,4 @@ private:
   GVC_t *m_gvc;
 };
 
-#endif // LOADAGRAPHTHREAD_H
+#endif // KGRAPHVIZ_LOADAGRAPHTHREAD_H

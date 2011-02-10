@@ -24,8 +24,8 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-#ifndef CANVAS_EDGE_H
-#define CANVAS_EDGE_H
+#ifndef KGRAPHVIZ_CANVAS_EDGE_H
+#define KGRAPHVIZ_CANVAS_EDGE_H
 
 #include "canvaselement.h"
 

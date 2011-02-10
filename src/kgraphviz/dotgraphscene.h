@@ -16,8 +16,8 @@
 */
 
 
-#ifndef DOTGRAPHSCENE_H
-#define DOTGRAPHSCENE_H
+#ifndef KGRAPHVIZ_DOTGRAPHSCENE_H
+#define KGRAPHVIZ_DOTGRAPHSCENE_H
 
 #include <QGraphicsScene>
 
@@ -36,4 +36,4 @@ protected:
 
 }
 
-#endif // DOTGRAPHSCENE_H
+#endif // KGRAPHVIZ_DOTGRAPHSCENE_H

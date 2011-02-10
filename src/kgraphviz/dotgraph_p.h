@@ -17,8 +17,8 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef DOTGRAPH_P_H
-#define DOTGRAPH_P_H
+#ifndef KGRAPHVIZ_DOTGRAPH_P_H
+#define KGRAPHVIZ_DOTGRAPH_P_H
 
 #include "graphio.h"
 

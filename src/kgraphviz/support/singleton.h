@@ -17,8 +17,8 @@
 */
 
 
-#ifndef KGRAPHVIEWER_SINGLETON_H
-#define KGRAPHVIEWER_SINGLETON_H
+#ifndef KGRAPHVIZ_SINGLETON_H
+#define KGRAPHVIZ_SINGLETON_H
 
 /**
  * An implementation of the singleton pattern
