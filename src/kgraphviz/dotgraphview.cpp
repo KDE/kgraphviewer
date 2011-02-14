@@ -1205,6 +1205,7 @@ void DotGraphView::setPannerEnabled(bool enabled)
   if (d->m_birdEyeView->isVisible() == enabled)
     return;
 
+  d->m_bevEnabledAction->setChecked(enabled);
   d->updateSizes();
   emit(sigViewBevEnabledToggled(enabled));
 }
