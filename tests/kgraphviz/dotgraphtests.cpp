@@ -28,6 +28,10 @@ class DotGraphTests : public QObject
 private Q_SLOTS:
   void testCreateEmptyGraph();
   void testCreateSelfLoopedGraph();
+  void testCreateSubgraph();
+
+  void testUpdateGraph();
+  void testUpdateSubgraph();
 };
 
 using namespace KGraphViz;
@@ -51,6 +55,49 @@ void DotGraphTests::testCreateSelfLoopedGraph()
 
   graph.addNewEdge("A", "A");
   QCOMPARE(graph.edges().size(), 2);
+}
+
+void DotGraphTests::testCreateSubgraph()
+{
+  DotGraph graph;
+  GraphSubgraph* subgraph = graph.addNewSubgraph("SG");
+  QCOMPARE(graph.subgraphs().size(), 1);
+
+  graph.addNewNodeToSubgraph("N1", "SG");
+  QVERIFY(subgraph->elementNamed("N1"));
+}
+
+void DotGraphTests::testUpdateGraph()
+{
+  DotGraph graph;
+  graph.addNewNode("N1");
+  graph.addNewNode("N2");
+  graph.addNewEdge("N1", "N2");
+
+  const int edgeCount = graph.edges().size();
+  const int nodeCount = graph.nodes().size();
+  QCOMPARE(edgeCount, 1);
+
+  graph.update();
+  QCOMPARE(graph.nodes().size(), nodeCount);
+  QCOMPARE(graph.edges().size(), edgeCount);
+}
+
+
+void DotGraphTests::testUpdateSubgraph()
+{
+  DotGraph graph;
+  GraphSubgraph* subgraph = graph.addNewSubgraph("SG");
+  GraphNode* n1 = graph.addNewNodeToSubgraph("N1", "SG");
+  GraphNode* n2 = graph.addNewNodeToSubgraph("N2", "SG");
+  graph.addNewEdge("N1", "N2");
+
+  int edgeCount = graph.edges().size();
+  QCOMPARE(edgeCount, 1);
+
+  graph.setUseLibrary(true);
+  graph.update();
+  QCOMPARE(edgeCount, graph.edges().size());
 }
 
 QTEST_KDEMAIN_CORE(DotGraphTests)

@@ -1063,14 +1063,7 @@ GraphEdge* DotGraph::addNewEdge(const QString& sourceState,
     kWarning() << sourceState << "or" << targetState << "missing";
     return 0;
   }
-  if (attribs.contains("id"))
-  {
-    newEdge->setId(attribs["id"]);
-  }
-  else
-  {
-    newEdge->setId(QString::number(edges().size()+1));
-  }
+  newEdge->setId(QString::number(subgraphs().size() + edges().size() + 1));
   newEdge->setFromNode(srcElement);
   newEdge->setToNode(tgtElement);
   edges().insert(newEdge->id(), newEdge);
