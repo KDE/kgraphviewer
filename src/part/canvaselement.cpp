@@ -451,13 +451,18 @@ QWidget *widget)
       int fontSize = element()->fontSize();
 //       kDebug() << element()->id() << " initial fontSize " << fontSize;
       m_font->setPointSize(fontSize);
+
       QFontMetrics fm(*m_font);
-      while (fm.width(dro.str) > stringWidthGoal && fontSize > 1)
+      int fontWidth = fm.width(dro.str);
+      while (fontWidth > stringWidthGoal && fontSize > 1)
       {
-        fontSize--;
+        // use floor'ed extrapolated font size
+        fontSize = double(stringWidthGoal) / fontWidth * fontSize;
         m_font->setPointSize(fontSize);
         fm = QFontMetrics(*m_font);
+        fontWidth = fm.width(dro.str);
       }
+
       p->save();
       p->setFont(*m_font);
       QPen pen(m_pen);
@@ -466,8 +471,8 @@ QWidget *widget)
       qreal x = (m_scaleX *
                        (
                          (dro.integers[0])
-                         + (((-dro.integers[2])*(fm.width(dro.str)))/2)
-                         - ( (fm.width(dro.str))/2 )
+                         + (((-dro.integers[2])*(fontWidth))/2)
+                         - ( (fontWidth)/2 )
                        )
                       )
                       + m_xMargin;
