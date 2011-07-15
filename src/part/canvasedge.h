@@ -40,6 +40,8 @@
 
 class QMenu;
 
+class DotRenderOp;
+
 /*
  * Canvas Items:
  * - CanvasNode       (Rectangular Area)
@@ -54,7 +56,6 @@ class CanvasNode;
 class CanvasEdge;
 class GraphEdge;
 class DotGraphView;
-
 
 class CanvasEdge : public QObject, public QAbstractGraphicsShapeItem
 {
@@ -97,6 +98,7 @@ protected:
   virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
   
 private:
+  QPainterPath pathForSpline(int splineNum, const DotRenderOp& dro) const;
   qreal distance(const QPointF& point1, const QPointF& point2);
   
   qreal m_scaleX, m_scaleY;
@@ -106,7 +108,7 @@ private:
   QFont* m_font;
   DotGraphView* m_view;
   QMenu* m_popup;
-  mutable QPainterPath m_boundingRegion;
+  mutable QPainterPath m_shape;
 };
 
 }
