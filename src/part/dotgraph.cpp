@@ -399,18 +399,23 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
   kDebug();
 
   // copy global graph render operations and attributes
-  renderOperations().clear();
+  DotRenderOpVec ops;
+  // decrease mem peak
+  setRenderOperations(ops);
+
   if (agget(newGraph, (char*)"_draw_") != NULL)
   {
-    parse_renderop(agget(newGraph, (char*)"_draw_"), renderOperations());
-    kDebug() << "_draw_: element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(newGraph, (char*)"_draw_"), ops);
+    kDebug() << "_draw_: element renderOperations size is now " << ops.size();
   }
   if (agget(newGraph, (char*)"_ldraw_") != NULL)
   {
-    parse_renderop(agget(newGraph, (char*)"_ldraw_"), renderOperations());
-    kDebug() << "_ldraw_: element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(newGraph, (char*)"_ldraw_"), ops);
+    kDebug() << "_ldraw_: element renderOperations size is now " << ops.size();
   }
-  
+
+  setRenderOperations(ops);
+
   Agsym_t *attr = agfstattr(newGraph);
   while(attr)
   {

@@ -58,10 +58,17 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
   m_ce(element.m_ce),
   m_z(element.m_z),
   m_renderOperations(),
+  m_renderOperationsRevision(0),
   m_selected(element.m_selected)
 {
   kDebug() ;
   updateWithElement(element);
+}
+
+void GraphElement::setRenderOperations(const DotRenderOpVec& drov)
+{
+    m_renderOperations = drov;
+    ++m_renderOperationsRevision;
 }
 
 void GraphElement::updateWithElement(const GraphElement& element)
@@ -91,7 +98,7 @@ void GraphElement::updateWithElement(const GraphElement& element)
   if (modified)
   {
     kDebug() << "modified: update render operations";
-    m_renderOperations = element.m_renderOperations;
+    setRenderOperations(element.m_renderOperations);
 /*    foreach (DotRenderOp op, m_renderOperations)
     {
       QString msg;

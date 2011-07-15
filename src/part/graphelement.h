@@ -68,10 +68,14 @@ public:
   inline QString fontColor() const {return m_attributes["fontcolor"];}
   inline void setFontColor(const QString& fc) {m_attributes["fontcolor"] = fc;}
 
-  inline DotRenderOpVec& renderOperations() {return m_renderOperations;};
   inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
-  inline void setRenderOperations(DotRenderOpVec& drov) {m_renderOperations = drov;};
-  
+  void setRenderOperations(const DotRenderOpVec& drov);
+  /**
+   * indicates the version of the render operations, gets increased everytime
+   * @c setRenderOperations gets called.
+   */
+  inline quint32 renderOperationsRevision() const {return m_renderOperationsRevision;};
+
   inline double z() const {return m_z;}
   inline void setZ(double thez) {m_z = thez;}
   
@@ -118,6 +122,7 @@ private:
   bool m_visible;
 
   DotRenderOpVec m_renderOperations;
+  quint32 m_renderOperationsRevision;
 
   bool m_selected;
 };

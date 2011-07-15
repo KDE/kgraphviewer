@@ -106,37 +106,41 @@ void GraphEdge::updateWithEdge(const GraphEdge& edge)
 void GraphEdge::updateWithEdge(edge_t* edge)
 {
   kDebug();
-  renderOperations().clear();
+  DotRenderOpVec ops;
+  // decrease mem peak
+  setRenderOperations(ops);
+
   if (agget(edge, (char*)"_draw_") != NULL)
   {
-    parse_renderop(agget(edge, (char*)"_draw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(edge, (char*)"_draw_"), ops);
+    kDebug() << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_ldraw_") != NULL)
   {
-    parse_renderop(agget(edge, (char*)"_ldraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(edge, (char*)"_ldraw_"), ops);
+    kDebug() << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_hdraw_") != NULL)
   {
-    parse_renderop(agget(edge, (char*)"_hdraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(edge, (char*)"_hdraw_"), ops);
+    kDebug() << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_tdraw_") != NULL)
   {
-    parse_renderop(agget(edge, (char*)"_tdraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(edge, (char*)"_tdraw_"), ops);
+    kDebug() << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_hldraw_") != NULL)
   {
-    parse_renderop(agget(edge, (char*)"_hldraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(edge, (char*)"_hldraw_"), ops);
+    kDebug() << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_tldraw_") != NULL)
   {
-    parse_renderop(agget(edge, (char*)"_tldraw_"), renderOperations());
-    kDebug() << "element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(edge, (char*)"_tldraw_"), ops);
+    kDebug() << "element renderOperations size is now " << ops.size();
   }
+  setRenderOperations(ops);
   Agsym_t *attr = agfstattr(edge);
   while(attr)
   {

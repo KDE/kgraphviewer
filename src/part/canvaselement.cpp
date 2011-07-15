@@ -54,10 +54,12 @@ CanvasElement::CanvasElement(
     m_font(0),
     m_pen(Dot2QtConsts::componentData().qtColor(gelement->fontColor())),
     m_popup(new QMenu()),
-    m_hovered(false)
+    m_hovered(false),
+    m_lastRenderOpRev(0)
 {
 //   kDebug();
   m_font = FontsCache::changeable().fromName(gelement->fontName());
+
 /*  kDebug() << "Creating CanvasElement for "<<gelement->id();
   kDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
     << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
@@ -206,9 +208,14 @@ void CanvasElement::computeBoundingRect()
   setPos(0,0);
 }
 
+///TODO: optimize more!
 void CanvasElement::paint(QPainter* p, const QStyleOptionGraphicsItem *option,
 QWidget *widget)
 {
+  if (m_lastRenderOpRev != element()->renderOperationsRevision()) {
+    m_fontSizeCache.clear();
+  }
+
   Q_UNUSED(option)
   Q_UNUSED(widget)
   /// computes the scaling of line width
@@ -422,6 +429,7 @@ QWidget *widget)
 //   kDebug() << "Drawing" << element()->id() << "labels";
   QString color = lineColor.name();
   it.toFront();
+  uint num_T = 0;
   while (it.hasNext())
   {
     const DotRenderOp& dro = it.next();
@@ -438,6 +446,7 @@ QWidget *widget)
     }
     else if ( dro.renderop == "T" )
     {
+      ++num_T;
       // we suppose here that the color has been set just before
       element()->setFontColor(color);
       // draw a label
@@ -447,20 +456,33 @@ QWidget *widget)
 //         << " (" << element()->fontName() << ", " << element()->fontSize()
 //         << ", " << element()->fontColor() << ")";
 
-      int stringWidthGoal = int(dro.integers[3] * m_scaleX);
-      int fontSize = element()->fontSize();
+      int fontWidth = 0;
+      bool cacheValid = false;
 //       kDebug() << element()->id() << " initial fontSize " << fontSize;
-      m_font->setPointSize(fontSize);
-
-      QFontMetrics fm(*m_font);
-      int fontWidth = fm.width(dro.str);
-      while (fontWidth > stringWidthGoal && fontSize > 1)
-      {
-        // use floor'ed extrapolated font size
-        fontSize = double(stringWidthGoal) / fontWidth * fontSize;
+      if (m_lastRenderOpRev == element()->renderOperationsRevision()) {
+        FontSizeCache::iterator cacheIt = m_fontSizeCache.find(num_T);
+        if (cacheIt != m_fontSizeCache.end()) {
+            m_font->setPointSize(cacheIt->first);
+            fontWidth = cacheIt->second;
+            cacheValid = true;
+        }
+      }
+      if (!cacheValid) {
+        int stringWidthGoal = int(dro.integers[3] * m_scaleX);
+        int fontSize = element()->fontSize();
         m_font->setPointSize(fontSize);
-        fm = QFontMetrics(*m_font);
+
+        QFontMetrics fm(*m_font);
         fontWidth = fm.width(dro.str);
+        while (fontWidth > stringWidthGoal && fontSize > 1)
+        {
+            // use floor'ed extrapolated font size
+            fontSize = double(stringWidthGoal) / fontWidth * fontSize;
+            m_font->setPointSize(fontSize);
+            fm = QFontMetrics(*m_font);
+            fontWidth = fm.width(dro.str);
+        }
+        m_fontSizeCache[num_T] = qMakePair(fontSize, fontWidth);
       }
 
       p->save();
@@ -495,6 +517,8 @@ QWidget *widget)
     p->drawRect(QRectF(m_boundingRect.bottomRight()-QPointF(6,6),QSizeF(6,6)));
     p->restore();
   }
+
+  m_lastRenderOpRev = element()->renderOperationsRevision();
 }
 
 void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)

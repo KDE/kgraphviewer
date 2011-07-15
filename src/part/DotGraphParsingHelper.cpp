@@ -90,26 +90,28 @@ void DotGraphParsingHelper::setgraphelementattributes(GraphElement* ge, const At
     }
   }
   
+  DotRenderOpVec ops = ge->renderOperations();
   if (attributes.find("_draw_") != attributes.end())
   {
-    parse_renderop((attributes.find("_draw_"))->second, ge->renderOperations());
+    parse_renderop((attributes.find("_draw_"))->second, ops);
 //     kDebug() << "element renderOperations size is now " << ge->renderOperations().size();
   }
   if (attributes.find("_ldraw_") != attributes.end())
   {
-    parse_renderop(attributes.find("_ldraw_")->second, ge->renderOperations());
+    parse_renderop(attributes.find("_ldraw_")->second, ops);
 //     kDebug() << "element renderOperations size is now " << ge->renderOperations().size();
   }
   if (attributes.find("_hldraw_") != attributes.end())
   {
-    parse_renderop(attributes.find("_hldraw_")->second, ge->renderOperations());
+    parse_renderop(attributes.find("_hldraw_")->second, ops);
 //     kDebug() << "element renderOperations size is now " << ge->renderOperations().size();
   }
   if (attributes.find("_tldraw_") != attributes.end())
   {
-    parse_renderop(attributes.find("_tldraw_")->second, ge->renderOperations());
+    parse_renderop(attributes.find("_tldraw_")->second, ops);
 //     kDebug() << "element renderOperations size is now " << ge->renderOperations().size();
   }
+  ge->setRenderOperations(ops);
 }
 
 void DotGraphParsingHelper::setgraphattributes()
@@ -150,24 +152,26 @@ void DotGraphParsingHelper::setedgeattributes()
 //   kDebug() << "z="<<ge->z();
   setgraphelementattributes(ge, edgesAttributes);
   
+  DotRenderOpVec ops = ge->renderOperations();
   if (edgesAttributes.find("_tdraw_") != edgesAttributes.end())
   {
-    parse_renderop(edgesAttributes["_tdraw_"], ge->renderOperations());
+    parse_renderop(edgesAttributes["_tdraw_"], ops);
 //     kDebug() << "edge renderOperations size is now " << ge->renderOperations().size();
     DotRenderOpVec::const_iterator it, it_end;
-    it = ge->renderOperations().constBegin(); it_end = ge->renderOperations().constEnd();
+    it = ops.constBegin(); it_end = ops.constEnd();
     for (; it != it_end; it++)
       ge->arrowheads().push_back(*it);
   }
   if (edgesAttributes.find("_hdraw_") != edgesAttributes.end())
   {
-    parse_renderop(edgesAttributes["_hdraw_"], ge->renderOperations());
+    parse_renderop(edgesAttributes["_hdraw_"], ops);
 //     kDebug() << "edge renderOperations size is now " << ge->renderOperations().size();
     DotRenderOpVec::const_iterator it, it_end;
-    it = ge->renderOperations().constBegin(); it_end = ge->renderOperations().constEnd();
+    it = ops.constBegin(); it_end = ops.constEnd();
     for (; it != it_end; it++)
       ge->arrowheads().push_back(*it);
   }
+  ge->setRenderOperations(ops);
 }
 
 void DotGraphParsingHelper::setattributedlist()

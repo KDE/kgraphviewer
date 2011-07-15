@@ -83,7 +83,10 @@ public:
   QMenu* m_popup;
 
   bool m_hovered;
-  
+
+  quint32 m_lastRenderOpRev;
+  typedef QHash<int, QPair<int, int> > FontSizeCache;
+  FontSizeCache m_fontSizeCache;
 Q_SIGNALS:
   void selected(CanvasElement*, Qt::KeyboardModifiers);
   void elementContextMenuEvent(const QString&, const QPoint&);

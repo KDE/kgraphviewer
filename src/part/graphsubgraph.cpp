@@ -107,19 +107,23 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
   if (GD_label(subgraph))
     m_attributes["label"] = GD_label(subgraph)->text;
   
-  
-  renderOperations().clear();
+  DotRenderOpVec ops;
+  // decrease mem peak
+  setRenderOperations(ops);
+
   if (agget(subgraph, (char*)"_draw_") != NULL)
   {
-    parse_renderop(agget(subgraph, (char*)"_draw_"), renderOperations());
-    kDebug() << "_draw_: element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(subgraph, (char*)"_draw_"), ops);
+    kDebug() << "_draw_: element renderOperations size is now " << ops.size();
   }
   if (agget(subgraph, (char*)"_ldraw_") != NULL)
   {
-    parse_renderop(agget(subgraph, (char*)"_ldraw_"), renderOperations());
-    kDebug() << "_ldraw_: element renderOperations size is now " << renderOperations().size();
+    parse_renderop(agget(subgraph, (char*)"_ldraw_"), ops);
+    kDebug() << "_ldraw_: element renderOperations size is now " << ops.size();
   }
-  
+
+  setRenderOperations(ops);
+
   Agsym_t *attr = agfstattr(subgraph);
   while(attr)
   {
