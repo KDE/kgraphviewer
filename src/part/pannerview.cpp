@@ -56,7 +56,6 @@ PannerView::PannerView(DotGraphView * parent, const char * name)
 
   // why doesn't this avoid flicker ?
   // viewport()->setBackgroundMode(Qt::NoBackground);
-  setBackgroundMode(Qt::NoBackground);
 
   // if there are ever graphic glitches to be found, remove this again
   setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing | QGraphicsView::DontClipPainter |
