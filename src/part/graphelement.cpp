@@ -37,6 +37,7 @@ GraphElement::GraphElement() :
     m_ce(0),
     m_z(1.0),
     m_renderOperations(),
+    m_renderOperationsRevision(0),
     m_selected(false)
 {
 /*  label("");
