@@ -176,6 +176,7 @@ void GraphElement::exportToGraphviz(void* element) const
 QTextStream& operator<<(QTextStream& s, const GraphElement& n)
 {
   QMap<QString,QString>::const_iterator it, it_end;
+  bool firstAttr = true;
   it = n.attributes().begin(); it_end = n.attributes().end();
   for (;it != it_end; it++)
   {
@@ -188,7 +189,11 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
         {
           label.replace(QRegExp("\n"),"\\n");
 //           kDebug() << it.key() << "=\"" << label << "\",";
-          s << it.key() << "=\"" << label << "\",";
+          if (firstAttr)
+	    firstAttr = false;
+          else
+	    s << ',';
+          s << it.key() << "=\"" << label << '"';
         }
       }
       else if (it.key() == "_draw_" || it.key() == "_ldraw_")
@@ -197,8 +202,12 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
       else if (n.originalAttributes().isEmpty() || n.originalAttributes().contains(it.key()))
       {
 //         kDebug() << it.key() << it.value();
-        
-          s << it.key() << "=\"" << it.value() << "\",";
+
+          if (firstAttr)
+	    firstAttr = false;
+          else
+	    s << ',';
+          s << it.key() << "=\"" << it.value() << '"';
       }
     }
   }

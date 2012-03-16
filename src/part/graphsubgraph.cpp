@@ -283,8 +283,10 @@ void GraphSubgraph::retrieveSelectedElementsIds(QList<QString> selection)
 
 QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
 {
-  s << "subgraph " << sg.id() << "  {"
-    << dynamic_cast<const GraphElement&>(sg);
+  s << "subgraph " << sg.id() << "  {" << endl
+    << "graph [ "
+    << dynamic_cast<const GraphElement&>(sg)
+    << " ] " << endl;
   foreach (const GraphElement* el, sg.content())
   {
     s << *(dynamic_cast<const GraphNode*>(el));
