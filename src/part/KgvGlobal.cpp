@@ -57,11 +57,6 @@ KgvGlobal::KgvGlobal()
     // Install the libkoffice* translations
 //     KGlobal::locale()->insertCatalogue("koffice");
 
-//     KImageIO::registerFormats();
-
-    // Tell KStandardDirs about the koffice prefix
-    KGlobal::dirs()->addPrefix("kgv_");
-
     // Tell the iconloader about share/apps/koffice/icons
 //     KGlobal::iconLoader()->addAppDir("koffice");
 
