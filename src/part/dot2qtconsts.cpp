@@ -874,7 +874,7 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
 {
 //   kDebug() << "Dot2QtConsts::qtColor";
   QColor color;
-  if (parse_numeric_color(dotColor.ascii(), color))
+  if (parse_numeric_color(qPrintable(dotColor), color))
   {
     return color;
   }

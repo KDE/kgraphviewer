@@ -68,6 +68,7 @@
 #include <QScrollBar>
 #include <QUuid>
 #include <QSvgGenerator>
+#include <QApplication>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -1129,9 +1130,9 @@ void DotGraphView::keyPressEvent(QKeyEvent* e)
     scrollContentsBy(int(-d->m_canvas->width()),0);
   else if (e->key() == Qt::Key_End)
     scrollContentsBy(int(d->m_canvas->width()),0);
-  else if (e->key() == Qt::Key_Prior)
+  else if (e->key() == Qt::Key_PageUp)
     scrollContentsBy(0,-viewport()->height()/2);
-  else if (e->key() == Qt::Key_Next)
+  else if (e->key() == Qt::Key_PageDown)
     scrollContentsBy(0,viewport()->height()/2);
   else if (e->key() == Qt::Key_Left)
     scrollContentsBy(-viewport()->width()/10,0);
@@ -1157,7 +1158,7 @@ void DotGraphView::wheelEvent(QWheelEvent* e)
     return;
   }
   e->accept();
-  if (e->state() == Qt::ShiftModifier)
+  if (QApplication::keyboardModifiers() == Qt::ShiftModifier)
   {
     kDebug() << " + Shift: zooming";
     // move canvas...

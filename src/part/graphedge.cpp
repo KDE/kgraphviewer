@@ -66,7 +66,7 @@ GraphEdge::GraphEdge(const GraphEdge& edge) :
 
 void GraphEdge::colors(const QString& cs)
 {
-  m_colors = QStringList::split(":", cs);
+  m_colors = cs.split(':');
 //   kDebug() << fromNode()->id() << " -> " << toNode()->id() << ": nb colors: " << m_colors.size();
 }
 
