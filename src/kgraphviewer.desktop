@@ -1,5 +1,10 @@
 [Desktop Entry]
 Name=KGraphViewer
+Name[pt]=KGraphViewer
+Name[pt_BR]=KGraphViewer
+Name[sv]=Kgraphviewer
+Name[uk]=KGraphViewer
+Name[x-test]=xxKGraphViewerxx
 Exec=kgraphviewer %i -caption "%c"
 Icon=kgraphviewer
 Type=Application
