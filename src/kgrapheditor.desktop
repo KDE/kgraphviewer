@@ -1,13 +1,16 @@
 [Desktop Entry]
 Name=KGraphEditor
 Name[cs]=KGraphEditor
+Name[da]=KGraphEditor
 Name[et]=KGraphEditor
+Name[km]=KGraphEditor
 Name[nl]=KGraphEditor
 Name[pt]=KGraphEditor
 Name[pt_BR]=KGraphEditor
 Name[sv]=Kgrapheditor
 Name[uk]=KGraphEditor
 Name[x-test]=xxKGraphEditorxx
+Name[zh_TW]=KGraphEditor
 Exec=kgrapheditor %U
 #Icon=kgrapheditor
 Icon=kgraphviewer
