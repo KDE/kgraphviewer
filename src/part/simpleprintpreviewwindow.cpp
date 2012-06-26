@@ -69,7 +69,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 //	m_pagesCount = INT_MAX;
 
   setCaption(i18n("%1 - Print Preview - %2",previewName,QString("")));
-  setIcon(DesktopIcon("filequickprint"));
+  setWindowIcon(KIcon(QLatin1String("document-print-preview")));
   QVBoxLayout *lyr = new QVBoxLayout();
 
   m_toolbar = new KToolBar(this);
