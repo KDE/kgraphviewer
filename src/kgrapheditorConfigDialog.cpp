@@ -62,10 +62,10 @@ KgeConfigurationDialog::KgeConfigurationDialog (QWidget *parent, const QString& 
   m_openingWidget->setupUi(page2);
   QWidget* page3 = new QWidget();
   m_reopeningWidget->setupUi(page3);
-  addPage( page0, i18n("Parsing"), "kgraphparsingoptions", i18n("Parsing"), false);
-  addPage( page1, i18n("Reloading"), "kgraphreloadoptions", i18n("Reloading"), false); 
-  addPage( page2, i18n("Opening"), "kgraphopeningoptions", i18n("Opening"), false); 
-  addPage( page3, i18n("Session Management"), "kgraphreopeningoptions", i18n("Session Management"), false); 
+  addPage( page0, i18n("Parsing"), "preferences-other", i18n("Parsing"), false);
+  addPage( page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
+  addPage( page2, i18n("Opening"), "document-open", i18n("Opening"), false);
+  addPage( page3, i18n("Session Management"), "preferences-other", i18n("Session Management"), false);
   connect(m_parsingWidget->parsingMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
   connect(m_reloadWidget->reloadOnChangeMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
   connect(m_openingWidget->openInExistingWindowMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
