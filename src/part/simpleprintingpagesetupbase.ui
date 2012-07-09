@@ -542,13 +542,13 @@
  <customwidgets>
   <customwidget>
    <class>KLineEdit</class>
-   <extends>QWidget</extends>
+   <extends>QLineEdit</extends>
    <header>klineedit.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>KPushButton</class>
-   <extends>QWidget</extends>
+   <extends>QPushButton</extends>
    <header>kpushbutton.h</header>
    <container>1</container>
   </customwidget>
@@ -559,7 +559,7 @@
   </customwidget>
   <customwidget>
    <class>KUrlLabel</class>
-   <extends>QWidget</extends>
+   <extends>QLabel</extends>
    <header>kurllabel.h</header>
    <container>1</container>
   </customwidget>
