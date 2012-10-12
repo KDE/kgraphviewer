@@ -24,9 +24,9 @@
 ]>
 
 
-<book lang="&language;">
+<book id="en_US" lang="&language;">
 
-<bookinfo>
+<book id="en_US"info>
 <title>The &kgraphviewer; Handbook</title>
 
 <authorgroup>
