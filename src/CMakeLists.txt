@@ -22,7 +22,7 @@ kde4_add_ui_files(
 
 kde4_add_executable(kgraphviewer ${kgraphviewer_SRCS})
 
-target_link_libraries(kgraphviewer  ${QT_AND_KDECORE_LIBS} ${KDE4_KHTML_LIBS})
+target_link_libraries(kgraphviewer ${KDE4_KPARTS_LIBS})
 
 install( TARGETS kgraphviewer ${INSTALL_TARGETS_DEFAULT_ARGS})
 
@@ -47,7 +47,7 @@ kde4_add_ui_files( kgrapheditor_SRCS preferencesReload.ui preferencesParsing.ui 
 
 kde4_add_executable(kgrapheditor ${kgrapheditor_SRCS})
 
-target_link_libraries(kgrapheditor  ${QT_AND_KDECORE_LIBS} ${KDE4_KHTML_LIBS} kgraphviewerlib)
+target_link_libraries(kgrapheditor ${KDE4_KIO_LIBS} kgraphviewerlib)
 
 install( TARGETS kgrapheditor ${INSTALL_TARGETS_DEFAULT_ARGS})
 

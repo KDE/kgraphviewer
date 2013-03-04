@@ -19,7 +19,7 @@ kde4_add_ui_files(kgraphviewerlib_LIB_SRCS ${kgraphviewerprinting_UI} )
 kde4_add_library(kgraphviewerlib SHARED ${kgraphviewerlib_LIB_SRCS})
 
 add_definitions(-DQT_STL)
-target_link_libraries(kgraphviewerlib  ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} ${graphviz_LIBRARIES})
+target_link_libraries(kgraphviewerlib ${QT_QTSVG_LIBRARY} ${KDE4_KIO_LIBS} ${graphviz_LIBRARIES})
 
 set_target_properties(kgraphviewerlib PROPERTIES VERSION 2.1 SOVERSION 2 OUTPUT_NAME kgraphviewer )
 
@@ -33,7 +33,7 @@ set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
 kde4_add_plugin(kgraphviewerpart ${kgraphviewerpart_PART_SRCS})
 
 add_definitions(-DQT_STL)
-target_link_libraries(kgraphviewerpart ${QT_QTXML_LIBRARY} ${QT_QTSVG_LIBRARY} ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDE4_KWALLETCLIENT_LIBS} ${KDE4_KDESU_LIBS} gvc graph pathplan cdt kgraphviewerlib)
+target_link_libraries(kgraphviewerpart ${KDE4_KPARTS_LIBS} gvc graph pathplan cdt kgraphviewerlib)
 
 install( TARGETS kgraphviewerpart DESTINATION ${PLUGIN_INSTALL_DIR})
 
