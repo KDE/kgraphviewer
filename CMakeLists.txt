@@ -9,12 +9,6 @@ find_package(KDE4 REQUIRED)
 include (KDE4Defaults)
 include (MacroLibrary)
 
-# are these two really required ?
-find_package(ZLIB REQUIRED)
-if (APPLE)
-   find_package(Carbon REQUIRED)
-endif (APPLE)
-
 find_package(Boost 1.36 REQUIRED)
 find_package(GraphViz REQUIRED)
 
