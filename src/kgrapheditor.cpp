@@ -479,7 +479,7 @@ void KGraphEditor::slotURLSelected(const KUrl& url)
 
 void KGraphEditor::close(QWidget* tab)
 {
-  m_openedFiles.remove(m_tabsFilesMap[tab]);
+  m_openedFiles.removeAll(m_tabsFilesMap[tab]);
   m_widget->removePage(tab);
   tab->hide();
   DotGraphView* part = m_tabsPartsMap[tab];

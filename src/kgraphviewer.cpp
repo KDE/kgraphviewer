@@ -518,7 +518,7 @@ void KGraphViewerWindow::slotURLSelected(const KUrl& url)
 void KGraphViewerWindow::close(QWidget* tab)
 {
   kDebug() << tab;
-  m_openedFiles.remove(m_tabsFilesMap[tab]);
+  m_openedFiles.removeAll(m_tabsFilesMap[tab]);
   m_widget->removePage(tab);
   tab->hide();
   KParts::Part* part = m_tabsPartsMap[tab];
