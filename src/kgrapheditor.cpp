@@ -781,7 +781,7 @@ void KGraphEditor::slotNewElementItemChanged(QTreeWidgetItem* item ,int column)
   }
   else
   {
-    kError() << "Unknonw column" << column;
+    kError() << "Unknown column" << column;
     return;
   }
 }
