@@ -416,27 +416,25 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
 
   setRenderOperations(ops);
 
-  Agsym_t *attr = agfstattr(newGraph);
+  Agsym_t *attr = agnxtattr(newGraph, AGRAPH, NULL);
   while(attr)
   {
-    kDebug() << newGraph->name << ":" << attr->name << agxget(newGraph,attr->index);
-    m_attributes[attr->name] = agxget(newGraph,attr->index);
-    attr = agnxtattr(newGraph,attr);
+    kDebug() << agnameof(newGraph) << ":" << attr->name << agxget(newGraph,attr);
+    m_attributes[attr->name] = agxget(newGraph,attr);
+    attr = agnxtattr(newGraph, AGRAPH, attr);
   }
   
   // copy subgraphs
-  for (edge_t* e = agfstout(newGraph->meta_node->graph, newGraph->meta_node); e;
-      e = agnxtout(newGraph->meta_node->graph, e))
+  for (graph_t* sg = agfstsubg(newGraph); sg; sg = agnxtsubg(sg))
   {
-    graph_t* sg = agusergraph(e->head);
-    kDebug() << "subgraph:" << sg->name;
-    if (subgraphs().contains(sg->name))
+    kDebug() << "subgraph:" << agnameof(sg);
+    if (subgraphs().contains(agnameof(sg)))
     {
       kDebug() << "known";
       // ???
       //       nodes()[ngn->name]->setZ(ngn->z());
-      subgraphs()[sg->name]->updateWithSubgraph(sg);
-      if (subgraphs()[sg->name]->canvasElement()!=0)
+      subgraphs()[agnameof(sg)]->updateWithSubgraph(sg);
+      if (subgraphs()[agnameof(sg)]->canvasElement()!=0)
       {
         //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
       }
@@ -446,7 +444,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
       kDebug() << "new";
       GraphSubgraph* newsg = new GraphSubgraph(sg);
       //       kDebug() << "new created";
-      subgraphs().insert(sg->name, newsg);
+      subgraphs().insert(agnameof(sg), newsg);
       //       kDebug() << "new inserted";
     }
 
@@ -459,14 +457,14 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
   while (ngn != NULL)
 //   foreach (GraphNode* ngn, newGraph.nodes())
   {
-    kDebug() << "node " << ngn->name;
-    if (nodes().contains(ngn->name))
+    kDebug() << "node " << agnameof(ngn);
+    if (nodes().contains(agnameof(ngn)))
     {
       kDebug() << "known";
 // ???
 //       nodes()[ngn->name]->setZ(ngn->z());
-      nodes()[ngn->name]->updateWithNode(ngn);
-      if (nodes()[ngn->name]->canvasElement()!=0)
+      nodes()[agnameof(ngn)]->updateWithNode(ngn);
+      if (nodes()[agnameof(ngn)]->canvasElement()!=0)
       {
         //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
       }
@@ -476,7 +474,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
       kDebug() << "new";
       GraphNode* newgn = new GraphNode(ngn);
       //       kDebug() << "new created";
-      nodes().insert(ngn->name, newgn);
+      nodes().insert(agnameof(ngn), newgn);
       //       kDebug() << "new inserted";
     }
 
@@ -484,11 +482,11 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     edge_t* nge = agfstout(newGraph, ngn);
     while (nge != NULL)
     {
-      kDebug() << "edge " << nge->id;
-      QString edgeName = QString(nge->head->name) + nge->tail->name;
+//      kDebug() << "edge " << nge->id;
+      QString edgeName = QString(agnameof(aghead(nge))) + agnameof(agtail(nge));
       if (edges().contains(edgeName))
       {
-        kDebug() << "edge known" << nge->id;
+//        kDebug() << "edge known" << nge->id;
 //         edges()[nge->name]->setZ(nge->z());
         edges()[edgeName]->updateWithEdge(nge);
         if (edges()[edgeName]->canvasEdge()!=0)
@@ -503,20 +501,20 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
           GraphEdge* newEdge = new GraphEdge();
           newEdge->setId(edgeName);
           newEdge->updateWithEdge(nge);
-          if (elementNamed(nge->tail->name) == 0)
+          if (elementNamed(agnameof(agtail(nge))) == 0)
           {
             GraphNode* newgn = new GraphNode();
             //       kDebug() << "new created";
-            nodes().insert(nge->tail->name, newgn);
+            nodes().insert(agnameof(agtail(nge)), newgn);
           }
-          newEdge->setFromNode(elementNamed(nge->tail->name));
-          if (elementNamed(nge->head->name) == 0)
+          newEdge->setFromNode(elementNamed(agnameof(agtail(nge))));
+          if (elementNamed(agnameof(aghead(nge))) == 0)
           {
             GraphNode* newgn = new GraphNode();
             //       kDebug() << "new created";
-            nodes().insert(nge->head->name, newgn);
+            nodes().insert(agnameof(aghead(nge)), newgn);
           }
-          newEdge->setToNode(elementNamed(nge->head->name));
+          newEdge->setToNode(elementNamed(agnameof(aghead(nge))));
           edges().insert(edgeName, newEdge);
         }
       }

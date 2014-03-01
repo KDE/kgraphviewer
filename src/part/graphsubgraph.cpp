@@ -102,8 +102,8 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
 
 void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
 {
-  kDebug() << subgraph->name;
-  m_attributes["id"] = subgraph->name;
+  kDebug() << agnameof(subgraph);
+  m_attributes["id"] = agnameof(subgraph);
   if (GD_label(subgraph))
     m_attributes["label"] = GD_label(subgraph)->text;
   
@@ -124,27 +124,25 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
 
   setRenderOperations(ops);
 
-  Agsym_t *attr = agfstattr(subgraph);
+  Agsym_t *attr = agnxtattr(subgraph, AGRAPH, NULL);
   while(attr)
   {
-    kDebug() << subgraph->name << ":" << attr->name << agxget(subgraph,attr->index);
-    m_attributes[attr->name] = agxget(subgraph,attr->index);
-    attr = agnxtattr(subgraph,attr);
+    kDebug() << agnameof(subgraph) << ":" << attr->name << agxget(subgraph,attr);
+    m_attributes[attr->name] = agxget(subgraph,attr);
+    attr = agnxtattr(subgraph, AGRAPH, attr);
   }
 
 
-  for (edge_t* e = agfstout(subgraph->meta_node->graph, subgraph->meta_node); e;
-      e = agnxtout(subgraph->meta_node->graph, e))
+  for (graph_t* sg = agfstsubg(subgraph); sg; sg = agnxtsubg(sg))
   {
-    graph_t* sg = agusergraph(e->head);
-    kDebug() << "subsubgraph:" << sg->name;
-    if ( subgraphs().contains(sg->name))
+    kDebug() << "subsubgraph:" << agnameof(sg);
+    if ( subgraphs().contains(agnameof(sg)))
     {
       kDebug() << "known subsubgraph";
       // ???
       //       nodes()[ngn->name]->setZ(ngn->z());
-      subgraphs()[sg->name]->updateWithSubgraph(sg);
-      if (subgraphs()[sg->name]->canvasElement()!=0)
+      subgraphs()[agnameof(sg)]->updateWithSubgraph(sg);
+      if (subgraphs()[agnameof(sg)]->canvasElement()!=0)
       {
         //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
       }
@@ -154,7 +152,7 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
       kDebug() << "new subsubgraph";
       GraphSubgraph* newsg = new GraphSubgraph(sg);
       //       kDebug() << "new created";
-      subgraphs().insert(sg->name, newsg);
+      subgraphs().insert(agnameof(sg), newsg);
       //       kDebug() << "new inserted";
     }
     

@@ -28,7 +28,7 @@ set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
 kde4_add_plugin(kgraphviewerpart ${kgraphviewerpart_PART_SRCS})
 
 add_definitions(-DQT_STL)
-target_link_libraries(kgraphviewerpart ${KDE4_KPARTS_LIBS} gvc graph pathplan cdt kgraphviewerlib)
+target_link_libraries(kgraphviewerpart ${KDE4_KPARTS_LIBS} gvc cgraph pathplan cdt kgraphviewerlib)
 
 install( TARGETS kgraphviewerpart DESTINATION ${PLUGIN_INSTALL_DIR})
 
