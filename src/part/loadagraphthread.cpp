@@ -28,6 +28,11 @@ void LoadAGraphThread::run()
   FILE* fp;
   gvc = gvContext();
   fp = fopen(m_dotFileName.toUtf8().data(), "r");
+  if (!fp)
+  {
+      kError() << "Failed to open file " << m_dotFileName;
+      return;
+  }
   m_g = agread(fp, NULL);
 }
 
