@@ -139,14 +139,15 @@ void KGraphViewerWindow::reloadPreviousFiles()
 void KGraphViewerWindow::openUrl(const KUrl& url)
 {
   kDebug() << url;
-  KLibFactory *factory = KLibLoader::self()->factory("kgraphviewerpart");
+  KPluginFactory *factory = KPluginLoader("kgraphviewerpart").factory();
   if (factory)
   {
-    KParts::ReadOnlyPart* part = static_cast<KParts::ReadOnlyPart*>(factory->create(this, "kgraphviewerpart"));
+    KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>("kgraphviewerpart", this);
     KGraphViewer::KGraphViewerInterface* kgv = qobject_cast<KGraphViewer::KGraphViewerInterface*>( part );
     if( ! kgv )
     {
       // This should not happen
+      kError() << "Failed to get KPart" << endl;
       return;
     }
     kgv->setBackgroundColor(KGraphViewerSettings::backgroundColor());

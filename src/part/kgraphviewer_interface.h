@@ -46,9 +46,9 @@ namespace KGraphViewer
  * Use it like this:
  * \code
  *  // fetch the Part..
- *  KLibFactory *factory = KLibLoader::self()->factory("kgraphviewerpart");
+ *  KPluginFactory *factory = KPluginLoader("kgraphviewerpart").factory();
  *  if (factory) {
- *      part = factory->create<KParts::ReadOnlyPart>(this);
+ *      KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>("kgraphviewerpart", this);
  *
  *      // cast the part to the KGraphViewerInterface...
  *      KGraphViewerInterface* graph = qobject_cast<KGraphViewerInterface*>( part );

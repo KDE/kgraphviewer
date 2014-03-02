@@ -67,7 +67,7 @@ public:
     /**
      * Default constructor
      */
-    KGraphViewerPart(QWidget *parentWidget, QObject *parent);
+    KGraphViewerPart(QWidget *parentWidget, QObject *parent, const QVariantList &);
 
     
     /**
@@ -151,22 +151,6 @@ private:
   QList<QString> nodesIdsPrivate();
   QMap<QString,QString> nodeAtributesPrivate(const QString& nodeId);
   
-};
-
-class KGraphViewerPartFactory : public KParts::Factory
-{
-    Q_OBJECT
-public:
-    KGraphViewerPartFactory(QObject* parent = 0);
-    ~KGraphViewerPartFactory();
-    virtual KParts::Part* createPartObject( QWidget *parentWidget,
-                                            QObject *parent,
-                                            const char *classname, const QStringList &args );
-    static KComponentData componentData();
-
-private:
-    static KComponentData s_instance;
-    static KAboutData* s_about;
 };
 
 }

@@ -46,6 +46,16 @@
 namespace KGraphViewer
 {
 
+K_PLUGIN_FACTORY(KGraphViewerPartFactory, registerPlugin<KGraphViewerPart>("kgraphviewerpart");)
+static KAboutData createAboutData()
+{
+    return KAboutData( "kgraphviewerpart", 0, ki18n("KGraphViewerPart"),
+                       "1.0", ki18n( "GraphViz dot files viewer" ),
+                       KAboutData::License_GPL,
+                       ki18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
+}
+K_EXPORT_PLUGIN(KGraphViewerPartFactory(createAboutData()))
+
 class KGraphViewerPartPrivate
 {
 public:
@@ -65,7 +75,7 @@ public:
   
 };
 
-KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent)
+KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, const QVariantList & )
 : KParts::ReadOnlyPart(parent), d(new KGraphViewerPartPrivate())
 {
   kDebug() ;
@@ -427,69 +437,6 @@ void KGraphViewerPart::slotRenameNode(const QString& oldNodeName, const QString&
   d->m_widget->graph()->renameNode(oldNodeName,newNodeName);
 }
 
-extern "C"
-{
-  /**
-  * This function is the 'main' function of this part.  It takes
-  * the form 'void *init_lib<library name>()  It always returns a
-  * new factory object
-  */
-  KDE_EXPORT void *init_kgraphviewerpart()
-  {
-    return new KGraphViewerPartFactory();
-  }
-}
-
-// KComponentData KGraphViewerPartFactory::s_instance = 0L;
-KAboutData* KGraphViewerPartFactory::s_about = new KAboutData(
-"kgraphviewerpart", 0, ki18n("KGraphViewerPart"),
-"1.0", ki18n( "GraphViz dot files viewer" ),
-KAboutData::License_GPL,
-ki18n("(c) 2005-2006, Gaël de Chalendar &lt;kleag@free.fr&gt;"));
-
-KComponentData KGraphViewerPartFactory::s_instance(s_about);
-
-KGraphViewerPartFactory::KGraphViewerPartFactory(QObject* parent)
-: KParts::Factory(parent)
-{
-}
-
-KGraphViewerPartFactory::~KGraphViewerPartFactory()
-{
-gvFreeContext(gvContext());
-delete s_about;
-}
-
-KParts::Part* KGraphViewerPartFactory::createPartObject( QWidget *parentWidget,
-QObject *parent,
-const char *classname,
-const QStringList &args )
-{
-  Q_UNUSED(classname);
-  Q_UNUSED(args);
-  //     Create an instance of our Part
-  KGraphViewerPart* obj = new KGraphViewerPart( parentWidget, parent);
-
-  //     See if we are to be read-write or not
-  //     if (QCString(classname) == "KParts::ReadOnlyPart")
-  //         obj->setReadWrite(false);
-
-  return obj;
-}
-
-KComponentData KGraphViewerPartFactory::componentData()
-{
-  /*    if( !s_instance )
-  {
-    s_about = new KAboutData( "kgraphviewerpart", 0, ki18n("KGraphViewerPart"),
-                              "1.0", ki18n( "GraphViz dot files viewer" ),
-                              KAboutData::License_GPL,
-                              ki18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
-                              s_instance(s_about);
-  }*/
-  return s_instance;
-}
-                                                                                                                       
 }
 
 #include "kgraphviewer_part.moc"
