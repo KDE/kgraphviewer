@@ -287,7 +287,7 @@ void KGVSimplePrintingPageSetup::slotTitleTextChanged(const QString&)
 
 void KGVSimplePrintingPageSetup::slotChangeTitleFont()
 {
-	if (QDialog::Accepted != KFontDialog::getFont(m_settings->pageTitleFont, false, this))
+	if (QDialog::Accepted != KFontDialog::getFont(m_settings->pageTitleFont, KFontChooser::NoDisplayFlags, this))
 		return;
 	m_contents->headerTitleLineEdit->setFont( m_settings->pageTitleFont );
 	setDirty(true);
