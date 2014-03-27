@@ -66,7 +66,7 @@ DotGrammar::definition<ScannerT>::definition(DotGrammar const& /*self*/)
   ( ( (anychar_p - punct_p) | '_' ) >> *( (anychar_p - punct_p) | '_' ) )
   | real_p
   | ( '"' >>  *( (ch_p('\\') >> '"') | (anychar_p - '"') ) >>  '"' )
-  | ( ch_p('<') >>  *( anychar_p  - '<' - '>' | tag ) >>  '>' )
+  | ( ch_p('<') >>  *( (anychar_p  - '<' - '>') | tag ) >>  '>' )
   );
   tag = ('<' >> *( anychar_p  - '>') >> '>');
   stmt_list  =  stmt >> !(ch_p(';')) >> !( stmt_list ) ;
