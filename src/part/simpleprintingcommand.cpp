@@ -90,11 +90,9 @@ bool KGVSimplePrintingCommand::init(const QString& aTitleText)
   if (!m_previewEngine)
     m_previewEngine = new KGVSimplePrintingEngine(m_settings, this);
 
-  bool backToPage0 = true;
   QString titleText(aTitleText.trimmed());
   if (!m_previewWindow) 
   {
-    backToPage0 = false;
     QString errorMessage;
     if (!m_previewEngine->init(
       *m_graphView, titleText, errorMessage)) {
