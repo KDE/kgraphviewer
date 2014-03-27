@@ -120,7 +120,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
       m_contents->headerTitleLineEdit->setText((*args)["title"]);
       QString origCaptionLabelText = m_contents->captionLabel->text();
       m_contents->captionLabel->setText( i18n("<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>", 
-            KUrl::fromPathOrUrl(m_graphView->dotFileName()).fileName() 
+            KUrl(m_graphView->dotFileName()).fileName()
             ) );
 	}
 	connect(m_contents->headerTitleLineEdit,SIGNAL(textChanged(const QString&)), 
@@ -171,8 +171,10 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
   connect(m_contents->closeButton, SIGNAL(clicked()), this, SLOT(slotClose()));
 
   
-  m_contents->horizFitNumInput->setRange(1,m_command->engine()->maxHorizFit(),1,true);
-  m_contents->vertFitNumInput->setRange(1,m_command->engine()->maxVertFit(),1,true);
+  m_contents->horizFitNumInput->setRange(1,m_command->engine()->maxHorizFit());
+  m_contents->horizFitNumInput->setSliderEnabled();
+  m_contents->vertFitNumInput->setRange(1,m_command->engine()->maxVertFit());
+  m_contents->vertFitNumInput->setSliderEnabled();
   m_settings->horizFitting = m_command->engine()->maxHorizFit();
   m_settings->vertFitting = m_command->engine()->maxVertFit();
   m_contents->horizFitNumInput->setValue(m_settings->horizFitting);
@@ -239,8 +241,10 @@ void KGVSimplePrintingPageSetup::updatePageLayoutAndUnitInfo()
    + '/' + KgvUnit::toUserStringValue(m_settings->pageLayout.ptBottom, m_unit)
    + ' ' + KgvUnit::unitName(m_unit);
   m_contents->pageSizeAndMarginsLabel->setText( s );
-  m_contents->horizFitNumInput->setRange(1,m_command->engine()->maxHorizFit(),1,true);
-  m_contents->vertFitNumInput->setRange(1,m_command->engine()->maxVertFit(),1,true);
+  m_contents->horizFitNumInput->setRange(1,m_command->engine()->maxHorizFit());
+  m_contents->horizFitNumInput->setSliderEnabled();
+  m_contents->vertFitNumInput->setRange(1,m_command->engine()->maxVertFit());
+  m_contents->vertFitNumInput->setSliderEnabled();
 }
 
 void KGVSimplePrintingPageSetup::setDirty(bool set)
