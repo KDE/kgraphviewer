@@ -23,6 +23,9 @@
    </size>
   </property>
   <layout class="QHBoxLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetMinimumSize</enum>
+   </property>
    <item>
     <widget class="QGroupBox" name="reopenPreviouslyOpenedFilesMode">
      <property name="sizePolicy">
@@ -43,48 +46,35 @@
      <property name="selectedId" stdset="0">
       <number>-1</number>
      </property>
-     <widget class="QRadioButton" name="no">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>107</width>
-        <height>22</height>
-       </rect>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
       </property>
-      <property name="text">
-       <string>No</string>
-      </property>
-      <property name="shortcut">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="yes">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>107</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&amp;Yes</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="ask">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>60</y>
-        <width>107</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>As&amp;k</string>
-      </property>
-     </widget>
+      <item>
+       <widget class="QRadioButton" name="yes">
+        <property name="text">
+         <string>&amp;Yes</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="no">
+        <property name="text">
+         <string>No</string>
+        </property>
+        <property name="shortcut">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="ask">
+        <property name="text">
+         <string>As&amp;k</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

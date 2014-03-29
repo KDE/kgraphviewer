@@ -23,6 +23,9 @@
    </size>
   </property>
   <layout class="QGridLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetMinimumSize</enum>
+   </property>
    <item row="0" column="0">
     <widget class="QGroupBox" name="parsingMode">
      <property name="sizePolicy">
@@ -37,35 +40,28 @@
      <property name="selectedId" stdset="0">
       <number>2</number>
      </property>
-     <widget class="QRadioButton" name="external">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>161</width>
-        <height>22</height>
-       </rect>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
       </property>
-      <property name="text">
-       <string>&amp;External command</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="internal">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>141</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Internal library</string>
-      </property>
-      <property name="shortcut">
-       <string/>
-      </property>
-     </widget>
+      <item>
+       <widget class="QRadioButton" name="external">
+        <property name="text">
+         <string>&amp;External command</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="internal">
+        <property name="text">
+         <string>Internal library</string>
+        </property>
+        <property name="shortcut">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
