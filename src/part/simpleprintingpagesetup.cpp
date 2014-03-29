@@ -123,8 +123,8 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
             KUrl(m_graphView->dotFileName()).fileName()
             ) );
 	}
-	connect(m_contents->headerTitleLineEdit,SIGNAL(textChanged(const QString&)), 
-		this, SLOT(slotTitleTextChanged(const QString&)));
+	connect(m_contents->headerTitleLineEdit,SIGNAL(textChanged(QString)),
+		this, SLOT(slotTitleTextChanged(QString)));
 	m_contents->headerTitleLineEdit->setFont( m_settings->pageTitleFont );
 
 	m_contents->saveSetupLink->setWhatsThis(i18n("Saves settings for this setup as default."));

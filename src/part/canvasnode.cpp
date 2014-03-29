@@ -111,8 +111,8 @@ CanvasNode::CanvasNode(DotGraphView* v,
 //   view()->setMaximumSize(int(n->w()*scaleX),int(n->h()*scaleY*m_zoomFactor));
 //   view()->adjustSize();
 //   KHTMLPart::show();
-//   CanvasHtmlNode::connect(v, SIGNAL(contentsMoving ( int, int)), this, SLOT(move(int, int)));
-//   CanvasHtmlNode::connect(v, SIGNAL(zoomed (double)), this, SLOT(zoomed(double)));
+//   CanvasHtmlNode::connect(v, SIGNAL(contentsMoving(int,int)), this, SLOT(move(int,int)));
+//   CanvasHtmlNode::connect(v, SIGNAL(zoomed(double)), this, SLOT(zoomed(double)));
 // }
 // 
 // CanvasHtmlNode::~CanvasHtmlNode() 

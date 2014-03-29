@@ -282,8 +282,8 @@ void KgvPageLayoutDia::setupTab1( bool enableBorders )
     m_pageSizeTab = new KgvPageLayoutSize(page, m_layout, m_unit, m_column, !(flags & DISABLE_UNIT), enableBorders );
 //     lay->addWidget(m_pageSizeTab);
     m_pageSizeTab->show();
-    connect (m_pageSizeTab, SIGNAL( propertyChange(KgvPageLayout&)),
-            this, SLOT (sizeUpdated( KgvPageLayout&)));
+    connect (m_pageSizeTab, SIGNAL(propertyChange(KgvPageLayout&)),
+            this, SLOT(sizeUpdated(KgvPageLayout&)));
 }
 
 void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
@@ -390,8 +390,8 @@ void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
 //     m_columnsTab->layout()->setMargin(0);
 //     lay->addWidget(m_columnsTab);
 //     m_columnsTab->show();
-//     connect (m_columnsTab, SIGNAL( propertyChange(KgvColumns&)),
-//             this, SLOT (columnsUpdated( KgvColumns&)));
+//     connect (m_columnsTab, SIGNAL(propertyChange(KgvColumns&)),
+//             this, SLOT(columnsUpdated(KgvColumns&)));
 // }
 // 
 // void KgvPageLayoutDia::columnsUpdated(KgvColumns &columns) {

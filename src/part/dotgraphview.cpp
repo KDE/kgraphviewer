@@ -463,8 +463,8 @@ void DotGraphViewPrivate::setupPopup()
     "generate a graph in the xdot format on its standard output. For example, to "
     "manually specify the <tt>G</tt> option to the dot command, type in: "
     "<tt>dot -Gname=MyGraphName -Txdot </tt>"));
-  QObject::connect(m_layoutAlgoSelectAction, SIGNAL(triggered (const QString &)),
-          q, SLOT(slotSelectLayoutAlgo(const QString&)));
+  QObject::connect(m_layoutAlgoSelectAction, SIGNAL(triggered(QString)),
+          q, SLOT(slotSelectLayoutAlgo(QString)));
   
   
   QMenu* layoutPopup = m_popup->addMenu(i18n("Layout"));
@@ -520,31 +520,31 @@ void DotGraphViewPrivate::setupPopup()
   btla->setWhatsThis(i18n("Puts the Bird's-eye View in the top-left corner."));
   btla->setCheckable(true);
   actionCollection()->addAction("bev_top_left",btla);
-  QObject::connect(btla, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+  QObject::connect(btla, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           q, SLOT(slotBevTopLeft()));
   KAction* btra = new KAction(i18n("Top Right"), q);
   btra->setWhatsThis(i18n("Puts the Bird's-eye View in the top-right corner."));
   btra->setCheckable(true);
   actionCollection()->addAction("bev_top_right",btra);
-  QObject::connect(btra, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+  QObject::connect(btra, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           q, SLOT(slotBevTopRight()));
   KAction* bbla = new KAction(i18n("Bottom Left"), q);
   bbla->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-left corner."));
   bbla->setCheckable(true);
   actionCollection()->addAction("bev_bottom_left",bbla);
-  QObject::connect(bbla, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+  QObject::connect(bbla, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           q, SLOT(slotBevBottomLeft()));
   KAction* bbra = new KAction(i18n("Bottom Right"), q);
   bbra->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-right corner."));
   bbra->setCheckable(true);
   actionCollection()->addAction("bev_bottom_right",bbra);
-  QObject::connect(bbra, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+  QObject::connect(bbra, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           q, SLOT(slotBevBottomRight()));
   KAction* bba = new KAction(i18n("Automatic"), q);
   bba->setWhatsThis(i18n("Let KGraphViewer automatically choose the position of the Bird's-eye View."));
   bba->setCheckable(true);
   actionCollection()->addAction("bev_automatic",bba);
-  QObject::connect(bba, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+  QObject::connect(bba, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           q, SLOT(slotBevAutomatic()));
   m_bevPopup->addAction(btla);
   m_bevPopup->addAction(btra);
@@ -786,9 +786,9 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   d->m_graph->setUseLibrary(true);
 
   connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
-  connect(this, SIGNAL(removeEdge(const QString&)), d->m_graph, SLOT(removeEdge(const QString&)));
-  connect(this, SIGNAL(removeNodeNamed(const QString&)), d->m_graph, SLOT(removeNodeNamed(const QString&)));
-  connect(this, SIGNAL(removeElement(const QString&)), d->m_graph, SLOT(removeElement(const QString&)));
+  connect(this, SIGNAL(removeEdge(QString)), d->m_graph, SLOT(removeEdge(QString)));
+  connect(this, SIGNAL(removeNodeNamed(QString)), d->m_graph, SLOT(removeNodeNamed(QString)));
+  connect(this, SIGNAL(removeElement(QString)), d->m_graph, SLOT(removeElement(QString)));
 
   if (d->m_readWrite)
   {
@@ -815,7 +815,7 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   // std::cerr << "After m_birdEyeView set canvas" << std::endl;
 
   setScene(newCanvas);
-  connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
+  connect(newCanvas,SIGNAL(selectionChanged()),this,SLOT(slotSelectionChanged()));
   d->m_canvas = newCanvas;
 
   d->m_cvZoom = 0;
@@ -867,7 +867,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
 
   setScene(newCanvas);
-  connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
+  connect(newCanvas,SIGNAL(selectionChanged()),this,SLOT(slotSelectionChanged()));
   d->m_canvas = newCanvas;
 
   QGraphicsSimpleTextItem* loadingLabel = newCanvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
@@ -935,7 +935,7 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
   
   d->m_birdEyeView->setScene(newCanvas);
   setScene(newCanvas);
-  connect(newCanvas,SIGNAL(selectionChanged ()),this,SLOT(slotSelectionChanged()));
+  connect(newCanvas,SIGNAL(selectionChanged()),this,SLOT(slotSelectionChanged()));
   d->m_canvas = newCanvas;
   
   d->m_cvZoom = 0;

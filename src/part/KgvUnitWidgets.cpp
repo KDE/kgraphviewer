@@ -138,7 +138,7 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox( QWidget *parent, const char *name )
     //setAcceptLocalizedNumbers( true );
     setUnit( KgvUnit::U_PT );
 
-    connect(this, SIGNAL(valueChanged( double )), SLOT(privateValueChanged()));
+    connect(this, SIGNAL(valueChanged(double)), SLOT(privateValueChanged()));
 }
 
 
@@ -170,7 +170,7 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox( QWidget *parent,
     changeValue( value );
     setLineStep( 0.5 );
 
-    connect(this, SIGNAL(valueChanged( double )), SLOT(privateValueChanged()));
+    connect(this, SIGNAL(valueChanged(double)), SLOT(privateValueChanged()));
 }
 
 void
@@ -310,7 +310,7 @@ KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, const char *name 
     lineEdit()->setValidator( m_validator );
     setUnit( KgvUnit::U_PT );
     changeValue(  KgvUnit::ptToUnit( 0.0, KgvUnit::U_PT ) );
-    connect( this, SIGNAL( activated( int ) ), this, SLOT( slotActivated( int ) ) );
+    connect( this, SIGNAL(activated(int)), this, SLOT(slotActivated(int)) );
 }
 
 KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, double lower, double upper, double value, KgvUnit::Unit unit,
@@ -323,7 +323,7 @@ KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, double lower, dou
     lineEdit()->setValidator( m_validator );
     setUnit( unit );
     changeValue(  KgvUnit::ptToUnit( value, unit ) );
-    connect( this, SIGNAL( activated( int ) ), this, SLOT( slotActivated( int ) ) );
+    connect( this, SIGNAL(activated(int)), this, SLOT(slotActivated(int)) );
 }
 
 void
@@ -404,16 +404,16 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, const cha
     up->setMaximumHeight( 15 );
     up->setMaximumWidth( 15 );
     layout->addWidget( up, 0, 0 );
-    connect( up, SIGNAL( clicked() ), this, SLOT( slotUpClicked() ) );
+    connect( up, SIGNAL(clicked()), this, SLOT(slotUpClicked()) );
 
     QPushButton *down = new QPushButton( "-", this );
     down->setMaximumHeight( 15 );
     down->setMaximumWidth( 15 );
     layout->addWidget( down, 1, 0 );
-    connect( down, SIGNAL( clicked() ), this, SLOT( slotDownClicked() ) );
+    connect( down, SIGNAL(clicked()), this, SLOT(slotDownClicked()) );
 
     m_combo = new KgvUnitDoubleComboBox( this, KgvUnit::ptToUnit( 0.0, KgvUnit::U_PT ), KgvUnit::ptToUnit( 9999.99, KgvUnit::U_PT ), 0.0, KgvUnit::U_PT, 2, name );
-    connect( m_combo, SIGNAL( valueChanged( double ) ), this, SIGNAL( valueChanged( double ) ) );
+    connect( m_combo, SIGNAL(valueChanged(double)), this, SIGNAL(valueChanged(double)) );
     layout->addMultiCellWidget( m_combo, 0, 1, 2, 2 );
 }
 
@@ -428,16 +428,16 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, double lo
     up->setMaximumHeight( 15 );
     up->setMaximumWidth( 15 );
     layout->addWidget( up, 0, 0 );
-    connect( up, SIGNAL( clicked() ), this, SLOT( slotUpClicked() ) );
+    connect( up, SIGNAL(clicked()), this, SLOT(slotUpClicked()) );
 
     QPushButton *down = new QPushButton( "-", this );
     down->setMaximumHeight( 15 );
     down->setMaximumWidth( 15 );
     layout->addWidget( down, 1, 0 );
-    connect( down, SIGNAL( clicked() ), this, SLOT( slotDownClicked() ) );
+    connect( down, SIGNAL(clicked()), this, SLOT(slotDownClicked()) );
 
     m_combo = new KgvUnitDoubleComboBox( this, KgvUnit::ptToUnit( lower, unit ), KgvUnit::ptToUnit( upper, unit ), value, unit, precision, name );
-    connect( m_combo, SIGNAL( valueChanged( double ) ), this, SIGNAL( valueChanged( double ) ) );
+    connect( m_combo, SIGNAL(valueChanged(double)), this, SIGNAL(valueChanged(double)) );
     layout->addMultiCellWidget( m_combo, 0, 1, 2, 2 );
 }
 

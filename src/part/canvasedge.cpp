@@ -77,9 +77,9 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
   
   
   connect(e,SIGNAL(changed()),this,SLOT(modelChanged()));
-  connect(this, SIGNAL(selected(CanvasEdge*, Qt::KeyboardModifiers)), view, SLOT(slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers)));
+  connect(this, SIGNAL(selected(CanvasEdge*,Qt::KeyboardModifiers)), view, SLOT(slotEdgeSelected(CanvasEdge*,Qt::KeyboardModifiers)));
   
-  connect(this, SIGNAL(edgeContextMenuEvent(const QString&, const QPoint&)), view, SLOT(slotContextMenuEvent(const QString&, const QPoint&)));
+  connect(this, SIGNAL(edgeContextMenuEvent(QString,QPoint)), view, SLOT(slotContextMenuEvent(QString,QPoint)));
 
   setAcceptHoverEvents ( true );
 

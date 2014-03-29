@@ -95,8 +95,8 @@ KGraphViewerWindow::KGraphViewerWindow()
   m_manager = new KParts::PartManager( this );
   
   // When the manager says the active part changes, the window updates (recreates) the GUI
-  connect( m_manager, SIGNAL( activePartChanged( KParts::Part * ) ),
-           this, SLOT( createGUI( KParts::Part * ) ) );
+  connect( m_manager, SIGNAL(activePartChanged(KParts::Part*)),
+           this, SLOT(createGUI(KParts::Part*)) );
     
   // Creates the GUI with a null part to make appear the main app menus and tools
   createGUI(0);
@@ -171,8 +171,8 @@ void KGraphViewerWindow::openUrl(const KUrl& url)
       connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
       connect(part,SIGNAL(close()),this,SLOT(close()));
 
-      connect(part, SIGNAL( hoverEnter(const QString&) ), this, SLOT(slotHoverEnter(const QString&)));
-      connect(part, SIGNAL( hoverLeave(const QString&) ), this, SLOT(slotHoverLeave(const QString&)));
+      connect(part, SIGNAL(hoverEnter(QString)), this, SLOT(slotHoverEnter(QString)));
+      connect(part, SIGNAL(hoverLeave(QString)), this, SLOT(slotHoverLeave(QString)));
     }
   }
   else
@@ -213,32 +213,32 @@ void KGraphViewerWindow::fileOpen()
 void KGraphViewerWindow::setupActions()
 {
   // create our actions
-  KAction* newAction = actionCollection()->addAction( KStandardAction::New, "file_new", this, SLOT( fileNew() ) );
+  KAction* newAction = actionCollection()->addAction( KStandardAction::New, "file_new", this, SLOT(fileNew()) );
   newAction->setWhatsThis(i18n("Opens a new empty KGraphViewer window."));
   
-  KAction* openAction = actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT( fileOpen() ) );
+  KAction* openAction = actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT(fileOpen()) );
   openAction->setWhatsThis(i18n("Shows the file open dialog to choose a GraphViz dot file to open."));
   
-  m_rfa = KStandardAction::openRecent(this, SLOT( slotURLSelected(const KUrl&) ), this);
+  m_rfa = KStandardAction::openRecent(this, SLOT(slotURLSelected(KUrl)), this);
   actionCollection()->addAction(m_rfa->objectName(),m_rfa);
   m_rfa->setWhatsThis(i18n("This lists files which you have opened recently, and allows you to easily open them again."));
 
   KSharedConfig::Ptr config = KGlobal::config();
   m_rfa->loadEntries(KConfigGroup(config, "kgraphviewer recent files"));
   
-  KAction* quitAction = actionCollection()->addAction( KStandardAction::Quit, "file_quit", KApplication::kApplication(), SLOT( quit() ) );
+  KAction* quitAction = actionCollection()->addAction( KStandardAction::Quit, "file_quit", KApplication::kApplication(), SLOT(quit()) );
   quitAction->setWhatsThis(i18n("Quits KGraphViewer."));
   
   m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
   m_statusbarAction->setWhatsThis(i18n("Shows or hides the status bar."));
   
-  KAction* kbAction = actionCollection()->addAction( KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT( optionsConfigureKeys() ) );
+  KAction* kbAction = actionCollection()->addAction( KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT(optionsConfigureKeys()) );
   kbAction->setWhatsThis(i18n("Configure the bindings between keys and actions."));
   
-  KAction* ctAction = actionCollection()->addAction( KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT( optionsConfigureToolbars() ) );
+  KAction* ctAction = actionCollection()->addAction( KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT(optionsConfigureToolbars()) );
   ctAction->setWhatsThis(i18n("Toolbar configuration."));
   
-  KAction* configureAction = actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT( optionsConfigure() ) );
+  KAction* configureAction = actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT(optionsConfigure()) );
   configureAction->setWhatsThis(i18n("Main KGraphViewer configuration options."));
   
 

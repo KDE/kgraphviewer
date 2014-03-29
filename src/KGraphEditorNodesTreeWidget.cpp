@@ -54,20 +54,20 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
     return;
   }
   KAction* aaa = new KAction(i18n("Add a new attribute"), this);
-  connect(aaa, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+  connect(aaa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           this, SLOT(slotAddAttribute()));
   m_popup->addAction(aaa);
 
   if (m_item->parent() != 0) // attribute item
   {
     KAction* raa = new KAction(i18n("Remove this attribute"), this);
-    connect(raa, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+    connect(raa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
             this, SLOT(slotRemoveAttribute()));
     m_popup->addAction(raa);
   }
   m_popup->addSeparator();
   KAction* rna = new KAction(i18n("Remove this node"), this);
-  connect(rna, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+  connect(rna, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           this, SLOT(slotRemoveNode()));
   m_popup->addAction(rna);  
 }

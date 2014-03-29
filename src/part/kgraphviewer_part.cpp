@@ -86,30 +86,30 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
   d->m_widget = new DotGraphView( actionCollection(), parentWidget);
   d->m_widget->initEmpty();
   d->m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-  connect( d->m_widget, SIGNAL( graphLoaded() ),
-           this, SIGNAL( graphLoaded() ) );
-  connect( d->m_widget, SIGNAL( newEdgeAdded(const QString&, const QString&) ),
-          this, SIGNAL( newEdgeAdded(const QString&, const QString&) ) );
-  connect( d->m_widget, SIGNAL( newNodeAdded(const QString&) ),
-          this, SIGNAL( newNodeAdded(const QString&) ) );
-  connect( d->m_widget, SIGNAL( removeEdge(const QString&) ),
-           this, SIGNAL( removeEdge(const QString&) ) );
-  connect( d->m_widget, SIGNAL( removeElement(const QString&) ),
-           this, SIGNAL( removeElement(const QString&) ) );
-  connect( d->m_widget, SIGNAL( selectionIs(const QList<QString>, const QPoint&) ),
-           this, SIGNAL( selectionIs(const QList<QString>, const QPoint&) ) );
+  connect( d->m_widget, SIGNAL(graphLoaded()),
+           this, SIGNAL(graphLoaded()) );
+  connect( d->m_widget, SIGNAL(newEdgeAdded(QString,QString)),
+          this, SIGNAL(newEdgeAdded(QString,QString)) );
+  connect( d->m_widget, SIGNAL(newNodeAdded(QString)),
+          this, SIGNAL(newNodeAdded(QString)) );
+  connect( d->m_widget, SIGNAL(removeEdge(QString)),
+           this, SIGNAL(removeEdge(QString)) );
+  connect( d->m_widget, SIGNAL(removeElement(QString)),
+           this, SIGNAL(removeElement(QString)) );
+  connect( d->m_widget, SIGNAL(selectionIs(QList<QString>,QPoint)),
+           this, SIGNAL(selectionIs(QList<QString>,QPoint)) );
   connect( d->m_widget,
-           SIGNAL( contextMenuEvent(const QString&, const QPoint&) ),
+           SIGNAL(contextMenuEvent(QString,QPoint)),
            this,
-           SIGNAL( contextMenuEvent(const QString&, const QPoint&) ) );
+           SIGNAL(contextMenuEvent(QString,QPoint)) );
   connect( d->m_widget,
-           SIGNAL( newEdgeFinished(const QString&, const QString&, const QMap<QString, QString>&) ),
+           SIGNAL(newEdgeFinished(QString,QString,QMap<QString,QString>)),
           this,
-           SIGNAL( newEdgeFinished(const QString&, const QString&, const QMap<QString, QString>&) ) );
-  connect( d->m_widget, SIGNAL( hoverEnter(const QString&)) ,
-          this, SIGNAL( hoverEnter(const QString&) ) );
-  connect( d->m_widget, SIGNAL( hoverLeave(const QString&)) ,
-          this, SIGNAL( hoverLeave(const QString&)) );
+           SIGNAL(newEdgeFinished(QString,QString,QMap<QString,QString>)) );
+  connect( d->m_widget, SIGNAL(hoverEnter(QString)) ,
+          this, SIGNAL(hoverEnter(QString)) );
+  connect( d->m_widget, SIGNAL(hoverLeave(QString)) ,
+          this, SIGNAL(hoverLeave(QString)) );
                    
 
           
@@ -117,7 +117,7 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
   // notify the part that this is our internal widget
   setWidget(d->m_widget);
 
-  KAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT( slotClose() ) );
+  KAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT(slotClose()) );
   closeAct->setWhatsThis(i18n("Closes the current tab"));
 
   KAction* printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", d->m_widget, SLOT(print()));
@@ -230,7 +230,7 @@ bool KGraphViewerPart::openFile()
   
   //   kDebug() << "Watching file " << localFilePath();
   d->m_watch->addFile(localFilePath());
-  connect(d->m_watch, SIGNAL(dirty(const QString &)), d->m_widget, SLOT(dirty(const QString&)));
+  connect(d->m_watch, SIGNAL(dirty(QString)), d->m_widget, SLOT(dirty(QString)));
   QString label = localFilePath().section('/',-1,-1);
   
   d->m_widget->show();

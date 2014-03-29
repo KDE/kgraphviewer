@@ -95,9 +95,9 @@ CanvasElement::CanvasElement(
   m_popup->addAction(removeElementAction);
   connect(removeElementAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveElement()));
 
-  connect(this, SIGNAL(selected(CanvasElement*, Qt::KeyboardModifiers)), v, SLOT(slotElementSelected(CanvasElement*, Qt::KeyboardModifiers)));
+  connect(this, SIGNAL(selected(CanvasElement*,Qt::KeyboardModifiers)), v, SLOT(slotElementSelected(CanvasElement*,Qt::KeyboardModifiers)));
 
-  connect(this, SIGNAL(elementContextMenuEvent(const QString&, const QPoint&)), v, SLOT(slotContextMenuEvent(const QString&, const QPoint&)));
+  connect(this, SIGNAL(elementContextMenuEvent(QString,QPoint)), v, SLOT(slotContextMenuEvent(QString,QPoint)));
 
   setAcceptHoverEvents ( true );
 

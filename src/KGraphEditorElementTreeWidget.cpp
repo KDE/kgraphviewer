@@ -49,14 +49,14 @@ void KGraphEditorElementTreeWidget::setupPopup(const QPoint& point)
 
   m_item = itemAt(point);
   KAction* aaa = new KAction(i18n("Add a new attribute"), this);
-  connect(aaa, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+  connect(aaa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           this, SLOT(slotAddAttribute()));
   m_popup->addAction(aaa);
 
   if (m_item != 0) // attribute item
   {
     KAction* raa = new KAction(i18n("Remove this attribute"), this);
-    connect(raa, SIGNAL(triggered (Qt::MouseButtons, Qt::KeyboardModifiers)),
+    connect(raa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
             this, SLOT(slotRemoveAttribute()));
     m_popup->addAction(raa);
   }

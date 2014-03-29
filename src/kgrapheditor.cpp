@@ -78,12 +78,12 @@ KGraphEditor::KGraphEditor() :
           this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
   connect(m_treeWidget,SIGNAL(itemClicked(QTreeWidgetItem*,int)),
           this,SLOT(slotItemClicked(QTreeWidgetItem*,int)));
-  connect(m_treeWidget, SIGNAL(removeNode(const QString&)),
-          this, SLOT(slotRemoveNode(const QString&)));
-  connect(m_treeWidget, SIGNAL(addAttribute(const QString&)),
-          this, SLOT(slotAddAttribute(const QString&)));
-  connect(m_treeWidget, SIGNAL(removeAttribute(const QString&,const QString&)),
-          this, SLOT(slotRemoveAttribute(const QString&,const QString&)));
+  connect(m_treeWidget, SIGNAL(removeNode(QString)),
+          this, SLOT(slotRemoveNode(QString)));
+  connect(m_treeWidget, SIGNAL(addAttribute(QString)),
+          this, SLOT(slotAddAttribute(QString)));
+  connect(m_treeWidget, SIGNAL(removeAttribute(QString,QString)),
+          this, SLOT(slotRemoveAttribute(QString,QString)));
 
 //   m_treeWidget->setItemDelegate(new VariantDelegate(m_treeWidget));
   m_treeWidget->setColumnCount(2);
@@ -96,8 +96,8 @@ KGraphEditor::KGraphEditor() :
           this,SLOT(slotNewElementItemChanged(QTreeWidgetItem*,int)));
   connect(m_newElementAttributesWidget, SIGNAL(addAttribute()),
           this, SLOT(slotAddNewElementAttribute()));
-  connect(m_newElementAttributesWidget, SIGNAL(removeAttribute(const QString&)),
-          this, SLOT(slotRemoveNewElementAttribute(const QString&)));
+  connect(m_newElementAttributesWidget, SIGNAL(removeAttribute(QString)),
+          this, SLOT(slotRemoveNewElementAttribute(QString)));
   m_newElementAttributesWidget->setColumnCount(2);
   bottomLeftDockWidget->setWidget(m_newElementAttributesWidget);
   addDockWidget ( Qt::LeftDockWidgetArea, bottomLeftDockWidget );
@@ -223,31 +223,31 @@ void KGraphEditor::setupActions()
 {
   // create our actions
 
-  actionCollection()->addAction( KStandardAction::New, "file_new", this, SLOT( fileNew() ) );
-  actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT( fileOpen() ) );
-  m_rfa = (KRecentFilesAction*) actionCollection()->addAction(KStandardAction::OpenRecent, "file_open_recent", this, SLOT( slotURLSelected(const KUrl&) ) );
+  actionCollection()->addAction( KStandardAction::New, "file_new", this, SLOT(fileNew()) );
+  actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT(fileOpen()) );
+  m_rfa = (KRecentFilesAction*) actionCollection()->addAction(KStandardAction::OpenRecent, "file_open_recent", this, SLOT(slotURLSelected(KUrl)) );
   m_rfa->loadEntries(KGlobal::config()->group("kgrapheditor"));
-  actionCollection()->addAction( KStandardAction::Save, "file_save", this, SLOT( fileSave() ) );
-  actionCollection()->addAction( KStandardAction::SaveAs, "file_save_as", this, SLOT( fileSaveAs() ) );
+  actionCollection()->addAction( KStandardAction::Save, "file_save", this, SLOT(fileSave()) );
+  actionCollection()->addAction( KStandardAction::SaveAs, "file_save_as", this, SLOT(fileSaveAs()) );
 
-  actionCollection()->addAction( KStandardAction::Quit, "file_quit", this, SLOT( quit() ) );
+  actionCollection()->addAction( KStandardAction::Quit, "file_quit", this, SLOT(quit()) );
 
   m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
 
-  actionCollection()->addAction( KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT( optionsConfigureKeys() ) );
+  actionCollection()->addAction( KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT(optionsConfigureKeys()) );
 //   KStandardAction::keyBindings(this, SLOT(optionsConfigureKeys()), this);
-  actionCollection()->addAction( KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT( optionsConfigureToolbars() ) );
-  actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT( optionsConfigure() ) );
+  actionCollection()->addAction( KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT(optionsConfigureToolbars()) );
+  actionCollection()->addAction( KStandardAction::Preferences, "options_configure", this, SLOT(optionsConfigure()) );
 
   KAction* edit_new_vertex = actionCollection()->addAction( "edit_new_vertex" );
   edit_new_vertex->setText(i18n("Create a New Vertex"));
   edit_new_vertex->setIcon(QPixmap(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png")));
-  connect( edit_new_vertex, SIGNAL(triggered(bool)), this, SLOT( slotEditNewVertex() ) );
+  connect( edit_new_vertex, SIGNAL(triggered(bool)), this, SLOT(slotEditNewVertex()) );
 
   KAction* edit_new_edge = actionCollection()->addAction( "edit_new_edge" );
   edit_new_edge->setText(i18n("Create a New Edge"));
   edit_new_edge->setIcon(QPixmap(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newedge.png")));
-  connect( edit_new_edge, SIGNAL(triggered(bool)), this, SLOT( slotEditNewEdge() ) );
+  connect( edit_new_edge, SIGNAL(triggered(bool)), this, SLOT(slotEditNewEdge()) );
 }
 
 bool KGraphEditor::queryExit()
@@ -594,29 +594,29 @@ void KGraphEditor::slotSetActiveGraph( DotGraphView* part)
   m_treeWidget->insertTopLevelItems(0, items);
 
 
-  connect( m_currentPart, SIGNAL( graphLoaded() ),
-           this, SLOT( slotGraphLoaded() ) );
+  connect( m_currentPart, SIGNAL(graphLoaded()),
+           this, SLOT(slotGraphLoaded()) );
 
-  connect( m_currentPart, SIGNAL( newNodeAdded(const QString&) ),
-          this, SLOT( slotNewNodeAdded(const QString&) ) );
+  connect( m_currentPart, SIGNAL(newNodeAdded(QString)),
+          this, SLOT(slotNewNodeAdded(QString)) );
 
-  connect( m_currentPart, SIGNAL( newEdgeAdded(const QString&, const QString&) ),
-            this, SLOT( slotNewEdgeAdded(const QString&, const QString&) ) );
+  connect( m_currentPart, SIGNAL(newEdgeAdded(QString,QString)),
+            this, SLOT(slotNewEdgeAdded(QString,QString)) );
 
-  connect( m_currentPart, SIGNAL( removeElement(const QString&) ),
-            this, SLOT( slotRemoveElement(const QString&) ) );
+  connect( m_currentPart, SIGNAL(removeElement(QString)),
+            this, SLOT(slotRemoveElement(QString)) );
 
-  connect( m_currentPart, SIGNAL( selectionIs(const QList<QString>&, const QPoint&) ),
-            this, SLOT( slotSelectionIs(const QList<QString>&, const QPoint&) ) );
+  connect( m_currentPart, SIGNAL(selectionIs(QList<QString>,QPoint)),
+            this, SLOT(slotSelectionIs(QList<QString>,QPoint)) );
 
-  connect( m_currentPart, SIGNAL( newEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&) ),
-            this, SLOT( slotNewEdgeFinished( const QString&, const QString&, const QMap<QString, QString>&) ) );
+  connect( m_currentPart, SIGNAL(newEdgeFinished(QString,QString,QMap<QString, QString>)),
+            this, SLOT(slotNewEdgeFinished(QString,QString,QMap<QString, QString>)) );
 
-  connect( m_currentPart, SIGNAL( hoverEnter(const QString&) ),
-           this, SLOT( slotHoverEnter(const QString&) ) );
+  connect( m_currentPart, SIGNAL(hoverEnter(QString)),
+           this, SLOT(slotHoverEnter(QString)) );
             
-  connect( m_currentPart, SIGNAL( hoverLeave (const QString&) ),
-          this, SLOT( slotHoverLeave(const QString&) ) );
+  connect( m_currentPart, SIGNAL(hoverLeave(QString)),
+          this, SLOT(slotHoverLeave(QString)) );
 }
 
 void KGraphEditor::slotNewNodeAdded(const QString& id)

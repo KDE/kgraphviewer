@@ -53,8 +53,8 @@ KgvPageLayoutColumns::KgvPageLayoutColumns(QWidget *parent, const KgvColumns& co
     nColumns->setValue( m_columns.columns );
     m_preview->setPageColumns( m_columns );
 
-    connect( nColumns, SIGNAL( valueChanged( int ) ), this, SLOT( nColChanged( int ) ) );
-    connect( m_spacing, SIGNAL( valueChangedPt(double) ), this, SLOT( nSpaceChanged( double ) ) );
+    connect( nColumns, SIGNAL(valueChanged(int)), this, SLOT(nColChanged(int)) );
+    connect( m_spacing, SIGNAL(valueChangedPt(double)), this, SLOT(nSpaceChanged(double)) );
 }
 
 void KgvPageLayoutColumns::setEnableColumns(bool on) {
