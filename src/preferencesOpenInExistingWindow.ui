@@ -1,91 +1,87 @@
-<ui version="4.0" stdsetdef="1" >
-  <author></author>
-  <comment></comment>
-  <exportmacro></exportmacro>
-  <class>KGraphViewerPreferencesOpenInExistingWindowWidget</class>
-  <widget class="QWidget" name="KGraphViewerPreferencesOpenInExistingWindowWidget" >
-    <property name="geometry" >
-      <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>225</width>
-        <height>131</height>
-      </rect>
-    </property>
-    <property name="sizePolicy" >
-      <sizepolicy>
-        <hsizetype>1</hsizetype>
-        <vsizetype>1</vsizetype>
-        <horstretch>15</horstretch>
-        <verstretch>0</verstretch>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>KGraphViewerPreferencesOpenInExistingWindowWidget</class>
+ <widget class="QWidget" name="KGraphViewerPreferencesOpenInExistingWindowWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>225</width>
+    <height>131</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>15</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>100</width>
+    <height>100</height>
+   </size>
+  </property>
+  <layout class="QGridLayout">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="openInExistingWindowMode">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
       </sizepolicy>
-    </property>
-    <property name="minimumSize" >
-      <size>
-        <width>100</width>
-        <height>100</height>
-      </size>
-    </property>
-    <layout class="QGridLayout" >
-      <item row="0" column="0" >
-        <widget class="QGroupBox" name="openInExistingWindowMode" >
-          <property name="sizePolicy" >
-            <sizepolicy>
-              <hsizetype>3</hsizetype>
-              <vsizetype>3</vsizetype>
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-            </sizepolicy>
-          </property>
-          <property name="title" >
-            <string>Open in existing window</string>
-          </property>
-          <widget class="QRadioButton" name="yes" >
-            <property name="geometry" >
-              <rect>
-                <x>20</x>
-                <y>20</y>
-                <width>107</width>
-                <height>22</height>
-              </rect>
-            </property>
-            <property name="text" >
-              <string>&amp;Yes</string>
-            </property>
-          </widget>
-          <widget class="QRadioButton" name="no" >
-            <property name="geometry" >
-              <rect>
-                <x>20</x>
-                <y>40</y>
-                <width>107</width>
-                <height>22</height>
-              </rect>
-            </property>
-            <property name="text" >
-              <string>No</string>
-            </property>
-            <property name="shortcut" >
-              <string/>
-            </property>
-          </widget>
-          <widget class="QRadioButton" name="ask" >
-            <property name="geometry" >
-              <rect>
-                <x>20</x>
-                <y>60</y>
-                <width>107</width>
-                <height>22</height>
-              </rect>
-            </property>
-            <property name="text" >
-              <string>As&amp;k</string>
-            </property>
-          </widget>
-        </widget>
-      </item>
-    </layout>
-  </widget>
-  <layoutdefault spacing="6" margin="11" />
-  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+     </property>
+     <property name="title">
+      <string>Open in existing window</string>
+     </property>
+     <widget class="QRadioButton" name="yes">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>107</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&amp;Yes</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="no">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>107</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>No</string>
+      </property>
+      <property name="shortcut">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="ask">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>107</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>As&amp;k</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <resources/>
+ <connections/>
 </ui>
