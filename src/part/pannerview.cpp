@@ -78,22 +78,19 @@ void PannerView::setZoomRect(QRectF r)
   // get new zoom rect
   m_zoomRect = r;
   qreal q = mapToScene(15,0).x();
-  qreal d = mapToScene(10,0).x();
   if (!m_zoomRect.isValid() || m_zoomRect.width() < q || m_zoomRect.height() < q) 
   {
     double factor = ((double)m_zoomRect.width())/m_zoomRect.height();
     qreal newWidth, newHeight;
-    if (factor > 1.0)
+    if (factor < 1.0)
     {
       newWidth = q;
       newHeight = newWidth/factor;
-      if (newHeight < d) newHeight = d;
     }
     else
     {
       newHeight = q;
       newWidth = newHeight*factor;
-      if (newWidth < d) newWidth = d;
     }
     qreal newXPos = m_zoomRect.x() + (m_zoomRect.width() - newWidth)/2;
     qreal newYPos = m_zoomRect.y() + (m_zoomRect.height() - newHeight)/2;
