@@ -1118,6 +1118,14 @@ void DotGraphView::focusOutEvent(QFocusEvent* e)
   focusInEvent(e);
 }
 
+void DotGraphView::scrollViewPercent(bool horizontal, int percent)
+{
+  QScrollBar *scrollbar = horizontal ? horizontalScrollBar() : verticalScrollBar();
+  int amount = horizontal ? viewport()->width() : viewport()->height();
+  amount = amount * percent / 100;
+  scrollbar->setValue(scrollbar->value() + amount);
+}
+
 void DotGraphView::keyPressEvent(QKeyEvent* e)
 {
   Q_D(DotGraphView);
@@ -1129,21 +1137,21 @@ void DotGraphView::keyPressEvent(QKeyEvent* e)
 
   // move canvas...
   if (e->key() == Qt::Key_Home)
-    scrollContentsBy(int(-d->m_canvas->width()),0);
+    verticalScrollBar()->setValue(verticalScrollBar()->minimum());
   else if (e->key() == Qt::Key_End)
-    scrollContentsBy(int(d->m_canvas->width()),0);
+    verticalScrollBar()->setValue(verticalScrollBar()->maximum());
   else if (e->key() == Qt::Key_PageUp)
-    scrollContentsBy(0,-viewport()->height()/2);
+    scrollViewPercent(false, -50);
   else if (e->key() == Qt::Key_PageDown)
-    scrollContentsBy(0,viewport()->height()/2);
+    scrollViewPercent(false, 50);
   else if (e->key() == Qt::Key_Left)
-    scrollContentsBy(-viewport()->width()/10,0);
+    scrollViewPercent(true, -10);
   else if (e->key() == Qt::Key_Right)
-    scrollContentsBy(viewport()->width()/10,0);
+    scrollViewPercent(true, 10);
   else if (e->key() == Qt::Key_Down)
-    scrollContentsBy(0,viewport()->height()/10);
+    scrollViewPercent(false, 10);
   else if (e->key() == Qt::Key_Up)
-    scrollContentsBy(0,-viewport()->height()/10);
+    scrollViewPercent(false, -10);
   else 
   {
     e->ignore();

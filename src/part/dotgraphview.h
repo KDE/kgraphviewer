@@ -222,6 +222,7 @@ public Q_SLOTS:
   void centerOnNode(const QString& nodeId);
 
 protected:
+  void scrollViewPercent(bool horizontal, int percent);
   void scrollContentsBy(int dx, int dy);
   void resizeEvent(QResizeEvent*);
   void mousePressEvent(QMouseEvent*);
