@@ -425,7 +425,7 @@ void DotGraphViewPrivate::setupPopup()
   actionCollection()->addAction("view_layout_algo",m_layoutAlgoSelectAction);
   
   QStringList layoutAlgos;
-  KAction* lea = new KAction(i18n(" "), q);
+  KAction* lea = new KAction(i18n(""), q);
   lea->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
   actionCollection()->addAction("layout_specifiy",lea);
   lea->setCheckable(false);
