@@ -1211,15 +1211,10 @@ void DotGraphView::setZoomFactor(double newZoom)
     d->m_zoom = 1;
   }
 
-  const double factor = newZoom / d->m_zoom;
-  qreal centerX = (sceneRect().x() + (viewport()->width() / 2))*factor;
-  qreal centerY = (sceneRect().y() + (viewport()->height() / 2))*factor;
-  
   setUpdatesEnabled(false);
   QMatrix m;
   m.scale(d->m_zoom,d->m_zoom);
   setMatrix(m);
-  centerOn(centerX, centerY);
   emit zoomed(d->m_zoom);
   setUpdatesEnabled(true);
   d->updateSizes();
