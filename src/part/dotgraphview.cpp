@@ -1185,32 +1185,7 @@ void DotGraphView::wheelEvent(QWheelEvent* e)
   else
   {
     kDebug() << " : scrolling ";
-    if (e->orientation() == Qt::Horizontal)
-    {
-      if (e->delta() < 0)
-      {
-        kDebug() << "scroll by " <<  -viewport()->width()/10 << 0;
-        horizontalScrollBar()->setValue(horizontalScrollBar()->value()+viewport()->width()/10);
-      }
-      else
-      {
-        kDebug() << "scroll by " <<  viewport()->width()/10 << 0;
-        horizontalScrollBar()->setValue(horizontalScrollBar()->value()-viewport()->width()/10);
-      }
-    }
-    else
-    {
-      if (e->delta() < 0)
-      {
-        kDebug() << "scroll by " << 0 << viewport()->width()/10;
-        verticalScrollBar()->setValue(verticalScrollBar()->value()+viewport()->height()/10);
-      }
-      else
-      {
-        kDebug() << "scroll by " << 0 << -viewport()->width()/10;
-        verticalScrollBar()->setValue(verticalScrollBar()->value()-viewport()->height()/10);
-      }
-    }
+    scrollViewPercent(e->orientation() == Qt::Horizontal, e->delta() < 0 ? 10 : -10);
   }
 }
 
