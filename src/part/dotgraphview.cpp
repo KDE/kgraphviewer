@@ -145,6 +145,7 @@ public:
   void setupPopup();
   void exportToImage();
   KActionCollection* actionCollection() {return m_actions;}
+  double detailAdjustedScale();
   int displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent = 0);
 
 
@@ -346,16 +347,22 @@ void DotGraphViewPrivate::updateBirdEyeView()
     m_birdEyeView->move(newZoomPos);
 }
 
+double DotGraphViewPrivate::detailAdjustedScale()
+{
+  double scale = m_graph->scale();
+  switch (m_detailLevel)
+  {
+  case 0: scale *= 0.7; break;
+  case 2: scale *= 1.3; break;
+  }
+  return scale;
+}
+
 int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent)
 {
   kDebug();
   Q_Q(DotGraphView);
-  double scaleX = 1.0, scaleY = 1.0;
-  
-  if (m_detailLevel == 0)      { scaleX = m_graph->scale() * 0.7; scaleY = m_graph->scale() * 0.7; }
-  else if (m_detailLevel == 1) { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
-  else if (m_detailLevel == 2) { scaleX = m_graph->scale() * 1.3; scaleY = m_graph->scale() * 1.3; }
-  else                        { scaleX = m_graph->scale() * 1.0; scaleY = m_graph->scale() * 1.0; }
+  double scale = detailAdjustedScale();
   
   qreal gh = m_graph->height();
   
@@ -364,7 +371,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
     kDebug() << "Creating canvas subgraph for" << gsubgraph->id();
     CanvasSubgraph* csubgraph = new CanvasSubgraph(q, gsubgraph, m_canvas, parent);
     csubgraph->initialize(
-      scaleX, scaleY, m_xMargin, m_yMargin, gh,
+      scale, scale, m_xMargin, m_yMargin, gh,
       m_graph->wdhcf(), m_graph->hdvcf());
     gsubgraph->setCanvasSubgraph(csubgraph);
     //       csubgraph->setZValue(gsubgraph->z());
@@ -382,7 +389,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
       CanvasNode *cnode = new CanvasNode(q, gnode, m_canvas);
       if (cnode == 0) continue;
       cnode->initialize(
-        scaleX, scaleY, m_xMargin, m_yMargin, gh,
+        scale, scale, m_xMargin, m_yMargin, gh,
         m_graph->wdhcf(), m_graph->hdvcf());
       gnode->setCanvasNode(cnode);
       m_canvas->addItem(cnode);
@@ -966,12 +973,7 @@ bool DotGraphView::displayGraph()
     d->m_birdEyeView->setDrawingEnabled(false);
   }
   //  QCanvasEllipse* eItem;
-  double scaleX = 1.0, scaleY = 1.0;
-
-  if (d->m_detailLevel == 0)      { scaleX = d->m_graph->scale() * 0.7; scaleY = d->m_graph->scale() * 0.7; }
-  else if (d->m_detailLevel == 1) { scaleX = d->m_graph->scale() * 1.0; scaleY = d->m_graph->scale() * 1.0; }
-  else if (d->m_detailLevel == 2) { scaleX = d->m_graph->scale() * 1.3; scaleY = d->m_graph->scale() * 1.3; }
-  else                        { scaleX = d->m_graph->scale() * 1.0; scaleY = d->m_graph->scale() * 1.0; }
+  double scale = d->detailAdjustedScale();
 
   qreal gh = d->m_graph->height();
 
@@ -1009,7 +1011,7 @@ bool DotGraphView::displayGraph()
       CanvasNode *cnode = new CanvasNode(this, gnode, d->m_canvas);
       if (cnode == 0) continue;
       cnode->initialize(
-        scaleX, scaleY, d->m_xMargin, d->m_yMargin, gh,
+        scale, scale, d->m_xMargin, d->m_yMargin, gh,
         d->m_graph->wdhcf(), d->m_graph->hdvcf());
       gnode->setCanvasNode(cnode);
       d->m_canvas->addItem(cnode);
@@ -1033,7 +1035,7 @@ bool DotGraphView::displayGraph()
       kDebug() << "              "<< gedge->fromNode()->id();
       kDebug() << "edge toNode=" << (void*)gedge->toNode();
       kDebug() << "              "<< gedge->toNode()->id();
-      CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, d->m_xMargin,
+      CanvasEdge* cedge = new CanvasEdge(this, gedge, scale, scale, d->m_xMargin,
           d->m_yMargin, gh, d->m_graph->wdhcf(), d->m_graph->hdvcf());
 
       gedge->setCanvasEdge(cedge);
@@ -1053,7 +1055,7 @@ bool DotGraphView::displayGraph()
     {
 //       std::cerr << "Adding graph label '"<<dro.str<<"'" << std::endl;
       const QString& str = dro.str;
-      int stringWidthGoal = int(dro.integers[3] * scaleX);
+      int stringWidthGoal = int(dro.integers[3] * scale);
       int fontSize = d->m_graph->fontSize();
       QFont* font = FontsCache::changeable().fromName(d->m_graph->fontName());
       font->setPointSize(fontSize);
@@ -1067,14 +1069,14 @@ bool DotGraphView::displayGraph()
       QGraphicsSimpleTextItem* labelView = new QGraphicsSimpleTextItem(str, 0, d->m_canvas);
       labelView->setFont(*font);
       labelView->setPos(
-                  (scaleX *
+                  (scale *
                        (
                          (dro.integers[0])
                          + (((dro.integers[2])*(dro.integers[3]))/2)
                          - ( (dro.integers[3])/2 )
                        )
                       + d->m_xMargin ),
-                      ((gh - (dro.integers[1]))*scaleY)+ d->m_yMargin);
+                      ((gh - (dro.integers[1]))*scale)+ d->m_yMargin);
       /// @todo port that ; how to set text color ?
       labelView->setPen(QPen(Dot2QtConsts::componentData().qtColor(d->m_graph->fontColor())));
       labelView->setFont(*font);
@@ -1289,12 +1291,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
 
   if (d->m_editingMode == AddNewElement)
   {
-    double scaleX = 1.0, scaleY = 1.0;
-
-    if (d->m_detailLevel == 0)      { scaleX = d->m_graph->scale() * 0.7; scaleY = d->m_graph->scale() * 0.7; }
-    else if (d->m_detailLevel == 1) { scaleX = d->m_graph->scale() * 1.0; scaleY = d->m_graph->scale() * 1.0; }
-    else if (d->m_detailLevel == 2) { scaleX = d->m_graph->scale() * 1.3; scaleY = d->m_graph->scale() * 1.3; }
-    else                        { scaleX = d->m_graph->scale() * 1.0; scaleY = d->m_graph->scale() * 1.0; }
+    double scale = d->detailAdjustedScale();
 
     qreal gh = d->m_graph->height();
 
@@ -1315,7 +1312,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     d->m_graph->nodes().insert(newNode->id(), newNode);
     CanvasNode* newCNode = new CanvasNode(this, newNode, d->m_canvas);
     newCNode->initialize(
-      scaleX, scaleY, d->m_xMargin, d->m_yMargin, gh,
+      scale, scale, d->m_xMargin, d->m_yMargin, gh,
       d->m_graph->wdhcf(), d->m_graph->hdvcf());
     newNode->setCanvasNode(newCNode);
     scene()->addItem(newCNode);
@@ -1958,15 +1955,10 @@ void DotGraphView::finishNewEdgeTo(CanvasElement* node)
 //   gedge->setId(srcId+tgtId+QString::number(d->m_graph->edges().size()));
 //   d->m_graph->edges().insert(gedge->id(), gedge);
 // 
-//   double scaleX = 1.0, scaleY = 1.0;
-// 
-//   if (d->m_detailLevel == 0)      { scaleX = d->m_graph->scale() * 0.7; scaleY = d->m_graph->scale() * 0.7; }
-//   else if (d->m_detailLevel == 1) { scaleX = d->m_graph->scale() * 1.0; scaleY = d->m_graph->scale() * 1.0; }
-//   else if (d->m_detailLevel == 2) { scaleX = d->m_graph->scale() * 1.3; scaleY = d->m_graph->scale() * 1.3; }
-//   else                        { scaleX = d->m_graph->scale() * 1.0; scaleY = d->m_graph->scale() * 1.0; }
+//   double scale = detailAdjustedScale();
 // 
 //   qreal gh = d->m_graph->height();
-//   CanvasEdge* cedge = new CanvasEdge(this, gedge, scaleX, scaleY, d->m_xMargin,
+//   CanvasEdge* cedge = new CanvasEdge(this, gedge, scale, scale, d->m_xMargin,
 //         d->m_yMargin, gh, d->m_graph->wdhcf(), d->m_graph->hdvcf());
 // 
 //   gedge->setCanvasEdge(cedge);
