@@ -58,8 +58,8 @@ class GraphNode : public GraphElement
 //   Q_OBJECT
 public:
   GraphNode();
-  GraphNode(const GraphNode& gn);
-  GraphNode(node_t* gn);
+  explicit GraphNode(const GraphNode& gn);
+  explicit GraphNode(node_t* gn);
   
   virtual ~GraphNode() {}  
   

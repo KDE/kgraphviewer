@@ -40,7 +40,7 @@ namespace KGraphViewer
 class KGVSimplePrintPreviewView : public QWidget
 {
 	public:
-		KGVSimplePrintPreviewView(KGVSimplePrintPreviewWindow *window);
+		explicit KGVSimplePrintPreviewView(KGVSimplePrintPreviewWindow *window);
 
 		virtual void paintEvent( QPaintEvent *pe );
 	protected:
@@ -52,7 +52,7 @@ class KGVSimplePrintPreviewScrollView : public QScrollArea
 	Q_OBJECT
 
 	public:
-		KGVSimplePrintPreviewScrollView(KGVSimplePrintPreviewWindow *window);
+		explicit KGVSimplePrintPreviewScrollView(KGVSimplePrintPreviewWindow *window);
 
 		KGVSimplePrintPreviewView *m_view;
 

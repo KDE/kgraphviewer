@@ -55,8 +55,8 @@ public:
   GraphEdge();
   virtual ~GraphEdge();
 
-  GraphEdge(const GraphEdge& edge);
-  GraphEdge(edge_t* edge);
+  explicit GraphEdge(const GraphEdge& edge);
+  explicit GraphEdge(edge_t* edge);
   
   CanvasEdge* canvasEdge() { return (CanvasEdge*)canvasElement(); }
   const CanvasEdge* canvasEdge() const { return (CanvasEdge*)canvasElement(); }
