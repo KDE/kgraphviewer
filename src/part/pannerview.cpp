@@ -97,8 +97,8 @@ void PannerView::setZoomRect(QRectF r)
     }
     qreal newXPos = m_zoomRect.x() + (m_zoomRect.width() - newWidth)/2;
     qreal newYPos = m_zoomRect.y() + (m_zoomRect.height() - newHeight)/2;
-    m_zoomRect.setX(std::max(0.0, newXPos));
-    m_zoomRect.setY(std::max(0.0, newYPos));
+    m_zoomRect.setX(newXPos);
+    m_zoomRect.setY(newYPos);
     m_zoomRect.setWidth(newWidth);
     m_zoomRect.setHeight(newHeight);
   }
