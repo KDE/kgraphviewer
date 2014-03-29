@@ -1,3 +1,9 @@
+2014/03/29
+  * compilation against latest graphviz
+  * switch to KPluginFactory
+  * fix scrolling through graph with cursor keys
+  * many small fixes of UI bugs and annoyances
+
 2010/10/10
   * Set version to 2.1
   * Bug corrected: edges line width and color and nodes line width correctly handled
