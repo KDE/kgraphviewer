@@ -821,6 +821,7 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   d->m_cvZoom = 0;
 
   d->m_graph->updateWithGraph(graph);
+  d->m_layoutAlgoSelectAction->setCurrentAction(d->m_graph->layoutCommand(), Qt::CaseInsensitive);
 
   gvFreeLayout(gvc, graph);
   gvFreeContext(gvc);
@@ -881,6 +882,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
     loadingLabel->setText(i18n("error parsing file %1", dotFileName));
     return false;
   }
+  d->m_layoutAlgoSelectAction->setCurrentAction(d->m_graph->layoutCommand(), Qt::CaseInsensitive);
   return true;
 }
 
@@ -939,6 +941,7 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
   d->m_cvZoom = 0;
                                  
   d->m_graph->updateWithGraph(graph);
+  d->m_layoutAlgoSelectAction->setCurrentAction(d->m_graph->layoutCommand(), Qt::CaseInsensitive);
 
   return true;
 }
@@ -1703,7 +1706,7 @@ void DotGraphView::slotLayoutSpecify()
     if (ok && layoutCommand != currentLayoutCommand)
     {
       //         std::cerr << "Setting new layout command: " << layoutCommand << std::endl;
-      if (!d->m_layoutAlgoSelectAction->setCurrentAction(layoutCommand))
+      if (!d->m_layoutAlgoSelectAction->setCurrentAction(layoutCommand, Qt::CaseInsensitive))
       {
           KAction *new_action = d->m_layoutAlgoSelectAction->addAction(layoutCommand);
           d->m_layoutAlgoSelectAction->setCurrentAction(new_action);
@@ -1818,6 +1821,7 @@ void DotGraphView::slotUpdate()
   Q_D(DotGraphView);
   kDebug();
   d->m_graph->update();
+  d->m_layoutAlgoSelectAction->setCurrentAction(d->m_graph->layoutCommand(), Qt::CaseInsensitive);
 }
 
 void DotGraphView::prepareAddNewElement(QMap<QString,QString> attribs)
