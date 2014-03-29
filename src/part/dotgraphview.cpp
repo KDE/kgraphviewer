@@ -428,32 +428,32 @@ void DotGraphViewPrivate::setupPopup()
   KAction* lea = new KAction(i18n(""), q);
   lea->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
   actionCollection()->addAction("layout_specifiy",lea);
-  lea->setCheckable(false);
+  lea->setCheckable(true);
   
   KAction* lda = new KAction(i18n("Dot"), q);
   lda->setWhatsThis(i18n("Layout the graph using the dot program."));
   actionCollection()->addAction("layout_dot",lda);
-  lda->setCheckable(false);
+  lda->setCheckable(true);
   
   KAction* lna = new KAction(i18n("Neato"), q);
   lna->setWhatsThis(i18n("Layout the graph using the neato program."));
   actionCollection()->addAction("layout_neato",lna);
-  lna->setCheckable(false);
+  lna->setCheckable(true);
   
   KAction* lta = new KAction(i18n("Twopi"), q);
   lta->setWhatsThis(i18n("Layout the graph using the twopi program."));
   actionCollection()->addAction("layout_twopi",lta);
-  lta->setCheckable(false);
+  lta->setCheckable(true);
   
   KAction* lfa = new KAction(i18n("Fdp"), q);
   lfa->setWhatsThis(i18n("Layout the graph using the fdp program."));
   actionCollection()->addAction("layout_fdp",lfa);
-  lfa->setCheckable(false);
+  lfa->setCheckable(true);
   
   KAction* lca = new KAction(i18n("Circo"), q);
   lca->setWhatsThis(i18n("Layout the graph using the circo program."));
   actionCollection()->addAction("layout_c",lca);
-  lca->setCheckable(false);
+  lca->setCheckable(true);
   
   m_layoutAlgoSelectAction->addAction(lea);
   m_layoutAlgoSelectAction->addAction(lda);
@@ -462,7 +462,7 @@ void DotGraphViewPrivate::setupPopup()
   m_layoutAlgoSelectAction->addAction(lfa);
   m_layoutAlgoSelectAction->addAction(lca);
   
-  m_layoutAlgoSelectAction->setCurrentItem(1);
+  m_layoutAlgoSelectAction->setCurrentAction(lda);
   m_layoutAlgoSelectAction->setEditable(true);
   m_layoutAlgoSelectAction->setToolTip(i18n("Choose a GraphViz layout algorithm or edit your own one."));
   m_layoutAlgoSelectAction->setWhatsThis(i18n(
