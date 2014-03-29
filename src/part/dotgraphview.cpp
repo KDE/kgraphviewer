@@ -424,12 +424,6 @@ void DotGraphViewPrivate::setupPopup()
   m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"),q);
   actionCollection()->addAction("view_layout_algo",m_layoutAlgoSelectAction);
   
-  QStringList layoutAlgos;
-  KAction* lea = new KAction(i18n(""), q);
-  lea->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
-  actionCollection()->addAction("layout_specifiy",lea);
-  lea->setCheckable(true);
-  
   KAction* lda = new KAction(i18n("Dot"), q);
   lda->setWhatsThis(i18n("Layout the graph using the dot program."));
   actionCollection()->addAction("layout_dot",lda);
@@ -455,7 +449,6 @@ void DotGraphViewPrivate::setupPopup()
   actionCollection()->addAction("layout_c",lca);
   lca->setCheckable(true);
   
-  m_layoutAlgoSelectAction->addAction(lea);
   m_layoutAlgoSelectAction->addAction(lda);
   m_layoutAlgoSelectAction->addAction(lna);
   m_layoutAlgoSelectAction->addAction(lta);
@@ -1710,14 +1703,21 @@ void DotGraphView::slotLayoutSpecify()
     if (ok && layoutCommand != currentLayoutCommand)
     {
       //         std::cerr << "Setting new layout command: " << layoutCommand << std::endl;
-      setLayoutCommand(layoutCommand);
+      if (!d->m_layoutAlgoSelectAction->setCurrentAction(layoutCommand))
+      {
+          KAction *new_action = d->m_layoutAlgoSelectAction->addAction(layoutCommand);
+          d->m_layoutAlgoSelectAction->setCurrentAction(new_action);
+          slotSelectLayoutAlgo(layoutCommand);
+      }
     }
   }
 }
 
 void DotGraphView::slotLayoutReset()
 {
-  setLayoutCommand("");
+  Q_D(DotGraphView);
+  d->m_layoutAlgoSelectAction->setCurrentAction("Dot");
+  slotSelectLayoutAlgo("Dot");
 }
 
 void DotGraphView::slotSelectLayoutAlgo(const QString& ttext)
