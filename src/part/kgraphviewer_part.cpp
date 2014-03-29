@@ -117,32 +117,32 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
   // notify the part that this is our internal widget
   setWidget(d->m_widget);
 
-  QAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT( slotClose() ) );
+  KAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT( slotClose() ) );
   closeAct->setWhatsThis(i18n("Closes the current tab"));
 
-  QAction* printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", d->m_widget, SLOT(print()));
+  KAction* printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", d->m_widget, SLOT(print()));
   printAct->setWhatsThis(i18n("Print the graph using current page setup settings"));
   printAct->setShortcut(Qt::ControlModifier + Qt::Key_P);
   
-  QAction* printPreviewAct = actionCollection()->addAction(KStandardAction::PrintPreview, "file_print_preview", d->m_widget, SLOT(printPreview()));
+  KAction* printPreviewAct = actionCollection()->addAction(KStandardAction::PrintPreview, "file_print_preview", d->m_widget, SLOT(printPreview()));
   printPreviewAct->setWhatsThis(i18n("Open the print preview window"));
   printPreviewAct->setShortcut(Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_P);
   
 //   KAction* pagesetupAct = new KAction(i18n("&Page setup"), this); //actionCollection(), "file_page_setup");
-  QAction* pagesetupAct = actionCollection()->addAction("file_page_setup", d->m_widget, SLOT(pageSetup()));
+  KAction* pagesetupAct = actionCollection()->addAction("file_page_setup", d->m_widget, SLOT(pageSetup()));
   pagesetupAct->setText(i18n("Page setup"));
   pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog to allow graph printing to be setup"));
 
-  QAction* redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, "view_redisplay", d->m_widget, SLOT(reload()));
+  KAction* redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, "view_redisplay", d->m_widget, SLOT(reload()));
   redisplayAct->setWhatsThis(i18n("Reload the current graph from file"));
   redisplayAct->setShortcut(Qt::Key_F5);
 
-  QAction* zoomInAct = actionCollection()->addAction(KStandardAction::ZoomIn, "view_zoom_in", d->m_widget, SLOT(zoomIn()));
+  KAction* zoomInAct = actionCollection()->addAction(KStandardAction::ZoomIn, "view_zoom_in", d->m_widget, SLOT(zoomIn()));
   // xgettext: no-c-format
   zoomInAct->setWhatsThis(i18n("Zoom in by 10% on the currently viewed graph"));
   zoomInAct->setShortcut(Qt::Key_F7);
   
-  QAction* zoomOutAct = actionCollection()->addAction(KStandardAction::ZoomOut, "view_zoom_out", d->m_widget, SLOT(zoomOut()));
+  KAction* zoomOutAct = actionCollection()->addAction(KStandardAction::ZoomOut, "view_zoom_out", d->m_widget, SLOT(zoomOut()));
   // xgettext: no-c-format
   zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
   zoomOutAct->setShortcut(Qt::Key_F8);
