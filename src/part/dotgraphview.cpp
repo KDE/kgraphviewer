@@ -1158,9 +1158,10 @@ void DotGraphView::wheelEvent(QWheelEvent* e)
     return;
   }
   e->accept();
-  if (QApplication::keyboardModifiers() == Qt::ShiftModifier)
+  if (QApplication::keyboardModifiers() == Qt::ShiftModifier ||
+      QApplication::keyboardModifiers() == Qt::ControlModifier)
   {
-    kDebug() << " + Shift: zooming";
+    kDebug() << " + Shift/Ctrl: zooming";
     // move canvas...
     if (e->delta() < 0)
     {
