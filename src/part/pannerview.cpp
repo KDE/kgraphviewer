@@ -95,16 +95,12 @@ void PannerView::setZoomRect(QRectF r)
       newWidth = newHeight*factor;
       if (newWidth < d) newWidth = d;
     }
-    QRectF newRect = m_zoomRect;
-    qreal newXPos = newRect.x() + (newRect.width()/2) - newWidth/2;
-    newXPos = (newXPos<0)?0:newXPos;
-    newRect.setX(newXPos);
-    qreal newYPos = newRect.y() + (newRect.height()/2) -newHeight/2;
-    newYPos = (newYPos<0)?0:newYPos;
-    newRect.setY(newYPos);
-    newRect.setWidth(newWidth);
-    newRect.setHeight(newHeight);
-    m_zoomRect = newRect;
+    qreal newXPos = m_zoomRect.x() + (m_zoomRect.width() - newWidth)/2;
+    qreal newYPos = m_zoomRect.y() + (m_zoomRect.height() - newHeight)/2;
+    m_zoomRect.setX(std::max(0.0, newXPos));
+    m_zoomRect.setY(std::max(0.0, newYPos));
+    m_zoomRect.setWidth(newWidth);
+    m_zoomRect.setHeight(newHeight);
   }
   scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
 }
