@@ -231,7 +231,7 @@ bool KgvPageLayoutDia::pageLayout( KgvPageLayout& layout, KgvHeadFoot& hf, KgvCo
                                   KgvKWHeaderFooter &_kwhf, int tabs, KgvUnit::Unit& unit, QWidget* parent )
 {
     bool res = false;
-    KgvPageLayoutDia *dlg = new KgvPageLayoutDia( parent, layout, columns, tabs, unit );
+    QPointer<KgvPageLayoutDia> dlg = new KgvPageLayoutDia( parent, layout, columns, tabs, unit );
 
     if ( dlg->exec() == QDialog::Accepted ) {
         res = true;
