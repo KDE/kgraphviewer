@@ -46,7 +46,6 @@
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qpainter.h>
-#include <qlineedit.h>
 #include <qradiobutton.h>
 #include <qcheckbox.h>
 //Added by qt3to4:
@@ -314,21 +313,21 @@ void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
 //     QLabel *lHeadLeft = new QLabel( i18n( "Left:" ), gHead );
 //     headGrid->addWidget( lHeadLeft, 0, 0 );
 // 
-//     eHeadLeft = new QLineEdit( gHead );
+//     eHeadLeft = new KLineEdit( gHead );
 //     headGrid->addWidget( eHeadLeft, 1, 0 );
 //     eHeadLeft->setText( hf.headLeft );
 // 
 //     QLabel *lHeadMid = new QLabel( i18n( "Mid:" ), gHead );
 //     headGrid->addWidget( lHeadMid, 0, 1 );
 // 
-//     eHeadMid = new QLineEdit( gHead );
+//     eHeadMid = new KLineEdit( gHead );
 //     headGrid->addWidget( eHeadMid, 1, 1 );
 //     eHeadMid->setText( hf.headMid );
 // 
 //     QLabel *lHeadRight = new QLabel( i18n( "Right:" ), gHead );
 //     headGrid->addWidget( lHeadRight, 0, 2 );
 // 
-//     eHeadRight = new QLineEdit( gHead );
+//     eHeadRight = new KLineEdit( gHead );
 //     headGrid->addWidget( eHeadRight, 1, 2 );
 //     eHeadRight->setText( hf.headRight );
 // 
@@ -343,21 +342,21 @@ void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
 //     QLabel *lFootLeft = new QLabel( i18n( "Left:" ), gFoot );
 //     footGrid->addWidget( lFootLeft, 0, 0 );
 // 
-//     eFootLeft = new QLineEdit( gFoot );
+//     eFootLeft = new KLineEdit( gFoot );
 //     footGrid->addWidget( eFootLeft, 1, 0 );
 //     eFootLeft->setText( hf.footLeft );
 // 
 //     QLabel *lFootMid = new QLabel( i18n( "Mid:" ), gFoot );
 //     footGrid->addWidget( lFootMid, 0, 1 );
 // 
-//     eFootMid = new QLineEdit( gFoot );
+//     eFootMid = new KLineEdit( gFoot );
 //     footGrid->addWidget( eFootMid, 1, 1 );
 //     eFootMid->setText( hf.footMid );
 // 
 //     QLabel *lFootRight = new QLabel( i18n( "Right:" ), gFoot );
 //     footGrid->addWidget( lFootRight, 0, 2 );
 // 
-//     eFootRight = new QLineEdit( gFoot );
+//     eFootRight = new KLineEdit( gFoot );
 //     footGrid->addWidget( eFootRight, 1, 2 );
 //     eFootRight->setText( hf.footRight );
 // 

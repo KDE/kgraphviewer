@@ -36,7 +36,7 @@
 #include <KgvPageLayout.h>
 #include <KgvPageLayoutDia.h>
 
-class QComboBox;
+class KComboBox;
 class KgvUnitDoubleSpinBox;
 
 /**
@@ -90,7 +90,7 @@ signals:
     void propertyChange(KgvPageLayout &layout);
 
 protected:
-    QComboBox *cpgFormat;
+    KComboBox *cpgFormat;
     KgvUnitDoubleSpinBox *epgWidth;
     KgvUnitDoubleSpinBox *epgHeight;
     KgvUnitDoubleSpinBox *ebrLeft;

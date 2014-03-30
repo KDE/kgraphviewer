@@ -290,7 +290,7 @@ KgvUnitDoubleLineEdit::eventFilter( QObject* o, QEvent* ev )
 	}
 	else
 #endif
-            return QLineEdit::eventFilter( o, ev );
+            return KLineEdit::eventFilter( o, ev );
 }
 
 double KgvUnitDoubleLineEdit::value( void ) const
@@ -382,7 +382,7 @@ KgvUnitDoubleComboBox::eventFilter( QObject* o, QEvent* ev )
 	}
 	else
 #endif
-            return QComboBox::eventFilter( o, ev );
+            return KComboBox::eventFilter( o, ev );
 }
 
 double KgvUnitDoubleComboBox::value( void ) const

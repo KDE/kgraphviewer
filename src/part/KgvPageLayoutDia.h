@@ -35,7 +35,7 @@
 #include <kpagedialog.h>
 #include <KgvPageLayout.h>
 
-class QLineEdit;
+class KLineEdit;
 class QPaintEvent;
 
 class KgvPageLayoutColumns;
@@ -170,12 +170,12 @@ private:
 //     void setupTab4( const KgvKWHeaderFooter kwhf );
 
     // dialog objects
-    QLineEdit *eHeadLeft;
-    QLineEdit *eHeadMid;
-    QLineEdit *eHeadRight;
-    QLineEdit *eFootLeft;
-    QLineEdit *eFootMid;
-    QLineEdit *eFootRight;
+    KLineEdit *eHeadLeft;
+    KLineEdit *eHeadMid;
+    KLineEdit *eHeadRight;
+    KLineEdit *eFootLeft;
+    KLineEdit *eFootMid;
+    KLineEdit *eFootRight;
 
     // layout
     KgvPageLayout& m_layout;

@@ -68,10 +68,10 @@ KgvPageLayoutSize::KgvPageLayoutSize(
         unitLayout->addWidget( lpgUnit, 0, Qt::AlignRight | Qt::AlignVCenter );
 
         // combo unit
-        QComboBox *cpgUnit = new QComboBox( false, unitFrame, "cpgUnit" );
+        KComboBox *cpgUnit = new KComboBox( false, unitFrame );
         lpgUnit->setBuddy( cpgUnit );
         cpgUnit->insertStringList( KgvUnit::listOfUnitName() );
-        cpgUnit->setCurrentItem( unit );
+        cpgUnit->setCurrentIndex( unit );
         unitLayout->addWidget( cpgUnit, 0, Qt::AlignLeft | Qt::AlignVCenter );
         connect( cpgUnit, SIGNAL(activated(int)), this, SLOT(setUnitInt(int)) );
     }
@@ -95,7 +95,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     QLabel *lpgFormat = new QLabel( i18n( "&Size:" ), formatPageSize );
 
     // combo size
-    cpgFormat = new QComboBox( false, formatPageSize, "cpgFormat" );
+    cpgFormat = new KComboBox( false, formatPageSize );
     cpgFormat->insertStringList( KgvPageFormat::allFormats() );
     lpgFormat->setBuddy( cpgFormat );
     connect( cpgFormat, SIGNAL(activated(int)), this, SLOT(formatChanged(int)) );
@@ -237,7 +237,7 @@ void KgvPageLayoutSize::updatePreview() {
 
 void KgvPageLayoutSize::setValues() {
     // page format
-    cpgFormat->setCurrentItem( m_layout.format );
+    cpgFormat->setCurrentIndex( m_layout.format );
     // orientation
 //     m_orientGroup->setButton( m_layout.orientation == PG_PORTRAIT ? 0: 1 );
 
