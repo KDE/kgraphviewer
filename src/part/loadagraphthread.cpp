@@ -32,6 +32,7 @@ void LoadAGraphThread::run()
       return;
   }
   m_g = agread(fp, NULL);
+  fclose(fp);
 }
 
 void LoadAGraphThread::loadFile(const QString& dotFileName)
