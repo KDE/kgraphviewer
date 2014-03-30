@@ -230,7 +230,7 @@ void KGraphEditor::setupActions()
   actionCollection()->addAction( KStandardAction::Save, "file_save", this, SLOT(fileSave()) );
   actionCollection()->addAction( KStandardAction::SaveAs, "file_save_as", this, SLOT(fileSaveAs()) );
 
-  actionCollection()->addAction( KStandardAction::Quit, "file_quit", this, SLOT(quit()) );
+  actionCollection()->addAction( KStandardAction::Quit, "file_quit", KApplication::kApplication(), SLOT(quit()) );
 
   m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
 
