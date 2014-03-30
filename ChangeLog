@@ -1,5 +1,7 @@
 2014/03/29
   * compilation against latest graphviz
+    To compile against versions before 2.30 you need to
+    manually apply old_graphviz.diff first.
   * switch to KPluginFactory
   * fix scrolling through graph with cursor keys
   * many small fixes of UI bugs and annoyances
