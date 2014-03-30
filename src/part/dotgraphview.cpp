@@ -802,8 +802,8 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   d->m_graph->layoutCommand(layoutCommand);
 
   GVC_t* gvc = gvContext();
-  gvLayout(gvc, graph, layoutCommand.toUtf8().data());
-  gvRender (gvc, graph, "xdot", NULL);
+  threadsafe_wrap_gvLayout(gvc, graph, layoutCommand.toUtf8().data());
+  threadsafe_wrap_gvRender(gvc, graph, "xdot", NULL);
 
   d->m_xMargin = 50;
   d->m_yMargin = 50;
@@ -2209,6 +2209,7 @@ void DotGraphView::slotAGraphReadFinished()
       layoutCommand = "dot";
   }
   d->m_layoutThread.layoutGraph(d->m_loadThread.g(), layoutCommand);
+  d->m_loadThread.processed_finished();
 }
 
 void DotGraphView::slotAGraphLayoutFinished()
@@ -2220,6 +2221,7 @@ void DotGraphView::slotAGraphLayoutFinished()
 
   gvFreeLayout(d->m_layoutThread.gvc(), d->m_layoutThread.g());
   agclose(d->m_layoutThread.g());
+  d->m_layoutThread.processed_finished();
 }
 
 void DotGraphView::slotSelectNode(const QString& nodeName)

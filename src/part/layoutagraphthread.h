@@ -20,9 +20,13 @@
 #ifndef LAYOUTAGRAPHTHREAD_H
 #define LAYOUTAGRAPHTHREAD_H
 
+#include <QSemaphore>
 #include <QThread>
 
 #include <graphviz/gvc.h>
+
+int threadsafe_wrap_gvLayout(GVC_t *gvc, graph_t *g, const char *engine);
+int threadsafe_wrap_gvRender(GVC_t *gvc, graph_t *g, const char *format, FILE *out);
 
 class LayoutAGraphThread : public QThread
 {
@@ -33,11 +37,13 @@ public:
   inline graph_t* g() {return m_g;}
   inline GVC_t* gvc() {return m_gvc;}
   inline const QString& layoutCommand() const {return m_layoutCommand;}
+  void processed_finished() { sem.release(); }
   
 protected:
 virtual void run();
 
 private:
+  QSemaphore sem;
   QString m_layoutCommand;
   graph_t* m_g;
   GVC_t *m_gvc;

@@ -38,8 +38,7 @@ void LoadAGraphThread::run()
 void LoadAGraphThread::loadFile(const QString& dotFileName)
 {
   kDebug();
-  if (isRunning())
-    return;
+  sem.acquire();
   m_dotFileName = dotFileName;
   start();
 }

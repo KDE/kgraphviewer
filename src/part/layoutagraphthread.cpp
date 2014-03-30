@@ -17,11 +17,30 @@
 
 */
 
+#include <QMutex>
+
 #include "layoutagraphthread.h"
 
 #include <kdebug.h>
 
-LayoutAGraphThread::LayoutAGraphThread()
+static QMutex gv_mutex;
+
+// Not sure just wrapping these two is really enough, but it
+// fixed all crashes when loading many files at once for me.
+
+int threadsafe_wrap_gvLayout(GVC_t *gvc, graph_t *g, const char *engine)
+{
+  QMutexLocker locker(&gv_mutex);
+  return gvLayout(gvc, g, engine);
+}
+
+int threadsafe_wrap_gvRender(GVC_t *gvc, graph_t *g, const char *format, FILE *out)
+{
+  QMutexLocker locker(&gv_mutex);
+  return gvRender(gvc, g, format, out);
+}
+
+LayoutAGraphThread::LayoutAGraphThread() : sem(1)
 {
   m_gvc = gvContext();
 }
@@ -34,15 +53,14 @@ LayoutAGraphThread::~LayoutAGraphThread()
 void LayoutAGraphThread::run()
 {
   kDebug();
-  gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
-  gvRender (m_gvc, m_g, "xdot", NULL);
+  threadsafe_wrap_gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
+  threadsafe_wrap_gvRender(m_gvc, m_g, "xdot", NULL);
 }
 
 void LayoutAGraphThread::layoutGraph(graph_t* graph, const QString& layoutCommand)
 {
   kDebug();
-  if (isRunning())
-    return;
+  sem.acquire();
   m_g = graph;
   m_layoutCommand = layoutCommand;
   start();

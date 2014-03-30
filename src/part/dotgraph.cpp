@@ -22,6 +22,7 @@
 #include "DotGraphParsingHelper.h"
 #include "canvasedge.h"
 #include "canvassubgraph.h"
+#include "layoutagraphthread.h"
 
 
 #include <iostream>
@@ -175,14 +176,14 @@ bool DotGraph::update()
     graph_t* graph = exporter.exportToGraphviz(this);
 
     GVC_t* gvc = gvContext();
-    gvLayout(gvc, graph, m_layoutCommand.toUtf8().data());
-    gvRender (gvc, graph, "xdot", NULL);
+    threadsafe_wrap_gvLayout(gvc, graph, m_layoutCommand.toUtf8().data());
+    threadsafe_wrap_gvRender(gvc, graph, "xdot", NULL);
 
     updateWithGraph(graph);
     
     gvFreeLayout(gvc, graph);
     agclose(graph);
-    bool result = (gvFreeContext(gvc) == 0);
+    bool result = true; //(gvFreeContext(gvc) == 0);
     return result;
   }
 }

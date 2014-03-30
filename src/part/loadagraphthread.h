@@ -20,6 +20,7 @@
 #ifndef LOADAGRAPHTHREAD_H
 #define LOADAGRAPHTHREAD_H
 
+#include <QSemaphore>
 #include <QThread>
 
 #include <graphviz/gvc.h>
@@ -28,15 +29,18 @@
 class LoadAGraphThread : public QThread
 {
 public:
+  LoadAGraphThread() : sem(1) {}
   void loadFile(const QString& dotFileName);
   inline graph_t* g() {return m_g;}
   inline const QString& dotFileName() {return m_dotFileName;}
   inline GVC_t* gvc() {return m_gvc;}
+  void processed_finished() { sem.release(); }
   
 protected:
   virtual void run();
 
 private:
+  QSemaphore sem;
   QString m_dotFileName;
   graph_t *m_g;
   GVC_t *m_gvc;
