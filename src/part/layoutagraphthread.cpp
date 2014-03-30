@@ -21,10 +21,19 @@
 
 #include <kdebug.h>
 
+LayoutAGraphThread::LayoutAGraphThread()
+{
+  m_gvc = gvContext();
+}
+
+LayoutAGraphThread::~LayoutAGraphThread()
+{
+  gvFreeContext(m_gvc);
+}
+
 void LayoutAGraphThread::run()
 {
   kDebug();
-  m_gvc = gvContext();
   gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
   gvRender (m_gvc, m_g, "xdot", NULL);
 }

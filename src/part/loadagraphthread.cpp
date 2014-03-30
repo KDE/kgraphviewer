@@ -24,9 +24,7 @@
 void LoadAGraphThread::run()
 {
   kDebug() << m_dotFileName;
-  GVC_t *gvc;
   FILE* fp;
-  gvc = gvContext();
   fp = fopen(m_dotFileName.toUtf8().data(), "r");
   if (!fp)
   {

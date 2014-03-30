@@ -27,6 +27,8 @@
 class LayoutAGraphThread : public QThread
 {
 public:
+  LayoutAGraphThread();
+  ~LayoutAGraphThread();
   void layoutGraph(graph_t* graph, const QString& layoutCommand);
   inline graph_t* g() {return m_g;}
   inline GVC_t* gvc() {return m_gvc;}
