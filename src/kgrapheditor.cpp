@@ -175,6 +175,7 @@ DotGraphView*  KGraphEditor::slotNewGraph()
     m_tabsPartsMap[m_widget->currentPage()] = view;
     m_tabsFilesMap[m_widget->currentPage()] = "";
 //     connect(this,SIGNAL(hide(KParts::Part*)),view,SLOT(slotHide(KParts::Part*)));
+  slotSetActiveGraph(view);
   return view;
 }
 
@@ -527,6 +528,7 @@ void KGraphEditor::newTabSelectedSlot(QWidget* tab)
 //   emit(hide((KParts::Part*)(m_manager->activePart())));
   if (!m_tabsPartsMap.isEmpty())
   {
+    slotSetActiveGraph(m_tabsPartsMap[tab]);
 //     m_manager->setActivePart(m_tabsPartsMap[tab]);
   }
 }
