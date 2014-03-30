@@ -72,7 +72,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Note: this will be overriden if the graph has its own background color</string>
+      <string>Note: this will be overridden if the graph has its own background color</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
