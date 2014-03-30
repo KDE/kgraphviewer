@@ -85,19 +85,12 @@ DotGraph::DotGraph(const QString& command, const QString& fileName) :
 
 DotGraph::~DotGraph()  
 {
-  GraphNodeMap::iterator itn, itn_end;
-  itn = m_nodesMap.begin(); itn_end = m_nodesMap.end();
-  for (; itn != itn_end; itn++)
-  {
-    delete *itn;
-  }
-
-  GraphEdgeMap::iterator ite, ite_end;
-  ite = m_edgesMap.begin(); ite_end = m_edgesMap.end();
-  for (; ite != ite_end; ite++)
-  {
-    delete (*ite);
-  }
+  qDeleteAll(m_subgraphsMap);
+  m_subgraphsMap.clear();
+  qDeleteAll(m_nodesMap);
+  m_nodesMap.clear();
+  qDeleteAll(m_edgesMap);
+  m_edgesMap.clear();
 }
 
 QString DotGraph::chooseLayoutProgramForFile(const QString& str)
