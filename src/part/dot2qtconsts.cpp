@@ -24,7 +24,7 @@
 #include <kdebug.h> 
 #include <QColor>
 
-Dot2QtConsts* Dot2QtConsts::m_componentData = new Dot2QtConsts();
+const Dot2QtConsts Dot2QtConsts::m_componentData;
 
 static const struct {
     const char * input;

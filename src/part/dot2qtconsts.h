@@ -30,8 +30,7 @@
 class Dot2QtConsts
 {
 public:
-  static Dot2QtConsts& changeable() {return *m_componentData;}
-  static const Dot2QtConsts& componentData() {return *m_componentData;}
+  static const Dot2QtConsts& componentData() {return m_componentData;}
   
   QColor qtColor(const QString& dotColor) const;
   Qt::PenStyle qtPenStyle(const QString& dotLineStyle) const;
@@ -42,7 +41,7 @@ private:
 
     ~Dot2QtConsts();
 
-  static Dot2QtConsts* m_componentData;
+  static const Dot2QtConsts m_componentData;
   
   QMap< QString, Qt::PenStyle > m_penStyles;
   QMap< QString, QString > m_colors;
