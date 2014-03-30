@@ -94,8 +94,8 @@ KGraphEditor::KGraphEditor() :
   m_newElementAttributesWidget = new KGraphEditorElementTreeWidget(bottomLeftDockWidget);
   connect(m_newElementAttributesWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this,SLOT(slotNewElementItemChanged(QTreeWidgetItem*,int)));
-  connect(m_newElementAttributesWidget, SIGNAL(addAttribute()),
-          this, SLOT(slotAddNewElementAttribute()));
+  connect(m_newElementAttributesWidget, SIGNAL(addAttribute(QString)),
+          this, SLOT(slotAddNewElementAttribute(QString)));
   connect(m_newElementAttributesWidget, SIGNAL(removeAttribute(QString)),
           this, SLOT(slotRemoveNewElementAttribute(QString)));
   m_newElementAttributesWidget->setColumnCount(2);
