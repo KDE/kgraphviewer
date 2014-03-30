@@ -187,14 +187,14 @@ void KGraphEditor::openUrl(const KUrl& url)
 //     ?kgv->setLayoutMethod(KGraphViewerInterface::ExternalProgram)
 //     :kgv->setLayoutMethod(KGraphViewerInterface::InternalLibrary);
 
-  QString label = url.url().section('/',-1,-1);
+  QString label = url.path().section('/',-1,-1);
   // @TODO set label
   m_widget-> insertTab(part, QIcon( DesktopIcon("kgraphviewer") ), label);
   m_widget->setCurrentPage(m_widget->indexOf(part));
-  m_tabsFilesMap[m_widget->currentPage()] = url.url();
-  part->loadLibrary(url.url());
+  m_tabsFilesMap[m_widget->currentPage()] = url.path();
+  part->loadLibrary(url.path());
 
-  m_openedFiles.push_back(url.url());
+  m_openedFiles.push_back(url.path());
 }
 
 void KGraphEditor::fileOpen()
