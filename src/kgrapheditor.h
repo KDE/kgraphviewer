@@ -38,7 +38,7 @@ class KGraphEditorElementTreeWidget;
 
 namespace KGraphViewer
 {
-  class DotGraphView;
+  class KGraphViewerPart;
 }
   /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -72,7 +72,7 @@ protected:
   bool queryExit(); 
 
 Q_SIGNALS:
-  void hide(KGraphViewer::DotGraphView* part);
+  void hide(KGraphViewer::KGraphViewerPart* part);
   void prepareAddNewElement(QMap<QString,QString> attribs);
   void prepareAddNewEdge(QMap<QString,QString> attribs);
   void setReadWrite();
@@ -94,7 +94,7 @@ public Q_SLOTS:
     */
   void openUrl(const QString& url) {openUrl(KUrl(url));}
 
-  void slotSetActiveGraph( KGraphViewer::DotGraphView* part);
+  void slotSetActiveGraph( KGraphViewer::KGraphViewerPart* part);
 
   void slotGraphLoaded();
   
@@ -143,7 +143,7 @@ private Q_SLOTS:
   void slotHoverEnter(const QString&);
   void slotHoverLeave(const QString&);
 
-  KGraphViewer::DotGraphView* slotNewGraph();
+  KGraphViewer::KGraphViewerPart *slotNewGraph();
   
 private:
   void setupAccel();
@@ -160,9 +160,9 @@ private:
 
   QStringList m_openedFiles;
   
-  QMap<QWidget*, KGraphViewer::DotGraphView*> m_tabsPartsMap;
+  QMap<QWidget*, KGraphViewer::KGraphViewerPart*> m_tabsPartsMap;
   QMap<QWidget*, QString> m_tabsFilesMap;
-  KGraphViewer::DotGraphView* m_currentPart;
+  KGraphViewer::KGraphViewerPart* m_currentPart;
 
   QMap<QString, QString> m_newElementAttributes;
 

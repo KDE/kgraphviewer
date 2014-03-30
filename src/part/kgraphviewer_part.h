@@ -77,6 +77,7 @@ public:
 
   // Return information about the part
   static KAboutData* createAboutData();
+  QWidget *widget();
 
 
 Q_SIGNALS:

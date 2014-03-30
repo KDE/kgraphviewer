@@ -26,8 +26,7 @@
 #include "ui_preferencesParsing.h"
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
-#include "part/dotgraph.h"
-#include "part/dotgraphview.h"
+#include "part/kgraphviewer_part.h"
 
 #include <kshortcutsdialog.h>
 #include <kfiledialog.h>
@@ -161,15 +160,32 @@ void KGraphEditor::reloadPreviousFiles()
   
 }
 
-DotGraphView*  KGraphEditor::slotNewGraph()
+KGraphViewerPart *KGraphEditor::slotNewGraph()
 {
   kDebug();
-  DotGraphView* view = new DotGraphView(actionCollection(), m_widget);
-  view->initEmpty();
+  KPluginFactory *factory = KPluginLoader("kgraphviewerpart").factory();
+  if (!factory)
+  {
+    // if we couldn't find our Part, we exit since the Shell by
+    // itself can't do anything useful
+    KMessageBox::error(this, i18n("Could not find the KGraphViewer part."));
+    kapp->quit();
+    // we return here, cause kapp->quit() only means "exit the
+    // next time we enter the event loop...
+    return NULL;
+  }
+  KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>("kgraphviewerpart", this);
+  KGraphViewerPart *view = static_cast<KGraphViewerPart *>( part );
+  if (!view)
+  {
+    // This should not happen
+    kError() << "Failed to get KPart" << endl;
+    return NULL;
+  }
   view->setReadWrite();
 
-    m_widget-> insertTab(view, QIcon( DesktopIcon("kgraphviewer") ), "");
-    m_widget->setCurrentPage(m_widget->indexOf(view));
+    m_widget-> insertTab(view->widget(), QIcon( DesktopIcon("kgraphviewer") ), "");
+    m_widget->setCurrentPage(m_widget->indexOf(view->widget()));
 //     createGUI(view);
 
     m_tabsPartsMap[m_widget->currentPage()] = view;
@@ -182,7 +198,7 @@ DotGraphView*  KGraphEditor::slotNewGraph()
 void KGraphEditor::openUrl(const KUrl& url)
 {
   kDebug() << url;
-  DotGraphView* part = slotNewGraph();
+  KGraphViewerPart *part = slotNewGraph();
   
 //   (KGraphEditorSettings::parsingMode() == "external")
 //     ?kgv->setLayoutMethod(KGraphViewerInterface::ExternalProgram)
@@ -190,10 +206,10 @@ void KGraphEditor::openUrl(const KUrl& url)
 
   QString label = url.path().section('/',-1,-1);
   // @TODO set label
-  m_widget-> insertTab(part, QIcon( DesktopIcon("kgraphviewer") ), label);
-  m_widget->setCurrentPage(m_widget->indexOf(part));
+  m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), label);
+  m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
   m_tabsFilesMap[m_widget->currentPage()] = url.path();
-  part->loadLibrary(url.path());
+  part->openUrl(url);
 
   m_openedFiles.push_back(url.path());
 }
@@ -483,7 +499,7 @@ void KGraphEditor::close(QWidget* tab)
   m_openedFiles.removeAll(m_tabsFilesMap[tab]);
   m_widget->removePage(tab);
   tab->hide();
-  DotGraphView* part = m_tabsPartsMap[tab];
+  KGraphViewerPart *part = m_tabsPartsMap[tab];
   m_tabsPartsMap.remove(tab);
   m_tabsFilesMap.remove(tab);
   delete part; part=0;
@@ -533,7 +549,7 @@ void KGraphEditor::newTabSelectedSlot(QWidget* tab)
   }
 }
 
-void KGraphEditor::slotSetActiveGraph( DotGraphView* part)
+void KGraphEditor::slotSetActiveGraph(KGraphViewerPart *part)
 {
   kDebug();
   if (m_currentPart != 0)
