@@ -46,11 +46,11 @@ class KgvPageLayoutColumns : public QWidget, public Ui::KgvPageLayoutColumnsBase
 
 public:
     /**
-     * Contructor
+     * Constructor
      * @param parent the parent widget
-     * @param columns the KgvColumns data structure that this dialog should be initialzed with
+     * @param columns the KgvColumns data structure that this dialog should be initialized with
      * @param unit the unit-type (mm/cm/inch) that the dialog should show
-     * @param layout the page layout that the preview should be initialzed with.
+     * @param layout the page layout that the preview should be initialized with.
      */
     KgvPageLayoutColumns(QWidget *parent, const KgvColumns& columns, KgvUnit::Unit unit, const KgvPageLayout& layout);
 

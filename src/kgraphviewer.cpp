@@ -71,7 +71,7 @@ KGraphViewerWindow::KGraphViewerWindow()
   
   if (QDBusConnection::sessionBus().registerService( "org.kde.kgraphviewer" ))
   {
-    kDebug() << "Service Registered successfuly";
+    kDebug() << "Service Registered successfully";
     QDBusConnection::sessionBus().registerObject("/", this, QDBusConnection::ExportAllSlots);
     
   }
@@ -393,7 +393,7 @@ void KGraphViewerWindow::slotReloadOnChangeModeYesToggled(bool value)
   {
     KGraphViewerSettings::setReloadOnChangeMode("true");
   }
-  //   kDebug() << "emiting";
+  //   kDebug() << "emitting";
   //   emit(settingsChanged());
   KGraphViewerSettings::self()->writeConfig();
 }
@@ -405,7 +405,7 @@ void KGraphViewerWindow::slotReloadOnChangeModeNoToggled(bool value)
   {
     KGraphViewerSettings::setReloadOnChangeMode("false");
   }
-  //   kDebug() << "emiting";
+  //   kDebug() << "emitting";
   //   emit(settingsChanged());
   KGraphViewerSettings::self()->writeConfig();
 }
@@ -417,7 +417,7 @@ void KGraphViewerWindow::slotReloadOnChangeModeAskToggled(bool value)
   {
     KGraphViewerSettings::setReloadOnChangeMode("ask");
   }
-  //   kDebug() << "emiting";
+  //   kDebug() << "emitting";
   //   emit(settingsChanged());
   KGraphViewerSettings::self()->writeConfig();
 }
@@ -489,7 +489,7 @@ void KGraphViewerWindow::slotParsingModeExternalToggled(bool value)
   {
     KGraphViewerSettings::setParsingMode("external");
   }
-  //   kDebug() << "emiting";
+  //   kDebug() << "emitting";
   //   emit(settingsChanged());
   KGraphViewerSettings::self()->writeConfig();
 }
@@ -501,7 +501,7 @@ void KGraphViewerWindow::slotParsingModeInternalToggled(bool value)
   {
     KGraphViewerSettings::setParsingMode("internal");
   }
-  //   kDebug() << "emiting";
+  //   kDebug() << "emitting";
   //   emit(settingsChanged());
   KGraphViewerSettings::self()->writeConfig();
 }

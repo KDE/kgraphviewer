@@ -47,9 +47,9 @@ class KgvPageLayoutSize : public QWidget {
 
 public:
     /**
-     * Contructor
+     * Constructor
      * @param parent the parent widget
-     * @param layout the page layout that this widget should be initialzed with.
+     * @param layout the page layout that this widget should be initialized with.
      * @param unit the unit-type (mm/cm/inch) that the dialog should show
      * @param columns the KgvColumns (amout of columns) that the preview should be initialized with
      * @param unitChooser if true a combobox with the unit-type is shown for the user to change

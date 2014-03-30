@@ -71,7 +71,7 @@ public:
   inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
   void setRenderOperations(const DotRenderOpVec& drov);
   /**
-   * indicates the version of the render operations, gets increased everytime
+   * indicates the version of the render operations, gets increased every time
    * @c setRenderOperations gets called.
    */
   inline quint32 renderOperationsRevision() const {return m_renderOperationsRevision;};

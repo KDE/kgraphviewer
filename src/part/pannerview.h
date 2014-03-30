@@ -43,7 +43,7 @@ namespace KGraphViewer
 class DotGraphView;
 
 /**
- * A panner layed over a QCanvas
+ * A panner laid over a QCanvas
  */
 class PannerView: public QGraphicsView
 {

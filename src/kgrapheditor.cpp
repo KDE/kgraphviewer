@@ -104,7 +104,7 @@ KGraphEditor::KGraphEditor() :
 
   if (QDBusConnection::sessionBus().registerService( "org.kde.kgrapheditor" ))
   {
-    kDebug() << "Service Registered successfuly";
+    kDebug() << "Service Registered successfully";
     QDBusConnection::sessionBus().registerObject("/", this, QDBusConnection::ExportAllSlots);
     
   }

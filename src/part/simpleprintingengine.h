@@ -58,7 +58,7 @@ public:
 
   void setTitleText(const QString& titleText);
 
-  //! Calculates pafe count that can be later obtained using pagesCount().
+  //! Calculates page count that can be later obtained using pagesCount().
   //! Page count can depend on \a painter (printer/screen) and on printing settings.
   void calculatePagesCount(QPainter& painter);
 

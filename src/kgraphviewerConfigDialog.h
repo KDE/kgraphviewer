@@ -31,7 +31,7 @@ namespace Ui {
 }
 
 /**
- * This is the KGraphViewer configration dialog
+ * This is the KGraphViewer configuration dialog
  *
  * @short Configuration dialog
  * @author Gaël de Chalendar <kleag@free.fr>

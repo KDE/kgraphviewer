@@ -93,9 +93,9 @@ Q_SIGNALS:
   void newEdgeFinished(
       const QString&, const QString&,
       const QMap<QString, QString>&);
-  /// emited when the mouse enters a node, a subgraph or an edge. The parameter is the hovered element id
+  /// emitted when the mouse enters a node, a subgraph or an edge. The parameter is the hovered element id
   void hoverEnter(const QString&);
-  /// emited when the mouse leaves a node, a subgraph or an edge. The parameter is the hovered element id
+  /// emitted when the mouse leaves a node, a subgraph or an edge. The parameter is the hovered element id
   void hoverLeave(const QString&);
 
 public Q_SLOTS:

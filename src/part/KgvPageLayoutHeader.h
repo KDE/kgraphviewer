@@ -44,7 +44,7 @@ class KgvPageLayoutHeader : public QWidget, public Ui::KgvPageLayoutHeaderBase
 
 public:
     /**
-     * Contructor
+     * Constructor
      * @param parent the parent widget
      * @param unit the unit-type (mm/cm/inch) that the dialog should show
      * @param kwhf the data that this widget will be filled with initially

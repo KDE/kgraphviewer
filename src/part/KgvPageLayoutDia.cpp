@@ -56,7 +56,7 @@
 /* class KgvPagePreview                                            */
 /******************************************************************/
 
-/*===================== constrcutor ==============================*/
+/*===================== constructor ==============================*/
 KgvPagePreview::KgvPagePreview( QWidget* parent, const char *name, const KgvPageLayout& layout )
     : QGroupBox( i18n( "Page Preview" ), parent, name )
 {
