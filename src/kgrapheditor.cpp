@@ -730,21 +730,23 @@ void KGraphEditor::slotItemClicked ( QTreeWidgetItem * item, int column )
 
 void KGraphEditor::slotEditNewVertex()
 {
-  kDebug() ;
   if (m_currentPart == 0)
   {
+    kDebug() << "new vertex: no part selected";
     return;
   }
+  kDebug() << "new vertex";
   emit(prepareAddNewElement(m_newElementAttributes));
 }
 
 void KGraphEditor::slotEditNewEdge()
 {
-  kDebug() ;
   if (m_currentPart == 0)
   {
+    kDebug() << "new edge: no part selected";
     return;
   }
+  kDebug() << "new edge";
   emit(prepareAddNewEdge(m_newElementAttributes));
 }
 
