@@ -44,7 +44,7 @@ int main(int argc, char **argv)
   KAboutData about("kgraphviewer", 0, ki18n("KGraphViewer"), version, ki18n(description),
                     KAboutData::License_GPL, ki18n("(C) 2005-2010 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
   about.addAuthor( ki18n("Gaël de Chalendar"), ki18n("Original Author and current maintainer"), "kleag@free.fr" );
-  about.addAuthor( ki18n("Reimar Döffinger"), ki18n("Contributor"), "Reimar.Doeffinger@stud.uni-karlsruhe.de" );
+  about.addAuthor( ki18n("Reimar Döffinger"), ki18n("Contributor"), "kde@reimardoeffinger.de" );
   about.addAuthor( ki18n("Matthias Peinhardt"), ki18n("Contributor"), "matthias.peinhardt@googlemail.com" );
   about.addAuthor( ki18n("Sandro Andrade"), ki18n("Contributor"), "sandro.andrade@gmail.com" );
   about.addAuthor( ki18n("Milian Wolff"), ki18n("Contributor"), "mail@milianw.de" );
