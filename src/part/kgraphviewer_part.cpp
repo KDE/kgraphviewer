@@ -151,11 +151,6 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
   setXMLFile("kgraphviewer_part.rc");
 }
 
-QWidget *KGraphViewerPart::widget()
-{
-  return d->m_widget;
-}
-
 /*DotGraph* KGraphViewerPart::graph()
 {
   return d->m_widget->graph();

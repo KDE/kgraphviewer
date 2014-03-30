@@ -34,8 +34,6 @@
 
 #include "kgrapheditoradaptor.h"
 
-using namespace KGraphViewer;
-
 static const char description[] =
 I18N_NOOP("A Graphviz dot graph viewer for KDE");
 

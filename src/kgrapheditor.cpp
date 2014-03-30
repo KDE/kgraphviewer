@@ -160,7 +160,7 @@ void KGraphEditor::reloadPreviousFiles()
   
 }
 
-KGraphViewerPart *KGraphEditor::slotNewGraph()
+KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
 {
   kDebug();
   KPluginFactory *factory = KPluginLoader("kgraphviewerpart").factory();
@@ -175,7 +175,7 @@ KGraphViewerPart *KGraphEditor::slotNewGraph()
     return NULL;
   }
   KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>("kgraphviewerpart", this);
-  KGraphViewerPart *view = static_cast<KGraphViewerPart *>( part );
+  KGraphViewerInterface *view = qobject_cast<KGraphViewerInterface *>(part);
   if (!view)
   {
     // This should not happen
@@ -184,21 +184,21 @@ KGraphViewerPart *KGraphEditor::slotNewGraph()
   }
   view->setReadWrite();
 
-    m_widget-> insertTab(view->widget(), QIcon( DesktopIcon("kgraphviewer") ), "");
-    m_widget->setCurrentPage(m_widget->indexOf(view->widget()));
+    m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), "");
+    m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
 //     createGUI(view);
 
-    m_tabsPartsMap[m_widget->currentPage()] = view;
+    m_tabsPartsMap[m_widget->currentPage()] = part;
     m_tabsFilesMap[m_widget->currentPage()] = "";
 //     connect(this,SIGNAL(hide(KParts::Part*)),view,SLOT(slotHide(KParts::Part*)));
-  slotSetActiveGraph(view);
-  return view;
+  slotSetActiveGraph(part);
+  return part;
 }
 
 void KGraphEditor::openUrl(const KUrl& url)
 {
   kDebug() << url;
-  KGraphViewerPart *part = slotNewGraph();
+  KParts::ReadOnlyPart *part = slotNewGraph();
   
 //   (KGraphEditorSettings::parsingMode() == "external")
 //     ?kgv->setLayoutMethod(KGraphViewerInterface::ExternalProgram)
@@ -206,8 +206,7 @@ void KGraphEditor::openUrl(const KUrl& url)
 
   QString label = url.path().section('/',-1,-1);
   // @TODO set label
-  m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), label);
-  m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
+  m_widget->setTabText(m_widget->currentIndex(), label);
   m_tabsFilesMap[m_widget->currentPage()] = url.path();
   part->openUrl(url);
 
@@ -499,7 +498,7 @@ void KGraphEditor::close(QWidget* tab)
   m_openedFiles.removeAll(m_tabsFilesMap[tab]);
   m_widget->removePage(tab);
   tab->hide();
-  KGraphViewerPart *part = m_tabsPartsMap[tab];
+  KParts::ReadOnlyPart *part = m_tabsPartsMap[tab];
   m_tabsPartsMap.remove(tab);
   m_tabsFilesMap.remove(tab);
   delete part; part=0;
@@ -549,7 +548,7 @@ void KGraphEditor::newTabSelectedSlot(QWidget* tab)
   }
 }
 
-void KGraphEditor::slotSetActiveGraph(KGraphViewerPart *part)
+void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
 {
   kDebug();
   if (m_currentPart != 0)
