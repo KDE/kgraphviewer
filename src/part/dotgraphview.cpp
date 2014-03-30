@@ -962,7 +962,6 @@ bool DotGraphView::displayGraph()
   {
     setBackgroundColor(QColor(d->m_graph->backColor()));
   }
-  d->m_canvas->clear();
 
   if (d->m_graph->nodes().size() > KGV_MAX_PANNER_NODES)
   {
