@@ -53,6 +53,11 @@ LayoutAGraphThread::~LayoutAGraphThread()
 void LayoutAGraphThread::run()
 {
   kDebug();
+  if (!m_g)
+  {
+    kError() << "No graph loaded, skipping layout";
+    return;
+  }
   threadsafe_wrap_gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
   threadsafe_wrap_gvRender(m_gvc, m_g, "xdot", NULL);
 }

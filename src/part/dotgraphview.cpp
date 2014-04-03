@@ -123,20 +123,14 @@ public:
   {
     delete m_birdEyeView;
     m_birdEyeView = 0;
-    if (m_popup != 0)
-    {
-      delete m_popup;
-    }
+    delete m_popup;
     if (m_canvas)
     {
       Q_Q(DotGraphView);
       q->setScene(0);
       delete m_canvas;
     }
-    if (m_graph != 0)
-    {
-      delete m_graph;
-    }
+    delete m_graph;
   }
   
 
@@ -915,6 +909,10 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
   
   if (d->m_graph != 0)
     delete d->m_graph;
+  d->m_graph = NULL;
+
+  if (!graph)
+    return false;
 
   kDebug() << "layoutCommand:" << layoutCommand;
   d->m_graph = new DotGraph(layoutCommand,"");
@@ -2215,12 +2213,26 @@ void DotGraphView::slotAGraphReadFinished()
 void DotGraphView::slotAGraphLayoutFinished()
 {
   Q_D(DotGraphView);
-  bool result = loadLibrary(d->m_layoutThread.g(), d->m_layoutThread.layoutCommand());
+  graph_t *g = d->m_layoutThread.g();
+  bool result = loadLibrary(g, d->m_layoutThread.layoutCommand());
   if (result)
     d->m_graph->dotFileName(d->m_loadThread.dotFileName());
+  else
+  {
+    Q_ASSERT(!d->m_canvas);
+    QGraphicsScene *newCanvas = new QGraphicsScene();
+    QGraphicsSimpleTextItem* loadingLabel = newCanvas->addSimpleText(i18n("Failed to open %1", d->m_loadThread.dotFileName()));
+    loadingLabel->setZValue(100);
+    centerOn(loadingLabel);
+    setScene(newCanvas);
+    d->m_canvas = newCanvas;
+  }
 
-  gvFreeLayout(d->m_layoutThread.gvc(), d->m_layoutThread.g());
-  agclose(d->m_layoutThread.g());
+  if (g)
+  {
+    gvFreeLayout(d->m_layoutThread.gvc(), g);
+    agclose(g);
+  }
   d->m_layoutThread.processed_finished();
 }
 
