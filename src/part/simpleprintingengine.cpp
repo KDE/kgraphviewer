@@ -255,7 +255,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
     {
       QImage img = m_painting.convertToImage();
       QPixmap pix;
-      pix.convertFromImage(img.smoothScale(w, h, Qt::KeepAspectRatio));
+      pix.convertFromImage(img.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation));
       kDebug() << "drawPixmap";
       painter.drawPixmap((int)leftMargin, y, pix);
     }
@@ -301,15 +301,15 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
       QPixmap pix;
       if (m_settings->horizFitting == 0)
       {
-        pix.convertFromImage(toPaint.smoothScale(img.width(), h, scaleMode));
+        pix.convertFromImage(toPaint.scaled(img.width(), h, scaleMode, Qt::SmoothTransformation));
       }
       else if (m_settings->vertFitting == 0)
       {
-        pix.convertFromImage(toPaint.smoothScale(w, img.height(), scaleMode));
+        pix.convertFromImage(toPaint.scaled(w, img.height(), scaleMode, Qt::SmoothTransformation));
       }
       else
       {
-        pix.convertFromImage(toPaint.smoothScale(w, h, scaleMode));
+        pix.convertFromImage(toPaint.scaled(w, h, scaleMode, Qt::SmoothTransformation));
       }
       painter.drawPixmap((int)leftMargin, y, pix);
     }
