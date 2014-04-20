@@ -228,11 +228,8 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
   w = m_pageWidth;
   h = m_pageHeight;
   y = (int)topMargin ;
-  if (m_settings->addDateAndTime)
-  {
-    h -= (m_headerTextRect.height() + 1);
-    y += (m_headerTextRect.height() );
-  }
+  h -= (m_headerTextRect.height() + 1);
+  y += (m_headerTextRect.height() );
   if (m_settings->addTableBorders)
   {
     w -= 2; h -= 2;
@@ -341,10 +338,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
   {
     kDebug() << "Adding table borders";
     int y1 = (int)topMargin ;
-    if (m_settings->addDateAndTime)
-    {
-      y1 += (m_headerTextRect.height());
-    }
+    y1 += (m_headerTextRect.height());
     int y2 = (int)topMargin + m_pageHeight;
     if (m_settings->addPageNumbers)
     {
@@ -403,10 +397,7 @@ uint KGVSimplePrintingEngine::maxHorizFit() const
 uint KGVSimplePrintingEngine::maxVertFit() const
 {
   uint h = m_pageHeight;
-  if (m_settings->addDateAndTime)
-  {
-    h -= (m_headerTextRect.height() + 1);
-  }
+  h -= (m_headerTextRect.height() + 1);
   if (m_settings->addTableBorders)
   {
     h -= 2;
