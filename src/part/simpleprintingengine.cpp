@@ -250,9 +250,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
     kDebug() << "single-page printing";
     if (paint)
     {
-      QImage img = m_painting.convertToImage();
-      QPixmap pix;
-      pix.convertFromImage(img.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+      QPixmap pix = m_painting.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
       kDebug() << "drawPixmap";
       painter.drawPixmap((int)leftMargin, y, pix);
     }
@@ -293,20 +291,18 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
       {
         scaleMode = Qt::KeepAspectRatio;
       }
-      QImage img = m_painting.convertToImage();
-      QImage toPaint = img.copy(x1, y1, (x2-x1+1), (y2-y1+1));
-      QPixmap pix;
+      QPixmap pix = m_painting.copy(x1, y1, x2-x1+1, y2-y1+1);
       if (m_settings->horizFitting == 0)
       {
-        pix.convertFromImage(toPaint.scaled(img.width(), h, scaleMode, Qt::SmoothTransformation));
+        pix = pix.scaled(pix.width(), h, scaleMode, Qt::SmoothTransformation);
       }
       else if (m_settings->vertFitting == 0)
       {
-        pix.convertFromImage(toPaint.scaled(w, img.height(), scaleMode, Qt::SmoothTransformation));
+        pix = pix.scaled(w, pix.height(), scaleMode, Qt::SmoothTransformation);
       }
       else
       {
-        pix.convertFromImage(toPaint.scaled(w, h, scaleMode, Qt::SmoothTransformation));
+        pix = pix.scaled(w, h, scaleMode, Qt::SmoothTransformation);
       }
       painter.drawPixmap((int)leftMargin, y, pix);
     }
