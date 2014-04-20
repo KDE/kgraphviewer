@@ -17,9 +17,9 @@
 
 */
 
-#include <QMutex>
-
 #include "layoutagraphthread.h"
+
+#include <QMutex>
 
 #include <kdebug.h>
 
