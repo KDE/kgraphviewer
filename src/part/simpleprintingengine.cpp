@@ -107,18 +107,14 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
   {
     m_eof = false;
   }
-	const bool printer = (painter.device()->devType() == QInternal::Printer);
-  kDebug() << "printer:"<< printer;
 	int w = 0, h = 0;
 	QPaintDevice *pdm = painter.device();
+	const bool printer = pdm->devType() == QInternal::Printer;
+  kDebug() << "printer:"<< printer;
 	
-	if (dynamic_cast<QWidget*>(painter.device())) {
-		w = dynamic_cast<QWidget*>(painter.device())->width();
-		h = dynamic_cast<QWidget*>(painter.device())->height();
-	}
-	else if (dynamic_cast<QPixmap*>(painter.device())) {
-		w = dynamic_cast<QPixmap*>(painter.device())->width();
-		h = dynamic_cast<QPixmap*>(painter.device())->height();
+	if (!printer) {
+		w = pdm->width();
+		h = pdm->height();
 	}
 	else {//QPrinter...
 		w = pdm->widthMM();
