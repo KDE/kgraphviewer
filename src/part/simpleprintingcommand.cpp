@@ -101,9 +101,7 @@ bool KGVSimplePrintingCommand::init(const QString& aTitleText)
       return false;
     }
     m_previewWindow = new KGVSimplePrintPreviewWindow(
-      *m_previewEngine, "", 0, 
-      Qt::WStyle_Customize|Qt::WStyle_NormalBorder|Qt::WStyle_Title|
-      Qt::WStyle_SysMenu|Qt::WStyle_MinMax|Qt::WStyle_ContextHelp);
+      *m_previewEngine, "", 0, 0);
     connect(m_previewWindow, SIGNAL(printRequested()), this, SLOT(print()));
     connect(m_previewWindow, SIGNAL(pageSetupRequested()), this, SLOT(slotShowPageSetupRequested()));
 //     KDialog::centerOnScreen(m_previewWindow);
