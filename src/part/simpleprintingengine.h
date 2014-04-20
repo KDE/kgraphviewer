@@ -88,7 +88,6 @@ protected:
   KGVSimplePrintingSettings* m_settings;
 
   QFont m_mainFont;
-  QPaintDevice* m_pdm;
   int m_dpiX, m_dpiY;
   uint m_pageWidth, m_pageHeight;
   //QFontMetrics m_headerFM, m_mainFM;

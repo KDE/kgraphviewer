@@ -54,7 +54,7 @@ namespace KGraphViewer
 KGVSimplePrintingEngine::KGVSimplePrintingEngine(
                                     KGVSimplePrintingSettings* settings, 
                                     QObject* parent) : 
-    QObject(parent, "KGVSimplePrintingEngine"), m_settings(settings), m_pdm(0), 
+    QObject(parent, "KGVSimplePrintingEngine"), m_settings(settings),
     m_data(0)
 {
   clear(); 
@@ -110,7 +110,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 	const bool printer = (painter.device()->devType() == QInternal::Printer);
   kDebug() << "printer:"<< printer;
 	int w = 0, h = 0;
-	m_pdm = painter.device();
+	QPaintDevice *pdm = painter.device();
 	
 	if (dynamic_cast<QWidget*>(painter.device())) {
 		w = dynamic_cast<QWidget*>(painter.device())->width();
@@ -121,8 +121,8 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 		h = dynamic_cast<QPixmap*>(painter.device())->height();
 	}
 	else {//QPrinter...
-		w = m_pdm->widthMM();
-		h = m_pdm->heightMM();
+		w = pdm->widthMM();
+		h = pdm->heightMM();
 	}
 
 	if (!m_paintInitialized) 
@@ -135,8 +135,8 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 		double heightMM = KgvPageFormat::height( 
 			m_settings->pageLayout.format, m_settings->pageLayout.orientation);
 
-		m_dpiY = m_pdm->logicalDpiY();
-		m_dpiX = m_pdm->logicalDpiX();
+		m_dpiY = pdm->logicalDpiY();
+		m_dpiX = pdm->logicalDpiX();
 #ifdef Q_WS_WIN //fix for 120dpi
 		if (!printer) 
     {
@@ -146,8 +146,8 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 			m_dpiX = 86;
 		}
 #endif
-		int pdWidthMM = m_pdm->widthMM();
-		int pdHeightMM = m_pdm->heightMM();
+		int pdWidthMM = pdm->widthMM();
+		int pdHeightMM = pdm->heightMM();
 
 		double screenF;
 //		if (printer)
@@ -165,8 +165,8 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 
 	//screen only
 	//	painter.fillRect(QRect(0,0,w,h), QBrush(white));
-		m_pageWidth = int( m_fx*(double)m_pdm->width() - leftMargin - rightMargin);
-		m_pageHeight = int( m_fy*(double)m_pdm->height() - topMargin - bottomMargin);
+		m_pageWidth = int( m_fx*(double)pdm->width() - leftMargin - rightMargin);
+		m_pageHeight = int( m_fy*(double)pdm->height() - topMargin - bottomMargin);
 
 //! @todo add setting
 		m_mainFont = m_settings->pageTitleFont; 
