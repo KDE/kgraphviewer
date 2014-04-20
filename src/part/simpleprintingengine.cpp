@@ -124,7 +124,9 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 	if (!m_paintInitialized) 
   {
     kDebug() << "initializing";
-    m_paintInitialized = true;
+    // HACK: some functions here do not work properly if were
+    // are not in a paint event, so repeat this until we actually paint.
+    m_paintInitialized = paint;
 
 		double widthMM = KgvPageFormat::width( 
 			m_settings->pageLayout.format, m_settings->pageLayout.orientation);
