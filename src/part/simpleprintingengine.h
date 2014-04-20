@@ -97,7 +97,6 @@ protected:
   uint m_dateTimeWidth;
   QRect m_headerTextRect;
   int m_mainLineSpacing;
-  int m_footerHeight;
   uint m_pagesCount;
   bool m_eof;
   bool m_paintInitialized; //!< used by paintPage()

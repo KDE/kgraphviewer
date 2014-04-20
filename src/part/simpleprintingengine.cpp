@@ -180,7 +180,6 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 			m_dateTimeWidth = painter.boundingRect(leftMargin, topMargin, m_pageWidth, m_pageHeight, Qt::AlignRight, m_dateTimeText+"   ").width();
 		}
 		m_mainLineSpacing = painter.fontMetrics().lineSpacing();
-		m_footerHeight = m_mainLineSpacing * 2; //2 lines
 		m_headerTextRect = painter.boundingRect(
 			(int)leftMargin, (int)topMargin,
 			m_pageWidth - m_dateTimeWidth,
