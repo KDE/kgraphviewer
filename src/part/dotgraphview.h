@@ -88,8 +88,6 @@ public:
   void readViewConfig();
   void saveViewConfig();
 
-  QWidget* widget() { return this; }
-
   //TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
   KGraphViewerInterface::PannerPosition zoomPos() const;
   static KGraphViewerInterface::PannerPosition zoomPos(const QString&);
