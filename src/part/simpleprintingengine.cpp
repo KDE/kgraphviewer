@@ -177,7 +177,6 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 		m_dateTimeWidth = painter.fontMetrics().width(m_dateTimeText+"   ");
 		m_mainLineSpacing = painter.fontMetrics().lineSpacing();
 		m_footerHeight = m_mainLineSpacing * 2; //2 lines
-		painter.setFont(m_mainFont);
 		m_headerTextRect = painter.fontMetrics().boundingRect(
 			(int)leftMargin, (int)topMargin,
 			m_pageWidth - m_dateTimeWidth,
@@ -185,8 +184,6 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 		m_headerTextRect.setRight(m_headerTextRect.right()+10);
 		m_headerTextRect.setWidth(
 			qMin(int(m_pageWidth - m_dateTimeWidth), m_headerTextRect.width()));
-
-		painter.setFont(m_mainFont);
   }
   kDebug() << "after initialization";
   
