@@ -201,10 +201,10 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
     m_contents->maintainAspectButton->setEnabled(false);
   }
 
-  QString chainStatePixString = KGlobal::dirs()-> findResource("appdata", "pics/chain.png");
+  QString chainStatePixString = KGlobal::dirs()->findResource("data", "kgraphviewerpart/pics/chain.png");
   if (!m_settings->chainedFittings)
   {
-    chainStatePixString = KGlobal::dirs()-> findResource("appdata", "pics/chain-broken.png");
+    chainStatePixString = KGlobal::dirs()->findResource("data", "kgraphviewerpart/pics/chain-broken.png");
   }
   if (chainStatePixString.isNull())
   {
@@ -356,7 +356,7 @@ void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
 {
   if (m_settings->chainedFittings)
   {
-    QString chainBreakPixString = KGlobal::dirs()-> findResource("appdata", "pics/chain-broken.png");
+    QString chainBreakPixString = KGlobal::dirs()->findResource("data", "kgraphviewerpart/pics/chain-broken.png");
     if (chainBreakPixString.isNull())
     {
       std::cerr << "chain break pixmap not found !" << std::endl;
@@ -366,7 +366,7 @@ void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
   }
   else
   {
-    QString chainPixString = KGlobal::dirs()-> findResource("appdata", "pics/chain.png");
+    QString chainPixString = KGlobal::dirs()->findResource("data", "kgraphviewerpart/pics/chain.png");
     if (chainPixString.isNull())
     {
       std::cerr << "chain pixmap not found !" << std::endl;
