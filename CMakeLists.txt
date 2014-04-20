@@ -16,7 +16,7 @@ if(NOT DOT)
    MESSAGE(STATUS "dot executable from GraphViz not found. You will need it at runtime")
 endif(NOT DOT)
 
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT3_SUPPORT)
+add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 remove_definitions(-DQT_NO_STL) 
 

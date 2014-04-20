@@ -67,10 +67,11 @@ namespace KGraphViewer
 KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
     KGVSimplePrintingCommand* command, DotGraphView *mainWin, QWidget *parent, 
 	  QMap<QString,QString>* args )
-	: QWidget( parent, "KGVSimplePrintingPageSetup" )
+	: QWidget(parent)
 	, m_settings( command->engine()->settings() )
   , m_command(command)
 {
+	setObjectName("KGVSimplePrintingPageSetup");
 	// object to print
 	bool ok = args;
     m_graphView = mainWin;
@@ -110,7 +111,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 	connect(m_contents->printPreviewButton, SIGNAL(clicked()), this, SLOT(slotPrintPreview()));
 
 	m_contents->iconLabel->setFixedWidth(32+6);
-  m_contents->iconLabel->setPixmap( DesktopIcon("distribute-horizontal-page", 32) );
+  m_contents->iconLabel->setPixmap(DesktopIcon("distribute-horizontal-page", 32));
 	m_contents->headerTitleFontButton->setWhatsThis(i18n("Changes font for title text."));
 	connect(m_contents->headerTitleFontButton, SIGNAL(clicked()), 
 		this, SLOT(slotChangeTitleFont()));
@@ -210,7 +211,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
   {
     std::cerr << "chain state pixmap not found !" << std::endl;
   }
-  m_contents->maintainAspectButton->setPixmap(QPixmap(chainStatePixString));
+  m_contents->maintainAspectButton->setIcon(QPixmap(chainStatePixString));
 
   // hides currently unused title label
   m_contents->headerTitleLineEdit->setText(i18n("Chosen font looks like this"));
@@ -281,7 +282,7 @@ void KGVSimplePrintingPageSetup::slotTitleTextChanged(const QString&)
 		m_printPreviewNeedsReloading = true;
 	}
 		
-	m_contents->headerTitleLineEdit->clearModified();
+	m_contents->headerTitleLineEdit->setModified(false);
   setDirty(true);
 }
 
@@ -361,7 +362,7 @@ void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
     {
       std::cerr << "chain break pixmap not found !" << std::endl;
     }
-    m_contents->maintainAspectButton->setPixmap(QPixmap(chainBreakPixString));
+    m_contents->maintainAspectButton->setIcon(QPixmap(chainBreakPixString));
     m_settings->chainedFittings = false;
   }
   else
@@ -371,7 +372,7 @@ void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
     {
       std::cerr << "chain pixmap not found !" << std::endl;
     }
-    m_contents->maintainAspectButton->setPixmap(QPixmap(chainPixString));
+    m_contents->maintainAspectButton->setIcon(QPixmap(chainPixString));
     m_settings->chainedFittings = true;
   }
   emit needsRedraw();

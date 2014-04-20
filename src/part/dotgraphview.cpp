@@ -471,7 +471,7 @@ void DotGraphViewPrivate::setupPopup()
   m_popup->addAction(KIcon("zoom-in"), i18n("Zoom In"), q, SLOT(zoomIn()));
   m_popup->addAction(KIcon("zoom-out"), i18n("Zoom Out"), q, SLOT(zoomOut()));
   
-  m_popup->insertSeparator();
+  m_popup->addSeparator();
   
   KActionMenu* file_exportMenu = new KActionMenu(i18n("Export Graph"), q);
   actionCollection()->addAction("file_export",file_exportMenu);
@@ -490,7 +490,7 @@ void DotGraphViewPrivate::setupPopup()
   file_exportMenu->addAction(exportToImageAction);
   
   
-  m_popup->insertSeparator();
+  m_popup->addSeparator();
   
   m_bevEnabledAction = new KToggleAction(
     KIcon(KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-bev.png")),
@@ -1542,7 +1542,7 @@ void DotGraphView::saveViewConfig()
     writeConfigEntry(&g, "DetailLevel", d->m_detailLevel, DEFAULT_DETAILLEVEL);
     writeConfigEntry(&g, "KGraphViewerInterface::PannerPosition",
          zoomPosString(d->m_zoomPosition),
-         zoomPosString(DEFAULT_ZOOMPOS).utf8().data());
+         zoomPosString(DEFAULT_ZOOMPOS).toUtf8().data());
   g.sync();
 }
 
@@ -1615,7 +1615,7 @@ KConfigGroup* DotGraphView::configGroup(KConfig* c,
 {
   QStringList gList = c->groupList();
   QString res = group;
-  if (gList.contains((group+post).ascii()) ) res += post;
+  if (gList.contains(group+post)) res += post;
   return new KConfigGroup(c, res);
 }
 

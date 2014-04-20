@@ -57,10 +57,10 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
     tempFile.setSuffix(".dot");
     if (!tempFile.open()) 
     {
-      kError() << "Unable to open for temp file for writing " << tempFile.name() << endl;
+      kError() << "Unable to open for temp file for writing " << tempFile.fileName() << endl;
       exit(2);
     }
-    actualFileName = tempFile.name();
+    actualFileName = tempFile.fileName();
     kDebug() << "using " << actualFileName;
   }
   

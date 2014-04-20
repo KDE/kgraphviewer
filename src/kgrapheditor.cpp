@@ -184,12 +184,13 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
   }
   view->setReadWrite();
 
-    m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), "");
-    m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
+    QWidget *w = part->widget();
+    m_widget->addTab(w, QIcon( DesktopIcon("kgraphviewer") ), "");
+    m_widget->setCurrentWidget(w);
 //     createGUI(view);
 
-    m_tabsPartsMap[m_widget->currentPage()] = part;
-    m_tabsFilesMap[m_widget->currentPage()] = "";
+    m_tabsPartsMap[w] = part;
+    m_tabsFilesMap[w] = "";
 //     connect(this,SIGNAL(hide(KParts::Part*)),view,SLOT(slotHide(KParts::Part*)));
   slotSetActiveGraph(part);
   return part;
@@ -207,7 +208,7 @@ void KGraphEditor::openUrl(const KUrl& url)
   QString label = url.path().section('/',-1,-1);
   // @TODO set label
   m_widget->setTabText(m_widget->currentIndex(), label);
-  m_tabsFilesMap[m_widget->currentPage()] = url.path();
+  m_tabsFilesMap[m_widget->currentWidget()] = url.path();
   part->openUrl(url);
 
   m_openedFiles.push_back(url.path());
@@ -508,7 +509,7 @@ void KGraphEditor::close(QWidget* tab)
 
 void KGraphEditor::close()
 {
-  QWidget* currentPage = m_widget->currentPage();
+  QWidget* currentPage = m_widget->currentWidget();
   if (currentPage != 0)
   {
     close(currentPage);
@@ -517,7 +518,7 @@ void KGraphEditor::close()
 
 void KGraphEditor::fileSave()
 {
-  QWidget* currentPage = m_widget->currentPage();
+  QWidget* currentPage = m_widget->currentWidget();
   if (currentPage != 0)
   {
     emit(saveTo(QUrl(m_tabsFilesMap[currentPage]).path()));
@@ -526,7 +527,7 @@ void KGraphEditor::fileSave()
 
 void KGraphEditor::fileSaveAs()
 {
-  QWidget* currentPage = m_widget->currentPage();
+  QWidget* currentPage = m_widget->currentWidget();
   if (currentPage != 0)
   {
     QString fileName = KFileDialog::getSaveFileName(KUrl(),

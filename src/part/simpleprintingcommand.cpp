@@ -46,8 +46,10 @@
 #include <kdeversion.h>
 #include <kmessagebox.h>
 #include <knuminput.h>
+#include <kdeprintdialog.h>
 
-#include <QtGui/QPrinter>
+#include <QPrinter>
+#include <QPrintDialog>
 #include <qlabel.h>
 #include <qtimer.h>
 #include <qlayout.h>
@@ -65,7 +67,7 @@ namespace KGraphViewer
 {
 KGVSimplePrintingCommand::KGVSimplePrintingCommand(
   DotGraphView* mainWin, int objectId, QObject* parent)
- : QObject(parent, "KGVSimplePrintCommand")
+ : QObject(parent)
  , m_previewEngine(0)
  , m_graphView(mainWin)
  , m_objectId(objectId)
@@ -74,6 +76,7 @@ KGVSimplePrintingCommand::KGVSimplePrintingCommand(
  , m_printPreviewNeedsReloading(true)
  , m_pageSetupDialog(0)
 {
+  setObjectName("KGVSimplePrintCommand");
   connect(this, SIGNAL(showPageSetupRequested()), 
     this, SLOT(slotShowPageSetupRequested()));
 }
@@ -127,7 +130,8 @@ bool KGVSimplePrintingCommand::print(const QString& aTitleText)
   QString docName( aTitleText );
   printer.setDocName( docName );
   printer.setCreator("kgraphviewer");
-  if ( !printer.setup( m_graphView ) ) {
+  QPointer<QPrintDialog> dlg = KdePrint::createPrintDialog(&printer, m_graphView);
+  if (dlg->exec() != QDialog::Accepted) {
     return true;
   }
 
@@ -265,7 +269,7 @@ void KGVSimplePrintingCommand::slotShowPageSetupRequested()
 {
   if (m_pageSetupDialog == 0)
   {
-    m_pageSetupDialog = new QDialog(0,"glurp",false);
+    m_pageSetupDialog = new QDialog(0);
     QMap<QString,QString> map;
     map["action"]=="pageSetup";
     map["title"]==m_graphView->dotFileName();
@@ -276,12 +280,8 @@ void KGVSimplePrintingCommand::slotShowPageSetupRequested()
       connect(sppsb,SIGNAL(needsRedraw()),m_previewWindow, SLOT(slotRedraw()));
     }
     lyr->addWidget(sppsb);
-    m_pageSetupDialog->show();
   }
-  else
-  {
-    m_pageSetupDialog->show();
-  }
+  m_pageSetupDialog->show();
   m_pageSetupDialog->raise();
 }
 

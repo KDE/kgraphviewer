@@ -54,9 +54,10 @@ namespace KGraphViewer
 KGVSimplePrintingEngine::KGVSimplePrintingEngine(
                                     KGVSimplePrintingSettings* settings, 
                                     QObject* parent) : 
-    QObject(parent, "KGVSimplePrintingEngine"), m_settings(settings),
+    QObject(parent), m_settings(settings),
     m_data(0)
 {
+  setObjectName("KGVSimplePrintingEngine");
   clear(); 
 }
 
@@ -74,7 +75,7 @@ bool KGVSimplePrintingEngine::init(DotGraphView& data, const QString& titleText,
   m_data = &data;
   m_eof = false;
   
-  m_painting.resize(m_data->scene()->sceneRect().size().toSize());
+  m_painting = QPixmap(m_data->scene()->sceneRect().size().toSize());
   QPainter p(&m_painting);
   m_data->scene()->render( &p );
   
@@ -170,7 +171,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 		m_mainFont = m_settings->pageTitleFont; 
 		if(!printer) 
     {
-			int pixelSize = int( POINT_TO_INCH(m_mainFont.pointSizeFloat())*m_dpiX );
+			int pixelSize = int( POINT_TO_INCH(m_mainFont.pointSizeF())*m_dpiX );
 			m_mainFont.setPixelSize(pixelSize);
 		}
 		painter.setFont(m_mainFont);
@@ -327,11 +328,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
     kDebug() << "(x1, y1, x2, 2) = ("<<x1<<","<<y1<<","<<x2<<","<<y2<<")";
     if (paint)
     {
-      QImage img = m_painting.convertToImage();
-      QImage toPaint = img.copy(x1, y1, (x2-x1+1), (y2-y1+1));
-      QPixmap pix;
-      pix.convertFromImage(toPaint);
-      painter.drawPixmap((int)leftMargin, y, pix);
+      painter.drawPixmap((int)leftMargin, y, m_painting.copy(x1, y1, x2-x1+1, y2-y1+1));
     }
     if ( x2 >= m_painting.width() && y2 >= m_painting.height() )
     {

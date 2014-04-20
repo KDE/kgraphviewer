@@ -53,7 +53,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
     QValidator::State result = Acceptable;
 
     QRegExp regexp ("([ a-zA-Z]+)$"); // Letters or spaces at end
-    const int res = regexp.search( s );
+    const int res = regexp.indexIn(s);
 
     if ( res == -1 )
     {
@@ -345,7 +345,7 @@ KgvUnitDoubleComboBox::updateValue( double value )
 void
 KgvUnitDoubleComboBox::insertItem( double value, int index )
 {
-    KComboBox::insertItem( getVisibleText( value ), index );
+    KComboBox::insertItem(index, getVisibleText( value ));
 }
 
 void
@@ -353,7 +353,7 @@ KgvUnitDoubleComboBox::slotActivated( int index )
 {
     double oldvalue = m_value;
     bool ok;
-    double value = toDouble( text( index ), &ok );
+    double value = toDouble( itemText( index ), &ok );
     m_value = value < m_lower ? m_lower : ( value > m_upper ? m_upper : value );
     if( m_value != oldvalue )
         emit valueChanged( m_value );
@@ -397,7 +397,7 @@ double KgvUnitDoubleComboBox::value( void ) const
 KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, const char *name )
     : QWidget( parent ), m_step( 1.0 )
 {
-    QGridLayout *layout = new QGridLayout( this, 2, 3 );
+    QGridLayout *layout = new QGridLayout( this );
     //layout->setMargin( 2 );
     QPushButton *up = new QPushButton( "+", this );
     //up->setFlat( true );
@@ -414,14 +414,14 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, const cha
 
     m_combo = new KgvUnitDoubleComboBox( this, KgvUnit::ptToUnit( 0.0, KgvUnit::U_PT ), KgvUnit::ptToUnit( 9999.99, KgvUnit::U_PT ), 0.0, KgvUnit::U_PT, 2, name );
     connect( m_combo, SIGNAL(valueChanged(double)), this, SIGNAL(valueChanged(double)) );
-    layout->addMultiCellWidget( m_combo, 0, 1, 2, 2 );
+    layout->addWidget( m_combo, 0, 2, 2, 1 );
 }
 
 KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, double lower, double upper, double step, double value,
                                                     KgvUnit::Unit unit, unsigned int precision, const char *name )
     : QWidget( parent ), m_step( step )//, m_lowerInPoints( lower ), m_upperInPoints( upper )
 {
-    QGridLayout *layout = new QGridLayout( this, 2, 3 );
+    QGridLayout *layout = new QGridLayout( this );
     //layout->setMargin( 2 );
     QPushButton *up = new QPushButton( "+", this );
     //up->setFlat( true );
@@ -438,7 +438,7 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, double lo
 
     m_combo = new KgvUnitDoubleComboBox( this, KgvUnit::ptToUnit( lower, unit ), KgvUnit::ptToUnit( upper, unit ), value, unit, precision, name );
     connect( m_combo, SIGNAL(valueChanged(double)), this, SIGNAL(valueChanged(double)) );
-    layout->addMultiCellWidget( m_combo, 0, 1, 2, 2 );
+    layout->addWidget( m_combo, 0, 2, 2, 1 );
 }
 
 void

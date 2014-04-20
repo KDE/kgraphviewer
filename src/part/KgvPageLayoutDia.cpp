@@ -58,8 +58,9 @@
 
 /*===================== constructor ==============================*/
 KgvPagePreview::KgvPagePreview( QWidget* parent, const char *name, const KgvPageLayout& layout )
-    : QGroupBox( i18n( "Page Preview" ), parent, name )
+    : QGroupBox( i18n( "Page Preview" ), parent )
 {
+    setObjectName(name);
     setPageLayout( layout );
     columns = 1;
     setMinimumSize( 150, 150 );
@@ -93,14 +94,14 @@ void KgvPagePreview::setPageLayout( const KgvPageLayout &layout )
     m_textFrameHeight = m_pageHeight - ( layout.ptTop + layout.ptBottom ) * resolutionY * z;
 
     kDebug() << "repaint in setPageLayout";
-    repaint( true );
+    repaint();
 }
 
 /*=================== set layout =================================*/
 void KgvPagePreview::setPageColumns( const KgvColumns &_columns )
 {
     columns = _columns.columns;
-    repaint( true );
+    repaint();
 }
 
 /*======================== draw contents =========================*/

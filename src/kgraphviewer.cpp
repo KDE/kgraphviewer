@@ -166,16 +166,17 @@ void KGraphViewerWindow::openUrl(const KUrl& url)
     if (part)
     {
       QString label = url.url().section('/',-1,-1);
-      m_widget-> insertTab(part->widget(), QIcon( DesktopIcon("kgraphviewer") ), label);
-      m_widget->setCurrentPage(m_widget->indexOf(part->widget()));
+      QWidget *w = part->widget();
+      m_widget->addTab(w, QIcon( DesktopIcon("kgraphviewer") ), label);
+      m_widget->setCurrentWidget(w);
       createGUI(part);
 
       part->openUrl( url );
       
       m_openedFiles.push_back(url.url());
       m_manager->addPart( part, true );
-      m_tabsPartsMap[m_widget->currentPage()] = part;
-      m_tabsFilesMap[m_widget->currentPage()] = url.url();
+      m_tabsPartsMap[w] = part;
+      m_tabsFilesMap[w] = url.url();
       connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
       connect(part,SIGNAL(close()),this,SLOT(close()));
 
@@ -531,7 +532,7 @@ void KGraphViewerWindow::close(QWidget* tab)
 void KGraphViewerWindow::close()
 {
   kDebug();
-  QWidget* currentPage = m_widget->currentPage();
+  QWidget* currentPage = m_widget->currentWidget();
   if (currentPage != 0)
   {
     close(currentPage);

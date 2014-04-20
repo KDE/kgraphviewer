@@ -159,7 +159,7 @@ double KgvUnit::parseValue( const QString& sval, double defaultVal )
   if( value.isEmpty() )
       return defaultVal;
 
-  int index = value.find( QRegExp( "[a-z]+$" ) );
+  int index = value.indexOf(QRegExp("[a-z]+$"));
   if ( index == -1 )
       return value.toDouble();
 

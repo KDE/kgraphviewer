@@ -59,7 +59,7 @@ KGVSimplePrintingSettings::KGVSimplePrintingSettings()
 	addDateAndTime = true;
 	addTableBorders = false;
 	pageTitleFont = kapp->font();
-	pageTitleFont.setPointSizeFloat( (double)QFontInfo(pageTitleFont).pointSize()*1.5 );
+	pageTitleFont.setPointSizeF( (double)QFontInfo(pageTitleFont).pointSize()*1.5 );
 	pageTitleFont.setBold(true);
   fittingMode = FitToOnePage;
   fitToOnePage = true;

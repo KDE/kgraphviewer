@@ -27,9 +27,11 @@
 
 #include <KgvGlobal.h>
 #include <kdebug.h>
+#include <QDesktopWidget>
 #include <qfont.h>
 #include <qfontinfo.h>
 #include <QPaintDevice>
+#include <kapplication.h>
 #include <kglobalsettings.h>
 #include <kglobal.h>
 #include <klocale.h>
@@ -63,13 +65,8 @@ KgvGlobal::KgvGlobal()
     // Another way to get the DPI of the display would be QPaintDeviceMetrics,
     // but we have no widget here (and moving this to KgvView wouldn't allow
     // using this from the document easily).
-#ifdef Q_WS_X11
-    m_dpiX = QPaintDevice::x11AppDpiX();
-    m_dpiY = QPaintDevice::x11AppDpiY();
-#else
-    m_dpiX = 75;
-    m_dpiY = 75;
-#endif
+    m_dpiX = KApplication::desktop()->physicalDpiX();
+    m_dpiY = KApplication::desktop()->physicalDpiY();
 }
 
 KgvGlobal::~KgvGlobal()
@@ -181,7 +178,7 @@ QString KgvGlobal::languageFromTag( const QString &langTag )
     QMap<QString,QString>::ConstIterator it = map.begin();
     const QMap<QString,QString>::ConstIterator end = map.end();
     for ( ; it != end; ++it )
-        if ( it.data() == langTag )
+        if ( it.value() == langTag )
             return it.key();
 
     // Language code not found. Better return the code (tag) than nothing.

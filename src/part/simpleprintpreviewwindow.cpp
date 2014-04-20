@@ -60,15 +60,16 @@ namespace KGraphViewer
 KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 	KGVSimplePrintingEngine &engine, const QString& previewName, 
 	QWidget *parent, Qt::WFlags f)
- : QWidget(parent, "KGVSimplePrintPreviewWindow", f)
+ : QWidget(parent, f)
  , m_engine(engine)
  , m_settings(m_engine.settings())
  , m_pageNumber(-1),
   m_actions(this)
 {
+  setObjectName("KGVSimplePrintPreviewWindow");
 //	m_pagesCount = INT_MAX;
 
-  setCaption(i18n("%1 - Print Preview - %2",previewName,QString("")));
+  setWindowTitle(i18n("%1 - Print Preview - %2",previewName,QString("")));
   setWindowIcon(KIcon(QLatin1String("document-print-preview")));
   QVBoxLayout *lyr = new QVBoxLayout();
 

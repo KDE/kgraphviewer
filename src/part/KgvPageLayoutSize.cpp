@@ -56,12 +56,14 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     m_layout = layout;
     m_unit = unit;
 
-    QGridLayout *grid1 = new QGridLayout( this, 5, 2, 0, KDialog::spacingHint() );
+    QGridLayout *grid1 = new QGridLayout( this );
+    grid1->setSpacing(KDialog::spacingHint());
     if ( unitChooser ) {
         // ------------- unit _______________
         QWidget* unitFrame = new QWidget( this );
         grid1->addWidget( unitFrame, 0, 0, Qt::AlignLeft );
-        QBoxLayout* unitLayout = new QHBoxLayout( unitFrame, 0, KDialog::spacingHint() );
+        QBoxLayout* unitLayout = new QHBoxLayout( unitFrame );
+        unitLayout->setSpacing(KDialog::spacingHint());
 
         // label unit
         QLabel *lpgUnit = new QLabel( i18n( "Unit:" ), unitFrame );
@@ -70,7 +72,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(
         // combo unit
         KComboBox *cpgUnit = new KComboBox( false, unitFrame );
         lpgUnit->setBuddy( cpgUnit );
-        cpgUnit->insertStringList( KgvUnit::listOfUnitName() );
+        cpgUnit->addItems( KgvUnit::listOfUnitName() );
         cpgUnit->setCurrentIndex( unit );
         unitLayout->addWidget( cpgUnit, 0, Qt::AlignLeft | Qt::AlignVCenter );
         connect( cpgUnit, SIGNAL(activated(int)), this, SLOT(setUnitInt(int)) );
@@ -96,7 +98,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(
 
     // combo size
     cpgFormat = new KComboBox( false, formatPageSize );
-    cpgFormat->insertStringList( KgvPageFormat::allFormats() );
+    cpgFormat->addItems( KgvPageFormat::allFormats() );
     lpgFormat->setBuddy( cpgFormat );
     connect( cpgFormat, SIGNAL(activated(int)), this, SLOT(formatChanged(int)) );
     QHBoxLayout *lay = new QHBoxLayout;
@@ -168,8 +170,8 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     grid1->addWidget( marginsFrame, 3, 0 );
     
     QWidget* marginsWidget = new QWidget(marginsFrame);
-    QGridLayout *marginsLayout = new QGridLayout( marginsFrame->layout(), 3, 3,
-       KDialog::spacingHint() );
+    QGridLayout *marginsLayout = new QGridLayout( marginsFrame );
+    marginsLayout->setSpacing(KDialog::spacingHint());
 
     // left margin
     ebrLeft = new KgvUnitDoubleSpinBox( marginsWidget, "Left" );
@@ -195,7 +197,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(
 
     // ------------- preview -----------
     pgPreview = new KgvPagePreview( this, "Preview", m_layout );
-    grid1->addMultiCellWidget( pgPreview, 1, 3, 1, 1 );
+    grid1->addWidget( pgPreview, 1, 1, 3, 1 );
 
     // ------------- spacers -----------
     QWidget* spacer1 = new QWidget( this );
