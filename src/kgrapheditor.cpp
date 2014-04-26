@@ -267,14 +267,14 @@ void KGraphEditor::setupActions()
   connect( edit_new_edge, SIGNAL(triggered(bool)), this, SLOT(slotEditNewEdge()) );
 }
 
-bool KGraphEditor::queryExit()
+void KGraphEditor::closeEvent(QCloseEvent *event)
 {
   kDebug() ;
   KGraphEditorSettings::setPreviouslyOpenedFiles(m_openedFiles);
   m_rfa->saveEntries(KGlobal::config()->group("kgrapheditor"));
 
   KGraphEditorSettings::self()->writeConfig();
-  return true;
+  KXmlGuiWindow::closeEvent(event);
 }
 
 void KGraphEditor::fileNew()

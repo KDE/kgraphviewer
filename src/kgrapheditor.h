@@ -70,7 +70,7 @@ public:
   void reloadPreviousFiles();
 
 protected:
-  bool queryExit(); 
+  void closeEvent(QCloseEvent *event);
 
 Q_SIGNALS:
   void hide(KParts::ReadOnlyPart* part);

@@ -242,12 +242,11 @@ void KGraphViewerWindow::setupActions()
 
 }
 
-bool KGraphViewerWindow::queryExit()
+void KGraphViewerWindow::closeEvent(QCloseEvent* event)
 {
-//   std::cerr << "queryExit" << std::endl;
   KGraphViewerSettings::setPreviouslyOpenedFiles(m_openedFiles);
   KGraphViewerSettings::self()->writeConfig();
-  return true;
+  KParts::MainWindow::closeEvent(event);
 }
 
 void KGraphViewerWindow::fileNew()

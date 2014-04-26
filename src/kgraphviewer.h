@@ -62,7 +62,7 @@ public:
 
 protected:
 
-  bool queryExit(); 
+  void closeEvent(QCloseEvent *event);
 
 signals:
   void hide(KParts::Part* part);
