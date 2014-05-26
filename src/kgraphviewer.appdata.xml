@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<component type="desktop">
+  <id>kgraphviewer.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>KGraphViewer</name>
+  <summary>A Graphviz dot graph viewer for KDE</summary>
+  <description>
+    <p>
+      KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools.
+      Graphs are commonly used in scientific domains and particularly in computer science.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Zooming</li>
+      <li>Threaded loading of several graphs in tabs</li>
+      <li>Saving of the recent files list</li>
+      <li>Manual reload of files</li>
+      <li>Display of a bird-eye view of the graph</li>
+      <li>Moving of the graph by dragging</li>
+      <li>Full featured printing</li>
+      <li>Perfect drawing of all graphviz example graphs</li>
+      <li>Automatically choose dot for directed graphs and neato for undirected</li>
+      <li>Possibility to use an arbitrary layout algo as soon as it produces xdot format</li>
+      <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
+      <li>Open new instances as new tabs in the old one (configurable)</li>
+    </ul>
+  </description>
+  <url type="homepage">http://extragear.kde.org/apps/kgraphviewer/</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kgraphviewer</url>
+  <url type="help">http://docs.kde.org/development/en/extragear-graphics/kgraphviewer/index.html</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://kde.org/images/screenshots/kgraphviewer.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>kgraphviewer</binary>
+    <binary>kgrapheditor</binary>
+  </provides>
+</component>

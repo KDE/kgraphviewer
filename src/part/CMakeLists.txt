@@ -16,7 +16,8 @@ kde4_add_library(kgraphviewerlib SHARED ${kgraphviewerlib_LIB_SRCS})
 add_definitions(-DQT_STL)
 target_link_libraries(kgraphviewerlib ${QT_QTSVG_LIBRARY} ${KDE4_KIO_LIBS} ${graphviz_LIBRARIES})
 
-set_target_properties(kgraphviewerlib PROPERTIES VERSION 2.1 SOVERSION 2 OUTPUT_NAME kgraphviewer )
+set(KGRAPHVIEWER_SOVERSION "2")
+set_target_properties(kgraphviewerlib PROPERTIES VERSION 2.1 SOVERSION ${KGRAPHVIEWER_SOVERSION} OUTPUT_NAME kgraphviewer )
 
 install( TARGETS kgraphviewerlib ${INSTALL_TARGETS_DEFAULT_ARGS})
 
@@ -32,6 +33,8 @@ target_link_libraries(kgraphviewerpart ${KDE4_KPARTS_LIBS} gvc cgraph pathplan c
 
 install( TARGETS kgraphviewerpart DESTINATION ${PLUGIN_INSTALL_DIR})
 
+########### configure AppStream metadata ###############
+configure_file(kgraphviewer.metainfo.xml.in "${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer.metainfo.xml" IMMEDIATE @ONLY)
 
 ########### install files ###############
 
@@ -44,6 +47,7 @@ install( FILES chain-broken.png DESTINATION ${DATA_INSTALL_DIR}/kgraphviewerpart
 install( FILES kgraphviewer-bev.png DESTINATION ${DATA_INSTALL_DIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-newnode.png DESTINATION ${DATA_INSTALL_DIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-newedge.png DESTINATION ${DATA_INSTALL_DIR}/kgraphviewerpart/pics )
+install( FILES "${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer.metainfo.xml" DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/${CMAKE_LIBRARY_ARCHITECTURE}/ )
 
 install(FILES kgraphviewer_interface.h DESTINATION ${INCLUDE_INSTALL_DIR}/kgraphviewer/ COMPONENT Devel)
 install(FILES dotgraphview.h DESTINATION ${INCLUDE_INSTALL_DIR}/kgraphviewer/ COMPONENT Devel)
