@@ -494,8 +494,10 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
                                               ] 
                      )[&valid_op]
   // "T 1537 228 0 40 9 -#1 (== 0) T 1537 217 0 90 19 -MAIN:./main/main.pl "
+  // T x y j w n -b1b2...bn 	Text drawn using the baseline point (x,y). The text consists of the n bytes following '-'. The text should be left-aligned (centered, right-aligned) on the point if j is -1 (0, 1), respectively. The value w gives the width of the text as computed by the library. 
+  // I x y w h n -b1b2...bn 	Externally-specified image drawn in the box with lower left corner (x,y) and upper right corner (x+w,y+h). The name of the image consists of the n bytes following '-'. This is usually a bitmap image. Note that the image size, even when converted from pixels to points, might be different from the required size (w,h). It is assumed the renderer will perform the necessary scaling. (1.2) 
                    | (
-                       ch_p('T')[assign_a(therenderop)] >> +space_p >>
+                       (ch_p('T')|ch_p('I'))[assign_a(therenderop)] >> +space_p >>
                        repeat_p(4)[int_p[push_back_a(renderop.integers)] >> !((ch_p(',')|ch_p('.')) >> int_p) >> +space_p] >>
                        int_p[assign_a(c)] >> +space_p >> '-' >> 
                        (repeat_p(boost::ref(c))[anychar_p])[assign_a(thestr)] >> +space_p
@@ -507,6 +509,7 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
                        (repeat_p(boost::ref(c))[anychar_p])[assign_a(thestr)] >> +space_p
                      )[&valid_op] 
   // t 0
+  // t f 	Set font characteristics. The integer f is the OR of BOLD=1, ITALIC=2, UNDERLINE=4, SUPERSCRIPT=8, SUBSCRIPT=16, (1.5) STRIKE-THROUGH=32 (1.6), and OVERLINE=64 (1.7). 
                      | (
                        (ch_p('t'))[assign_a(therenderop)] >> +space_p >>
                        int_p[assign_a(c)] >> +space_p 
