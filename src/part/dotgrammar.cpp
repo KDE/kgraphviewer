@@ -506,6 +506,11 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
                        int_p[assign_a(c)] >> +space_p >> '-' >> 
                        (repeat_p(boost::ref(c))[anychar_p])[assign_a(thestr)] >> +space_p
                      )[&valid_op] 
+  // t 0
+                     | (
+                       (ch_p('t'))[assign_a(therenderop)] >> +space_p >>
+                       int_p[assign_a(c)] >> +space_p 
+                     )[&valid_op] 
   // F 14,000000 11 -Times-Roman 
                     | (
                        ch_p('F')[assign_a(therenderop)] >> +space_p >>
