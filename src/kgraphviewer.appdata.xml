@@ -1,29 +1,87 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <component type="desktop">
   <id>kgraphviewer.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KGraphViewer</name>
+  <name xml:lang="nl">KGraphViewer</name>
+  <name xml:lang="pt">KGraphViewer</name>
+  <name xml:lang="sv">Kgraphviewer</name>
+  <name xml:lang="uk">KGraphViewer</name>
+  <name xml:lang="x-test">xxKGraphViewerxx</name>
   <summary>A Graphviz dot graph viewer for KDE</summary>
+  <summary xml:lang="pt">Um visualizador de grafos pontuais do Graphviz para o KDE</summary>
+  <summary xml:lang="sv">Visning av Graphviz dot-grafer för KDE</summary>
+  <summary xml:lang="uk">Програма для перегляду графів dot Graphviz у KDE</summary>
+  <summary xml:lang="x-test">xxA Graphviz dot graph viewer for KDExx</summary>
   <description>
     <p>
       KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools.
       Graphs are commonly used in scientific domains and particularly in computer science.
     </p>
+    <p xml:lang="sv">Kgraphviewer är ett visningsprogram av Graphviz dot-grafer, med målet att ersätta övriga föråldrade Graphviz-verktyg. Användning av grafer är vanligt i vetenskapliga områden, i synnerhet inom datavetenskap.</p>
+    <p xml:lang="uk">KGraphViewer — програма для перегляду графів у форматі dot Graphviz. Її створено як заміну застарілим інструментам для роботи з GraphViz. Графи широко використовуються у наукових дослідженнях, зокрема у комп’ютерних науках.</p>
+    <p xml:lang="x-test">xxKGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools. Graphs are commonly used in scientific domains and particularly in computer science.xx</p>
     <p>Features:</p>
+    <p xml:lang="nl">Mogelijkheden:</p>
+    <p xml:lang="pt">Características:</p>
+    <p xml:lang="sv">Funktioner:</p>
+    <p xml:lang="uk">Можливості:</p>
+    <p xml:lang="x-test">xxFeatures:xx</p>
     <ul>
       <li>Zooming</li>
+      <li xml:lang="nl">Zoomen</li>
+      <li xml:lang="pt">Ampliação</li>
+      <li xml:lang="sv">Zoom</li>
+      <li xml:lang="uk">Масштабування.</li>
+      <li xml:lang="x-test">xxZoomingxx</li>
       <li>Threaded loading of several graphs in tabs</li>
+      <li xml:lang="sv">Trådad inläsning av flera grafer under flikar</li>
+      <li xml:lang="uk">Завантаження декількох графів до вкладок у окремих обчислювальних потоках.</li>
+      <li xml:lang="x-test">xxThreaded loading of several graphs in tabsxx</li>
       <li>Saving of the recent files list</li>
+      <li xml:lang="sv">Sparar listan med senaste filer</li>
+      <li xml:lang="uk">Зберігання списку нещодавно використаних файлів.</li>
+      <li xml:lang="x-test">xxSaving of the recent files listxx</li>
       <li>Manual reload of files</li>
+      <li xml:lang="sv">Manuell återinläsning av filer</li>
+      <li xml:lang="uk">Перезавантаження файлів вручну.</li>
+      <li xml:lang="x-test">xxManual reload of filesxx</li>
       <li>Display of a bird-eye view of the graph</li>
+      <li xml:lang="sv">Visar en översiktsbild av grafen</li>
+      <li xml:lang="uk">Показ панелі загального вигляду графу.</li>
+      <li xml:lang="x-test">xxDisplay of a bird-eye view of the graphxx</li>
       <li>Moving of the graph by dragging</li>
+      <li xml:lang="sv">Flytta grafen genom att dra</li>
+      <li xml:lang="uk">Пересування графу перетягуванням.</li>
+      <li xml:lang="x-test">xxMoving of the graph by draggingxx</li>
       <li>Full featured printing</li>
+      <li xml:lang="sv">Fullständig utskriftsfunktion</li>
+      <li xml:lang="uk">Широкі можливості з друку.</li>
+      <li xml:lang="x-test">xxFull featured printingxx</li>
       <li>Perfect drawing of all graphviz example graphs</li>
+      <li xml:lang="nl">Perfect tekenen van alle graphviz voorbeeldgrafieken</li>
+      <li xml:lang="sv">Perfekt uppritning av alla exempelgrafer från Graphviz</li>
+      <li xml:lang="uk">Ідеальне креслення усіх прикладів графів graphviz.</li>
+      <li xml:lang="x-test">xxPerfect drawing of all graphviz example graphsxx</li>
       <li>Automatically choose dot for directed graphs and neato for undirected</li>
+      <li xml:lang="sv">Välj automatiskt dot för riktade grafer och neato för oriktade</li>
+      <li xml:lang="uk">Автоматичний вибір dot для орієнтованих графів і neato для неорієнтованих.</li>
+      <li xml:lang="x-test">xxAutomatically choose dot for directed graphs and neato for undirectedxx</li>
       <li>Possibility to use an arbitrary layout algo as soon as it produces xdot format</li>
+      <li xml:lang="sv">Möjlighet att använda en godtycklig layout-algoritm så länge den skapar xdot-format</li>
+      <li xml:lang="uk">Можливість використання довільного алгоритму компонування, який може створювати дані у форматі xdot.</li>
+      <li xml:lang="x-test">xxPossibility to use an arbitrary layout algo as soon as it produces xdot formatxx</li>
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
+      <li xml:lang="nl">Automatisch opnieuw laden met toestemming van de gebruiker van (extern) gewijzigde bestanden (te configureren)</li>
+      <li xml:lang="sv">Automatisk återinläsning med bekräftelse av användaren för (externt) ändrade filer (inställningsbart)</li>
+      <li xml:lang="uk">Автоматичне перезавантаження даних з підтвердженням з боку користувача для файлів, змінених сторонніми програмами (можна налаштувати).</li>
+      <li xml:lang="x-test">xxAutomatic reloading with user confirmation of (externally) modified files (configurable)xx</li>
       <li>Open new instances as new tabs in the old one (configurable)</li>
+      <li xml:lang="nl">Nieuwe exemplaren als nieuwe tabbladden openen in de oude (te configureren)</li>
+      <li xml:lang="sv">Öppna nya instanser som nya flikar i den befintliga (inställningsbart)</li>
+      <li xml:lang="uk">Відкриття нових екземплярів програми у вкладках того самого вікна (можна налаштувати).</li>
+      <li xml:lang="x-test">xxOpen new instances as new tabs in the old one (configurable)xx</li>
     </ul>
   </description>
   <url type="homepage">http://extragear.kde.org/apps/kgraphviewer/</url>
