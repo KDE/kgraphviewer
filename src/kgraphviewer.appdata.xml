@@ -68,7 +68,7 @@
       <li xml:lang="sv">Välj automatiskt dot för riktade grafer och neato för oriktade</li>
       <li xml:lang="uk">Автоматичний вибір dot для орієнтованих графів і neato для неорієнтованих.</li>
       <li xml:lang="x-test">xxAutomatically choose dot for directed graphs and neato for undirectedxx</li>
-      <li>Possibility to use an arbitrary layout algo as soon as it produces xdot format</li>
+      <li>Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="sv">Möjlighet att använda en godtycklig layout-algoritm så länge den skapar xdot-format</li>
       <li xml:lang="uk">Можливість використання довільного алгоритму компонування, який може створювати дані у форматі xdot.</li>
       <li xml:lang="x-test">xxPossibility to use an arbitrary layout algo as soon as it produces xdot formatxx</li>
