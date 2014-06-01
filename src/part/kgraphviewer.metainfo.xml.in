@@ -4,7 +4,9 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KGraphViewer Library</name>
+  <name xml:lang="ca">Biblioteca del KGraphViewer</name>
   <name xml:lang="nl">KGraphViewer-bibliotheek</name>
+  <name xml:lang="pl">Biblioteka KGraphViewer</name>
   <name xml:lang="pt">Biblioteca do KGraphViewer</name>
   <name xml:lang="pt-BR">Biblioteca KGraphViewer</name>
   <name xml:lang="sk">Knižnica KGraphViewer</name>
@@ -12,7 +14,9 @@
   <name xml:lang="uk">Бібліотека KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewer Libraryxx</name>
   <summary>A Graphviz dot graph viewer for KDE (shared library)</summary>
+  <summary xml:lang="ca">Un visor de gràfiques de punts de Graphviz pel KDE (biblioteca compartida)</summary>
   <summary xml:lang="nl">Een KDE-programma voor het weergeven van dot-bestanden van Graphviz (gedeelde bibliotheek)</summary>
+  <summary xml:lang="pl">Przeglądarka Graphviz dot graph dla KDE (współdzielona biblioteka)</summary>
   <summary xml:lang="pt">Um visualizador de grafos 'dot' do Graphviz para o KDE (biblioteca dinâmica)</summary>
   <summary xml:lang="pt-BR">Um visualizador de gráficos em ponto Graphviz para o KDE (biblioteca compartilhada)</summary>
   <summary xml:lang="sk">Prehliadač bodových grafov pre KDE Graphviz (zdieľaná knižnica)</summary>

@@ -4,16 +4,20 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KGraphViewer</name>
+  <name xml:lang="ca">KGraphViewer</name>
   <name xml:lang="cs">KGraphViewer</name>
   <name xml:lang="nl">KGraphViewer</name>
+  <name xml:lang="pl">KGraphViewer</name>
   <name xml:lang="pt">KGraphViewer</name>
   <name xml:lang="sk">KGraphViewer</name>
   <name xml:lang="sv">Kgraphviewer</name>
   <name xml:lang="uk">KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewerxx</name>
   <summary>A Graphviz dot graph viewer for KDE</summary>
+  <summary xml:lang="ca">Un visor de gràfiques de punts de Graphviz pel KDE</summary>
   <summary xml:lang="cs">Prohlížeč grafů DOT Graphviz pro KDE</summary>
   <summary xml:lang="nl">Een KDE-programma voor het weergeven van dot-bestanden van Graphviz</summary>
+  <summary xml:lang="pl">Przeglądarka grafów programu GraphViz dla KDE</summary>
   <summary xml:lang="pt">Um visualizador de grafos pontuais do Graphviz para o KDE</summary>
   <summary xml:lang="sk">Graphviz, bodový grafický prehliadač pre KDE</summary>
   <summary xml:lang="sv">Visning av Graphviz dot-grafer för KDE</summary>
@@ -24,15 +28,19 @@
       KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools.
       Graphs are commonly used in scientific domains and particularly in computer science.
     </p>
+    <p xml:lang="ca">El KGraphViewer és un visor de fitxers gràfics de punts del Graphviz, destinat a substituir les altres eines obsoletes del GraphViz. Els gràfics normalment s'utilitzen en dominis científics i particularment en informàtica.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor dot-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
+    <p xml:lang="pl">KGraphViewer jest przeglądarką plików Graphviz dot graph, opracowaną w celu zastąpienia innych przestarzałych narzędzi GraphViz. Grafy są powszechnie używane w obszarach nauki, a w szczególności w obszarze nauki związanej z komputerami.</p>
     <p xml:lang="pt">O KGraphViewer é um visualizador de ficheiros de grafos 'dot' do Graphviz, destinado a substituir as outras ferramentas desactualizadas do GraphViz. Os grafos são usados normalmente nos domínios científicos e, em particular, na informática.</p>
     <p xml:lang="sk">KGraphViewer je prehliadač súborov bodových grafov Graphviz, zameraný na nahradenie iných zastaralých nástrojov GraphViz. Grafy sa bežne používajú vo vede a hlavne v počítačovej vede.</p>
     <p xml:lang="sv">Kgraphviewer är ett visningsprogram av Graphviz dot-grafer, med målet att ersätta övriga föråldrade Graphviz-verktyg. Användning av grafer är vanligt i vetenskapliga områden, i synnerhet inom datavetenskap.</p>
     <p xml:lang="uk">KGraphViewer — програма для перегляду графів у форматі dot Graphviz. Її створено як заміну застарілим інструментам для роботи з GraphViz. Графи широко використовуються у наукових дослідженнях, зокрема у комп’ютерних науках.</p>
     <p xml:lang="x-test">xxKGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools. Graphs are commonly used in scientific domains and particularly in computer science.xx</p>
     <p>Features:</p>
+    <p xml:lang="ca">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
+    <p xml:lang="pl">Cechy:</p>
     <p xml:lang="pt">Características:</p>
     <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="sv">Funktioner:</p>
@@ -40,78 +48,108 @@
     <p xml:lang="x-test">xxFeatures:xx</p>
     <ul>
       <li>Zooming</li>
+      <li xml:lang="ca">Zoom</li>
       <li xml:lang="cs">Zvětšování</li>
       <li xml:lang="nl">Zoomen</li>
+      <li xml:lang="pl">Powiększanie</li>
       <li xml:lang="pt">Ampliação</li>
       <li xml:lang="sk">Priblíženie</li>
       <li xml:lang="sv">Zoom</li>
       <li xml:lang="uk">Масштабування.</li>
       <li xml:lang="x-test">xxZoomingxx</li>
       <li>Threaded loading of several graphs in tabs</li>
+      <li xml:lang="ca">Càrrega per subprocessos de diversos gràfics en pestanyes</li>
       <li xml:lang="nl">Parallel laden (threads) van verschillende grafieken in tabbladen</li>
+      <li xml:lang="pl">Wczytywanie w wątkach kilku grafów w kartach</li>
       <li xml:lang="pt">Carregamento multi-tarefa de diversos grafos em páginas</li>
       <li xml:lang="sk">Vláknové načítavanie niekoľkých grafov v kartách</li>
       <li xml:lang="sv">Trådad inläsning av flera grafer under flikar</li>
       <li xml:lang="uk">Завантаження декількох графів до вкладок у окремих обчислювальних потоках.</li>
       <li xml:lang="x-test">xxThreaded loading of several graphs in tabsxx</li>
       <li>Saving of the recent files list</li>
+      <li xml:lang="ca">Desat de la llista de fitxers recents</li>
       <li xml:lang="nl">De lijst van recente bestanden opslaan</li>
+      <li xml:lang="pl">Zachowywanie spisu ostatnio otwieranych plików</li>
       <li xml:lang="pt">Gravação da lista de ficheiros recentes</li>
       <li xml:lang="sk">Ukladanie zoznamu nedávnych súborov</li>
       <li xml:lang="sv">Sparar listan med senaste filer</li>
       <li xml:lang="uk">Зберігання списку нещодавно використаних файлів.</li>
       <li xml:lang="x-test">xxSaving of the recent files listxx</li>
       <li>Manual reload of files</li>
+      <li xml:lang="ca">Recàrrega manual de fitxers</li>
       <li xml:lang="nl">Handmatig opnieuw laden van bestanden</li>
+      <li xml:lang="pl">Ręczne wczytywanie plików</li>
       <li xml:lang="pt">Recarregamento manual dos ficheiros</li>
       <li xml:lang="sk">Ručné znovunačítanie súborov</li>
       <li xml:lang="sv">Manuell återinläsning av filer</li>
       <li xml:lang="uk">Перезавантаження файлів вручну.</li>
       <li xml:lang="x-test">xxManual reload of filesxx</li>
       <li>Display of a bird-eye view of the graph</li>
+      <li xml:lang="ca">Representació de vista d'ocell del gràfic</li>
       <li xml:lang="nl">Een vogelvlucht weergave van een grafiek tonen</li>
+      <li xml:lang="pl">Przedstawianie grafu w widoku ptasiego oka</li>
       <li xml:lang="pt">Apresentação de uma visão geral do grafo</li>
       <li xml:lang="sk">Zobrazenie vtáčej perspektívy grafu</li>
       <li xml:lang="sv">Visar en översiktsbild av grafen</li>
       <li xml:lang="uk">Показ панелі загального вигляду графу.</li>
       <li xml:lang="x-test">xxDisplay of a bird-eye view of the graphxx</li>
       <li>Moving of the graph by dragging</li>
+      <li xml:lang="ca">Moviment del gràfic en arrossegar</li>
       <li xml:lang="nl">De grafiek verplaatsen door slepen</li>
+      <li xml:lang="pl">Przesuwanie grafu poprzez przeciąganie</li>
       <li xml:lang="pt">Movimentação do grafo por arrastamento</li>
       <li xml:lang="sk">Presun grafov posunom</li>
       <li xml:lang="sv">Flytta grafen genom att dra</li>
       <li xml:lang="uk">Пересування графу перетягуванням.</li>
       <li xml:lang="x-test">xxMoving of the graph by draggingxx</li>
       <li>Full featured printing</li>
+      <li xml:lang="ca">Impressió amb totes les funcionalitats</li>
       <li xml:lang="nl">Afdrukken met alle mogelijkheden</li>
+      <li xml:lang="pl">Pełnowartościowe drukowanie</li>
       <li xml:lang="pt">Impressão com diversas funcionalidades</li>
       <li xml:lang="sk">Plne funkčná tlač</li>
       <li xml:lang="sv">Fullständig utskriftsfunktion</li>
       <li xml:lang="uk">Широкі можливості з друку.</li>
       <li xml:lang="x-test">xxFull featured printingxx</li>
       <li>Perfect drawing of all graphviz example graphs</li>
+      <li xml:lang="ca">Dibuixat perfecte de tots els gràfics d'exemple del «graphviz»</li>
       <li xml:lang="nl">Perfect tekenen van alle graphviz voorbeeldgrafieken</li>
+      <li xml:lang="pl">Perfekcyjne rysowanie wszystkich grafów przykładowych graphviz</li>
       <li xml:lang="pt">Desenho perfeito de todos os grafos de exemplo do 'graphviz'</li>
       <li xml:lang="sk">Výborné kreslenie všetkých ukážkových grafov graphviz</li>
       <li xml:lang="sv">Perfekt uppritning av alla exempelgrafer från Graphviz</li>
       <li xml:lang="uk">Ідеальне креслення усіх прикладів графів graphviz.</li>
       <li xml:lang="x-test">xxPerfect drawing of all graphviz example graphsxx</li>
       <li>Automatically choose dot for directed graphs and neato for undirected</li>
+      <li xml:lang="ca">Selecció automàtica de «dot» pels gràfics dirigits i «neato» pels no dirigits</li>
+      <li xml:lang="nl">Automatisch kiezen van commando dot voor gerichte grafieken en neato voor niet gerichte</li>
+      <li xml:lang="pl">Samoczynne wybranie dot dla skierowanych grafów i neato dla nieskierowanych</li>
       <li xml:lang="pt">Escolha automática do 'dot' para grafos direccionados e do 'neato' para os não-direccionados</li>
       <li xml:lang="sk">Automaticky vybrať bot pre riadený graf a neato pre neriadený</li>
       <li xml:lang="sv">Välj automatiskt dot för riktade grafer och neato för oriktade</li>
       <li xml:lang="uk">Автоматичний вибір dot для орієнтованих графів і neato для неорієнтованих.</li>
       <li xml:lang="x-test">xxAutomatically choose dot for directed graphs and neato for undirectedxx</li>
       <li>Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
+      <li xml:lang="ca">Possibilitat d'utilitzar un algorisme de disposició arbitrari si produeix un format «xdot»</li>
+      <li xml:lang="nl">Mogelijkheid om een willekeurig algoritme voor de opmaak te gebruiken wanneer het xdot-formaat produceert</li>
+      <li xml:lang="pl">Możliwość użycia dowolnego algorytmu układu już od chwili utworzenia formatu xdot</li>
+      <li xml:lang="pt">Possibilidade de utilização de um algoritmo de disposição arbitrário, desde que produza o formato 'xdot'</li>
+      <li xml:lang="sv">Möjlighet att använda en godtycklig layout-algoritm så länge den skapar xdot-format</li>
+      <li xml:lang="uk">Можливість використання довільного алгоритму компонування, який може створювати дані у форматі xdot.</li>
+      <li xml:lang="x-test">xxPossibility to use an arbitrary layout algorithm as soon as it produces xdot formatxx</li>
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
+      <li xml:lang="ca">Recàrrega automàtica amb confirmació d'usuari de fitxers (externament) modificats (configurable)</li>
       <li xml:lang="nl">Automatisch opnieuw laden met toestemming van de gebruiker van (extern) gewijzigde bestanden (te configureren)</li>
+      <li xml:lang="pl">Samoczynne ponowne wczytywanie przy zgodzie użytkownika (zewnętrznie) zmienionych plików (do ustawieni)</li>
       <li xml:lang="pt">Recarregamento automático com a confirmação do utilizador dos ficheiros modificados no exterior (configurável)</li>
       <li xml:lang="sk">Automatické znovunačítanie s potvrdením používateľa (externe) zmení súbory (nastaviteľné)</li>
       <li xml:lang="sv">Automatisk återinläsning med bekräftelse av användaren för (externt) ändrade filer (inställningsbart)</li>
       <li xml:lang="uk">Автоматичне перезавантаження даних з підтвердженням з боку користувача для файлів, змінених сторонніми програмами (можна налаштувати).</li>
       <li xml:lang="x-test">xxAutomatic reloading with user confirmation of (externally) modified files (configurable)xx</li>
       <li>Open new instances as new tabs in the old one (configurable)</li>
+      <li xml:lang="ca">Obre noves instàncies com a pestanyes noves en l'antiga (configurable)</li>
       <li xml:lang="nl">Nieuwe exemplaren als nieuwe tabbladden openen in de oude (te configureren)</li>
+      <li xml:lang="pl">Otwieranie nowych wystąpień jako nowe karty w starym wystąpieniu (do ustawienia)</li>
       <li xml:lang="pt">Abertura de novas instâncias como páginas novas da janela actual (configurável)</li>
       <li xml:lang="sk">Otvoriť novú inštancie ako nové karty v starej (nastaviteľné)</li>
       <li xml:lang="sv">Öppna nya instanser som nya flikar i den befintliga (inställningsbart)</li>
