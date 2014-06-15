@@ -8,6 +8,7 @@
   <name xml:lang="cs">KGraphViewer</name>
   <name xml:lang="da">KGraphViewer</name>
   <name xml:lang="es">KGraphViewer</name>
+  <name xml:lang="hu">KGraphViewer</name>
   <name xml:lang="nl">KGraphViewer</name>
   <name xml:lang="pl">KGraphViewer</name>
   <name xml:lang="pt">KGraphViewer</name>
@@ -21,6 +22,7 @@
   <summary xml:lang="cs">Prohlížeč grafů DOT Graphviz pro KDE</summary>
   <summary xml:lang="da">Et program til visning af Graphviz dot-grafer til KDE</summary>
   <summary xml:lang="es">Un visor de grafos dot de Graphviz para KDE</summary>
+  <summary xml:lang="hu">Graphviz pont gráf megjelenítő KDE-hez</summary>
   <summary xml:lang="nl">Een KDE-programma voor het weergeven van dot-bestanden van Graphviz</summary>
   <summary xml:lang="pl">Przeglądarka grafów programu GraphViz dla KDE</summary>
   <summary xml:lang="pt">Um visualizador de grafos pontuais do Graphviz para o KDE</summary>
@@ -49,6 +51,7 @@
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="da">Funktioner:</p>
     <p xml:lang="es">Funciones:</p>
+    <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="pl">Cechy:</p>
     <p xml:lang="pt">Características:</p>
@@ -63,6 +66,7 @@
       <li xml:lang="cs">Zvětšování</li>
       <li xml:lang="da">Zoom</li>
       <li xml:lang="es">Ampliación</li>
+      <li xml:lang="hu">Nagyítás</li>
       <li xml:lang="nl">Zoomen</li>
       <li xml:lang="pl">Powiększanie</li>
       <li xml:lang="pt">Ampliação</li>
