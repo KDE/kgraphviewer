@@ -32,6 +32,10 @@ void LoadAGraphThread::run()
       return;
   }
   m_g = agread(fp, NULL);
+  if (m_g==0)
+  {
+      kError() << "Failed to read file " << m_dotFileName;
+  }
   fclose(fp);
 }
 
@@ -40,6 +44,5 @@ void LoadAGraphThread::loadFile(const QString& dotFileName)
   kDebug();
   sem.acquire();
   m_dotFileName = dotFileName;
-  m_g = NULL;
   start();
 }
