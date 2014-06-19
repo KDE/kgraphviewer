@@ -37,6 +37,13 @@
 #include <klocale.h>
 #include <KAction>
 
+// comment out to get extended debug output during rendering
+// #define RENDER_DEBUG 1
+
+#ifndef RENDER_DEBUG
+#define RENDER_DEBUG 0
+#endif
+
 namespace KGraphViewer
 {
   
@@ -162,15 +169,17 @@ void CanvasElement::computeBoundingRect()
     it = element()->renderOperations().constBegin(); it_end = element()->renderOperations().constEnd();
     for (; it != it_end; it++)
     {
-//       QString msg;
-//       QTextStream dd(&msg);
-//       dd << element()->id() << " an op: " << (*it).renderop << " ";
-//       foreach (int i, (*it).integers)
-//       {
-//         dd << i << " ";
-//       }
-//       dd << (*it).str;
-//       kDebug() << msg;
+#if RENDER_DEBUG
+      QString msg;
+      QTextStream dd(&msg);
+      dd << element()->id() << " an op: " << (*it).renderop << " ";
+      foreach (int i, (*it).integers)
+      {
+        dd << i << " ";
+      }
+      dd << (*it).str;
+      kDebug() << msg;
+#endif
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
       {
@@ -224,7 +233,8 @@ QWidget *widget)
   {
     widthScaleFactor = 1;
   }
-  
+
+#if RENDER_DEBUG
   QString msg;
   QTextStream dd(&msg);
   foreach (const DotRenderOp &op, element()->renderOperations())
@@ -236,7 +246,8 @@ QWidget *widget)
     }
     dd << op.str << endl;
   }
-//   kDebug() << msg;
+  kDebug() << msg;
+#endif
 
   if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
   {
@@ -253,7 +264,11 @@ QWidget *widget)
   {
     backColor = backColor.lighter();
   }
-  
+
+  const QPen oldPen = p->pen();
+  const QBrush oldBrush = p->brush();
+  const QFont oldFont = p->font();
+
   while (it.hasNext())
   {
     const DotRenderOp& dro = it.next();
@@ -279,14 +294,12 @@ QWidget *widget)
     }
     else if (dro.renderop == "e" || dro.renderop == "E")
     {
-      QPen pen = p->pen();
+      QPen pen = oldPen;
       qreal w = m_scaleX * dro.integers[2] * 2;
       qreal h = m_scaleY * dro.integers[3] * 2;
       qreal x = m_xMargin + ((dro.integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
       qreal y = ((m_gh - dro.integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
       QRectF rect(x,y,w,h);
-      p->save();
-      p->setBrush(backColor);
       pen.setColor(lineColor);
       if (element()->attributes().contains("penwidth"))
       {
@@ -294,12 +307,13 @@ QWidget *widget)
         int lineWidth = element()->attributes()["penwidth"].toInt(&ok);
         pen.setWidth(int(lineWidth * widthScaleFactor));
       }
+
+      p->setBrush(backColor);
       p->setPen(pen);
-      
+
 //       kDebug() << element()->id() << "drawEllipse" << lineColor << backColor << rect;
 //       rect = QRectF(0,0,100,100);
       p->drawEllipse(rect);
-      p->restore();
     }
     else if(dro.renderop == "p" || dro.renderop == "P")
     {
@@ -318,9 +332,8 @@ QWidget *widget)
                   << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf;*/
         points[i] = p;
       }
-      p->save();
 
-      QPen pen = p->pen();
+      QPen pen = oldPen;
       pen.setColor(lineColor);
       if (element()->style() == "bold")
       {
@@ -356,7 +369,6 @@ QWidget *widget)
       }*/
 //       kDebug() << element()->id() << "drawPolygon" << points;
       p->drawPolygon(points);
-      p->restore();
       if (!element()->shapeFile().isEmpty())
       {
         QPixmap pix(element()->shapeFile());
@@ -368,6 +380,9 @@ QWidget *widget)
     }
 
   }
+
+  p->setBrush(oldBrush);
+  p->setPen(oldPen);
 
   it.toFront();
   while (it.hasNext())
@@ -408,7 +423,6 @@ QWidget *widget)
                 );
         points[i] = p;
       }
-      p->save();
       QPen pen(lineColor);
       if (element()->style() == "bold")
       {
@@ -422,9 +436,9 @@ QWidget *widget)
       p->setPen(pen);
 //       kDebug() << element()->id() << "drawPolyline" << points;
       p->drawPolyline(points);
-      p->restore();
     }
   }
+  p->setPen(oldPen);
 
 //   kDebug() << "Drawing" << element()->id() << "labels";
   QString color = lineColor.name();
@@ -485,7 +499,6 @@ QWidget *widget)
         m_fontSizeCache[num_T] = qMakePair(fontSize, fontWidth);
       }
 
-      p->save();
       p->setFont(*m_font);
       QPen pen(m_pen);
       pen.setColor(element()->fontColor());
@@ -502,21 +515,23 @@ QWidget *widget)
       QPointF point(x,y);
 //       kDebug() << element()->id() << "drawText" << point << " " << fontSize;
       p->drawText(point, dro.str);
-      p->restore();
     }
   }
+
   if (element()->isSelected())
   {
 //     kDebug() << "element is selected: draw selection marks";
-    p->save();
     p->setBrush(Qt::black);
     p->setPen(Qt::black);
     p->drawRect(QRectF(m_boundingRect.topLeft(),QSizeF(6,6)));
     p->drawRect(QRectF(m_boundingRect.topRight()-QPointF(6,0),QSizeF(6,6)));
     p->drawRect(QRectF(m_boundingRect.bottomLeft()-QPointF(0,6),QSizeF(6,6)));
     p->drawRect(QRectF(m_boundingRect.bottomRight()-QPointF(6,6),QSizeF(6,6)));
-    p->restore();
   }
+
+  p->setPen(oldPen);
+  p->setBrush(oldBrush);
+  p->setFont(oldFont);
 
   m_lastRenderOpRev = element()->renderOperationsRevision();
 }

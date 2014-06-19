@@ -56,7 +56,7 @@ install( TARGETS kgrapheditor ${INSTALL_TARGETS_DEFAULT_ARGS})
 install( FILES kgrapheditorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
 install( FILES kgrapheditorui.rc DESTINATION ${DATA_INSTALL_DIR}/kgrapheditor )
 install( PROGRAMS kgrapheditor.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
-
+install( FILES kgraphviewer.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/ )
 
 
 #add_subdirectory(plasmaapplet)

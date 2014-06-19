@@ -29,7 +29,20 @@
 
 namespace KGraphViewer
 {
-  
+
+const QString GraphElement::KEY_ID = QLatin1String("id");
+const QString GraphElement::KEY_STYLE = QLatin1String("style");
+const QString GraphElement::KEY_LABEL = QLatin1String("label");
+const QString GraphElement::KEY_SHAPE = QLatin1String("shape");
+const QString GraphElement::KEY_SHAPEFILE = QLatin1String("shapefile");
+const QString GraphElement::KEY_COLOR = QLatin1String("color");
+const QString GraphElement::KEY_BGCOLOR = QLatin1String("bgcolor");
+const QString GraphElement::KEY_URL = QLatin1String("URL");
+const QString GraphElement::KEY_FONTSIZE = QLatin1String("fontsize");
+const QString GraphElement::KEY_FONTNAME = QLatin1String("fontname");
+const QString GraphElement::KEY_FONTCOLOR = QLatin1String("fontcolor");
+const QString GraphElement::KEY_FILLCOLOR = QLatin1String("fillcolor");
+
 GraphElement::GraphElement() :
     QObject(),
     m_attributes(),
@@ -121,14 +134,14 @@ void GraphElement::updateWithElement(const GraphElement& element)
 
 QString GraphElement::backColor() const
 {
-  if (m_attributes.find("fillcolor") != m_attributes.end())
+  if (m_attributes.find(KEY_FILLCOLOR) != m_attributes.end())
   {
-    return m_attributes["fillcolor"];
+    return m_attributes[KEY_FILLCOLOR];
   }
-  else if ( (m_attributes.find("color") != m_attributes.end())
-    && (m_attributes["style"] == "filled") )
+  else if ( (m_attributes.find(KEY_COLOR) != m_attributes.end())
+    && (m_attributes[KEY_STYLE] == QLatin1String("filled")) )
   {
-    return m_attributes["color"];
+    return m_attributes[KEY_COLOR];
   }
   else
   {
