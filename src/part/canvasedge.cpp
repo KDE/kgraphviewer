@@ -210,6 +210,11 @@ Q_UNUSED(widget)
   QColor backColor;
   
   QList<QPointF> allPoints;
+
+  const QFont oldFont = p->font();
+  const QPen oldPen = p->pen();
+  const QBrush oldBrush = p->brush();
+
   foreach (const DotRenderOp& dro, edge()->renderOperations())
   {
     //     kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << dro.renderop << "; selected:" << edge()->isSelected();
@@ -247,7 +252,7 @@ Q_UNUSED(widget)
         m_font->setPointSize(fontSize);
         fm = QFontMetrics(*m_font);
       }
-      p->save();
+
       p->setFont(*m_font);
       
       p->setPen(Dot2QtConsts::componentData().qtColor(edge()->fontColor()));
@@ -265,7 +270,9 @@ Q_UNUSED(widget)
 //       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawText" << edge()->fontColor() << point;
 
       p->drawText(point,str);
-      p->restore();
+
+      p->setFont(oldFont);
+      p->setPen(oldPen);
     }      
     else if (( dro.renderop == "p" ) || (dro.renderop == "P" ))
     {
@@ -282,11 +289,10 @@ Q_UNUSED(widget)
       }
       if (dro.renderop == "P" )
       {
-        p->save();
         p->setBrush(lineColor);
         p->drawPolygon(polygon);
 //         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
-        p->restore();
+        p->setBrush(oldBrush);
       }
       else
       {
@@ -303,11 +309,11 @@ Q_UNUSED(widget)
         pen.setWidth((int)(1 * widthScaleFactor));
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(edge()->style()));
       }
-      p->save();
       p->setPen(pen);
 //       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
       p->drawPolyline(polygon);
-      p->restore();
+      p->setPen(oldPen);
+      p->setBrush(oldBrush);
     }
     else if (( dro.renderop == "e" ) || (dro.renderop == "E" ))
     {
@@ -315,7 +321,6 @@ Q_UNUSED(widget)
       qreal h = m_scaleY *  dro.integers[3] * 2;
       qreal x = (m_xMargin + (dro.integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
       qreal y = ((m_gh -  dro.integers[1]/*%m_hdvcf*/)*m_scaleY + m_yMargin) - h/2;
-      p->save();
       if (dro.renderop == "E" )
       {
         p->setBrush(lineColor);
@@ -339,7 +344,8 @@ Q_UNUSED(widget)
       QRectF rect(x,y,w,h);
 //       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
       p->drawEllipse(rect);
-      p->restore();
+      p->setPen(oldPen);
+      p->setBrush(oldBrush);
     }
     else if ( dro.renderop == "B" )
     {
@@ -376,13 +382,13 @@ Q_UNUSED(widget)
         if (splineNum != 0)
           lineColor = Dot2QtConsts::componentData().qtColor(edge()->color(splineNum));
         pen.setColor(lineColor);
-        p->save();
 //         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
         p->setBrush(Qt::NoBrush);
         p->setPen(pen);
 //         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
         p->drawPath(pathForSpline(splineNum, dro));
-        p->restore();
+        p->setPen(oldPen);
+        p->setBrush(oldBrush);
       }
     }
   }
@@ -405,13 +411,13 @@ Q_UNUSED(widget)
     }
     if (maxDist>0)
     {
-      p->save();
       //         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
       p->setBrush(Qt::black);
       p->setPen(Qt::black);
       p->drawRect(QRectF(pointsPair.first-QPointF(3,3),QSizeF(6,6)));
       p->drawRect(QRectF(pointsPair.second-QPointF(3,3),QSizeF(6,6)));
-      p->restore();
+      p->setBrush(oldBrush);
+      p->setPen(oldPen);
     }
   }
 }
