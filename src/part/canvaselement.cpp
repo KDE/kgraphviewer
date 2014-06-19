@@ -37,6 +37,13 @@
 #include <klocale.h>
 #include <KAction>
 
+// comment out to get extended debug output during rendering
+// #define RENDER_DEBUG 1
+
+#ifndef RENDER_DEBUG
+#define RENDER_DEBUG 0
+#endif
+
 namespace KGraphViewer
 {
   
@@ -162,15 +169,17 @@ void CanvasElement::computeBoundingRect()
     it = element()->renderOperations().constBegin(); it_end = element()->renderOperations().constEnd();
     for (; it != it_end; it++)
     {
-//       QString msg;
-//       QTextStream dd(&msg);
-//       dd << element()->id() << " an op: " << (*it).renderop << " ";
-//       foreach (int i, (*it).integers)
-//       {
-//         dd << i << " ";
-//       }
-//       dd << (*it).str;
-//       kDebug() << msg;
+#if RENDER_DEBUG
+      QString msg;
+      QTextStream dd(&msg);
+      dd << element()->id() << " an op: " << (*it).renderop << " ";
+      foreach (int i, (*it).integers)
+      {
+        dd << i << " ";
+      }
+      dd << (*it).str;
+      kDebug() << msg;
+#endif
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
       {
@@ -224,7 +233,8 @@ QWidget *widget)
   {
     widthScaleFactor = 1;
   }
-  
+
+#if RENDER_DEBUG
   QString msg;
   QTextStream dd(&msg);
   foreach (const DotRenderOp &op, element()->renderOperations())
@@ -236,7 +246,8 @@ QWidget *widget)
     }
     dd << op.str << endl;
   }
-//   kDebug() << msg;
+  kDebug() << msg;
+#endif
 
   if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
   {
