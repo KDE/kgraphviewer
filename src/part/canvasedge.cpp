@@ -373,7 +373,6 @@ Q_UNUSED(widget)
       }
       for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum==0 && edge()->colors().count()==0); splineNum++)
       {
-        kDebug() << "Setting pen color to " << edge()->color(splineNum);
         if (splineNum != 0)
           lineColor = Dot2QtConsts::componentData().qtColor(edge()->color(splineNum));
         pen.setColor(lineColor);
