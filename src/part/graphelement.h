@@ -44,29 +44,29 @@ public:
   
   virtual ~GraphElement() {}
   
-  inline void setId(const QString& id) {m_attributes["id"]=id;}
-  inline void setStyle(const QString& ls) {m_attributes["style"]=ls;}
-  inline void setShape(const QString& lc) {m_attributes["shape"]=lc;}
-  inline void setColor(const QString& nt) {m_attributes["color"]=nt;}
-  inline void setLineColor(const QString& nt) {m_attributes["color"]=nt;}
-  inline void setBackColor(const QString& nc) {m_attributes["bgcolor"]=nc;}
+  inline void setId(const QString& id) {m_attributes[KEY_ID]=id;}
+  inline void setStyle(const QString& ls) {m_attributes[KEY_STYLE]=ls;}
+  inline void setShape(const QString& lc) {m_attributes[KEY_SHAPE]=lc;}
+  inline void setColor(const QString& nt) {m_attributes[KEY_COLOR]=nt;}
+  inline void setLineColor(const QString& nt) {m_attributes[KEY_COLOR]=nt;}
+  inline void setBackColor(const QString& nc) {m_attributes[KEY_BGCOLOR]=nc;}
   
-  inline QString id() const {return m_attributes["id"];}
-  inline QString style() const {return m_attributes["style"];}
-  inline QString shape() const {return m_attributes["shape"];}
-  inline QString color() const {return m_attributes["color"];}
-  inline QString lineColor() const {return m_attributes["color"];}
+  inline QString id() const {return m_attributes[KEY_ID];}
+  inline QString style() const {return m_attributes[KEY_STYLE];}
+  inline QString shape() const {return m_attributes[KEY_SHAPE];}
+  inline QString color() const {return m_attributes[KEY_COLOR];}
+  inline QString lineColor() const {return m_attributes[KEY_COLOR];}
   virtual QString backColor() const;
   
-  inline void setLabel(const QString& label) {m_attributes["label"]=label;}
-  inline const QString label() const {return m_attributes["label"];}
+  inline void setLabel(const QString& label) {m_attributes[KEY_LABEL]=label;}
+  inline const QString label() const {return m_attributes[KEY_LABEL];}
 
-  inline unsigned int fontSize() const {return m_attributes["fontsize"].toUInt();}
-  inline void setFontSize(unsigned int fs) {m_attributes["fontsize"]=QString::number(fs);}
-  inline QString fontName() const {return m_attributes["fontname"];}
-  inline void setFontName(const QString& fn) {m_attributes["fontname"]=fn;}
-  inline QString fontColor() const {return m_attributes["fontcolor"];}
-  inline void setFontColor(const QString& fc) {m_attributes["fontcolor"] = fc;}
+  inline unsigned int fontSize() const {return m_attributes[KEY_FONTSIZE].toUInt();}
+  inline void setFontSize(unsigned int fs) {m_attributes[KEY_FONTSIZE]=QString::number(fs);}
+  inline QString fontName() const {return m_attributes[KEY_FONTNAME];}
+  inline void setFontName(const QString& fn) {m_attributes[KEY_FONTNAME]=fn;}
+  inline QString fontColor() const {return m_attributes[KEY_FONTCOLOR];}
+  inline void setFontColor(const QString& fc) {m_attributes[KEY_FONTCOLOR] = fc;}
 
   inline const DotRenderOpVec& renderOperations() const {return m_renderOperations;};
   void setRenderOperations(const DotRenderOpVec& drov);
@@ -79,11 +79,11 @@ public:
   inline double z() const {return m_z;}
   inline void setZ(double thez) {m_z = thez;}
   
-  inline QString shapeFile() const {return m_attributes["shapefile"];}
-  inline void setShapeFile(const QString& sf) {m_attributes["shapefile"] = sf;}
+  inline QString shapeFile() const {return m_attributes[KEY_SHAPEFILE];}
+  inline void setShapeFile(const QString& sf) {m_attributes[KEY_SHAPEFILE] = sf;}
   
-  inline QString url() const {return m_attributes["URL"];}
-  inline void setUrl(const QString& theUrl) {m_attributes["URL"] = theUrl;}
+  inline QString url() const {return m_attributes[KEY_URL];}
+  inline void setUrl(const QString& theUrl) {m_attributes[KEY_URL] = theUrl;}
 
   virtual void updateWithElement(const GraphElement& element);
 
@@ -117,6 +117,20 @@ protected:
   QList<QString> m_originalAttributes;
   
   CanvasElement* m_ce;
+
+  static const QString KEY_ID;
+  static const QString KEY_STYLE;
+  static const QString KEY_LABEL;
+  static const QString KEY_SHAPE;
+  static const QString KEY_SHAPEFILE;
+  static const QString KEY_COLOR;
+  static const QString KEY_BGCOLOR;
+  static const QString KEY_URL;
+  static const QString KEY_FONTSIZE;
+  static const QString KEY_FONTNAME;
+  static const QString KEY_FONTCOLOR;
+  static const QString KEY_FILLCOLOR;
+
 private:
   double m_z;
   bool m_visible;

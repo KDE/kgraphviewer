@@ -72,9 +72,9 @@ void GraphEdge::colors(const QString& cs)
 
 const QString GraphEdge::color(uint i) 
 {
-  if (i >= (uint)m_colors.count() && m_attributes.find("color") != m_attributes.end())
+  if (i >= (uint)m_colors.count() && m_attributes.find(KEY_COLOR) != m_attributes.end())
   {
-    colors(m_attributes["color"]);
+    colors(m_attributes[KEY_COLOR]);
   }
   if (i < (uint)m_colors.count())
   {
