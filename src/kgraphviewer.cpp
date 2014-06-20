@@ -173,6 +173,13 @@ void KGraphViewerWindow::openUrl(const KUrl& url)
 
       part->openUrl( url );
       
+      if (m_rfa != 0)
+      {
+        m_rfa->addUrl(url);
+        KSharedConfig::Ptr config = KGlobal::config();
+        m_rfa->saveEntries(KConfigGroup(config, "kgraphviewer recent files"));
+      }
+
       m_openedFiles.push_back(url.url());
       m_manager->addPart( part, true );
       m_tabsPartsMap[w] = part;
@@ -199,10 +206,6 @@ void KGraphViewerWindow::fileOpen()
     it = file_names.constBegin(); it_end = file_names.constEnd();
     for (; it != it_end; it++)
     {
-      if (m_rfa != 0)
-      {
-        m_rfa->addUrl(*it);
-      }
       openUrl(*it);
     }
   }
