@@ -44,5 +44,6 @@ void LoadAGraphThread::loadFile(const QString& dotFileName)
   kDebug();
   sem.acquire();
   m_dotFileName = dotFileName;
+  m_g = NULL;
   start();
 }
