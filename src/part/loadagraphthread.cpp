@@ -24,8 +24,7 @@
 void LoadAGraphThread::run()
 {
   kDebug() << m_dotFileName;
-  FILE* fp;
-  fp = fopen(m_dotFileName.toUtf8().data(), "r");
+  FILE* fp = fopen(m_dotFileName.toUtf8().data(), "r");
   if (!fp)
   {
       kError() << "Failed to open file " << m_dotFileName;
