@@ -31,6 +31,12 @@ void LoadAGraphThread::run()
       return;
   }
   m_g = agread(fp, NULL);
+  if (!m_g)
+  {
+      kError() << "Failed to read file, retrying to work around graphviz bug(?)";
+      rewind(fp);
+      m_g = agread(fp, NULL);
+  }
   if (m_g==0)
   {
       kError() << "Failed to read file " << m_dotFileName;
