@@ -2206,20 +2206,8 @@ void DotGraphView::slotAGraphReadFinished()
     else
       layoutCommand = "dot";
   }
-  if (d->m_loadThread.g() == 0)
-  {
-    delete d->m_graph;
-
-    if (layoutCommand.isEmpty())
-    layoutCommand = "dot";
-
-    d->m_graph = new DotGraph(layoutCommand,"");
-  }
-  else
-  {
-    d->m_layoutThread.layoutGraph(d->m_loadThread.g(), layoutCommand);
-    d->m_loadThread.processed_finished();
-  }
+  d->m_layoutThread.layoutGraph(d->m_loadThread.g(), layoutCommand);
+  d->m_loadThread.processed_finished();
 }
 
 void DotGraphView::slotAGraphLayoutFinished()
