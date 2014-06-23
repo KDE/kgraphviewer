@@ -165,7 +165,8 @@ void KGraphViewerWindow::openUrl(const KUrl& url)
 
     if (part)
     {
-      QString label = url.url().section('/',-1,-1);
+      QString fileName = url.url();
+      QString label = fileName.section('/',-1,-1);
       QWidget *w = part->widget();
       m_widget->addTab(w, QIcon( DesktopIcon("kgraphviewer") ), label);
       m_widget->setCurrentWidget(w);
@@ -180,10 +181,10 @@ void KGraphViewerWindow::openUrl(const KUrl& url)
         m_rfa->saveEntries(KConfigGroup(config, "kgraphviewer recent files"));
       }
 
-      m_openedFiles.push_back(url.url());
+      m_openedFiles.push_back(fileName);
       m_manager->addPart( part, true );
       m_tabsPartsMap[w] = part;
-      m_tabsFilesMap[w] = url.url();
+      m_tabsFilesMap[w] = fileName;
       connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
       connect(part,SIGNAL(close()),this,SLOT(close()));
 
