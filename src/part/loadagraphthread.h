@@ -33,7 +33,6 @@ public:
   void loadFile(const QString& dotFileName);
   inline graph_t* g() {return m_g;}
   inline const QString& dotFileName() {return m_dotFileName;}
-  inline GVC_t* gvc() {return m_gvc;}
   void processed_finished() { sem.release(); }
   
 protected:
@@ -43,7 +42,6 @@ private:
   QSemaphore sem;
   QString m_dotFileName;
   graph_t *m_g;
-  GVC_t *m_gvc;
 };
 
 #endif // LOADAGRAPHTHREAD_H
