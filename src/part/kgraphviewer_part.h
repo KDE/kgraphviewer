@@ -130,7 +130,6 @@ public Q_SLOTS:
   void slotSetCursor(const QCursor& cursor);
   void slotUnsetCursor();
   virtual bool closeUrl();
-  bool slotLoadLibrary(graph_t* graph);
   void slotSetLayoutMethod(LayoutMethod method);
   void slotRenameNode(const QString& oldNodeName, const QString& newNodeName);
   
