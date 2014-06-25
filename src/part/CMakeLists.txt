@@ -16,8 +16,7 @@ kde4_add_library(kgraphviewerlib SHARED ${kgraphviewerlib_LIB_SRCS})
 add_definitions(-DQT_STL)
 target_link_libraries(kgraphviewerlib ${QT_QTSVG_LIBRARY} ${KDE4_KIO_LIBS} ${graphviz_LIBRARIES})
 
-set(KGRAPHVIEWER_SOVERSION "2")
-set_target_properties(kgraphviewerlib PROPERTIES VERSION 2.1 SOVERSION ${KGRAPHVIEWER_SOVERSION} OUTPUT_NAME kgraphviewer )
+set_target_properties(kgraphviewerlib PROPERTIES VERSION ${KGRAPHVIEWER_LIB_VERSION} SOVERSION ${KGRAPHVIEWER_SOVERSION} OUTPUT_NAME kgraphviewer )
 
 install( TARGETS kgraphviewerlib ${INSTALL_TARGETS_DEFAULT_ARGS})
 
