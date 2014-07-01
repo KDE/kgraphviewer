@@ -28,10 +28,10 @@ index 21f349c..a2852df 100644
 +find_package_handle_standard_args(GraphViz DEFAULT_MSG graphviz_LIBRARIES graphviz_INCLUDE_DIRECTORIES)
 \ No newline at end of file
 diff --git a/src/part/CMakeLists.txt b/src/part/CMakeLists.txt
-index 7b7913c..6377add 100644
+index 041536d..0e9f6d8 100644
 --- a/src/part/CMakeLists.txt
 +++ b/src/part/CMakeLists.txt
-@@ -28,7 +28,7 @@ set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
+@@ -29,7 +29,7 @@ set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
  kde4_add_plugin(kgraphviewerpart ${kgraphviewerpart_PART_SRCS})
  
  add_definitions(-DQT_STL)
@@ -161,7 +161,7 @@ index 57c59b5..95caf92 100644
          }
        }
 diff --git a/src/part/graphedge.cpp b/src/part/graphedge.cpp
-index a52c31c..8453064 100644
+index 58a9c12..a17a33c 100644
 --- a/src/part/graphedge.cpp
 +++ b/src/part/graphedge.cpp
 @@ -141,12 +141,12 @@ void GraphEdge::updateWithEdge(edge_t* edge)
@@ -182,7 +182,7 @@ index a52c31c..8453064 100644
    
  }
 diff --git a/src/part/graphexporter.cpp b/src/part/graphexporter.cpp
-index fe345f6..31ae678 100644
+index 042cfe0..e6b5a69 100644
 --- a/src/part/graphexporter.cpp
 +++ b/src/part/graphexporter.cpp
 @@ -118,11 +118,11 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
@@ -324,15 +324,21 @@ index eb11084..82e63cd 100644
      }
      
 diff --git a/src/part/loadagraphthread.cpp b/src/part/loadagraphthread.cpp
-index 9bc43e6..3553851 100644
+index 27a10ee..6475aa8 100644
 --- a/src/part/loadagraphthread.cpp
 +++ b/src/part/loadagraphthread.cpp
-@@ -31,7 +31,7 @@ void LoadAGraphThread::run()
+@@ -30,12 +30,12 @@ void LoadAGraphThread::run()
        kError() << "Failed to open file " << m_dotFileName;
        return;
    }
 -  m_g = agread(fp, NULL);
 +  m_g = agread(fp);
-   fclose(fp);
- }
- 
+   if (!m_g)
+   {
+       kError() << "Failed to read file, retrying to work around graphviz bug(?)";
+       rewind(fp);
+-      m_g = agread(fp, NULL);
++      m_g = agread(fp);
+   }
+   if (m_g==0)
+   {
