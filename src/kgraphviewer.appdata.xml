@@ -7,6 +7,8 @@
   <name xml:lang="ca">KGraphViewer</name>
   <name xml:lang="cs">KGraphViewer</name>
   <name xml:lang="da">KGraphViewer</name>
+  <name xml:lang="de">KGraphViewer</name>
+  <name xml:lang="en-GB">KGraphViewer</name>
   <name xml:lang="es">KGraphViewer</name>
   <name xml:lang="hu">KGraphViewer</name>
   <name xml:lang="it">KGraphViewer</name>
@@ -22,6 +24,7 @@
   <summary xml:lang="ca">Un visor de gràfiques de punts de Graphviz pel KDE</summary>
   <summary xml:lang="cs">Prohlížeč grafů DOT Graphviz pro KDE</summary>
   <summary xml:lang="da">Et program til visning af Graphviz dot-grafer til KDE</summary>
+  <summary xml:lang="en-GB">A Graphviz dot graph viewer for KDE</summary>
   <summary xml:lang="es">Un visor de grafos dot de Graphviz para KDE</summary>
   <summary xml:lang="hu">Graphviz pont gráf megjelenítő KDE-hez</summary>
   <summary xml:lang="it">Un visore di grafi dot di GraphViz per KDE</summary>
@@ -40,6 +43,7 @@
     </p>
     <p xml:lang="ca">El KGraphViewer és un visor de fitxers gràfics de punts del Graphviz, destinat a substituir les altres eines obsoletes del GraphViz. Els gràfics normalment s'utilitzen en dominis científics i particularment en informàtica.</p>
     <p xml:lang="da">KGraphViewer er en fremviser til Graphviz dot graph-filer, med det formål at erstatte andre forældede GraphViz-værktøjer. Grafer bruges ofte på det videnskabelige område og især indenfor datalogi.</p>
+    <p xml:lang="en-GB">KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools. Graphs are commonly used in scientific domains and particularly in computer science.</p>
     <p xml:lang="it">KGraphViewer è un visore di file di grafi dot, progettato per sostituire i più datati altri strumenti per GraphViz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor dot-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
     <p xml:lang="pl">KGraphViewer jest przeglądarką plików Graphviz dot graph, opracowaną w celu zastąpienia innych przestarzałych narzędzi GraphViz. Grafy są powszechnie używane w obszarach nauki, a w szczególności w obszarze nauki związanej z komputerami.</p>
@@ -53,6 +57,8 @@
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="da">Funktioner:</p>
+    <p xml:lang="de">Funktionen:</p>
+    <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Funciones:</p>
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="it">Caratteristiche:</p>
@@ -69,6 +75,7 @@
       <li xml:lang="ca">Zoom</li>
       <li xml:lang="cs">Zvětšování</li>
       <li xml:lang="da">Zoom</li>
+      <li xml:lang="en-GB">Zooming</li>
       <li xml:lang="es">Ampliación</li>
       <li xml:lang="hu">Nagyítás</li>
       <li xml:lang="it">Ingrandimento</li>
@@ -83,6 +90,7 @@
       <li>Threaded loading of several graphs in tabs</li>
       <li xml:lang="ca">Càrrega per subprocessos de diversos gràfics en pestanyes</li>
       <li xml:lang="da">Trådet indlæsning af flere grafer i faneblade</li>
+      <li xml:lang="en-GB">Threaded loading of several graphs in tabs</li>
       <li xml:lang="it">Caricamento simultaneo con thread di diversi grafi tempo in schede</li>
       <li xml:lang="nl">Parallel laden (threads) van verschillende grafieken in tabbladen</li>
       <li xml:lang="pl">Wczytywanie w wątkach kilku grafów w kartach</li>
@@ -95,6 +103,7 @@
       <li>Saving of the recent files list</li>
       <li xml:lang="ca">Desat de la llista de fitxers recents</li>
       <li xml:lang="da">Gemning af liste over nylige filer</li>
+      <li xml:lang="en-GB">Saving of the recent files list</li>
       <li xml:lang="it">Memorizzazione di un elenco di file recenti</li>
       <li xml:lang="nl">De lijst van recente bestanden opslaan</li>
       <li xml:lang="pl">Zachowywanie spisu ostatnio otwieranych plików</li>
@@ -107,6 +116,7 @@
       <li>Manual reload of files</li>
       <li xml:lang="ca">Recàrrega manual de fitxers</li>
       <li xml:lang="da">Manuel genindlæsning af filer</li>
+      <li xml:lang="en-GB">Manual reload of files</li>
       <li xml:lang="it">Ricaricamento manuale dei file</li>
       <li xml:lang="nl">Handmatig opnieuw laden van bestanden</li>
       <li xml:lang="pl">Ręczne wczytywanie plików</li>
@@ -119,6 +129,7 @@
       <li>Display of a bird-eye view of the graph</li>
       <li xml:lang="ca">Representació de vista d'ocell del gràfic</li>
       <li xml:lang="da">Viser grafen i fugleperspektiv</li>
+      <li xml:lang="en-GB">Display of a bird-eye view of the graph</li>
       <li xml:lang="it">Vista a volo d'aquila del grafo</li>
       <li xml:lang="nl">Een vogelvlucht weergave van een grafiek tonen</li>
       <li xml:lang="pl">Przedstawianie grafu w widoku ptasiego oka</li>
@@ -131,6 +142,7 @@
       <li>Moving of the graph by dragging</li>
       <li xml:lang="ca">Moviment del gràfic en arrossegar</li>
       <li xml:lang="da">Flytning af grafen ved at trække i den</li>
+      <li xml:lang="en-GB">Moving of the graph by dragging</li>
       <li xml:lang="it">Spostamento del grafo con trascinamento</li>
       <li xml:lang="nl">De grafiek verplaatsen door slepen</li>
       <li xml:lang="pl">Przesuwanie grafu poprzez przeciąganie</li>
@@ -143,6 +155,7 @@
       <li>Full featured printing</li>
       <li xml:lang="ca">Impressió amb totes les funcionalitats</li>
       <li xml:lang="da">Udskrift med fuld funktionalitet</li>
+      <li xml:lang="en-GB">Full featured printing</li>
       <li xml:lang="it">Stampa con ogni funzionalità</li>
       <li xml:lang="nl">Afdrukken met alle mogelijkheden</li>
       <li xml:lang="pl">Pełnowartościowe drukowanie</li>
@@ -155,6 +168,7 @@
       <li>Perfect drawing of all graphviz example graphs</li>
       <li xml:lang="ca">Dibuixat perfecte de tots els gràfics d'exemple del «graphviz»</li>
       <li xml:lang="da">Perfekt tegning af alle graphviz-eksempelgrafer</li>
+      <li xml:lang="en-GB">Perfect drawing of all graphviz example graphs</li>
       <li xml:lang="it">Tracciamento perfetto di tutti i grafi d'esempio di graphviz</li>
       <li xml:lang="nl">Perfect tekenen van alle graphviz voorbeeldgrafieken</li>
       <li xml:lang="pl">Perfekcyjne rysowanie wszystkich grafów przykładowych graphviz</li>
@@ -167,6 +181,7 @@
       <li>Automatically choose dot for directed graphs and neato for undirected</li>
       <li xml:lang="ca">Selecció automàtica de «dot» pels gràfics dirigits i «neato» pels no dirigits</li>
       <li xml:lang="da">Vælg automatisk dot for dirigerede grafer og neato for ikke-dirigerede</li>
+      <li xml:lang="en-GB">Automatically choose dot for directed graphs and neato for undirected</li>
       <li xml:lang="it">Scelta automatica di dot per i grafi orientati e neato per i non orientati</li>
       <li xml:lang="nl">Automatisch kiezen van commando dot voor gerichte grafieken en neato voor niet gerichte</li>
       <li xml:lang="pl">Samoczynne wybranie dot dla skierowanych grafów i neato dla nieskierowanych</li>
@@ -179,6 +194,7 @@
       <li>Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="ca">Possibilitat d'utilitzar un algorisme de disposició arbitrari si produeix un format «xdot»</li>
       <li xml:lang="da">Mulighed for at bruge en vilkårlig layout-algoritme når bare den producerer xdot-format</li>
+      <li xml:lang="en-GB">Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="it">Possibilità di usare un qualsiasi algoritmo di disposizione che produca il formato xdot</li>
       <li xml:lang="nl">Mogelijkheid om een willekeurig algoritme voor de opmaak te gebruiken wanneer het xdot-formaat produceert</li>
       <li xml:lang="pl">Możliwość użycia dowolnego algorytmu układu już od chwili utworzenia formatu xdot</li>
@@ -191,6 +207,7 @@
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="ca">Recàrrega automàtica amb confirmació d'usuari de fitxers (externament) modificats (configurable)</li>
       <li xml:lang="da">Automatisk genindlæsning med brugerbekræftelse af (eksternt) ændrede filer (konfigurerbart)</li>
+      <li xml:lang="en-GB">Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="it">Ricaricamento automatico con conferma dell'utente dei file modificati da altri programmi (configurabile)</li>
       <li xml:lang="nl">Automatisch opnieuw laden met toestemming van de gebruiker van (extern) gewijzigde bestanden (te configureren)</li>
       <li xml:lang="pl">Samoczynne ponowne wczytywanie przy zgodzie użytkownika (zewnętrznie) zmienionych plików (do ustawieni)</li>
@@ -203,6 +220,7 @@
       <li>Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="ca">Obre noves instàncies com a pestanyes noves en l'antiga (configurable)</li>
       <li xml:lang="da">Åbn nye instanser som nye faneblade i det gamle (konfigurerbart)</li>
+      <li xml:lang="en-GB">Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="it">Apertura di nuove istanze come nuove schede della preesistente (configurabile)</li>
       <li xml:lang="nl">Nieuwe exemplaren als nieuwe tabbladden openen in de oude (te configureren)</li>
       <li xml:lang="pl">Otwieranie nowych wystąpień jako nowe karty w starym wystąpieniu (do ustawienia)</li>
