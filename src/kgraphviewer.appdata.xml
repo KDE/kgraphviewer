@@ -24,6 +24,7 @@
   <summary xml:lang="ca">Un visor de gràfiques de punts de Graphviz pel KDE</summary>
   <summary xml:lang="cs">Prohlížeč grafů DOT Graphviz pro KDE</summary>
   <summary xml:lang="da">Et program til visning af Graphviz dot-grafer til KDE</summary>
+  <summary xml:lang="de">Ein KDE-Anzeigeprogramm für Graphviz Dot-Diagramme</summary>
   <summary xml:lang="en-GB">A Graphviz dot graph viewer for KDE</summary>
   <summary xml:lang="es">Un visor de grafos dot de Graphviz para KDE</summary>
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja</summary>
@@ -155,6 +156,7 @@
       <li>Full featured printing</li>
       <li xml:lang="ca">Impressió amb totes les funcionalitats</li>
       <li xml:lang="da">Udskrift med fuld funktionalitet</li>
+      <li xml:lang="de">Drucken mit vielen Optionen</li>
       <li xml:lang="en-GB">Full featured printing</li>
       <li xml:lang="et">Täielik trükkimise toetus</li>
       <li xml:lang="nl">Afdrukken met alle mogelijkheden</li>
@@ -168,6 +170,7 @@
       <li>Perfect drawing of all graphviz example graphs</li>
       <li xml:lang="ca">Dibuixat perfecte de tots els gràfics d'exemple del «graphviz»</li>
       <li xml:lang="da">Perfekt tegning af alle graphviz-eksempelgrafer</li>
+      <li xml:lang="de">perfekte Darstellung aller Graphviz-Beispieldiagramme</li>
       <li xml:lang="en-GB">Perfect drawing of all graphviz example graphs</li>
       <li xml:lang="et">Kõigi GraphVizi näidisgraafide täiuslik esitamine</li>
       <li xml:lang="nl">Perfect tekenen van alle graphviz voorbeeldgrafieken</li>
