@@ -11,6 +11,7 @@
   <name xml:lang="en-GB">KGraphViewer Library</name>
   <name xml:lang="es">Biblioteca de KGraphViewer</name>
   <name xml:lang="et">KGraphVieweri teek</name>
+  <name xml:lang="fr">Bibliothèque de KGraphViewer</name>
   <name xml:lang="hu">KGraphViewer könyvtár</name>
   <name xml:lang="nds">KGraphViewer-Bibliotheek</name>
   <name xml:lang="nl">KGraphViewer-bibliotheek</name>
@@ -27,6 +28,7 @@
   <summary xml:lang="en-GB">A Graphviz dot graph viewer for KDE (shared library)</summary>
   <summary xml:lang="es">Un visor de grafos dot de Graphviz para KDE (biblioteca compartida)</summary>
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja (jagatud teek)</summary>
+  <summary xml:lang="fr">Un visualiseur de graphes Graphviz pour KDE (bibliothèque partagée)</summary>
   <summary xml:lang="hu">Egy Graphviz pont gráf megjelenítő KDE-hez (osztott könyvtár)</summary>
   <summary xml:lang="nds">En Kieker för GraphViz-Dot-Diagrammen för KDE (deelt Bibliotheek)</summary>
   <summary xml:lang="nl">Een KDE-programma voor het weergeven van dot-bestanden van Graphviz (gedeelde bibliotheek)</summary>
