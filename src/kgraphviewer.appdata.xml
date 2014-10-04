@@ -112,6 +112,7 @@
       <li>Saving of the recent files list</li>
       <li xml:lang="ca">Desat de la llista de fitxers recents</li>
       <li xml:lang="da">Gemning af liste over nylige filer</li>
+      <li xml:lang="de">Speicherung der Liste der zuletzt geöffneten Dateien</li>
       <li xml:lang="en-GB">Saving of the recent files list</li>
       <li xml:lang="es">Lista de los últimos archivos usados</li>
       <li xml:lang="et">Viimati kasutatud failide nimekirja salvestamine</li>
@@ -127,6 +128,7 @@
       <li>Manual reload of files</li>
       <li xml:lang="ca">Recàrrega manual de fitxers</li>
       <li xml:lang="da">Manuel genindlæsning af filer</li>
+      <li xml:lang="de">Manuelles neu laden von Dateien</li>
       <li xml:lang="en-GB">Manual reload of files</li>
       <li xml:lang="es">Recarga manual de archivos</li>
       <li xml:lang="et">Failide käsitsi taaslaadimine</li>
@@ -142,6 +144,7 @@
       <li>Display of a bird-eye view of the graph</li>
       <li xml:lang="ca">Representació de vista d'ocell del gràfic</li>
       <li xml:lang="da">Viser grafen i fugleperspektiv</li>
+      <li xml:lang="de">Anzeige eines Übersichtsfenster für den Graphen</li>
       <li xml:lang="en-GB">Display of a bird-eye view of the graph</li>
       <li xml:lang="es">Visualización del grafo a vista de pájaro</li>
       <li xml:lang="et">Graafi ülevaate näitamine</li>
@@ -157,6 +160,7 @@
       <li>Moving of the graph by dragging</li>
       <li xml:lang="ca">Moviment del gràfic en arrossegar</li>
       <li xml:lang="da">Flytning af grafen ved at trække i den</li>
+      <li xml:lang="de">Verschieben des Graphen durch ziehen</li>
       <li xml:lang="en-GB">Moving of the graph by dragging</li>
       <li xml:lang="es">Arrastrar y mover el grafo</li>
       <li xml:lang="et">Graafi liigutamine lohistades</li>
@@ -204,6 +208,7 @@
       <li>Automatically choose dot for directed graphs and neato for undirected</li>
       <li xml:lang="ca">Selecció automàtica de «dot» pels gràfics dirigits i «neato» pels no dirigits</li>
       <li xml:lang="da">Vælg automatisk dot for dirigerede grafer og neato for ikke-dirigerede</li>
+      <li xml:lang="de">Automatische Wahl von „dot“ für gerichtete und „neato“ für ungerichtete Graphen</li>
       <li xml:lang="en-GB">Automatically choose dot for directed graphs and neato for undirected</li>
       <li xml:lang="es">Selección automática de «dot» para los grafos dirigidos y de «neato» para los no dirigidos</li>
       <li xml:lang="et">Automaatne doti valimine orienteeritud ja neato valimine orienteerimata graafide jaoks </li>
@@ -234,6 +239,7 @@
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="ca">Recàrrega automàtica amb confirmació d'usuari de fitxers (externament) modificats (configurable)</li>
       <li xml:lang="da">Automatisk genindlæsning med brugerbekræftelse af (eksternt) ændrede filer (konfigurerbart)</li>
+      <li xml:lang="de">Erneutes Laden von (extern) geänderten Dateien - automatisch mit Bestätigung durch den Benutzer (einstellbar)</li>
       <li xml:lang="en-GB">Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="es">Carga automática con confirmación de usuario de archivos modificados externamente (configurable)</li>
       <li xml:lang="et">Muudetud failide automaatne taaslaadimine kasutaja kinnitust küsides (see on seadistatav)</li>
@@ -249,6 +255,7 @@
       <li>Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="ca">Obre noves instàncies com a pestanyes noves en l'antiga (configurable)</li>
       <li xml:lang="da">Åbn nye instanser som nye faneblade i det gamle (konfigurerbart)</li>
+      <li xml:lang="de">Öffnen neuer Instanzen als Unterfenster im aktuellen Unterfenster (einstellbar)</li>
       <li xml:lang="en-GB">Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="es">Apertura de nuevas instancias como nuevas pestañas en la anterior (configurable)</li>
       <li xml:lang="et">Rakenduse uute protsesside avamine olemasoleva protsessi raames uutel kaartidel (see on seadistatav)</li>
