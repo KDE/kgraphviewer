@@ -11,6 +11,7 @@
   <name xml:lang="en-GB">KGraphViewer</name>
   <name xml:lang="es">KGraphViewer</name>
   <name xml:lang="et">KGraphViewer</name>
+  <name xml:lang="fr">KGraphViewer</name>
   <name xml:lang="hu">KGraphViewer</name>
   <name xml:lang="it">KGraphViewer</name>
   <name xml:lang="nl">KGraphViewer</name>
@@ -29,6 +30,7 @@
   <summary xml:lang="en-GB">A Graphviz dot graph viewer for KDE</summary>
   <summary xml:lang="es">Un visor de grafos «dot» de Graphviz para KDE</summary>
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja</summary>
+  <summary xml:lang="fr">Un visualiseur de graphes Graphviz pour KDE</summary>
   <summary xml:lang="hu">Graphviz pont gráf megjelenítő KDE-hez</summary>
   <summary xml:lang="it">Un visore di grafi dot di GraphViz per KDE</summary>
   <summary xml:lang="nl">Een KDE-programma voor het weergeven van dot-bestanden van Graphviz</summary>
@@ -49,6 +51,7 @@
     <p xml:lang="en-GB">KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools. Graphs are commonly used in scientific domains and particularly in computer science.</p>
     <p xml:lang="es">KGraphviewer es un visor de archivos de grafos «dot» de Graphviz, que aspira a sustituir a otras herramientas obsoletas de GraphViz. Los grafos se usan a menudo en el campo científico y, particularmente, en la informática.</p>
     <p xml:lang="et">KGraphViewer on GraphVizi dpt-graaafifailide näitaja, mis üritab asendada teisi, iganenud GraphVizi tööriistu. Graafe kasutatakse laialdaselt teaduses, eriti aga arvutiteaduses.</p>
+    <p xml:lang="fr">KGraphViewer est un visualiseur de fichier de graphe Graphviz, prévu pour remplacer les autres outils Graphviz maintenant obsolètes. Les graphes sont utilisés couramment dans les domaines scientifiques, et en particulier en informatique.</p>
     <p xml:lang="it">KGraphViewer è un visore di file di grafi dot, progettato per sostituire i più datati altri strumenti per GraphViz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor dot-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
     <p xml:lang="pl">KGraphViewer jest przeglądarką plików Graphviz dot graph, opracowaną w celu zastąpienia innych przestarzałych narzędzi GraphViz. Grafy są powszechnie używane w obszarach nauki, a w szczególności w obszarze nauki związanej z komputerami.</p>
@@ -66,6 +69,7 @@
     <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Funciones:</p>
     <p xml:lang="et">Omadused:</p>
+    <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="it">Caratteristiche:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
@@ -84,6 +88,7 @@
       <li xml:lang="en-GB">Zooming</li>
       <li xml:lang="es">Ampliación</li>
       <li xml:lang="et">Suurendamine ja vähendamine</li>
+      <li xml:lang="fr">Zoom</li>
       <li xml:lang="hu">Nagyítás</li>
       <li xml:lang="it">Ingrandimento</li>
       <li xml:lang="nl">Zoomen</li>
@@ -100,6 +105,7 @@
       <li xml:lang="en-GB">Threaded loading of several graphs in tabs</li>
       <li xml:lang="es">Carga multihilo de varios grafos en pestañas</li>
       <li xml:lang="et">Mitme graafi laadimine ühel ajal erinevatel kaartidel</li>
+      <li xml:lang="fr">Chargement en parallèle de plusieurs graphes dans des onglets</li>
       <li xml:lang="it">Caricamento simultaneo con thread di diversi grafi tempo in schede</li>
       <li xml:lang="nl">Parallel laden (threads) van verschillende grafieken in tabbladen</li>
       <li xml:lang="pl">Wczytywanie w wątkach kilku grafów w kartach</li>
@@ -116,6 +122,7 @@
       <li xml:lang="en-GB">Saving of the recent files list</li>
       <li xml:lang="es">Lista de los últimos archivos usados</li>
       <li xml:lang="et">Viimati kasutatud failide nimekirja salvestamine</li>
+      <li xml:lang="fr">Enregistrement de la liste des fichiers récemment ouverts</li>
       <li xml:lang="it">Memorizzazione di un elenco di file recenti</li>
       <li xml:lang="nl">De lijst van recente bestanden opslaan</li>
       <li xml:lang="pl">Zachowywanie spisu ostatnio otwieranych plików</li>
@@ -132,6 +139,7 @@
       <li xml:lang="en-GB">Manual reload of files</li>
       <li xml:lang="es">Recarga manual de archivos</li>
       <li xml:lang="et">Failide käsitsi taaslaadimine</li>
+      <li xml:lang="fr">Rechargement manuel des fichiers</li>
       <li xml:lang="it">Ricaricamento manuale dei file</li>
       <li xml:lang="nl">Handmatig opnieuw laden van bestanden</li>
       <li xml:lang="pl">Ręczne wczytywanie plików</li>
@@ -180,6 +188,7 @@
       <li xml:lang="en-GB">Full featured printing</li>
       <li xml:lang="es">Impresión de completas prestaciones</li>
       <li xml:lang="et">Täielik trükkimise toetus</li>
+      <li xml:lang="fr">Système d'impression complet</li>
       <li xml:lang="it">Stampa con ogni funzionalità</li>
       <li xml:lang="nl">Afdrukken met alle mogelijkheden</li>
       <li xml:lang="pl">Pełnowartościowe drukowanie</li>
@@ -196,6 +205,7 @@
       <li xml:lang="en-GB">Perfect drawing of all graphviz example graphs</li>
       <li xml:lang="es">Trazado perfecto de todos los grafos de ejemplo de Graphviz</li>
       <li xml:lang="et">Kõigi GraphVizi näidisgraafide täiuslik esitamine</li>
+      <li xml:lang="fr">Rendu parfait de tous les exemples de graphes Graphviz</li>
       <li xml:lang="it">Tracciamento perfetto di tutti i grafi d'esempio di graphviz</li>
       <li xml:lang="nl">Perfect tekenen van alle graphviz voorbeeldgrafieken</li>
       <li xml:lang="pl">Perfekcyjne rysowanie wszystkich grafów przykładowych graphviz</li>
@@ -212,6 +222,7 @@
       <li xml:lang="en-GB">Automatically choose dot for directed graphs and neato for undirected</li>
       <li xml:lang="es">Selección automática de «dot» para los grafos dirigidos y de «neato» para los no dirigidos</li>
       <li xml:lang="et">Automaatne doti valimine orienteeritud ja neato valimine orienteerimata graafide jaoks </li>
+      <li xml:lang="fr">Choisir automatiquement dot pour les graphes orientés et neato pour les graphes non-orientés</li>
       <li xml:lang="it">Scelta automatica di dot per i grafi orientati e neato per i non orientati</li>
       <li xml:lang="nl">Automatisch kiezen van commando dot voor gerichte grafieken en neato voor niet gerichte</li>
       <li xml:lang="pl">Samoczynne wybranie dot dla skierowanych grafów i neato dla nieskierowanych</li>
@@ -227,6 +238,7 @@
       <li xml:lang="en-GB">Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="es">Posibilidad de usar un algoritmo de disposición aleatorio en cuanto se genere un formato «xdot»</li>
       <li xml:lang="et">Võimalus kasutada suvalist paigutusalgoritmi, kui see vaid tagab xdot-vormingu</li>
+      <li xml:lang="fr">Possibilité d'utiliser un algorithme de disposition arbitraire du moment qu'il produit le format xdot</li>
       <li xml:lang="it">Possibilità di usare un qualsiasi algoritmo di disposizione che produca il formato xdot</li>
       <li xml:lang="nl">Mogelijkheid om een willekeurig algoritme voor de opmaak te gebruiken wanneer het xdot-formaat produceert</li>
       <li xml:lang="pl">Możliwość użycia dowolnego algorytmu układu już od chwili utworzenia formatu xdot</li>
