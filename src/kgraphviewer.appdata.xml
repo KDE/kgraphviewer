@@ -156,6 +156,7 @@
       <li xml:lang="en-GB">Display of a bird-eye view of the graph</li>
       <li xml:lang="es">Visualización del grafo a vista de pájaro</li>
       <li xml:lang="et">Graafi ülevaate näitamine</li>
+      <li xml:lang="fr">Affichage de la totalité du graphe</li>
       <li xml:lang="it">Vista a volo d'aquila del grafo</li>
       <li xml:lang="nl">Een vogelvlucht weergave van een grafiek tonen</li>
       <li xml:lang="pl">Przedstawianie grafu w widoku ptasiego oka</li>
@@ -172,6 +173,7 @@
       <li xml:lang="en-GB">Moving of the graph by dragging</li>
       <li xml:lang="es">Arrastrar y mover el grafo</li>
       <li xml:lang="et">Graafi liigutamine lohistades</li>
+      <li xml:lang="fr">Déplacement du graphe par glissement</li>
       <li xml:lang="it">Spostamento del grafo con trascinamento</li>
       <li xml:lang="nl">De grafiek verplaatsen door slepen</li>
       <li xml:lang="pl">Przesuwanie grafu poprzez przeciąganie</li>
@@ -255,6 +257,7 @@
       <li xml:lang="en-GB">Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="es">Carga automática con confirmación de usuario de archivos modificados externamente (configurable)</li>
       <li xml:lang="et">Muudetud failide automaatne taaslaadimine kasutaja kinnitust küsides (see on seadistatav)</li>
+      <li xml:lang="fr">Rechargement automatique (configurable) de fichiers modifiés (extérieurement) avec confirmation de l'utilisateur </li>
       <li xml:lang="it">Ricaricamento automatico con conferma dell'utente dei file modificati da altri programmi (configurabile)</li>
       <li xml:lang="nl">Automatisch opnieuw laden met toestemming van de gebruiker van (extern) gewijzigde bestanden (te configureren)</li>
       <li xml:lang="pl">Samoczynne ponowne wczytywanie przy zgodzie użytkownika (zewnętrznie) zmienionych plików (do ustawieni)</li>
@@ -271,6 +274,7 @@
       <li xml:lang="en-GB">Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="es">Apertura de nuevas instancias como nuevas pestañas en la anterior (configurable)</li>
       <li xml:lang="et">Rakenduse uute protsesside avamine olemasoleva protsessi raames uutel kaartidel (see on seadistatav)</li>
+      <li xml:lang="fr">Ouvrir les nouvelles instances dans de nouveaux onglets (configurable)</li>
       <li xml:lang="it">Apertura di nuove istanze come nuove schede della preesistente (configurabile)</li>
       <li xml:lang="nl">Nieuwe exemplaren als nieuwe tabbladden openen in de oude (te configureren)</li>
       <li xml:lang="pl">Otwieranie nowych wystąpień jako nowe karty w starym wystąpieniu (do ustawienia)</li>
