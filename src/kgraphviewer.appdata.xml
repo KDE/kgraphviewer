@@ -85,6 +85,7 @@
       <li xml:lang="ca">Zoom</li>
       <li xml:lang="cs">Zvětšování</li>
       <li xml:lang="da">Zoom</li>
+      <li xml:lang="de">Größenänderung der Ansichten</li>
       <li xml:lang="en-GB">Zooming</li>
       <li xml:lang="es">Ampliación</li>
       <li xml:lang="et">Suurendamine ja vähendamine</li>
@@ -102,6 +103,7 @@
       <li>Threaded loading of several graphs in tabs</li>
       <li xml:lang="ca">Càrrega per subprocessos de diversos gràfics en pestanyes</li>
       <li xml:lang="da">Trådet indlæsning af flere grafer i faneblade</li>
+      <li xml:lang="de">Gleichzeitiges Laden mehrerer Graphen in Unterfenstern</li>
       <li xml:lang="en-GB">Threaded loading of several graphs in tabs</li>
       <li xml:lang="es">Carga multihilo de varios grafos en pestañas</li>
       <li xml:lang="et">Mitme graafi laadimine ühel ajal erinevatel kaartidel</li>
