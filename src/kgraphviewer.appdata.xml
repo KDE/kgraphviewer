@@ -13,6 +13,7 @@
   <name xml:lang="et">KGraphViewer</name>
   <name xml:lang="fr">KGraphViewer</name>
   <name xml:lang="hu">KGraphViewer</name>
+  <name xml:lang="it">KGraphViewer</name>
   <name xml:lang="nl">KGraphViewer</name>
   <name xml:lang="pl">KGraphViewer</name>
   <name xml:lang="pt">KGraphViewer</name>
@@ -31,6 +32,7 @@
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja</summary>
   <summary xml:lang="fr">Un visualiseur de graphes Graphviz pour KDE</summary>
   <summary xml:lang="hu">Graphviz pont gráf megjelenítő KDE-hez</summary>
+  <summary xml:lang="it">Un visore di grafi dot di GraphViz per KDE</summary>
   <summary xml:lang="nl">Een KDE-programma voor het weergeven van dot-bestanden van Graphviz</summary>
   <summary xml:lang="pl">Przeglądarka grafów programu GraphViz dla KDE</summary>
   <summary xml:lang="pt">Um visualizador de grafos pontuais do Graphviz para o KDE</summary>
@@ -50,6 +52,7 @@
     <p xml:lang="es">KGraphviewer es un visor de archivos de grafos «dot» de Graphviz, que aspira a sustituir a otras herramientas obsoletas de GraphViz. Los grafos se usan a menudo en el campo científico y, particularmente, en la informática.</p>
     <p xml:lang="et">KGraphViewer on GraphVizi dpt-graaafifailide näitaja, mis üritab asendada teisi, iganenud GraphVizi tööriistu. Graafe kasutatakse laialdaselt teaduses, eriti aga arvutiteaduses.</p>
     <p xml:lang="fr">KGraphViewer est un visualiseur de fichier de graphe Graphviz, prévu pour remplacer les autres outils Graphviz maintenant obsolètes. Les graphes sont utilisés couramment dans les domaines scientifiques, et en particulier en informatique.</p>
+    <p xml:lang="it">KGraphViewer è un visore di file di grafi dot, progettato per sostituire i più datati altri strumenti per GraphViz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor dot-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
     <p xml:lang="pl">KGraphViewer jest przeglądarką plików Graphviz dot graph, opracowaną w celu zastąpienia innych przestarzałych narzędzi GraphViz. Grafy są powszechnie używane w obszarach nauki, a w szczególności w obszarze nauki związanej z komputerami.</p>
     <p xml:lang="pt">O KGraphViewer é um visualizador de ficheiros de grafos 'dot' do Graphviz, destinado a substituir as outras ferramentas desactualizadas do GraphViz. Os grafos são usados normalmente nos domínios científicos e, em particular, na informática.</p>
@@ -68,6 +71,7 @@
     <p xml:lang="et">Omadused:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="hu">Szolgáltatások:</p>
+    <p xml:lang="it">Caratteristiche:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="pl">Cechy:</p>
     <p xml:lang="pt">Características:</p>
@@ -87,6 +91,7 @@
       <li xml:lang="et">Suurendamine ja vähendamine</li>
       <li xml:lang="fr">Zoom</li>
       <li xml:lang="hu">Nagyítás</li>
+      <li xml:lang="it">Ingrandimento</li>
       <li xml:lang="nl">Zoomen</li>
       <li xml:lang="pl">Powiększanie</li>
       <li xml:lang="pt">Ampliação</li>
@@ -103,6 +108,7 @@
       <li xml:lang="es">Carga multihilo de varios grafos en pestañas</li>
       <li xml:lang="et">Mitme graafi laadimine ühel ajal erinevatel kaartidel</li>
       <li xml:lang="fr">Chargement en parallèle de plusieurs graphes dans des onglets</li>
+      <li xml:lang="it">Caricamento simultaneo con thread di diversi grafi tempo in schede</li>
       <li xml:lang="nl">Parallel laden (threads) van verschillende grafieken in tabbladen</li>
       <li xml:lang="pl">Wczytywanie w wątkach kilku grafów w kartach</li>
       <li xml:lang="pt">Carregamento multi-tarefa de diversos grafos em páginas</li>
@@ -119,6 +125,7 @@
       <li xml:lang="es">Lista de los últimos archivos usados</li>
       <li xml:lang="et">Viimati kasutatud failide nimekirja salvestamine</li>
       <li xml:lang="fr">Enregistrement de la liste des fichiers récemment ouverts</li>
+      <li xml:lang="it">Memorizzazione di un elenco di file recenti</li>
       <li xml:lang="nl">De lijst van recente bestanden opslaan</li>
       <li xml:lang="pl">Zachowywanie spisu ostatnio otwieranych plików</li>
       <li xml:lang="pt">Gravação da lista de ficheiros recentes</li>
@@ -135,6 +142,7 @@
       <li xml:lang="es">Recarga manual de archivos</li>
       <li xml:lang="et">Failide käsitsi taaslaadimine</li>
       <li xml:lang="fr">Rechargement manuel des fichiers</li>
+      <li xml:lang="it">Ricaricamento manuale dei file</li>
       <li xml:lang="nl">Handmatig opnieuw laden van bestanden</li>
       <li xml:lang="pl">Ręczne wczytywanie plików</li>
       <li xml:lang="pt">Recarregamento manual dos ficheiros</li>
@@ -151,6 +159,7 @@
       <li xml:lang="es">Visualización del grafo a vista de pájaro</li>
       <li xml:lang="et">Graafi ülevaate näitamine</li>
       <li xml:lang="fr">Affichage de la totalité du graphe</li>
+      <li xml:lang="it">Vista a volo d'aquila del grafo</li>
       <li xml:lang="nl">Een vogelvlucht weergave van een grafiek tonen</li>
       <li xml:lang="pl">Przedstawianie grafu w widoku ptasiego oka</li>
       <li xml:lang="pt">Apresentação de uma visão geral do grafo</li>
@@ -167,6 +176,7 @@
       <li xml:lang="es">Arrastrar y mover el grafo</li>
       <li xml:lang="et">Graafi liigutamine lohistades</li>
       <li xml:lang="fr">Déplacement du graphe par glissement</li>
+      <li xml:lang="it">Spostamento del grafo con trascinamento</li>
       <li xml:lang="nl">De grafiek verplaatsen door slepen</li>
       <li xml:lang="pl">Przesuwanie grafu poprzez przeciąganie</li>
       <li xml:lang="pt">Movimentação do grafo por arrastamento</li>
@@ -183,6 +193,7 @@
       <li xml:lang="es">Impresión de completas prestaciones</li>
       <li xml:lang="et">Täielik trükkimise toetus</li>
       <li xml:lang="fr">Système d'impression complet</li>
+      <li xml:lang="it">Stampa con ogni funzionalità</li>
       <li xml:lang="nl">Afdrukken met alle mogelijkheden</li>
       <li xml:lang="pl">Pełnowartościowe drukowanie</li>
       <li xml:lang="pt">Impressão com diversas funcionalidades</li>
@@ -199,6 +210,7 @@
       <li xml:lang="es">Trazado perfecto de todos los grafos de ejemplo de Graphviz</li>
       <li xml:lang="et">Kõigi GraphVizi näidisgraafide täiuslik esitamine</li>
       <li xml:lang="fr">Rendu parfait de tous les exemples de graphes Graphviz</li>
+      <li xml:lang="it">Tracciamento perfetto di tutti i grafi d'esempio di graphviz</li>
       <li xml:lang="nl">Perfect tekenen van alle graphviz voorbeeldgrafieken</li>
       <li xml:lang="pl">Perfekcyjne rysowanie wszystkich grafów przykładowych graphviz</li>
       <li xml:lang="pt">Desenho perfeito de todos os grafos de exemplo do 'graphviz'</li>
@@ -215,6 +227,7 @@
       <li xml:lang="es">Selección automática de «dot» para los grafos dirigidos y de «neato» para los no dirigidos</li>
       <li xml:lang="et">Automaatne doti valimine orienteeritud ja neato valimine orienteerimata graafide jaoks </li>
       <li xml:lang="fr">Choisir automatiquement dot pour les graphes orientés et neato pour les graphes non-orientés</li>
+      <li xml:lang="it">Scelta automatica di dot per i grafi orientati e neato per i non orientati</li>
       <li xml:lang="nl">Automatisch kiezen van commando dot voor gerichte grafieken en neato voor niet gerichte</li>
       <li xml:lang="pl">Samoczynne wybranie dot dla skierowanych grafów i neato dla nieskierowanych</li>
       <li xml:lang="pt">Escolha automática do 'dot' para grafos direccionados e do 'neato' para os não-direccionados</li>
@@ -230,6 +243,7 @@
       <li xml:lang="es">Posibilidad de usar un algoritmo de disposición aleatorio en cuanto se genere un formato «xdot»</li>
       <li xml:lang="et">Võimalus kasutada suvalist paigutusalgoritmi, kui see vaid tagab xdot-vormingu</li>
       <li xml:lang="fr">Possibilité d'utiliser un algorithme de disposition arbitraire du moment qu'il produit le format xdot</li>
+      <li xml:lang="it">Possibilità di usare un qualsiasi algoritmo di disposizione che produca il formato xdot</li>
       <li xml:lang="nl">Mogelijkheid om een willekeurig algoritme voor de opmaak te gebruiken wanneer het xdot-formaat produceert</li>
       <li xml:lang="pl">Możliwość użycia dowolnego algorytmu układu już od chwili utworzenia formatu xdot</li>
       <li xml:lang="pt">Possibilidade de utilização de um algoritmo de disposição arbitrário, desde que produza o formato 'xdot'</li>
@@ -246,6 +260,7 @@
       <li xml:lang="es">Carga automática con confirmación de usuario de archivos modificados externamente (configurable)</li>
       <li xml:lang="et">Muudetud failide automaatne taaslaadimine kasutaja kinnitust küsides (see on seadistatav)</li>
       <li xml:lang="fr">Rechargement automatique (configurable) de fichiers modifiés (extérieurement) avec confirmation de l'utilisateur </li>
+      <li xml:lang="it">Ricaricamento automatico con conferma dell'utente dei file modificati da altri programmi (configurabile)</li>
       <li xml:lang="nl">Automatisch opnieuw laden met toestemming van de gebruiker van (extern) gewijzigde bestanden (te configureren)</li>
       <li xml:lang="pl">Samoczynne ponowne wczytywanie przy zgodzie użytkownika (zewnętrznie) zmienionych plików (do ustawieni)</li>
       <li xml:lang="pt">Recarregamento automático com a confirmação do utilizador dos ficheiros modificados no exterior (configurável)</li>
@@ -262,6 +277,7 @@
       <li xml:lang="es">Apertura de nuevas instancias como nuevas pestañas en la anterior (configurable)</li>
       <li xml:lang="et">Rakenduse uute protsesside avamine olemasoleva protsessi raames uutel kaartidel (see on seadistatav)</li>
       <li xml:lang="fr">Ouvrir les nouvelles instances dans de nouveaux onglets (configurable)</li>
+      <li xml:lang="it">Apertura di nuove istanze come nuove schede della preesistente (configurabile)</li>
       <li xml:lang="nl">Nieuwe exemplaren als nieuwe tabbladden openen in de oude (te configureren)</li>
       <li xml:lang="pl">Otwieranie nowych wystąpień jako nowe karty w starym wystąpieniu (do ustawienia)</li>
       <li xml:lang="pt">Abertura de novas instâncias como páginas novas da janela actual (configurável)</li>
