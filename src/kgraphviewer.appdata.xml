@@ -11,6 +11,7 @@
   <name xml:lang="en-GB">KGraphViewer</name>
   <name xml:lang="es">KGraphViewer</name>
   <name xml:lang="et">KGraphViewer</name>
+  <name xml:lang="fi">KGraphViewer</name>
   <name xml:lang="fr">KGraphViewer</name>
   <name xml:lang="hu">KGraphViewer</name>
   <name xml:lang="it">KGraphViewer</name>
@@ -30,6 +31,7 @@
   <summary xml:lang="en-GB">A Graphviz dot graph viewer for KDE</summary>
   <summary xml:lang="es">Un visor de grafos «dot» de Graphviz para KDE</summary>
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja</summary>
+  <summary xml:lang="fi">Graphviz dot -graafikatselin KDE:lle</summary>
   <summary xml:lang="fr">Un visualiseur de graphes Graphviz pour KDE</summary>
   <summary xml:lang="hu">Graphviz pont gráf megjelenítő KDE-hez</summary>
   <summary xml:lang="it">Un visore di grafi dot di GraphViz per KDE</summary>
@@ -69,6 +71,7 @@
     <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Funciones:</p>
     <p xml:lang="et">Omadused:</p>
+    <p xml:lang="fi">Ominaisuudet:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="it">Caratteristiche:</p>
@@ -89,6 +92,7 @@
       <li xml:lang="en-GB">Zooming</li>
       <li xml:lang="es">Ampliación</li>
       <li xml:lang="et">Suurendamine ja vähendamine</li>
+      <li xml:lang="fi">Suurennus</li>
       <li xml:lang="fr">Zoom</li>
       <li xml:lang="hu">Nagyítás</li>
       <li xml:lang="it">Ingrandimento</li>
@@ -107,6 +111,7 @@
       <li xml:lang="en-GB">Threaded loading of several graphs in tabs</li>
       <li xml:lang="es">Carga multihilo de varios grafos en pestañas</li>
       <li xml:lang="et">Mitme graafi laadimine ühel ajal erinevatel kaartidel</li>
+      <li xml:lang="fi">Useamman graafin säikeistetty lataus välilehtiin</li>
       <li xml:lang="fr">Chargement en parallèle de plusieurs graphes dans des onglets</li>
       <li xml:lang="it">Caricamento simultaneo con thread di diversi grafi tempo in schede</li>
       <li xml:lang="nl">Parallel laden (threads) van verschillende grafieken in tabbladen</li>
@@ -124,6 +129,7 @@
       <li xml:lang="en-GB">Saving of the recent files list</li>
       <li xml:lang="es">Lista de los últimos archivos usados</li>
       <li xml:lang="et">Viimati kasutatud failide nimekirja salvestamine</li>
+      <li xml:lang="fi">Viimeaikaisten tiedostojen luettelon tallennus</li>
       <li xml:lang="fr">Enregistrement de la liste des fichiers récemment ouverts</li>
       <li xml:lang="it">Memorizzazione di un elenco di file recenti</li>
       <li xml:lang="nl">De lijst van recente bestanden opslaan</li>
@@ -141,6 +147,7 @@
       <li xml:lang="en-GB">Manual reload of files</li>
       <li xml:lang="es">Recarga manual de archivos</li>
       <li xml:lang="et">Failide käsitsi taaslaadimine</li>
+      <li xml:lang="fi">Tiedostojen uudelleenlataus käsin</li>
       <li xml:lang="fr">Rechargement manuel des fichiers</li>
       <li xml:lang="it">Ricaricamento manuale dei file</li>
       <li xml:lang="nl">Handmatig opnieuw laden van bestanden</li>
@@ -158,6 +165,7 @@
       <li xml:lang="en-GB">Display of a bird-eye view of the graph</li>
       <li xml:lang="es">Visualización del grafo a vista de pájaro</li>
       <li xml:lang="et">Graafi ülevaate näitamine</li>
+      <li xml:lang="fi">Graafin näyttö lintuperspektiivissä</li>
       <li xml:lang="fr">Affichage de la totalité du graphe</li>
       <li xml:lang="it">Vista a volo d'aquila del grafo</li>
       <li xml:lang="nl">Een vogelvlucht weergave van een grafiek tonen</li>
@@ -175,6 +183,7 @@
       <li xml:lang="en-GB">Moving of the graph by dragging</li>
       <li xml:lang="es">Arrastrar y mover el grafo</li>
       <li xml:lang="et">Graafi liigutamine lohistades</li>
+      <li xml:lang="fi">Graafin siirto vetämällä</li>
       <li xml:lang="fr">Déplacement du graphe par glissement</li>
       <li xml:lang="it">Spostamento del grafo con trascinamento</li>
       <li xml:lang="nl">De grafiek verplaatsen door slepen</li>
@@ -192,6 +201,7 @@
       <li xml:lang="en-GB">Full featured printing</li>
       <li xml:lang="es">Impresión de completas prestaciones</li>
       <li xml:lang="et">Täielik trükkimise toetus</li>
+      <li xml:lang="fi">Täysominaisuuksinen tulostus</li>
       <li xml:lang="fr">Système d'impression complet</li>
       <li xml:lang="it">Stampa con ogni funzionalità</li>
       <li xml:lang="nl">Afdrukken met alle mogelijkheden</li>
@@ -209,6 +219,7 @@
       <li xml:lang="en-GB">Perfect drawing of all graphviz example graphs</li>
       <li xml:lang="es">Trazado perfecto de todos los grafos de ejemplo de Graphviz</li>
       <li xml:lang="et">Kõigi GraphVizi näidisgraafide täiuslik esitamine</li>
+      <li xml:lang="fi">Kaikkien graphviz-esimerkkigraafien täydellinen piirto</li>
       <li xml:lang="fr">Rendu parfait de tous les exemples de graphes Graphviz</li>
       <li xml:lang="it">Tracciamento perfetto di tutti i grafi d'esempio di graphviz</li>
       <li xml:lang="nl">Perfect tekenen van alle graphviz voorbeeldgrafieken</li>
@@ -242,6 +253,7 @@
       <li xml:lang="en-GB">Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="es">Posibilidad de usar un algoritmo de disposición aleatorio en cuanto se genere un formato «xdot»</li>
       <li xml:lang="et">Võimalus kasutada suvalist paigutusalgoritmi, kui see vaid tagab xdot-vormingu</li>
+      <li xml:lang="fi">Mahdollisuus käyttää mitä tahansa asettelualgoritmia, kunhan se tuottaa xdot-muotoa</li>
       <li xml:lang="fr">Possibilité d'utiliser un algorithme de disposition arbitraire du moment qu'il produit le format xdot</li>
       <li xml:lang="it">Possibilità di usare un qualsiasi algoritmo di disposizione che produca il formato xdot</li>
       <li xml:lang="nl">Mogelijkheid om een willekeurig algoritme voor de opmaak te gebruiken wanneer het xdot-formaat produceert</li>
@@ -259,6 +271,7 @@
       <li xml:lang="en-GB">Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="es">Carga automática con confirmación de usuario de archivos modificados externamente (configurable)</li>
       <li xml:lang="et">Muudetud failide automaatne taaslaadimine kasutaja kinnitust küsides (see on seadistatav)</li>
+      <li xml:lang="fi">Automaattinen uudelleenlataus mutta käyttäjä vahvistaa (ulkoisesti) muokatut tiedostot (mukautettavissa)</li>
       <li xml:lang="fr">Rechargement automatique (configurable) de fichiers modifiés (extérieurement) avec confirmation de l'utilisateur </li>
       <li xml:lang="it">Ricaricamento automatico con conferma dell'utente dei file modificati da altri programmi (configurabile)</li>
       <li xml:lang="nl">Automatisch opnieuw laden met toestemming van de gebruiker van (extern) gewijzigde bestanden (te configureren)</li>
@@ -276,6 +289,7 @@
       <li xml:lang="en-GB">Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="es">Apertura de nuevas instancias como nuevas pestañas en la anterior (configurable)</li>
       <li xml:lang="et">Rakenduse uute protsesside avamine olemasoleva protsessi raames uutel kaartidel (see on seadistatav)</li>
+      <li xml:lang="fi">Avaa uudet instanssit uusiksi välilehdiksi vanhaan (mukautettavissa)</li>
       <li xml:lang="fr">Ouvrir les nouvelles instances dans de nouveaux onglets (configurable)</li>
       <li xml:lang="it">Apertura di nuove istanze come nuove schede della preesistente (configurabile)</li>
       <li xml:lang="nl">Nieuwe exemplaren als nieuwe tabbladden openen in de oude (te configureren)</li>
