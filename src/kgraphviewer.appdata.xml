@@ -211,7 +211,7 @@
       <li xml:lang="en-GB">Full featured printing</li>
       <li xml:lang="es">Impresión de completas prestaciones</li>
       <li xml:lang="et">Täielik trükkimise toetus</li>
-      <li xml:lang="fi">Täysominaisuuksinen tulostus</li>
+      <li xml:lang="fi">Tulostus kaikilla ominaisuuksilla</li>
       <li xml:lang="fr">Système d'impression complet</li>
       <li xml:lang="it">Stampa con ogni funzionalità</li>
       <li xml:lang="ko">다양한 옵션이 있는 인쇄</li>
@@ -304,7 +304,7 @@
       <li xml:lang="en-GB">Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="es">Apertura de nuevas instancias como nuevas pestañas en la anterior (configurable)</li>
       <li xml:lang="et">Rakenduse uute protsesside avamine olemasoleva protsessi raames uutel kaartidel (see on seadistatav)</li>
-      <li xml:lang="fi">Avaa uudet instanssit uusiksi välilehdiksi vanhaan (mukautettavissa)</li>
+      <li xml:lang="fi">Avaa uudet instanssit uusiksi välilehdiksi vanhaan instanssiin (mukautettavissa)</li>
       <li xml:lang="fr">Ouvrir les nouvelles instances dans de nouveaux onglets (configurable)</li>
       <li xml:lang="it">Apertura di nuove istanze come nuove schede della preesistente (configurabile)</li>
       <li xml:lang="ko">새 인스턴스를 탭으로 열기(설정 가능)</li>
