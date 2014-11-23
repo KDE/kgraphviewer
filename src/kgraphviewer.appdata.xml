@@ -55,6 +55,7 @@
     <p xml:lang="en-GB">KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools. Graphs are commonly used in scientific domains and particularly in computer science.</p>
     <p xml:lang="es">KGraphviewer es un visor de archivos de grafos «dot» de Graphviz, que aspira a sustituir a otras herramientas obsoletas de GraphViz. Los grafos se usan a menudo en el campo científico y, particularmente, en la informática.</p>
     <p xml:lang="et">KGraphViewer on GraphVizi dpt-graaafifailide näitaja, mis üritab asendada teisi, iganenud GraphVizi tööriistu. Graafe kasutatakse laialdaselt teaduses, eriti aga arvutiteaduses.</p>
+    <p xml:lang="fi">KGraphViewer on Graphviz dot -graafitiedostokatselin, jonka tavoitteena on korvata muut vanhentuneet GraphViz-työkalut. Graafeja käytetään usein tieteellisillä aloilla ja erityisesti tietojenkäsittelyssä.</p>
     <p xml:lang="fr">KGraphViewer est un visualiseur de fichier de graphe Graphviz, prévu pour remplacer les autres outils Graphviz maintenant obsolètes. Les graphes sont utilisés couramment dans les domaines scientifiques, et en particulier en informatique.</p>
     <p xml:lang="it">KGraphViewer è un visore di file di grafi dot, progettato per sostituire i più datati altri strumenti per GraphViz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
     <p xml:lang="ko">KGraphViewer는 Graphviz DOT 그래프 파일 뷰어로, 오래된 GraphViz 도구 대신 사용할 수 있는 것을 목표로 합니다. 그래프는 전산학을 비롯한 여러 과학 분야에서 사용됩니다.</p>
@@ -249,6 +250,7 @@
       <li xml:lang="en-GB">Automatically choose dot for directed graphs and neato for undirected</li>
       <li xml:lang="es">Selección automática de «dot» para los grafos dirigidos y de «neato» para los no dirigidos</li>
       <li xml:lang="et">Automaatne doti valimine orienteeritud ja neato valimine orienteerimata graafide jaoks </li>
+      <li xml:lang="fi">Valitse dot automaattisesti suunnatuille graafeille ja neato suuntaamattomille</li>
       <li xml:lang="fr">Choisir automatiquement dot pour les graphes orientés et neato pour les graphes non-orientés</li>
       <li xml:lang="it">Scelta automatica di dot per i grafi orientati e neato per i non orientati</li>
       <li xml:lang="ko">그래프의 방향성에 따른 dot/neato 자동 선택</li>
@@ -285,7 +287,7 @@
       <li xml:lang="en-GB">Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="es">Carga automática con confirmación de usuario de archivos modificados externamente (configurable)</li>
       <li xml:lang="et">Muudetud failide automaatne taaslaadimine kasutaja kinnitust küsides (see on seadistatav)</li>
-      <li xml:lang="fi">Automaattinen uudelleenlataus mutta käyttäjä vahvistaa (ulkoisesti) muokatut tiedostot (mukautettavissa)</li>
+      <li xml:lang="fi">Automaattinen uudelleenlataus mutta käyttäjä vahvistaa (ulkoisesti) muuttuneet tiedostot (mukautettavissa)</li>
       <li xml:lang="fr">Rechargement automatique (configurable) de fichiers modifiés (extérieurement) avec confirmation de l'utilisateur </li>
       <li xml:lang="it">Ricaricamento automatico con conferma dell'utente dei file modificati da altri programmi (configurabile)</li>
       <li xml:lang="ko">외부에서 수정된 파일을 사용자 확인 하에 자동으로 불러오기(설정 가능)</li>
