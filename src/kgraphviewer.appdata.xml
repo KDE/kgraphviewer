@@ -153,7 +153,7 @@
       <li xml:lang="da">Manuel genindlæsning af filer</li>
       <li xml:lang="de">Manuelles neu laden von Dateien</li>
       <li xml:lang="en-GB">Manual reload of files</li>
-      <li xml:lang="es">Recarga manual de archivos</li>
+      <li xml:lang="es">Volver a cargar archivos de forma manual</li>
       <li xml:lang="et">Failide käsitsi taaslaadimine</li>
       <li xml:lang="fi">Tiedostojen uudelleenlataus käsin</li>
       <li xml:lang="fr">Rechargement manuel des fichiers</li>
@@ -285,7 +285,7 @@
       <li xml:lang="da">Automatisk genindlæsning med brugerbekræftelse af (eksternt) ændrede filer (konfigurerbart)</li>
       <li xml:lang="de">Erneutes Laden von (extern) geänderten Dateien - automatisch mit Bestätigung durch den Benutzer (einstellbar)</li>
       <li xml:lang="en-GB">Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
-      <li xml:lang="es">Carga automática con confirmación de usuario de archivos modificados externamente (configurable)</li>
+      <li xml:lang="es">Volver a cargar automáticamente con confirmación de usuario de archivos modificados externamente (configurable)</li>
       <li xml:lang="et">Muudetud failide automaatne taaslaadimine kasutaja kinnitust küsides (see on seadistatav)</li>
       <li xml:lang="fi">Automaattinen uudelleenlataus mutta käyttäjä vahvistaa (ulkoisesti) muuttuneet tiedostot (mukautettavissa)</li>
       <li xml:lang="fr">Rechargement automatique (configurable) de fichiers modifiés (extérieurement) avec confirmation de l'utilisateur </li>
