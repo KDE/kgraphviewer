@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KGraphViewer</name>
+  <name xml:lang="bs">KGraphViewer</name>
   <name xml:lang="ca">KGraphViewer</name>
   <name xml:lang="cs">KGraphViewer</name>
   <name xml:lang="da">KGraphViewer</name>
@@ -26,6 +27,7 @@
   <name xml:lang="uk">KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewerxx</name>
   <summary>A Graphviz dot graph viewer for KDE</summary>
+  <summary xml:lang="bs">Graphviz tačkasti grafički preglednik za KDE</summary>
   <summary xml:lang="ca">Un visor de gràfiques de punts de Graphviz pel KDE</summary>
   <summary xml:lang="cs">Prohlížeč grafů DOT Graphviz pro KDE</summary>
   <summary xml:lang="da">Et program til visning af Graphviz dot-grafer til KDE</summary>
@@ -52,6 +54,7 @@
       KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools.
       Graphs are commonly used in scientific domains and particularly in computer science.
     </p>
+    <p xml:lang="bs">Graphviz tačkasti grafički preglednik za fajlove, namijenjen da zamijeni druge zastarijele GraphViz alate. Grafovi su često korišteni u znanstvenim oblastima, i djelomično u kompjuterskoj nauci.</p>
     <p xml:lang="ca">El KGraphViewer és un visor de fitxers gràfics de punts del Graphviz, destinat a substituir les altres eines obsoletes del GraphViz. Els gràfics normalment s'utilitzen en dominis científics i particularment en informàtica.</p>
     <p xml:lang="da">KGraphViewer er en fremviser til Graphviz dot graph-filer, med det formål at erstatte andre forældede GraphViz-værktøjer. Grafer bruges ofte på det videnskabelige område og især indenfor datalogi.</p>
     <p xml:lang="en-GB">KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools. Graphs are commonly used in scientific domains and particularly in computer science.</p>
@@ -71,6 +74,7 @@
     <p xml:lang="uk">KGraphViewer — програма для перегляду графів у форматі dot Graphviz. Її створено як заміну застарілим інструментам для роботи з GraphViz. Графи широко використовуються у наукових дослідженнях, зокрема у комп’ютерних науках.</p>
     <p xml:lang="x-test">xxKGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools. Graphs are commonly used in scientific domains and particularly in computer science.xx</p>
     <p>Features:</p>
+    <p xml:lang="bs">Svojstva:</p>
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="da">Funktioner:</p>
@@ -94,6 +98,7 @@
     <p xml:lang="x-test">xxFeatures:xx</p>
     <ul>
       <li>Zooming</li>
+      <li xml:lang="bs">Zumiranje</li>
       <li xml:lang="ca">Zoom</li>
       <li xml:lang="cs">Zvětšování</li>
       <li xml:lang="da">Zoom</li>
@@ -116,6 +121,7 @@
       <li xml:lang="uk">Масштабування.</li>
       <li xml:lang="x-test">xxZoomingxx</li>
       <li>Threaded loading of several graphs in tabs</li>
+      <li xml:lang="bs">Učitavanje preko niti nekih grafova u karticama</li>
       <li xml:lang="ca">Càrrega per subprocessos de diversos gràfics en pestanyes</li>
       <li xml:lang="da">Trådet indlæsning af flere grafer i faneblade</li>
       <li xml:lang="de">Gleichzeitiges Laden mehrerer Graphen in Unterfenstern</li>
@@ -136,6 +142,7 @@
       <li xml:lang="uk">Завантаження декількох графів до вкладок у окремих обчислювальних потоках.</li>
       <li xml:lang="x-test">xxThreaded loading of several graphs in tabsxx</li>
       <li>Saving of the recent files list</li>
+      <li xml:lang="bs">Snimanje nedavne liste fajlova</li>
       <li xml:lang="ca">Desat de la llista de fitxers recents</li>
       <li xml:lang="da">Gemning af liste over nylige filer</li>
       <li xml:lang="de">Speicherung der Liste der zuletzt geöffneten Dateien</li>
@@ -156,6 +163,7 @@
       <li xml:lang="uk">Зберігання списку нещодавно використаних файлів.</li>
       <li xml:lang="x-test">xxSaving of the recent files listxx</li>
       <li>Manual reload of files</li>
+      <li xml:lang="bs">Ručno nadopunjavanje fajlova</li>
       <li xml:lang="ca">Recàrrega manual de fitxers</li>
       <li xml:lang="da">Manuel genindlæsning af filer</li>
       <li xml:lang="de">Manuelles neu laden von Dateien</li>
@@ -176,6 +184,7 @@
       <li xml:lang="uk">Перезавантаження файлів вручну.</li>
       <li xml:lang="x-test">xxManual reload of filesxx</li>
       <li>Display of a bird-eye view of the graph</li>
+      <li xml:lang="bs">Prikaz iz ptičije perspektive grafa</li>
       <li xml:lang="ca">Representació de vista d'ocell del gràfic</li>
       <li xml:lang="da">Viser grafen i fugleperspektiv</li>
       <li xml:lang="de">Anzeige eines Übersichtsfenster für den Graphen</li>
@@ -196,6 +205,7 @@
       <li xml:lang="uk">Показ панелі загального вигляду графу.</li>
       <li xml:lang="x-test">xxDisplay of a bird-eye view of the graphxx</li>
       <li>Moving of the graph by dragging</li>
+      <li xml:lang="bs">Pomjeranje grafa povlačenjem</li>
       <li xml:lang="ca">Moviment del gràfic en arrossegar</li>
       <li xml:lang="da">Flytning af grafen ved at trække i den</li>
       <li xml:lang="de">Verschieben des Graphen durch ziehen</li>
@@ -216,6 +226,7 @@
       <li xml:lang="uk">Пересування графу перетягуванням.</li>
       <li xml:lang="x-test">xxMoving of the graph by draggingxx</li>
       <li>Full featured printing</li>
+      <li xml:lang="bs">Cijelo istaknuto printanje</li>
       <li xml:lang="ca">Impressió amb totes les funcionalitats</li>
       <li xml:lang="da">Udskrift med fuld funktionalitet</li>
       <li xml:lang="de">Drucken mit vielen Optionen</li>
@@ -236,6 +247,7 @@
       <li xml:lang="uk">Широкі можливості з друку.</li>
       <li xml:lang="x-test">xxFull featured printingxx</li>
       <li>Perfect drawing of all graphviz example graphs</li>
+      <li xml:lang="bs">Perfektno crtanje svih graphviz-ovih primjera grafa</li>
       <li xml:lang="ca">Dibuixat perfecte de tots els gràfics d'exemple del «graphviz»</li>
       <li xml:lang="da">Perfekt tegning af alle graphviz-eksempelgrafer</li>
       <li xml:lang="de">perfekte Darstellung aller Graphviz-Beispieldiagramme</li>
@@ -256,6 +268,7 @@
       <li xml:lang="uk">Ідеальне креслення усіх прикладів графів graphviz.</li>
       <li xml:lang="x-test">xxPerfect drawing of all graphviz example graphsxx</li>
       <li>Automatically choose dot for directed graphs and neato for undirected</li>
+      <li xml:lang="bs">Automatski odabir za tačku za usmjerene grafove i neato za neusmjerene</li>
       <li xml:lang="ca">Selecció automàtica de «dot» pels gràfics dirigits i «neato» pels no dirigits</li>
       <li xml:lang="da">Vælg automatisk dot for dirigerede grafer og neato for ikke-dirigerede</li>
       <li xml:lang="de">Automatische Wahl von „dot“ für gerichtete und „neato“ für ungerichtete Graphen</li>
@@ -276,6 +289,7 @@
       <li xml:lang="uk">Автоматичний вибір dot для орієнтованих графів і neato для неорієнтованих.</li>
       <li xml:lang="x-test">xxAutomatically choose dot for directed graphs and neato for undirectedxx</li>
       <li>Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
+      <li xml:lang="bs">Mogućnost korištenja proizvoljnog rasporeda algoritma dokle god proizvodi xdot format</li>
       <li xml:lang="ca">Possibilitat d'utilitzar un algorisme de disposició arbitrari si produeix un format «xdot»</li>
       <li xml:lang="da">Mulighed for at bruge en vilkårlig layout-algoritme når bare den producerer xdot-format</li>
       <li xml:lang="en-GB">Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
@@ -295,6 +309,7 @@
       <li xml:lang="uk">Можливість використання довільного алгоритму компонування, який може створювати дані у форматі xdot.</li>
       <li xml:lang="x-test">xxPossibility to use an arbitrary layout algorithm as soon as it produces xdot formatxx</li>
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
+      <li xml:lang="bs">Automatsko ponovno učitavanje potvrdom korisnika o (izvana) modificiranim datotekama (podesivo)</li>
       <li xml:lang="ca">Recàrrega automàtica amb confirmació d'usuari de fitxers (externament) modificats (configurable)</li>
       <li xml:lang="da">Automatisk genindlæsning med brugerbekræftelse af (eksternt) ændrede filer (konfigurerbart)</li>
       <li xml:lang="de">Erneutes Laden von (extern) geänderten Dateien - automatisch mit Bestätigung durch den Benutzer (einstellbar)</li>
@@ -315,6 +330,7 @@
       <li xml:lang="uk">Автоматичне перезавантаження даних з підтвердженням з боку користувача для файлів, змінених сторонніми програмами (можна налаштувати).</li>
       <li xml:lang="x-test">xxAutomatic reloading with user confirmation of (externally) modified files (configurable)xx</li>
       <li>Open new instances as new tabs in the old one (configurable)</li>
+      <li xml:lang="bs">Otvori nove kopije kao nove kartice u starom (podesivo)</li>
       <li xml:lang="ca">Obre noves instàncies com a pestanyes noves en l'antiga (configurable)</li>
       <li xml:lang="da">Åbn nye instanser som nye faneblade i det gamle (konfigurerbart)</li>
       <li xml:lang="de">Öffnen neuer Instanzen als Unterfenster im aktuellen Unterfenster (einstellbar)</li>
