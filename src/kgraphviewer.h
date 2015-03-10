@@ -22,11 +22,11 @@
 
 //#include <config-kgraphviewer.h>
 
-#include <kapplication.h>
-#include <kparts/mainwindow.h>
-#include <ktabwidget.h>
-#include <kaction.h>
-#include <krecentfilesaction.h>
+#include <QAction>
+#include <QDir>
+#include <QTabWidget>
+#include <KParts/MainWindow>
+#include <KRecentFilesAction>
 
 #include <graphviz/gvc.h>
 
@@ -56,7 +56,7 @@ public:
   /**
     * Use this method to load whatever file/URL you have
     */
-  void openUrl(const KUrl& url);
+  void openUrl(const QUrl& url);
 
   void reloadPreviousFiles();
 
@@ -66,13 +66,15 @@ protected:
 
 signals:
   void hide(KParts::Part* part);
-  
+
 public slots:
   /**
     * Use this method to load whatever file/URL you have
     */
-  void openUrl(const QString& url) {openUrl(KUrl(url));}
-  
+  void openUrl(const QString& url) {
+      openUrl(QUrl::fromUserInput(url, QDir::currentPath(), QUrl::AssumeLocalFile));
+  }
+
   void close();
 
   void slotReloadOnChangeModeYesToggled(bool value);
@@ -86,39 +88,39 @@ public slots:
   void slotReopenPreviouslyOpenedFilesModeAskToggled(bool value);
   void slotParsingModeExternalToggled(bool value);
   void slotParsingModeInternalToggled(bool value);
-  
+
 private slots:
   void fileNew();
   void fileOpen();
-  void close(QWidget* tab);
-  void slotURLSelected(const KUrl&);
+  void close(int index);
+  void slotURLSelected(const QUrl&);
   void optionsShowToolbar();
   void optionsShowStatusbar();
   void optionsConfigureKeys();
   void optionsConfigureToolbars();
   void optionsConfigure();
-  void newTabSelectedSlot(QWidget* tab);
+  void newTabSelectedSlot(int index);
 
   void applyNewToolbarConfig();
 
   void slotHoverEnter(const QString&);
   void slotHoverLeave(const QString&);
   void slotBackgroundColorChanged(const QColor&);
-  
+
 private:
   void setupAccel();
   void setupActions();
-    
+
 private:
-  KTabWidget* m_widget;
+  QTabWidget* m_widget;
   KRecentFilesAction* m_rfa;
   KParts::PartManager* m_manager;
-  
+
   KToggleAction *m_toolbarAction;
   KToggleAction *m_statusbarAction;
 
   QStringList m_openedFiles;
-  
+
   QMap<QWidget*, KParts::Part*> m_tabsPartsMap;
   QMap<QWidget*, QString> m_tabsFilesMap;
 };

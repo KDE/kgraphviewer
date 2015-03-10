@@ -30,6 +30,10 @@
 #include "canvasedge.h"
 #include "dotdefaults.h"
 
+#include <QLoggingCategory>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
+
 namespace KGraphViewer
 {
   
@@ -91,7 +95,7 @@ const QString GraphEdge::color(uint i)
 
 void GraphEdge::updateWithEdge(const GraphEdge& edge)
 {
-  kDebug() << id() << edge.id();
+  qCDebug(debugCategory) << id() << edge.id();
   m_arrowheads = edge.arrowheads();
   m_colors = edge.colors();
   m_dir = edge.dir();
@@ -105,7 +109,7 @@ void GraphEdge::updateWithEdge(const GraphEdge& edge)
 
 void GraphEdge::updateWithEdge(edge_t* edge)
 {
-  kDebug();
+  qCDebug(debugCategory);
   DotRenderOpVec ops;
   // decrease mem peak
   setRenderOperations(ops);
@@ -113,38 +117,38 @@ void GraphEdge::updateWithEdge(edge_t* edge)
   if (agget(edge, (char*)"_draw_") != NULL)
   {
     parse_renderop(agget(edge, (char*)"_draw_"), ops);
-    kDebug() << "element renderOperations size is now " << ops.size();
+    qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_ldraw_") != NULL)
   {
     parse_renderop(agget(edge, (char*)"_ldraw_"), ops);
-    kDebug() << "element renderOperations size is now " << ops.size();
+    qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_hdraw_") != NULL)
   {
     parse_renderop(agget(edge, (char*)"_hdraw_"), ops);
-    kDebug() << "element renderOperations size is now " << ops.size();
+    qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_tdraw_") != NULL)
   {
     parse_renderop(agget(edge, (char*)"_tdraw_"), ops);
-    kDebug() << "element renderOperations size is now " << ops.size();
+    qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_hldraw_") != NULL)
   {
     parse_renderop(agget(edge, (char*)"_hldraw_"), ops);
-    kDebug() << "element renderOperations size is now " << ops.size();
+    qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
   if (agget(edge, (char*)"_tldraw_") != NULL)
   {
     parse_renderop(agget(edge, (char*)"_tldraw_"), ops);
-    kDebug() << "element renderOperations size is now " << ops.size();
+    qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
   setRenderOperations(ops);
   Agsym_t *attr = agnxtattr(agraphof(agtail(edge)), AGEDGE, NULL);
   while(attr)
   {
-    kDebug() /*<< edge->name*/ << ":" << attr->name << agxget(edge,attr);
+    qCDebug(debugCategory) /*<< edge->name*/ << ":" << attr->name << agxget(edge,attr);
     m_attributes[attr->name] = agxget(edge,attr);
     attr = agnxtattr(agraphof(agtail(edge)), AGEDGE, attr);
   }

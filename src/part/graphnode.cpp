@@ -37,7 +37,10 @@
 
 #include <math.h>
 
-#include <kdebug.h>
+#include <QDebug>
+#include <QLoggingCategory>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -60,13 +63,12 @@ GraphElement(gn)
 
 GraphNode::GraphNode(node_t* gn) : GraphElement()
 {
-  kDebug();
   updateWithNode(gn);
 }
 
 void GraphNode::updateWithNode(const GraphNode& node)
 {
-  kDebug() << id() << node.id();
+  qCDebug(debugCategory) << id() << node.id();
   GraphElement::updateWithElement(node);
   if (canvasNode())
   {
@@ -78,7 +80,7 @@ void GraphNode::updateWithNode(const GraphNode& node)
 
 void GraphNode::updateWithNode(node_t* node)
 {
-  kDebug() << agnameof(node);
+  qCDebug(debugCategory) << agnameof(node);
   m_attributes["id"] = agnameof(node);
   m_attributes["label"] = ND_label(node)->text;
 
@@ -89,12 +91,12 @@ void GraphNode::updateWithNode(node_t* node)
   if (agget(node, (char*)"_draw_") != NULL)
   {
     parse_renderop(agget(node, (char*)"_draw_"), ops);
-    kDebug() << "_draw_: element renderOperations size is now " << ops.size();
+    qCDebug(debugCategory) << "_draw_: element renderOperations size is now " << ops.size();
   }
   if (agget(node, (char*)"_ldraw_") != NULL)
   {
     parse_renderop(agget(node, (char*)"_ldraw_"), ops);
-    kDebug() << "_ldraw_: element renderOperations size is now " << ops.size();
+    qCDebug(debugCategory) << "_ldraw_: element renderOperations size is now " << ops.size();
   }
 
   setRenderOperations(ops);
@@ -102,7 +104,7 @@ void GraphNode::updateWithNode(node_t* node)
   Agsym_t *attr = agnxtattr(agraphof(node), AGNODE, NULL);
   while(attr)
   {
-    kDebug() << agnameof(node) << ":" << attr->name << agxget(node,attr);
+    qCDebug(debugCategory) << agnameof(node) << ":" << attr->name << agxget(node,attr);
     m_attributes[attr->name] = agxget(node,attr);
     attr = agnxtattr(agraphof(node), AGNODE, attr);
   }

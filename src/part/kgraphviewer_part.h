@@ -20,7 +20,8 @@
 #define _KGRAPHVIEWERPART_H_
 
 #include <kparts/part.h>
-#include <kparts/genericfactory.h>
+#include <KParts/ReadOnlyPart>
+#include <KPluginFactory>
 
 #include <graphviz/gvc.h>
 #include "kgraphviewer_interface.h"
@@ -130,6 +131,7 @@ public Q_SLOTS:
   void slotSetCursor(const QCursor& cursor);
   void slotUnsetCursor();
   virtual bool closeUrl();
+  bool slotLoadLibrary(graph_t* graph);
   void slotSetLayoutMethod(LayoutMethod method);
   void slotRenameNode(const QString& oldNodeName, const QString& newNodeName);
   

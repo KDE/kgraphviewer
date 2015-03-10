@@ -34,6 +34,7 @@
 #include <KgvUnit.h>
 #include <kpagedialog.h>
 #include <KgvPageLayout.h>
+#include <QLineEdit>
 
 class KLineEdit;
 class QPaintEvent;
@@ -138,11 +139,6 @@ public:
      *  See constructor for documentation on the parameters
      */
     static bool pageLayout( KgvPageLayout&, KgvHeadFoot&, KgvColumns&, KgvKWHeaderFooter&, int tabs, KgvUnit::Unit& unit, QWidget* parent = 0 );
-    /**
-     *  Retrieves a standard page layout.
-     *  Deprecated: better use KgvPageLayout::standardLayout()
-     */
-    static KDE_DEPRECATED KgvPageLayout standardLayout();
 
     /**
      *  Returns the layout
@@ -152,7 +148,7 @@ public:
     /**
      *  Returns the header and footer information
      */
-    KgvHeadFoot headFoot() const;
+    struct ::KgvHeadFoot headFoot() const;
 
     /**
      *  Returns the unit
@@ -170,15 +166,15 @@ private:
 //     void setupTab4( const KgvKWHeaderFooter kwhf );
 
     // dialog objects
-    KLineEdit *eHeadLeft;
-    KLineEdit *eHeadMid;
-    KLineEdit *eHeadRight;
-    KLineEdit *eFootLeft;
-    KLineEdit *eFootMid;
-    KLineEdit *eFootRight;
+    QLineEdit *eHeadLeft;
+    QLineEdit *eHeadMid;
+    QLineEdit *eHeadRight;
+    QLineEdit *eFootLeft;
+    QLineEdit *eFootMid;
+    QLineEdit *eFootRight;
 
     // layout
-    KgvPageLayout& m_layout;
+    struct ::KgvPageLayout& m_layout;
     KgvColumns m_column;
 
     KgvUnit::Unit m_unit;
@@ -189,7 +185,7 @@ protected slots:
     virtual void slotOk();
 
 private slots:
-    void sizeUpdated(KgvPageLayout &layout);
+    void sizeUpdated(struct ::KgvPageLayout &layout);
 //     void columnsUpdated(KgvColumns &columns);
 
 private:

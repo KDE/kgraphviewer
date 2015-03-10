@@ -33,9 +33,12 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QMenu>
 
-#include <kdebug.h>
-#include <klocale.h>
-#include <KAction>
+#include <QDebug>
+#include <QAction>
+#include <klocalizedstring.h>
+#include <QLoggingCategory>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 // comment out to get extended debug output during rendering
 // #define RENDER_DEBUG 1
@@ -98,7 +101,7 @@ CanvasElement::CanvasElement(
   }
   
   // the message should be given (or possible to be given) by the part user
-  KAction* removeElementAction = new KAction(i18n("Remove selected element(s)"), this);
+  QAction* removeElementAction = new QAction(i18n("Remove selected element(s)"), this);
   m_popup->addAction(removeElementAction);
   connect(removeElementAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveElement()));
 
@@ -120,7 +123,7 @@ CanvasElement::~CanvasElement()
 
 void CanvasElement::modelChanged()
 {
-  kDebug() ;//<< id();
+  qCDebug(debugCategory) ;//<< id();
   m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_element->fontColor()));
   m_font = FontsCache::changeable().fromName(m_element->fontName());
   prepareGeometryChange();
@@ -153,13 +156,13 @@ QRectF CanvasElement::boundingRect () const
 void CanvasElement::computeBoundingRect()
 {
 //   kDebug() << element();
-  kDebug() << element()->id() << zValue();
+  qCDebug(debugCategory) << element()->id() << zValue();
   
   qreal adjust = 0.5;
   QRectF rect;
   if (element()->renderOperations().isEmpty())
   {
-    kDebug() << "no render operation";
+    qCDebug(debugCategory) << "no render operation";
     rect = QRectF(0,0,(m_view->defaultNewElementPixmap().size().width())*m_scaleX,(m_view->defaultNewElementPixmap().size().height())*m_scaleY);
     m_boundingRect = rect;
   }
@@ -178,7 +181,7 @@ void CanvasElement::computeBoundingRect()
         dd << i << " ";
       }
       dd << (*it).str;
-      kDebug() << msg;
+      qCDebug(debugCategory) << msg;
 #endif
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
@@ -246,12 +249,12 @@ QWidget *widget)
     }
     dd << op.str << endl;
   }
-  kDebug() << msg;
+  qCDebug(debugCategory) << msg;
 #endif
 
   if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
   {
-    kError() << element()->id() << ": no render operation. This should not happen.";
+    qWarning() << element()->id() << ": no render operation. This should not happen.";
     return;
   }
 
@@ -538,7 +541,7 @@ QWidget *widget)
 
 void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-  kDebug() << m_element->id() << boundingRect();
+  qCDebug(debugCategory) << m_element->id() << boundingRect();
   if (m_view->isReadOnly())
   {
     return;
@@ -592,7 +595,6 @@ void CanvasElement::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 
 void CanvasElement::slotRemoveElement()
 {
-  kDebug();
   m_view->removeSelectedElements();
 }
 

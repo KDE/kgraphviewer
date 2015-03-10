@@ -47,8 +47,10 @@
 #include <QPolygonF>
 #include <QPixmap>
 
-#include <kdebug.h>
-#include <klocale.h>
+#include <QDebug>
+#include <QLoggingCategory>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -60,7 +62,7 @@ CanvasNode::CanvasNode(DotGraphView* v,
 : CanvasElement(v,(GraphElement*)s, c, parent)
 
 {
-  kDebug() << s->id();
+  qCDebug(debugCategory) << s->id();
   connect(s,SIGNAL(changed()),this,SLOT(modelChanged()));
 
   QString tipStr;

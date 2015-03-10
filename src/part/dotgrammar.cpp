@@ -25,7 +25,7 @@
 
 #include <iostream>
 
-#include <kdebug.h>
+#include <QDebug>
     
 #include <QFile>
 
@@ -132,7 +132,7 @@ void decrz(char const /*first*/)
 void dump(char const* first, char const* last)
 {
   std::string str(first, last);
-  kError() << ">>>> " << QString::fromStdString(str) << " <<<<" << endl;
+  qWarning() << ">>>> " << QString::fromStdString(str) << " <<<<" << endl;
 }
 
 void strict(char const* /*first*/, char const* /*last*/)
@@ -308,7 +308,7 @@ void checkedgeop(char const* first, char const* last)
       ( (!phelper->graph->directed()) && (str == "--") ) )
       return;
     
-    kError() << "Error !! uncoherent relation : directed = '" << phelper->graph->directed() << "' and op = '" << QString::fromStdString(str) << "'" << endl;
+    qWarning() << "Error !! uncoherent relation : directed = '" << phelper->graph->directed() << "' and op = '" << QString::fromStdString(str) << "'" << endl;
   }
 }
 
@@ -526,8 +526,8 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
              ).full;
   if (res ==false)
   {
-    kError() << "ERROR: parse_renderop failed on "<< QString::fromStdString(str);
-    kError() << "       Last renderop string is "<<QString::fromStdString(str.c_str());
+    qWarning() << "ERROR: parse_renderop failed on "<< QString::fromStdString(str);
+    qWarning() << "       Last renderop string is "<<QString::fromStdString(str.c_str());
   }
 //   delete renderop; renderop = 0;
   return res;

@@ -20,11 +20,12 @@
 #ifndef _KGRAPHEDITOR_H_
 #define _KGRAPHEDITOR_H_
 
-#include <kapplication.h>
-#include <kxmlguiwindow.h>
-#include <ktabwidget.h>
-#include <kaction.h>
-#include <krecentfilesaction.h>
+#include <QAction>
+#include <QApplication>
+#include <QDir>
+#include <QTabWidget>
+#include <KRecentFilesAction>
+#include <KXmlGuiWindow>
 
 #include <graphviz/gvc.h>
 
@@ -65,8 +66,8 @@ public:
   /**
     * Use this method to load whatever file/URL you have
     */
-  void openUrl(const KUrl& url);
- 
+  void openUrl(const QUrl& url);
+
   void reloadPreviousFiles();
 
 protected:
@@ -88,17 +89,19 @@ Q_SIGNALS:
   void update();
   void saddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
   void renameNode(const QString& oldName, const QString& newName);
-  
+
 public Q_SLOTS:
   /**
     * Use this method to load whatever file/URL you have
     */
-  void openUrl(const QString& url) {openUrl(KUrl(url));}
+  void openUrl(const QString& url) {
+      openUrl(QUrl::fromUserInput(url, QDir::currentPath(), QUrl::AssumeLocalFile));
+  }
 
   void slotSetActiveGraph(KParts::ReadOnlyPart* part);
 
   void slotGraphLoaded();
-  
+
   void slotRemoveNode(const QString&);
   void slotAddAttribute(const QString&);
   void slotRemoveAttribute(const QString&,const QString&);
@@ -124,7 +127,7 @@ private Q_SLOTS:
   void fileSaveAs();
   void close(QWidget* tab);
   void close();
-  void slotURLSelected(const KUrl&);
+  void slotURLSelected(const QUrl&);
   void optionsShowToolbar();
   void optionsShowStatusbar();
   void optionsConfigureKeys();
@@ -153,7 +156,7 @@ private:
 private:
   KGraphEditorNodesTreeWidget* m_treeWidget;
   KGraphEditorElementTreeWidget* m_newElementAttributesWidget;
-  KTabWidget* m_widget;
+  QTabWidget* m_widget;
   KRecentFilesAction* m_rfa;
   
   KToggleAction *m_toolbarAction;

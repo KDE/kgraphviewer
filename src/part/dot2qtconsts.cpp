@@ -21,7 +21,7 @@
 #include "dotgrammar.h"
 #include "canvasnode.h"
 
-#include <kdebug.h> 
+#include <QDebug> 
 #include <QColor>
 
 const Dot2QtConsts Dot2QtConsts::m_componentData;
@@ -859,7 +859,7 @@ Dot2QtConsts::Dot2QtConsts()
   uint j = 0;
   while (color_lib[j].name != 0)
   {
-//     kDebug() << "Adding color " << color_lib[j].name;
+//     () << "Adding color " << color_lib[j].name;
     m_qcolors[color_lib[j].name] = QColor(color_lib[j].r,color_lib[j].g,color_lib[j].b);
     j++;
   }
@@ -872,7 +872,7 @@ Dot2QtConsts::~Dot2QtConsts()
 
 QColor Dot2QtConsts::qtColor(const QString& dotColor) const
 {
-//   kDebug() << "Dot2QtConsts::qtColor";
+//   () << "Dot2QtConsts::qtColor";
   QColor color;
   if (parse_numeric_color(qPrintable(dotColor), color))
   {
@@ -900,7 +900,7 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
             }
             else
             {
-                kWarning() << "Unknown stored dot color '" << dotColor << "'. returning Qt black";
+                qWarning() << "Unknown stored dot color '" << dotColor << "'. returning Qt black";
                 return Qt::black;
             }
         }
@@ -921,7 +921,7 @@ Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString& dotLineStyle) const
   {
     if (!dotLineStyle.left(12).isEmpty()
 	&& dotLineStyle.left(12) != "setlinewidth")
-      kWarning() << "Unknown dot line style '" << dotLineStyle << "'. returning Qt solid line";
+      qWarning() << "Unknown dot line style '" << dotLineStyle << "'. returning Qt solid line";
     return Qt::SolidLine;
   }
 }

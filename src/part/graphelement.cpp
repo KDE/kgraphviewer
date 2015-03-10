@@ -22,10 +22,13 @@
 
 #include <math.h>
 
-#include <kdebug.h>
+#include <QDebug>
 
 #include <QRegExp>
+#include <QLoggingCategory>
 #include <graphviz/gvc.h>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -75,7 +78,6 @@ GraphElement::GraphElement(const GraphElement& element) : QObject(),
   m_renderOperationsRevision(0),
   m_selected(element.m_selected)
 {
-  kDebug() ;
   updateWithElement(element);
 }
 
@@ -87,7 +89,7 @@ void GraphElement::setRenderOperations(const DotRenderOpVec& drov)
 
 void GraphElement::updateWithElement(const GraphElement& element)
 {
-  kDebug() << element.id();
+  qCDebug(debugCategory) << element.id();
   bool modified = false;
   if (element.z() != m_z)
   {
@@ -111,7 +113,7 @@ void GraphElement::updateWithElement(const GraphElement& element)
   }
   if (modified)
   {
-    kDebug() << "modified: update render operations";
+    qCDebug(debugCategory) << "modified: update render operations";
     setRenderOperations(element.m_renderOperations);
 /*    foreach (DotRenderOp op, m_renderOperations)
     {
@@ -125,10 +127,10 @@ void GraphElement::updateWithElement(const GraphElement& element)
       dd << op.str;
       kDebug() << msg;
     }
-    kDebug() << "modified: emiting changed";*/
+    g() << "modified: emiting changed";*/
     emit changed();
   }
-  kDebug() << "done" << m_renderOperations.size();
+  qCDebug(debugCategory) << "done" << m_renderOperations.size();
 }
 
 
@@ -151,7 +153,7 @@ QString GraphElement::backColor() const
 
 void GraphElement::removeAttribute(const QString& attribName)
 {
-  kDebug() << attribName;
+  qCDebug(debugCategory) << attribName;
   m_attributes.remove(attribName);
   emit changed();
 }

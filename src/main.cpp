@@ -18,20 +18,20 @@
 
 
 #include "kgraphviewer.h"
-#include <kuniqueapplication.h>
+#include <QApplication>
 #include <kaboutdata.h>
-#include <kcmdlineargs.h>
-#include <kmessagebox.h>
-#include <klocale.h>
-#include <kdebug.h>
+#include <QCommandLineParser>
+#include <QMessageBox>
+#include <QDebug>
 #include <iostream>
-#include <qdir.h>
+#include <QDir>
 #include <QByteArray>
 #include <QDBusInterface>
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
 #include <QDBusReply>
-
+#include <klocalizedstring.h>
+#include <KAboutData>
 #include "kgraphvieweradaptor.h"
 
 static const char description[] =
@@ -41,20 +41,37 @@ static const char version[] = "2.2.0";
 
 int main(int argc, char **argv)
 {
-  KAboutData about("kgraphviewer", 0, ki18n("KGraphViewer"), version, ki18n(description),
-                    KAboutData::License_GPL, ki18n("(C) 2005-2010 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
-  about.addAuthor( ki18n("Gaël de Chalendar"), ki18n("Original Author and current maintainer"), "kleag@free.fr" );
-  about.addAuthor( ki18n("Reimar Döffinger"), ki18n("Contributor"), "kde@reimardoeffinger.de" );
-  about.addAuthor( ki18n("Matthias Peinhardt"), ki18n("Contributor"), "matthias.peinhardt@googlemail.com" );
-  about.addAuthor( ki18n("Sandro Andrade"), ki18n("Contributor"), "sandro.andrade@gmail.com" );
-  about.addAuthor( ki18n("Milian Wolff"), ki18n("Contributor"), "mail@milianw.de" );
+  KAboutData about(QStringLiteral("kgraphviewer"),
+                   i18n("KGraphViewer"),
+                   version,
+                   i18n(description),
+                   KAboutLicense::GPL,
+                   i18n("(C) 2005-2010 Gaël de Chalendar"),
+                   QString(),
+                   0,
+                   "kleag@free.fr");
+  about.addAuthor( i18n("Gaël de Chalendar"), i18n("Original Author and current maintainer"), "kleag@free.fr" );
+  about.addAuthor( i18n("Reimar Döffinger"), i18n("Contributor"), "kde@reimardoeffinger.de" );
+  about.addAuthor( i18n("Matthias Peinhardt"), i18n("Contributor"), "matthias.peinhardt@googlemail.com" );
+  about.addAuthor( i18n("Sandro Andrade"), i18n("Contributor"), "sandro.andrade@gmail.com" );
+  about.addAuthor( i18n("Milian Wolff"), i18n("Contributor"), "mail@milianw.de" );
+  about.addAuthor( i18n("Martin Sandmsark"), i18n("Port to KF5"), "martin.sandsmark@kde.org" );
   
-  KCmdLineArgs::init(argc, argv, &about);
-
-  KCmdLineOptions options;
-  options.add("+[URL]", ki18n( "Dot graph to open" ));
-  KCmdLineArgs::addCmdLineOptions( options );
-  KApplication app;
+  QApplication app(argc, argv);
+  app.setApplicationName(QStringLiteral("kgraphviewer"));
+  app.setApplicationDisplayName(QStringLiteral("KGraphViewer"));
+  app.setApplicationVersion(version);
+  app.setOrganizationDomain(QStringLiteral("kde.org"));
+  app.setOrganizationName(QStringLiteral("KDE"));
+  
+  QCommandLineParser options;
+  options.setApplicationDescription(i18n(description));
+  options.addHelpOption();
+  options.addVersionOption();
+  options.addPositionalArgument(QStringLiteral("url"), i18n("Path or URL to scan"), i18n("[url]"));
+  about.setupCommandLine(&options);
+  options.process(app);
+  about.processCommandLine(&options);
   
 // see if we are starting with session management
   if (app.isSessionRestored())
@@ -64,10 +81,10 @@ int main(int argc, char **argv)
   else
   {
       // no session.. just start up normally
-      KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+      QStringList args = options.positionalArguments();
 
       KGraphViewerWindow *widget = 0;
-      if ( args->count() == 0 )
+      if ( args.count() == 0 )
       {
         widget = new KGraphViewerWindow;
         new KgraphviewerAdaptor(widget);
@@ -80,38 +97,36 @@ int main(int argc, char **argv)
       
         bool instanceExists = reply.value();
   
-        for (int i = 0; i < args->count(); i++ )
+        for (int i = 0; i < args.count(); i++ )
         {
           if (instanceExists 
-              && (KMessageBox::questionYesNo(0, 
-                                         i18n("A KGraphViewer window is already open, where do you want to open this file?"),
-                                         i18n("Opening in new window confirmation"),
-                                             KGuiItem(i18nc("Where to open a file", "Existing window")),
-                                             KGuiItem(i18nc("Where to open a file", "New window")),
-                                             "openInNewWindowMode"   ) == KMessageBox::Yes) )
+              && (QMessageBox::question(0, 
+                                        i18n("Opening in new window confirmation"),
+                                        i18n("A KGraphViewer window is already open, where do you want to open this file in the existing window?"))
+              == QMessageBox::Yes))
           {
             QByteArray tosenddata;
             QDataStream arg(&tosenddata, QIODevice::WriteOnly);
-            QString strarg = args->arg(i);
-            KUrl url;
+            QString strarg = args[i];
+            QUrl url;
             if (strarg.left(1) == "/")
-              url = KUrl(strarg);
-            else url = KUrl(QDir::currentPath() + '/' + strarg);
+              url = QUrl::fromUserInput(strarg);
+            else url = QUrl::fromLocalFile(QDir::currentPath() + '/' + strarg);
             arg << url;
             QDBusInterface iface("org.kde.kgraphviewer", "/KGraphViewer", "", QDBusConnection::sessionBus());
             if (iface.isValid()) 
             {
-              QDBusReply<void> reply = iface.call("openUrl", url.pathOrUrl());
+              QDBusReply<void> reply = iface.call("openUrl", url.url(QUrl::PreferLocalFile));
               if (reply.isValid()) 
               {
-                kDebug() << "Reply was valid";
+                qWarning() << "Reply was valid";
                 return 0;
               }
 
-              kError() << "Call failed: " << reply.error().message() << endl;
+              qWarning() << "Call failed: " << reply.error().message() << endl;
               return 1;
             }
-            kError() << "Invalid interface" << endl;
+            qWarning() << "Invalid interface" << endl;
             exit(0);
           }
           else
@@ -120,14 +135,13 @@ int main(int argc, char **argv)
             new KgraphviewerAdaptor(widget);
             QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
             widget->show();
-            widget->openUrl( args->url( i ) );
+            widget->openUrl( QUrl::fromUserInput(args[i]));
           }
         }
       }
-      args->clear();
     if (widget != 0)
     {
-      widget->  reloadPreviousFiles();
+      widget->reloadPreviousFiles();
     }
     
   }

@@ -30,12 +30,12 @@
 // #include <core/keximainwindow.h>
 // #include <kexiutils/utils.h>
 
-#include <kapplication.h>
+#include <QApplication>
+#include <KSharedConfig>
 // #include <kiconloader.h>
-#include <klocale.h>
 // #include <kfontdialog.h>
 // #include <kurllabel.h>
-#include <kdebug.h>
+#include <QDebug>
 #include <kconfig.h>
 #include <kconfiggroup.h>
 
@@ -58,7 +58,7 @@ KGVSimplePrintingSettings::KGVSimplePrintingSettings()
 	addPageNumbers = true;
 	addDateAndTime = true;
 	addTableBorders = false;
-	pageTitleFont = kapp->font();
+	pageTitleFont = qApp->font();
 	pageTitleFont.setPointSizeF( (double)QFontInfo(pageTitleFont).pointSize()*1.5 );
 	pageTitleFont.setBold(true);
   fittingMode = FitToOnePage;
@@ -76,8 +76,7 @@ KGVSimplePrintingSettings KGVSimplePrintingSettings::load()
 {
 	KGVSimplePrintingSettings settings; //this will set defaults
 
-	KConfig *config = kapp->sessionConfig();
-  KConfigGroup simplegroup = config->group("Simple Printing");
+        KConfigGroup simplegroup(KSharedConfig::openConfig(), "Simple Printing");
   
 // 	if (simplegroup.hasKey("pageTitleFont"))
 // 		settings.pageTitleFont = simplegroup.readFontEntry("pageTitleFont");
@@ -118,8 +117,7 @@ KGVSimplePrintingSettings KGVSimplePrintingSettings::load()
 
 void KGVSimplePrintingSettings::save()
 {
-	KConfig *config = kapp->sessionConfig();
-  KConfigGroup simplegroup = config->group("Simple Printing");
+	KConfigGroup simplegroup(KSharedConfig::openConfig(), "Simple Printing");
 
 	simplegroup.writeEntry( "pageTitleFont", pageTitleFont );
 	simplegroup.writeEntry( "pageFormat", KgvPageFormat::formatString( pageLayout.format ) );
@@ -138,7 +136,6 @@ void KGVSimplePrintingSettings::save()
   simplegroup.writeEntry("horizFitting", horizFitting);
   simplegroup.writeEntry("vertFitting", vertFitting);
   simplegroup.writeEntry("chainedFittings", chainedFittings);
-  config->sync();
 }
 
 }

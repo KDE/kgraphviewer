@@ -34,19 +34,16 @@
 // #include <kexiutils/utils.h>
 // #include <kexi_version.h>
 
-#include <kapplication.h>
-#include <kstandarddirs.h>
-#include <kiconloader.h>
-#include <klocale.h>
-#include <kfontdialog.h>
+#include <QApplication>
+#include <QStandardPaths>
+#include <QIcon>
+#include <QFontDialog>
 #include <kurllabel.h>
-#include <kdebug.h>
-#include <klineedit.h>
-#include <kpushbutton.h>
-#include <kdeversion.h>
-#include <kmessagebox.h>
-#include <knuminput.h>
-#include <kdeprintdialog.h>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QInputDialog>
+#include <QPrintDialog>
 
 #include <QPrinter>
 #include <QPrintDialog>
@@ -60,7 +57,7 @@
 //Added by qt3to4:
 #include <QLinkedList>
 #include <QVBoxLayout>
-
+#include <klocalizedstring.h>
 #include <iostream>
 
 namespace KGraphViewer
@@ -100,11 +97,11 @@ bool KGVSimplePrintingCommand::init(const QString& aTitleText)
     if (!m_previewEngine->init(
       *m_graphView, titleText, errorMessage)) {
       if (!errorMessage.isEmpty())
-        KMessageBox::sorry(m_graphView, errorMessage, i18n("Print Preview")); 
+        QMessageBox::warning(m_graphView, i18n("Print Preview"), errorMessage); 
       return false;
     }
     m_previewWindow = new KGVSimplePrintPreviewWindow(
-      *m_previewEngine, "", 0, 0);
+      *m_previewEngine, "", 0);
     connect(m_previewWindow, SIGNAL(printRequested()), this, SLOT(print()));
     connect(m_previewWindow, SIGNAL(pageSetupRequested()), this, SLOT(slotShowPageSetupRequested()));
 //     KDialog::centerOnScreen(m_previewWindow);
@@ -130,7 +127,7 @@ bool KGVSimplePrintingCommand::print(const QString& aTitleText)
   QString docName( aTitleText );
   printer.setDocName( docName );
   printer.setCreator("kgraphviewer");
-  QPointer<QPrintDialog> dlg = KdePrint::createPrintDialog(&printer, m_graphView);
+  QPointer<QPrintDialog> dlg = new QPrintDialog(&printer, m_graphView);
   if (dlg->exec() != QDialog::Accepted) {
     return true;
   }

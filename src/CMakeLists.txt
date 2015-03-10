@@ -7,11 +7,11 @@ include_directories( part ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR
 
 set(kgraphviewer_SRCS main.cpp kgraphviewer.cpp kgraphviewerConfigDialog.cpp)
 
-qt4_add_dbus_adaptor(kgraphviewer_SRCS org.kde.kgraphviewer.xml kgraphviewer.h KGraphViewerWindow)
+qt5_add_dbus_adaptor(kgraphviewer_SRCS org.kde.kgraphviewer.xml kgraphviewer.h KGraphViewerWindow)
 
-kde4_add_kcfg_files( kgraphviewer_SRCS kgraphviewersettings.kcfgc )
+kconfig_add_kcfg_files( kgraphviewer_SRCS kgraphviewersettings.kcfgc )
 
-kde4_add_ui_files(
+qt5_wrap_ui(
   kgraphviewer_SRCS
   preferencesReload.ui
   preferencesParsing.ui
@@ -20,43 +20,56 @@ kde4_add_ui_files(
   preferencesAppearance.ui
 )
 
-kde4_add_executable(kgraphviewer ${kgraphviewer_SRCS})
+add_executable(kgraphviewer ${kgraphviewer_SRCS})
 
-target_link_libraries(kgraphviewer ${KDE4_KPARTS_LIBS})
+target_link_libraries(kgraphviewer LINK_PRIVATE
+    KF5::CoreAddons
+    KF5::Parts
+    KF5::KHtml
+)
 
-install( TARGETS kgraphviewer ${INSTALL_TARGETS_DEFAULT_ARGS})
+install( TARGETS kgraphviewer ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### install kgraphviewer files ###############
 
-kde4_install_icons( ${ICON_INSTALL_DIR} )
+ecm_install_icons(
+    ICONS
+    ${CMAKE_CURRENT_SOURCE_DIR}/hi16-apps-kgraphviewer.png
+    ${CMAKE_CURRENT_SOURCE_DIR}/hi32-apps-kgraphviewer.png
+    DESTINATION
+    ${KDE_INSTALL_ICONDIR}
+)
 
-install( FILES kgraphviewersettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
-install( FILES kgraphviewerui.rc DESTINATION ${DATA_INSTALL_DIR}/kgraphviewer )
-install( PROGRAMS kgraphviewer.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
+install( FILES kgraphviewersettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
+install( FILES kgraphviewerui.rc DESTINATION ${KXMLGUI_INSTALL_DIR}/kgraphviewer )
+install( PROGRAMS kgraphviewer.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
 
 
 ########### kgrapheditor target ###############
 
 set(kgrapheditor_SRCS kgrapheditormain.cpp kgrapheditor.cpp kgrapheditorConfigDialog.cpp KGraphEditorNodesTreeWidget.cpp KGraphEditorElementTreeWidget.cpp)
 
-qt4_add_dbus_adaptor(kgrapheditor_SRCS org.kde.kgrapheditor.xml kgrapheditor.h KGraphEditor)
+qt5_add_dbus_adaptor(kgrapheditor_SRCS org.kde.kgrapheditor.xml kgrapheditor.h KGraphEditor)
 
-kde4_add_kcfg_files( kgrapheditor_SRCS kgrapheditorsettings.kcfgc )
+kconfig_add_kcfg_files(kgrapheditor_SRCS kgrapheditorsettings.kcfgc)
 
-kde4_add_ui_files( kgrapheditor_SRCS preferencesReload.ui preferencesParsing.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui )
+qt5_wrap_ui(kgrapheditor_SRCS preferencesReload.ui preferencesParsing.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui)
 
-kde4_add_executable(kgrapheditor ${kgrapheditor_SRCS})
+add_executable(kgrapheditor ${kgrapheditor_SRCS})
 
-target_link_libraries(kgrapheditor ${KDE4_KPARTS_LIBS})
+target_link_libraries(kgrapheditor LINK_PRIVATE
+    KF5::CoreAddons
+    KF5::Parts
+)
 
-install( TARGETS kgrapheditor ${INSTALL_TARGETS_DEFAULT_ARGS})
+install( TARGETS kgrapheditor ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### install kgrapheditor files ###############
 
-install( FILES kgrapheditorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
-install( FILES kgrapheditorui.rc DESTINATION ${DATA_INSTALL_DIR}/kgrapheditor )
-install( PROGRAMS kgrapheditor.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
-install( FILES kgraphviewer.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/ )
+install(FILES kgrapheditorsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
+install(FILES kgrapheditorui.rc DESTINATION ${KXMLGUI_INSTALL_DIR}/kgrapheditor)
+install(PROGRAMS kgrapheditor.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
+install(FILES kgraphviewer.appdata.xml DESTINATION ${KDE_INSTALL_DATAROOTDIR}/appdata/)
 
 
 #add_subdirectory(plasmaapplet)

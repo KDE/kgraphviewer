@@ -40,7 +40,7 @@
 
 class QMenu;
 
-class DotRenderOp;
+struct DotRenderOp;
 
 /*
  * Canvas Items:

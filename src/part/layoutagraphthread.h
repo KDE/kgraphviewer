@@ -20,8 +20,8 @@
 #ifndef LAYOUTAGRAPHTHREAD_H
 #define LAYOUTAGRAPHTHREAD_H
 
-#include <QSemaphore>
 #include <QThread>
+#include <QSemaphore>
 
 #include <graphviz/gvc.h>
 

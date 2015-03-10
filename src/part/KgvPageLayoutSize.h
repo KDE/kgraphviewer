@@ -32,9 +32,10 @@
 #include <QButtonGroup>
 // #include <KgvGlobal.h>
 #include <KgvUnit.h>
-#include <kdialog.h>
+#include <QDialog>
 #include <KgvPageLayout.h>
 #include <KgvPageLayoutDia.h>
+#include <QComboBox>
 
 class KComboBox;
 class KgvUnitDoubleSpinBox;
@@ -90,7 +91,7 @@ signals:
     void propertyChange(KgvPageLayout &layout);
 
 protected:
-    KComboBox *cpgFormat;
+    QComboBox *cpgFormat;
     KgvUnitDoubleSpinBox *epgWidth;
     KgvUnitDoubleSpinBox *epgHeight;
     KgvUnitDoubleSpinBox *ebrLeft;

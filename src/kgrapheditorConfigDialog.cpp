@@ -24,19 +24,20 @@
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
 
-#include <kfiledialog.h>
+#include <QFileDialog>
 #include <kconfig.h>
-#include <kurl.h>
-#include <ktabwidget.h>
+#include <QUrl>
+#include <QTabWidget>
 #include <kparts/partmanager.h>
 #include <kedittoolbar.h>
-#include <kdebug.h>
+#include <QDebug>
 
-#include <klibloader.h>
+#include <KService>
+#include <KPluginLoader>
 #include <kmessagebox.h>
-#include <kstatusbar.h>
-#include <klocale.h>
+#include <QStatusBar>
 #include <kconfigdialog.h>
+#include <klocalizedstring.h>
 
 //#include <kapp.h>
 //#include <dcopclient.h>
@@ -45,8 +46,8 @@
 
 KgeConfigurationDialog::KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config,
               KPageDialog::FaceType dialogType, 
-              ButtonCodes dialogButtons, 
-              ButtonCode defaultButton, bool modal) : 
+              QDialogButtonBox::StandardButtons dialogButtons, 
+              QDialogButtonBox::StandardButtons defaultButton, bool modal) : 
   KConfigDialog (parent, name, config),//, dialogType, dialogButtons, defaultButton, modal) ,
   m_changed(false),
   m_parsingWidget(new Ui::KGraphViewerPreferencesParsingWidget()),

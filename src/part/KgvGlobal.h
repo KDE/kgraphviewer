@@ -28,9 +28,12 @@
 #ifndef kgvGlobal_h
 #define kgvGlobal_h
 
-#include <qstringlist.h>
-#include <qfont.h>
-#include <qmap.h>
+#include <QStringList>
+#include <QFont>
+#include <QMap>
+#include <QScreen>
+#include <QApplication>
+
 class KConfig;
 
 class KgvGlobal
@@ -61,13 +64,11 @@ public:
     }
 
     static int dpiX() {
-        return self()->m_dpiX;
+        return qApp->primaryScreen()->physicalDotsPerInchX();
     }
     static int dpiY() {
-        return self()->m_dpiY;
+        return qApp->primaryScreen()->physicalDotsPerInchY();
     }
-    /// @internal, for KgvApplication
-    static void setDPI( int x, int y );
 
     /// Return the list of available languages, in their displayable form
     /// (translated names)
@@ -99,8 +100,6 @@ private:
     typedef QMap<QString, QString> LanguageMap;
     LanguageMap m_langMap; // display-name -> language tag
     KConfig* m_kofficeConfig;
-    int m_dpiX;
-    int m_dpiY;
     // No BC problem here, constructor is private, feel free to add members
 
     // Singleton pattern. Maybe this should even be refcounted, so

@@ -19,12 +19,14 @@
 
 #include "KGraphEditorElementTreeWidget.h"
 
-#include <kdebug.h>
-#include <kaction.h>
-#include <klocale.h>
-
+#include <QDebug>
+#include <QAction>
 #include <QMenu>
 #include <QContextMenuEvent>
+#include <klocalizedstring.h>
+#include <QLoggingCategory>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KGraphEditorElementTreeWidget::KGraphEditorElementTreeWidget(QWidget* parent) :
     QTreeWidget(parent),
@@ -39,7 +41,7 @@ KGraphEditorElementTreeWidget::~KGraphEditorElementTreeWidget()
 
 void KGraphEditorElementTreeWidget::setupPopup(const QPoint& point)
 {
-  kDebug() << point;
+  qCDebug(debugCategory) << point;
 
   if (m_popup != 0)
   {
@@ -48,14 +50,14 @@ void KGraphEditorElementTreeWidget::setupPopup(const QPoint& point)
   m_popup = new QMenu();
 
   m_item = itemAt(point);
-  KAction* aaa = new KAction(i18n("Add a new attribute"), this);
+  QAction* aaa = new QAction(i18n("Add a new attribute"), this);
   connect(aaa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           this, SLOT(slotAddAttribute()));
   m_popup->addAction(aaa);
 
   if (m_item != 0) // attribute item
   {
-    KAction* raa = new KAction(i18n("Remove this attribute"), this);
+    QAction* raa = new QAction(i18n("Remove this attribute"), this);
     connect(raa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
             this, SLOT(slotRemoveAttribute()));
     m_popup->addAction(raa);
@@ -64,7 +66,6 @@ void KGraphEditorElementTreeWidget::setupPopup(const QPoint& point)
 
 void KGraphEditorElementTreeWidget::slotAddAttribute()
 {
-  kDebug();
   QString nodeName = "NewAttribute";
   nodeName += QString::number(topLevelItemCount());
   emit addAttribute(nodeName);
@@ -74,10 +75,10 @@ void KGraphEditorElementTreeWidget::slotAddAttribute()
 
 void KGraphEditorElementTreeWidget::slotRemoveAttribute()
 {
-  kDebug() << "Remove Attribute";
+  qCDebug(debugCategory) << "Remove Attribute";
   if (m_item == 0) // should not happen
   {
-    kError() << "null item ; should not happen" << endl;
+    qWarning() << "null item ; should not happen" << endl;
     return;
   }
   emit removeAttribute(m_item->text(0));

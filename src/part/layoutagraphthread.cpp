@@ -21,7 +21,7 @@
 
 #include <QMutex>
 
-#include <kdebug.h>
+#include <QDebug>
 
 static QMutex gv_mutex;
 
@@ -52,10 +52,9 @@ LayoutAGraphThread::~LayoutAGraphThread()
 
 void LayoutAGraphThread::run()
 {
-  kDebug();
   if (!m_g)
   {
-    kError() << "No graph loaded, skipping layout";
+    qWarning() << "No graph loaded, skipping layout";
     return;
   }
   threadsafe_wrap_gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
@@ -64,7 +63,6 @@ void LayoutAGraphThread::run()
 
 void LayoutAGraphThread::layoutGraph(graph_t* graph, const QString& layoutCommand)
 {
-  kDebug();
   sem.acquire();
   m_g = graph;
   m_layoutCommand = layoutCommand;

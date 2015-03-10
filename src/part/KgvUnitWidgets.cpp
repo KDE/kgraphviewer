@@ -26,15 +26,15 @@
  */
 
 #include "KgvUnitWidgets.h"
-#include <kdebug.h>
-#include <kglobal.h>
-#include <klocale.h>
+#include <QDebug>
+#include <QLocale>
 #include <qpushbutton.h>
 #include <qlayout.h>
-//Added by qt3to4:
 #include <QGridLayout>
 #include <QEvent>
+#include <QLoggingCategory>
 
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 // ----------------------------------------------------------------
 //                          Support classes
@@ -49,7 +49,7 @@ QValidator::State
 KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
 {
 
-    kDebug(30004) << "KgvUnitDoubleValidator::validate : " << s << " at " << pos;
+    qCDebug(debugCategory) << "KgvUnitDoubleValidator::validate : " << s << " at " << pos;
     QValidator::State result = Acceptable;
 
     QRegExp regexp ("([ a-zA-Z]+)$"); // Letters or spaces at end
@@ -58,7 +58,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
     if ( res == -1 )
     {
         // Nothing like an unit? The user is probably editing the unit
-        kDebug(30004) << "Intermediate (no unit)";
+        qCDebug(debugCategory) << "Intermediate (no unit)";
         return Intermediate;
     }
 
@@ -66,7 +66,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
     const QString number ( s.left( res ).trimmed() );
     const QString unitName ( regexp.cap( 1 ).trimmed().toLower() );
 
-    kDebug(30004) << "Split:" << number << ":" << unitName << ":";
+    qCDebug(debugCategory) << "Split:" << number << ":" << unitName << ":";
 
     bool ok = false;
     const double value = m_base->toDouble( number, &ok );
@@ -79,13 +79,13 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
         else
         {
             // Probably the user is trying to edit the unit
-            kDebug(30004) << "Intermediate (unknown unit)";
+            qCDebug(debugCategory) << "Intermediate (unknown unit)";
             return Intermediate;
         }
     }
     else
     {
-        kWarning() << "Not a number:" << number;
+        qWarning() << "Not a number:" << number;
         return Invalid;
     }
 
@@ -99,8 +99,8 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
 
 QString KgvUnitDoubleBase::getVisibleText( double value ) const
 {
-    const QString num ( QString( "%1%2").arg( KGlobal::locale()->formatNumber( value, m_precision ), KgvUnit::unitName( m_unit ) ) );
-    kDebug(30004) << "getVisibleText: " << QString::number( value, 'f', 12 ) << " => " << num;
+    const QString num ( QString( "%1%2").arg( QLocale().toString( value, m_precision ), KgvUnit::unitName( m_unit ) ) );
+    qCDebug(debugCategory) << "getVisibleText: " << QString::number( value, 'f', 12 ) << " => " << num;
     return num;
 }
 
@@ -109,15 +109,15 @@ double KgvUnitDoubleBase::toDouble( const QString& str, bool* ok ) const
     QString str2( str );
     /* KLocale::readNumber wants the thousand separator exactly at 1000.
        But when editing, it might be anywhere. So we need to remove it. */
-    const QString sep( KGlobal::locale()->thousandsSeparator() );
+    const QString sep( QLocale().groupSeparator() );
     if ( !sep.isEmpty() )
         str2.remove( sep );
     str2.remove( KgvUnit::unitName( m_unit ) );
-    const double dbl = KGlobal::locale()->readNumber( str2, ok );
+    const double dbl = QLocale().toDouble( str2, ok );
     if ( ok )
-      kDebug(30004) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number( dbl, 'f', 12 );
+      qCDebug(debugCategory) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number( dbl, 'f', 12 );
     else
-        kWarning() << "error:" << str << ": => :" << str2 << ":" << endl;
+        qWarning() << "error:" << str << ": => :" << str2 << ":" << endl;
     return dbl;
 }
 
@@ -238,7 +238,7 @@ void KgvUnitDoubleSpinBox::setMinMaxStep( double min, double max, double step )
 
 
 KgvUnitDoubleLineEdit::KgvUnitDoubleLineEdit( QWidget *parent, const char *name )
-    : KLineEdit( parent ), KgvUnitDoubleBase( KgvUnit::U_PT, 2 ), m_value( 0.0 ), m_lower( 0.0 ), m_upper( 9999.99 ),
+    : QLineEdit( parent ), KgvUnitDoubleBase( KgvUnit::U_PT, 2 ), m_value( 0.0 ), m_lower( 0.0 ), m_upper( 9999.99 ),
     m_lowerInPoints( 0.0 ), m_upperInPoints( 9999.99 )
 {
     setAlignment( Qt::AlignRight );
@@ -250,7 +250,7 @@ KgvUnitDoubleLineEdit::KgvUnitDoubleLineEdit( QWidget *parent, const char *name 
 
 KgvUnitDoubleLineEdit::KgvUnitDoubleLineEdit( QWidget *parent, double lower, double upper, double value, KgvUnit::Unit unit,
     unsigned int precision, const char *name )
-    : KLineEdit( parent ), KgvUnitDoubleBase( unit, precision ), m_value( value ), m_lower( lower ), m_upper( upper ),
+    : QLineEdit( parent ), KgvUnitDoubleBase( unit, precision ), m_value( value ), m_lower( lower ), m_upper( upper ),
     m_lowerInPoints( lower ), m_upperInPoints( upper )
 {
     setAlignment( Qt::AlignRight );
@@ -290,7 +290,7 @@ KgvUnitDoubleLineEdit::eventFilter( QObject* o, QEvent* ev )
 	}
 	else
 #endif
-            return KLineEdit::eventFilter( o, ev );
+            return QLineEdit::eventFilter( o, ev );
 }
 
 double KgvUnitDoubleLineEdit::value( void ) const
@@ -303,7 +303,7 @@ double KgvUnitDoubleLineEdit::value( void ) const
 
 
 KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, const char *name )
-     : KComboBox( true, parent ), KgvUnitDoubleBase( KgvUnit::U_PT, 2 ), m_value( 0.0 ), m_lower( 0.0 ), m_upper( 9999.99 ), m_lowerInPoints( 0.0 ), m_upperInPoints( 9999.99 )
+     : QComboBox( parent ), KgvUnitDoubleBase( KgvUnit::U_PT, 2 ), m_value( 0.0 ), m_lower( 0.0 ), m_upper( 9999.99 ), m_lowerInPoints( 0.0 ), m_upperInPoints( 9999.99 )
 {
     lineEdit()->setAlignment( Qt::AlignRight );
     m_validator = new KgvUnitDoubleValidator( this, this );
@@ -315,7 +315,7 @@ KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, const char *name 
 
 KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, double lower, double upper, double value, KgvUnit::Unit unit,
      unsigned int precision, const char *name )
-     : KComboBox( true, parent ), KgvUnitDoubleBase( unit, precision ), m_value( value ), m_lower( lower ), m_upper( upper ),
+     : QComboBox( parent ), KgvUnitDoubleBase( unit, precision ), m_value( value ), m_lower( lower ), m_upper( upper ),
      m_lowerInPoints( lower ), m_upperInPoints( upper )
 {
     lineEdit()->setAlignment( Qt::AlignRight );
@@ -345,7 +345,7 @@ KgvUnitDoubleComboBox::updateValue( double value )
 void
 KgvUnitDoubleComboBox::insertItem( double value, int index )
 {
-    KComboBox::insertItem(index, getVisibleText( value ));
+    QComboBox::insertItem(index, getVisibleText( value ));
 }
 
 void
@@ -382,7 +382,7 @@ KgvUnitDoubleComboBox::eventFilter( QObject* o, QEvent* ev )
 	}
 	else
 #endif
-            return KComboBox::eventFilter( o, ev );
+            return QComboBox::eventFilter( o, ev );
 }
 
 double KgvUnitDoubleComboBox::value( void ) const

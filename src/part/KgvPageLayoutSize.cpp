@@ -30,10 +30,10 @@
 #include <KgvUnit.h>
 #include <KgvUnitWidgets.h>
 
-#include <klocale.h>
-#include <kiconloader.h>
-#include <kmessagebox.h>
-#include <kdebug.h>
+#include <QIcon>
+#include <QMessageBox>
+#include <QDebug>
+#include <QLoggingCategory>
 
 #include <qlabel.h>
 #include <qlayout.h>
@@ -42,6 +42,10 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QPixmap>
+#include <KIconTheme>
+#include "klocalizedstring.h"
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KgvPageLayoutSize::KgvPageLayoutSize(
   QWidget *parent, 
@@ -57,20 +61,18 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     m_unit = unit;
 
     QGridLayout *grid1 = new QGridLayout( this );
-    grid1->setSpacing(KDialog::spacingHint());
     if ( unitChooser ) {
         // ------------- unit _______________
         QWidget* unitFrame = new QWidget( this );
         grid1->addWidget( unitFrame, 0, 0, Qt::AlignLeft );
         QBoxLayout* unitLayout = new QHBoxLayout( unitFrame );
-        unitLayout->setSpacing(KDialog::spacingHint());
 
         // label unit
         QLabel *lpgUnit = new QLabel( i18n( "Unit:" ), unitFrame );
         unitLayout->addWidget( lpgUnit, 0, Qt::AlignRight | Qt::AlignVCenter );
 
         // combo unit
-        KComboBox *cpgUnit = new KComboBox( false, unitFrame );
+        QComboBox *cpgUnit = new QComboBox( unitFrame );
         lpgUnit->setBuddy( cpgUnit );
         cpgUnit->addItems( KgvUnit::listOfUnitName() );
         cpgUnit->setCurrentIndex( unit );
@@ -97,7 +99,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     QLabel *lpgFormat = new QLabel( i18n( "&Size:" ), formatPageSize );
 
     // combo size
-    cpgFormat = new KComboBox( false, formatPageSize );
+    cpgFormat = new QComboBox( formatPageSize );
     cpgFormat->addItems( KgvPageFormat::allFormats() );
     lpgFormat->setBuddy( cpgFormat );
     connect( cpgFormat, SIGNAL(activated(int)), this, SLOT(formatChanged(int)) );
@@ -144,8 +146,9 @@ KgvPageLayoutSize::KgvPageLayoutSize(
 //     m_orientGroup->setInsideSpacing( KDialog::spacingHint() );
     grid1->addWidget( m_orientGroup, 2, 0 );
 
+    const int iconSize = KIconTheme(KIconTheme::current()).defaultSize(KIconLoader::Small);
     QLabel* lbPortrait = new QLabel( m_orientGroup );
-    lbPortrait->setPixmap( QPixmap( UserIcon( "koPortrait" ) ) );
+    lbPortrait->setPixmap( QPixmap( QIcon::fromTheme( "koPortrait" ).pixmap(iconSize, iconSize) ) );
     lbPortrait->setMaximumWidth( lbPortrait->pixmap()->width() );
     lay3->addWidget(lbPortrait);
     QRadioButton* rbPortrait = new QRadioButton( i18n("&Portrait"), m_orientGroup );
@@ -153,7 +156,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     m_orientButtons.addButton(rbPortrait);
   
     QLabel* lbLandscape = new QLabel( m_orientGroup );
-    lbLandscape->setPixmap( QPixmap( UserIcon( "koLandscape" ) ) );
+    lbLandscape->setPixmap( QPixmap( QIcon::fromTheme( "koLandscape" ).pixmap(iconSize, iconSize) ) );
     lbLandscape->setMaximumWidth( lbLandscape->pixmap()->width() );
     lay3->addWidget(lbLandscape);
     QRadioButton* rbLandscape = new QRadioButton( i18n("La&ndscape"), m_orientGroup );
@@ -171,7 +174,6 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     
     QWidget* marginsWidget = new QWidget(marginsFrame);
     QGridLayout *marginsLayout = new QGridLayout( marginsFrame );
-    marginsLayout->setSpacing(KDialog::spacingHint());
 
     // left margin
     ebrLeft = new KgvUnitDoubleSpinBox( marginsWidget, "Left" );
@@ -308,7 +310,7 @@ void KgvPageLayoutSize::formatChanged( int format ) {
 
 void KgvPageLayoutSize::orientationChanged(int which) 
 {
-  kDebug() << "KgvPageLayoutSize::orientationChanged";
+  qCDebug(debugCategory) << "KgvPageLayoutSize::orientationChanged";
   m_layout.orientation = which == 0 ? PG_PORTRAIT : PG_LANDSCAPE;
 
   // swap dimension
@@ -376,15 +378,17 @@ void KgvPageLayoutSize::bottomChanged(double bottom) {
 
 bool KgvPageLayoutSize::queryClose() {
     if ( m_layout.ptLeft + m_layout.ptRight > m_layout.ptWidth ) {
-        KMessageBox::error( this,
-            i18n("The page width is smaller than the left and right margins."),
-                            i18n("Page Layout Problem") );
+        QMessageBox::critical( this,
+            i18n("Page Layout Problem"),
+            i18n("The page width is smaller than the left and right margins.")
+        );
         return false;
     }
     if ( m_layout.ptTop + m_layout.ptBottom > m_layout.ptHeight ) {
-        KMessageBox::error( this,
-            i18n("The page height is smaller than the top and bottom margins."),
-                            i18n("Page Layout Problem") );
+        QMessageBox::critical( this,
+            i18n("Page Layout Problem"),
+            i18n("The page height is smaller than the top and bottom margins.")
+        );
         return false;
     }
     return true;

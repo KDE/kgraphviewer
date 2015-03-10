@@ -34,7 +34,7 @@
 
 #include <iostream>
 
-#include <kdebug.h>
+#include <QDebug>
     
 #include <QFile>
 #include<QUuid>
@@ -313,7 +313,7 @@ void DotGraphParsingHelper::createedges()
 //     kDebug() << "Found gn1="<<gn1<<" and gn2=" << gn2;
     if (gn1 == 0 || gn2 == 0)
     {
-      kError() << "Unable to find or create edge bound(s) gn1=" << gn1 << "; gn2=" << gn2;
+      qWarning() << "Unable to find or create edge bound(s) gn1=" << gn1 << "; gn2=" << gn2;
     }
     ge->setFromNode(gn1);
     ge->setToNode(gn2);

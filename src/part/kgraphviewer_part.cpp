@@ -22,19 +22,19 @@
 #include "dotgraph.h"
 
 #include <KDirWatch>
-#include <kcomponentdata.h>
-#include <kaction.h>
+#include <QAction>
 #include <ktoggleaction.h>
 #include <kselectaction.h>
 #include <kactioncollection.h>
 #include <kstandardaction.h>
-#include <kglobal.h>
-#include <klocale.h>
-#include <kdebug.h>
-#include <kparts/factory.h>
-#include <kiconloader.h>
-#include <kstandarddirs.h>
-
+#include <KSharedConfig>
+#include <QDebug>
+#include <KPluginFactory>
+#include <QIcon>
+#include <QStandardPaths>
+#include <KAboutData>
+#include <klocalizedstring.h>
+#include <QLoggingCategory>
 #include <iostream>
 
 #include <graphviz/gvc.h>
@@ -43,16 +43,22 @@
 // #include "kgraphviewersettings.h"
 #include "kgraphviewer_partsettings.h"
 
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
+
 namespace KGraphViewer
 {
 
 K_PLUGIN_FACTORY(KGraphViewerPartFactory, registerPlugin<KGraphViewerPart>("kgraphviewerpart");)
 static KAboutData createAboutData()
 {
-    return KAboutData( "kgraphviewerpart", 0, ki18n("KGraphViewerPart"),
-                       "1.0", ki18n( "GraphViz dot files viewer" ),
-                       KAboutData::License_GPL,
-                       ki18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
+    return KAboutData(
+        QStringLiteral("kgraphviewerpart"),
+        i18n("KGraphViewerPart"),
+        QStringLiteral("1.0"),
+        i18n( "GraphViz dot files viewer" ),
+        KAboutLicense::GPL,
+        i18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>")
+    );
 }
 K_EXPORT_PLUGIN(KGraphViewerPartFactory(createAboutData()))
 
@@ -78,10 +84,6 @@ public:
 KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, const QVariantList & )
 : KParts::ReadOnlyPart(parent), d(new KGraphViewerPartPrivate())
 {
-  kDebug() ;
-  // we need an instance
-  setComponentData( KGraphViewerPartFactory::componentData() );
-
   // this should be your custom internal widget
   d->m_widget = new DotGraphView( actionCollection(), parentWidget);
   d->m_widget->initEmpty();
@@ -117,32 +119,32 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
   // notify the part that this is our internal widget
   setWidget(d->m_widget);
 
-  KAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT(slotClose()) );
+  QAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT(slotClose()) );
   closeAct->setWhatsThis(i18n("Closes the current tab"));
 
-  KAction* printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", d->m_widget, SLOT(print()));
+  QAction* printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", d->m_widget, SLOT(print()));
+  actionCollection()->setDefaultShortcut(printAct, Qt::ControlModifier + Qt::Key_P);
   printAct->setWhatsThis(i18n("Print the graph using current page setup settings"));
-  printAct->setShortcut(Qt::ControlModifier + Qt::Key_P);
   
-  KAction* printPreviewAct = actionCollection()->addAction(KStandardAction::PrintPreview, "file_print_preview", d->m_widget, SLOT(printPreview()));
+  QAction* printPreviewAct = actionCollection()->addAction(KStandardAction::PrintPreview, "file_print_preview", d->m_widget, SLOT(printPreview()));
+  actionCollection()->setDefaultShortcut(printPreviewAct, Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_P);
   printPreviewAct->setWhatsThis(i18n("Open the print preview window"));
-  printPreviewAct->setShortcut(Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_P);
   
 //   KAction* pagesetupAct = new KAction(i18n("&Page setup"), this); //actionCollection(), "file_page_setup");
-  KAction* pagesetupAct = actionCollection()->addAction("file_page_setup", d->m_widget, SLOT(pageSetup()));
+  QAction* pagesetupAct = actionCollection()->addAction("file_page_setup", d->m_widget, SLOT(pageSetup()));
   pagesetupAct->setText(i18n("Page setup"));
   pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog to allow graph printing to be setup"));
 
-  KAction* redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, "view_redisplay", d->m_widget, SLOT(reload()));
+  QAction* redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, "view_redisplay", d->m_widget, SLOT(reload()));
   redisplayAct->setWhatsThis(i18n("Reload the current graph from file"));
   redisplayAct->setShortcut(Qt::Key_F5);
 
-  KAction* zoomInAct = actionCollection()->addAction(KStandardAction::ZoomIn, "view_zoom_in", d->m_widget, SLOT(zoomIn()));
+  QAction* zoomInAct = actionCollection()->addAction(KStandardAction::ZoomIn, "view_zoom_in", d->m_widget, SLOT(zoomIn()));
   // xgettext: no-c-format
   zoomInAct->setWhatsThis(i18n("Zoom in by 10% on the currently viewed graph"));
   zoomInAct->setShortcut(Qt::Key_F7);
   
-  KAction* zoomOutAct = actionCollection()->addAction(KStandardAction::ZoomOut, "view_zoom_out", d->m_widget, SLOT(zoomOut()));
+  QAction* zoomOutAct = actionCollection()->addAction(KStandardAction::ZoomOut, "view_zoom_out", d->m_widget, SLOT(zoomOut()));
   // xgettext: no-c-format
   zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
   zoomOutAct->setShortcut(Qt::Key_F8);
@@ -182,13 +184,20 @@ QMap<QString,QString> KGraphViewerPart::nodeAtributesPrivate(const QString& node
 
 void KGraphViewerPart::slotClose()
 {
-  kDebug();
   emit close();
 }
 
 bool KGraphViewerPart::closeUrl()
 {
   return d->m_widget->initEmpty();
+}
+
+bool KGraphViewerPart::slotLoadLibrary(graph_t* graph) 	 
+{ 	 
+  bool res = d->m_widget->slotLoadLibrary(graph); 	 
+  if (res) 	 
+    d->m_widget->show(); 	 
+  return res; 	 
 }
 
 KGraphViewerPart::~KGraphViewerPart()
@@ -198,7 +207,7 @@ KGraphViewerPart::~KGraphViewerPart()
 
 bool KGraphViewerPart::openFile()
 {
-  kDebug() << " " << localFilePath();
+  qCDebug(debugCategory) << " " << localFilePath();
   //    d->m_widget->loadedDot( localFilePath() );
   switch (d->m_layoutMethod)
   {
@@ -211,7 +220,7 @@ bool KGraphViewerPart::openFile()
         return false;
       break;
     default:
-      kError() << "Unsupported layout method " << d->m_layoutMethod;
+      qWarning() << "Unsupported layout method " << d->m_layoutMethod;
   }
   
   // deletes the existing file watcher because we have no way know here the name of the
@@ -324,7 +333,7 @@ void KGraphViewerPart::slotSelectNode(const QString& nodeName)
 
 void KGraphViewerPart::slotAddAttribute(const QString&)
 {
-  kDebug() << "NOT IMPLEMENTED";
+  qCDebug(debugCategory) << "NOT IMPLEMENTED";
 }
 
 void KGraphViewerPart::slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue)

@@ -21,6 +21,7 @@
 #define KGRAPHEDITORCONFIGDIALOG_H
 
 #include <kconfigdialog.h>
+#include <KConfigSkeleton>
 
 namespace Ui {
 class KGraphViewerPreferencesParsingWidget;
@@ -40,10 +41,10 @@ class KgeConfigurationDialog : public KConfigDialog
 {
   Q_OBJECT
 public:
-   KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config,
-                     KPageDialog::FaceType dialogType,//=IconList, 
-                  ButtonCodes dialogButtons=Default|Ok|Apply|Cancel|Help, 
-                  ButtonCode defaultButton=Ok, bool modal=false);
+   KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config, 
+                  KPageDialog::FaceType dialogType,//=IconList, 
+                  QDialogButtonBox::StandardButtons dialogButtons=QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Ok|QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Help, 
+                  QDialogButtonBox::StandardButtons defaultButton=QDialogButtonBox::Ok, bool modal=false);
 
   virtual ~KgeConfigurationDialog ();
 

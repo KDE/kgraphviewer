@@ -37,11 +37,9 @@
 #include <KgvUnit.h>
 #include <KgvUnitWidgets.h>
 
-#include <klocale.h>
-#include <kiconloader.h>
-#include <kmessagebox.h>
-#include <khbox.h>
-#include <kdebug.h>
+#include <QIcon>
+#include <QMessageBox>
+#include <QDebug>
 
 #include <qlabel.h>
 #include <qlayout.h>
@@ -51,6 +49,11 @@
 //Added by qt3to4:
 #include <QHBoxLayout>
 #include <QPaintEngine>
+#include <klocalizedstring.h>
+#include <QLoggingCategory>
+#include <QPointer>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 /******************************************************************/
 /* class KgvPagePreview                                            */
@@ -93,7 +96,7 @@ void KgvPagePreview::setPageLayout( const KgvPageLayout &layout )
     m_textFrameWidth = m_pageWidth - ( layout.ptLeft + layout.ptRight ) * resolutionX * z;
     m_textFrameHeight = m_pageHeight - ( layout.ptTop + layout.ptBottom ) * resolutionY * z;
 
-    kDebug() << "repaint in setPageLayout";
+    qCDebug(debugCategory) << "repaint in setPageLayout";
     repaint();
 }
 
@@ -163,7 +166,7 @@ KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
       m_headerTab(0)
 
 {
-    setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Apply );
+    setStandardButtons( QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Apply );
 
     m_column.columns = 1;
 
@@ -191,7 +194,7 @@ KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
     m_columnsTab(0),
     m_headerTab(0)
 {
-  setButtons( KDialog::Ok | KDialog::Cancel | KDialog::Apply );
+  setStandardButtons( QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Apply );
 
     if ( tabs & FORMAT_AND_BORDERS ) setupTab1( !( tabs & DISABLE_BORDERS ) );
 //     if ( tabs & HEADER_AND_FOOTER ) setupTab2( hf );
@@ -248,10 +251,10 @@ bool KgvPageLayoutDia::pageLayout( KgvPageLayout& layout, KgvHeadFoot& hf, KgvCo
 }
 
 /*===================== get a standard page layout ===============*/
-KgvPageLayout KgvPageLayoutDia::standardLayout()
+/*KgvPageLayout KgvPageLayoutDia::standardLayout()
 {
     return KgvPageLayout::standardLayout();
-}
+}*/
 
 /*====================== get header - footer =====================*/
 KgvHeadFoot KgvPageLayoutDia::headFoot() const
@@ -275,7 +278,7 @@ const KgvKWHeaderFooter& KgvPageLayoutDia::headerFooter()
 /*================ setup page size & margins tab ==================*/
 void KgvPageLayoutDia::setupTab1( bool enableBorders )
 {
-  KHBox *page = new KHBox();
+  QFrame *page = new QFrame();
   addPage(page, i18n( "Page Size & Margins" ));
 // QWidget *tab1 = addPage(i18n( "Page Size && &Margins" ));
 //     QHBoxLayout *lay = new QHBoxLayout(tab1);

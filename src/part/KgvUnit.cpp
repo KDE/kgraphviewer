@@ -28,10 +28,9 @@
 //#include <KoGlobal.h>
 #include "KgvUnit.h"
 
-#include <klocale.h>
-#include <kglobal.h>
-#include <kdebug.h>
-
+#include <QLocale>
+#include <klocalizedstring.h>
+#include <QDebug>
 #include <qregexp.h>
 
 QStringList KgvUnit::listOfUnitName()
@@ -119,7 +118,7 @@ double KgvUnit::ptToUnit( const double ptValue, const Unit unit )
 
 QString KgvUnit::toUserStringValue( double ptValue, Unit unit )
 {
-    return KGlobal::locale()->formatNumber( toUserValue( ptValue, unit ) );
+    return QLocale().toString(toUserValue( ptValue, unit ) );
 }
 
 double KgvUnit::fromUserValue( double value, Unit unit )
@@ -147,13 +146,13 @@ double KgvUnit::fromUserValue( double value, Unit unit )
 
 double KgvUnit::fromUserValue( const QString& value, Unit unit, bool* ok )
 {
-    return fromUserValue( KGlobal::locale()->readNumber( value, ok ), unit );
+    return fromUserValue( QLocale().toDouble(value, ok ), unit );
 }
 
 double KgvUnit::parseValue( const QString& sval, double defaultVal )
 {
   QString value = sval;
-  value.simplified();
+  value = value.simplified();
   value.remove( ' ' );
 
   if( value.isEmpty() )
@@ -179,7 +178,7 @@ double KgvUnit::parseValue( const QString& sval, double defaultVal )
       return fromUserValue( val * 10.0, U_DM );
   else if( unit == "km" )
       return fromUserValue( val * 10000.0, U_DM );
-  kWarning() << "Unit" << unit << "is not supported, please report.";
+  qWarning() << "Unit" << unit << "is not supported, please report.";
 
   // TODO : add support for mi/ft ?
   return defaultVal;

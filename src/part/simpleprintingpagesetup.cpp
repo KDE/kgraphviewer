@@ -32,19 +32,18 @@
 #include "simpleprintpreviewwindow.h"
 #include "dotgraphview.h"
 
-#include <kapplication.h>
-#include <kstandarddirs.h>
-#include <kiconloader.h>
-#include <klocale.h>
-#include <kfontdialog.h>
-#include <kurllabel.h>
-#include <kdebug.h>
-#include <klineedit.h>
-#include <kpushbutton.h>
-#include <kdeversion.h>
-#include <kmessagebox.h>
-#include <knuminput.h>
-#include <kurl.h>
+#include <QApplication>
+#include <QStandardPaths>
+#include <QIcon>
+#include <QFontDialog>
+#include <QLabel>
+#include <QDebug>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QSpinBox>
+#include <QUrl>
+#include <QLoggingCategory>
 
 #include <qlabel.h>
 #include <qtimer.h>
@@ -57,8 +56,11 @@
 //Added by qt3to4:
 #include <QPixmap>
 #include <QVBoxLayout>
-
+#include <klocalizedstring.h>
+#include <KIconTheme>
 #include <iostream>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -90,7 +92,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 
 	// settings
 //! @todo default?
-	m_unit = KLocale::Metric == KGlobal::locale()->measureSystem() ? KgvUnit::U_CM : KgvUnit::U_INCH;
+	m_unit = QLocale().measurementSystem() == QLocale::MetricSystem ? KgvUnit::U_CM : KgvUnit::U_INCH;
 
 	// GUI
 	QVBoxLayout *lyr = new QVBoxLayout(this);
@@ -103,15 +105,16 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 	setFocusPolicy(Qt::WheelFocus);
 // 	m_contents->setFocusProxy(m_contents->headerTitleLineEdit);
 
-	m_contents->printButton->setGuiItem( KStandardGuiItem::print() );
+	m_contents->printButton->setIcon( QIcon::fromTheme("printer") );
 	connect(m_contents->printButton, SIGNAL(clicked()), this, SLOT(slotPrint()));
 
-	m_contents->printPreviewButton->setIcon( KIcon("document-print-preview") );
+	m_contents->printPreviewButton->setIcon( QIcon::fromTheme("document-print-preview") );
 	m_contents->printPreviewButton->setText( i18n("Print Preview...") );
 	connect(m_contents->printPreviewButton, SIGNAL(clicked()), this, SLOT(slotPrintPreview()));
 
 	m_contents->iconLabel->setFixedWidth(32+6);
-  m_contents->iconLabel->setPixmap(DesktopIcon("distribute-horizontal-page", 32));
+    const int iconSize = KIconTheme(KIconTheme::current()).defaultSize(KIconLoader::Small);
+  m_contents->iconLabel->setPixmap(QIcon::fromTheme("distribute-horizontal-page").pixmap(iconSize, iconSize));
 	m_contents->headerTitleFontButton->setWhatsThis(i18n("Changes font for title text."));
 	connect(m_contents->headerTitleFontButton, SIGNAL(clicked()), 
 		this, SLOT(slotChangeTitleFont()));
@@ -121,7 +124,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
       m_contents->headerTitleLineEdit->setText((*args)["title"]);
       QString origCaptionLabelText = m_contents->captionLabel->text();
       m_contents->captionLabel->setText( i18n("<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>", 
-            KUrl(m_graphView->dotFileName()).fileName()
+            QUrl::fromLocalFile(m_graphView->dotFileName()).fileName()
             ) );
 	}
 	connect(m_contents->headerTitleLineEdit,SIGNAL(textChanged(QString)),
@@ -173,9 +176,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 
   
   m_contents->horizFitNumInput->setRange(1,m_command->engine()->maxHorizFit());
-  m_contents->horizFitNumInput->setSliderEnabled();
   m_contents->vertFitNumInput->setRange(1,m_command->engine()->maxVertFit());
-  m_contents->vertFitNumInput->setSliderEnabled();
   m_settings->horizFitting = m_command->engine()->maxHorizFit();
   m_settings->vertFitting = m_command->engine()->maxVertFit();
   m_contents->horizFitNumInput->setValue(m_settings->horizFitting);
@@ -202,10 +203,10 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
     m_contents->maintainAspectButton->setEnabled(false);
   }
 
-  QString chainStatePixString = KGlobal::dirs()->findResource("data", "kgraphviewerpart/pics/chain.png");
+  QString chainStatePixString = QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/chain.png");
   if (!m_settings->chainedFittings)
   {
-    chainStatePixString = KGlobal::dirs()->findResource("data", "kgraphviewerpart/pics/chain-broken.png");
+    chainStatePixString = QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/chain-broken.png");
   }
   if (chainStatePixString.isNull())
   {
@@ -243,9 +244,7 @@ void KGVSimplePrintingPageSetup::updatePageLayoutAndUnitInfo()
    + ' ' + KgvUnit::unitName(m_unit);
   m_contents->pageSizeAndMarginsLabel->setText( s );
   m_contents->horizFitNumInput->setRange(1,m_command->engine()->maxHorizFit());
-  m_contents->horizFitNumInput->setSliderEnabled();
   m_contents->vertFitNumInput->setRange(1,m_command->engine()->maxVertFit());
-  m_contents->vertFitNumInput->setSliderEnabled();
 }
 
 void KGVSimplePrintingPageSetup::setDirty(bool set)
@@ -288,8 +287,10 @@ void KGVSimplePrintingPageSetup::slotTitleTextChanged(const QString&)
 
 void KGVSimplePrintingPageSetup::slotChangeTitleFont()
 {
-	if (QDialog::Accepted != KFontDialog::getFont(m_settings->pageTitleFont, KFontChooser::NoDisplayFlags, this))
-		return;
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok, m_settings->pageTitleFont, this);
+    if (!ok) return;
+    m_settings->pageTitleFont = font;
 	m_contents->headerTitleLineEdit->setFont( m_settings->pageTitleFont );
 	setDirty(true);
 }
@@ -328,7 +329,7 @@ void KGVSimplePrintingPageSetup::slotAddTableBordersCheckboxToggled(bool set)
 
 void KGVSimplePrintingPageSetup::slotFittingButtonClicked(int id)
 {
-  kDebug() << "KGVSimplePrintingPageSetup::slotFittingButtonClicked " << id;
+  qCDebug(debugCategory) << "KGVSimplePrintingPageSetup::slotFittingButtonClicked " << id;
   if (id == NaturalSize)
   {
     m_settings->fitToOnePage = false;
@@ -357,7 +358,7 @@ void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
 {
   if (m_settings->chainedFittings)
   {
-    QString chainBreakPixString = KGlobal::dirs()->findResource("data", "kgraphviewerpart/pics/chain-broken.png");
+    QString chainBreakPixString = QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/chain-broken.png");
     if (chainBreakPixString.isNull())
     {
       std::cerr << "chain break pixmap not found !" << std::endl;
@@ -367,7 +368,7 @@ void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
   }
   else
   {
-    QString chainPixString = KGlobal::dirs()->findResource("data", "kgraphviewerpart/pics/chain.png");
+    QString chainPixString = QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/chain.png");
     if (chainPixString.isNull())
     {
       std::cerr << "chain pixmap not found !" << std::endl;

@@ -25,29 +25,33 @@
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
 #include "ui_preferencesAppearance.h"
 
-#include <kfiledialog.h>
+#include <QFileDialog>
 #include <kconfig.h>
-#include <kurl.h>
-#include <ktabwidget.h>
+#include <QUrl>
+#include <QTabWidget>
 #include <kparts/partmanager.h>
 #include <kedittoolbar.h>
-#include <kdebug.h>
+#include <QDebug>
 
-#include <klibloader.h>
-#include <kmessagebox.h>
-#include <kstatusbar.h>
-#include <klocale.h>
+#include <KService>
+#include <KPluginFactory>
+#include <QMessageBox>
+#include <QStatusBar>
 #include <kconfigdialog.h>
+#include <klocalizedstring.h>
 
 //#include <kapp.h>
 //#include <dcopclient.h>
 
 #include <iostream>
+#include <qt/QtWidgets/QDialogButtonBox>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config, 
               KPageDialog::FaceType dialogType, 
-              ButtonCodes dialogButtons, 
-              ButtonCode defaultButton, bool modal) : 
+              QDialogButtonBox::StandardButtons dialogButtons, 
+              QDialogButtonBox::StandardButtons defaultButton, bool modal) : 
   KConfigDialog (parent, name, config),//, dialogType, dialogButtons, defaultButton, modal) ,
   m_changed(false),
   parsingWidget(new Ui::KGraphViewerPreferencesParsingWidget()),
@@ -146,10 +150,8 @@ void KgvConfigurationDialog::updateSettings()
 
 void KgvConfigurationDialog::updateWidgets()
 {
-  kDebug();
-
   m_changed = false;
-  kDebug() << "  openInExistingWindowMode: " << KGraphViewerSettings::openInExistingWindowMode();
+  qCDebug(debugCategory) << "  openInExistingWindowMode: " << KGraphViewerSettings::openInExistingWindowMode();
 //   if (KGraphViewerSettings::openInExistingWindowMode() == "no")
 //     openingWidget->openInExistingWindowMode->setButton(0);
 //   else if (KGraphViewerSettings::openInExistingWindowMode() == "yes")

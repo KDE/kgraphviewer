@@ -19,12 +19,15 @@
 
 #include "KGraphEditorNodesTreeWidget.h"
 
-#include <kdebug.h>
-#include <kaction.h>
-#include <klocale.h>
+#include <QDebug>
+#include <QAction>
 
 #include <QMenu>
 #include <QContextMenuEvent>
+#include <QLoggingCategory>
+#include <klocalizedstring.h>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KGraphEditorNodesTreeWidget::KGraphEditorNodesTreeWidget(QWidget* parent) :
     QTreeWidget(parent),
@@ -39,7 +42,7 @@ KGraphEditorNodesTreeWidget::~KGraphEditorNodesTreeWidget()
 
 void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
 {
-  kDebug() << point;
+  qCDebug(debugCategory) << point;
 
   if (m_popup != 0)
   {
@@ -50,23 +53,23 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
   m_item = itemAt(point);
   if (m_item == 0)
   {
-    kDebug() << "no item at" << point;
+    qCDebug(debugCategory) << "no item at" << point;
     return;
   }
-  KAction* aaa = new KAction(i18n("Add a new attribute"), this);
+  QAction* aaa = new QAction(i18n("Add a new attribute"), this);
   connect(aaa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           this, SLOT(slotAddAttribute()));
   m_popup->addAction(aaa);
 
   if (m_item->parent() != 0) // attribute item
   {
-    KAction* raa = new KAction(i18n("Remove this attribute"), this);
+    QAction* raa = new QAction(i18n("Remove this attribute"), this);
     connect(raa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
             this, SLOT(slotRemoveAttribute()));
     m_popup->addAction(raa);
   }
   m_popup->addSeparator();
-  KAction* rna = new KAction(i18n("Remove this node"), this);
+  QAction* rna = new QAction(i18n("Remove this node"), this);
   connect(rna, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
           this, SLOT(slotRemoveNode()));
   m_popup->addAction(rna);  
@@ -74,7 +77,6 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
 
 void KGraphEditorNodesTreeWidget::slotRemoveNode()
 {
-  kDebug();
   emit removeNode(m_item->text(0));
   delete takeTopLevelItem (indexOfTopLevelItem(m_item));
   m_item = 0;
@@ -82,7 +84,7 @@ void KGraphEditorNodesTreeWidget::slotRemoveNode()
 
 void KGraphEditorNodesTreeWidget::slotRemoveElement(const QString& id)
 {
-  kDebug() << id;
+  qCDebug(debugCategory) << id;
   QList<QTreeWidgetItem*> items = findItems(id,Qt::MatchExactly,0);
   foreach (QTreeWidgetItem* item, items)
   {
@@ -92,7 +94,7 @@ void KGraphEditorNodesTreeWidget::slotRemoveElement(const QString& id)
 
 void KGraphEditorNodesTreeWidget::slotAddAttribute()
 {
-  kDebug() << "Add Attribute";
+  qCDebug(debugCategory) << "Add Attribute";
   QString nodeName = "NewAttribute";
   emit addAttribute(m_item->text(0));
   if (m_item->parent() == 0)
@@ -111,7 +113,7 @@ void KGraphEditorNodesTreeWidget::slotAddAttribute()
 
 void KGraphEditorNodesTreeWidget::slotRemoveAttribute()
 {
-  kDebug() << "Remove Attribute";
+  qCDebug(debugCategory) << "Remove Attribute";
   emit removeAttribute(m_item->parent()->text(0), m_item->text(0));
   m_item->parent()->removeChild(m_item);
   m_item = 0;

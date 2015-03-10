@@ -28,10 +28,10 @@
 #ifndef KGVUNITWIDGETS_H
 #define KGVUNITWIDGETS_H
 
-#include <knuminput.h>
-#include <knumvalidator.h>
-#include <klineedit.h>
-#include <kcombobox.h>
+#include <QSpinBox>
+#include <QIntValidator>
+#include <QLineEdit>
+#include <QComboBox>
 #include <KgvUnit.h>
 #include <QEvent>
 #include <QDoubleSpinBox>
@@ -161,7 +161,7 @@ private slots:
  * Line edit for double precision numbers with unit display
  * \since 1.4 (change of behavior)
  */
-class KgvUnitDoubleLineEdit : public KLineEdit, public KgvUnitDoubleBase
+class KgvUnitDoubleLineEdit : public QLineEdit, public KgvUnitDoubleBase
 {
     Q_OBJECT
 public:
@@ -189,7 +189,7 @@ private:
  * Combo box for double precision numbers with unit display
  * \since 1.4 (change of behavior)
  */
-class KgvUnitDoubleComboBox : public KComboBox, public KgvUnitDoubleBase
+class KgvUnitDoubleComboBox : public QComboBox, public KgvUnitDoubleBase
 {
     Q_OBJECT
 public:

@@ -53,7 +53,7 @@ class KGVSimplePrintPreviewWindow : public QWidget
 
 	public:
 		KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine &engine,
-			const QString& previewName, QWidget *parent, Qt::WFlags f = 0);
+			const QString& previewName, QWidget *parent);
 		~KGVSimplePrintPreviewWindow();
 
 		int currentPage() const { return m_pageNumber; }

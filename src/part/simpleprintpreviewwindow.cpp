@@ -40,18 +40,21 @@
 #include <QVBoxLayout>
 #include <QDesktopWidget>
 
-#include <kdialog.h>
+#include <QDialog>
 #include <QToolButton>
-#include <klocale.h>
-#include <kiconloader.h>
-#include <kdebug.h>
-#include <kpushbutton.h>
-#include <kapplication.h>
+#include <QIcon>
+#include <QDebug>
+#include <QPushButton>
+#include <QApplication>
 #include <kstandardaction.h>
-
+#include <QAction>
+#include <QLoggingCategory>
 #include <kparts/mainwindow.h>
 
 #include <iostream>
+#include <klocalizedstring.h>
+
+static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -59,8 +62,8 @@ namespace KGraphViewer
 
 KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 	KGVSimplePrintingEngine &engine, const QString& previewName, 
-	QWidget *parent, Qt::WFlags f)
- : QWidget(parent, f)
+	QWidget *parent)
+ : QWidget(parent)
  , m_engine(engine)
  , m_settings(m_engine.settings())
  , m_pageNumber(-1),
@@ -70,14 +73,14 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 //	m_pagesCount = INT_MAX;
 
   setWindowTitle(i18n("%1 - Print Preview - %2",previewName,QString("")));
-  setWindowIcon(KIcon(QLatin1String("document-print-preview")));
+  setWindowIcon(QIcon::fromTheme(QLatin1String("document-print-preview")));
   QVBoxLayout *lyr = new QVBoxLayout();
 
   m_toolbar = new KToolBar(this);
   m_toolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
   lyr->addWidget(m_toolbar);
 
-  KAction* printAction = KStandardAction::print(this, SLOT(slotPrintClicked()),
+  QAction* printAction = KStandardAction::print(this, SLOT(slotPrintClicked()),
                                       &m_actions);
   m_toolbar->addAction((QAction*)printAction);
 /// @todo handle the accelerator
@@ -85,7 +88,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 /// @todo add the separator
 // 	m_toolbar->addSeparator();
 
-  KAction *pageSetupAction = new KAction(i18n("&Page setup"), this);
+  QAction *pageSetupAction = new QAction(i18n("&Page setup"), this);
 //                                &m_actions, "file_page_setup");
   connect(pageSetupAction,SIGNAL(triggered(bool)),this, SLOT(slotPageSetup()));
   m_toolbar->addAction((QAction*)pageSetupAction);
@@ -108,7 +111,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 	m_toolbar->addSeparator();*/
 #endif
 
-  KAction* closeAction = KStandardAction::close(this, SLOT(close()),
+  QAction* closeAction = KStandardAction::close(this, SLOT(close()),
                                       &m_actions);
   m_toolbar->addAction((QAction*)closeAction);
 
@@ -122,12 +125,12 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
   m_navToolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
   lyr->addWidget(m_navToolbar);
 
-  KAction* firstPageAction = KStandardAction::firstPage(this, SLOT(slotFirstClicked()),
+  QAction* firstPageAction = KStandardAction::firstPage(this, SLOT(slotFirstClicked()),
                                       &m_actions);
   m_navToolbar->addAction((QAction*)firstPageAction);
   m_navToolbar->addSeparator();
 
-  KAction *previousAction = new KAction(i18n("Previous Page"),this);
+  QAction *previousAction = new QAction(i18n("Previous Page"),this);
 //                                &m_actions,  "prevpage");
   connect(previousAction,SIGNAL(triggered(bool)), this, SLOT(slotPreviousClicked()));
   m_navToolbar->addAction((QAction*)previousAction);
@@ -138,17 +141,17 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
   m_navToolbar->addWidget( m_pageNumberLabel);
   m_navToolbar->addSeparator();
 
-  KAction *nextAction = new KAction(i18n("Next Page"), this);//&m_actions, "nextpage");
+  QAction *nextAction = new QAction(i18n("Next Page"), this);//&m_actions, "nextpage");
   connect(nextAction,SIGNAL(triggered(bool)), this, SLOT(slotNextClicked()));
   m_navToolbar->addAction((QAction*)nextAction);
   m_navToolbar->addSeparator();
 
-  KAction* lastPageAction = KStandardAction::lastPage(this, SLOT(slotLastClicked()),this);
+  QAction* lastPageAction = KStandardAction::lastPage(this, SLOT(slotLastClicked()),this);
 //                                       &m_actions);
   m_navToolbar->addAction((QAction*)lastPageAction);
   m_navToolbar->addSeparator();
 
-  resize(width(), kapp->desktop()->height()*4/5);
+  resize(width(), qApp->desktop()->height()*4/5);
 
   this->setLayout(lyr);
 //! @todo progress bar...
@@ -158,7 +161,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 
 void KGVSimplePrintPreviewWindow::initLater()
 {
-  kDebug() ;
+  qCDebug(debugCategory) ;
   setFullWidth();
   updatePagesCount();
   goToPage(0);
@@ -214,7 +217,6 @@ void KGVSimplePrintPreviewWindow::slotLastClicked()
 
 void KGVSimplePrintPreviewWindow::slotRedraw()
 {
-  kDebug() ;
 
   m_engine.clear();
   setFullWidth();
@@ -232,7 +234,7 @@ void KGVSimplePrintPreviewWindow::slotRedraw()
 
 void KGVSimplePrintPreviewWindow::goToPage(int pageNumber)
 {
-  kDebug() << pageNumber;
+  qCDebug(debugCategory) << pageNumber;
   if (pageNumber==m_pageNumber || pageNumber < 0 || pageNumber > ((int)m_engine.pagesCount()-1))
     return;
   m_pageNumber = pageNumber;
@@ -253,13 +255,11 @@ void KGVSimplePrintPreviewWindow::goToPage(int pageNumber)
 
 void KGVSimplePrintPreviewWindow::setFullWidth()
 {
-  kDebug();
 	m_scrollView->setFullWidth();
 }
 
 void KGVSimplePrintPreviewWindow::updatePagesCount()
 {
-  kDebug();
   QPainter p(this);
 //   QPainter p(m_view);
 //   p.begin(this);

@@ -109,10 +109,10 @@
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="KPushButton" name="printButton"/>
+                  <widget class="QPushButton" name="printButton"/>
                  </item>
                  <item>
-                  <widget class="KPushButton" name="printPreviewButton"/>
+                  <widget class="QPushButton" name="printPreviewButton"/>
                  </item>
                  <item>
                   <spacer>
@@ -158,7 +158,7 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="KLineEdit" name="headerTitleLineEdit">
+              <widget class="QLineEdit" name="headerTitleLineEdit">
                <property name="minimumSize">
                 <size>
                  <width>220</width>
@@ -174,7 +174,7 @@
               </widget>
              </item>
              <item>
-              <widget class="KPushButton" name="headerTitleFontButton">
+              <widget class="QPushButton" name="headerTitleFontButton">
                <property name="minimumSize">
                 <size>
                  <width>50</width>
@@ -230,7 +230,7 @@
             </widget>
            </item>
            <item>
-            <widget class="KPushButton" name="changePageSizeAndMarginsButton">
+            <widget class="QPushButton" name="changePageSizeAndMarginsButton">
              <property name="minimumSize">
               <size>
                <width>50</width>
@@ -359,7 +359,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <widget class="KIntNumInput" name="horizFitNumInput"/>
+            <widget class="QSpinBox" name="horizFitNumInput"/>
            </item>
           </layout>
          </widget>
@@ -377,7 +377,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <widget class="KIntNumInput" name="vertFitNumInput"/>
+            <widget class="QSpinBox" name="vertFitNumInput"/>
            </item>
           </layout>
          </widget>
@@ -454,7 +454,7 @@
         </layout>
        </item>
        <item>
-        <widget class="KUrlLabel" name="saveSetupLink">
+        <widget class="QLabel" name="saveSetupLink">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -512,31 +512,6 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>KUrlLabel</class>
-   <extends>QLabel</extends>
-   <header>kurllabel.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>KIntNumInput</class>
-   <extends>QWidget</extends>
-   <header>knuminput.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>printButton</tabstop>
   <tabstop>printPreviewButton</tabstop>
