@@ -119,7 +119,6 @@ The &kgraphviewer; project aims to replace these tools with a modern, user-frien
 
 <para>Planned features are:
 <itemizedlist>
-	<listitem><para>Port to &kde; 4</para></listitem>
 	<listitem><para>Eventual use of the &qanava; library to support internal graphs representation;</para></listitem>
 	<listitem><para>Save session data about graphs (layout program used, zoom factor, &etc;)</para></listitem>
 	<listitem><para>Integration in &kate; and &konqueror; (so that a change in &kate;'s view of the graph would re-layout and reload the file in &kgraphviewer;);</para></listitem>
@@ -134,10 +133,9 @@ The &kgraphviewer; project aims to replace these tools with a modern, user-frien
 
 <para>Other required software: &kgraphviewer; is a &kde; program that uses the &graphviz; tool &dot; for graph layout. Its dependencies are:
 <itemizedlist>
-	<listitem><para>The &qt; library 3.x (3.3.6 and above to avoid a painting bug);</para></listitem>
-	<listitem><para>&kde; libraries (kdelibs package); the program was developed and tested with version 3.5.2;</para></listitem>
+	<listitem><para>The &qt; library and &kde; libraries (kdelibs package) version 4.x;</para></listitem>
 	<listitem><para>The &graphviz; tools as externals programs (tested with version 2.8);</para></listitem>
-	<listitem><para>The &boost; &spirit; library (tested with version 0.32).</para></listitem>
+	<listitem><para>The &boost; library version 1.36.</para></listitem>
 </itemizedlist></para>
 
 </chapter>
@@ -156,9 +154,6 @@ The &kgraphviewer; project aims to replace these tools with a modern, user-frien
     <imageobject>
       <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
     </imageobject>
-    <imageobject>
-      <imagedata fileref="kgraphviewer-snap-init.eps" format="EPS"/>
-    </imageobject>
     <textobject>
       <phrase>The initial main window when opening &kgraphviewer; for the first time</phrase>
     </textobject>
@@ -173,9 +168,6 @@ The &kgraphviewer; project aims to replace these tools with a modern, user-frien
   <mediaobject>
     <imageobject>
       <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
-    </imageobject>
-    <imageobject>
-      <imagedata fileref="kgraphviewer-snap-main.eps" format="EPS"/>
     </imageobject>
     <textobject>
       <phrase>The main window of &kgraphviewer; with several files opened</phrase>
@@ -657,9 +649,11 @@ shown:</para>
 </sect2>
 
 <sect2>
-<title>The <guimenu>Help</guimenu> Menu</title>
+<title>The Help Menu</title>
 
-&help.menu.documentation;
+<para>&kgraphviewer; has the common &kde; <guimenu>Help</guimenu>
+menu items, for more information read the section about the
+<ulink url="help:/fundamentals/ui.html#menus-help">Help Menu</ulink> of the &kde; Fundamentals.</para>
 
 </sect2>
 </sect1>
@@ -669,24 +663,24 @@ shown:</para>
 
 <sect2>
 <title>The Main Toolbar</title>
-
+<!--document-new-->
 <variablelist>
-	<varlistentry>
+	<varlistentry><!--document-open-->
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-open.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Shows</action> the <guilabel>Open File</guilabel> dialog.</para></listitem>
 	</varlistentry>
 
-	<varlistentry>
+	<varlistentry><!--document-open-recent-->
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-prev.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Shows</action> the list of recently opened files.</para></listitem>
 	</varlistentry>
-
-	<varlistentry>
+<!--document-close-->
+	<varlistentry><!--document-print-->
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-print.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Prints the graph</action> using current setup.</para></listitem>
 	</varlistentry>
 
-	<varlistentry>
+	<!--varlistentry>
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-preview.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Shows</action> the <guilabel>Print Preview</guilabel> dialog.</para></listitem>
 	</varlistentry>
@@ -694,7 +688,7 @@ shown:</para>
 	<varlistentry>
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Shows</action> the <guilabel>Page Setup</guilabel> dialog.</para></listitem>
-	</varlistentry>
+	</varlistentry-->
 </variablelist>
 </sect2>
 
@@ -702,33 +696,34 @@ shown:</para>
 <title>The View Toolbar</title>
 
 <variablelist>
-	<varlistentry>
+	<!--varlistentry>
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-reload.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Reloads</action> the current graph.</para></listitem>
-	</varlistentry>
+	</varlistentry-->
 
 	<varlistentry>
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-layout.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Edits</action> the layout command or <action>shows</action> the list of preset layout algorithms.</para></listitem>
 	</varlistentry>
-
-	<varlistentry>
+	
+	<varlistentry><!--zoom-in-->
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Zoom in</action> the current graph by 10%.</para></listitem>
 	</varlistentry>
 
-	<varlistentry>
+	<varlistentry><!--zoom-out-->
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Zoom out</action> the current graph by 10%.</para></listitem>
 	</varlistentry>
 </variablelist>
+<!--kgraphviewer-bev "Enable Bird's-eye View"-->
 </sect2>
 
 <sect2>
 <title>The Help Toolbar</title>
 
 <variablelist>
-	<varlistentry>
+	<varlistentry><!--help-contextual-->
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Displays</action> the <guilabel>What's This</guilabel> mouse pointer. Click with it on a &GUI; element to obtain help using it (if there is such help available).</para></listitem>
 	</varlistentry>
