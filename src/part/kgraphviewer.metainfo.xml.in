@@ -29,7 +29,7 @@
   <name xml:lang="x-test">xxKGraphViewer Libraryxx</name>
   <summary>A Graphviz dot graph viewer for KDE (shared library)</summary>
   <summary xml:lang="bs">Graphviz pregledač tačkaste grafike za KDE (dijeljena biblioteka)</summary>
-  <summary xml:lang="ca">Un visor de gràfiques de punts de Graphviz pel KDE (biblioteca compartida)</summary>
+  <summary xml:lang="ca">Un visor de gràfics DOT de Graphviz pel KDE (biblioteca compartida)</summary>
   <summary xml:lang="da">En Graphviz dot-graf-fremviser til KDE (delt bibliotek)</summary>
   <summary xml:lang="de">Ein KDE-Anzeigeprogramm für Graphviz Dot-Diagramme (gemeinsame Bibliothek)</summary>
   <summary xml:lang="en-GB">A Graphviz dot graph viewer for KDE (shared library)</summary>
