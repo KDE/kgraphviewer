@@ -38,6 +38,7 @@
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja</summary>
   <summary xml:lang="fi">Graphviz dot -graafikatselin KDE:lle</summary>
   <summary xml:lang="fr">Un visualiseur de graphes Graphviz pour KDE</summary>
+  <summary xml:lang="gl">Un visor de gráficos de Graphviz dot para KDE</summary>
   <summary xml:lang="hu">Graphviz pont gráf megjelenítő KDE-hez</summary>
   <summary xml:lang="it">Un visore di grafi dot di GraphViz per KDE</summary>
   <summary xml:lang="ko">KDE용 Graphviz DOT 그래프 뷰어</summary>
@@ -86,6 +87,7 @@
     <p xml:lang="et">Omadused:</p>
     <p xml:lang="fi">Ominaisuudet:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
+    <p xml:lang="gl">Funcionalidades:</p>
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="it">Caratteristiche:</p>
     <p xml:lang="ko">기능:</p>
@@ -110,6 +112,7 @@
       <li xml:lang="et">Suurendamine ja vähendamine</li>
       <li xml:lang="fi">Suurennus</li>
       <li xml:lang="fr">Zoom</li>
+      <li xml:lang="gl">Ampliación</li>
       <li xml:lang="hu">Nagyítás</li>
       <li xml:lang="it">Ingrandimento</li>
       <li xml:lang="ko">확대 및 축소</li>
