@@ -31,7 +31,7 @@
   <summary xml:lang="ca">Un visor de gràfics DOT de Graphviz pel KDE</summary>
   <summary xml:lang="cs">Prohlížeč grafů DOT Graphviz pro KDE</summary>
   <summary xml:lang="da">Et program til visning af Graphviz dot-grafer til KDE</summary>
-  <summary xml:lang="de">Ein KDE-Anzeigeprogramm für Graphviz Dot-Diagramme</summary>
+  <summary xml:lang="de">Ein KDE-Anzeigeprogramm für Graphviz-Dot-Diagramme</summary>
   <summary xml:lang="en-GB">A Graphviz dot graph viewer for KDE</summary>
   <summary xml:lang="es">Un visor de grafos «dot» de Graphviz para KDE</summary>
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja</summary>
@@ -57,6 +57,7 @@
     <p xml:lang="bs">Graphviz tačkasti grafički preglednik za fajlove, namijenjen da zamijeni druge zastarijele GraphViz alate. Grafovi su često korišteni u znanstvenim oblastima, i djelomično u kompjuterskoj nauci.</p>
     <p xml:lang="ca">El KGraphViewer és un visor de fitxers gràfics DOT del Graphviz, destinat a substituir les altres eines obsoletes del GraphViz. Els gràfics normalment s'utilitzen en dominis científics i particularment en informàtica.</p>
     <p xml:lang="da">KGraphViewer er en fremviser til Graphviz dot graph-filer, med det formål at erstatte andre forældede GraphViz-værktøjer. Grafer bruges ofte på det videnskabelige område og især indenfor datalogi.</p>
+    <p xml:lang="de">KGraphViewer ist Anzeigeprogramm für Graphviz-Dot-Diagrammdateien und soll die anderen veralteten GraphViz-Programme ersetzen. Graphen werden in der Wissenschaft, insbesondere in der Informatik, verwendet.</p>
     <p xml:lang="en-GB">KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools. Graphs are commonly used in scientific domains and particularly in computer science.</p>
     <p xml:lang="es">KGraphviewer es un visor de archivos de grafos «dot» de Graphviz, que aspira a sustituir a otras herramientas obsoletas de GraphViz. Los grafos se usan a menudo en el campo científico y, particularmente, en la informática.</p>
     <p xml:lang="et">KGraphViewer on GraphVizi dpt-graaafifailide näitaja, mis üritab asendada teisi, iganenud GraphVizi tööriistu. Graafe kasutatakse laialdaselt teaduses, eriti aga arvutiteaduses.</p>
@@ -292,6 +293,7 @@
       <li xml:lang="bs">Mogućnost korištenja proizvoljnog rasporeda algoritma dokle god proizvodi xdot format</li>
       <li xml:lang="ca">Possibilitat d'utilitzar un algorisme de disposició arbitrari si produeix un format «xdot»</li>
       <li xml:lang="da">Mulighed for at bruge en vilkårlig layout-algoritme når bare den producerer xdot-format</li>
+      <li xml:lang="de">Es kann ein beliebiger Layout-Algorithmus verwendet werden, sofern die Ausgabe im Format „xdot“ möglich ist.</li>
       <li xml:lang="en-GB">Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="es">Posibilidad de usar un algoritmo de disposición aleatorio en cuanto se genere un formato «xdot»</li>
       <li xml:lang="et">Võimalus kasutada suvalist paigutusalgoritmi, kui see vaid tagab xdot-vormingu</li>
