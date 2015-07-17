@@ -44,7 +44,7 @@
 //#include <dcopclient.h>
 
 #include <iostream>
-#include <qt/QtWidgets/QDialogButtonBox>
+#include <QDialogButtonBox>
 
 static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
