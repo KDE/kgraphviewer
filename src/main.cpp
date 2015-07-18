@@ -63,6 +63,8 @@ int main(int argc, char **argv)
   app.setApplicationVersion(version);
   app.setOrganizationDomain(QStringLiteral("kde.org"));
   app.setOrganizationName(QStringLiteral("KDE"));
+
+  KAboutData::setApplicationData(about);
   
   QCommandLineParser options;
   options.setApplicationDescription(i18n(description));
