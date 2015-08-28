@@ -34,10 +34,11 @@ install( TARGETS kgraphviewer ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ecm_install_icons(
     ICONS
-    ${CMAKE_CURRENT_SOURCE_DIR}/hi16-apps-kgraphviewer.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/hi32-apps-kgraphviewer.png
+    ${CMAKE_CURRENT_SOURCE_DIR}/16-apps-kgraphviewer.png
+    ${CMAKE_CURRENT_SOURCE_DIR}/32-apps-kgraphviewer.png
     DESTINATION
     ${KDE_INSTALL_ICONDIR}
+    THEME hicolor
 )
 
 install( FILES kgraphviewersettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
