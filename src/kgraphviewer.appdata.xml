@@ -37,7 +37,7 @@
   <summary xml:lang="es">Un visor de grafos «dot» de Graphviz para KDE</summary>
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja</summary>
   <summary xml:lang="fi">Graphviz dot -graafikatselin KDE:lle</summary>
-  <summary xml:lang="fr">Un visualiseur de graphes Graphviz pour KDE</summary>
+  <summary xml:lang="fr">Un afficheur de graphes Graphviz pour KDE</summary>
   <summary xml:lang="gl">Un visor de gráficos de Graphviz dot para KDE</summary>
   <summary xml:lang="hu">Graphviz pont gráf megjelenítő KDE-hez</summary>
   <summary xml:lang="it">Un visore di grafi dot di GraphViz per KDE</summary>
@@ -64,7 +64,7 @@
     <p xml:lang="es">KGraphviewer es un visor de archivos de grafos «dot» de Graphviz, que aspira a sustituir a otras herramientas obsoletas de GraphViz. Los grafos se usan a menudo en el campo científico y, particularmente, en la informática.</p>
     <p xml:lang="et">KGraphViewer on GraphVizi dpt-graaafifailide näitaja, mis üritab asendada teisi, iganenud GraphVizi tööriistu. Graafe kasutatakse laialdaselt teaduses, eriti aga arvutiteaduses.</p>
     <p xml:lang="fi">KGraphViewer on Graphviz dot -graafitiedostokatselin, jonka tavoitteena on korvata muut vanhentuneet GraphViz-työkalut. Graafeja käytetään usein tieteellisillä aloilla ja erityisesti tietojenkäsittelyssä.</p>
-    <p xml:lang="fr">KGraphViewer est un visualiseur de fichier de graphe Graphviz, prévu pour remplacer les autres outils Graphviz maintenant obsolètes. Les graphes sont utilisés couramment dans les domaines scientifiques, et en particulier en informatique.</p>
+    <p xml:lang="fr">KGraphViewer est un afficheur de fichier de graphe Graphviz, prévu pour remplacer les autres outils Graphviz maintenant obsolètes. Les graphes sont utilisés couramment dans les domaines scientifiques, et en particulier en informatique.</p>
     <p xml:lang="it">KGraphViewer è un visore di file di grafi dot, progettato per sostituire i più datati altri strumenti per GraphViz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
     <p xml:lang="ko">KGraphViewer는 Graphviz DOT 그래프 파일 뷰어로, 오래된 GraphViz 도구 대신 사용할 수 있는 것을 목표로 합니다. 그래프는 전산학을 비롯한 여러 과학 분야에서 사용됩니다.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor dot-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
