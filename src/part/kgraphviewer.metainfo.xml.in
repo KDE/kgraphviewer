@@ -7,6 +7,7 @@
   <name xml:lang="ast">Biblioteca KGraphViewer</name>
   <name xml:lang="bs">KGraphViewer biblioteka</name>
   <name xml:lang="ca">Biblioteca del KGraphViewer</name>
+  <name xml:lang="ca-valencia">Biblioteca del KGraphViewer</name>
   <name xml:lang="cs">Knihovna KGraphViewer</name>
   <name xml:lang="da">KGraphViewer-bibliotek</name>
   <name xml:lang="de">KGraphViewer-Bibliothek</name>
@@ -31,6 +32,7 @@
   <summary>A Graphviz dot graph viewer for KDE (shared library)</summary>
   <summary xml:lang="bs">Graphviz pregledač tačkaste grafike za KDE (dijeljena biblioteka)</summary>
   <summary xml:lang="ca">Un visor de gràfics DOT de Graphviz pel KDE (biblioteca compartida)</summary>
+  <summary xml:lang="ca-valencia">Un visor de gràfics DOT de Graphviz pel KDE (biblioteca compartida)</summary>
   <summary xml:lang="da">En Graphviz dot-graf-fremviser til KDE (delt bibliotek)</summary>
   <summary xml:lang="de">Ein KDE-Anzeigeprogramm für Graphviz Dot-Diagramme (gemeinsame Bibliothek)</summary>
   <summary xml:lang="el">Ένας προβολέας Graphviz dot γράφων για το KDE (κοινόχρηστη βιβλιοθήκη)</summary>
