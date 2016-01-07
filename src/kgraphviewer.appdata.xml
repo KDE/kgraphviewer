@@ -15,6 +15,7 @@
   <name xml:lang="et">KGraphViewer</name>
   <name xml:lang="fi">KGraphViewer</name>
   <name xml:lang="fr">KGraphViewer</name>
+  <name xml:lang="gl">KGraphViewer</name>
   <name xml:lang="hu">KGraphViewer</name>
   <name xml:lang="it">KGraphViewer</name>
   <name xml:lang="ko">KGraphViewer</name>
@@ -39,6 +40,7 @@
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja</summary>
   <summary xml:lang="fi">Graphviz dot -graafikatselin KDE:lle</summary>
   <summary xml:lang="fr">Un afficheur de graphes Graphviz pour KDE</summary>
+  <summary xml:lang="gl">Un visor de gráficos de Graphviz dot para KDE.</summary>
   <summary xml:lang="hu">Graphviz pont gráf megjelenítő KDE-hez</summary>
   <summary xml:lang="it">Un visore di grafi dot di GraphViz per KDE</summary>
   <summary xml:lang="ko">KDE용 Graphviz DOT 그래프 뷰어</summary>
@@ -66,6 +68,7 @@
     <p xml:lang="et">KGraphViewer on GraphVizi dpt-graaafifailide näitaja, mis üritab asendada teisi, iganenud GraphVizi tööriistu. Graafe kasutatakse laialdaselt teaduses, eriti aga arvutiteaduses.</p>
     <p xml:lang="fi">KGraphViewer on Graphviz dot -graafitiedostokatselin, jonka tavoitteena on korvata muut vanhentuneet GraphViz-työkalut. Graafeja käytetään usein tieteellisillä aloilla ja erityisesti tietojenkäsittelyssä.</p>
     <p xml:lang="fr">KGraphViewer est un afficheur de fichier de graphe Graphviz, prévu pour remplacer les autres outils Graphviz maintenant obsolètes. Les graphes sont utilisés couramment dans les domaines scientifiques, et en particulier en informatique.</p>
+    <p xml:lang="gl">KGraphViewer é un visor de gráficos dot de Graphviz que pretende substituír o resto de ferramentas obsoletas de GraphViz. Os gráficos adoitan usarse en contextos científicos e, especialmente, na enxeñaría informática.</p>
     <p xml:lang="it">KGraphViewer è un visore di file di grafi dot, progettato per sostituire i più datati altri strumenti per GraphViz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
     <p xml:lang="ko">KGraphViewer는 Graphviz DOT 그래프 파일 뷰어로, 오래된 GraphViz 도구 대신 사용할 수 있는 것을 목표로 합니다. 그래프는 전산학을 비롯한 여러 과학 분야에서 사용됩니다.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor dot-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
@@ -89,6 +92,7 @@
     <p xml:lang="et">Omadused:</p>
     <p xml:lang="fi">Ominaisuudet:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
+    <p xml:lang="gl">Funcionalidades:</p>
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="it">Caratteristiche:</p>
     <p xml:lang="ko">기능:</p>
@@ -114,6 +118,7 @@
       <li xml:lang="et">Suurendamine ja vähendamine</li>
       <li xml:lang="fi">Suurennus</li>
       <li xml:lang="fr">Zoom</li>
+      <li xml:lang="gl">Ampliación</li>
       <li xml:lang="hu">Nagyítás</li>
       <li xml:lang="it">Ingrandimento</li>
       <li xml:lang="ko">확대 및 축소</li>
@@ -137,6 +142,7 @@
       <li xml:lang="et">Mitme graafi laadimine ühel ajal erinevatel kaartidel</li>
       <li xml:lang="fi">Useamman graafin säikeistetty lataus välilehtiin</li>
       <li xml:lang="fr">Chargement en parallèle de plusieurs graphes dans des onglets</li>
+      <li xml:lang="gl">Cargar varios gráficos en lapelas usando fíos.</li>
       <li xml:lang="it">Caricamento simultaneo con thread di diversi grafi tempo in schede</li>
       <li xml:lang="ko">여러 그래프를 탭으로 동시에 불러오기</li>
       <li xml:lang="nl">Parallel laden (threads) van verschillende grafieken in tabbladen</li>
@@ -159,6 +165,7 @@
       <li xml:lang="et">Viimati kasutatud failide nimekirja salvestamine</li>
       <li xml:lang="fi">Viimeaikaisten tiedostojen luettelon tallennus</li>
       <li xml:lang="fr">Enregistrement de la liste des fichiers récemment ouverts</li>
+      <li xml:lang="gl">Gardar a lista de ficheiros recentes.</li>
       <li xml:lang="it">Memorizzazione di un elenco di file recenti</li>
       <li xml:lang="ko">최근 파일 목록 관리</li>
       <li xml:lang="nl">De lijst van recente bestanden opslaan</li>
@@ -181,6 +188,7 @@
       <li xml:lang="et">Failide käsitsi taaslaadimine</li>
       <li xml:lang="fi">Tiedostojen uudelleenlataus käsin</li>
       <li xml:lang="fr">Rechargement manuel des fichiers</li>
+      <li xml:lang="gl">Cargar ficheiros de novo manualmente.</li>
       <li xml:lang="it">Ricaricamento manuale dei file</li>
       <li xml:lang="ko">수동으로 파일 새로 고침</li>
       <li xml:lang="nl">Handmatig opnieuw laden van bestanden</li>
@@ -203,6 +211,7 @@
       <li xml:lang="et">Graafi ülevaate näitamine</li>
       <li xml:lang="fi">Graafin näyttö lintuperspektiivissä</li>
       <li xml:lang="fr">Affichage de la totalité du graphe</li>
+      <li xml:lang="gl">Mostrar unha vista de paxaro dos gráficos.</li>
       <li xml:lang="it">Vista a volo d'aquila del grafo</li>
       <li xml:lang="ko">그래프 멀리 보기 기능</li>
       <li xml:lang="nl">Een vogelvlucht weergave van een grafiek tonen</li>
@@ -225,6 +234,7 @@
       <li xml:lang="et">Graafi liigutamine lohistades</li>
       <li xml:lang="fi">Graafin siirto vetämällä</li>
       <li xml:lang="fr">Déplacement du graphe par glissement</li>
+      <li xml:lang="gl">Usar arrastrar e soltar para mover os gráficos.</li>
       <li xml:lang="it">Spostamento del grafo con trascinamento</li>
       <li xml:lang="ko">드래그로 그래프 이동</li>
       <li xml:lang="nl">De grafiek verplaatsen door slepen</li>
@@ -247,6 +257,7 @@
       <li xml:lang="et">Täielik trükkimise toetus</li>
       <li xml:lang="fi">Tulostus kaikilla ominaisuuksilla</li>
       <li xml:lang="fr">Système d'impression complet</li>
+      <li xml:lang="gl">Todo tipo de funcionalidades de impresión.</li>
       <li xml:lang="it">Stampa con ogni funzionalità</li>
       <li xml:lang="ko">다양한 옵션이 있는 인쇄</li>
       <li xml:lang="nl">Afdrukken met alle mogelijkheden</li>
@@ -269,6 +280,7 @@
       <li xml:lang="et">Kõigi GraphVizi näidisgraafide täiuslik esitamine</li>
       <li xml:lang="fi">Kaikkien graphviz-esimerkkigraafien täydellinen piirto</li>
       <li xml:lang="fr">Rendu parfait de tous les exemples de graphes Graphviz</li>
+      <li xml:lang="gl">Debuxa perfectamente todos os gráficos de exemplo de Graphviz.</li>
       <li xml:lang="it">Tracciamento perfetto di tutti i grafi d'esempio di graphviz</li>
       <li xml:lang="ko">모든 GraphViz 예제 그래프 렌더링 가능</li>
       <li xml:lang="nl">Perfect tekenen van alle graphviz voorbeeldgrafieken</li>
@@ -291,6 +303,7 @@
       <li xml:lang="et">Automaatne doti valimine orienteeritud ja neato valimine orienteerimata graafide jaoks </li>
       <li xml:lang="fi">Valitse dot automaattisesti suunnatuille graafeille ja neato suuntaamattomille</li>
       <li xml:lang="fr">Choisir automatiquement dot pour les graphes orientés et neato pour les graphes non-orientés</li>
+      <li xml:lang="gl">Escolle automaticamente dot para os gráficos dirixidos e neato para os gráficos non dirixidos.</li>
       <li xml:lang="it">Scelta automatica di dot per i grafi orientati e neato per i non orientati</li>
       <li xml:lang="ko">그래프의 방향성에 따른 dot/neato 자동 선택</li>
       <li xml:lang="nl">Automatisch kiezen van commando dot voor gerichte grafieken en neato voor niet gerichte</li>
@@ -313,6 +326,7 @@
       <li xml:lang="et">Võimalus kasutada suvalist paigutusalgoritmi, kui see vaid tagab xdot-vormingu</li>
       <li xml:lang="fi">Mahdollisuus käyttää mitä tahansa asettelualgoritmia, kunhan se tuottaa xdot-muotoa</li>
       <li xml:lang="fr">Possibilité d'utiliser un algorithme de disposition arbitraire du moment qu'il produit le format xdot</li>
+      <li xml:lang="gl">Permit usar unha disposición arbitraria en canto produce o formato xdot.</li>
       <li xml:lang="it">Possibilità di usare un qualsiasi algoritmo di disposizione che produca il formato xdot</li>
       <li xml:lang="ko">xdot 형식으로 변환한 이후 임의의 레이아웃 알고리즘 선택 가능</li>
       <li xml:lang="nl">Mogelijkheid om een willekeurig algoritme voor de opmaak te gebruiken wanneer het xdot-formaat produceert</li>
@@ -335,6 +349,7 @@
       <li xml:lang="et">Muudetud failide automaatne taaslaadimine kasutaja kinnitust küsides (see on seadistatav)</li>
       <li xml:lang="fi">Automaattinen uudelleenlataus mutta käyttäjä vahvistaa (ulkoisesti) muuttuneet tiedostot (mukautettavissa)</li>
       <li xml:lang="fr">Rechargement automatique (configurable) de fichiers modifiés (extérieurement) avec confirmation de l'utilisateur </li>
+      <li xml:lang="gl">Permite cargar de novo automaticamente, previa confirmación por parte do usuario, ficheiros modificador de maneira externa.</li>
       <li xml:lang="it">Ricaricamento automatico con conferma dell'utente dei file modificati da altri programmi (configurabile)</li>
       <li xml:lang="ko">외부에서 수정된 파일을 사용자 확인 하에 자동으로 불러오기(설정 가능)</li>
       <li xml:lang="nl">Automatisch opnieuw laden met toestemming van de gebruiker van (extern) gewijzigde bestanden (te configureren)</li>
@@ -357,6 +372,7 @@
       <li xml:lang="et">Rakenduse uute protsesside avamine olemasoleva protsessi raames uutel kaartidel (see on seadistatav)</li>
       <li xml:lang="fi">Avaa uudet instanssit uusiksi välilehdiksi vanhaan instanssiin (mukautettavissa)</li>
       <li xml:lang="fr">Ouvrir les nouvelles instances dans de nouveaux onglets (configurable)</li>
+      <li xml:lang="gl">Permite abrir novas instancias como lapelas da instancia anterior.</li>
       <li xml:lang="it">Apertura di nuove istanze come nuove schede della preesistente (configurabile)</li>
       <li xml:lang="ko">새 인스턴스를 탭으로 열기(설정 가능)</li>
       <li xml:lang="nl">Nieuwe exemplaren als nieuwe tabbladden openen in de oude (te configureren)</li>

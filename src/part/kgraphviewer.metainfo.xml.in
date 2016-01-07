@@ -15,6 +15,7 @@
   <name xml:lang="et">KGraphVieweri teek</name>
   <name xml:lang="fi">KGraphViewer-kirjasto</name>
   <name xml:lang="fr">Bibliothèque de KGraphViewer</name>
+  <name xml:lang="gl">Biblioteca KGraphViewer</name>
   <name xml:lang="hu">KGraphViewer könyvtár</name>
   <name xml:lang="it">Libreria KGraphViewer</name>
   <name xml:lang="ko">KGraphViewer 라이브러리</name>
@@ -39,6 +40,7 @@
   <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja (jagatud teek)</summary>
   <summary xml:lang="fi">Graphviz dot -graafikatselin KDE:lle (jaettu kirjasto)</summary>
   <summary xml:lang="fr">Un afficheur de graphes Graphviz pour KDE (bibliothèque partagée)</summary>
+  <summary xml:lang="gl">Un visor de gráficos dot de Praphviz para KDE (biblioteca compartida).</summary>
   <summary xml:lang="hu">Egy Graphviz pont gráf megjelenítő KDE-hez (osztott könyvtár)</summary>
   <summary xml:lang="it">Un visore di grafi dot di Graphviz per KDE (libreria condivisa)</summary>
   <summary xml:lang="ko">KDE용 Graphviz DOT 그래프 뷰어(공유 라이브러리)</summary>
