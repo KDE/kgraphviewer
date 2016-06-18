@@ -50,6 +50,8 @@
 #include <QDebug>
 #include <QLoggingCategory>
 
+#include <klocalizedstring.h>
+
 static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer

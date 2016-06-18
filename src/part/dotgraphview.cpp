@@ -77,6 +77,7 @@
 #include <ktoggleaction.h>
 #include <QStandardPaths>
 #include <kactionmenu.h>
+#include <klocalizedstring.h>
 #include <QLoggingCategory>
     
 // DotGraphView defaults

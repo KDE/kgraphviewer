@@ -40,6 +40,8 @@
 #include <QMenu>
 #include <QLoggingCategory>
 
+#include <klocalizedstring.h>
+
 #include <iostream>
 
 static QLoggingCategory debugCategory("org.kde.kgraphviewer");

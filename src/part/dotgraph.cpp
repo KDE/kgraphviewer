@@ -41,6 +41,7 @@
 #include <QMutexLocker>
 #include <QUuid>
 #include <QLoggingCategory>
+#include <klocalizedstring.h>
 
 static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 

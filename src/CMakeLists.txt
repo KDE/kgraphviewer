@@ -25,7 +25,6 @@ add_executable(kgraphviewer ${kgraphviewer_SRCS})
 target_link_libraries(kgraphviewer LINK_PRIVATE
     KF5::CoreAddons
     KF5::Parts
-    KF5::KHtml
 )
 
 install( TARGETS kgraphviewer ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

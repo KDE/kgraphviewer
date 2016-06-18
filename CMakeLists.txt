@@ -19,7 +19,6 @@ find_package(KF5 REQUIRED COMPONENTS
     DocTools
     Parts
     KIO
-    KHtml
     WidgetsAddons
     IconThemes
 )
