@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
   <!ENTITY kgraphviewer "<application>KGraphViewer</application>">
   <!ENTITY graphviz "<application><ulink url=&#034;http://www.graphviz.org&#034;>GraphViz</ulink></application>">
   <!ENTITY boost "<ulink url=&#034;http://www.boost.org&#034;>Boost</ulink>">
@@ -17,8 +17,6 @@
   <!ENTITY twopi "<application>TWOPI</application>">
   <!ENTITY fdp "<application>FDP</application>">
   <!ENTITY circo "<application>CIRCO</application>">
-  <!ENTITY kappname "&kgraphviewer;"><!-- Do *not* replace kappname-->
-  <!ENTITY package "extragear-graphics"><!-- kdebase, kdeadmin, etc -->
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE"><!-- change language only here -->
 ]>
@@ -786,49 +784,6 @@ menu items, for more information read the section about the
 </sect1>
 
 </chapter>
-
-<appendix id="installation">
-<title>Installation</title>
-
-<sect1 id="getting-kgraphviewer">
-<title>How to obtain &kgraphviewer;</title>
-
-<para><ulink url="http://extragear.kde.org/apps/kgraphviewer/">&kgraphviewer;</ulink> is part of the <ulink url="http://www.kde.org">&kde;</ulink> <ulink url="http://extragear.kde.org/">extragear</ulink> package. Its Subversion repository can be found on <ulink url="http://websvn.kde.org/trunk/extragear/graphics/kgraphviewer/">websvn.kde.org</ulink>.</para>
-
-<para>Independent releases of &kgraphviewer; can be found at <ulink url="https://gna.org/projects/kgraphviewer">&kgraphviewer;'s home page</ulink>.</para>
-
-<para>You can find a list of changes at <ulink url="http://kde-apps.org/content/show.php?content=23999">this link</ulink> and in the <filename>ChangeLog</filename> file at the root of the distribution archive.</para>
-
-</sect1>
-
-<sect1 id="requirements">
-<title>Dependencies</title>
-
-<para>&kgraphviewer; is a &kde; program that uses the &graphviz; tools for graphs layout. It requires the following programs to be installed:
-<itemizedlist>
-	<listitem><para>&qt; libraries 3.x (3.3.6 and above to avoid a painting bug);</para></listitem>
-	<listitem><para>&kde; libraries (developed and tested with version 3.5.x);</para></listitem>
-	<listitem><para>The &graphviz; tools (tested with versions up to 2.8);</para></listitem>
-	<listitem><para>The &boost; &spirit; library (tested with version 0.32).</para></listitem>
-</itemizedlist>
-</para>
-
-</sect1>
-
-<sect1 id="compilation">
-<title>Compilation and Installation</title>
-&install.compile.documentation;
-</sect1>
-
-<sect1 id="configuration">
-<title>Configuration</title>
-
-<para>No special configuration is necessary to use &kgraphviewer;. See the <guimenu>Settings</guimenu> 
-menu for some options.</para>
-
-</sect1>
-
-</appendix>
 
 &documentation.index;
 </book>
