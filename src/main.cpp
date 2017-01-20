@@ -33,15 +33,14 @@
 #include <QDBusReply>
 
 #include "kgraphvieweradaptor.h"
+#include "config-kgraphviewer.h"
 
 static const char description[] =
 I18N_NOOP("A Graphviz dot graph viewer for KDE");
 
-static const char version[] = "2.2.0";
-
 int main(int argc, char **argv)
 {
-  KAboutData about("kgraphviewer", 0, ki18n("KGraphViewer"), version, ki18n(description),
+  KAboutData about("kgraphviewer", 0, ki18n("KGraphViewer"), KGRAPHVIEWER_VERSION_STR, ki18n(description),
                     KAboutData::License_GPL, ki18n("(C) 2005-2010 Gaël de Chalendar"), KLocalizedString(), 0, "kleag@free.fr");
   about.addAuthor( ki18n("Gaël de Chalendar"), ki18n("Original Author and current maintainer"), "kleag@free.fr" );
   about.addAuthor( ki18n("Reimar Döffinger"), ki18n("Contributor"), "kde@reimardoeffinger.de" );

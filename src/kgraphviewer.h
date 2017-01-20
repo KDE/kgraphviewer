@@ -20,8 +20,6 @@
 #ifndef _KGRAPHVIEWER_H_
 #define _KGRAPHVIEWER_H_
 
-//#include <config-kgraphviewer.h>
-
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
 #include <ktabwidget.h>
