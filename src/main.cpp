@@ -33,17 +33,16 @@
 #include <klocalizedstring.h>
 #include <KAboutData>
 #include "kgraphvieweradaptor.h"
+#include "config-kgraphviewer.h"
 
 static const char description[] =
 I18N_NOOP("A Graphviz dot graph viewer for KDE");
-
-static const char version[] = "2.2.0";
 
 int main(int argc, char **argv)
 {
   KAboutData about(QStringLiteral("kgraphviewer"),
                    i18n("KGraphViewer"),
-                   version,
+                   KGRAPHVIEWER_VERSION_STR,
                    i18n(description),
                    KAboutLicense::GPL,
                    i18n("(C) 2005-2010 Gaël de Chalendar"),
@@ -60,7 +59,7 @@ int main(int argc, char **argv)
   QApplication app(argc, argv);
   app.setApplicationName(QStringLiteral("kgraphviewer"));
   app.setApplicationDisplayName(QStringLiteral("KGraphViewer"));
-  app.setApplicationVersion(version);
+  app.setApplicationVersion(KGRAPHVIEWER_VERSION_STR);
   app.setOrganizationDomain(QStringLiteral("kde.org"));
   app.setOrganizationName(QStringLiteral("KDE"));
 

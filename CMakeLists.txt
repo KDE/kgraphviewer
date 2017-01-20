@@ -8,6 +8,14 @@ include(KDECompilerSettings)
 include(KDECMakeSettings)
 include(FeatureSummary)
 include(ECMInstallIcons)
+
+set(KGRAPHVIEWER_VERSION_MAJOR "2")
+set(KGRAPHVIEWER_VERSION_MINOR "2")
+set(KGRAPHVIEWER_VERSION_PATCH "0")
+set(KGRAPHVIEWER_SOVERSION "${KGRAPHVIEWER_VERSION_MAJOR}")
+set(KGRAPHVIEWER_LIB_VERSION "${KGRAPHVIEWER_VERSION_MAJOR}.${KGRAPHVIEWER_VERSION_MINOR}")
+configure_file (config-kgraphviewer.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h )
+
 # search packages used by KDE
 find_package(Qt5 CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)
 
@@ -35,8 +43,6 @@ include_directories(
     ${graphviz_INCLUDE_DIRECTORIES}
     ${KDE_INSTALL_INCLUDEDIR}
 )
-
-configure_file (config-kgraphviewer.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h )
 
 add_subdirectory(src)
 add_subdirectory(doc)
