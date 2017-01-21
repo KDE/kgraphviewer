@@ -81,7 +81,7 @@ install( FILES chain-broken.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerp
 install( FILES kgraphviewer-bev.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-newnode.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-newedge.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
-install( FILES "${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer.metainfo.xml" DESTINATION ${KDE_INSTALL_DATAROOTDIR}/metainfo/ )
+install( FILES "${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer.metainfo.xml" DESTINATION ${KDE_INSTALL_METAINFODIR} )
 
 install(FILES kgraphviewer_interface.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
 install(FILES dotgraphview.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
