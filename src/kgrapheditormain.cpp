@@ -44,6 +44,10 @@ static const char version[] = "0.1";
 
 int main(int argc, char **argv)
 {
+  QApplication app(argc, argv);
+
+  KLocalizedString::setApplicationDomain("kgraphviewer");
+
   KAboutData about(QStringLiteral("kgrapheditor"),
                    i18n("KGraphEditor"),
                    version,
@@ -54,7 +58,6 @@ int main(int argc, char **argv)
                    0,
                    "kleag@free.fr");
 
-  QApplication app(argc, argv);
   app.setApplicationName(QStringLiteral("kgrapheditor"));
   app.setApplicationDisplayName(QStringLiteral("KGraphEditor"));
   app.setApplicationVersion(version);
