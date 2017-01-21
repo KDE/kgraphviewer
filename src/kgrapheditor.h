@@ -125,7 +125,7 @@ private Q_SLOTS:
   void fileOpen();
   void fileSave();
   void fileSaveAs();
-  void close(QWidget* tab);
+  void close(int index);
   void close();
   void slotURLSelected(const QUrl&);
   void optionsShowToolbar();
@@ -133,7 +133,7 @@ private Q_SLOTS:
   void optionsConfigureKeys();
   void optionsConfigureToolbars();
   void optionsConfigure();
-  void newTabSelectedSlot(QWidget* tab);
+  void newTabSelectedSlot(int index);
     
   void applyNewToolbarConfig();
   void slotItemChanged ( QTreeWidgetItem * item, int column );
