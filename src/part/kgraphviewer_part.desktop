@@ -50,6 +50,6 @@ Name[zh_CN]=kgraphviewerPart
 Name[zh_TW]=kgraphviewerPart
 MimeType=application/graphviz;
 ServiceTypes=KParts/ReadOnlyPart
-X-KDE-Library=libkgraphviewerpart
+X-KDE-Library=kgraphviewerpart
 Type=Service
 Categories=Qt;KDE;Graphics;Viewer;2DGraphics;DataVisualization;
