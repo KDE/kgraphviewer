@@ -11,7 +11,7 @@ qt5_add_dbus_adaptor(kgraphviewer_SRCS org.kde.kgraphviewer.xml kgraphviewer.h K
 
 kconfig_add_kcfg_files( kgraphviewer_SRCS kgraphviewersettings.kcfgc )
 
-qt5_wrap_ui(
+ki18n_wrap_ui(
   kgraphviewer_SRCS
   preferencesReload.ui
   preferencesParsing.ui
@@ -53,7 +53,7 @@ qt5_add_dbus_adaptor(kgrapheditor_SRCS org.kde.kgrapheditor.xml kgrapheditor.h K
 
 kconfig_add_kcfg_files(kgrapheditor_SRCS kgrapheditorsettings.kcfgc)
 
-qt5_wrap_ui(kgrapheditor_SRCS preferencesReload.ui preferencesParsing.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui)
+ki18n_wrap_ui(kgrapheditor_SRCS preferencesReload.ui preferencesParsing.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui)
 
 add_executable(kgrapheditor ${kgrapheditor_SRCS})
 

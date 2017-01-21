@@ -41,7 +41,7 @@ kconfig_add_kcfg_files( kgraphviewerlib_LIB_SRCS kgraphviewer_partsettings.kcfgc
 
 set( kgraphviewerprinting_UI simpleprintingpagesetupbase.ui KgvPageLayoutColumnsBase.ui KgvPageLayoutHeaderBase.ui )
 
-qt5_wrap_ui(kgraphviewerlib_LIB_SRCS ${kgraphviewerprinting_UI} )
+ki18n_wrap_ui(kgraphviewerlib_LIB_SRCS ${kgraphviewerprinting_UI} )
 
 
 add_library(kgraphviewerlib ${kgraphviewerlib_LIB_SRCS})

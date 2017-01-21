@@ -40,6 +40,10 @@ I18N_NOOP("A Graphviz dot graph viewer for KDE");
 
 int main(int argc, char **argv)
 {
+  QApplication app(argc, argv);
+
+  KLocalizedString::setApplicationDomain("kgraphviewer");
+
   KAboutData about(QStringLiteral("kgraphviewer"),
                    i18n("KGraphViewer"),
                    KGRAPHVIEWER_VERSION_STR,
@@ -56,7 +60,6 @@ int main(int argc, char **argv)
   about.addAuthor( i18n("Milian Wolff"), i18n("Contributor"), "mail@milianw.de" );
   about.addAuthor( i18n("Martin Sandmsark"), i18n("Port to KF5"), "martin.sandsmark@kde.org" );
   
-  QApplication app(argc, argv);
   app.setApplicationName(QStringLiteral("kgraphviewer"));
   app.setApplicationDisplayName(QStringLiteral("KGraphViewer"));
   app.setApplicationVersion(KGRAPHVIEWER_VERSION_STR);
