@@ -73,7 +73,7 @@ configure_file(org.kde.libkgraphviewer.metainfo.xml.in "${CMAKE_CURRENT_BINARY_D
 kcoreaddons_desktop_to_json(kgraphviewerpart ${CMAKE_CURRENT_SOURCE_DIR}/kgraphviewer_part.desktop)
 
 install( FILES kgraphviewer_partsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
-install( FILES kgraphviewer_part.rc DESTINATION ${KXMLGUI_INSTALL_DIR} )
+install( FILES kgraphviewer_part.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kgraphviewer )
 
 install( FILES kgraphviewer_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )
 install( FILES chain.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
