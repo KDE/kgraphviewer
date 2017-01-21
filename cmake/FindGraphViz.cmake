@@ -118,15 +118,15 @@ ELSE(_dot_result MATCHES 0)
 ENDIF(_dot_result MATCHES 0)
 IF (GRAPHVIZVERSION)
 
-# we need at least version 2.22.0
+# we need at least version 2.30.0
 IF (NOT GRAPHVIZ_MIN_VERSION)
-SET(GRAPHVIZ_MIN_VERSION "2.22.0")
+SET(GRAPHVIZ_MIN_VERSION "2.30.0")
 ENDIF (NOT GRAPHVIZ_MIN_VERSION)
 
 #now parse the parts of the user given version string into variables
 STRING(REGEX MATCH "^[0-9]+\\.[0-9]+\\.[0-9]+" req_graphviz_major_vers "${GRAPHVIZ_MIN_VERSION}")
 IF (NOT req_graphviz_major_vers)
-MESSAGE( FATAL_ERROR "Invalid GraphViz version string given: \"${GRAPHVIZ_MIN_VERSION}\", expected e.g. \"2.22.0\"")
+MESSAGE( FATAL_ERROR "Invalid GraphViz version string given: \"${GRAPHVIZ_MIN_VERSION}\", expected e.g. \"2.30.0\"")
 ENDIF (NOT req_graphviz_major_vers)
 
 # now parse the parts of the user given version string into variables
@@ -135,7 +135,7 @@ STRING(REGEX REPLACE "^[0-9]+\\.([0-9])+\\.[0-9]+" "\\1" req_graphviz_minor_vers
 STRING(REGEX REPLACE "^[0-9]+\\.[0-9]+\\.([0-9]+)" "\\1" req_graphviz_patch_vers "${GRAPHVIZ_MIN_VERSION}")
 
 IF (NOT req_graphviz_major_vers EQUAL 2)
-MESSAGE( FATAL_ERROR "Invalid GraphViz version string given: \"${GRAPHVIZ_MIN_VERSION}\", major version 4 is required, e.g. \"2.22.0\"")
+MESSAGE( FATAL_ERROR "Invalid GraphViz version string given: \"${GRAPHVIZ_MIN_VERSION}\", major version 4 is required, e.g. \"2.30.0\"")
 ENDIF (NOT req_graphviz_major_vers EQUAL 2)
 
 # and now the version string given by qmake
