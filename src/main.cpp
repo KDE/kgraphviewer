@@ -36,7 +36,7 @@
 #include "config-kgraphviewer.h"
 
 static const char description[] =
-I18N_NOOP("A Graphviz dot graph viewer for KDE");
+I18N_NOOP("A Graphviz dot graph viewer by KDE");
 
 int main(int argc, char **argv)
 {

@@ -38,7 +38,7 @@
 static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 static const char description[] =
-I18N_NOOP("A Graphviz dot graph viewer for KDE");
+I18N_NOOP("A Graphviz dot graph viewer by KDE");
 
 static const char version[] = "0.1";
 
