@@ -75,6 +75,7 @@ KGraphEditor::KGraphEditor() :
   setCentralWidget(m_widget);
 
   QDockWidget* topLeftDockWidget = new QDockWidget(this);
+  topLeftDockWidget->setObjectName(QStringLiteral("TopLeftDockWidget"));
   m_treeWidget = new KGraphEditorNodesTreeWidget(topLeftDockWidget);
   connect(m_treeWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
@@ -93,6 +94,7 @@ KGraphEditor::KGraphEditor() :
   addDockWidget ( Qt::LeftDockWidgetArea, topLeftDockWidget );
 
   QDockWidget* bottomLeftDockWidget = new QDockWidget(this);
+  bottomLeftDockWidget->setObjectName(QStringLiteral("BottomLeftDockWidget"));
   m_newElementAttributesWidget = new KGraphEditorElementTreeWidget(bottomLeftDockWidget);
   connect(m_newElementAttributesWidget,SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this,SLOT(slotNewElementItemChanged(QTreeWidgetItem*,int)));
