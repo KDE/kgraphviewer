@@ -50,18 +50,6 @@ namespace KGraphViewer
 {
 
 K_PLUGIN_FACTORY(KGraphViewerPartFactory, registerPlugin<KGraphViewerPart>();)
-static KAboutData createAboutData()
-{
-    return KAboutData(
-        QStringLiteral("kgraphviewerpart"),
-        i18n("KGraphViewerPart"),
-        KGRAPHVIEWER_VERSION_STRING,
-        i18n( "GraphViz dot files viewer" ),
-        KAboutLicense::GPL,
-        i18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>")
-    );
-}
-K_EXPORT_PLUGIN(KGraphViewerPartFactory(createAboutData()))
 
 class KGraphViewerPartPrivate
 {
@@ -85,10 +73,19 @@ public:
 KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, const QVariantList & )
 : KParts::ReadOnlyPart(parent), d(new KGraphViewerPartPrivate())
 {
-  // set the component name so that the XMLGUI .rc file is found also
-  // when this part is called from applications different then
-  // kgraphviewer (starting from kgrapheditor).
-  setComponentName(QStringLiteral("kgraphviewer"), QString());
+  /* set the component name (1st argument) so that the XMLGUI .rc
+     file is found also when this part is called from applications
+     different then kgraphviewer (like kgrapheditor and konqueror).
+   */
+  KAboutData aboutData(
+        QStringLiteral("kgraphviewer"),
+        i18n("KGraphViewerPart"),
+        KGRAPHVIEWER_VERSION_STRING,
+        i18n( "GraphViz dot files viewer" ),
+        KAboutLicense::GPL,
+        i18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>")
+  );
+  setComponentData(aboutData, false);
 
   // this should be your custom internal widget
   d->m_widget = new DotGraphView( actionCollection(), parentWidget);
