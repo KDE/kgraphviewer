@@ -203,10 +203,10 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
     m_contents->maintainAspectButton->setEnabled(false);
   }
 
-  QString chainStatePixString = QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/chain.png");
+  QString chainStatePixString = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/chain.png");
   if (!m_settings->chainedFittings)
   {
-    chainStatePixString = QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/chain-broken.png");
+    chainStatePixString = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/chain-broken.png");
   }
   if (chainStatePixString.isNull())
   {
@@ -358,7 +358,7 @@ void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
 {
   if (m_settings->chainedFittings)
   {
-    QString chainBreakPixString = QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/chain-broken.png");
+    QString chainBreakPixString = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/chain-broken.png");
     if (chainBreakPixString.isNull())
     {
       std::cerr << "chain break pixmap not found !" << std::endl;
@@ -368,7 +368,7 @@ void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
   }
   else
   {
-    QString chainPixString = QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/chain.png");
+    QString chainPixString = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/chain.png");
     if (chainPixString.isNull())
     {
       std::cerr << "chain pixmap not found !" << std::endl;

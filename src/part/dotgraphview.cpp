@@ -107,7 +107,7 @@ public:
     m_actions(actions),
     m_detailLevel(DEFAULT_DETAILLEVEL),
     m_defaultNewElement(0),
-    m_defaultNewElementPixmap(QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/kgraphviewer-newnode.png")),
+    m_defaultNewElementPixmap(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-newnode.png")),
     m_editingMode(DotGraphView::None),
     m_newEdgeSource(0),
     m_newEdgeDraft(0),
@@ -493,7 +493,7 @@ void DotGraphViewPrivate::setupPopup()
   m_popup->addSeparator();
   
   m_bevEnabledAction = new KToggleAction(
-    QIcon(QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/kgraphviewer-bev.png")),
+    QIcon(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-bev.png")),
                                         i18n("Enable Bird's-eye View"), q);
     actionCollection()->addAction("view_bev_enabled",m_bevEnabledAction);
     actionCollection()->setDefaultShortcut(m_bevEnabledAction, Qt::CTRL+Qt::Key_B);
@@ -1846,7 +1846,7 @@ void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
   d->m_editingMode = AddNewEdge;
   d->m_newElementAttributes = attribs;
   unsetCursor();
-  QBitmap bm(QStandardPaths::locate(QStandardPaths::DataLocation, "kgraphviewerpart/pics/kgraphviewer-newedge.png"));
+  QBitmap bm(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-newedge.png"));
   setCursor(QCursor(bm,bm,32,16));
 }
 
