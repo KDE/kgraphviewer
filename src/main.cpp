@@ -60,9 +60,6 @@ int main(int argc, char **argv)
   about.addAuthor( i18n("Milian Wolff"), i18n("Contributor"), "mail@milianw.de" );
   about.addAuthor( i18n("Martin Sandmsark"), i18n("Port to KF5"), "martin.sandsmark@kde.org" );
   
-  app.setApplicationName(QStringLiteral("kgraphviewer"));
-  app.setApplicationDisplayName(QStringLiteral("KGraphViewer"));
-  app.setApplicationVersion(KGRAPHVIEWER_VERSION_STRING);
   app.setOrganizationDomain(QStringLiteral("kde.org"));
   app.setOrganizationName(QStringLiteral("KDE"));
 
