@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 
   KAboutData about(QStringLiteral("kgraphviewer"),
                    i18n("KGraphViewer"),
-                   KGRAPHVIEWER_VERSION_STR,
+                   KGRAPHVIEWER_VERSION_STRING,
                    i18n(description),
                    KAboutLicense::GPL,
                    i18n("(C) 2005-2010 Gaël de Chalendar"),
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
   
   app.setApplicationName(QStringLiteral("kgraphviewer"));
   app.setApplicationDisplayName(QStringLiteral("KGraphViewer"));
-  app.setApplicationVersion(KGRAPHVIEWER_VERSION_STR);
+  app.setApplicationVersion(KGRAPHVIEWER_VERSION_STRING);
   app.setOrganizationDomain(QStringLiteral("kde.org"));
   app.setOrganizationName(QStringLiteral("KDE"));
 

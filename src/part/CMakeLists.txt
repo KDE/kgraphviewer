@@ -49,7 +49,7 @@ add_library(kgraphviewerlib ${kgraphviewerlib_LIB_SRCS})
 add_definitions(-DQT_STL)
 target_link_libraries(kgraphviewerlib Qt5::Core Qt5::Svg Qt5::PrintSupport Qt5::Svg KF5::KIOWidgets KF5::WidgetsAddons KF5::IconThemes KF5::XmlGui KF5::I18n KF5::Parts ${graphviz_LIBRARIES})
 
-set_target_properties(kgraphviewerlib PROPERTIES VERSION ${KGRAPHVIEWER_LIB_VERSION} SOVERSION ${KGRAPHVIEWER_SOVERSION} OUTPUT_NAME kgraphviewer )
+set_target_properties(kgraphviewerlib PROPERTIES SOVERSION ${KGRAPHVIEWER_SOVERSION} OUTPUT_NAME kgraphviewer )
 
 install( TARGETS kgraphviewerlib ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 

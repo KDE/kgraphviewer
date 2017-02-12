@@ -20,6 +20,7 @@
 #include "kgraphviewer_part.h"
 #include "dotgraphview.h"
 #include "dotgraph.h"
+#include "config-kgraphviewer.h"
 
 #include <KDirWatch>
 #include <QAction>
@@ -54,7 +55,7 @@ static KAboutData createAboutData()
     return KAboutData(
         QStringLiteral("kgraphviewerpart"),
         i18n("KGraphViewerPart"),
-        QStringLiteral("1.0"),
+        KGRAPHVIEWER_VERSION_STRING,
         i18n( "GraphViz dot files viewer" ),
         KAboutLicense::GPL,
         i18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>")

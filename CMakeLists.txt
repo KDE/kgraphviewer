@@ -1,5 +1,5 @@
-project(kgraphviewer)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.0)
+project(kgraphviewer VERSION 2.3.90)
 
 find_package(ECM REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
@@ -8,13 +8,13 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(FeatureSummary)
 include(ECMInstallIcons)
+include(ECMSetupVersion)
 
-set(KGRAPHVIEWER_VERSION_MAJOR "2")
-set(KGRAPHVIEWER_VERSION_MINOR "2")
-set(KGRAPHVIEWER_VERSION_PATCH "0")
-set(KGRAPHVIEWER_SOVERSION "${KGRAPHVIEWER_VERSION_MAJOR}")
-set(KGRAPHVIEWER_LIB_VERSION "${KGRAPHVIEWER_VERSION_MAJOR}.${KGRAPHVIEWER_VERSION_MINOR}")
-configure_file (config-kgraphviewer.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h )
+ecm_setup_version(PROJECT
+    VARIABLE_PREFIX KGRAPHVIEWER
+    SOVERSION 3
+    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h"
+)
 
 # search packages used by KDE
 find_package(Qt5 CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)
