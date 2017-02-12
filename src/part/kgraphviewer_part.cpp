@@ -49,7 +49,7 @@ static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 namespace KGraphViewer
 {
 
-K_PLUGIN_FACTORY(KGraphViewerPartFactory, registerPlugin<KGraphViewerPart>("kgraphviewerpart");)
+K_PLUGIN_FACTORY(KGraphViewerPartFactory, registerPlugin<KGraphViewerPart>();)
 static KAboutData createAboutData()
 {
     return KAboutData(

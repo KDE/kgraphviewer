@@ -153,7 +153,7 @@ void KGraphViewerWindow::openUrl(const QUrl& url)
     // next time we enter the event loop...
     return;
   }
-    KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>("kgraphviewerpart", this);
+    KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>(this);
     KGraphViewer::KGraphViewerInterface* kgv = qobject_cast<KGraphViewer::KGraphViewerInterface*>( part );
     if( ! kgv )
     {
