@@ -1496,7 +1496,7 @@ void DotGraphView::setPannerEnabled(bool enabled)
   Q_D(DotGraphView);
   d->m_bevPopup->setEnabled(d->m_bevEnabledAction->isChecked());
   KGraphViewerPartSettings::setBirdsEyeViewEnabled(d->m_bevEnabledAction->isChecked());
-  KGraphViewerPartSettings::self()->writeConfig();
+  KGraphViewerPartSettings::self()->save();
   d->updateSizes();
 }
 
