@@ -1,30 +1,15 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 <kpartgui name="kgraphviewer" version="4">
-  <MenuBar>
-  <Menu name="file"><text>&amp;File</text>
-    <Action name="file_new"/>
-    <Action name="file_open"/>
-    <Action name="file_open_recent"/>
-    <DefineGroup name="file_merge" />
-    <Separator/>
-    <Action name="file_quit"/>
+<MenuBar>
+  <Menu name="file">
+    <DefineGroup name="file_merge"/>
   </Menu>
-  <Menu name="view"><text>&amp;View</text>
+  <Menu name="view">
     <DefineGroup name="view_merge"/>
   </Menu>
-  <Menu name="settings"><text>&amp;Settings</text>
-    <Action name="options_show_toolbar"/>
-    <Action name="options_show_statusbar"/>
-    <DefineGroup name="show_merge"/>
-    <Separator/>
-    <Action name="options_configure_keybinding"/>
-    <Action name="options_configure_toolbars"/>
-    <Action name="options_configure"/>
-    <DefineGroup name="configure_merge"/>
-    <Separator/>
-  </Menu>
 </MenuBar>
-<ToolBar name="mainToolBar"><text>Main Toolbar</text>
+
+<ToolBar name="mainToolBar">
   <Action name="file_open"/>
   <Action name="file_open_recent"/>
   <Merge/>

@@ -61,9 +61,6 @@ KGraphViewerWindow::KGraphViewerWindow()
     : KParts::MainWindow(),
       m_rfa(0)
 {
-  // set the shell's ui resource file
-  setXMLFile("kgraphviewerui.rc");
-
 //   std::cerr << "Creating tab widget" << std::endl;
   m_widget = new QTabWidget(this);
   m_widget->setTabsClosable(true);
@@ -83,13 +80,6 @@ KGraphViewerWindow::KGraphViewerWindow()
     qCDebug(debugCategory) << "Failed to register service...";
   }
 
-  // then, setup our actions
-  setupActions();
-
-  // and a status bar
-  statusBar()->show();
-  createStandardStatusBarAction();
-
   // this routine will find and load our Part.  it finds the Part by
   // name which is a bad idea usually.. but it's alright in this
   // case since our Part is made for this Shell
@@ -100,14 +90,14 @@ KGraphViewerWindow::KGraphViewerWindow()
   // When the manager says the active part changes, the window updates (recreates) the GUI
   connect( m_manager, SIGNAL(activePartChanged(KParts::Part*)),
            this, SLOT(createGUI(KParts::Part*)) );
-    
+
+  setupGUI(ToolBar | Keys | StatusBar | Save, QStringLiteral("kgraphviewerui.rc"));
+
+  // then, setup our actions
+  setupActions();
+
   // Creates the GUI with a null part to make appear the main app menus and tools
   createGUI(0);
-  setupGUI();  
-  // apply the saved mainwindow settings, if any, and ask the mainwindow
-  // to automatically save settings if changed: window size, toolbar
-  // position, icon size, etc.
-  setAutoSaveSettings();
 }
 
 KGraphViewerWindow::~KGraphViewerWindow()

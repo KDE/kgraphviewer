@@ -87,6 +87,9 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
   );
   setComponentData(aboutData, false);
 
+  // set our XML-UI resource file
+  setXMLFile(QStringLiteral("kgraphviewer_part.rc"), true);
+
   // this should be your custom internal widget
   d->m_widget = new DotGraphView( actionCollection(), parentWidget);
   d->m_widget->initEmpty();
@@ -151,9 +154,6 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
   // xgettext: no-c-format
   zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
   zoomOutAct->setShortcut(Qt::Key_F8);
-
-// set our XML-UI resource file
-  setXMLFile(QStringLiteral("kgraphviewer_part.rc"));
 }
 
 /*DotGraph* KGraphViewerPart::graph()
