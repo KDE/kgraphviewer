@@ -76,7 +76,7 @@ configure_file(org.kde.libkgraphviewer.metainfo.xml.in "${CMAKE_CURRENT_BINARY_D
 
 ########### install files ###############
 
-kcoreaddons_desktop_to_json(kgraphviewerpart ${CMAKE_CURRENT_SOURCE_DIR}/kgraphviewer_part.desktop DEFAULT_SERVICE_TYPE)
+kcoreaddons_desktop_to_json(kgraphviewerpart ${CMAKE_CURRENT_SOURCE_DIR}/kgraphviewer_part.desktop SERVICE_TYPES kpart.desktop)
 
 install( FILES kgraphviewer_partsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
 install( FILES kgraphviewer_part.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kgraphviewer )
