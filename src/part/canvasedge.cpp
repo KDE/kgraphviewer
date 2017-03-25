@@ -550,5 +550,3 @@ void CanvasEdge::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
 }
 
 }
-
-#include "canvasedge.moc"

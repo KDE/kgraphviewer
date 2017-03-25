@@ -182,4 +182,3 @@ void KgvConfigurationDialog::slotBackgroundColorChanged(const QColor& color)
   KGraphViewerSettings::setBackgroundColor(color);
   emit backgroundColorChanged(color);
 }
-#include "kgraphviewerConfigDialog.moc"

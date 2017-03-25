@@ -583,5 +583,3 @@ void KGraphViewerWindow::slotBackgroundColorChanged(const QColor&)
     kgv->setBackgroundColor(KGraphViewerSettings::backgroundColor());
   }
 }
-
-#include "kgraphviewer.moc"

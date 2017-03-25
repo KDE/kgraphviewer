@@ -148,5 +148,3 @@ CanvasNode::CanvasNode(DotGraphView* v,
 // }
 
 }
-
-#include "canvasnode.moc"

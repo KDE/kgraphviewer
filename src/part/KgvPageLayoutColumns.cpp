@@ -77,5 +77,3 @@ void KgvPageLayoutColumns::nSpaceChanged( double spacing ) {
 void KgvPageLayoutColumns::setLayout(KgvPageLayout &layout) {
     m_preview->setPageLayout( layout );
 }
-
-#include <KgvPageLayoutColumns.moc>

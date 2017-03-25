@@ -153,5 +153,3 @@ void KGVSimplePrintPreviewScrollView::setFullWidth()
 // }
 
 }
-
-#include "simpleprintpreviewwindow_p.moc"

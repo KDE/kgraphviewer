@@ -166,5 +166,3 @@ void KgeConfigurationDialog::updateWidgets()
   else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "ask")
     m_reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(2);*/
 }
-
-#include "kgrapheditorConfigDialog.moc"

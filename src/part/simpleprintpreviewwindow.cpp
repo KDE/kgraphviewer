@@ -313,5 +313,3 @@ bool KGVSimplePrintPreviewWindow::event( QEvent * e )
 }
 
 }
-
-#include "simpleprintpreviewwindow.moc"

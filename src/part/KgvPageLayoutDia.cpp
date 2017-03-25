@@ -426,5 +426,3 @@ void KgvPageLayoutDia::slotOk()
         m_pageSizeTab->queryClose();
     KPageDialog::accept(); // accept
 }
-
-#include <KgvPageLayoutDia.moc>

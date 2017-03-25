@@ -397,5 +397,3 @@ bool KgvPageLayoutSize::queryClose() {
 void KgvPageLayoutSize::setColumns(KgvColumns &columns) {
     pgPreview->setPageColumns(columns);
 }
-
-#include <KgvPageLayoutSize.moc>

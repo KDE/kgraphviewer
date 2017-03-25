@@ -231,5 +231,3 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
 }
 
 }
-
-#include "graphelement.moc"
