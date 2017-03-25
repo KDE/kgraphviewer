@@ -53,7 +53,6 @@ ki18n_wrap_ui(kgraphviewerlib_LIB_SRCS ${kgraphviewerprinting_UI} )
 
 add_library(kgraphviewerlib ${kgraphviewerlib_LIB_SRCS})
 
-add_definitions(-DQT_STL)
 target_link_libraries(kgraphviewerlib Qt5::Core Qt5::Svg Qt5::PrintSupport Qt5::Svg KF5::KIOWidgets KF5::WidgetsAddons KF5::IconThemes KF5::XmlGui KF5::I18n KF5::Parts ${graphviz_LIBRARIES})
 
 set_target_properties(kgraphviewerlib PROPERTIES SOVERSION ${KGRAPHVIEWER_SOVERSION} OUTPUT_NAME kgraphviewer )
