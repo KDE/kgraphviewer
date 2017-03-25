@@ -31,7 +31,5 @@ if(NOT DOT)
    MESSAGE(STATUS "dot executable from GraphViz not found. You will need it at runtime")
 endif(NOT DOT)
 
-add_definitions (${QT_DEFINITIONS})
-
 add_subdirectory(src)
 add_subdirectory(doc)
