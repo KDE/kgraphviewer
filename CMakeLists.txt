@@ -16,7 +16,8 @@ find_package(Qt5 CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)
 find_package(Boost 1.36 REQUIRED)
 find_package(GraphViz REQUIRED)
 
-find_package(KF5 REQUIRED COMPONENTS
+set(KF5_DEP_VERSION "5.16.0")
+find_package(KF5 ${KF5_DEP_VERSION} REQUIRED COMPONENTS
     CoreAddons
     DocTools
     Parts
