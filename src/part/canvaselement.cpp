@@ -134,6 +134,7 @@ void CanvasElement::initialize(qreal scaleX, qreal scaleY,
                             qreal xMargin, qreal yMargin, qreal gh,
                             qreal wdhcf, qreal hdvcf)
 {
+  Q_UNUSED(gh);
 //   kDebug();
   setFlag(QGraphicsItem::ItemIsMovable, true);
   setFlag(QGraphicsItem::ItemIsSelectable, true);

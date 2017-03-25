@@ -64,6 +64,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
     m_gh(/*gh*/0), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
     m_font(0), m_view(view), m_popup(new QMenu())
 {
+  Q_UNUSED(gh);
   qCDebug(debugCategory) << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << m_gh;
   setBoundingRegionGranularity(0.9);
   m_font = FontsCache::changeable().fromName(e->fontName());

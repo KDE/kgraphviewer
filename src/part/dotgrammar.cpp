@@ -117,6 +117,7 @@ void incrz(char const /*first*/)
 
 void anychar(char const c)
 {
+    Q_UNUSED(c);
 //   kDebug() << c;
 }
 

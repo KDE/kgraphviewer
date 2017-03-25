@@ -1493,6 +1493,7 @@ KGraphViewerInterface::PannerPosition DotGraphView::zoomPos(const QString& s)
 
 void DotGraphView::setPannerEnabled(bool enabled)
 {
+  Q_UNUSED(enabled);
   Q_D(DotGraphView);
   d->m_bevPopup->setEnabled(d->m_bevEnabledAction->isChecked());
   KGraphViewerPartSettings::setBirdsEyeViewEnabled(d->m_bevEnabledAction->isChecked());
