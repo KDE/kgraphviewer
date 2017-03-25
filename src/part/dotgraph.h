@@ -120,6 +120,7 @@ public:
   void KGRAPHVIEWER_EXPORT addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph);
   void KGRAPHVIEWER_EXPORT moveExistingNodeToMainGraph(QMap<QString,QString> attribs);
   void KGRAPHVIEWER_EXPORT addNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
+  using GraphElement::removeAttribute;
   void KGRAPHVIEWER_EXPORT removeAttribute(const QString& nodeName, const QString& attribName);
   void KGRAPHVIEWER_EXPORT renameNode(const QString& oldNodeName, const QString& newNodeName);
   void KGRAPHVIEWER_EXPORT removeNodeNamed(const QString& nodeName);
