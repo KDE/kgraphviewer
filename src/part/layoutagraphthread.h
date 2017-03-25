@@ -30,6 +30,7 @@ int threadsafe_wrap_gvRender(GVC_t *gvc, graph_t *g, const char *format, FILE *o
 
 class LayoutAGraphThread : public QThread
 {
+  Q_OBJECT
 public:
   LayoutAGraphThread();
   ~LayoutAGraphThread();

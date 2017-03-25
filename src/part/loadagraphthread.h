@@ -28,6 +28,7 @@
 
 class LoadAGraphThread : public QThread
 {
+  Q_OBJECT
 public:
   LoadAGraphThread() : sem(1) {}
   void loadFile(const QString& dotFileName);

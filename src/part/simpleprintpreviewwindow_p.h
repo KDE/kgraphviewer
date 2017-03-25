@@ -39,6 +39,7 @@ namespace KGraphViewer
 
 class KGVSimplePrintPreviewView : public QWidget
 {
+  Q_OBJECT
 	public:
 		explicit KGVSimplePrintPreviewView(KGVSimplePrintPreviewWindow *window);
 

@@ -55,7 +55,7 @@ class CanvasNode;
  */
 class GraphNode : public GraphElement
 {
-//   Q_OBJECT
+  Q_OBJECT
 public:
   GraphNode();
   explicit GraphNode(const GraphNode& gn);
