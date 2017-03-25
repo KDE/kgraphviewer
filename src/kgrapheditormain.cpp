@@ -62,6 +62,8 @@ int main(int argc, char **argv)
 
   KAboutData::setApplicationData(about);
 
+  app.setWindowIcon(QIcon::fromTheme("kgraphviewer", app.windowIcon()));
+
   QCommandLineParser options;
   options.setApplicationDescription(i18n(description));
   options.addHelpOption();
