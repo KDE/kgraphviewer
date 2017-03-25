@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 project(kgraphviewer VERSION 2.3.90)
 
-find_package(ECM REQUIRED CONFIG)
+set(ECM_DEP_VERSION "1.6.0")
+find_package(ECM ${ECM_DEP_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
