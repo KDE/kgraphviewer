@@ -50,7 +50,7 @@ class PannerView: public QGraphicsView
   Q_OBJECT
 
 public:
-  explicit PannerView(DotGraphView * parent, const char * name = 0);
+  explicit PannerView(DotGraphView * parent);
 
   inline void setDrawingEnabled(bool val) {m_drawContents = val;}
 

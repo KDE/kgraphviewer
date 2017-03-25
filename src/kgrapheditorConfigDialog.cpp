@@ -44,11 +44,8 @@
 
 #include <iostream>
 
-KgeConfigurationDialog::KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config,
-              KPageDialog::FaceType dialogType, 
-              QDialogButtonBox::StandardButtons dialogButtons, 
-              QDialogButtonBox::StandardButtons defaultButton, bool modal) : 
-  KConfigDialog (parent, name, config),//, dialogType, dialogButtons, defaultButton, modal) ,
+KgeConfigurationDialog::KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config) :
+  KConfigDialog(parent, name, config),
   m_changed(false),
   m_parsingWidget(new Ui::KGraphViewerPreferencesParsingWidget()),
   m_reloadWidget(new Ui::KGraphViewerPreferencesReloadWidget()),

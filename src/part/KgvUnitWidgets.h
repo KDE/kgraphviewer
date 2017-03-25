@@ -51,7 +51,7 @@ class KgvUnitDoubleBase;
 class KgvUnitDoubleValidator : public QDoubleValidator
 {
 public:
-    KgvUnitDoubleValidator( KgvUnitDoubleBase *base, QObject *parent, const char *name = 0 );
+    KgvUnitDoubleValidator(KgvUnitDoubleBase *base, QObject *parent);
 
     virtual QValidator::State validate( QString &, int & ) const;
 
@@ -115,10 +115,10 @@ class KgvUnitDoubleSpinBox : public QDoubleSpinBox, public KgvUnitDoubleBase
 {
     Q_OBJECT
 public:
-    explicit KgvUnitDoubleSpinBox( QWidget *parent = 0L, const char *name = 0L );
+    explicit KgvUnitDoubleSpinBox(QWidget *parent = nullptr);
     // lower, upper, step and value are in pt
     KgvUnitDoubleSpinBox( QWidget *parent, double lower, double upper, double step, double value = 0.0,
-                         KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2, const char *name = 0 );
+                         KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
     // added so the class can be used in .ui files(by Tymoteusz Majewski, maju7@o2.pl)
     virtual void changeValue( double );
     virtual void setUnit( KgvUnit::Unit = KgvUnit::U_PT );
@@ -165,8 +165,8 @@ class KgvUnitDoubleLineEdit : public QLineEdit, public KgvUnitDoubleBase
 {
     Q_OBJECT
 public:
-    explicit KgvUnitDoubleLineEdit( QWidget *parent = 0L, const char *name = 0L );
-    KgvUnitDoubleLineEdit( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2, const char *name = 0 );
+    explicit KgvUnitDoubleLineEdit(QWidget *parent = nullptr);
+    KgvUnitDoubleLineEdit( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
 
     virtual void changeValue( double );
     virtual void setUnit( KgvUnit::Unit = KgvUnit::U_PT );
@@ -193,8 +193,8 @@ class KgvUnitDoubleComboBox : public QComboBox, public KgvUnitDoubleBase
 {
     Q_OBJECT
 public:
-    explicit KgvUnitDoubleComboBox( QWidget *parent = 0L, const char *name = 0L );
-    KgvUnitDoubleComboBox( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2, const char *name = 0 );
+    explicit KgvUnitDoubleComboBox(QWidget *parent = nullptr);
+    KgvUnitDoubleComboBox( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
 
     virtual void changeValue( double );
     void updateValue( double );
@@ -229,8 +229,8 @@ class KgvUnitDoubleSpinComboBox : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KgvUnitDoubleSpinComboBox( QWidget *parent = 0L, const char *name = 0L );
-    KgvUnitDoubleSpinComboBox( QWidget *parent, double lower, double upper, double step, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2, const char *name = 0 );
+    explicit KgvUnitDoubleSpinComboBox(QWidget *parent = nullptr);
+    KgvUnitDoubleSpinComboBox( QWidget *parent, double lower, double upper, double step, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
 
     void insertItem( double, int index = -1 );
     void updateValue( double );

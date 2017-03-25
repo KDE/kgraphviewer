@@ -40,7 +40,7 @@ static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 //                          Support classes
 
 
-KgvUnitDoubleValidator::KgvUnitDoubleValidator( KgvUnitDoubleBase *base, QObject *parent, const char *name )
+KgvUnitDoubleValidator::KgvUnitDoubleValidator(KgvUnitDoubleBase *base, QObject *parent)
 : QDoubleValidator( parent ), m_base( base )
 {
 }
@@ -126,7 +126,7 @@ double KgvUnitDoubleBase::toDouble( const QString& str, bool* ok ) const
 //                          Widget classes
 
 
-KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox( QWidget *parent, const char *name )
+KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox(QWidget *parent)
     : QDoubleSpinBox( parent ), KgvUnitDoubleBase( KgvUnit::U_PT, 2 )
     , m_lowerInPoints( -9999 )
     , m_upperInPoints( 9999 )
@@ -147,8 +147,7 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox( QWidget *parent,
 						    double step, 
 						    double value, 
 						    KgvUnit::Unit unit, 
-						    unsigned int precision, 
-						    const char *name )
+						    unsigned int precision)
     : QDoubleSpinBox( parent),
       KgvUnitDoubleBase( unit, precision ),
     m_lowerInPoints( lower ), m_upperInPoints( upper ), m_stepInPoints( step )
@@ -237,7 +236,7 @@ void KgvUnitDoubleSpinBox::setMinMaxStep( double min, double max, double step )
 // ----------------------------------------------------------------
 
 
-KgvUnitDoubleLineEdit::KgvUnitDoubleLineEdit( QWidget *parent, const char *name )
+KgvUnitDoubleLineEdit::KgvUnitDoubleLineEdit(QWidget *parent)
     : QLineEdit( parent ), KgvUnitDoubleBase( KgvUnit::U_PT, 2 ), m_value( 0.0 ), m_lower( 0.0 ), m_upper( 9999.99 ),
     m_lowerInPoints( 0.0 ), m_upperInPoints( 9999.99 )
 {
@@ -249,7 +248,7 @@ KgvUnitDoubleLineEdit::KgvUnitDoubleLineEdit( QWidget *parent, const char *name 
 }
 
 KgvUnitDoubleLineEdit::KgvUnitDoubleLineEdit( QWidget *parent, double lower, double upper, double value, KgvUnit::Unit unit,
-    unsigned int precision, const char *name )
+    unsigned int precision)
     : QLineEdit( parent ), KgvUnitDoubleBase( unit, precision ), m_value( value ), m_lower( lower ), m_upper( upper ),
     m_lowerInPoints( lower ), m_upperInPoints( upper )
 {
@@ -302,7 +301,7 @@ double KgvUnitDoubleLineEdit::value( void ) const
 // ----------------------------------------------------------------
 
 
-KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, const char *name )
+KgvUnitDoubleComboBox::KgvUnitDoubleComboBox(QWidget *parent)
      : QComboBox( parent ), KgvUnitDoubleBase( KgvUnit::U_PT, 2 ), m_value( 0.0 ), m_lower( 0.0 ), m_upper( 9999.99 ), m_lowerInPoints( 0.0 ), m_upperInPoints( 9999.99 )
 {
     lineEdit()->setAlignment( Qt::AlignRight );
@@ -314,7 +313,7 @@ KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, const char *name 
 }
 
 KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, double lower, double upper, double value, KgvUnit::Unit unit,
-     unsigned int precision, const char *name )
+     unsigned int precision)
      : QComboBox( parent ), KgvUnitDoubleBase( unit, precision ), m_value( value ), m_lower( lower ), m_upper( upper ),
      m_lowerInPoints( lower ), m_upperInPoints( upper )
 {
@@ -394,7 +393,7 @@ double KgvUnitDoubleComboBox::value( void ) const
 // ----------------------------------------------------------------
 
 
-KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, const char *name )
+KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox(QWidget *parent)
     : QWidget( parent ), m_step( 1.0 )
 {
     QGridLayout *layout = new QGridLayout( this );
@@ -412,13 +411,13 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, const cha
     layout->addWidget( down, 1, 0 );
     connect( down, SIGNAL(clicked()), this, SLOT(slotDownClicked()) );
 
-    m_combo = new KgvUnitDoubleComboBox( this, KgvUnit::ptToUnit( 0.0, KgvUnit::U_PT ), KgvUnit::ptToUnit( 9999.99, KgvUnit::U_PT ), 0.0, KgvUnit::U_PT, 2, name );
+    m_combo = new KgvUnitDoubleComboBox(this, KgvUnit::ptToUnit(0.0, KgvUnit::U_PT), KgvUnit::ptToUnit(9999.99, KgvUnit::U_PT), 0.0, KgvUnit::U_PT, 2);
     connect( m_combo, SIGNAL(valueChanged(double)), this, SIGNAL(valueChanged(double)) );
     layout->addWidget( m_combo, 0, 2, 2, 1 );
 }
 
 KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, double lower, double upper, double step, double value,
-                                                    KgvUnit::Unit unit, unsigned int precision, const char *name )
+                                                    KgvUnit::Unit unit, unsigned int precision)
     : QWidget( parent ), m_step( step )//, m_lowerInPoints( lower ), m_upperInPoints( upper )
 {
     QGridLayout *layout = new QGridLayout( this );
@@ -436,7 +435,7 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, double lo
     layout->addWidget( down, 1, 0 );
     connect( down, SIGNAL(clicked()), this, SLOT(slotDownClicked()) );
 
-    m_combo = new KgvUnitDoubleComboBox( this, KgvUnit::ptToUnit( lower, unit ), KgvUnit::ptToUnit( upper, unit ), value, unit, precision, name );
+    m_combo = new KgvUnitDoubleComboBox(this, KgvUnit::ptToUnit(lower, unit), KgvUnit::ptToUnit(upper, unit), value, unit, precision);
     connect( m_combo, SIGNAL(valueChanged(double)), this, SIGNAL(valueChanged(double)) );
     layout->addWidget( m_combo, 0, 2, 2, 1 );
 }

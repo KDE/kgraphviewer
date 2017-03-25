@@ -304,9 +304,7 @@ void KGraphViewerWindow::optionsConfigure()
     return; 
  
   //KConfigDialog didn't find an instance of this dialog, so lets create it : 
-  KPageDialog::FaceType ft = KPageDialog::Auto;
-  KgvConfigurationDialog* dialog = new KgvConfigurationDialog( this, "settings", 
-                                             KGraphViewerSettings::self(),ft ); 
+  KgvConfigurationDialog* dialog = new KgvConfigurationDialog( this, "settings", KGraphViewerSettings::self());
   connect(dialog,SIGNAL(backgroundColorChanged(QColor)),this,SLOT(slotBackgroundColorChanged(QColor)));
   Ui::KGraphViewerPreferencesParsingWidget*  parsingWidget = dialog->parsingWidget;
   qCDebug(debugCategory) << KGraphViewerSettings::parsingMode();

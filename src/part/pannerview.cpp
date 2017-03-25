@@ -52,7 +52,7 @@ namespace KGraphViewer
 //
 // PannerView
 //
-PannerView::PannerView(DotGraphView * parent, const char * name)
+PannerView::PannerView(DotGraphView * parent)
   : QGraphicsView(parent), m_drawContents(true), m_parent(parent)
 {
   m_movingZoomRect = false;

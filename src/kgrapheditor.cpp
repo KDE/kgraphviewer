@@ -330,9 +330,7 @@ void KGraphEditor::optionsConfigure()
     return;
 
   //KConfigDialog didn't find an instance of this dialog, so lets create it :
-  KPageDialog::FaceType ft = KPageDialog::Auto;
-  KgeConfigurationDialog* dialog = new KgeConfigurationDialog( this, "settings",
-                                             KGraphEditorSettings::self(),ft );
+  KgeConfigurationDialog* dialog = new KgeConfigurationDialog(this, "settings", KGraphEditorSettings::self());
 
   Ui::KGraphViewerPreferencesParsingWidget*  parsingWidget = dialog->m_parsingWidget;
   qCDebug(debugCategory) << KGraphEditorSettings::parsingMode();

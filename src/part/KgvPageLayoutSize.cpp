@@ -120,7 +120,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     QLabel *lpgWidth = new QLabel( i18n( "&Width:" ), formatCustomSize );
     lay2->addWidget(lpgWidth);
     // linedit width
-    epgWidth = new KgvUnitDoubleSpinBox( formatCustomSize, "Width" );
+    epgWidth = new KgvUnitDoubleSpinBox(formatCustomSize);
     lay2->addWidget(epgWidth);
     lpgWidth->setBuddy( epgWidth );
     if ( m_layout.format != PG_CUSTOM )
@@ -132,7 +132,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     lay2->addWidget(lpgHeight);
 
     // linedit height
-    epgHeight = new KgvUnitDoubleSpinBox( formatCustomSize, "Height" );
+    epgHeight = new KgvUnitDoubleSpinBox(formatCustomSize);
     lay2->addWidget(epgHeight);
     lpgHeight->setBuddy( epgHeight );
     if ( m_layout.format != PG_CUSTOM )
@@ -176,22 +176,22 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     QGridLayout *marginsLayout = new QGridLayout( marginsFrame );
 
     // left margin
-    ebrLeft = new KgvUnitDoubleSpinBox( marginsWidget, "Left" );
+    ebrLeft = new KgvUnitDoubleSpinBox(marginsWidget);
     marginsLayout->addWidget( ebrLeft, 1, 0 );
     connect( ebrLeft, SIGNAL(valueChangedPt(double)), this, SLOT(leftChanged(double)) );
 
     // right margin
-    ebrRight = new KgvUnitDoubleSpinBox( marginsWidget, "Right" );
+    ebrRight = new KgvUnitDoubleSpinBox(marginsWidget);
     marginsLayout->addWidget( ebrRight, 1, 2 );
     connect( ebrRight, SIGNAL(valueChangedPt(double)), this, SLOT(rightChanged(double)) );
 
     // top margin
-    ebrTop = new KgvUnitDoubleSpinBox( marginsWidget, "Top" );
+    ebrTop = new KgvUnitDoubleSpinBox(marginsWidget);
     marginsLayout->addWidget( ebrTop, 0, 1 , Qt::AlignCenter );
     connect( ebrTop, SIGNAL(valueChangedPt(double)), this, SLOT(topChanged(double)) );
 
     // bottom margin
-    ebrBottom = new KgvUnitDoubleSpinBox( marginsWidget, "Bottom" );
+    ebrBottom = new KgvUnitDoubleSpinBox(marginsWidget);
     marginsLayout->addWidget( ebrBottom, 2, 1, Qt::AlignCenter );
     connect( ebrBottom, SIGNAL(valueChangedPt(double)), this, SLOT(bottomChanged(double)) );
 

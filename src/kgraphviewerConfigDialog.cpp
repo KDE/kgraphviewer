@@ -48,11 +48,8 @@
 
 static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
-KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config, 
-              KPageDialog::FaceType dialogType, 
-              QDialogButtonBox::StandardButtons dialogButtons, 
-              QDialogButtonBox::StandardButtons defaultButton, bool modal) : 
-  KConfigDialog (parent, name, config),//, dialogType, dialogButtons, defaultButton, modal) ,
+KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config) :
+  KConfigDialog(parent, name, config),
   m_changed(false),
   parsingWidget(new Ui::KGraphViewerPreferencesParsingWidget()),
   reloadWidget(new Ui::KGraphViewerPreferencesReloadWidget()),

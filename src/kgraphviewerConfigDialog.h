@@ -43,10 +43,7 @@ class KgvConfigurationDialog : public KConfigDialog
 {
   Q_OBJECT
 public:
-   KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config, 
-                  KPageDialog::FaceType dialogType,//=IconList, 
-                  QDialogButtonBox::StandardButtons dialogButtons=QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Ok|QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Help, 
-                  QDialogButtonBox::StandardButtons defaultButton=QDialogButtonBox::Ok, bool modal=false);
+   KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config);
 
   virtual ~KgvConfigurationDialog ();
 
