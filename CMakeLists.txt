@@ -10,12 +10,6 @@ include(FeatureSummary)
 include(ECMInstallIcons)
 include(ECMSetupVersion)
 
-ecm_setup_version(PROJECT
-    VARIABLE_PREFIX KGRAPHVIEWER
-    SOVERSION 3
-    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h"
-)
-
 # search packages used by KDE
 find_package(Qt5 CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)
 
@@ -37,13 +31,5 @@ endif(NOT DOT)
 
 add_definitions (${QT_DEFINITIONS})
 
-include_directories(
-    ${CMAKE_SOURCE_DIR}
-    ${CMAKE_BINARY_DIR}
-    ${graphviz_INCLUDE_DIRECTORIES}
-    ${KDE_INSTALL_INCLUDEDIR}
-)
-
 add_subdirectory(src)
 add_subdirectory(doc)
-

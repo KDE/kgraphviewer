@@ -1,6 +1,11 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kgraphviewer\")
 
-include_directories( ../ ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${QT_QTCORE_INCLUDE_DIRS} ${QT5_QTSVG_INCLUDE_DIRS} ${QT_QTWIDGETS_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${graphviz_INCLUDE_DIRECTORIES} )
+include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}/..
+    ${CMAKE_CURRENT_SOURCE_DIR}/..
+    ${Boost_INCLUDE_DIRS}
+    ${graphviz_INCLUDE_DIRECTORIES}
+)
 
 ########### next target ###############
 

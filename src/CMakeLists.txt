@@ -1,6 +1,15 @@
+ecm_setup_version(PROJECT
+    VARIABLE_PREFIX KGRAPHVIEWER
+    SOVERSION 3
+    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/config-kgraphviewer.h"
+)
+
 add_subdirectory( part )
 
-include_directories( part ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${graphviz_INCLUDE_DIRECTORIES} )
+include_directories(
+    part
+    ${graphviz_INCLUDE_DIRECTORIES}
+)
 
 
 ########### kgraphviewer target ###############
