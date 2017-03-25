@@ -147,10 +147,6 @@ public Q_SLOTS:
     
 private:
   KGraphViewerPartPrivate * const d;
-
-  QList<QString> nodesIdsPrivate();
-  QMap<QString,QString> nodeAtributesPrivate(const QString& nodeId);
-  
 };
 
 }

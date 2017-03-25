@@ -172,19 +172,6 @@ void KGraphViewerPart::setBackgroundColor(const QColor& color)
   d->m_widget->setBackgroundColor(color);
 }
 
-QList<QString> KGraphViewerPart::nodesIdsPrivate()
-{
-  QList<QString> result;
-  
-  return result;
-}
-
-QMap<QString,QString> KGraphViewerPart::nodeAtributesPrivate(const QString& nodeId)
-{
-  QMap<QString,QString> result;
-  return result;
-}
-
 void KGraphViewerPart::slotClose()
 {
   emit close();
