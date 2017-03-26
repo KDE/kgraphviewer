@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="kgraphviewer" version="4">
+<kpartgui name="kgraphviewer" version="5" translationDomain="kgraphviewer">
 <MenuBar>
   <Menu name="file">
     <DefineGroup name="file_merge"/>

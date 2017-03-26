@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="kgraphviewer_part" version="2" translationDomain="kgraphviewer">
+<kpartgui name="kgraphviewer_part" version="3" translationDomain="kgraphviewer">
 <MenuBar>
   <Menu name="file">
     <Action name="file_export" group="file_merge"/>
