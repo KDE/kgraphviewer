@@ -19,9 +19,9 @@
 #ifndef KGRAPHVIEWER_INTERFACE_H
 #define KGRAPHVIEWER_INTERFACE_H
 
-#include <QtCore/QObject>
-#include <QtCore/QMap>
-#include <QtGui/QCursor>
+#include <QObject>
+#include <QMap>
+#include <QCursor>
 
 #include <graphviz/gvc.h>
 

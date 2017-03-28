@@ -35,7 +35,7 @@
 #include <QVector>
 #include <QList>
 #include <QMap>
-#include <QtCore/QTextStream>
+#include <QTextStream>
 
 #include <graphviz/gvc.h>
 

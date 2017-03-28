@@ -47,7 +47,7 @@
 #include <ktoolbar.h>
 #include <KActionCollection>
 #include <klocalizedstring.h>
-#include <QtDBus/QtDBus>
+#include <QDBusConnection>
 #include <KParts/ReadOnlyPart>
 #include <iostream>
 #include <stdio.h>
