@@ -49,7 +49,7 @@ class GraphExporter
 {
 public:
   GraphExporter();
-  virtual ~GraphExporter();
+  ~GraphExporter();
 
   QString writeDot(const DotGraph* graph, const QString& fileName = QString());
   graph_t* exportToGraphviz(const DotGraph* graph);

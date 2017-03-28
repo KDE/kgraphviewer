@@ -92,8 +92,8 @@ public:
   inline QList< DotRenderOp >&  arrowheads() {return m_arrowheads;}
   inline const QList< DotRenderOp >&  arrowheads() const {return m_arrowheads;}
 
-  virtual void updateWithEdge(const GraphEdge& edge);
-  virtual void updateWithEdge(edge_t* edge);
+  void updateWithEdge(const GraphEdge& edge);
+  void updateWithEdge(edge_t* edge);
 
 private:
   // we have a _ce *and* _from/_to because for collapsed edges,

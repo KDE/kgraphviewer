@@ -39,7 +39,7 @@ class FontsCache :
 friend class Singleton<FontsCache>;
 
 public:
-  virtual ~FontsCache();
+  ~FontsCache();
 
   QFont* cachedFont(const QFont& font);
   QFont* fromName(const QString& font);

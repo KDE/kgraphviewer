@@ -103,8 +103,8 @@ public:
 
   void KGRAPHVIEWER_EXPORT saveTo(const QString& fileName);
 
-  virtual void updateWithGraph(graph_t* newGraph);
-  virtual void updateWithGraph(const DotGraph& graph);
+  void updateWithGraph(graph_t* newGraph);
+  void updateWithGraph(const DotGraph& graph);
 
   void KGRAPHVIEWER_EXPORT setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
 

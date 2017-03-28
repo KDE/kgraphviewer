@@ -182,7 +182,7 @@ private:
     int flags;
 
 protected slots:
-    virtual void slotOk();
+    void slotOk();
 
 private slots:
     void sizeUpdated(struct ::KgvPageLayout &layout);

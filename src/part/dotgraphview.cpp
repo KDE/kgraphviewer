@@ -121,7 +121,7 @@ public:
   {
     
   }
-  virtual ~DotGraphViewPrivate()
+  ~DotGraphViewPrivate()
   {
     delete m_birdEyeView;
     m_birdEyeView = nullptr;
