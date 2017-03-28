@@ -61,7 +61,7 @@ CanvasElement::CanvasElement(
     m_scaleX(0), m_scaleY(0),
     m_xMargin(0), m_yMargin(0), m_gh(0), m_wdhcf(0), m_hdvcf(0),
     m_element(gelement), m_view(v),
-    m_font(0),
+    m_font(nullptr),
     m_pen(Dot2QtConsts::componentData().qtColor(gelement->fontColor())),
     m_popup(new QMenu()),
     m_hovered(false),

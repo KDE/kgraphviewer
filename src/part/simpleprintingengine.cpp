@@ -57,7 +57,7 @@ KGVSimplePrintingEngine::KGVSimplePrintingEngine(
                                     KGVSimplePrintingSettings* settings, 
                                     QObject* parent) : 
     QObject(parent), m_settings(settings),
-    m_data(0)
+    m_data(nullptr)
 {
   setObjectName("KGVSimplePrintingEngine");
   clear(); 
@@ -87,7 +87,7 @@ bool KGVSimplePrintingEngine::init(DotGraphView& data, const QString& titleText,
 bool KGVSimplePrintingEngine::done()
 {
 	bool result = true;
-	m_data = 0;
+	m_data = nullptr;
 	m_pagesCount = 0;
 	m_paintInitialized = false;
 	return result;

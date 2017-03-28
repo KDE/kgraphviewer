@@ -39,7 +39,7 @@
 #include <QIcon>
 
 
-KgvGlobal* KgvGlobal::s_global = 0L;
+KgvGlobal* KgvGlobal::s_global = nullptr;
 // static K3StaticDeleter<KgvGlobal> sdg;
 
 KgvGlobal* KgvGlobal::self()
@@ -51,7 +51,7 @@ KgvGlobal* KgvGlobal::self()
 }
 
 KgvGlobal::KgvGlobal()
-    : m_pointSize( -1 ), m_kofficeConfig( 0L )
+    : m_pointSize( -1 ), m_kofficeConfig(nullptr)
 {
     // Install the libkoffice* translations
 //     KGlobal::locale()->insertCatalogue("koffice");

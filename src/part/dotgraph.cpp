@@ -65,7 +65,7 @@ DotGraph::DotGraph() :
   m_horizCellFactor(0), m_vertCellFactor(0),
   m_wdhcf(0), m_hdvcf(0),
   m_readWrite(false),
-  m_dot(0),
+  m_dot(nullptr),
   m_phase(Initial),
   m_useLibrary(false)
 {
@@ -80,7 +80,7 @@ DotGraph::DotGraph(const QString& command, const QString& fileName) :
   m_horizCellFactor(0), m_vertCellFactor(0),
   m_wdhcf(0), m_hdvcf(0),
   m_readWrite(false),
-  m_dot(0),
+  m_dot(nullptr),
   m_phase(Initial),
   m_useLibrary(false)
 {
@@ -149,7 +149,7 @@ bool DotGraph::parseDot(const QString& str)
   qCDebug(debugCategory) << "m_dot is " << m_dot  << ". Acquiring mutex";
   QMutexLocker locker(&m_dotProcessMutex);
   qCDebug(debugCategory) << "mutex acquired ";
-  if (m_dot != 0)
+  if (m_dot)
   {
     disconnect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
     disconnect(m_dot,SIGNAL(error(QProcess::ProcessError)),this,SLOT(slotDotRunningError(QProcess::ProcessError)));
@@ -180,7 +180,7 @@ bool DotGraph::update()
 
     GVC_t* gvc = gvContext();
     threadsafe_wrap_gvLayout(gvc, graph, m_layoutCommand.toUtf8().data());
-    threadsafe_wrap_gvRender(gvc, graph, "xdot", NULL);
+    threadsafe_wrap_gvRender(gvc, graph, "xdot", nullptr);
 
     updateWithGraph(graph);
     
@@ -196,13 +196,13 @@ QByteArray DotGraph::getDotResult(int , QProcess::ExitStatus )
   qCDebug(debugCategory);
 
   QMutexLocker locker(&m_dotProcessMutex);
-  if (m_dot == 0)
+  if (m_dot == nullptr)
   {
     return QByteArray();
   }
   QByteArray result = m_dot->readAll();
   delete m_dot;
-  m_dot = 0;
+  m_dot = nullptr;
   return result;
 }
 
@@ -216,9 +216,9 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
   qCDebug(debugCategory) << "string content is:" << endl << result << endl << "=====================" << result.size();
   std::string s =  result.data();
   //   std::cerr << "stdstring content is:" << std::endl << s << std::endl << "===================== " << s.size() << std::endl;
-  if (phelper != 0)
+  if (phelper)
   {
-    phelper->graph = 0;
+    phelper->graph = nullptr;
     delete phelper;
   }
 //   if (parsingResult)
@@ -241,7 +241,7 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
   qCDebug(debugCategory) << "parsing new dot";
   bool parsingResult = parse(s);
   delete phelper;
-  phelper = 0;
+  phelper = nullptr;
   qCDebug(debugCategory) << "phelper deleted";
 
   if (parsingResult)
@@ -272,22 +272,22 @@ void DotGraph::slotDotRunningError(QProcess::ProcessError error)
   switch (error)
   {
     case QProcess::FailedToStart:
-      QMessageBox::critical(0, i18n("Layout process failed"), i18n("Unable to start %1.", m_layoutCommand));
+      QMessageBox::critical(nullptr, i18n("Layout process failed"), i18n("Unable to start %1.", m_layoutCommand));
     break;
     case QProcess::Crashed:
-      QMessageBox::critical(0, i18n("Layout process failed"), i18n("%1 crashed.", m_layoutCommand));
+      QMessageBox::critical(nullptr, i18n("Layout process failed"), i18n("%1 crashed.", m_layoutCommand));
     break;
     case QProcess::Timedout:
-      QMessageBox::critical(0, i18n("Layout process failed"), i18n("%1 timed out.", m_layoutCommand));
+      QMessageBox::critical(nullptr, i18n("Layout process failed"), i18n("%1 timed out.", m_layoutCommand));
     break;
     case QProcess::WriteError:
-      QMessageBox::critical(0, i18n("Layout process failed"), i18n("Was not able to write data to the %1 process.", m_layoutCommand));
+      QMessageBox::critical(nullptr, i18n("Layout process failed"), i18n("Was not able to write data to the %1 process.", m_layoutCommand));
     break;
     case QProcess::ReadError:
-      QMessageBox::critical(0, i18n("Layout process failed"), i18n("Was not able to read data from the %1 process.", m_layoutCommand));
+      QMessageBox::critical(nullptr, i18n("Layout process failed"), i18n("Was not able to read data from the %1 process.", m_layoutCommand));
     break;
     default:
-      QMessageBox::critical(0, i18n("Layout process failed"), i18n("Unknown error running %1.", m_layoutCommand));
+      QMessageBox::critical(nullptr, i18n("Layout process failed"), i18n("Unknown error running %1.", m_layoutCommand));
   }
 }
 
@@ -399,12 +399,12 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
   // decrease mem peak
   setRenderOperations(ops);
 
-  if (agget(newGraph, (char*)"_draw_") != NULL)
+  if (agget(newGraph, (char*)"_draw_"))
   {
     parse_renderop(agget(newGraph, (char*)"_draw_"), ops);
     qCDebug(debugCategory) << "_draw_: element renderOperations size is now " << ops.size();
   }
-  if (agget(newGraph, (char*)"_ldraw_") != NULL)
+  if (agget(newGraph, (char*)"_ldraw_"))
   {
     parse_renderop(agget(newGraph, (char*)"_ldraw_"), ops);
     qCDebug(debugCategory) << "_ldraw_: element renderOperations size is now " << ops.size();
@@ -412,7 +412,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
 
   setRenderOperations(ops);
 
-  Agsym_t *attr = agnxtattr(newGraph, AGRAPH, NULL);
+  Agsym_t *attr = agnxtattr(newGraph, AGRAPH, nullptr);
   while(attr)
   {
     qCDebug(debugCategory) << agnameof(newGraph) << ":" << attr->name << agxget(newGraph,attr);
@@ -430,7 +430,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
       // ???
       //       nodes()[ngn->name]->setZ(ngn->z());
       subgraphs()[agnameof(sg)]->updateWithSubgraph(sg);
-      if (subgraphs()[agnameof(sg)]->canvasElement()!=0)
+      if (subgraphs()[agnameof(sg)]->canvasElement())
       {
         //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
       }
@@ -450,7 +450,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
   node_t* ngn = agfstnode(newGraph);
   qCDebug(debugCategory) << "first node:" << (void*)ngn;
   
-  while (ngn != NULL)
+  while (ngn)
 //   foreach (GraphNode* ngn, newGraph.nodes())
   {
     qCDebug(debugCategory) << "node " << agnameof(ngn);
@@ -460,7 +460,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
 // ???
 //       nodes()[ngn->name]->setZ(ngn->z());
       nodes()[agnameof(ngn)]->updateWithNode(ngn);
-      if (nodes()[agnameof(ngn)]->canvasElement()!=0)
+      if (nodes()[agnameof(ngn)]->canvasElement())
       {
         //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
       }
@@ -476,7 +476,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
 
     // copy node edges
     edge_t* nge = agfstout(newGraph, ngn);
-    while (nge != NULL)
+    while (nge)
     {
 //      kDebug() << "edge " << nge->id;
       QString edgeName = QString(agnameof(aghead(nge))) + agnameof(agtail(nge));
@@ -485,7 +485,7 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
 //        () << "edge known" << nge->id;
 //         edges()[nge->name]->setZ(nge->z());
         edges()[edgeName]->updateWithEdge(nge);
-        if (edges()[edgeName]->canvasEdge()!=0)
+        if (edges()[edgeName]->canvasEdge())
         {
           //         edges()[nge->id()]->canvasEdge()->setGh(m_height);
         }
@@ -497,14 +497,14 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
           GraphEdge* newEdge = new GraphEdge();
           newEdge->setId(edgeName);
           newEdge->updateWithEdge(nge);
-          if (elementNamed(agnameof(agtail(nge))) == 0)
+          if (elementNamed(agnameof(agtail(nge))) == nullptr)
           {
             GraphNode* newgn = new GraphNode();
             //       kDebug() << "new created";
             nodes().insert(agnameof(agtail(nge)), newgn);
           }
           newEdge->setFromNode(elementNamed(agnameof(agtail(nge))));
-          if (elementNamed(agnameof(aghead(nge))) == 0)
+          if (elementNamed(agnameof(aghead(nge))) == nullptr)
           {
             GraphNode* newgn = new GraphNode();
             //       kDebug() << "new created";
@@ -539,7 +539,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
     {
       qCDebug(debugCategory) << "subgraph known" << nsg->id();
       subgraphs().value(nsg->id())->updateWithSubgraph(*nsg);
-      if (subgraphs().value(nsg->id())->canvasElement()!=0)
+      if (subgraphs().value(nsg->id())->canvasElement())
       {
 //         subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
       }
@@ -561,7 +561,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
       qCDebug(debugCategory) << "known";
       nodes()[ngn->id()]->setZ(ngn->z());
       nodes()[ngn->id()]->updateWithNode(*ngn);
-      if (nodes()[ngn->id()]->canvasElement()!=0)
+      if (nodes()[ngn->id()]->canvasElement())
       {
 //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
       }
@@ -583,7 +583,7 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
       qCDebug(debugCategory) << "edge known" << nge->id();
       edges()[nge->id()]->setZ(nge->z());
       edges()[nge->id()]->updateWithEdge(*nge);
-      if (edges()[nge->id()]->canvasEdge()!=0)
+      if (edges()[nge->id()]->canvasEdge())
       {
 //         edges()[nge->id()]->canvasEdge()->setGh(m_height);
       }
@@ -609,7 +609,7 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
 {
   qCDebug(debugCategory) << nodeName;
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(nodeName));
-  if (node == 0)
+  if (node == nullptr)
   {
     qWarning() << "No such node " << nodeName;
     return;
@@ -623,7 +623,7 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
         || it.value()->toNode() == node )
     {
       GraphEdge* edge = it.value();
-      if (edge->canvasEdge() != 0)
+      if (edge->canvasEdge())
       {
         edge->canvasEdge()->hide();
         delete edge->canvasEdge();
@@ -637,11 +637,11 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
     }
   }
 
-  if (node->canvasNode() != 0)
+  if (node->canvasNode())
   {
     node->canvasNode()->hide();
     delete node->canvasNode();
-    node->setCanvasNode(0);
+    node->setCanvasNode(nullptr);
   }
   nodes().remove(nodeName);
   delete node;
@@ -654,14 +654,14 @@ void DotGraph::removeNodeFromSubgraph(
 {
   qCDebug(debugCategory) << nodeName << subgraphName;
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(nodeName));
-  if (node == 0)
+  if (node == nullptr)
   {
     qWarning() << "No such node " << nodeName;
     return;
   }
 
   GraphSubgraph* subgraph = subgraphs()[subgraphName];
-  if (subgraph == 0)
+  if (subgraph == nullptr)
   {
     qWarning() << "No such subgraph " << subgraphName;
     return;
@@ -679,7 +679,7 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
   qCDebug(debugCategory) << subgraphName << " from " << subgraphs().keys();
   GraphSubgraph* subgraph = subgraphs()[subgraphName];
 
-  if (subgraph == 0)
+  if (subgraph == nullptr)
   {
     qWarning() << "Subgraph" << subgraphName << "not found";
     return;
@@ -692,7 +692,7 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
         || it.value()->toNode() == subgraph )
     {
       GraphEdge* edge = it.value();
-      if (edge->canvasEdge() != 0)
+      if (edge->canvasEdge())
       {
         edge->canvasEdge()->hide();
         delete edge->canvasEdge();
@@ -706,20 +706,20 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
     }
   }
 
-  if (subgraph->canvasSubgraph() != 0)
+  if (subgraph->canvasSubgraph())
   {
     subgraph->canvasSubgraph()->hide();
     delete subgraph->canvasSubgraph();
-    subgraph->setCanvasSubgraph(0);
+    subgraph->setCanvasSubgraph(nullptr);
   }
   foreach(GraphElement* element, subgraph->content())
   {
-    if (dynamic_cast<GraphNode*>(element) != 0)
+    if (dynamic_cast<GraphNode*>(element))
     {
       qCDebug(debugCategory) << "Adding" << element->id() << "to main graph";
       nodes()[element->id()] = dynamic_cast<GraphNode*>(element);
     }
-    else if (dynamic_cast<GraphSubgraph*>(element) != 0)
+    else if (dynamic_cast<GraphSubgraph*>(element))
     {
       subgraphs()[element->id()] = dynamic_cast<GraphSubgraph*>(element);
     }
@@ -742,7 +742,7 @@ void DotGraph::removeEdge(const QString& id)
     GraphEdge* edge = it.value();
     if (edge->id() ==id)
     {
-      if (edge->canvasEdge() != 0)
+      if (edge->canvasEdge())
       {
         edge->canvasEdge()->hide();
         delete edge->canvasEdge();
@@ -807,11 +807,11 @@ void DotGraph::setAttribute(const QString& elementId, const QString& attributeNa
 
 GraphElement* DotGraph::elementNamed(const QString& id)
 {
-  GraphElement* ret = 0;
-  if ((ret = m_nodesMap.value(id, 0))) {
+  GraphElement* ret = nullptr;
+  if ((ret = m_nodesMap.value(id, nullptr))) {
     return ret;
   }
-  if ((ret = m_edgesMap.value(id, 0))) {
+  if ((ret = m_edgesMap.value(id, nullptr))) {
     return ret;
   }
   foreach(GraphSubgraph* subGraph, m_subgraphsMap) {
@@ -819,7 +819,7 @@ GraphElement* DotGraph::elementNamed(const QString& id)
       return ret;
     }
   }
-  return 0;
+  return nullptr;
 }
 
 void DotGraph::setGraphAttributes(QMap<QString,QString> attribs)
@@ -861,7 +861,7 @@ void DotGraph::addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString s
 {
   qCDebug(debugCategory) << attribs << "to" << subgraph;
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(attribs["id"]));
-  if (node == 0)
+  if (node == nullptr)
   {
     qWarning() << "No such node" << attribs["id"];
     return;
@@ -877,7 +877,7 @@ void DotGraph::addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString s
   {
     foreach(GraphSubgraph* gs, subgraphs())
     {
-      GraphElement* elt = 0;
+      GraphElement* elt = nullptr;
       foreach(GraphElement* element, gs->content())
       {
         if (element == node)
@@ -886,7 +886,7 @@ void DotGraph::addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString s
           break;
         }
       }
-      if (elt != 0)
+      if (elt)
       {
         qCDebug(debugCategory) << "removing node " << elt->id() << " from " << gs->id();
         gs->removeElement(elt);
@@ -902,7 +902,7 @@ void DotGraph::moveExistingNodeToMainGraph(QMap<QString,QString> attribs)
 {
   qCDebug(debugCategory) << attribs;
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(attribs["id"]));
-  if (node == 0)
+  if (node == nullptr)
   {
     qWarning() << "No such node" << attribs["id"];
     return;
@@ -943,17 +943,17 @@ void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString,QString> attrib
   GraphEdge* newEdge = new GraphEdge();
   newEdge->attributes() = attribs;
   GraphElement* srcElement = elementNamed(src);
-  if (srcElement == 0)
+  if (srcElement == nullptr)
   {
     srcElement = elementNamed(QString("cluster_")+src);
   }
   GraphElement* tgtElement = elementNamed(tgt);
-  if (tgtElement == 0)
+  if (tgtElement == nullptr)
   {
     tgtElement = elementNamed(QString("cluster_")+tgt);
   }
   
-  if (srcElement == 0 || tgtElement == 0)
+  if (srcElement == nullptr || tgtElement == nullptr)
   {
     qWarning() << src << "or" << tgt << "missing";
     return;
@@ -974,7 +974,7 @@ void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString,QString> attrib
 void DotGraph::removeAttribute(const QString& nodeName, const QString& attribName)
 {
   GraphElement* element = elementNamed(nodeName);
-  if (element != 0)
+  if (element)
   {
     element->removeAttribute(attribName);
   }

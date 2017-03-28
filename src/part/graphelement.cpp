@@ -50,7 +50,7 @@ GraphElement::GraphElement() :
     QObject(),
     m_attributes(),
     m_originalAttributes(),
-    m_ce(0),
+    m_ce(nullptr),
     m_z(1.0),
     m_renderOperations(),
     m_renderOperationsRevision(0),

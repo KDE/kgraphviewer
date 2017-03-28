@@ -61,12 +61,12 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
       if (ge->id() == updatingge->id())
       {
         found = true;
-        if (dynamic_cast<GraphNode*>(ge) != 0)
+        if (dynamic_cast<GraphNode*>(ge))
         {
           dynamic_cast<GraphNode*>(ge)->updateWithNode(*dynamic_cast<GraphNode*>(updatingge));
         //     kDebug() << "node " << ngn->id();
         }
-        else if (dynamic_cast<GraphSubgraph*>(ge) != 0)
+        else if (dynamic_cast<GraphSubgraph*>(ge))
         {
           dynamic_cast<GraphSubgraph*>(ge)->updateWithSubgraph(*dynamic_cast<GraphSubgraph*>(updatingge));
         }
@@ -80,14 +80,14 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
     if (!found)
     {
   //       kDebug() << "new";
-      if (dynamic_cast<GraphNode*>(updatingge) != 0)
+      if (dynamic_cast<GraphNode*>(updatingge))
       {
         GraphNode* newgn = new GraphNode(*dynamic_cast<GraphNode*>(updatingge));
   //       kDebug() << "new created";
         content().push_back(newgn);
   //       kDebug() << "new inserted";
       }
-      else if (dynamic_cast<GraphSubgraph*>(updatingge) != 0)
+      else if (dynamic_cast<GraphSubgraph*>(updatingge))
       {
         GraphSubgraph* newsg = new GraphSubgraph(*dynamic_cast<GraphSubgraph*>(updatingge));
         content().push_back(newsg);
@@ -114,12 +114,12 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
   // decrease mem peak
   setRenderOperations(ops);
 
-  if (agget(subgraph, (char*)"_draw_") != NULL)
+  if (agget(subgraph, (char*)"_draw_"))
   {
     parse_renderop(agget(subgraph, (char*)"_draw_"), ops);
     qCDebug(debugCategory) << "_draw_: element renderOperations size is now " << ops.size();
   }
-  if (agget(subgraph, (char*)"_ldraw_") != NULL)
+  if (agget(subgraph, (char*)"_ldraw_"))
   {
     parse_renderop(agget(subgraph, (char*)"_ldraw_"), ops);
     qCDebug(debugCategory) << "_ldraw_: element renderOperations size is now " << ops.size();
@@ -127,7 +127,7 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
 
   setRenderOperations(ops);
 
-  Agsym_t *attr = agnxtattr(subgraph, AGRAPH, NULL);
+  Agsym_t *attr = agnxtattr(subgraph, AGRAPH, nullptr);
   while(attr)
   {
     qCDebug(debugCategory) << agnameof(subgraph) << ":" << attr->name << agxget(subgraph,attr);
@@ -145,7 +145,7 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
       // ???
       //       nodes()[ngn->name]->setZ(ngn->z());
       subgraphs()[agnameof(sg)]->updateWithSubgraph(sg);
-      if (subgraphs()[agnameof(sg)]->canvasElement()!=0)
+      if (subgraphs()[agnameof(sg)]->canvasElement())
       {
         //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
       }
@@ -204,13 +204,13 @@ GraphElement* GraphSubgraph::elementNamed(const QString& id)
     else if (dynamic_cast<GraphSubgraph*>(element))
     {
       GraphElement* subgraphElement = dynamic_cast<GraphSubgraph*>(element)->elementNamed(id);
-      if (subgraphElement != 0)
+      if (subgraphElement)
       {
         return subgraphElement;
       }
     }
   }
-  return 0;
+  return nullptr;
 }
 
 bool GraphSubgraph::setElementSelected(
@@ -237,7 +237,7 @@ bool GraphSubgraph::setElementSelected(
   }
   foreach (GraphElement* el, content())
   {
-    if (dynamic_cast<GraphSubgraph*>(el) != 0)
+    if (dynamic_cast<GraphSubgraph*>(el))
     {
       bool subres = dynamic_cast<GraphSubgraph*>(el)->setElementSelected(element, selectValue, unselectOthers);
       if (!res) res = subres;
@@ -271,7 +271,7 @@ void GraphSubgraph::retrieveSelectedElementsIds(QList<QString> selection)
   }
   foreach (GraphElement* el, content())
   {
-    if (dynamic_cast<GraphSubgraph*>(el) != 0)
+    if (dynamic_cast<GraphSubgraph*>(el))
     {
       dynamic_cast<GraphSubgraph*>(el)->retrieveSelectedElementsIds(selection);
     }

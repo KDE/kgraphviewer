@@ -97,7 +97,7 @@ public:
 
 private:
   // we have a _ce *and* _from/_to because for collapsed edges,
-  // only _to or _from will be unequal NULL
+  // only _to or _from will be unequal nullptr
   GraphElement *m_fromNode, *m_toNode;
   bool m_visible;
   QStringList m_colors;

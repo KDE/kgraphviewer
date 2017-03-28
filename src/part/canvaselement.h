@@ -46,14 +46,14 @@ public:
       DotGraphView* v, 
       GraphElement* s,
       QGraphicsScene* c,
-      QGraphicsItem* parent = 0);
+      QGraphicsItem* parent = nullptr);
       
   virtual ~CanvasElement();
   
   GraphElement* element() { return m_element; }
 
   virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-        QWidget *widget = 0 );
+        QWidget *widget = nullptr);
 
   virtual QRectF boundingRect () const;
 

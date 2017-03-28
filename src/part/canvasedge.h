@@ -64,7 +64,7 @@ public:
   explicit CanvasEdge(DotGraphView* v, GraphEdge*,
              qreal scaleX, qreal scaleY,
              qreal xMargin, qreal yMargin, qreal gh,
-             qreal wdhcf, qreal hdvcf, QGraphicsItem* parent = 0);
+             qreal wdhcf, qreal hdvcf, QGraphicsItem* parent = nullptr);
 
   virtual ~CanvasEdge();
   

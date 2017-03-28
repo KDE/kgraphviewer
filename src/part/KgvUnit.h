@@ -154,12 +154,12 @@ public:
     /// @param ok if set, the pointed bool is set to true if the value could be
     /// converted to a double, and to false otherwise.
     /// @return the value in @p unit, converted to points for internal use
-    static double fromUserValue( const QString& value, Unit unit, bool* ok = 0 );
+    static double fromUserValue(const QString& value, Unit unit, bool* ok = nullptr);
 
     /// Convert a unit name into a Unit enum
     /// @param _unitName name to convert
     /// @param ok if set, it will be true if the unit was known, false if unknown
-    static Unit unit( const QString &_unitName, bool* ok = 0 );
+    static Unit unit(const QString &_unitName, bool* ok = nullptr);
     /// Get the name of a unit
     static QString unitName( Unit _unit );
     /// Get the full (translated) description of a unit

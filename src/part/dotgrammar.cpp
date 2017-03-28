@@ -46,7 +46,7 @@ using namespace KGraphViewer;
 #define KGV_MAX_ITEMS_TO_LOAD std::numeric_limits<size_t>::max()
 #define BOOST_SPIRIT_DEBUG 1
 
-DotGraphParsingHelper* phelper = 0;
+DotGraphParsingHelper* phelper = nullptr;
 
 std::string therenderop;
 std::string thestr;
@@ -126,7 +126,7 @@ void decrz(char const /*first*/)
   if (phelper)
   {
     phelper->z--;
-    phelper->gs = 0;
+    phelper->gs = nullptr;
   }
 }
 
@@ -213,7 +213,7 @@ void addattr(char const* /*first*/, char const* /*last*/)
 
 void pushAttrListC(char const /*c*/)
 {
-  pushAttrList(0,0);
+  pushAttrList(nullptr, nullptr);
 }
 
 void pushAttrList(char const* /*first*/, char const* /*last*/)
@@ -229,7 +229,7 @@ void pushAttrList(char const* /*first*/, char const* /*last*/)
 
 void popAttrListC(char const /*c*/)
 {
-  popAttrList(0,0);
+  popAttrList(nullptr, nullptr);
 }
 
 void popAttrList(char const* /*first*/, char const* /*last*/)
@@ -250,7 +250,7 @@ void popAttrList(char const* /*first*/, char const* /*last*/)
 void createnode(char const* first, char const* last)
 {
 //   kDebug() << (void*)first << (void*)last << QString::fromStdString(std::string(first,last));
-  if (phelper!=0 && first!=0 && last != 0) 
+  if (phelper && first && last)
   {
     std::string id(first,last);
     if (id.size()>0 && id[0] == '"') id = id.substr(1);
@@ -358,7 +358,7 @@ bool parse_point(char const* str, QPoint& p)
 
 bool parse_numeric_color(char const* str, QColor& c)
 {
-  if (str==0) return false;
+  if (str == nullptr) return false;
   int r,g,b,a;
   bool res;
   uint_parser<unsigned, 16, 2, 2> hex2digits_p;
@@ -448,7 +448,7 @@ bool parse_spline(char const* str, QVector< QPair< float, float > >& points)
 
 DotRenderOp renderop ;
 
-DotRenderOpVec* renderopvec = 0;
+DotRenderOpVec* renderopvec = nullptr;
 
 void init_op()
 {

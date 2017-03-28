@@ -50,7 +50,7 @@ Q_OBJECT
 
 public:
   KGVSimplePrintingCommand(DotGraphView* mainWin, int objectId, 
-      QObject* parent = 0);
+      QObject* parent = nullptr);
   ~KGVSimplePrintingCommand();
 
   inline KGVSimplePrintingEngine* engine() {return m_previewEngine;}

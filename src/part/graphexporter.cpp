@@ -125,7 +125,7 @@ graph_t* GraphExporter::exportToGraphviz(const DotGraph* graph)
   type.directed = graph->directed();
   type.strict = graph->strict();
   
-  graph_t* agraph = agopen((graph->id()!="\"\"")?graph->id().toUtf8().data():QString("unnamed").toUtf8().data(), type, NULL);
+  graph_t* agraph = agopen((graph->id()!="\"\"")?graph->id().toUtf8().data():QString("unnamed").toUtf8().data(), type, nullptr);
 
   QTextStream stream;
   graph->exportToGraphviz(agraph);
@@ -155,7 +155,7 @@ graph_t* GraphExporter::exportToGraphviz(const DotGraph* graph)
   {
     qCDebug(debugCategory) << "writing edge" << e->id();
     edge_t* edge = agedge(agraph, agnode(agraph, e->fromNode()->id().toUtf8().data(), 0),
-                          agnode(agraph, e->toNode()->id().toUtf8().data(), 0), NULL, 1);
+                          agnode(agraph, e->toNode()->id().toUtf8().data(), 0), nullptr, 1);
     e->exportToGraphviz(edge);
   }
   

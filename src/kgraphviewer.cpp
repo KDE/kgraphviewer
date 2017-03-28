@@ -59,7 +59,7 @@ static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KGraphViewerWindow::KGraphViewerWindow()
     : KParts::MainWindow(),
-      m_rfa(0)
+      m_rfa(nullptr)
 {
   // set the shell's ui resource file
   setXMLFile("kgraphviewerui.rc");
@@ -100,13 +100,13 @@ KGraphViewerWindow::KGraphViewerWindow()
   setupActions();
 
   // Creates the GUI with a null part to make appear the main app menus and tools
-  createGUI(0);
+  createGUI(nullptr);
 }
 
 KGraphViewerWindow::~KGraphViewerWindow()
 {
   KSharedConfig::Ptr config = KSharedConfig::openConfig();
-  if (m_rfa != 0)
+  if (m_rfa)
     m_rfa->saveEntries(KConfigGroup(config, "kgraphviewer recent files"));
 }
 
@@ -170,7 +170,7 @@ void KGraphViewerWindow::openUrl(const QUrl& url)
 
       part->openUrl( url );
       
-      if (m_rfa != 0)
+      if (m_rfa)
       {
         m_rfa->addUrl(url);
         KSharedConfig::Ptr config = KSharedConfig::openConfig();
@@ -524,9 +524,9 @@ void KGraphViewerWindow::close(int index)
   m_manager->removePart(part);
   m_tabsPartsMap.remove(tab);
   m_tabsFilesMap.remove(tab);
-  delete part; part=0;
+  delete part; part = nullptr;
 /*  delete tab;
-  tab = 0;*/
+  tab = nullptr;*/
 }
 
 void KGraphViewerWindow::close()

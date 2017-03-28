@@ -78,7 +78,7 @@ public:
   enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge, SelectingElements };
   enum ScrollDirection { Here, Left, Right, Top, Bottom };
   
-  explicit KGRAPHVIEWER_EXPORT DotGraphView(KActionCollection* actions, QWidget* parent=0);
+  explicit KGRAPHVIEWER_EXPORT DotGraphView(KActionCollection* actions, QWidget* parent = nullptr);
   virtual ~DotGraphView();
 
   bool KGRAPHVIEWER_EXPORT loadDot(const QString& dotFileName);

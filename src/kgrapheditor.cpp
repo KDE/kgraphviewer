@@ -61,8 +61,8 @@ static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KGraphEditor::KGraphEditor() :
     KXmlGuiWindow(),
-    m_rfa(0),
-    m_currentPart(0)
+    m_rfa(nullptr),
+    m_currentPart(nullptr)
 {
   // set the shell's ui resource file
   setXMLFile("kgrapheditorui.rc");
@@ -171,7 +171,7 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
     qApp->quit();
     // we return here, cause kapp->quit() only means "exit the
     // next time we enter the event loop...
-    return NULL;
+    return nullptr;
   }
   KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>("kgraphviewerpart", this);
   KGraphViewerInterface *view = qobject_cast<KGraphViewerInterface *>(part);
@@ -179,7 +179,7 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
   {
     // This should not happen
     qWarning() << "Failed to get KPart" << endl;
-    return NULL;
+    return nullptr;
   }
   view->setReadWrite();
 
@@ -218,13 +218,13 @@ void KGraphEditor::fileOpen()
   // this slot is called whenever the File->Open menu is selected,
   // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
   // button is clicked
-  QStringList file_names = QFileDialog::getOpenFileNames(0, i18n("Select files"), QString(), QString("*.dot"));
+  QStringList file_names = QFileDialog::getOpenFileNames(this, i18n("Select files"), QString(), QString("*.dot"));
 
   if (!file_names.empty())
   {
     foreach (const QString &fileName, file_names)
     {
-      if (m_rfa != 0)
+      if (m_rfa)
       {
         m_rfa->addUrl(fileName);
       }
@@ -499,9 +499,9 @@ void KGraphEditor::close(int index)
   KParts::ReadOnlyPart *part = m_tabsPartsMap[tab];
   m_tabsPartsMap.remove(tab);
   m_tabsFilesMap.remove(tab);
-  delete part; part=0;
+  delete part; part = nullptr;
 /*  delete tab;
-  tab = 0;*/
+  tab = nullptr;*/
 }
 
 void KGraphEditor::close()
@@ -516,7 +516,7 @@ void KGraphEditor::close()
 void KGraphEditor::fileSave()
 {
   QWidget* currentPage = m_widget->currentWidget();
-  if (currentPage != 0)
+  if (currentPage)
   {
     emit(saveTo(QUrl(m_tabsFilesMap[currentPage]).path()));
   }
@@ -525,7 +525,7 @@ void KGraphEditor::fileSave()
 void KGraphEditor::fileSaveAs()
 {
   QWidget* currentPage = m_widget->currentWidget();
-  if (currentPage != 0)
+  if (currentPage)
   {
     QString fileName = QFileDialog::getSaveFileName(
                 currentPage,
@@ -552,7 +552,7 @@ void KGraphEditor::newTabSelectedSlot(int index)
 
 void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
 {
-  if (m_currentPart != 0)
+  if (m_currentPart)
   {
     disconnect(this,SIGNAL(prepareAddNewElement(QMap<QString,QString>)),m_currentPart,SLOT(prepareAddNewElement(QMap<QString,QString>)));
     disconnect(this,SIGNAL(prepareAddNewEdge(QMap<QString,QString>)),m_currentPart,SLOT(prepareAddNewEdge(QMap<QString,QString>)));
@@ -570,7 +570,7 @@ void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
   }
   m_currentPart = part;
   m_treeWidget->clear();
-  if (m_currentPart == 0)
+  if (m_currentPart == nullptr)
   {
     return;
   }
@@ -592,7 +592,7 @@ void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
   foreach (const QString& nodeId, nodesIds)
   {
     qCDebug(debugCategory)<< "new item " << nodeId;
-    QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(nodeId));
+    QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)nullptr, QStringList(nodeId));
     item->setFlags(item->flags() | Qt::ItemIsEditable);
     QMap<QString,QString> attributes;//TODO = m_currentPart->nodeAtributes(nodeId);
     foreach (const QString& attrib, attributes.keys())
@@ -601,7 +601,7 @@ void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
       {
         QStringList list(attrib);
         list << attributes[attrib];
-        QTreeWidgetItem* child = new QTreeWidgetItem((QTreeWidget*)0, list);
+        QTreeWidgetItem* child = new QTreeWidgetItem((QTreeWidget*)nullptr, list);
         child->setFlags(child->flags() | Qt::ItemIsEditable);
         item->addChild(child);
       }
@@ -673,7 +673,7 @@ void KGraphEditor::slotGraphLoaded()
     QList<QTreeWidgetItem*> existingItems = m_treeWidget->findItems(nodeId,Qt::MatchRecursive|Qt::MatchExactly);
     if (existingItems.isEmpty())
     {
-      item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(nodeId));
+      item = new QTreeWidgetItem((QTreeWidget*)nullptr, QStringList(nodeId));
       items.append(item);
     }
     else
@@ -697,7 +697,7 @@ void KGraphEditor::slotGraphLoaded()
       {
         QStringList list(attrib);
         list << attributes[attrib];
-        QTreeWidgetItem* child = new QTreeWidgetItem((QTreeWidget*)0, list);
+        QTreeWidgetItem* child = new QTreeWidgetItem((QTreeWidget*)nullptr, list);
         child->setFlags(child->flags() | Qt::ItemIsEditable);
         item->addChild(child);
       }
@@ -724,7 +724,7 @@ void KGraphEditor::slotItemChanged ( QTreeWidgetItem * item, int column )
   else if (column == 1)
   {
     /* there is a parent ; it is an attribute line */
-    if (item->parent() != 0)
+    if (item->parent())
     {
       QString nodeLabel = item->parent()->text(0);
       QString attributeName = item->text(0);
@@ -740,7 +740,7 @@ void KGraphEditor::slotItemClicked ( QTreeWidgetItem * item, int column )
   qCDebug(debugCategory) << column;
   m_currentTreeWidgetItemText = item->text(0);
 
-  QString nodeName = item->parent() != 0 ?
+  QString nodeName = item->parent() ?
                         item->parent()->text(0) :
                         item->text(0);
   emit selectNode(nodeName);
@@ -748,7 +748,7 @@ void KGraphEditor::slotItemClicked ( QTreeWidgetItem * item, int column )
 
 void KGraphEditor::slotEditNewVertex()
 {
-  if (m_currentPart == 0)
+  if (m_currentPart == nullptr)
   {
     qCDebug(debugCategory) << "new vertex: no part selected";
     return;
@@ -759,7 +759,7 @@ void KGraphEditor::slotEditNewVertex()
 
 void KGraphEditor::slotEditNewEdge()
 {
-  if (m_currentPart == 0)
+  if (m_currentPart == nullptr)
   {
     qCDebug(debugCategory) << "new edge: no part selected";
     return;

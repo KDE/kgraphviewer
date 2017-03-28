@@ -48,12 +48,12 @@ private:
 };
 
 template<typename Object>
-Object* Singleton<Object>::s_instance(0);
+Object* Singleton<Object>::s_instance(nullptr);
 
 template<typename Object>
 const Object& Singleton<Object>::single()
 {
-  if (s_instance==0)
+  if (s_instance == nullptr)
   {
     s_instance=new Object();
   }
@@ -63,7 +63,7 @@ const Object& Singleton<Object>::single()
 template<typename Object>
 Object& Singleton<Object>::changeable()
 {
-  if (s_instance==0)
+  if (s_instance == nullptr)
   {
     s_instance=new Object();
   }

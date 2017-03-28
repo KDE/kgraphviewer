@@ -62,7 +62,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
     m_scaleX(scaleX), m_scaleY(scaleY),
     m_xMargin(xMargin), m_yMargin(yMargin),
     m_gh(/*gh*/0), m_wdhcf(wdhcf), m_hdvcf(hdvcf), m_edge(e),
-    m_font(0), m_view(view), m_popup(new QMenu())
+    m_font(nullptr), m_view(view), m_popup(new QMenu())
 {
   Q_UNUSED(gh);
   qCDebug(debugCategory) << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << m_gh;
@@ -202,8 +202,8 @@ Q_UNUSED(widget)
   }
   if (edge()->renderOperations().isEmpty())
   {
-    if ((edge()->fromNode()->canvasElement()!=0)
-      && (edge()->toNode()->canvasElement()!=0))
+    if ((edge()->fromNode()->canvasElement())
+      && (edge()->toNode()->canvasElement()))
     {
       p->drawLine(
         edge()->fromNode()->canvasElement()->boundingRect().center()+edge()->fromNode()->canvasElement()->pos(),
@@ -442,8 +442,8 @@ void CanvasEdge::computeBoundingRect()
   m_shape = QPainterPath();
   if (edge()->renderOperations().isEmpty())
   {
-    if ((edge()->fromNode()->canvasElement()==0)
-      || (edge()->toNode()->canvasElement()==0)
+    if ((edge()->fromNode()->canvasElement() == nullptr)
+      || (edge()->toNode()->canvasElement() == nullptr)
       || edge()->style()=="invis")
     {
       m_boundingRect = QRectF();

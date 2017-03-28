@@ -35,11 +35,11 @@ static const struct {
     const char * light;
     const char * lightItalic;
 } postscriptFontNames[] = {
-    { "arial", "Arial", 0, 0, 0, 0, 0 },
-    { "avantgarde", "AvantGarde-Book", 0, 0, 0, 0, 0 },
-    { "charter", "CharterBT-Roman", 0, 0, 0, 0, 0 },
-    { "garamond", "Garamond-Regular", 0, 0, 0, 0, 0 },
-    { "gillsans", "GillSans", 0, 0, 0, 0, 0 },
+    { "arial", "Arial", nullptr, nullptr, nullptr, nullptr, nullptr },
+    { "avantgarde", "AvantGarde-Book", nullptr, nullptr, nullptr, nullptr, nullptr },
+    { "charter", "CharterBT-Roman", nullptr, nullptr, nullptr, nullptr, nullptr },
+    { "garamond", "Garamond-Regular", nullptr, nullptr, nullptr, nullptr, nullptr },
+    { "gillsans", "GillSans", nullptr, nullptr, nullptr, nullptr, nullptr },
     { "helvetica",
       "Helvetica", "Helvetica-Oblique",
       "Helvetica-Bold", "Helvetica-BoldOblique",
@@ -52,12 +52,12 @@ static const struct {
       "Times-Roman", "Times-Italic",
       "Times-Bold", "Times-BoldItalic",
       "Times-Outline", "Times-Italic" },
-    { "new century schoolbook", "NewCenturySchlbk-Roman", 0, 0, 0, 0, 0 },
+    { "new century schoolbook", "NewCenturySchlbk-Roman", nullptr, nullptr, nullptr, nullptr, nullptr },
     { "symbol", "Symbol", "Symbol", "Symbol", "Symbol", "Symbol", "Symbol" },
-    { "terminal", "Courier", 0, 0, 0, 0, 0 },
-    { "times new roman", "TimesNewRoman", 0, 0, 0, 0, 0 },
-    { "utopia", "Utopia-Regular", 0, 0, 0, 0, 0 },
-    { 0, 0, 0, 0, 0, 0, 0 }
+    { "terminal", "Courier", nullptr, nullptr, nullptr, nullptr, nullptr },
+    { "times new roman", "TimesNewRoman", nullptr, nullptr, nullptr, nullptr, nullptr },
+    { "utopia", "Utopia-Regular", nullptr, nullptr, nullptr, nullptr, nullptr },
+    { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr }
 };
     
 static const struct {
@@ -804,7 +804,7 @@ static const struct {
     { "grey99", 252, 252, 252 },
     { "gray100", 255, 255, 255 },
     { "grey100", 255, 255, 255 },
-    { 0, 0, 0, 0 }
+    { nullptr, 0, 0, 0 }
 };
 
 Dot2QtConsts::Dot2QtConsts()
@@ -820,33 +820,33 @@ Dot2QtConsts::Dot2QtConsts()
   m_colors["slate_blue"] = "#6A5ACD";
 
   uint i = 0;
-  while (postscriptFontNames[i].input != 0)
+  while (postscriptFontNames[i].input)
   {
     QFont font(postscriptFontNames[i].input);
     m_psFonts[postscriptFontNames[i].roman] = font;
-    if (postscriptFontNames[i].italic != 0)
+    if (postscriptFontNames[i].italic)
     {
       QFont italic = font; italic.setItalic(true);
       m_psFonts[postscriptFontNames[i].italic] = italic;
     }
-    if (postscriptFontNames[i].bold != 0)
+    if (postscriptFontNames[i].bold)
     {
       QFont bold = font; bold.setBold(true);
       m_psFonts[postscriptFontNames[i].bold] = bold;
     }
-    if (postscriptFontNames[i].boldItalic != 0)
+    if (postscriptFontNames[i].boldItalic)
     {
       QFont boldItalic = font; 
       boldItalic.setItalic(true);
       boldItalic.setBold(true);
       m_psFonts[postscriptFontNames[i].boldItalic] = boldItalic;
     }
-    if (postscriptFontNames[i].light != 0)
+    if (postscriptFontNames[i].light)
     {
       QFont light = font; light.setWeight(QFont::Light);
       m_psFonts[postscriptFontNames[i].light] = light;
     }
-    if (postscriptFontNames[i].lightItalic != 0)
+    if (postscriptFontNames[i].lightItalic)
     {
       QFont lightItalic = font; 
       lightItalic.setWeight(QFont::Light);
@@ -857,7 +857,7 @@ Dot2QtConsts::Dot2QtConsts()
   }
 
   uint j = 0;
-  while (color_lib[j].name != 0)
+  while (color_lib[j].name)
   {
 //     () << "Adding color " << color_lib[j].name;
     m_qcolors[color_lib[j].name] = QColor(color_lib[j].r,color_lib[j].g,color_lib[j].b);

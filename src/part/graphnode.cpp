@@ -88,12 +88,12 @@ void GraphNode::updateWithNode(node_t* node)
   // decrease mem peak
   setRenderOperations(ops);
 
-  if (agget(node, (char*)"_draw_") != NULL)
+  if (agget(node, (char*)"_draw_"))
   {
     parse_renderop(agget(node, (char*)"_draw_"), ops);
     qCDebug(debugCategory) << "_draw_: element renderOperations size is now " << ops.size();
   }
-  if (agget(node, (char*)"_ldraw_") != NULL)
+  if (agget(node, (char*)"_ldraw_"))
   {
     parse_renderop(agget(node, (char*)"_ldraw_"), ops);
     qCDebug(debugCategory) << "_ldraw_: element renderOperations size is now " << ops.size();
@@ -101,7 +101,7 @@ void GraphNode::updateWithNode(node_t* node)
 
   setRenderOperations(ops);
 
-  Agsym_t *attr = agnxtattr(agraphof(node), AGNODE, NULL);
+  Agsym_t *attr = agnxtattr(agraphof(node), AGNODE, nullptr);
   while(attr)
   {
     qCDebug(debugCategory) << agnameof(node) << ":" << attr->name << agxget(node,attr);

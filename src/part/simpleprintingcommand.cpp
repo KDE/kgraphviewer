@@ -65,13 +65,13 @@ namespace KGraphViewer
 KGVSimplePrintingCommand::KGVSimplePrintingCommand(
   DotGraphView* mainWin, int objectId, QObject* parent)
  : QObject(parent)
- , m_previewEngine(0)
+ , m_previewEngine(nullptr)
  , m_graphView(mainWin)
  , m_objectId(objectId)
  , m_settings(new KGVSimplePrintingSettings(KGVSimplePrintingSettings::load()))
- , m_previewWindow(0)
+ , m_previewWindow(nullptr)
  , m_printPreviewNeedsReloading(true)
- , m_pageSetupDialog(0)
+ , m_pageSetupDialog(nullptr)
 {
   setObjectName("KGVSimplePrintCommand");
   connect(this, SIGNAL(showPageSetupRequested()), 
@@ -101,7 +101,7 @@ bool KGVSimplePrintingCommand::init(const QString& aTitleText)
       return false;
     }
     m_previewWindow = new KGVSimplePrintPreviewWindow(
-      *m_previewEngine, "", 0);
+      *m_previewEngine, QString(), nullptr);
     connect(m_previewWindow, SIGNAL(printRequested()), this, SLOT(print()));
     connect(m_previewWindow, SIGNAL(pageSetupRequested()), this, SLOT(slotShowPageSetupRequested()));
 //     KDialog::centerOnScreen(m_previewWindow);
@@ -248,7 +248,7 @@ bool KGVSimplePrintingCommand::showPrintPreview(const QString& aTitleText, bool 
 
 void KGVSimplePrintingCommand::hidePageSetup()
 {
-  if (m_pageSetupDialog != 0)
+  if (m_pageSetupDialog)
   {
     m_pageSetupDialog->hide();
   }
@@ -256,7 +256,7 @@ void KGVSimplePrintingCommand::hidePageSetup()
 
 void KGVSimplePrintingCommand::hidePrintPreview()
 {
-  if (m_previewWindow != 0)
+  if (m_previewWindow)
   {
     m_previewWindow->hide();
   }
@@ -264,15 +264,15 @@ void KGVSimplePrintingCommand::hidePrintPreview()
 
 void KGVSimplePrintingCommand::slotShowPageSetupRequested()
 {
-  if (m_pageSetupDialog == 0)
+  if (m_pageSetupDialog == nullptr)
   {
-    m_pageSetupDialog = new QDialog(0);
+    m_pageSetupDialog = new QDialog(nullptr);
     QMap<QString,QString> map;
     map["action"]=="pageSetup";
     map["title"]==m_graphView->dotFileName();
     QVBoxLayout *lyr = new QVBoxLayout(m_pageSetupDialog);
     KGVSimplePrintingPageSetup* sppsb = new KGVSimplePrintingPageSetup(this, m_graphView, m_pageSetupDialog, &map);
-    if (m_previewWindow != 0)
+    if (m_previewWindow)
     {
       connect(sppsb,SIGNAL(needsRedraw()),m_previewWindow, SLOT(slotRedraw()));
     }

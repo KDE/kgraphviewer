@@ -132,13 +132,13 @@ public:
      *  Show page layout dialog.
      *  See constructor for documentation on the parameters
      */
-    static bool pageLayout( KgvPageLayout&, KgvHeadFoot&, int tabs, KgvUnit::Unit& unit, QWidget* parent = 0 );
+    static bool pageLayout(KgvPageLayout&, KgvHeadFoot&, int tabs, KgvUnit::Unit& unit, QWidget* parent = nullptr);
 
     /**
      *  Show page layout dialog.
      *  See constructor for documentation on the parameters
      */
-    static bool pageLayout( KgvPageLayout&, KgvHeadFoot&, KgvColumns&, KgvKWHeaderFooter&, int tabs, KgvUnit::Unit& unit, QWidget* parent = 0 );
+    static bool pageLayout(KgvPageLayout&, KgvHeadFoot&, KgvColumns&, KgvKWHeaderFooter&, int tabs, KgvUnit::Unit& unit, QWidget* parent = nullptr);
 
     /**
      *  Returns the layout

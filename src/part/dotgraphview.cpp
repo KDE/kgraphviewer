@@ -96,21 +96,21 @@ class DotGraphViewPrivate
 public:
   DotGraphViewPrivate(KActionCollection* actions, DotGraphView* parent) : 
    m_labelViews(),
-    m_popup(0),
+    m_popup(nullptr),
     m_zoom(1),
     m_isMoving(false),
     m_exporter(),
     m_zoomPosition(DEFAULT_ZOOMPOS),
     m_lastAutoPosition(KGraphViewerInterface::TopLeft),
-    m_graph(0),
-    m_printCommand(0),
+    m_graph(nullptr),
+    m_printCommand(nullptr),
     m_actions(actions),
     m_detailLevel(DEFAULT_DETAILLEVEL),
-    m_defaultNewElement(0),
+    m_defaultNewElement(nullptr),
     m_defaultNewElementPixmap(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-newnode.png")),
     m_editingMode(DotGraphView::None),
-    m_newEdgeSource(0),
-    m_newEdgeDraft(0),
+    m_newEdgeSource(nullptr),
+    m_newEdgeDraft(nullptr),
     m_readWrite(false),
     m_leavedTimer(std::numeric_limits<int>::max()),
     m_highlighting(false),
@@ -124,12 +124,12 @@ public:
   virtual ~DotGraphViewPrivate()
   {
     delete m_birdEyeView;
-    m_birdEyeView = 0;
+    m_birdEyeView = nullptr;
     delete m_popup;
     if (m_canvas)
     {
       Q_Q(DotGraphView);
-      q->setScene(0);
+      q->setScene(nullptr);
       delete m_canvas;
     }
     delete m_graph;
@@ -142,7 +142,7 @@ public:
   void exportToImage();
   KActionCollection* actionCollection() {return m_actions;}
   double detailAdjustedScale();
-  int displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent = 0);
+  int displaySubgraph(GraphSubgraph* gsubgraph, int zValue, CanvasElement* parent = nullptr);
 
 
   QSet<QGraphicsSimpleTextItem*> m_labelViews;
@@ -213,7 +213,7 @@ public:
 void DotGraphViewPrivate::updateSizes(QSizeF s)
 {
   Q_Q(DotGraphView);
-  if (m_canvas == 0)
+  if (m_canvas == nullptr)
     return;
   if (s == QSizeF(0,0)) s = q->size();
   
@@ -360,7 +360,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
   
   qreal gh = m_graph->height();
   
-  if (gsubgraph->canvasSubgraph() == 0)
+  if (gsubgraph->canvasSubgraph() == nullptr)
   {
     qCDebug(debugCategory) << "Creating canvas subgraph for" << gsubgraph->id();
     CanvasSubgraph* csubgraph = new CanvasSubgraph(q, gsubgraph, m_canvas, parent);
@@ -377,11 +377,11 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
   foreach (GraphElement* element, gsubgraph->content())
   {
     GraphNode* gnode = dynamic_cast<GraphNode*>(element);
-    if (gnode->canvasNode()==0)
+    if (gnode->canvasNode() == nullptr)
     {
       qCDebug(debugCategory) << "Creating canvas node for:" << gnode->id();
       CanvasNode *cnode = new CanvasNode(q, gnode, m_canvas);
-      if (cnode == 0) continue;
+      if (cnode == nullptr) continue;
       cnode->initialize(
         scale, scale, m_xMargin, m_yMargin, gh,
         m_graph->wdhcf(), m_graph->hdvcf());
@@ -408,7 +408,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
 void DotGraphViewPrivate::setupPopup()
 {
   Q_Q(DotGraphView);
-  if (m_popup != 0)
+  if (m_popup)
   {
     return;
   }
@@ -575,7 +575,7 @@ void DotGraphViewPrivate::exportToImage()
   // write current content of canvas as image to file
   if (!m_canvas) return;
   
-  QString fn = QFileDialog::getSaveFileName(0, i18n("Select file"), QString(), QString("*.svg *.bmp *.gif *.jpg *.jpeg *.png *.pbm *.pgm *.ppm *.xbm *.xpm"));
+  QString fn = QFileDialog::getSaveFileName(nullptr, i18n("Select file"), QString(), QString("*.svg *.bmp *.gif *.jpg *.jpeg *.png *.pbm *.pgm *.ppm *.xbm *.xpm"));
   
   if (!fn.isEmpty())
   {
@@ -597,7 +597,7 @@ void DotGraphViewPrivate::exportToImage()
       QPixmap pix(m_canvas->sceneRect().size().toSize());
       QPainter p(&pix);
       m_canvas->render( &p );
-      pix.save(fn, 0, 100);
+      pix.save(fn, nullptr, 100);
     }
   }
 
@@ -612,7 +612,7 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
 {
   //qCDebug(debugCategory) << "New node pic=" << KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png");
   Q_D(DotGraphView);
-  d->m_canvas = 0;
+  d->m_canvas = nullptr;
   d->m_xMargin = d->m_yMargin = 0;
   d->m_birdEyeView = new PannerView(this);
   d->m_cvZoom = 1;
@@ -717,16 +717,15 @@ bool DotGraphView::initEmpty()
 {
   Q_D(DotGraphView);
   d->m_birdEyeView->hide();
-  d->m_birdEyeView->setScene(0);
+  d->m_birdEyeView->setScene(nullptr);
   
   if (d->m_canvas) 
   {
     delete d->m_canvas;
-    d->m_canvas = 0;
+    d->m_canvas = nullptr;
   }
 
-  if (d->m_graph != 0)
-    delete d->m_graph;
+  delete d->m_graph;
   d->m_graph = new DotGraph();
   connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
 
@@ -759,17 +758,16 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
 {
   qCDebug(debugCategory) << "graph_t";
   Q_D(DotGraphView);
-  d->m_birdEyeView->setScene(0);
+  d->m_birdEyeView->setScene(nullptr);
 
   if (d->m_canvas)
   {
     d->m_canvas->deleteLater();
-    d->m_canvas = 0;
+    d->m_canvas = nullptr;
   }
 
-  QString layoutCommand = (d->m_graph!=0?d->m_graph->layoutCommand():"");
-  if (d->m_graph != 0)
-    delete d->m_graph;
+  QString layoutCommand = (d->m_graph ? d->m_graph->layoutCommand() : QString());
+  delete d->m_graph;
 
   if (layoutCommand.isEmpty())
   layoutCommand = "dot";
@@ -796,7 +794,7 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
 
   GVC_t* gvc = gvContext();
   threadsafe_wrap_gvLayout(gvc, graph, layoutCommand.toUtf8().data());
-  threadsafe_wrap_gvRender(gvc, graph, "xdot", NULL);
+  threadsafe_wrap_gvRender(gvc, graph, "xdot", nullptr);
 
   d->m_xMargin = 50;
   d->m_yMargin = 50;
@@ -825,17 +823,17 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 {
   qCDebug(debugCategory) << "'" << dotFileName << "'";
   Q_D(DotGraphView);
-  d->m_birdEyeView->setScene(0);
+  d->m_birdEyeView->setScene(nullptr);
 
   if (d->m_canvas)
   {
     d->m_canvas->deleteLater();
-    d->m_canvas = 0;
+    d->m_canvas = nullptr;
   }
 
-  QString layoutCommand = (d->m_graph!=0?d->m_graph->layoutCommand():"");
-  if (d->m_graph != 0)
-    delete d->m_graph;
+  QString layoutCommand = (d->m_graph ? d->m_graph->layoutCommand() : QString());
+  delete d->m_graph;
+
   d->m_graph = new DotGraph(layoutCommand,dotFileName);
   connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
 
@@ -898,17 +896,16 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
 {
   qCDebug(debugCategory) << "graph_t";
   Q_D(DotGraphView);
-  d->m_birdEyeView->setScene(0);
+  d->m_birdEyeView->setScene(nullptr);
   
   if (d->m_canvas)
   {
     d->m_canvas->deleteLater();
-    d->m_canvas = 0;
+    d->m_canvas = nullptr;
   }
-  
-  if (d->m_graph != 0)
-    delete d->m_graph;
-  d->m_graph = NULL;
+
+  delete d->m_graph;
+  d->m_graph = nullptr;
 
   if (!graph)
     return false;
@@ -997,11 +994,11 @@ bool DotGraphView::displayGraph()
     qCDebug(debugCategory) << "Handling" << id << (void*)gnode;
     qCDebug(debugCategory) << "  gnode id=" << gnode->id();
     qCDebug(debugCategory)<<  "  canvasNode=" << (void*)gnode->canvasNode();
-    if (gnode->canvasNode()==0)
+    if (gnode->canvasNode() == nullptr)
     {
       qCDebug(debugCategory) << "Creating canvas node for" << gnode->id();
       CanvasNode *cnode = new CanvasNode(this, gnode, d->m_canvas);
-      if (cnode == 0) continue;
+      if (cnode == nullptr) continue;
       cnode->initialize(
         scale, scale, d->m_xMargin, d->m_yMargin, gh,
         d->m_graph->wdhcf(), d->m_graph->hdvcf());
@@ -1018,9 +1015,9 @@ bool DotGraphView::displayGraph()
   foreach (GraphEdge* gedge, d->m_graph->edges())
   {
     qCDebug(debugCategory) << "One GraphEdge:" << gedge->id();
-    if (gedge->canvasEdge() == 0
-      && gedge->fromNode() != 0
-      && gedge->toNode() != 0)
+    if (gedge->canvasEdge() == nullptr
+      && gedge->fromNode()
+      && gedge->toNode())
     {
       qCDebug(debugCategory) << "New CanvasEdge for" << gedge->id();
       qCDebug(debugCategory) << "edge fromNode=" << (void*)gedge->fromNode();
@@ -1037,7 +1034,7 @@ bool DotGraphView::displayGraph()
       cedge->show();
       d->m_canvas->addItem(cedge);
     }
-    if (gedge->canvasEdge() != 0)
+    if (gedge->canvasEdge())
       gedge->canvasEdge()->computeBoundingRect();
   }
   qCDebug(debugCategory) << "Adding graph render operations: " << d->m_graph->renderOperations().size();
@@ -1301,18 +1298,18 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
   }
   else
   {
-    if (d->m_editingMode != None && itemAt(e->pos()) == 0) // click outside any item: unselect all
+    if (d->m_editingMode != None && itemAt(e->pos()) == nullptr) // click outside any item: unselect all
     {
       if (d->m_editingMode == DrawNewEdge) // was drawing an edge; cancel it
       {
-        if (d->m_newEdgeDraft!=0)
+        if (d->m_newEdgeDraft)
         {
           d->m_newEdgeDraft->hide();
           scene()->removeItem(d->m_newEdgeDraft);
           delete d->m_newEdgeDraft;
-          d->m_newEdgeDraft = 0;
+          d->m_newEdgeDraft = nullptr;
         }
-        d->m_newEdgeSource = 0;
+        d->m_newEdgeSource = nullptr;
         d->m_editingMode = None;
       }
       else if (d->m_editingMode == AddNewEdge)
@@ -1356,7 +1353,7 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
 
   if (d->m_editingMode == DrawNewEdge)
   {
-    if (d->m_newEdgeDraft != 0)
+    if (d->m_newEdgeDraft)
     {
       QPointF src = d->m_newEdgeDraft->line().p1();
       QPointF tgt = mapToScene(e->pos());
@@ -1399,7 +1396,7 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
     {
       CanvasElement* element = dynamic_cast<CanvasElement*>(item);
       element->element()->setSelected(true);
-      if (element != 0)
+      if (element)
       {
         selection.push_back(element->element()->id());
       }
@@ -1547,7 +1544,7 @@ void DotGraphView::saveViewConfig()
 void DotGraphView::pageSetup()
 {
   Q_D(DotGraphView);
-  if (d->m_printCommand == 0)
+  if (d->m_printCommand == nullptr)
   {
     d->m_printCommand = new KGVSimplePrintingCommand(this, 0);
   }
@@ -1558,7 +1555,7 @@ void DotGraphView::pageSetup()
 void DotGraphView::print()
 {
   Q_D(DotGraphView);
-  if (d->m_printCommand == 0)
+  if (d->m_printCommand == nullptr)
   {
     d->m_printCommand = new KGVSimplePrintingCommand(this, 0);
   }
@@ -1569,7 +1566,7 @@ void DotGraphView::print()
 void DotGraphView::printPreview()
 {
   Q_D(DotGraphView);
-  if (d->m_printCommand == 0)
+  if (d->m_printCommand == nullptr)
   {
     d->m_printCommand = new KGVSimplePrintingCommand(this, 0);
   }
@@ -1618,7 +1615,7 @@ void DotGraphView::writeConfigEntry(KConfigGroup* c, const char* pKey,
                                      const QString& value, const char* def)
 {
   if (!c) return;
-  if ((value.isEmpty() && ((def == 0) || (*def == 0))) ||
+  if ((value.isEmpty() && ((def == nullptr) || (*def == 0))) ||
       (value == QString(def)))
     c->deleteEntry(pKey);
   else
@@ -1664,7 +1661,7 @@ const QString& DotGraphView::dotFileName()
 void DotGraphView::hideToolsWindows()
 {
   Q_D(DotGraphView);
-  if (d->m_printCommand != 0)
+  if (d->m_printCommand)
   {
     d->m_printCommand->hidePageSetup();
     d->m_printCommand->hidePrintPreview();
@@ -1692,7 +1689,7 @@ void DotGraphView::slotLayoutSpecify()
       QLineEdit::Normal,
       currentLayoutCommand, 
       &ok, 
-      0);
+      nullptr);
     //       std::cerr << "Got layout command: " << layoutCommand << std::endl;
     if (ok && layoutCommand != currentLayoutCommand)
     {
@@ -1867,13 +1864,13 @@ void DotGraphView::createNewEdgeDraftFrom(CanvasElement* node)
   unsetCursor();
   d->m_newEdgeSource = node;
 
-  if (d->m_newEdgeDraft != 0)
+  if (d->m_newEdgeDraft)
   {
     qCDebug(debugCategory) << "removing new edge draft";
     d->m_newEdgeDraft->hide();
     scene()->removeItem(d->m_newEdgeDraft);
     delete d->m_newEdgeDraft;
-    d->m_newEdgeDraft = 0;
+    d->m_newEdgeDraft = nullptr;
   }
   d->m_newEdgeDraft = new QGraphicsLineItem(QLineF(node->boundingRect().center()+node->pos(),node->boundingRect().center()+node->pos()+QPointF(10,10)));
   scene()->addItem(d->m_newEdgeDraft);
@@ -1889,18 +1886,18 @@ void DotGraphView::finishNewEdgeTo(CanvasElement* node)
   d->m_editingMode = None;
   unsetCursor();
 
-  if (d->m_newEdgeDraft != 0)
+  if (d->m_newEdgeDraft)
   {
     qCDebug(debugCategory) << "removing new edge draft";
     d->m_newEdgeDraft->hide();
     scene()->removeItem(d->m_newEdgeDraft);
     delete d->m_newEdgeDraft;
-    d->m_newEdgeDraft = 0;
+    d->m_newEdgeDraft = nullptr;
   }
 
   emit newEdgeFinished(d->m_newEdgeSource->element()->id(),node->element()->id(),d->m_newElementAttributes);
 
-  d->m_newEdgeSource = 0;
+  d->m_newEdgeSource = nullptr;
 }
 
 // void DotGraphView::slotFinishNewEdge(
@@ -1944,7 +1941,7 @@ void DotGraphView::setReadOnly()
 {
   Q_D(DotGraphView);
  d-> m_readWrite = false;
-  if (d->m_graph != 0)
+  if (d->m_graph)
   {
     d->m_graph->setReadOnly();
   }
@@ -1954,7 +1951,7 @@ void DotGraphView::setReadWrite()
 {
   Q_D(DotGraphView);
   d->m_readWrite = true;
-  if (d->m_graph != 0)
+  if (d->m_graph)
   {
     d->m_graph->setReadWrite();
   }
@@ -1983,7 +1980,7 @@ void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modi
     }
     foreach(GraphSubgraph* s, d->m_graph->subgraphs())
     {
-      s->setElementSelected(0, false, true);
+      s->setElementSelected(nullptr, false, true);
     }
   }
   else
@@ -2183,7 +2180,7 @@ void DotGraphView::enterEvent ( QEvent * /*event*/ )
 void DotGraphView::slotAGraphReadFinished()
 {
   Q_D(DotGraphView);
-  QString layoutCommand = (d->m_graph!=0?d->m_graph->layoutCommand():"");
+  QString layoutCommand = (d->m_graph ? d->m_graph->layoutCommand() : QString());
   if (layoutCommand.isEmpty())
   {
     if (!d->m_loadThread.dotFileName().isEmpty())
@@ -2225,9 +2222,9 @@ void DotGraphView::slotSelectNode(const QString& nodeName)
 {
   qCDebug(debugCategory) << nodeName;
   GraphNode* node = dynamic_cast<GraphNode*>(graph()->elementNamed(nodeName));
-  if (node == 0) return;
+  if (node == nullptr) return;
   node->setSelected(true);
-  if (node->canvasNode()!=0)
+  if (node->canvasNode())
   {
     node->canvasNode()->modelChanged();
     slotElementSelected(node->canvasNode(),Qt::NoModifier);
@@ -2237,8 +2234,8 @@ void DotGraphView::slotSelectNode(const QString& nodeName)
 void DotGraphView::centerOnNode(const QString& nodeId)
 {
   GraphNode* node = dynamic_cast<GraphNode*>(graph()->elementNamed(nodeId));
-  if (node == 0) return;
-  if (node->canvasNode()!=0)
+  if (node == nullptr) return;
+  if (node->canvasNode())
   {
     centerOn(node->canvasNode());
   }

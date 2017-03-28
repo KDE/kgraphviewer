@@ -161,9 +161,9 @@ KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
       m_layout(layout),
       m_unit(unit),
       flags(tabs),
-      m_pageSizeTab(0),
-      m_columnsTab(0),
-      m_headerTab(0)
+      m_pageSizeTab(nullptr),
+      m_columnsTab(nullptr),
+      m_headerTab(nullptr)
 
 {
     setStandardButtons( QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Apply );
@@ -190,9 +190,9 @@ KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
     m_column(columns),
     m_unit(unit),
     flags(tabs),
-    m_pageSizeTab(0),
-    m_columnsTab(0),
-    m_headerTab(0)
+    m_pageSizeTab(nullptr),
+    m_columnsTab(nullptr),
+    m_headerTab(nullptr)
 {
   setStandardButtons( QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Apply );
 

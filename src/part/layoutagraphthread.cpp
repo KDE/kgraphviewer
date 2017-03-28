@@ -58,7 +58,7 @@ void LayoutAGraphThread::run()
     return;
   }
   threadsafe_wrap_gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
-  threadsafe_wrap_gvRender(m_gvc, m_g, "xdot", NULL);
+  threadsafe_wrap_gvRender(m_gvc, m_g, "xdot", nullptr);
 }
 
 void LayoutAGraphThread::layoutGraph(graph_t* graph, const QString& layoutCommand)

@@ -45,7 +45,7 @@ public:
   CanvasNode(DotGraphView* v,
             GraphNode* s,
             QGraphicsScene* c,
-            QGraphicsItem* parent = 0);
+            QGraphicsItem* parent = nullptr);
   
   virtual ~CanvasNode() {}
   

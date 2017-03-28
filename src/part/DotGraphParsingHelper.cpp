@@ -63,10 +63,10 @@ DotGraphParsingHelper::DotGraphParsingHelper():
   edgebounds(),
   z(0),
   maxZ(0),
-  graph(0),
-  gs(0),
-  gn(0),
-  ge(0)
+  graph(nullptr),
+  gs(nullptr),
+  gn(nullptr),
+  ge(nullptr)
 {
 }
 
@@ -132,7 +132,7 @@ void DotGraphParsingHelper::setnodeattributes()
 {
 //   kDebug() << "setnodeattributes with z = " << z;
   
-  if (gn == 0)
+  if (gn == nullptr)
   {
 //     kDebug() << "gn is null";
     return;
@@ -226,13 +226,13 @@ void DotGraphParsingHelper::createnode(const std::string& nodeid)
   QString id = QString::fromStdString(nodeid); 
 //   kDebug() << id;
   gn = dynamic_cast<GraphNode*>(graph->elementNamed(id));
-  if (gn==0 && graph->nodes().size() < KGV_MAX_ITEMS_TO_LOAD)
+  if (gn==nullptr && graph->nodes().size() < KGV_MAX_ITEMS_TO_LOAD)
   {
 //     kDebug() << "Creating a new node" << z << (void*)gs;
     gn = new GraphNode();
     gn->setId(id);
 //     gn->label(QString::fromStdString(nodeid));
-    if (z>0 && gs != 0)
+    if (z>0 && gs)
     {
 //       kDebug() << "Adding node" << id << "in subgraph" << gs->id();
       gs->content().push_back(gn);
@@ -295,7 +295,7 @@ void DotGraphParsingHelper::createedges()
 //     kDebug() << QString::fromStdString(node1Name) << ", " << QString::fromStdString(node2Name);
     ge = new GraphEdge();
     GraphElement* gn1 = graph->elementNamed(QString::fromStdString(node1Name));
-    if (gn1 == 0)
+    if (gn1 == nullptr)
     {
 //       kDebug() << "new node 1";
       gn1 = new GraphNode();
@@ -303,7 +303,7 @@ void DotGraphParsingHelper::createedges()
       graph->nodes()[QString::fromStdString(node1Name)] = dynamic_cast<GraphNode*>(gn1);
     }
     GraphElement* gn2 = graph->elementNamed(QString::fromStdString(node2Name));
-    if (gn2 == 0)
+    if (gn2 == nullptr)
     {
 //       kDebug() << "new node 2";
       gn2 = new GraphNode();
@@ -311,7 +311,7 @@ void DotGraphParsingHelper::createedges()
       graph->nodes()[QString::fromStdString(node2Name)] = dynamic_cast<GraphNode*>(gn2);
     }
 //     kDebug() << "Found gn1="<<gn1<<" and gn2=" << gn2;
-    if (gn1 == 0 || gn2 == 0)
+    if (gn1 == nullptr || gn2 == nullptr)
     {
       qWarning() << "Unable to find or create edge bound(s) gn1=" << gn1 << "; gn2=" << gn2;
     }

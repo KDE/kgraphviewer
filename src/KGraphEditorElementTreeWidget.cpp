@@ -30,8 +30,8 @@ static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KGraphEditorElementTreeWidget::KGraphEditorElementTreeWidget(QWidget* parent) :
     QTreeWidget(parent),
-    m_popup(0),
-    m_item(0)
+    m_popup(nullptr),
+    m_item(nullptr)
 {
 }
 
@@ -43,7 +43,7 @@ void KGraphEditorElementTreeWidget::setupPopup(const QPoint& point)
 {
   qCDebug(debugCategory) << point;
 
-  if (m_popup != 0)
+  if (m_popup)
   {
     delete m_popup;
   }
@@ -55,7 +55,7 @@ void KGraphEditorElementTreeWidget::setupPopup(const QPoint& point)
           this, SLOT(slotAddAttribute()));
   m_popup->addAction(aaa);
 
-  if (m_item != 0) // attribute item
+  if (m_item) // attribute item
   {
     QAction* raa = new QAction(i18n("Remove this attribute"), this);
     connect(raa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
@@ -76,14 +76,14 @@ void KGraphEditorElementTreeWidget::slotAddAttribute()
 void KGraphEditorElementTreeWidget::slotRemoveAttribute()
 {
   qCDebug(debugCategory) << "Remove Attribute";
-  if (m_item == 0) // should not happen
+  if (m_item == nullptr) // should not happen
   {
     qWarning() << "null item ; should not happen" << endl;
     return;
   }
   emit removeAttribute(m_item->text(0));
   delete takeTopLevelItem (indexOfTopLevelItem(m_item));
-  m_item = 0;
+  m_item = nullptr;
 }
 
 

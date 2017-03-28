@@ -32,14 +32,14 @@ void LoadAGraphThread::run()
       qWarning() << "Failed to open file " << m_dotFileName;
       return;
   }
-  m_g = agread(fp, NULL);
+  m_g = agread(fp, nullptr);
   if (!m_g)
   {
       qWarning() << "Failed to read file, retrying to work around graphviz bug(?)";
       rewind(fp);
-      m_g = agread(fp, NULL);
+      m_g = agread(fp, nullptr);
   }
-  if (m_g==0)
+  if (m_g == nullptr)
   {
       qWarning() << "Failed to read file " << m_dotFileName;
   }
@@ -50,6 +50,6 @@ void LoadAGraphThread::loadFile(const QString& dotFileName)
 {
   sem.acquire();
   m_dotFileName = dotFileName;
-  m_g = NULL;
+  m_g = nullptr;
   start();
 }

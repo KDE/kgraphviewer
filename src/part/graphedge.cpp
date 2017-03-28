@@ -43,7 +43,8 @@ namespace KGraphViewer
 
 GraphEdge::GraphEdge() : 
     GraphElement(),
-    m_fromNode(0),m_toNode(0),
+    m_fromNode(nullptr),
+    m_toNode(nullptr),
     m_visible(true),
     m_colors(),
     m_dir(DOT_DEFAULT_EDGE_DIR),
@@ -60,8 +61,8 @@ GraphEdge::~GraphEdge()
 GraphEdge::GraphEdge(const GraphEdge& edge) :
   GraphElement(edge)
 {
-    m_fromNode = 0;
-    m_toNode = 0;
+    m_fromNode = nullptr;
+    m_toNode = nullptr;
     m_visible = edge.m_visible;
     m_colors = edge.m_colors;
     m_dir = edge.m_dir;
@@ -114,38 +115,38 @@ void GraphEdge::updateWithEdge(edge_t* edge)
   // decrease mem peak
   setRenderOperations(ops);
 
-  if (agget(edge, (char*)"_draw_") != NULL)
+  if (agget(edge, (char*)"_draw_"))
   {
     parse_renderop(agget(edge, (char*)"_draw_"), ops);
     qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
-  if (agget(edge, (char*)"_ldraw_") != NULL)
+  if (agget(edge, (char*)"_ldraw_"))
   {
     parse_renderop(agget(edge, (char*)"_ldraw_"), ops);
     qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
-  if (agget(edge, (char*)"_hdraw_") != NULL)
+  if (agget(edge, (char*)"_hdraw_"))
   {
     parse_renderop(agget(edge, (char*)"_hdraw_"), ops);
     qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
-  if (agget(edge, (char*)"_tdraw_") != NULL)
+  if (agget(edge, (char*)"_tdraw_"))
   {
     parse_renderop(agget(edge, (char*)"_tdraw_"), ops);
     qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
-  if (agget(edge, (char*)"_hldraw_") != NULL)
+  if (agget(edge, (char*)"_hldraw_"))
   {
     parse_renderop(agget(edge, (char*)"_hldraw_"), ops);
     qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
-  if (agget(edge, (char*)"_tldraw_") != NULL)
+  if (agget(edge, (char*)"_tldraw_"))
   {
     parse_renderop(agget(edge, (char*)"_tldraw_"), ops);
     qCDebug(debugCategory) << "element renderOperations size is now " << ops.size();
   }
   setRenderOperations(ops);
-  Agsym_t *attr = agnxtattr(agraphof(agtail(edge)), AGEDGE, NULL);
+  Agsym_t *attr = agnxtattr(agraphof(agtail(edge)), AGEDGE, nullptr);
   while(attr)
   {
     qCDebug(debugCategory) /*<< edge->name*/ << ":" << attr->name << agxget(edge,attr);

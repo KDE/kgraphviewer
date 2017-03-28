@@ -41,7 +41,7 @@ public:
       DotGraphView* v, 
       GraphSubgraph* s,
       QGraphicsScene* c,
-      QGraphicsItem* parent = 0);
+      QGraphicsItem* parent = nullptr);
   virtual ~CanvasSubgraph() {}
   
 protected:

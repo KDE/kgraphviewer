@@ -35,7 +35,7 @@ public:
   /**
     * Default Constructor
     */
-  explicit KGraphEditorElementTreeWidget(QWidget* parent = 0);
+  explicit KGraphEditorElementTreeWidget(QWidget* parent = nullptr);
 
   /**
     * Default Destructor

@@ -51,7 +51,7 @@ int main(int argc, char **argv)
                    KAboutLicense::GPL,
                    i18n("(C) 2005-2010 Gaël de Chalendar"),
                    QString(),
-                   0,
+                   QString(),
                    "kleag@free.fr");
   about.addAuthor( i18n("Gaël de Chalendar"), i18n("Original Author and current maintainer"), "kleag@free.fr" );
   about.addAuthor( i18n("Reimar Döffinger"), i18n("Contributor"), "kde@reimardoeffinger.de" );
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
       // no session.. just start up normally
       QStringList args = options.positionalArguments();
 
-      KGraphViewerWindow *widget = 0;
+      KGraphViewerWindow *widget = nullptr;
       if ( args.count() == 0 )
       {
         widget = new KGraphViewerWindow;
@@ -103,7 +103,7 @@ int main(int argc, char **argv)
         for (int i = 0; i < args.count(); i++ )
         {
           if (instanceExists 
-              && (QMessageBox::question(0, 
+              && (QMessageBox::question(nullptr,
                                         i18n("Opening in new window confirmation"),
                                         i18n("A KGraphViewer window is already open, where do you want to open this file in the existing window?"))
               == QMessageBox::Yes))
@@ -142,7 +142,7 @@ int main(int argc, char **argv)
           }
         }
       }
-    if (widget != 0)
+    if (widget)
     {
       widget->reloadPreviousFiles();
     }
