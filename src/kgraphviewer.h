@@ -64,10 +64,10 @@ protected:
 
   void closeEvent(QCloseEvent *event) override;
 
-signals:
+Q_SIGNALS:
   void hide(KParts::Part* part);
 
-public slots:
+public Q_SLOTS:
   /**
     * Use this method to load whatever file/URL you have
     */
@@ -89,7 +89,7 @@ public slots:
   void slotParsingModeExternalToggled(bool value);
   void slotParsingModeInternalToggled(bool value);
 
-private slots:
+private Q_SLOTS:
   void fileNew();
   void fileOpen();
   void close(int index);

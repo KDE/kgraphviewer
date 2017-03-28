@@ -69,7 +69,7 @@ public:
      */
     void setColumns(KgvColumns &columns);
 
-public slots:
+public Q_SLOTS:
     /**
      * Set a new unit for the widget updating the widgets.
      * @param unit the new unit
@@ -81,7 +81,7 @@ public slots:
      */
     void setEnableBorders(bool on);
 
-signals:
+Q_SIGNALS:
     /**
      * Emitted whenever the user changed something in the dialog.
      * @param layout the update layout structure with currently displayed info.
@@ -102,7 +102,7 @@ protected:
     QGroupBox *m_orientGroup;
     QButtonGroup m_orientButtons;
     
-protected slots:
+protected Q_SLOTS:
     void formatChanged( int );
     void widthChanged( double );
     void heightChanged( double );

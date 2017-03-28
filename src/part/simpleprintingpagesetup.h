@@ -52,18 +52,18 @@ class KGVSimplePrintingPageSetup : public QWidget
       DotGraphView *mainWin, QWidget *parent, QMap<QString,QString>* args );
 		~KGVSimplePrintingPageSetup();
 
-	public slots:
+	public Q_SLOTS:
 		void slotPrint();
 		void slotPrintPreview();
 
-	signals:
+	Q_SIGNALS:
 		void print(KGVSimplePrintingSettings* settings, const QString& titleText);
 		void printPreview(KGVSimplePrintingSettings* settings, const QString& titleText, bool reload);
 		void print();
 		void printPreview();
     void needsRedraw();
 
-	protected slots:
+	protected Q_SLOTS:
 		void slotSaveSetup();
 		void slotChangeTitleFont();
 		void slotChangePageSizeAndMargins();

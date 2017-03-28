@@ -60,18 +60,18 @@ class KGVSimplePrintPreviewWindow : public QWidget
 
 		KGVSimplePrintingSettings* settings() const { return m_settings; }
 
-	public slots:
+	public Q_SLOTS:
 		void updatePagesCount();
 //		void setPagesCount(int pagesCount);
 		void goToPage(int pageNumber);
     void setFullWidth();
     void slotRedraw();
 
-	signals:
+	Q_SIGNALS:
 		void printRequested();
 		void pageSetupRequested();
 
-	protected slots:
+	protected Q_SLOTS:
 		void slotPageSetup();
 		void slotPrintClicked();
 		void slotZoomInClicked();

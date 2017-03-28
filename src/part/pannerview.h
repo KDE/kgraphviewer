@@ -54,11 +54,11 @@ public:
 
   inline void setDrawingEnabled(bool val) {m_drawContents = val;}
 
-public slots:
+public Q_SLOTS:
   void setZoomRect(QRectF r);
   void moveZoomRectTo(const QPointF& newPos, const bool notify = true);
 
-signals:
+Q_SIGNALS:
   void zoomRectMovedTo(QPointF newPos);
   void zoomRectMoveFinished();
 

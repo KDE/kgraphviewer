@@ -57,7 +57,7 @@ class KGVSimplePrintPreviewScrollView : public QScrollArea
 
 		KGVSimplePrintPreviewView *m_view;
 
-	public slots:
+	public Q_SLOTS:
 		void setFullWidth();
 // 		void setContentsPos(int x, int y);
 

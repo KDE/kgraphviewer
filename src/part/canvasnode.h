@@ -69,7 +69,7 @@ public:
 // protected:
 // //   virtual void paint(QPainter&);
 // 
-// public slots:
+// public Q_SLOTS:
 //   void move(int x, int y);
 //   void zoomed(double factor);
 // 

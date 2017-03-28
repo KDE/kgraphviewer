@@ -181,10 +181,10 @@ private:
 
     int flags;
 
-protected slots:
+protected Q_SLOTS:
     void slotOk();
 
-private slots:
+private Q_SLOTS:
     void sizeUpdated(struct ::KgvPageLayout &layout);
 //     void columnsUpdated(KgvColumns &columns);
 

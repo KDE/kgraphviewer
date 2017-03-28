@@ -58,16 +58,16 @@ public:
   void hidePageSetup();
   void hidePrintPreview();
 
-public slots:
+public Q_SLOTS:
   bool print(const QString& aTitleText = QString());
   bool showPrintPreview(const QString& aTitleText = QString(), bool reload = false);
   void showPageSetup(const QString& aTitleText = QString());
 
-signals:
+Q_SIGNALS:
   //! connected to KGV Main Window
   void showPageSetupRequested();
 
-protected slots:
+protected Q_SLOTS:
   void slotShowPageSetupRequested();
 
 protected:

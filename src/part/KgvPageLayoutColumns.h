@@ -59,7 +59,7 @@ public:
      * @param layout the new layout
      */
     void setLayout(KgvPageLayout &layout);
-public slots:
+public Q_SLOTS:
 
     /**
      * Enable the user to edit the columns
@@ -67,7 +67,7 @@ public slots:
      */
     void setEnableColumns(bool on);
 
-signals:
+Q_SIGNALS:
     void propertyChange(KgvColumns &columns);
 
 protected:
@@ -75,7 +75,7 @@ protected:
     KgvPagePreview *m_preview;
     KgvUnitDoubleSpinBox *m_spacing;
 
-private slots:
+private Q_SLOTS:
     void nColChanged( int );
     void nSpaceChanged( double );
 };

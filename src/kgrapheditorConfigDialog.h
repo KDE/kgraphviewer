@@ -45,7 +45,7 @@ public:
 
   ~KgeConfigurationDialog() override;
 
-protected slots:
+protected Q_SLOTS:
   void updateSettings() override;
   void updateWidgets() override;
 

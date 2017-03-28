@@ -78,7 +78,7 @@ public:
 	inline DotGraphView* data() {return m_data;}
 
 
-public slots:
+public Q_SLOTS:
   /*! Paints a page number \a pageNumber (counted from 0) on \a painter.
     If \a paint is false, drawings are only computed but not painted, 
     so this can be used for calculating page number before printing or previewing. */
