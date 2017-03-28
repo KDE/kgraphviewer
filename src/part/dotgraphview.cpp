@@ -68,6 +68,7 @@
 #include <QGraphicsSimpleTextItem>
 #include <QScrollBar>
 #include <QUuid>
+#include <QImageWriter>
 #include <QSvgGenerator>
 #include <QApplication>
 #include <QInputDialog>
@@ -574,9 +575,24 @@ void DotGraphViewPrivate::exportToImage()
 {
   // write current content of canvas as image to file
   if (!m_canvas) return;
-  
-  QString fn = QFileDialog::getSaveFileName(nullptr, i18n("Select file"), QString(), QString("*.svg *.bmp *.gif *.jpg *.jpeg *.png *.pbm *.pgm *.ppm *.xbm *.xpm"));
-  
+
+  QStringList writableMimetypes;
+  foreach (const QByteArray& mimeType, QImageWriter::supportedMimeTypes()) {
+    writableMimetypes.append(QString::fromLatin1(mimeType));
+  }
+  const QString svgMimetype = QStringLiteral("image/svg+xml");
+  if (!writableMimetypes.contains(svgMimetype)) {
+    writableMimetypes.append(svgMimetype);
+  }
+
+  QFileDialog fileDialog(nullptr, i18n("Select file"));
+  fileDialog.setMimeTypeFilters(writableMimetypes);
+  fileDialog.setAcceptMode(QFileDialog::AcceptSave);
+  if (fileDialog.exec() != QFileDialog::Accepted) {
+    return;
+  }
+  const QString fn = fileDialog.selectedFiles().at(0);
+
   if (!fn.isEmpty())
   {
     if (fn.toLower().endsWith(QLatin1String(".svg")))
