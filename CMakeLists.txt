@@ -31,5 +31,14 @@ if(NOT DOT)
    MESSAGE(STATUS "dot executable from GraphViz not found. You will need it at runtime")
 endif(NOT DOT)
 
+add_definitions(
+    -DQT_USE_QSTRINGBUILDER
+    -DQT_NO_CAST_TO_ASCII
+    -DQT_NO_CAST_FROM_BYTEARRAY
+    -DQT_NO_URL_CAST_FROM_STRING
+    -DQT_STRICT_ITERATORS
+    -DQT_NO_SIGNALS_SLOTS_KEYWORDS
+)
+
 add_subdirectory(src)
 add_subdirectory(doc)
