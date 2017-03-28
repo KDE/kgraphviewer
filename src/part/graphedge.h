@@ -53,7 +53,7 @@ class GraphEdge : public GraphElement
   Q_OBJECT
 public:
   GraphEdge();
-  virtual ~GraphEdge();
+  ~GraphEdge() override;
 
   explicit GraphEdge(const GraphEdge& edge);
   explicit GraphEdge(edge_t* edge);

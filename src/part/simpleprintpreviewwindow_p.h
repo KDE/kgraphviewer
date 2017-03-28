@@ -43,7 +43,7 @@ class KGVSimplePrintPreviewView : public QWidget
 	public:
 		explicit KGVSimplePrintPreviewView(KGVSimplePrintPreviewWindow *window);
 
-		virtual void paintEvent( QPaintEvent *pe );
+		void paintEvent(QPaintEvent* pe) override;
 	protected:
 		KGVSimplePrintPreviewWindow *m_window;
 };
@@ -62,7 +62,7 @@ class KGVSimplePrintPreviewScrollView : public QScrollArea
 // 		void setContentsPos(int x, int y);
 
 	protected:
-        void paintEvent( QPaintEvent *pe );
+        void paintEvent(QPaintEvent* pe) override;
    
 // 		virtual void resizeEvent( QResizeEvent *re );
 		KGVSimplePrintPreviewWindow *m_window;

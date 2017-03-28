@@ -74,7 +74,7 @@ public:
 protected:
 
     // paint page
-    void paintEvent ( QPaintEvent * event );
+    void paintEvent(QPaintEvent* event) override;
 
     double m_pageHeight, m_pageWidth, m_textFrameX, m_textFrameY, m_textFrameWidth, m_textFrameHeight;
     int columns;

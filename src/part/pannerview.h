@@ -63,11 +63,11 @@ signals:
   void zoomRectMoveFinished();
 
 protected:
-  virtual void mousePressEvent(QMouseEvent*);
-  virtual void mouseMoveEvent(QMouseEvent*);
-  virtual void mouseReleaseEvent(QMouseEvent*);
-  virtual void drawForeground(QPainter * p, const QRectF & rect );
-  virtual void contextMenuEvent(QContextMenuEvent* event);
+  void mousePressEvent(QMouseEvent*) override;
+  void mouseMoveEvent(QMouseEvent*) override;
+  void mouseReleaseEvent(QMouseEvent*) override;
+  void drawForeground(QPainter* p, const QRectF& rect) override;
+  void contextMenuEvent(QContextMenuEvent* event) override;
 
   QRectF m_zoomRect;
   bool m_movingZoomRect;

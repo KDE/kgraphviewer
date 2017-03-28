@@ -53,8 +53,8 @@ public:
   DotGraph();
   DotGraph(const QString& command, const QString& fileName);
 
-  virtual ~DotGraph();
-  
+  ~DotGraph() override;
+
   QString chooseLayoutProgramForFile(const QString& str);
   bool parseDot(const QString& str);
   
@@ -74,7 +74,7 @@ public:
   void width(double w) {m_width = w;}
   void height(double h) {m_height = h;}
   void scale(double s) {m_scale = s;}
-  virtual QString backColor() const;
+  QString backColor() const override;
   
   inline void strict(bool s) {m_strict = s;}
   inline void directed(bool d) {m_directed = d;}
@@ -99,7 +99,7 @@ public:
   inline void setReadWrite() {m_readWrite = true;}
   inline void setReadOnly() {m_readWrite = false;}
 
-  virtual void storeOriginalAttributes();
+  void storeOriginalAttributes() override;
 
   void KGRAPHVIEWER_EXPORT saveTo(const QString& fileName);
 

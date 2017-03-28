@@ -40,11 +40,11 @@ public:
   /**
     * Default Destructor
     */
-  virtual ~KGraphEditorNodesTreeWidget();
+  ~KGraphEditorNodesTreeWidget() override;
 
 protected:
 
-  virtual void contextMenuEvent ( QContextMenuEvent * e );
+  void contextMenuEvent(QContextMenuEvent* e) override;
 
 protected Q_SLOTS:
   void slotRemoveNode();

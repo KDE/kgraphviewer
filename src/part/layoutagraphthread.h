@@ -33,7 +33,7 @@ class LayoutAGraphThread : public QThread
   Q_OBJECT
 public:
   LayoutAGraphThread();
-  ~LayoutAGraphThread();
+  ~LayoutAGraphThread() override;
   void layoutGraph(graph_t* graph, const QString& layoutCommand);
   inline graph_t* g() {return m_g;}
   inline GVC_t* gvc() {return m_gvc;}
@@ -41,7 +41,7 @@ public:
   void processed_finished() { sem.release(); }
   
 protected:
-virtual void run();
+  void run() override;
 
 private:
   QSemaphore sem;

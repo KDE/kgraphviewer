@@ -48,14 +48,13 @@ public:
       QGraphicsScene* c,
       QGraphicsItem* parent = nullptr);
       
-  virtual ~CanvasElement();
-  
+  ~CanvasElement() override;
+
   GraphElement* element() { return m_element; }
 
-  virtual void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-        QWidget *widget = nullptr);
+  void paint(QPainter* p, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
 
-  virtual QRectF boundingRect () const;
+  QRectF boundingRect() const override;
 
   void computeBoundingRect();
   
@@ -64,13 +63,13 @@ public:
                   qreal wdhcf, qreal hdvcf);
 
   inline void setGh(qreal gh) {m_gh = gh;}
-  
-  protected:
-  virtual void mouseMoveEvent ( QGraphicsSceneMouseEvent * event );
-  virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
-  virtual void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
-  virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
-  virtual void hoverLeaveEvent( QGraphicsSceneHoverEvent * event );
+
+protected:
+  void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+  void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+  void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
+  void hoverEnterEvent(QGraphicsSceneHoverEvent* event) override;
+  void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
 
   qreal m_scaleX, m_scaleY;
   qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;

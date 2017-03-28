@@ -46,9 +46,8 @@ public:
             GraphNode* s,
             QGraphicsScene* c,
             QGraphicsItem* parent = nullptr);
-  
-  virtual ~CanvasNode() {}
-  
+
+  ~CanvasNode() override {}
 };
 
 // class CanvasHtmlNode: public KHTMLPart, public CanvasNode

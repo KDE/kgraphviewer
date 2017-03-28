@@ -51,8 +51,8 @@ class GraphSubgraph : public GraphElement
 public:
   GraphSubgraph();
   explicit GraphSubgraph(graph_t* sg);
-  
-  virtual ~GraphSubgraph() {}  
+
+  ~GraphSubgraph() override {}
 
   inline const GraphSubgraphMap& subgraphs() const {return m_subgraphsMap;}
   inline GraphSubgraphMap& subgraphs() {return m_subgraphsMap;}
@@ -63,7 +63,7 @@ public:
   CanvasSubgraph* canvasSubgraph() { return (CanvasSubgraph*)canvasElement();  }
   void setCanvasSubgraph(CanvasSubgraph* cs) { setCanvasElement((CanvasElement*)cs); }
 
-  virtual QString backColor() const;
+  QString backColor() const override;
 
   inline const QList<GraphElement*>& content() const {return m_content;}
   inline QList<GraphElement*>& content() {return m_content;}

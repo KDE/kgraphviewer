@@ -66,14 +66,13 @@ public:
              qreal xMargin, qreal yMargin, qreal gh,
              qreal wdhcf, qreal hdvcf, QGraphicsItem* parent = nullptr);
 
-  virtual ~CanvasEdge();
+  ~CanvasEdge() override;
   
-  QRectF boundingRect() const;
+  QRectF boundingRect() const override;
 
-  QPainterPath shape () const;
+  QPainterPath shape () const override;
 
-  void paint(QPainter* p, const QStyleOptionGraphicsItem *option,
-        QWidget *widget);
+  void paint(QPainter* p, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
   inline GraphEdge* edge() { return m_edge; }
   inline const GraphEdge* edge() const { return m_edge; }
@@ -93,9 +92,9 @@ public Q_SLOTS:
   void slotRemoveEdge();
 
 protected:
-  virtual void mousePressEvent ( QGraphicsSceneMouseEvent * event );
-  virtual void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
-  virtual void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
+  void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+  void hoverEnterEvent(QGraphicsSceneHoverEvent* event) override;
+  void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
   
 private:
   QPainterPath pathForSpline(int splineNum, const DotRenderOp& dro) const;

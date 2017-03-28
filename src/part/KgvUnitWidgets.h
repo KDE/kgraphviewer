@@ -53,7 +53,7 @@ class KgvUnitDoubleValidator : public QDoubleValidator
 public:
     KgvUnitDoubleValidator(KgvUnitDoubleBase *base, QObject *parent);
 
-    virtual QValidator::State validate( QString &, int & ) const;
+    QValidator::State validate(QString&, int&) const override;
 
 private:
     KgvUnitDoubleBase *m_base;
@@ -120,8 +120,8 @@ public:
     KgvUnitDoubleSpinBox( QWidget *parent, double lower, double upper, double step, double value = 0.0,
                          KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
     // added so the class can be used in .ui files(by Tymoteusz Majewski, maju7@o2.pl)
-    virtual void changeValue( double );
-    virtual void setUnit( KgvUnit::Unit = KgvUnit::U_PT );
+    void changeValue(double) override;
+    void setUnit(KgvUnit::Unit = KgvUnit::U_PT) override;
 
     /// @return the current value, converted in points
     double value( void ) const;
@@ -168,14 +168,14 @@ public:
     explicit KgvUnitDoubleLineEdit(QWidget *parent = nullptr);
     KgvUnitDoubleLineEdit( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
 
-    virtual void changeValue( double );
-    virtual void setUnit( KgvUnit::Unit = KgvUnit::U_PT );
+    void changeValue(double) override;
+    void setUnit(KgvUnit::Unit = KgvUnit::U_PT) override;
 
     /// @return the current value, converted in points
     double value( void ) const;
 
 protected:
-    bool eventFilter( QObject* obj, QEvent* ev );
+    bool eventFilter(QObject* obj, QEvent* ev) override;
 
 private:
     double m_value;
@@ -196,16 +196,16 @@ public:
     explicit KgvUnitDoubleComboBox(QWidget *parent = nullptr);
     KgvUnitDoubleComboBox( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
 
-    virtual void changeValue( double );
+    void changeValue(double) override;
     void updateValue( double );
-    virtual void setUnit( KgvUnit::Unit = KgvUnit::U_PT );
+    void setUnit(KgvUnit::Unit = KgvUnit::U_PT) override;
 
     /// @return the current value, converted in points
     double value( void ) const;
     void insertItem( double, int index = -1 );
 
 protected:
-    bool eventFilter( QObject* obj, QEvent* ev );
+    bool eventFilter(QObject* obj, QEvent* ev) override;
 
 signals:
     void valueChanged(double);

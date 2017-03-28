@@ -79,7 +79,7 @@ public:
   enum ScrollDirection { Here, Left, Right, Top, Bottom };
   
   explicit KGRAPHVIEWER_EXPORT DotGraphView(KActionCollection* actions, QWidget* parent = nullptr);
-  virtual ~DotGraphView();
+  ~DotGraphView() override;
 
   bool KGRAPHVIEWER_EXPORT loadDot(const QString& dotFileName);
   bool KGRAPHVIEWER_EXPORT loadLibrary(const QString& dotFileName);
@@ -103,8 +103,6 @@ public:
                                bool value, bool def);
   static void writeConfigEntry(KConfigGroup*, const char* pKey,
                                double value, double def);
-
-  virtual void wheelEvent(QWheelEvent* e);
 
   /// multiplies current zoom factor with @p factor
   void applyZoom(double factor);
@@ -151,7 +149,7 @@ public:
   void setHighlighting(bool highlightingValue);
 
   // public so that the panner view can bubble through
-  void contextMenuEvent(QContextMenuEvent*);
+  void contextMenuEvent(QContextMenuEvent*) override;
 
   void setBackgroundColor(const QColor& color);
   
@@ -221,19 +219,21 @@ public Q_SLOTS:
 
 protected:
   void scrollViewPercent(bool horizontal, int percent);
-  void scrollContentsBy(int dx, int dy);
-  void resizeEvent(QResizeEvent*);
-  void mousePressEvent(QMouseEvent*);
-  void mouseMoveEvent(QMouseEvent*);
-  void mouseReleaseEvent(QMouseEvent*);
-  void mouseDoubleClickEvent(QMouseEvent*);
-  void keyPressEvent(QKeyEvent*);
-  void focusInEvent(QFocusEvent*);
-  void focusOutEvent(QFocusEvent*);
+
+  void scrollContentsBy(int dx, int dy) override;
+  void resizeEvent(QResizeEvent*) override;
+  void mousePressEvent(QMouseEvent*) override;
+  void mouseMoveEvent(QMouseEvent*) override;
+  void mouseReleaseEvent(QMouseEvent*) override;
+  void mouseDoubleClickEvent(QMouseEvent*) override;
+  void keyPressEvent(QKeyEvent*) override;
+  void wheelEvent(QWheelEvent* e) override;
+  void focusInEvent(QFocusEvent*) override;
+  void focusOutEvent(QFocusEvent*) override;
   
-  void timerEvent ( QTimerEvent * event );
-  void leaveEvent ( QEvent * event );
-  void enterEvent ( QEvent * event );
+  void timerEvent(QTimerEvent* event) override;
+  void leaveEvent(QEvent* event) override;
+  void enterEvent(QEvent* event) override;
   
 private Q_SLOTS:
   void slotAGraphReadFinished();

@@ -61,7 +61,7 @@ public:
   /**
     * Default Destructor
     */
-  virtual ~KGraphEditor();
+  ~KGraphEditor() override;
 
   /**
     * Use this method to load whatever file/URL you have
@@ -71,7 +71,7 @@ public:
   void reloadPreviousFiles();
 
 protected:
-  void closeEvent(QCloseEvent *event);
+  void closeEvent(QCloseEvent *event) override;
 
 Q_SIGNALS:
   void hide(KParts::ReadOnlyPart* part);

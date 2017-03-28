@@ -52,17 +52,17 @@ class KGraphViewerPart : public KParts::ReadOnlyPart, public KGraphViewerInterfa
 
 //BEGIN: KGraphViewerInterface
 public:
-    virtual void setLayoutMethod(LayoutMethod method);
-    virtual void centerOnNode(const QString& nodeId);
-    virtual void selectNode(const QString& nodeId);
-    virtual void setLayoutCommand(const QString& command);
-    virtual void setPannerPosition(PannerPosition position);
-    virtual void setPannerEnabled(bool enabled);
-    virtual void zoomBy(double factor);
-    virtual void setZoomFactor(double factor);
-    virtual void zoomIn();
-    virtual void zoomOut();
-    virtual void setBackgroundColor(const QColor& color);
+    void setLayoutMethod(LayoutMethod method) override;
+    void centerOnNode(const QString& nodeId) override;
+    void selectNode(const QString& nodeId) override;
+    void setLayoutCommand(const QString& command) override;
+    void setPannerPosition(PannerPosition position) override;
+    void setPannerEnabled(bool enabled) override;
+    void zoomBy(double factor) override;
+    void setZoomFactor(double factor) override;
+    void zoomIn() override;
+    void zoomOut() override;
+    void setBackgroundColor(const QColor& color) override;
 
 public:
     /**
@@ -74,7 +74,7 @@ public:
     /**
      * Destructor
      */
-    virtual ~KGraphViewerPart();
+    ~KGraphViewerPart() override;
 
   // Return information about the part
   static KAboutData* createAboutData();
@@ -100,40 +100,40 @@ Q_SIGNALS:
   void hoverLeave(const QString&);
 
 public Q_SLOTS:
-  void slotHide(KParts::Part* part);
-  void slotUpdate();
-  void prepareAddNewElement(QMap<QString,QString> attribs);
-  void prepareAddNewEdge(QMap<QString,QString> attribs);
-  void setReadOnly();
-  void setReadWrite();
-  void saveTo(const QString& fileName);
-  void slotRemoveNode(const QString&);
+  void slotHide(KParts::Part* part) override;
+  void slotUpdate() override;
+  void prepareAddNewElement(QMap<QString,QString> attribs) override;
+  void prepareAddNewEdge(QMap<QString,QString> attribs) override;
+  void setReadOnly() override;
+  void setReadWrite() override;
+  void saveTo(const QString& fileName) override;
+  void slotRemoveNode(const QString&) override;
   void slotRemoveNodeFromSubgraph(
       const QString& nodeName,
-      const QString& subgraphName);
-  void slotRemoveSubgraph(const QString&);
-  void slotAddAttribute(const QString&);
-  void slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
-  void slotRemoveAttribute(const QString&,const QString&);
-  void slotSetGraphAttributes(QMap<QString,QString> attribs);
-  void slotAddNewNode(QMap<QString,QString> attribs);
-  void slotAddNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph);
-  void slotAddExistingNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph);
-  void slotMoveExistingNodeToMainGraph(QMap<QString,QString>);
-  void slotAddNewSubgraph(QMap<QString,QString> attribs);
-  void slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
-  void slotRemoveEdge(const QString& id);
-  void slotRemoveElement(const QString& id);
-  void slotClose();
-  void slotSelectNode(const QString&);
-  void slotSetHighlighting(bool highlightingValue);
-  void slotPrepareToSelect();
-  void slotSetCursor(const QCursor& cursor);
-  void slotUnsetCursor();
-  virtual bool closeUrl();
+      const QString& subgraphName) override;
+  void slotRemoveSubgraph(const QString&) override;
+  void slotAddAttribute(const QString&) override;
+  void slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue) override;
+  void slotRemoveAttribute(const QString&,const QString&) override;
+  void slotSetGraphAttributes(QMap<QString,QString> attribs) override;
+  void slotAddNewNode(QMap<QString,QString> attribs) override;
+  void slotAddNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph) override;
+  void slotAddExistingNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph) override;
+  void slotMoveExistingNodeToMainGraph(QMap<QString,QString>) override;
+  void slotAddNewSubgraph(QMap<QString,QString> attribs) override;
+  void slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs) override;
+  void slotRemoveEdge(const QString& id) override;
+  void slotRemoveElement(const QString& id) override;
+  void slotClose() override;
+  void slotSelectNode(const QString&) override;
+  void slotSetHighlighting(bool highlightingValue) override;
+  void slotPrepareToSelect() override;
+  void slotSetCursor(const QCursor& cursor) override;
+  void slotUnsetCursor() override;
+  bool closeUrl() override;
   bool slotLoadLibrary(graph_t* graph);
-  void slotSetLayoutMethod(LayoutMethod method);
-  void slotRenameNode(const QString& oldNodeName, const QString& newNodeName);
+  void slotSetLayoutMethod(LayoutMethod method) override;
+  void slotRenameNode(const QString& oldNodeName, const QString& newNodeName) override;
   
 /*  inline DotGraph* graph() {return m_widget->graph();}
   inline const DotGraph* graph() const {return m_widget->graph();}*/
@@ -143,8 +143,8 @@ public Q_SLOTS:
     /**
      * This must be implemented by each part. Use openUrl to open a file
      */
-    virtual bool openFile();
-    
+    bool openFile() override;
+
 private:
   KGraphViewerPartPrivate * const d;
 };

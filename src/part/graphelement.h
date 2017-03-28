@@ -41,9 +41,9 @@ class GraphElement: public QObject
 public:
   GraphElement();
   GraphElement(const GraphElement& element);
-  
-  virtual ~GraphElement() {}
-  
+
+  ~GraphElement() override {}
+
   inline void setId(const QString& id) {m_attributes[KEY_ID]=id;}
   inline void setStyle(const QString& ls) {m_attributes[KEY_STYLE]=ls;}
   inline void setShape(const QString& lc) {m_attributes[KEY_SHAPE]=lc;}

@@ -60,9 +60,9 @@ public:
   GraphNode();
   explicit GraphNode(const GraphNode& gn);
   explicit GraphNode(node_t* gn);
-  
-  virtual ~GraphNode() {}  
-  
+
+  ~GraphNode() override {}
+
   inline CanvasNode* canvasNode() { return dynamic_cast<CanvasNode*>(canvasElement()); }
   inline const CanvasNode* canvasNode() const { return dynamic_cast<const CanvasNode*>(canvasElement()); }
   inline void setCanvasNode(CanvasNode* cn) { setCanvasElement((CanvasElement*)cn); }

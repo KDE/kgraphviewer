@@ -45,19 +45,20 @@ class KgvConfigurationDialog : public KConfigDialog
 public:
    KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config);
 
-  virtual ~KgvConfigurationDialog ();
+  ~KgvConfigurationDialog() override;
 
 Q_SIGNALS:
   void backgroundColorChanged(const QColor& color);
   
 protected Q_SLOTS:
-  virtual void updateSettings();
-  virtual void updateWidgets();
+  void updateSettings() override;
+  void updateWidgets() override;
+
   void settingChanged(int);
   void slotBackgroundColorChanged(const QColor& color);
 
 protected:
-  virtual bool hasChanged();
+  bool hasChanged() override;
 
   bool m_changed;
 

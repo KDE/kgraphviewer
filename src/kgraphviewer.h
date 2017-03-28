@@ -51,7 +51,7 @@ public:
   /**
     * Default Destructor
     */
-  virtual ~KGraphViewerWindow();
+  ~KGraphViewerWindow() override;
 
   /**
     * Use this method to load whatever file/URL you have
@@ -62,7 +62,7 @@ public:
 
 protected:
 
-  void closeEvent(QCloseEvent *event);
+  void closeEvent(QCloseEvent *event) override;
 
 signals:
   void hide(KParts::Part* part);

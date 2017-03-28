@@ -42,8 +42,8 @@ public:
       GraphSubgraph* s,
       QGraphicsScene* c,
       QGraphicsItem* parent = nullptr);
-  virtual ~CanvasSubgraph() {}
-  
+  ~CanvasSubgraph() override {}
+
 protected:
 };
 

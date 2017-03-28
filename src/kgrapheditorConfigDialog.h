@@ -43,15 +43,16 @@ class KgeConfigurationDialog : public KConfigDialog
 public:
    KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config);
 
-  virtual ~KgeConfigurationDialog ();
+  ~KgeConfigurationDialog() override;
 
 protected slots:
-  virtual void updateSettings();
-  virtual void updateWidgets();
+  void updateSettings() override;
+  void updateWidgets() override;
+
   void settingChanged(int);
 
 protected:
-  virtual bool hasChanged();
+  bool hasChanged() override;
 
   bool m_changed;
 

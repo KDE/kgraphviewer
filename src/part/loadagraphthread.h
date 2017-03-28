@@ -37,7 +37,7 @@ public:
   void processed_finished() { sem.release(); }
   
 protected:
-  virtual void run();
+  void run() override;
 
 private:
   QSemaphore sem;

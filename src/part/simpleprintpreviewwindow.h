@@ -83,7 +83,7 @@ class KGVSimplePrintPreviewWindow : public QWidget
 		void initLater();
 
 	protected:
-		virtual bool event( QEvent * e );
+		bool event(QEvent* e) override;
 
 		KGVSimplePrintingEngine &m_engine;
 		KGVSimplePrintingSettings* m_settings;
