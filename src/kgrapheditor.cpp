@@ -210,6 +210,10 @@ void KGraphEditor::openUrl(const QUrl& url)
   m_tabsFilesMap[m_widget->currentWidget()] = url.path();
   part->openUrl(url);
 
+  if (m_rfa) {
+    m_rfa->addUrl(url);
+  }
+
   m_openedFiles.push_back(url.path());
 }
 
@@ -224,10 +228,6 @@ void KGraphEditor::fileOpen()
   {
     foreach (const QString &fileName, file_names)
     {
-      if (m_rfa)
-      {
-        m_rfa->addUrl(fileName);
-      }
       openUrl(fileName);
     }
   }
