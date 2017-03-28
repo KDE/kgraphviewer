@@ -579,7 +579,7 @@ void DotGraphViewPrivate::exportToImage()
   
   if (!fn.isEmpty())
   {
-    if (fn.toLower().endsWith(".svg"))
+    if (fn.toLower().endsWith(QLatin1String(".svg")))
     {
       QSvgGenerator generator;
       generator.setFileName(fn);
