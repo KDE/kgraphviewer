@@ -414,6 +414,5 @@
   <project_group>KDE</project_group>
   <provides>
     <binary>kgraphviewer</binary>
-    <binary>kgrapheditor</binary>
   </provides>
 </component>

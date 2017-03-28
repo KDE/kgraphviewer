@@ -33,6 +33,8 @@ if(NOT DOT)
    MESSAGE(STATUS "dot executable from GraphViz not found. You will need it at runtime")
 endif(NOT DOT)
 
+option(BUILD_GRAPHEDITOR "Build the graph editor app (WIP, not yet functional). [default=OFF]" OFF)
+
 add_definitions(
     -DQT_USE_QSTRINGBUILDER
     -DQT_NO_CAST_TO_ASCII

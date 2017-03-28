@@ -52,9 +52,12 @@ ecm_install_icons(
 install( FILES kgraphviewersettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
 install( FILES kgraphviewerui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kgraphviewer )
 install( PROGRAMS org.kde.kgraphviewer.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
+install(FILES org.kde.kgraphviewer.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 
-########### kgrapheditor target ###############
+if(NOT BUILD_GRAPHEDITOR)
+    return()
+endif()
 
 set(kgrapheditor_SRCS kgrapheditormain.cpp kgrapheditor.cpp kgrapheditorConfigDialog.cpp KGraphEditorNodesTreeWidget.cpp KGraphEditorElementTreeWidget.cpp)
 
@@ -78,7 +81,6 @@ install( TARGETS kgrapheditor ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kgrapheditorsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
 install(FILES kgrapheditorui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kgrapheditor)
 install(PROGRAMS org.kde.kgrapheditor.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
-install(FILES org.kde.kgraphviewer.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 
 #add_subdirectory(plasmaapplet)
