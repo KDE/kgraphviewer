@@ -23,7 +23,6 @@
 #include <KParts/ReadOnlyPart>
 #include <KPluginFactory>
 
-#include <graphviz/gvc.h>
 #include "kgraphviewer_interface.h"
 
 class KComponentData;
@@ -131,7 +130,7 @@ public Q_SLOTS:
   void slotSetCursor(const QCursor& cursor) override;
   void slotUnsetCursor() override;
   bool closeUrl() override;
-  bool slotLoadLibrary(graph_t* graph);
+  bool slotLoadLibrary(graph_t* graph) override;
   void slotSetLayoutMethod(LayoutMethod method) override;
   void slotRenameNode(const QString& oldNodeName, const QString& newNodeName) override;
   

@@ -23,6 +23,8 @@
 #include <QtCore/QMap>
 #include <QtGui/QCursor>
 
+#include <graphviz/gvc.h>
+
 namespace KParts
 {
   class Part;
@@ -122,6 +124,7 @@ public:
   virtual void slotUnsetCursor() = 0;
   virtual void slotSetLayoutMethod(LayoutMethod method) = 0;
   virtual void slotRenameNode(const QString& oldName, const QString& newName) = 0;
+  virtual bool slotLoadLibrary(graph_t* graph) = 0;
   virtual void setBackgroundColor(const QColor& color) = 0;
   
 
