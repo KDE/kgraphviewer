@@ -21,11 +21,10 @@
 #define _KGRAPHEDITOR_H_
 
 #include <QAction>
-#include <QApplication>
 #include <QDir>
 #include <QTabWidget>
+#include <KParts/MainWindow>
 #include <KRecentFilesAction>
-#include <KXmlGuiWindow>
 
 #include <graphviz/gvc.h>
 
@@ -49,7 +48,7 @@ namespace KParts
  * @short Application Shell
  * @author Gael de Chalendar <kleag@free.fr>
  */
-class KGraphEditor : public KXmlGuiWindow
+class KGraphEditor : public KParts::MainWindow
 {
   Q_OBJECT
 public:
@@ -74,7 +73,7 @@ protected:
   void closeEvent(QCloseEvent *event) override;
 
 Q_SIGNALS:
-  void hide(KParts::ReadOnlyPart* part);
+  void hide(KParts::Part* part);
   void prepareAddNewElement(QMap<QString,QString> attribs);
   void prepareAddNewEdge(QMap<QString,QString> attribs);
   void setReadWrite();
@@ -158,7 +157,8 @@ private:
   KGraphEditorElementTreeWidget* m_newElementAttributesWidget;
   QTabWidget* m_widget;
   KRecentFilesAction* m_rfa;
-  
+  KParts::PartManager* m_manager;
+
   KToggleAction *m_toolbarAction;
   KToggleAction *m_statusbarAction;
 

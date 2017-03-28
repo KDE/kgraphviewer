@@ -1,37 +1,19 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="kgrapheditor" version="4">
-  <MenuBar>
-  <Menu name="file"><text>&amp;File</text>
-    <Action name="file_new"/>
-    <Action name="file_open"/>
-    <Action name="file_open_recent"/>
-    <Action name="file_save"/>
-    <Action name="file_save_as"/>
-    <DefineGroup name="open_merge" />
-    <Separator/>
-    <Action name="file_quit"/>
+<kpartgui name="kgrapheditor" version="5" translationDomain="kgraphviewer">
+<MenuBar>
+  <Menu name="file">
+    <DefineGroup name="file_merge" />
   </Menu>
-  <Menu name="edit"><text>&amp;Edit</text>
+  <Menu name="edit">
     <Action name="edit_new_vertex"/>
     <Action name="edit_new_edge"/>
-    <DefineGroup name="edit_merge" />
   </Menu>
-  <Menu name="view"><text>&amp;View</text>
+  <Menu name="view">
     <DefineGroup name="view_merge"/>
   </Menu>
-  <Menu name="settings"><text>&amp;Settings</text>
-    <Action name="options_show_toolbar"/>
-    <Action name="options_show_statusbar"/>
-    <DefineGroup name="show_merge"/>
-    <Separator/>
-    <Action name="options_configure_keybinding"/>
-    <Action name="options_configure_toolbars"/>
-    <Action name="options_configure"/>
-    <DefineGroup name="configure_merge"/>
-    <Separator/>
-  </Menu>
 </MenuBar>
-<ToolBar name="mainToolBar"><text>Main Toolbar</text>
+
+<ToolBar name="mainToolBar">
   <Action name="file_open"/>
   <Action name="file_open_recent"/>
   <Action name="file_save"/>

@@ -33,6 +33,7 @@
 #include <kconfig.h>
 #include <QUrl>
 #include <QTabWidget>
+#include <kparts/partmanager.h>
 #include <kedittoolbar.h>
 #include <QDebug>
 #include <QStandardPaths>
@@ -60,7 +61,7 @@ using namespace KGraphViewer;
 static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KGraphEditor::KGraphEditor() :
-    KXmlGuiWindow(),
+    KParts::MainWindow(),
     m_rfa(nullptr),
     m_currentPart(nullptr)
 {
@@ -118,12 +119,17 @@ KGraphEditor::KGraphEditor() :
     qCDebug(debugCategory) << "Failed to register service...";
   }
 
+  // Create a KParts part manager, to handle part activation/deactivation
+  m_manager = new KParts::PartManager( this );
+
+  // When the manager says the active part changes, the window updates (recreates) the GUI
+  connect( m_manager, SIGNAL(activePartChanged(KParts::Part*)),
+           this, SLOT(createGUI(KParts::Part*)) );
+
+  setupGUI(ToolBar | Keys | StatusBar | Save);
+
   // then, setup our actions
   setupActions();
-
-  // and a status bar
-  statusBar()->show();
-  createStandardStatusBarAction();
 
   // this routine will find and load our Part.  it finds the Part by
   // name which is a bad idea usually.. but it's alright in this
@@ -131,12 +137,6 @@ KGraphEditor::KGraphEditor() :
 
   // Creates the GUI with a null part to make appear the main app menus and tools
   createGUI(0);
-  setupGUI();
-  // apply the saved mainwindow settings, if any, and ask the mainwindow
-  // to automatically save settings if changed: window size, toolbar
-  // position, icon size, etc.
-  setAutoSaveSettings();
-
 }
 
 KGraphEditor::~KGraphEditor()
@@ -186,11 +186,12 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
     QWidget *w = part->widget();
     m_widget->addTab(w, QIcon::fromTheme("kgraphviewer"), "");
     m_widget->setCurrentWidget(w);
-//     createGUI(view);
+    createGUI(part);
 
+    m_manager->addPart(part, true);
     m_tabsPartsMap[w] = part;
     m_tabsFilesMap[w] = "";
-//     connect(this,SIGNAL(hide(KParts::Part*)),view,SLOT(slotHide(KParts::Part*)));
+    connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
   slotSetActiveGraph(part);
   return part;
 }
@@ -497,6 +498,7 @@ void KGraphEditor::close(int index)
   m_widget->removeTab(index);
   tab->hide();
   KParts::ReadOnlyPart *part = m_tabsPartsMap[tab];
+  m_manager->removePart(part);
   m_tabsPartsMap.remove(tab);
   m_tabsFilesMap.remove(tab);
   delete part; part = nullptr;
@@ -541,12 +543,12 @@ void KGraphEditor::fileSaveAs()
 void KGraphEditor::newTabSelectedSlot(int index)
 {
 //   qCDebug(debugCategory) << tab;
-//   emit(hide((KParts::Part*)(m_manager->activePart())));
+  emit(hide((KParts::Part*)(m_manager->activePart())));
   if (!m_tabsPartsMap.isEmpty())
   {
     QWidget *tab = m_widget->widget(index);
     slotSetActiveGraph(m_tabsPartsMap[tab]);
-//     m_manager->setActivePart(m_tabsPartsMap[tab]);
+    m_manager->setActivePart(m_tabsPartsMap[tab]);
   }
 }
 
