@@ -61,10 +61,10 @@
 
 <abstract>
 <para>
-&kgraphviewer; is a &graphviz; &dot; graph viewer for &kde;. The &graphviz; programs are free-software layout engines for graphs. Graphs are commonly used in scientific domains and particularly in computer science. Until now, there was a lack of a modern &GUI; to look at the graphs. The programs that come with &graphviz; are in my opinion out-of-date &X11; or &tcltk; applications with few features.
+&kgraphviewer; is a &graphviz; &dot; graph viewer. It is developed in the &kde; community. The &graphviz; programs are free-software layout engines for graphs. Graphs are commonly used in scientific domains and particularly in computer science. Until now, there was a lack of a modern &GUI; to look at the graphs. The programs that come with &graphviz; are in my opinion out-of-date &X11; or &tcltk; applications with few features.
 </para>
 <para>
-The &kgraphviewer; project aims to replace these tools with a modern, user-friendly &GUI; with all the power of a well integrated &kde; application.
+The &kgraphviewer; project aims to replace these tools with a modern, user-friendly &GUI;.
 </para>
 </abstract>
 
@@ -83,7 +83,7 @@ The &kgraphviewer; project aims to replace these tools with a modern, user-frien
 <title>Introduction</title>
 
 <para>
-&kgraphviewer; is a &graphviz; &dot; graph viewer for &kde;. The &graphviz; programs are free-software layout engines for graphs. &kgraphviewer; displays the graphs in a modern, user-friendly &GUI; with all the power of a well integrated &kde; application. It has the following features:
+&kgraphviewer; is a &graphviz; &dot; graph viewer. The &graphviz; programs are free-software layout engines for graphs. &kgraphviewer; displays the graphs in a modern, user-friendly &GUI;. It has the following features:
 <screenshot>
 <screeninfo>Here is a screenshot of &kgraphviewer;</screeninfo>
   <mediaobject>
@@ -129,9 +129,9 @@ The &kgraphviewer; project aims to replace these tools with a modern, user-frien
 <note><para>Note that this program includes code from the GPL tool &kcachegrind; by Josef Weidendorfer, with his authorization.</para></note>
 <note><para>Note also that the printing system is from the &koffice;'s &kexi; database application.</para></note>
 
-<para>Other required software: &kgraphviewer; is a &kde; program that uses the &graphviz; tool &dot; for graph layout. Its dependencies are:
+<para>Other required software: &kgraphviewer; is a program that uses the &graphviz; tool &dot; for graph layout. Its dependencies are:
 <itemizedlist>
-	<listitem><para>The &qt; library and &kde; libraries (kdelibs package) version 4.x;</para></listitem>
+	<listitem><para>The &qt; and &kf5; libraries version 5.x;</para></listitem>
 	<listitem><para>The &graphviz; tools as externals programs (tested with version 2.8);</para></listitem>
 	<listitem><para>The &boost; library version 1.36.</para></listitem>
 </itemizedlist></para>
