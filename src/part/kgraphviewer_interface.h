@@ -21,13 +21,15 @@
 
 #include <QObject>
 #include <QMap>
-#include <QCursor>
-
-#include <graphviz/gvc.h>
 
 namespace KParts
 {
   class Part;
+}
+class QCursor;
+
+extern "C" {
+    typedef struct Agraph_s graph_t;
 }
 
 
