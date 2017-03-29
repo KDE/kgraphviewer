@@ -67,7 +67,6 @@ set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
 add_library(kgraphviewerpart MODULE ${kgraphviewerpart_PART_SRCS})
 generate_export_header(kgraphviewerpart BASE_NAME kgraphviewer)
 
-add_definitions(-DQT_STL)
 target_link_libraries(kgraphviewerpart Qt5::Core KF5::Parts gvc cgraph pathplan cdt kgraphviewerlib)
 
 install( TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
