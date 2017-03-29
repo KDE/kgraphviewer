@@ -101,8 +101,8 @@ Q_SIGNALS:
 public Q_SLOTS:
   void slotHide(KParts::Part* part) override;
   void slotUpdate() override;
-  void prepareAddNewElement(QMap<QString,QString> attribs) override;
-  void prepareAddNewEdge(QMap<QString,QString> attribs) override;
+  void prepareAddNewElement(const QMap<QString,QString>& attribs) override;
+  void prepareAddNewEdge(const QMap<QString,QString>& attribs) override;
   void setReadOnly() override;
   void setReadWrite() override;
   void saveTo(const QString& fileName) override;
@@ -114,13 +114,13 @@ public Q_SLOTS:
   void slotAddAttribute(const QString&) override;
   void slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue) override;
   void slotRemoveAttribute(const QString&,const QString&) override;
-  void slotSetGraphAttributes(QMap<QString,QString> attribs) override;
-  void slotAddNewNode(QMap<QString,QString> attribs) override;
-  void slotAddNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph) override;
-  void slotAddExistingNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph) override;
-  void slotMoveExistingNodeToMainGraph(QMap<QString,QString>) override;
-  void slotAddNewSubgraph(QMap<QString,QString> attribs) override;
-  void slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs) override;
+  void slotSetGraphAttributes(const QMap<QString,QString>& attribs) override;
+  void slotAddNewNode(const QMap<QString,QString>& attribs) override;
+  void slotAddNewNodeToSubgraph(const QMap<QString,QString>& attribs, const QString& subgraph) override;
+  void slotAddExistingNodeToSubgraph(const QMap<QString,QString>& attribs, const QString& subgraph) override;
+  void slotMoveExistingNodeToMainGraph(const QMap<QString,QString>& attribs) override;
+  void slotAddNewSubgraph(const QMap<QString,QString>& attribs) override;
+  void slotAddNewEdge(const QString& src, const QString& tgt, const QMap<QString,QString>& attribs) override;
   void slotRemoveEdge(const QString& id) override;
   void slotRemoveElement(const QString& id) override;
   void slotClose() override;

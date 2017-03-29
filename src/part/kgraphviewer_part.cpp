@@ -240,48 +240,48 @@ void KGraphViewerPart::slotUpdate()
   d->m_widget->slotUpdate();
 }
 
-void KGraphViewerPart::prepareAddNewElement(QMap<QString,QString> attribs)
+void KGraphViewerPart::prepareAddNewElement(const QMap<QString,QString>& attribs)
 {
   d->m_widget->prepareAddNewElement(attribs);
 }
 
-void KGraphViewerPart::slotSetGraphAttributes(QMap<QString,QString> attribs)
+void KGraphViewerPart::slotSetGraphAttributes(const QMap<QString,QString>& attribs)
 {
   d->m_widget->graph()->setGraphAttributes(attribs);
 }
 
-void KGraphViewerPart::slotAddNewNode(QMap<QString,QString> attribs)
+void KGraphViewerPart::slotAddNewNode(const QMap<QString,QString>& attribs)
 {
   d->m_widget->graph()->addNewNode(attribs);
 }
 
-void KGraphViewerPart::slotAddNewSubgraph(QMap<QString,QString> attribs)
+void KGraphViewerPart::slotAddNewSubgraph(const QMap<QString,QString>& attribs)
 {
   d->m_widget->graph()->addNewSubgraph(attribs);
 }
 
-void KGraphViewerPart::slotAddNewNodeToSubgraph(QMap<QString,QString> attribs,
-    QString subgraph)
+void KGraphViewerPart::slotAddNewNodeToSubgraph(const QMap<QString,QString>& attribs,
+    const QString& subgraph)
 {
   d->m_widget->graph()->addNewNodeToSubgraph(attribs, subgraph);
 }
 
-void KGraphViewerPart::slotAddExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph)
+void KGraphViewerPart::slotAddExistingNodeToSubgraph(const QMap<QString,QString>& attribs,const QString& subgraph)
 {
   d->m_widget->graph()->addExistingNodeToSubgraph(attribs, subgraph);
 }
 
-void KGraphViewerPart::slotMoveExistingNodeToMainGraph(QMap<QString,QString> attribs)
+void KGraphViewerPart::slotMoveExistingNodeToMainGraph(const QMap<QString,QString>& attribs)
 {
   d->m_widget->graph()->moveExistingNodeToMainGraph(attribs);
 }
 
-void KGraphViewerPart::slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs)
+void KGraphViewerPart::slotAddNewEdge(const QString& src, const QString& tgt, const QMap<QString,QString>& attribs)
 {
   d->m_widget->graph()->addNewEdge(src,tgt,attribs);
 }
 
-void KGraphViewerPart::prepareAddNewEdge(QMap<QString,QString> attribs)
+void KGraphViewerPart::prepareAddNewEdge(const QMap<QString,QString>& attribs)
 {
   d->m_widget->prepareAddNewEdge(attribs);
 }

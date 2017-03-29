@@ -98,8 +98,8 @@ public:
   // Slots
   virtual void slotHide(KParts::Part* part) = 0;
   virtual void slotUpdate() = 0;
-  virtual void prepareAddNewElement(QMap<QString,QString> attribs) = 0;
-  virtual void prepareAddNewEdge(QMap<QString,QString> attribs) = 0;
+  virtual void prepareAddNewElement(const QMap<QString,QString>& attribs) = 0;
+  virtual void prepareAddNewEdge(const QMap<QString,QString>& attribs) = 0;
   virtual void setReadOnly() = 0;
   virtual void setReadWrite() = 0;
   virtual void saveTo(const QString& fileName) = 0;
@@ -109,13 +109,13 @@ public:
   virtual void slotAddAttribute(const QString&) = 0;
   virtual void slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue) = 0;
   virtual void slotRemoveAttribute(const QString&,const QString&) = 0;
-  virtual void slotSetGraphAttributes(QMap<QString,QString> attribs) = 0;
-  virtual void slotAddNewNode(QMap<QString,QString> attribs) = 0;
-  virtual void slotAddNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph) = 0;
-  virtual void slotAddExistingNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph) = 0;
-  virtual void slotMoveExistingNodeToMainGraph(QMap<QString,QString>) = 0;
-  virtual void slotAddNewSubgraph(QMap<QString,QString> attribs) = 0;
-  virtual void slotAddNewEdge(QString src, QString tgt, QMap<QString,QString> attribs) = 0;
+  virtual void slotSetGraphAttributes(const QMap<QString,QString>& attribs) = 0;
+  virtual void slotAddNewNode(const QMap<QString,QString>& attribs) = 0;
+  virtual void slotAddNewNodeToSubgraph(const QMap<QString,QString>& attribs, const QString& subgraph) = 0;
+  virtual void slotAddExistingNodeToSubgraph(const QMap<QString,QString>& attribs, const QString& subgraph) = 0;
+  virtual void slotMoveExistingNodeToMainGraph(const QMap<QString,QString>& attribs) = 0;
+  virtual void slotAddNewSubgraph(const QMap<QString,QString>& attribs) = 0;
+  virtual void slotAddNewEdge(const QString& src, const QString& tgt, const QMap<QString,QString>& attribs) = 0;
   virtual void slotRemoveEdge(const QString& id) = 0;
   virtual void slotRemoveElement(const QString& id) = 0;
   virtual void slotClose() = 0;
