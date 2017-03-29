@@ -103,8 +103,6 @@ install( FILES kgraphviewer-newedge.png DESTINATION ${KDE_INSTALL_DATADIR}/kgrap
 install( FILES "${CMAKE_CURRENT_BINARY_DIR}/org.kde.libkgraphviewer.metainfo.xml" DESTINATION ${KDE_INSTALL_METAINFODIR} )
 
 install(FILES kgraphviewer_interface.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
-install(FILES dotgraphview.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_export.h" DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
 
 install( FILES
     "${CMAKE_CURRENT_BINARY_DIR}/KGraphViewerPartConfig.cmake"
