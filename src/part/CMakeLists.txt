@@ -65,6 +65,7 @@ install( TARGETS kgraphviewerlib ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
 
 add_library(kgraphviewerpart MODULE ${kgraphviewerpart_PART_SRCS})
+generate_export_header(kgraphviewerpart BASE_NAME kgraphviewer)
 
 add_definitions(-DQT_STL)
 target_link_libraries(kgraphviewerpart Qt5::Core KF5::Parts gvc cgraph pathplan cdt kgraphviewerlib)
@@ -91,4 +92,4 @@ install( FILES "${CMAKE_CURRENT_BINARY_DIR}/org.kde.libkgraphviewer.metainfo.xml
 
 install(FILES kgraphviewer_interface.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
 install(FILES dotgraphview.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
-install(FILES kgraphviewer_export.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_export.h" DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
