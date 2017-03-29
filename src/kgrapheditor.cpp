@@ -173,7 +173,7 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
     // next time we enter the event loop...
     return nullptr;
   }
-  KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>("kgraphviewerpart", this);
+  KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>(this);
   KGraphViewerInterface *view = qobject_cast<KGraphViewerInterface *>(part);
   if (!view)
   {

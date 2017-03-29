@@ -50,7 +50,7 @@ namespace KGraphViewer
  *  // fetch the Part..
  *  KPluginFactory *factory = KPluginLoader("kgraphviewerpart").factory();
  *  if (factory) {
- *      KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>("kgraphviewerpart", this);
+ *      KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>(this);
  *
  *      // cast the part to the KGraphViewerInterface...
  *      KGraphViewerInterface* graph = qobject_cast<KGraphViewerInterface*>( part );
