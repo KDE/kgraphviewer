@@ -8,8 +8,10 @@ include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(FeatureSummary)
+include(GenerateExportHeader)
 include(ECMInstallIcons)
 include(ECMSetupVersion)
+include(ECMPackageConfigHelpers)
 
 # search packages used by KDE
 find_package(Qt5 CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)

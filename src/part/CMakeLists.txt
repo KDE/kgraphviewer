@@ -62,6 +62,11 @@ install( TARGETS kgraphviewerlib ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
+ecm_setup_version(PROJECT
+    VARIABLE_PREFIX KGRAPHVIEWERPART
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGraphViewerPartConfigVersion.cmake"
+)
+
 set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
 
 add_library(kgraphviewerpart MODULE ${kgraphviewerpart_PART_SRCS})
@@ -70,6 +75,14 @@ generate_export_header(kgraphviewerpart BASE_NAME kgraphviewer)
 target_link_libraries(kgraphviewerpart Qt5::Core KF5::Parts gvc cgraph pathplan cdt kgraphviewerlib)
 
 install( TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
+
+set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KGraphViewerPart")
+
+ecm_configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/KGraphViewerPartConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KGraphViewerPartConfig.cmake"
+    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+)
 
 ########### configure AppStream metadata ###############
 configure_file(org.kde.libkgraphviewer.metainfo.xml.in "${CMAKE_CURRENT_BINARY_DIR}/org.kde.libkgraphviewer.metainfo.xml" IMMEDIATE @ONLY)
@@ -92,3 +105,10 @@ install( FILES "${CMAKE_CURRENT_BINARY_DIR}/org.kde.libkgraphviewer.metainfo.xml
 install(FILES kgraphviewer_interface.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
 install(FILES dotgraphview.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_export.h" DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
+
+install( FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/KGraphViewerPartConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/KGraphViewerPartConfigVersion.cmake"
+  DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+  COMPONENT Devel
+)
