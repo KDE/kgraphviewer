@@ -38,9 +38,6 @@
 
 static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
-static const char description[] =
-I18N_NOOP("A Graphviz dot graph viewer by KDE");
-
 int main(int argc, char **argv)
 {
   QApplication app(argc, argv);
@@ -50,7 +47,7 @@ int main(int argc, char **argv)
   KAboutData about(QStringLiteral("kgrapheditor"),
                    i18n("KGraphEditor"),
                    KGRAPHVIEWER_VERSION_STRING,
-                   i18n(description),
+                   i18n("A Graphviz dot graph editor by KDE"),
                    KAboutLicense::GPL,
                    i18n("(C) 2005-2010 Gaël de Chalendar"),
                    QString(),
@@ -65,7 +62,6 @@ int main(int argc, char **argv)
   app.setWindowIcon(QIcon::fromTheme("kgraphviewer", app.windowIcon()));
 
   QCommandLineParser options;
-  options.setApplicationDescription(i18n(description));
   options.addHelpOption();
   options.addVersionOption();
   options.addPositionalArgument(QStringLiteral("url"), i18n("Path or URL to scan"), i18n("[url]"));
