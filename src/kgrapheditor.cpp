@@ -223,14 +223,16 @@ void KGraphEditor::fileOpen()
   // this slot is called whenever the File->Open menu is selected,
   // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
   // button is clicked
-  QStringList file_names = QFileDialog::getOpenFileNames(this, i18n("Select files"), QString(), QString("*.dot"));
+  QFileDialog fileDialog(this);
+  fileDialog.setMimeTypeFilters(QStringList(QStringLiteral("text/vnd.graphviz")));
+  fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+  fileDialog.setFileMode(QFileDialog::ExistingFiles);
+  if (fileDialog.exec() != QFileDialog::Accepted) {
+    return;
+  }
 
-  if (!file_names.empty())
-  {
-    foreach (const QString &fileName, file_names)
-    {
-      openUrl(fileName);
-    }
+  foreach (const QUrl& url, fileDialog.selectedUrls()) {
+    openUrl(url);
   }
 }
 
@@ -529,11 +531,16 @@ void KGraphEditor::fileSaveAs()
   QWidget* currentPage = m_widget->currentWidget();
   if (currentPage)
   {
-    QString fileName = QFileDialog::getSaveFileName(
-                currentPage,
-                i18n("Save current graph to..."),
-                QString(),
-                "*.dot");
+    QFileDialog fileDialog(currentPage, i18n("Save current graph"));
+    fileDialog.setMimeTypeFilters(QStringList(QStringLiteral("text/vnd.graphviz")));
+    fileDialog.setAcceptMode(QFileDialog::AcceptSave);
+    if (fileDialog.exec() != QFileDialog::Accepted) {
+      return;
+    }
+    const QString fileName = fileDialog.selectedFiles().at(0);
+    if (fileName.isEmpty()) {
+      return;
+    }
 
     m_tabsFilesMap[currentPage] = fileName;
     emit(saveTo(fileName));

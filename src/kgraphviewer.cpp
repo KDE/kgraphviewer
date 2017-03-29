@@ -195,20 +195,16 @@ void KGraphViewerWindow::fileOpen()
   // this slot is called whenever the File->Open menu is selected,
   // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
   // button is clicked
-  QStringList file_names = QFileDialog::getOpenFileNames(
-      this,
-      i18n("Select DOT File"),
-      QString(),
-      QString("*.dot"));
-  
-  if (!file_names.empty())
-  {
-    QStringList::const_iterator it, it_end;
-    it = file_names.constBegin(); it_end = file_names.constEnd();
-    for (; it != it_end; it++)
-    {
-      openUrl(*it);
-    }
+  QFileDialog fileDialog(this);
+  fileDialog.setMimeTypeFilters(QStringList(QStringLiteral("text/vnd.graphviz")));
+  fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+  fileDialog.setFileMode(QFileDialog::ExistingFiles);
+  if (fileDialog.exec() != QFileDialog::Accepted) {
+    return;
+  }
+
+  foreach (const QUrl& url, fileDialog.selectedUrls()) {
+    openUrl(url);
   }
 }
 
