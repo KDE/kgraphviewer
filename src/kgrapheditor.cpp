@@ -184,16 +184,16 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
   view->setReadWrite();
 
     QWidget *w = part->widget();
-    m_widget->addTab(w, QIcon::fromTheme("kgraphviewer"), "");
-    m_widget->setCurrentWidget(w);
-    createGUI(part);
-    m_closeAction->setEnabled(true);
 
-    m_manager->addPart(part, true);
     m_tabsPartsMap[w] = part;
     m_tabsFilesMap[w] = "";
     connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
-  slotSetActiveGraph(part);
+
+    m_manager->addPart(part, true);
+
+    m_widget->addTab(w, QIcon::fromTheme("kgraphviewer"), "");
+    m_widget->setCurrentWidget(w);
+    m_closeAction->setEnabled(true);
   return part;
 }
 

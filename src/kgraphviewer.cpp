@@ -162,12 +162,7 @@ void KGraphViewerWindow::openUrl(const QUrl& url)
     if (part)
     {
       QString fileName = url.url();
-      QString label = fileName.section('/',-1,-1);
       QWidget *w = part->widget();
-      m_widget->addTab(w, QIcon::fromTheme("kgraphviewer"), label);
-      m_widget->setCurrentWidget(w);
-      createGUI(part);
-      m_closeAction->setEnabled(true);
 
       part->openUrl( url );
       
@@ -179,13 +174,18 @@ void KGraphViewerWindow::openUrl(const QUrl& url)
       }
 
       m_openedFiles.push_back(fileName);
-      m_manager->addPart( part, true );
       m_tabsPartsMap[w] = part;
       m_tabsFilesMap[w] = fileName;
       connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
 
       connect(part, SIGNAL(hoverEnter(QString)), this, SLOT(slotHoverEnter(QString)));
       connect(part, SIGNAL(hoverLeave(QString)), this, SLOT(slotHoverLeave(QString)));
+
+      m_manager->addPart( part, true );
+      const QString label = fileName.section('/', -1, -1);
+      m_widget->addTab(w, QIcon::fromTheme("kgraphviewer"), label);
+      m_widget->setCurrentWidget(w);
+      m_closeAction->setEnabled(true);
     }
 }
 
