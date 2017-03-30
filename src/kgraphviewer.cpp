@@ -167,6 +167,7 @@ void KGraphViewerWindow::openUrl(const QUrl& url)
       m_widget->addTab(w, QIcon::fromTheme("kgraphviewer"), label);
       m_widget->setCurrentWidget(w);
       createGUI(part);
+      m_closeAction->setEnabled(true);
 
       part->openUrl( url );
       
@@ -182,7 +183,6 @@ void KGraphViewerWindow::openUrl(const QUrl& url)
       m_tabsPartsMap[w] = part;
       m_tabsFilesMap[w] = fileName;
       connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
-      connect(part,SIGNAL(close()),this,SLOT(close()));
 
       connect(part, SIGNAL(hoverEnter(QString)), this, SLOT(slotHoverEnter(QString)));
       connect(part, SIGNAL(hoverLeave(QString)), this, SLOT(slotHoverLeave(QString)));
@@ -224,6 +224,10 @@ void KGraphViewerWindow::setupActions()
   KSharedConfig::Ptr config = KSharedConfig::openConfig();
   m_rfa->loadEntries(KConfigGroup(config, "kgraphviewer recent files"));
   
+  m_closeAction = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT(close()) );
+  m_closeAction->setWhatsThis(i18n("Closes the current file"));
+  m_closeAction->setEnabled(false);
+
   QAction* quitAction = actionCollection()->addAction( KStandardAction::Quit, "file_quit", qApp, SLOT(quit()) );
   quitAction->setWhatsThis(i18n("Quits KGraphViewer."));
   
@@ -523,6 +527,7 @@ void KGraphViewerWindow::close(int index)
   delete part; part = nullptr;
 /*  delete tab;
   tab = nullptr;*/
+  m_closeAction->setEnabled(m_widget->count() > 0);
 }
 
 void KGraphViewerWindow::close()
@@ -537,9 +542,9 @@ void KGraphViewerWindow::close()
 void KGraphViewerWindow::newTabSelectedSlot(int index)
 {
   emit(hide((KParts::Part*)(m_manager->activePart())));
-  if (!m_tabsPartsMap.isEmpty())
-  {
-    QWidget *tab = m_widget->widget(index);
+
+  QWidget *tab = m_widget->widget(index);
+  if (tab) {
     m_manager->setActivePart(m_tabsPartsMap[tab]);
   }
 }

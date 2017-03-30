@@ -86,7 +86,6 @@ Q_SIGNALS:
   void removeEdge(const QString&);
   /** signals that the user has activated a remove element command */
   void removeElement(const QString&);
-  void close();
   void selectionIs(const QList<QString>, const QPoint&);
   void contextMenuEvent(const QString&, const QPoint&);
   /** let the application tweak the created edge if necessary */
@@ -123,7 +122,6 @@ public Q_SLOTS:
   void slotAddNewEdge(const QString& src, const QString& tgt, const QMap<QString,QString>& attribs) override;
   void slotRemoveEdge(const QString& id) override;
   void slotRemoveElement(const QString& id) override;
-  void slotClose() override;
   void slotSelectNode(const QString&) override;
   void slotSetHighlighting(bool highlightingValue) override;
   void slotPrepareToSelect() override;

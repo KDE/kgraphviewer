@@ -187,6 +187,7 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
     m_widget->addTab(w, QIcon::fromTheme("kgraphviewer"), "");
     m_widget->setCurrentWidget(w);
     createGUI(part);
+    m_closeAction->setEnabled(true);
 
     m_manager->addPart(part, true);
     m_tabsPartsMap[w] = part;
@@ -247,6 +248,10 @@ void KGraphEditor::setupActions()
   m_rfa->loadEntries(KConfigGroup(KSharedConfig::openConfig(), "kgrapheditor"));
   actionCollection()->addAction( KStandardAction::Save, "file_save", this, SLOT(fileSave()) );
   actionCollection()->addAction( KStandardAction::SaveAs, "file_save_as", this, SLOT(fileSaveAs()) );
+
+  m_closeAction = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT(close()) );
+  m_closeAction->setWhatsThis(i18n("Closes the current file"));
+  m_closeAction->setEnabled(false);
 
   actionCollection()->addAction( KStandardAction::Quit, "file_quit", qApp, SLOT(quit()) );
 
@@ -506,6 +511,7 @@ void KGraphEditor::close(int index)
   delete part; part = nullptr;
 /*  delete tab;
   tab = nullptr;*/
+  m_closeAction->setEnabled(m_widget->count() > 0);
 }
 
 void KGraphEditor::close()
@@ -551,9 +557,8 @@ void KGraphEditor::newTabSelectedSlot(int index)
 {
 //   qCDebug(debugCategory) << tab;
   emit(hide((KParts::Part*)(m_manager->activePart())));
-  if (!m_tabsPartsMap.isEmpty())
-  {
-    QWidget *tab = m_widget->widget(index);
+  QWidget *tab = m_widget->widget(index);
+  if (tab) {
     slotSetActiveGraph(m_tabsPartsMap[tab]);
     m_manager->setActivePart(m_tabsPartsMap[tab]);
   }

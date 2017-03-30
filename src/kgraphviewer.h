@@ -118,6 +118,7 @@ private:
 
   KToggleAction *m_toolbarAction;
   KToggleAction *m_statusbarAction;
+  QAction *m_closeAction;
 
   QStringList m_openedFiles;
 

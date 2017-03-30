@@ -125,9 +125,6 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
   // notify the part that this is our internal widget
   setWidget(d->m_widget);
 
-  QAction* closeAct = actionCollection()->addAction( KStandardAction::Close, "file_close", this, SLOT(slotClose()) );
-  closeAct->setWhatsThis(i18n("Closes the current tab"));
-
   QAction* printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", d->m_widget, SLOT(print()));
   actionCollection()->setDefaultShortcut(printAct, Qt::ControlModifier + Qt::Key_P);
   printAct->setWhatsThis(i18n("Print the graph using current page setup settings"));
@@ -170,11 +167,6 @@ const DotGraph* KGraphViewerPart::graph() const
 void KGraphViewerPart::setBackgroundColor(const QColor& color)
 {
   d->m_widget->setBackgroundColor(color);
-}
-
-void KGraphViewerPart::slotClose()
-{
-  emit close();
 }
 
 bool KGraphViewerPart::closeUrl()

@@ -7,8 +7,6 @@
     <Action name="file_print" group="file_merge"/>
     <Action name="file_print_preview" group="file_merge"/>
     <Action name="file_page_setup" group="file_merge"/>
-    <Separator group="file_merge"/>
-    <Action name="file_close" group="file_merge"/>
   </Menu>
   <Menu name="view">
     <Action name="view_zoom_in"/>
@@ -23,7 +21,6 @@
   </Menu>
 </MenuBar>
 <ToolBar name="mainToolBar">
-  <Action name="file_close"/>
   <!--Action name="file_print"/-->
   <Action name="file_print_preview"/>
   <!--Action name="file_page_setup"/-->

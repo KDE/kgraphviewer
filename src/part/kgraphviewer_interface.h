@@ -118,7 +118,6 @@ public:
   virtual void slotAddNewEdge(const QString& src, const QString& tgt, const QMap<QString,QString>& attribs) = 0;
   virtual void slotRemoveEdge(const QString& id) = 0;
   virtual void slotRemoveElement(const QString& id) = 0;
-  virtual void slotClose() = 0;
   virtual void slotSelectNode(const QString&) = 0;
   virtual void slotSetHighlighting(bool highlightingValue) = 0;
   virtual void slotPrepareToSelect() = 0;
