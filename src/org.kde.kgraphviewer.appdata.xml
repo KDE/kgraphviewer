@@ -29,7 +29,7 @@
   <name xml:lang="tr">KGraphViewer</name>
   <name xml:lang="uk">KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewerxx</name>
-  <summary>A Graphviz DOT graph viewer by KDE</summary>
+  <summary>A Graphviz DOT graph viewer</summary>
   <summary xml:lang="bs">Graphviz tačkasti grafički preglednik za KDE</summary>
   <summary xml:lang="ca">Un visor de gràfics DOT de Graphviz pel KDE</summary>
   <summary xml:lang="ca-valencia">Un visor de gràfics DOT de Graphviz pel KDE</summary>
