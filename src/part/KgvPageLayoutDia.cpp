@@ -175,7 +175,7 @@ KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
 
     setFocusPolicy( Qt::StrongFocus );
     setFocus();
-    connect(this,SIGNAL(okClicked()),SLOT(slotOk()));
+    // TODO: make validation query code in slotOk work, or rather port to KWarningMessage
 }
 
 /*==================== constructor ===============================*/
@@ -203,7 +203,8 @@ KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
 
     setFocusPolicy( Qt::StrongFocus );
     setFocus();
-    connect(this,SIGNAL(okClicked()),SLOT(slotOk()));
+
+    // TODO: make validation query code in slotOk work, or rather port to KWarningMessage
 }
 
 /*===================== destructor ===============================*/
