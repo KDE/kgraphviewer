@@ -52,7 +52,7 @@ int main(int argc, char **argv)
   about.addAuthor( i18n("Matthias Peinhardt"), i18n("Contributor"), "matthias.peinhardt@googlemail.com" );
   about.addAuthor( i18n("Sandro Andrade"), i18n("Contributor"), "sandro.andrade@gmail.com" );
   about.addAuthor( i18n("Milian Wolff"), i18n("Contributor"), "mail@milianw.de" );
-  about.addAuthor( i18n("Martin Sandmsark"), i18n("Port to KF5"), "martin.sandsmark@kde.org" );
+  about.addAuthor( i18n("Martin Sandsmark"), i18n("Port to KF5"), "martin.sandsmark@kde.org" );
   
   app.setOrganizationDomain(QStringLiteral("kde.org"));
   app.setOrganizationName(QStringLiteral("KDE"));
