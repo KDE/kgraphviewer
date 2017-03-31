@@ -110,6 +110,9 @@ KGraphViewerWindow::~KGraphViewerWindow()
   KSharedConfig::Ptr config = KSharedConfig::openConfig();
   if (m_rfa)
     m_rfa->saveEntries(KConfigGroup(config, "kgraphviewer recent files"));
+
+  // delete partsmanager explicitly, to avoid activePartChanged being emitted from here
+  delete m_manager;
 }
 
 void KGraphViewerWindow::reloadPreviousFiles()
