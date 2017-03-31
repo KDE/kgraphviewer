@@ -46,7 +46,9 @@ int main(int argc, char **argv)
                    KGRAPHVIEWER_VERSION_STRING,
                    i18n("A Graphviz DOT graph viewer by KDE"),
                    KAboutLicense::GPL,
-                   i18n("(C) 2005-2010 Gaël de Chalendar"));
+                   i18n("(C) 2005-2010 Gaël de Chalendar"),
+                   QString(),
+                   QStringLiteral("https://www.kde.org/applications/graphics/kgraphviewer"));
   about.addAuthor( i18n("Gaël de Chalendar"), i18n("Original Author and current maintainer"), "kleag@free.fr" );
   about.addAuthor( i18n("Reimar Döffinger"), i18n("Contributor"), "kde@reimardoeffinger.de" );
   about.addAuthor( i18n("Matthias Peinhardt"), i18n("Contributor"), "matthias.peinhardt@googlemail.com" );
