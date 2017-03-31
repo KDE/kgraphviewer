@@ -64,10 +64,14 @@ KgeConfigurationDialog::KgeConfigurationDialog (QWidget *parent, const QString& 
   addPage( page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
   addPage( page2, i18n("Opening"), "document-open", i18n("Opening"), false);
   addPage( page3, i18n("Session Management"), "preferences-other", i18n("Session Management"), false);
-  connect(m_parsingWidget->parsingMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
-  connect(m_reloadWidget->reloadOnChangeMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
-  connect(m_openingWidget->openInExistingWindowMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
-  connect(m_reopeningWidget->reopenPreviouslyOpenedFilesMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
+  connect(m_parsingWidget->parsingMode, &QGroupBox::clicked,
+          this, &KgeConfigurationDialog::settingChanged);
+  connect(m_reloadWidget->reloadOnChangeMode, &QGroupBox::clicked,
+          this, &KgeConfigurationDialog::settingChanged);
+  connect(m_openingWidget->openInExistingWindowMode, &QGroupBox::clicked,
+          this, &KgeConfigurationDialog::settingChanged);
+  connect(m_reopeningWidget->reopenPreviouslyOpenedFilesMode, &QGroupBox::clicked,
+          this, &KgeConfigurationDialog::settingChanged);
 }
 
 KgeConfigurationDialog::~KgeConfigurationDialog ()

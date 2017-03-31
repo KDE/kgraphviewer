@@ -79,20 +79,25 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
   // the message should be given (or possible to be given) by the part user
   QAction* removeEdgeAction = new QAction(i18n("Remove selected edge(s)"), this);
   m_popup->addAction(removeEdgeAction);
-  connect(removeEdgeAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveEdge()));
+  connect(removeEdgeAction, &QAction::triggered,
+          this, &CanvasEdge::slotRemoveEdge);
   
   
-  connect(e,SIGNAL(changed()),this,SLOT(modelChanged()));
-  connect(this, SIGNAL(selected(CanvasEdge*,Qt::KeyboardModifiers)), view, SLOT(slotEdgeSelected(CanvasEdge*,Qt::KeyboardModifiers)));
+  connect(e, &GraphEdge::changed,
+          this, &CanvasEdge::modelChanged);
+  connect(this, &CanvasEdge::selected,
+          view, &DotGraphView::slotEdgeSelected);
   
-  connect(this, SIGNAL(edgeContextMenuEvent(QString,QPoint)), view, SLOT(slotContextMenuEvent(QString,QPoint)));
+  connect(this, &CanvasEdge::edgeContextMenuEvent,
+          view, &DotGraphView::slotContextMenuEvent);
 
   setAcceptHoverEvents ( true );
 
   qCDebug(debugCategory) << "connect slotElementHoverEnter";
-  connect(this, SIGNAL(hoverEnter(CanvasEdge*)), view, SLOT(slotElementHoverEnter(CanvasEdge*)));
-  connect(this, SIGNAL(hoverLeave(CanvasEdge*)), view, SLOT(slotElementHoverLeave(CanvasEdge*)));
-  
+  connect(this, &CanvasEdge::hoverEnter,
+          view, static_cast<void(DotGraphView::*)(CanvasEdge*)>(&DotGraphView::slotElementHoverEnter));
+  connect(this, &CanvasEdge::hoverLeave,
+          view, static_cast<void(DotGraphView::*)(CanvasEdge*)>(&DotGraphView::slotElementHoverLeave));
 } 
 
 CanvasEdge::~CanvasEdge()

@@ -151,14 +151,15 @@ bool DotGraph::parseDot(const QString& str)
   qCDebug(debugCategory) << "mutex acquired ";
   if (m_dot)
   {
-    disconnect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
-    disconnect(m_dot,SIGNAL(error(QProcess::ProcessError)),this,SLOT(slotDotRunningError(QProcess::ProcessError)));
+    disconnect(m_dot, nullptr, this, nullptr);
     m_dot->kill();
     delete m_dot;
   }
   m_dot = new QProcess();
-  connect(m_dot,SIGNAL(finished(int,QProcess::ExitStatus)),this,SLOT(slotDotRunningDone(int,QProcess::ExitStatus)));
-  connect(m_dot,SIGNAL(error(QProcess::ProcessError)),this,SLOT(slotDotRunningError(QProcess::ProcessError)));
+  connect(m_dot, static_cast<void(QProcess::*)(int,QProcess::ExitStatus)>(&QProcess::finished),
+          this, &DotGraph::slotDotRunningDone);
+  connect(m_dot, static_cast<void(QProcess::*)(QProcess::ProcessError)>(&QProcess::error),
+          this, &DotGraph::slotDotRunningError);
   m_dot->start(m_layoutCommand, options);
   qCDebug(debugCategory) << "process started";
  return true;

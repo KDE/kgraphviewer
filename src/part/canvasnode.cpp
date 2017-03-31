@@ -65,7 +65,8 @@ CanvasNode::CanvasNode(DotGraphView* v,
 
 {
   qCDebug(debugCategory) << s->id();
-  connect(s,SIGNAL(changed()),this,SLOT(modelChanged()));
+  connect(s, &GraphNode::changed,
+          this, &CanvasNode::modelChanged);
 
   QString tipStr;
   QString id = s->id();

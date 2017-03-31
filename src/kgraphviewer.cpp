@@ -67,8 +67,10 @@ KGraphViewerWindow::KGraphViewerWindow()
 //   std::cerr << "Creating tab widget" << std::endl;
   m_widget = new QTabWidget(this);
   m_widget->setTabsClosable(true);
-  connect(m_widget, SIGNAL(tabCloseRequested(int)), this, SLOT(close(int)));
-  connect(m_widget, SIGNAL(currentChanged(int)), this, SLOT(newTabSelectedSlot(int)));
+  connect(m_widget, &QTabWidget::tabCloseRequested,
+          this, static_cast<void(KGraphViewerWindow::*)(int)>(&KGraphViewerWindow::close));
+  connect(m_widget, &QTabWidget::currentChanged,
+          this, &KGraphViewerWindow::newTabSelectedSlot);
   
   setCentralWidget(m_widget);
   
@@ -91,8 +93,8 @@ KGraphViewerWindow::KGraphViewerWindow()
   m_manager = new KParts::PartManager( this );
   
   // When the manager says the active part changes, the window updates (recreates) the GUI
-  connect( m_manager, SIGNAL(activePartChanged(KParts::Part*)),
-           this, SLOT(createGUI(KParts::Part*)) );
+  connect(m_manager, &KParts::PartManager::activePartChanged,
+          this, &KGraphViewerWindow::createGUI);
 
   setupGUI(ToolBar | Keys | StatusBar | Save);
 
@@ -178,8 +180,10 @@ void KGraphViewerWindow::openUrl(const QUrl& url)
       m_tabsFilesMap[w] = fileName;
       connect(this,SIGNAL(hide(KParts::Part*)),part,SLOT(slotHide(KParts::Part*)));
 
-      connect(part, SIGNAL(hoverEnter(QString)), this, SLOT(slotHoverEnter(QString)));
-      connect(part, SIGNAL(hoverLeave(QString)), this, SLOT(slotHoverLeave(QString)));
+      connect(part, SIGNAL(hoverEnter(QString)),
+              this, SLOT(slotHoverEnter(QString)));
+      connect(part, SIGNAL(hoverLeave(QString)),
+              this, SLOT(slotHoverLeave(QString)));
 
       m_manager->addPart( part, true );
       const QString label = fileName.section('/', -1, -1);
@@ -293,8 +297,8 @@ void KGraphViewerWindow::optionsConfigureToolbars()
 
   // use the standard toolbar editor
   KEditToolBar dlg(factory());
-  connect(&dlg, SIGNAL(newToolbarConfig()),
-          this, SLOT(applyNewToolbarConfig()));
+  connect(&dlg, &KEditToolBar::newToolbarConfig,
+          this, &KGraphViewerWindow::applyNewToolbarConfig);
   dlg.exec();
 }
 
@@ -308,7 +312,8 @@ void KGraphViewerWindow::optionsConfigure()
  
   //KConfigDialog didn't find an instance of this dialog, so lets create it : 
   KgvConfigurationDialog* dialog = new KgvConfigurationDialog( this, "settings", KGraphViewerSettings::self());
-  connect(dialog,SIGNAL(backgroundColorChanged(QColor)),this,SLOT(slotBackgroundColorChanged(QColor)));
+  connect(dialog, &KgvConfigurationDialog::backgroundColorChanged,
+          this, &KGraphViewerWindow::slotBackgroundColorChanged);
   Ui::KGraphViewerPreferencesParsingWidget*  parsingWidget = dialog->parsingWidget;
   qCDebug(debugCategory) << KGraphViewerSettings::parsingMode();
   if (KGraphViewerSettings::parsingMode() == "external")
@@ -319,8 +324,10 @@ void KGraphViewerWindow::optionsConfigure()
   {
     parsingWidget->internal->setChecked(true);
   }
-  connect((QObject*)parsingWidget->external, SIGNAL(toggled(bool)), this, SLOT(slotParsingModeExternalToggled(bool)) );
-  connect((QObject*)parsingWidget->internal, SIGNAL(toggled(bool)), this, SLOT(slotParsingModeInternalToggled(bool)) );
+  connect(parsingWidget->external, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotParsingModeExternalToggled);
+  connect(parsingWidget->internal, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotParsingModeInternalToggled);
 
   Ui::KGraphViewerPreferencesReloadWidget*  reloadWidget = dialog->reloadWidget;
   qCDebug(debugCategory) << KGraphViewerSettings::reloadOnChangeMode();
@@ -337,9 +344,12 @@ void KGraphViewerWindow::optionsConfigure()
     reloadWidget->ask->setChecked(true);
   }
   
-  connect((QObject*)reloadWidget->yes, SIGNAL(toggled(bool)), this, SLOT(slotReloadOnChangeModeYesToggled(bool)) );
-  connect((QObject*)reloadWidget->no, SIGNAL(toggled(bool)), this, SLOT(slotReloadOnChangeModeNoToggled(bool)) );
-  connect((QObject*)reloadWidget->ask, SIGNAL(toggled(bool)), this, SLOT(slotReloadOnChangeModeAskToggled(bool)) );
+  connect(reloadWidget->yes, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotReloadOnChangeModeYesToggled);
+  connect(reloadWidget->no, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotReloadOnChangeModeNoToggled);
+  connect(reloadWidget->ask, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotReloadOnChangeModeAskToggled);
 
   Ui::KGraphViewerPreferencesOpenInExistingWindowWidget*  openingWidget = dialog->openingWidget;
   if (KGraphViewerSettings::openInExistingWindowMode() == "true")
@@ -355,9 +365,12 @@ void KGraphViewerWindow::optionsConfigure()
     openingWidget->ask->setChecked(true);
   }
   
-  connect((QObject*)openingWidget->yes, SIGNAL(toggled(bool)), this, SLOT(slotOpenInExistingWindowModeYesToggled(bool)) );
-  connect((QObject*)openingWidget->no, SIGNAL(toggled(bool)), this, SLOT(slotOpenInExistingWindowModeNoToggled(bool)) );
-  connect((QObject*)openingWidget->ask, SIGNAL(toggled(bool)), this, SLOT(slotOpenInExistingWindowModeAskToggled(bool)) );
+  connect(openingWidget->yes, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotOpenInExistingWindowModeYesToggled);
+  connect(openingWidget->no, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotOpenInExistingWindowModeNoToggled);
+  connect(openingWidget->ask, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotOpenInExistingWindowModeAskToggled);
   
   Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget*  reopeningWidget = dialog->reopeningWidget;
   if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "true")
@@ -373,12 +386,13 @@ void KGraphViewerWindow::optionsConfigure()
     reopeningWidget->ask->setChecked(true);
   }
   
-  connect((QObject*)reopeningWidget->yes, SIGNAL(toggled(bool)), this, SLOT(slotReopenPreviouslyOpenedFilesModeYesToggled(bool)) );
-  connect((QObject*)reopeningWidget->no, SIGNAL(toggled(bool)), this, SLOT(slotReopenPreviouslyOpenedFilesModeNoToggled(bool)) );
-  connect((QObject*)reopeningWidget->ask, SIGNAL(toggled(bool)), this, SLOT(slotReopenPreviouslyOpenedFilesModeAskToggled(bool)) );
+  connect(reopeningWidget->yes, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeYesToggled);
+  connect(reopeningWidget->no, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeNoToggled);
+  connect(reopeningWidget->ask, &QRadioButton::toggled,
+          this, &KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeAskToggled);
   
-  connect(dialog, SIGNAL(settingsChanged()), this, SLOT(settingsChanged()));
-
   dialog->show();
 }
 

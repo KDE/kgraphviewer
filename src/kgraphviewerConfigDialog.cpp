@@ -75,11 +75,16 @@ KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& 
   addPage( page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
   addPage( page2, i18n("Opening"), "document-open", i18n("Opening"), false); 
   addPage( page3, i18n("Session Management"), "preferences-other", i18n("Session Management"), false); 
-  connect(parsingWidget->parsingMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
-  connect(reloadWidget->reloadOnChangeMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
-  connect(openingWidget->openInExistingWindowMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
-  connect(reopeningWidget->reopenPreviouslyOpenedFilesMode, SIGNAL(clicked(int)), this, SLOT(settingChanged(int)));
-  connect(appearanceWidget->kcolorbutton, SIGNAL(changed(QColor)), this, SLOT(slotBackgroundColorChanged(QColor)));
+  connect(parsingWidget->parsingMode, &QGroupBox::clicked,
+          this, &KgvConfigurationDialog::settingChanged);
+  connect(reloadWidget->reloadOnChangeMode, &QGroupBox::clicked,
+          this, &KgvConfigurationDialog::settingChanged);
+  connect(openingWidget->openInExistingWindowMode, &QGroupBox::clicked,
+          this, &KgvConfigurationDialog::settingChanged);
+  connect(reopeningWidget->reopenPreviouslyOpenedFilesMode, &QGroupBox::clicked,
+          this, &KgvConfigurationDialog::settingChanged);
+  connect(appearanceWidget->kcolorbutton, &KColorButton::changed,
+          this, &KgvConfigurationDialog::slotBackgroundColorChanged);
 }
 
 KgvConfigurationDialog::~KgvConfigurationDialog () 

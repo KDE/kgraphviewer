@@ -458,8 +458,8 @@ void DotGraphViewPrivate::setupPopup()
     "generate a graph in the xdot format on its standard output. For example, to "
     "manually specify the <tt>G</tt> option to the dot command, type in: "
     "<tt>dot -Gname=MyGraphName -Txdot </tt>"));
-  QObject::connect(m_layoutAlgoSelectAction, SIGNAL(triggered(QString)),
-          q, SLOT(slotSelectLayoutAlgo(QString)));
+  QObject::connect(m_layoutAlgoSelectAction, static_cast<void(KSelectAction::*)(const QString&)>(&KSelectAction::triggered),
+          q, &DotGraphView::slotSelectLayoutAlgo);
   
   
   QMenu* layoutPopup = m_popup->addMenu(i18n("Layout"));
@@ -486,7 +486,8 @@ void DotGraphViewPrivate::setupPopup()
   QAction* exportToImageAction = new QAction(i18n("As Image..."),q);
   exportToImageAction->setWhatsThis(i18n("Export the graph to an image file."));
   actionCollection()->addAction("export_image", exportToImageAction);
-  QObject::connect(exportToImageAction,SIGNAL(triggered(bool)), q, SLOT(slotExportImage()));
+  QObject::connect(exportToImageAction, &QAction::triggered,
+                   q, &DotGraphView::slotExportImage);
   
   file_exportMenu->addAction(exportToImageAction);
   
@@ -499,10 +500,8 @@ void DotGraphViewPrivate::setupPopup()
     actionCollection()->addAction("view_bev_enabled",m_bevEnabledAction);
     actionCollection()->setDefaultShortcut(m_bevEnabledAction, Qt::CTRL+Qt::Key_B);
     m_bevEnabledAction->setWhatsThis(i18n("Enables or disables the Bird's-eye View"));
-    QObject::connect(m_bevEnabledAction,
-            SIGNAL(toggled(bool)),
-            q,
-            SLOT(slotBevToggled()));
+    QObject::connect(m_bevEnabledAction, &QAction::triggered,
+                     q, &DotGraphView::slotBevToggled);
     m_bevEnabledAction->setCheckable(true);
     m_popup->addAction(m_bevEnabledAction);
     
@@ -515,32 +514,32 @@ void DotGraphViewPrivate::setupPopup()
   btla->setWhatsThis(i18n("Puts the Bird's-eye View in the top-left corner."));
   btla->setCheckable(true);
   actionCollection()->addAction("bev_top_left",btla);
-  QObject::connect(btla, SIGNAL(triggered(bool)),
-          q, SLOT(slotBevTopLeft()));
+  QObject::connect(btla, &QAction::triggered,
+                   q, &DotGraphView::slotBevTopLeft);
   QAction* btra = new QAction(i18n("Top Right"), q);
   btra->setWhatsThis(i18n("Puts the Bird's-eye View in the top-right corner."));
   btra->setCheckable(true);
   actionCollection()->addAction("bev_top_right",btra);
-  QObject::connect(btra, SIGNAL(triggered(bool)),
-          q, SLOT(slotBevTopRight()));
+  QObject::connect(btra, &QAction::triggered,
+                   q, &DotGraphView::slotBevTopRight);
   QAction* bbla = new QAction(i18n("Bottom Left"), q);
   bbla->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-left corner."));
   bbla->setCheckable(true);
   actionCollection()->addAction("bev_bottom_left",bbla);
-  QObject::connect(bbla, SIGNAL(triggered(bool)),
-          q, SLOT(slotBevBottomLeft()));
+  QObject::connect(bbla, &QAction::triggered,
+                   q, &DotGraphView::slotBevBottomLeft);
   QAction* bbra = new QAction(i18n("Bottom Right"), q);
   bbra->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-right corner."));
   bbra->setCheckable(true);
   actionCollection()->addAction("bev_bottom_right",bbra);
-  QObject::connect(bbra, SIGNAL(triggered(bool)),
-          q, SLOT(slotBevBottomRight()));
+  QObject::connect(bbra, &QAction::triggered,
+                   q, &DotGraphView::slotBevBottomRight);
   QAction* bba = new QAction(i18n("Automatic"), q);
   bba->setWhatsThis(i18n("Let KGraphViewer automatically choose the position of the Bird's-eye View."));
   bba->setCheckable(true);
   actionCollection()->addAction("bev_automatic",bba);
-  QObject::connect(bba, SIGNAL(triggered(bool)),
-          q, SLOT(slotBevAutomatic()));
+  QObject::connect(bba, &QAction::triggered,
+                   q, &DotGraphView::slotBevAutomatic);
   m_bevPopup->addAction(btla);
   m_bevPopup->addAction(btra);
   m_bevPopup->addAction(bbla);
@@ -649,10 +648,10 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   setBackgroundRole(QPalette::Window);
 //   viewport()->setMouseTracking(true);
   
-  connect(d->m_birdEyeView, SIGNAL(zoomRectMovedTo(QPointF)),
-          this, SLOT(zoomRectMovedTo(QPointF)));
-  connect(d->m_birdEyeView, SIGNAL(zoomRectMoveFinished()),
-          this, SLOT(zoomRectMoveFinished()));
+  connect(d->m_birdEyeView, &PannerView::zoomRectMovedTo,
+          this, &DotGraphView::zoomRectMovedTo);
+  connect(d->m_birdEyeView, &PannerView::zoomRectMoveFinished,
+          this, &DotGraphView::zoomRectMoveFinished);
 
   setWhatsThis( i18n( 
     "<h1>GraphViz dot format graph visualization</h1>"
@@ -689,8 +688,10 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
   setDragMode(NoDrag);
   setRenderHint(QPainter::Antialiasing);
 
-  connect(&d->m_loadThread, SIGNAL(finished()), this, SLOT(slotAGraphReadFinished()));
-  connect(&d->m_layoutThread, SIGNAL(finished()), this, SLOT(slotAGraphLayoutFinished()));
+  connect(&d->m_loadThread, &LoadAGraphThread::finished,
+          this, &DotGraphView::slotAGraphReadFinished);
+  connect(&d->m_layoutThread, &LoadAGraphThread::finished,
+          this, &DotGraphView::slotAGraphLayoutFinished);
 }
 
 DotGraphView::~DotGraphView()
@@ -743,7 +744,8 @@ bool DotGraphView::initEmpty()
 
   delete d->m_graph;
   d->m_graph = new DotGraph();
-  connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+  connect(d->m_graph, &DotGraph::readyToDisplay,
+          this, &DotGraphView::displayGraph);
 
   if (d->m_readWrite)
   {
@@ -792,10 +794,14 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   d->m_graph = new DotGraph(layoutCommand,"");
   d->m_graph->setUseLibrary(true);
 
-  connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
-  connect(this, SIGNAL(removeEdge(QString)), d->m_graph, SLOT(removeEdge(QString)));
-  connect(this, SIGNAL(removeNodeNamed(QString)), d->m_graph, SLOT(removeNodeNamed(QString)));
-  connect(this, SIGNAL(removeElement(QString)), d->m_graph, SLOT(removeElement(QString)));
+  connect(d->m_graph, &DotGraph::readyToDisplay,
+          this, &DotGraphView::displayGraph);
+  connect(this, &DotGraphView::removeEdge,
+          d->m_graph, &DotGraph::removeEdge);
+  connect(this, &DotGraphView::removeNodeNamed,
+          d->m_graph, &DotGraph::removeNodeNamed);
+  connect(this, &DotGraphView::removeElement,
+          d->m_graph, &DotGraph::removeElement);
 
   if (d->m_readWrite)
   {
@@ -822,7 +828,8 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   // std::cerr << "After m_birdEyeView set canvas" << std::endl;
 
   setScene(newCanvas);
-  connect(newCanvas,SIGNAL(selectionChanged()),this,SLOT(slotSelectionChanged()));
+  connect(newCanvas, &QGraphicsScene::selectionChanged,
+          this, &DotGraphView::slotSelectionChanged);
   d->m_canvas = newCanvas;
 
   d->m_cvZoom = 0;
@@ -851,7 +858,8 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   delete d->m_graph;
 
   d->m_graph = new DotGraph(layoutCommand,dotFileName);
-  connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+  connect(d->m_graph, &DotGraph::readyToDisplay,
+          this, &DotGraphView::displayGraph);
 
   if (d->m_readWrite)
   {
@@ -874,7 +882,8 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
 
   setScene(newCanvas);
-  connect(newCanvas,SIGNAL(selectionChanged()),this,SLOT(slotSelectionChanged()));
+  connect(newCanvas, &QGraphicsScene::selectionChanged,
+          this, &DotGraphView::slotSelectionChanged);
   d->m_canvas = newCanvas;
 
   QGraphicsSimpleTextItem* loadingLabel = newCanvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
@@ -930,7 +939,8 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
   d->m_graph = new DotGraph(layoutCommand,"");
   d->m_graph->setUseLibrary(true);
   
-  connect(d->m_graph,SIGNAL(readyToDisplay()),this,SLOT(displayGraph()));
+  connect(d->m_graph, &DotGraph::readyToDisplay,
+          this, &DotGraphView::displayGraph);
   
   if (d->m_readWrite)
   {
@@ -945,7 +955,8 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
   
   d->m_birdEyeView->setScene(newCanvas);
   setScene(newCanvas);
-  connect(newCanvas,SIGNAL(selectionChanged()),this,SLOT(slotSelectionChanged()));
+  connect(newCanvas, &QGraphicsScene::selectionChanged,
+          this, &DotGraphView::slotSelectionChanged);
   d->m_canvas = newCanvas;
   
   d->m_cvZoom = 0;

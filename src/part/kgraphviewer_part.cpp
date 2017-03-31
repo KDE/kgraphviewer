@@ -94,30 +94,26 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
   d->m_widget = new DotGraphView( actionCollection(), parentWidget);
   d->m_widget->initEmpty();
   d->m_widget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
-  connect( d->m_widget, SIGNAL(graphLoaded()),
-           this, SIGNAL(graphLoaded()) );
-  connect( d->m_widget, SIGNAL(newEdgeAdded(QString,QString)),
-          this, SIGNAL(newEdgeAdded(QString,QString)) );
-  connect( d->m_widget, SIGNAL(newNodeAdded(QString)),
-          this, SIGNAL(newNodeAdded(QString)) );
-  connect( d->m_widget, SIGNAL(removeEdge(QString)),
-           this, SIGNAL(removeEdge(QString)) );
-  connect( d->m_widget, SIGNAL(removeElement(QString)),
-           this, SIGNAL(removeElement(QString)) );
-  connect( d->m_widget, SIGNAL(selectionIs(QList<QString>,QPoint)),
-           this, SIGNAL(selectionIs(QList<QString>,QPoint)) );
-  connect( d->m_widget,
-           SIGNAL(contextMenuEvent(QString,QPoint)),
-           this,
-           SIGNAL(contextMenuEvent(QString,QPoint)) );
-  connect( d->m_widget,
-           SIGNAL(newEdgeFinished(QString,QString,QMap<QString,QString>)),
-          this,
-           SIGNAL(newEdgeFinished(QString,QString,QMap<QString,QString>)) );
-  connect( d->m_widget, SIGNAL(hoverEnter(QString)) ,
-          this, SIGNAL(hoverEnter(QString)) );
-  connect( d->m_widget, SIGNAL(hoverLeave(QString)) ,
-          this, SIGNAL(hoverLeave(QString)) );
+  connect(d->m_widget, &DotGraphView::graphLoaded,
+           this, &KGraphViewerPart::graphLoaded);
+  connect(d->m_widget, &DotGraphView::newEdgeAdded,
+          this, &KGraphViewerPart::newEdgeAdded);
+  connect(d->m_widget, &DotGraphView::newNodeAdded,
+          this, &KGraphViewerPart::newNodeAdded);
+  connect(d->m_widget, &DotGraphView::removeEdge,
+          this, &KGraphViewerPart::removeEdge);
+  connect(d->m_widget, &DotGraphView::removeElement,
+          this, &KGraphViewerPart::removeElement);
+  connect(d->m_widget, &DotGraphView::selectionIs,
+          this, &KGraphViewerPart::selectionIs);
+  connect(d->m_widget, static_cast<void(DotGraphView::*)(const QString&, const QPoint&)>(&DotGraphView::contextMenuEvent),
+           this, &KGraphViewerPart::contextMenuEvent);
+  connect(d->m_widget, &DotGraphView::newEdgeFinished,
+          this, &KGraphViewerPart::newEdgeFinished);
+  connect(d->m_widget, &DotGraphView::hoverEnter,
+          this, &KGraphViewerPart::hoverEnter);
+  connect(d->m_widget, &DotGraphView::hoverLeave,
+          this, &KGraphViewerPart::hoverLeave);
                    
 
           
@@ -212,7 +208,7 @@ bool KGraphViewerPart::openFile()
   
   //   kDebug() << "Watching file " << localFilePath();
   d->m_watch->addFile(localFilePath());
-  connect(d->m_watch, SIGNAL(dirty(QString)), d->m_widget, SLOT(dirty(QString)));
+  connect(d->m_watch, &KDirWatch::dirty, d->m_widget, &DotGraphView::dirty);
   QString label = localFilePath().section('/',-1,-1);
   
   d->m_widget->show();

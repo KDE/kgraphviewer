@@ -286,8 +286,8 @@ void KgvPageLayoutDia::setupTab1( bool enableBorders )
     m_pageSizeTab = new KgvPageLayoutSize(page, m_layout, m_unit, m_column, !(flags & DISABLE_UNIT), enableBorders );
 //     lay->addWidget(m_pageSizeTab);
     m_pageSizeTab->show();
-    connect (m_pageSizeTab, SIGNAL(propertyChange(KgvPageLayout&)),
-            this, SLOT(sizeUpdated(KgvPageLayout&)));
+    connect(m_pageSizeTab, &KgvPageLayoutSize::propertyChange,
+            this, &KgvPageLayoutDia::sizeUpdated);
 }
 
 void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {

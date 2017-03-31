@@ -103,16 +103,21 @@ CanvasElement::CanvasElement(
   // the message should be given (or possible to be given) by the part user
   QAction* removeElementAction = new QAction(i18n("Remove selected element(s)"), this);
   m_popup->addAction(removeElementAction);
-  connect(removeElementAction,SIGNAL(triggered(bool)),this,SLOT(slotRemoveElement()));
+  connect(removeElementAction, &QAction::triggered,
+          this, &CanvasElement::slotRemoveElement);
 
-  connect(this, SIGNAL(selected(CanvasElement*,Qt::KeyboardModifiers)), v, SLOT(slotElementSelected(CanvasElement*,Qt::KeyboardModifiers)));
+  connect(this, &CanvasElement::selected,
+          v, &DotGraphView::slotElementSelected);
 
-  connect(this, SIGNAL(elementContextMenuEvent(QString,QPoint)), v, SLOT(slotContextMenuEvent(QString,QPoint)));
+  connect(this, &CanvasElement::elementContextMenuEvent,
+          v, &DotGraphView::slotContextMenuEvent);
 
   setAcceptHoverEvents ( true );
 
-  connect(this, SIGNAL(hoverEnter(CanvasElement*)), v, SLOT(slotElementHoverEnter(CanvasElement*)));
-  connect(this, SIGNAL(hoverLeave(CanvasElement*)), v, SLOT(slotElementHoverLeave(CanvasElement*)));
+  connect(this, &CanvasElement::hoverEnter,
+          v, static_cast<void(DotGraphView::*)(CanvasElement*)>(&DotGraphView::slotElementHoverEnter));
+  connect(this, &CanvasElement::hoverLeave,
+          v, static_cast<void(DotGraphView::*)(CanvasElement*)>(&DotGraphView::slotElementHoverLeave));
   
 }
 

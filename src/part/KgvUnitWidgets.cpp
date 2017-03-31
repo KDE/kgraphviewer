@@ -138,7 +138,8 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox(QWidget *parent)
     //setAcceptLocalizedNumbers( true );
     setUnit( KgvUnit::U_PT );
 
-    connect(this, SIGNAL(valueChanged(double)), SLOT(privateValueChanged()));
+    connect(this, static_cast<void(KgvUnitDoubleSpinBox::*)(double)>(&KgvUnitDoubleSpinBox::valueChanged),
+            this, &KgvUnitDoubleSpinBox::privateValueChanged);
 }
 
 
@@ -169,7 +170,8 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox( QWidget *parent,
     changeValue( value );
     setLineStep( 0.5 );
 
-    connect(this, SIGNAL(valueChanged(double)), SLOT(privateValueChanged()));
+    connect(this, static_cast<void(KgvUnitDoubleSpinBox::*)(double)>(&KgvUnitDoubleSpinBox::valueChanged),
+            this, &KgvUnitDoubleSpinBox::privateValueChanged);
 }
 
 void
@@ -309,7 +311,8 @@ KgvUnitDoubleComboBox::KgvUnitDoubleComboBox(QWidget *parent)
     lineEdit()->setValidator( m_validator );
     setUnit( KgvUnit::U_PT );
     changeValue(  KgvUnit::ptToUnit( 0.0, KgvUnit::U_PT ) );
-    connect( this, SIGNAL(activated(int)), this, SLOT(slotActivated(int)) );
+    connect(this, static_cast<void(KgvUnitDoubleComboBox::*)(int)>(&KgvUnitDoubleComboBox::activated),
+            this, &KgvUnitDoubleComboBox::slotActivated);
 }
 
 KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, double lower, double upper, double value, KgvUnit::Unit unit,
@@ -322,7 +325,8 @@ KgvUnitDoubleComboBox::KgvUnitDoubleComboBox( QWidget *parent, double lower, dou
     lineEdit()->setValidator( m_validator );
     setUnit( unit );
     changeValue(  KgvUnit::ptToUnit( value, unit ) );
-    connect( this, SIGNAL(activated(int)), this, SLOT(slotActivated(int)) );
+    connect(this, static_cast<void(KgvUnitDoubleComboBox::*)(int)>(&KgvUnitDoubleComboBox::activated),
+            this, &KgvUnitDoubleComboBox::slotActivated);
 }
 
 void
@@ -403,16 +407,19 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox(QWidget *parent)
     up->setMaximumHeight( 15 );
     up->setMaximumWidth( 15 );
     layout->addWidget( up, 0, 0 );
-    connect( up, SIGNAL(clicked()), this, SLOT(slotUpClicked()) );
+    connect(up, &QPushButton::clicked,
+            this, &KgvUnitDoubleSpinComboBox::slotUpClicked);
 
     QPushButton *down = new QPushButton( "-", this );
     down->setMaximumHeight( 15 );
     down->setMaximumWidth( 15 );
     layout->addWidget( down, 1, 0 );
-    connect( down, SIGNAL(clicked()), this, SLOT(slotDownClicked()) );
+    connect(down, &QPushButton::clicked,
+            this, &KgvUnitDoubleSpinComboBox::slotDownClicked);
 
     m_combo = new KgvUnitDoubleComboBox(this, KgvUnit::ptToUnit(0.0, KgvUnit::U_PT), KgvUnit::ptToUnit(9999.99, KgvUnit::U_PT), 0.0, KgvUnit::U_PT, 2);
-    connect( m_combo, SIGNAL(valueChanged(double)), this, SIGNAL(valueChanged(double)) );
+    connect(m_combo, &KgvUnitDoubleComboBox::valueChanged,
+            this, &KgvUnitDoubleSpinComboBox::valueChanged);
     layout->addWidget( m_combo, 0, 2, 2, 1 );
 }
 
@@ -427,16 +434,19 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox( QWidget *parent, double lo
     up->setMaximumHeight( 15 );
     up->setMaximumWidth( 15 );
     layout->addWidget( up, 0, 0 );
-    connect( up, SIGNAL(clicked()), this, SLOT(slotUpClicked()) );
+    connect(up, &QPushButton::clicked,
+            this, &KgvUnitDoubleSpinComboBox::slotUpClicked);
 
     QPushButton *down = new QPushButton( "-", this );
     down->setMaximumHeight( 15 );
     down->setMaximumWidth( 15 );
     layout->addWidget( down, 1, 0 );
-    connect( down, SIGNAL(clicked()), this, SLOT(slotDownClicked()) );
+    connect(down, &QPushButton::clicked,
+            this, &KgvUnitDoubleSpinComboBox::slotDownClicked);
 
     m_combo = new KgvUnitDoubleComboBox(this, KgvUnit::ptToUnit(lower, unit), KgvUnit::ptToUnit(upper, unit), value, unit, precision);
-    connect( m_combo, SIGNAL(valueChanged(double)), this, SIGNAL(valueChanged(double)) );
+    connect(m_combo, &KgvUnitDoubleComboBox::valueChanged,
+            this, &KgvUnitDoubleSpinComboBox::valueChanged);
     layout->addWidget( m_combo, 0, 2, 2, 1 );
 }
 

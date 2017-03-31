@@ -57,21 +57,21 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
     return;
   }
   QAction* aaa = new QAction(i18n("Add a new attribute"), this);
-  connect(aaa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
-          this, SLOT(slotAddAttribute()));
+  connect(aaa, &QAction::triggered,
+          this, &KGraphEditorNodesTreeWidget::slotAddAttribute);
   m_popup->addAction(aaa);
 
   if (m_item->parent()) // attribute item
   {
     QAction* raa = new QAction(i18n("Remove this attribute"), this);
-    connect(raa, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
-            this, SLOT(slotRemoveAttribute()));
+    connect(raa, &QAction::triggered,
+            this, &KGraphEditorNodesTreeWidget::slotRemoveAttribute);
     m_popup->addAction(raa);
   }
   m_popup->addSeparator();
   QAction* rna = new QAction(i18n("Remove this node"), this);
-  connect(rna, SIGNAL(triggered(Qt::MouseButtons,Qt::KeyboardModifiers)),
-          this, SLOT(slotRemoveNode()));
+  connect(rna, &QAction::triggered,
+          this, &KGraphEditorNodesTreeWidget::slotRemoveNode);
   m_popup->addAction(rna);  
 }
 

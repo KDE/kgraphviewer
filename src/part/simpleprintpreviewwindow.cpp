@@ -90,7 +90,8 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 
   QAction *pageSetupAction = new QAction(i18n("&Page setup"), this);
 //                                &m_actions, "file_page_setup");
-  connect(pageSetupAction,SIGNAL(triggered(bool)),this, SLOT(slotPageSetup()));
+  connect(pageSetupAction, &QAction::triggered,
+          this, &KGVSimplePrintPreviewWindow::slotPageSetup);
   m_toolbar->addAction((QAction*)pageSetupAction);
 
 // 	id = m_toolbar->insertWidget(-1, 0, new KPushButton(i18n("Page Set&up..."), m_toolbar));
@@ -132,7 +133,8 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 
   QAction *previousAction = new QAction(i18n("Previous Page"),this);
 //                                &m_actions,  "prevpage");
-  connect(previousAction,SIGNAL(triggered(bool)), this, SLOT(slotPreviousClicked()));
+  connect(previousAction, &QAction::triggered,
+          this, &KGVSimplePrintPreviewWindow::slotPreviousClicked);
   m_navToolbar->addAction((QAction*)previousAction);
   m_navToolbar->addSeparator();
 
@@ -142,7 +144,8 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
   m_navToolbar->addSeparator();
 
   QAction *nextAction = new QAction(i18n("Next Page"), this);//&m_actions, "nextpage");
-  connect(nextAction,SIGNAL(triggered(bool)), this, SLOT(slotNextClicked()));
+  connect(nextAction, &QAction::triggered,
+          this, &KGVSimplePrintPreviewWindow::slotNextClicked);
   m_navToolbar->addAction((QAction*)nextAction);
   m_navToolbar->addSeparator();
 

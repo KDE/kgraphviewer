@@ -77,7 +77,8 @@ KgvPageLayoutSize::KgvPageLayoutSize(
         cpgUnit->addItems( KgvUnit::listOfUnitName() );
         cpgUnit->setCurrentIndex( unit );
         unitLayout->addWidget( cpgUnit, 0, Qt::AlignLeft | Qt::AlignVCenter );
-        connect( cpgUnit, SIGNAL(activated(int)), this, SLOT(setUnitInt(int)) );
+        connect(cpgUnit, static_cast<void(QComboBox::*)(int)>(&QComboBox::activated),
+                this, &KgvPageLayoutSize::setUnitInt);
     }
     else {
         QString str=KgvUnit::unitDescription(unit);
@@ -102,7 +103,8 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     cpgFormat = new QComboBox( formatPageSize );
     cpgFormat->addItems( KgvPageFormat::allFormats() );
     lpgFormat->setBuddy( cpgFormat );
-    connect( cpgFormat, SIGNAL(activated(int)), this, SLOT(formatChanged(int)) );
+    connect(cpgFormat, static_cast<void(QComboBox::*)(int)>(&QComboBox::activated),
+            this, &KgvPageLayoutSize::formatChanged);
     QHBoxLayout *lay = new QHBoxLayout;
     lay->addWidget(lpgFormat);
     lay->addWidget(cpgFormat);
@@ -125,7 +127,8 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     lpgWidth->setBuddy( epgWidth );
     if ( m_layout.format != PG_CUSTOM )
         epgWidth->setEnabled( false );
-    connect( epgWidth, SIGNAL(valueChangedPt(double)), this, SLOT(widthChanged(double)) );
+    connect(epgWidth, &KgvUnitDoubleSpinBox::valueChangedPt,
+            this, &KgvPageLayoutSize::widthChanged);
 
     // label height
     QLabel *lpgHeight = new QLabel( i18n( "&Height:" ), formatCustomSize );
@@ -137,7 +140,8 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     lpgHeight->setBuddy( epgHeight );
     if ( m_layout.format != PG_CUSTOM )
         epgHeight->setEnabled( false );
-    connect( epgHeight, SIGNAL(valueChangedPt(double)), this, SLOT(heightChanged(double)) );
+    connect(epgHeight, &KgvUnitDoubleSpinBox::valueChangedPt,
+            this, &KgvPageLayoutSize::heightChanged);
     formatCustomSize->setLayout(lay2);
     
     // --------------- orientation ---------------
@@ -164,7 +168,8 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     m_orientGroup->setLayout(lay3);
     m_orientButtons.addButton(rbLandscape);
     
-    connect( &m_orientButtons, SIGNAL(buttonClicked(int)), this, SLOT(orientationChanged(int)));
+    connect(&m_orientButtons, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked),
+            this, &KgvPageLayoutSize::orientationChanged);
     
     // --------------- page margins ---------------
     QGroupBox* marginsFrame = new QGroupBox( i18n( "Margins" ), this );
@@ -178,22 +183,26 @@ KgvPageLayoutSize::KgvPageLayoutSize(
     // left margin
     ebrLeft = new KgvUnitDoubleSpinBox(marginsWidget);
     marginsLayout->addWidget( ebrLeft, 1, 0 );
-    connect( ebrLeft, SIGNAL(valueChangedPt(double)), this, SLOT(leftChanged(double)) );
+    connect(ebrLeft, &KgvUnitDoubleSpinBox::valueChangedPt,
+            this, &KgvPageLayoutSize::leftChanged);
 
     // right margin
     ebrRight = new KgvUnitDoubleSpinBox(marginsWidget);
     marginsLayout->addWidget( ebrRight, 1, 2 );
-    connect( ebrRight, SIGNAL(valueChangedPt(double)), this, SLOT(rightChanged(double)) );
+    connect(ebrRight, &KgvUnitDoubleSpinBox::valueChangedPt,
+            this, &KgvPageLayoutSize::rightChanged);
 
     // top margin
     ebrTop = new KgvUnitDoubleSpinBox(marginsWidget);
     marginsLayout->addWidget( ebrTop, 0, 1 , Qt::AlignCenter );
-    connect( ebrTop, SIGNAL(valueChangedPt(double)), this, SLOT(topChanged(double)) );
+    connect(ebrTop, &KgvUnitDoubleSpinBox::valueChangedPt,
+            this, &KgvPageLayoutSize::topChanged);
 
     // bottom margin
     ebrBottom = new KgvUnitDoubleSpinBox(marginsWidget);
     marginsLayout->addWidget( ebrBottom, 2, 1, Qt::AlignCenter );
-    connect( ebrBottom, SIGNAL(valueChangedPt(double)), this, SLOT(bottomChanged(double)) );
+    connect(ebrBottom, &KgvUnitDoubleSpinBox::valueChangedPt,
+            this, &KgvPageLayoutSize::bottomChanged);
 
     marginsFrame->setLayout(marginsLayout);
 

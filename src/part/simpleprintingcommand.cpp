@@ -74,8 +74,8 @@ KGVSimplePrintingCommand::KGVSimplePrintingCommand(
  , m_pageSetupDialog(nullptr)
 {
   setObjectName("KGVSimplePrintCommand");
-  connect(this, SIGNAL(showPageSetupRequested()), 
-    this, SLOT(slotShowPageSetupRequested()));
+  connect(this, &KGVSimplePrintingCommand::showPageSetupRequested,
+          this, &KGVSimplePrintingCommand::slotShowPageSetupRequested);
 }
 
 KGVSimplePrintingCommand::~KGVSimplePrintingCommand()
@@ -102,8 +102,10 @@ bool KGVSimplePrintingCommand::init(const QString& aTitleText)
     }
     m_previewWindow = new KGVSimplePrintPreviewWindow(
       *m_previewEngine, QString(), nullptr);
-    connect(m_previewWindow, SIGNAL(printRequested()), this, SLOT(print()));
-    connect(m_previewWindow, SIGNAL(pageSetupRequested()), this, SLOT(slotShowPageSetupRequested()));
+    connect(m_previewWindow, &KGVSimplePrintPreviewWindow::printRequested,
+            this, [&] () { print(); } );
+    connect(m_previewWindow, &KGVSimplePrintPreviewWindow::pageSetupRequested,
+            this, &KGVSimplePrintingCommand::slotShowPageSetupRequested);
 //     KDialog::centerOnScreen(m_previewWindow);
     m_printPreviewNeedsReloading = false;
   }
@@ -274,7 +276,8 @@ void KGVSimplePrintingCommand::slotShowPageSetupRequested()
     KGVSimplePrintingPageSetup* sppsb = new KGVSimplePrintingPageSetup(this, m_graphView, m_pageSetupDialog, &map);
     if (m_previewWindow)
     {
-      connect(sppsb,SIGNAL(needsRedraw()),m_previewWindow, SLOT(slotRedraw()));
+      connect(sppsb, &KGVSimplePrintingPageSetup::needsRedraw,
+              m_previewWindow, &KGVSimplePrintPreviewWindow::slotRedraw);
     }
     lyr->addWidget(sppsb);
   }

@@ -106,18 +106,20 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 // 	m_contents->setFocusProxy(m_contents->headerTitleLineEdit);
 
 	m_contents->printButton->setIcon( QIcon::fromTheme("printer") );
-	connect(m_contents->printButton, SIGNAL(clicked()), this, SLOT(slotPrint()));
+	connect(m_contents->printButton, &QPushButton::clicked,
+                this, &KGVSimplePrintingPageSetup::slotPrint);
 
 	m_contents->printPreviewButton->setIcon( QIcon::fromTheme("document-print-preview") );
 	m_contents->printPreviewButton->setText( i18n("Print Preview...") );
-	connect(m_contents->printPreviewButton, SIGNAL(clicked()), this, SLOT(slotPrintPreview()));
+	connect(m_contents->printPreviewButton, &QPushButton::clicked,
+                this, &KGVSimplePrintingPageSetup::slotPrintPreview);
 
 	m_contents->iconLabel->setFixedWidth(32+6);
     const int iconSize = KIconTheme(KIconTheme::current()).defaultSize(KIconLoader::Small);
   m_contents->iconLabel->setPixmap(QIcon::fromTheme("distribute-horizontal-page").pixmap(iconSize, iconSize));
 	m_contents->headerTitleFontButton->setWhatsThis(i18n("Changes font for title text."));
-	connect(m_contents->headerTitleFontButton, SIGNAL(clicked()), 
-		this, SLOT(slotChangeTitleFont()));
+	connect(m_contents->headerTitleFontButton, &QPushButton::clicked,
+		this, &KGVSimplePrintingPageSetup::slotChangeTitleFont);
 
 	if (m_graphView) 
     {
@@ -127,12 +129,13 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
             QUrl::fromLocalFile(m_graphView->dotFileName()).fileName()
             ) );
 	}
-	connect(m_contents->headerTitleLineEdit,SIGNAL(textChanged(QString)),
-		this, SLOT(slotTitleTextChanged(QString)));
+	connect(m_contents->headerTitleLineEdit, &QLineEdit::textChanged,
+		this, &KGVSimplePrintingPageSetup::slotTitleTextChanged);
 	m_contents->headerTitleLineEdit->setFont( m_settings->pageTitleFont );
 
 	m_contents->saveSetupLink->setWhatsThis(i18n("Saves settings for this setup as default."));
-	connect(m_contents->saveSetupLink, SIGNAL(leftClickedURL()), this, SLOT(slotSaveSetup()));
+  connect(m_contents->saveSetupLink, static_cast<void(KUrlLabel::*)()>(&KUrlLabel::leftClickedUrl),
+          this, &KGVSimplePrintingPageSetup::slotSaveSetup);
 
 	m_contents->addDateTimeCheckbox->setWhatsThis(i18n("Adds date and time to the header."));
 	m_contents->addPageNumbersCheckbox->setWhatsThis(i18n("Adds page numbers to the footer."));
@@ -145,15 +148,15 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 
 	updatePageLayoutAndUnitInfo();
 	m_contents->changePageSizeAndMarginsButton->setWhatsThis(i18n("Changes page size and margins."));
-	connect(m_contents->changePageSizeAndMarginsButton, SIGNAL(clicked()), 
-		this, SLOT(slotChangePageSizeAndMargins()));
+  connect(m_contents->changePageSizeAndMarginsButton, &QPushButton::clicked,
+          this, &KGVSimplePrintingPageSetup::slotChangePageSizeAndMargins);
 
-	connect(m_contents->addPageNumbersCheckbox, SIGNAL(toggled(bool)), 
-		this, SLOT(slotAddPageNumbersCheckboxToggled(bool)));
-	connect(m_contents->addDateTimeCheckbox, SIGNAL(toggled(bool)), 
-		this, SLOT(slotAddDateTimeCheckboxToggled(bool)));
-  connect(m_contents->addTableBordersCheckbox, SIGNAL(toggled(bool)), 
-    this, SLOT(slotAddTableBordersCheckboxToggled(bool)));
+  connect(m_contents->addPageNumbersCheckbox, &QCheckBox::toggled,
+          this, &KGVSimplePrintingPageSetup::slotAddPageNumbersCheckboxToggled);
+  connect(m_contents->addDateTimeCheckbox, &QCheckBox::toggled,
+          this, &KGVSimplePrintingPageSetup::slotAddDateTimeCheckboxToggled);
+  connect(m_contents->addTableBordersCheckbox, &QCheckBox::toggled,
+          this, &KGVSimplePrintingPageSetup::slotAddTableBordersCheckboxToggled);
 
 
 // 
@@ -169,10 +172,13 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 		QTimer::singleShot(50, this, SLOT(printPreview()));
 	else if (print)
 		QTimer::singleShot(50, this, SLOT(print()));
-	connect(this, SIGNAL(print()), m_graphView, SLOT(print()));
-	connect(this, SIGNAL(printPreview()), m_graphView, SLOT(printPreview()));
+	connect(this, static_cast<void(KGVSimplePrintingPageSetup::*)()>(&KGVSimplePrintingPageSetup::print),
+                m_graphView, &DotGraphView::print);
+	connect(this, static_cast<void(KGVSimplePrintingPageSetup::*)()>(&KGVSimplePrintingPageSetup::printPreview),
+                m_graphView, &DotGraphView::printPreview);
 
-  connect(m_contents->closeButton, SIGNAL(clicked()), this, SLOT(slotClose()));
+  connect(m_contents->closeButton, &QPushButton::clicked,
+          this, &KGVSimplePrintingPageSetup::slotClose);
 
   
   m_contents->horizFitNumInput->setRange(1,m_command->engine()->maxHorizFit());
@@ -181,19 +187,19 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
   m_settings->vertFitting = m_command->engine()->maxVertFit();
   m_contents->horizFitNumInput->setValue(m_settings->horizFitting);
   m_contents->vertFitNumInput->setValue(m_settings->vertFitting);
-  connect(m_contents->maintainAspectButton, SIGNAL(clicked()), 
-    this, SLOT(slotMaintainAspectButtonToggled()));
-  connect(m_contents->horizFitNumInput, SIGNAL(valueChanged(int)),
-    this, SLOT(slotHorizFitChanged(int)));
-  connect(m_contents->vertFitNumInput, SIGNAL(valueChanged(int)),
-    this, SLOT(slotVertFitChanged(int)));
+  connect(m_contents->maintainAspectButton, &QPushButton::clicked,
+          this, &KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled);
+  connect(m_contents->horizFitNumInput, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+          this, &KGVSimplePrintingPageSetup::slotHorizFitChanged);
+  connect(m_contents->vertFitNumInput, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+          this, &KGVSimplePrintingPageSetup::slotVertFitChanged);
 
     
   m_fittingModeButtons.addButton(m_contents->naturalSizeRadioButton, NaturalSize);
   m_fittingModeButtons.addButton(m_contents->fitToOnePageRadioButton, FitToOnePage);
   m_fittingModeButtons.addButton(m_contents->fitToSeveralPagesRadioButton, FitToSeveralPages);
-  connect(&m_fittingModeButtons, SIGNAL(buttonClicked(int)), 
-    this, SLOT(slotFittingButtonClicked(int)));
+  connect(&m_fittingModeButtons, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked),
+          this, &KGVSimplePrintingPageSetup::slotFittingButtonClicked);
 
   m_fittingModeButtons.button(m_settings->fittingMode)->setChecked(true);
   if (m_settings->fittingMode != FitToSeveralPages)
