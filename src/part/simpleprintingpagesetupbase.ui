@@ -454,7 +454,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QLabel" name="saveSetupLink">
+        <widget class="KUrlLabel" name="saveSetupLink">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
