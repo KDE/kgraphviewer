@@ -43,7 +43,7 @@ typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;
 
 
 /**
- * Colors and styles are dot names
+ * Colors and styles are DOT names
  */
 class GraphSubgraph : public GraphElement
 {

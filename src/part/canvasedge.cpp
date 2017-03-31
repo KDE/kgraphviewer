@@ -138,7 +138,7 @@ QPainterPath CanvasEdge::pathForSpline(int splineNum, const DotRenderOp& dro) co
   for (int i = 0; i < dro.integers[0]; i++)
   {
     // computing of diffX and diffY to draw parallel edges
-    // when asked through the corresponding GraphViz feature
+    // when asked through the corresponding Graphviz feature
     qreal nom = (dro.integers[2*dro.integers[0]]-dro.integers[2]);
     qreal denom = (dro.integers[2*dro.integers[0]-1]-dro.integers[1]);
     qreal diffX, diffY;

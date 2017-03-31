@@ -29,7 +29,7 @@
   <name xml:lang="tr">KGraphViewer</name>
   <name xml:lang="uk">KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewerxx</name>
-  <summary>A Graphviz dot graph viewer by KDE</summary>
+  <summary>A Graphviz DOT graph viewer by KDE</summary>
   <summary xml:lang="bs">Graphviz tačkasti grafički preglednik za KDE</summary>
   <summary xml:lang="ca">Un visor de gràfics DOT de Graphviz pel KDE</summary>
   <summary xml:lang="ca-valencia">Un visor de gràfics DOT de Graphviz pel KDE</summary>
@@ -57,7 +57,7 @@
   <summary xml:lang="x-test">xxA Graphviz dot graph viewer for KDExx</summary>
   <description>
     <p>
-      KGraphViewer is a Graphviz dot graph file viewer, aimed to replace the other outdated GraphViz tools.
+      KGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools.
       Graphs are commonly used in scientific domains and particularly in computer science.
     </p>
     <p xml:lang="bs">Graphviz tačkasti grafički preglednik za fajlove, namijenjen da zamijeni druge zastarijele GraphViz alate. Grafovi su često korišteni u znanstvenim oblastima, i djelomično u kompjuterskoj nauci.</p>

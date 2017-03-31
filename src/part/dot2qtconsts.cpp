@@ -900,13 +900,13 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
             }
             else
             {
-                qWarning() << "Unknown stored dot color '" << dotColor << "'. returning Qt black";
+                qWarning() << "Unknown stored DOT color '" << dotColor << "'. returning Qt black";
                 return Qt::black;
             }
         }
         else
         {
-//           kWarning() << "Unknown dot color '" << dotColor << "'. returning Qt black";
+//           kWarning() << "Unknown DOT color '" << dotColor << "'. returning Qt black";
           return Qt::black;
         }
     }
@@ -921,7 +921,7 @@ Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString& dotLineStyle) const
   {
     if (!dotLineStyle.left(12).isEmpty()
 	&& dotLineStyle.left(12) != "setlinewidth")
-      qWarning() << "Unknown dot line style '" << dotLineStyle << "'. returning Qt solid line";
+      qWarning() << "Unknown DOT line style '" << dotLineStyle << "'. returning Qt solid line";
     return Qt::SolidLine;
   }
 }
@@ -932,7 +932,7 @@ QFont Dot2QtConsts::qtFont(const QString& dotFont) const
     return (*(m_psFonts.find(dotFont)));
   else
   {
-    qWarning() << "Unknown dot font '" << dotFont << "'. returning Qt default.";
+    qWarning() << "Unknown DOT font '" << dotFont << "'. returning Qt default.";
     return QFont(QFont::substitute(dotFont));
   }
 }

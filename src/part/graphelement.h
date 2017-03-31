@@ -32,7 +32,7 @@ namespace KGraphViewer
 class CanvasElement;
 
 /**
- * The base of all GraphViz dot graph elements (nodes, edges, subgraphs,
+ * The base of all Graphviz DOT graph elements (nodes, edges, subgraphs,
  * graphs). It is used to store the element attributes
  */
 class GraphElement: public QObject

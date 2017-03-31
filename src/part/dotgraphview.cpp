@@ -452,9 +452,9 @@ void DotGraphViewPrivate::setupPopup()
   
   m_layoutAlgoSelectAction->setCurrentAction(lda);
   m_layoutAlgoSelectAction->setEditable(true);
-  m_layoutAlgoSelectAction->setToolTip(i18n("Choose a GraphViz layout algorithm or edit your own one."));
+  m_layoutAlgoSelectAction->setToolTip(i18n("Choose a Graphviz layout algorithm or edit your own one."));
   m_layoutAlgoSelectAction->setWhatsThis(i18n(
-    "Choose a GraphViz layout algorithm or type in your own command that will "
+    "Choose a Graphviz layout algorithm or type in your own command that will "
     "generate a graph in the xdot format on its standard output. For example, to "
     "manually specify the <tt>G</tt> option to the dot command, type in: "
     "<tt>dot -Gname=MyGraphName -Txdot </tt>"));
@@ -654,7 +654,7 @@ DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) :
           this, &DotGraphView::zoomRectMoveFinished);
 
   setWhatsThis( i18n( 
-    "<h1>GraphViz dot format graph visualization</h1>"
+    "<h1>Graphviz DOT format graph visualization</h1>"
     "<p>If the graph is larger than the widget area, an overview "
         "panner is shown in one edge. Choose through the context menu "
         "if the optimal position of this overview should be automatically "

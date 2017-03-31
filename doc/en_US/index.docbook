@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
   <!ENTITY kgraphviewer "<application>KGraphViewer</application>">
-  <!ENTITY graphviz "<application><ulink url=&#034;http://www.graphviz.org&#034;>GraphViz</ulink></application>">
+  <!ENTITY graphviz "<application><ulink url=&#034;http://www.graphviz.org&#034;>Graphviz</ulink></application>">
   <!ENTITY boost "<ulink url=&#034;http://www.boost.org&#034;>Boost</ulink>">
   <!ENTITY GUI "<acronym>GUI</acronym>">
   <!ENTITY tcltk "<application>Tcl/Tk</application>">

@@ -44,7 +44,7 @@ int main(int argc, char **argv)
   KAboutData about(QStringLiteral("kgraphviewer"),
                    i18n("KGraphViewer"),
                    KGRAPHVIEWER_VERSION_STRING,
-                   i18n("A Graphviz dot graph viewer by KDE"),
+                   i18n("A Graphviz DOT graph viewer by KDE"),
                    KAboutLicense::GPL,
                    i18n("(C) 2005-2010 Gaël de Chalendar"));
   about.addAuthor( i18n("Gaël de Chalendar"), i18n("Original Author and current maintainer"), "kleag@free.fr" );

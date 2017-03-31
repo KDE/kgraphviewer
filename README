@@ -1,4 +1,4 @@
-KGraphViewer is a Graphviz dot graph file viewer by KDE.
+KGraphViewer is a Graphviz DOT graph file viewer by KDE.
 http://extragear.kde.org/apps/kgraphviewer/
 Copyright (C) 2005-2007 Gaël de Chalendar <kleag@free.fr>
     
@@ -21,7 +21,7 @@ KGraphViewer is a tool to display graphviz .dot graphs.
 
 It is more generally a KPart able to display any graph data that graphviz can 
 handle. This part is commanded through the signals/slots mechanism. It is used
-in an experimental dot graphs editor called kgrapheditor released with in this
+in an experimental DOT graphs editor called kgrapheditor released with in this
 package.
 
 I used, in this program, code from the profiling tool kcachegrind

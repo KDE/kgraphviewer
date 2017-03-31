@@ -81,7 +81,7 @@ KGraphViewerPart::KGraphViewerPart( QWidget *parentWidget, QObject *parent, cons
         QStringLiteral("kgraphviewer"),
         i18n("KGraphViewerPart"),
         KGRAPHVIEWER_VERSION_STRING,
-        i18n( "GraphViz dot files viewer" ),
+        i18n("Graphviz DOT files viewer"),
         KAboutLicense::GPL,
         i18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>")
   );

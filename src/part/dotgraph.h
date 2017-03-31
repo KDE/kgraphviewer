@@ -17,7 +17,7 @@
 */
 
 /*
- * GraphViz dot Graph model
+ * Graphviz DOT graph model
  */
 
 #ifndef DOT_GRAPH_H
@@ -42,7 +42,7 @@ namespace KGraphViewer
 {
   
 /**
-  * A class representing the model of a GraphViz dot graph
+  * A class representing the model of a Graphviz DOT graph
   */
 class DotGraph : public GraphElement
 {

@@ -219,7 +219,7 @@ void KGraphViewerWindow::setupActions()
   newAction->setWhatsThis(i18n("Opens a new empty KGraphViewer window."));
   
   QAction* openAction = actionCollection()->addAction( KStandardAction::Open, "file_open", this, SLOT(fileOpen()) );
-  openAction->setWhatsThis(i18n("Shows the file open dialog to choose a GraphViz dot file to open."));
+  openAction->setWhatsThis(i18n("Shows the file open dialog to choose a Graphviz DOT file to open."));
   
   m_rfa = KStandardAction::openRecent(this, SLOT(slotURLSelected(QUrl)), this);
   actionCollection()->addAction(m_rfa->objectName(),m_rfa);

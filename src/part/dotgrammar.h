@@ -17,7 +17,7 @@
 */
 
 /*
- * GraphViz dot Graph parsing grammar implemented with boost Spirit
+ * Graphviz DOT graph parsing grammar implemented with boost Spirit
  */
 
 #ifndef DOT_GRAMMAR_H

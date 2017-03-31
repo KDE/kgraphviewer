@@ -17,7 +17,7 @@ include(ECMPackageConfigHelpers)
 find_package(Qt5 CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)
 
 find_package(Boost 1.36 REQUIRED)
-find_package(GraphViz REQUIRED)
+find_package(Graphviz REQUIRED)
 
 set(KF5_DEP_VERSION "5.16.0")
 find_package(KF5 ${KF5_DEP_VERSION} REQUIRED COMPONENTS
@@ -30,7 +30,7 @@ find_package(KF5 ${KF5_DEP_VERSION} REQUIRED COMPONENTS
 )
 
 if(NOT DOT)
-   MESSAGE(STATUS "dot executable from GraphViz not found. You will need it at runtime")
+   MESSAGE(STATUS "dot executable from Graphviz not found. You will need it at runtime")
 endif(NOT DOT)
 
 option(BUILD_GRAPHEDITOR "Build the graph editor app (WIP, not yet functional). [default=OFF]" OFF)
