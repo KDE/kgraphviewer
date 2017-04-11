@@ -1,5 +1,5 @@
-<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="kgraphviewer" version="5" translationDomain="kgraphviewer">
+<!DOCTYPE gui SYSTEM "kpartgui.dtd">
+<gui name="kgraphviewer" version="5" translationDomain="kgraphviewer">
 <MenuBar>
   <Menu name="file">
     <DefineGroup name="file_merge"/>
@@ -22,4 +22,4 @@
   <Action name="help"/>
   <Merge/>
 </ToolBar>
-</kpartgui>
+</gui>
