@@ -177,7 +177,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 	connect(this, static_cast<void(KGVSimplePrintingPageSetup::*)()>(&KGVSimplePrintingPageSetup::printPreview),
                 m_graphView, &DotGraphView::printPreview);
 
-  connect(m_contents->closeButton, &QPushButton::clicked,
+  connect(m_contents->buttonBox->button(QDialogButtonBox::Close), &QPushButton::clicked,
           this, &KGVSimplePrintingPageSetup::slotClose);
 
   
