@@ -32,31 +32,6 @@
   <name xml:lang="uk">Бібліотека KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewer Libraryxx</name>
   <summary>A Graphviz DOT graph viewer (shared library)</summary>
-  <summary xml:lang="bs">Graphviz pregledač tačkaste grafike za KDE (dijeljena biblioteka)</summary>
-  <summary xml:lang="ca">Un visor de gràfics DOT de Graphviz pel KDE (biblioteca compartida)</summary>
-  <summary xml:lang="ca-valencia">Un visor de gràfics DOT de Graphviz pel KDE (biblioteca compartida)</summary>
-  <summary xml:lang="da">En Graphviz dot-graf-fremviser til KDE (delt bibliotek)</summary>
-  <summary xml:lang="de">Ein KDE-Anzeigeprogramm für Graphviz Dot-Diagramme (gemeinsame Bibliothek)</summary>
-  <summary xml:lang="el">Ένας προβολέας Graphviz dot γράφων για το KDE (κοινόχρηστη βιβλιοθήκη)</summary>
-  <summary xml:lang="en-GB">A Graphviz dot graph viewer for KDE (shared library)</summary>
-  <summary xml:lang="es">Un visor de grafos dot de Graphviz para KDE (biblioteca compartida)</summary>
-  <summary xml:lang="et">KDE GraphVizi dot-graafide näitaja (jagatud teek)</summary>
-  <summary xml:lang="fi">Graphviz dot -graafikatselin KDE:lle (jaettu kirjasto)</summary>
-  <summary xml:lang="fr">Un afficheur de graphes Graphviz pour KDE (bibliothèque partagée)</summary>
-  <summary xml:lang="gl">Un visor de gráficos dot de Praphviz para KDE (biblioteca compartida).</summary>
-  <summary xml:lang="hu">Egy Graphviz pont gráf megjelenítő KDE-hez (osztott könyvtár)</summary>
-  <summary xml:lang="it">Un visore di grafi dot di Graphviz per KDE (libreria condivisa)</summary>
-  <summary xml:lang="ko">KDE용 Graphviz DOT 그래프 뷰어(공유 라이브러리)</summary>
-  <summary xml:lang="nds">En Kieker för GraphViz-Dot-Diagrammen för KDE (deelt Bibliotheek)</summary>
-  <summary xml:lang="nl">Een KDE-programma voor het weergeven van dot-bestanden van Graphviz (gedeelde bibliotheek)</summary>
-  <summary xml:lang="nn">Graphviz dot-grafvisar for KDE (delt bibliotek)</summary>
-  <summary xml:lang="pl">Przeglądarka Graphviz dot graph dla KDE (współdzielona biblioteka)</summary>
-  <summary xml:lang="pt">Um visualizador de grafos 'dot' do Graphviz para o KDE (biblioteca dinâmica)</summary>
-  <summary xml:lang="pt-BR">Um visualizador de gráficos em ponto Graphviz para o KDE (biblioteca compartilhada)</summary>
-  <summary xml:lang="sk">Prehliadač bodových grafov pre KDE Graphviz (zdieľaná knižnica)</summary>
-  <summary xml:lang="sv">Visning av Graphviz dot-grafer för KDE (delat bibliotek)</summary>
-  <summary xml:lang="uk">Програма для перегляду графів dot Graphviz для KDE (бібліотека спільного використання)</summary>
-  <summary xml:lang="x-test">xxA Graphviz dot graph viewer for KDE (shared library)xx</summary>
   <url type="homepage">http://extragear.kde.org/apps/kgraphviewer/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kgraphviewer</url>
   <project_group>KDE</project_group>
