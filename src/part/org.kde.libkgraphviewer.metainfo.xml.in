@@ -32,6 +32,13 @@
   <name xml:lang="uk">Бібліотека KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewer Libraryxx</name>
   <summary>A Graphviz DOT graph viewer (shared library)</summary>
+  <summary xml:lang="ca">Un visor de gràfics DOT del Graphviz (biblioteca compartida)</summary>
+  <summary xml:lang="de">Ein Anzeigeprogramm für Graphviz Dot-Diagramme (gemeinsame Bibliothek)</summary>
+  <summary xml:lang="nl">Een viewer voor Graphviz DOT-bestanden (gedeelde bibliotheek)</summary>
+  <summary xml:lang="pt">Um visualizador de grafos DOT do Graphviz (biblioteca dinâmica)</summary>
+  <summary xml:lang="sv">Visning av Graphviz dot-grafer (delat bibliotek)</summary>
+  <summary xml:lang="uk">Програма для перегляду графів DOT Graphviz (бібліотека спільного використання)</summary>
+  <summary xml:lang="x-test">xxA Graphviz DOT graph viewer (shared library)xx</summary>
   <url type="homepage">http://extragear.kde.org/apps/kgraphviewer/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kgraphviewer</url>
   <project_group>KDE</project_group>
