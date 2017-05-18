@@ -32,6 +32,7 @@
   <summary>A Graphviz DOT graph viewer</summary>
   <summary xml:lang="ca">Un visor de gràfics DOT del Graphviz</summary>
   <summary xml:lang="de">Ein Anzeigeprogramm für Graphviz-Dot-Diagramme</summary>
+  <summary xml:lang="es">Un visor de grafos DOT de Graphviz</summary>
   <summary xml:lang="nl">Een Graphviz DOT-grafiek-viewer</summary>
   <summary xml:lang="pt">Um visualizador de grafos DOT do Graphviz</summary>
   <summary xml:lang="sv">Visning av Graphviz dot-grafer</summary>
@@ -44,6 +45,7 @@
     </p>
     <p xml:lang="ca">El KGraphViewer és un visor de fitxers gràfics DOT del Graphviz, destinat a substituir les altres eines obsoletes del Graphviz. Els gràfics normalment s'utilitzen en dominis científics i particularment en informàtica.</p>
     <p xml:lang="de">KGraphViewer ist Anzeigeprogramm für Graphviz-Dot-Diagrammdateien und soll die anderen veralteten Graphviz-Programme ersetzen. Graphen werden in der Wissenschaft, insbesondere in der Informatik, verwendet.</p>
+    <p xml:lang="es">KGraphViewer es un visor de archivos de grafos DOT de Graphviz, que aspira a sustituir a otras herramientas obsoletas de Graphviz. Los grafos se usan a menudo en el campo científico y, particularmente, en la informática.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor DOT-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
     <p xml:lang="pt">O KGraphViewer é um visualizador de ficheiros de grafos DOT do Graphviz, destinado a substituir as outras ferramentas desactualizadas do GraphViz. Os grafos são usados normalmente nos domínios científicos e, em particular, na informática.</p>
     <p xml:lang="sv">Kgraphviewer är ett visningsprogram av Graphviz dot-grafer, med målet att ersätta övriga föråldrade Graphviz-verktyg. Användning av grafer är vanligt i vetenskapliga områden, i synnerhet inom datavetenskap.</p>
