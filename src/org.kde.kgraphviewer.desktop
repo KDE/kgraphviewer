@@ -45,6 +45,7 @@ X-DocPath=kgraphviewer/index.html
 InitialPreference=10
 Comment=A Graphviz DOT graph viewer
 Comment[ca]=Un visor de gràfics DOT del Graphviz
+Comment[ca@valencia]=Un visor de gràfics DOT del Graphviz
 Comment[de]=Ein Anzeigeprogramm für Graphviz-Dot-Diagramme
 Comment[es]=Un visor de grafos DOT de Graphviz
 Comment[it]=Un visore di grafi DOT di Graphviz
