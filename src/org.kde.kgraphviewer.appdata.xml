@@ -382,9 +382,9 @@
       <li xml:lang="x-test">xxOpen new instances as new tabs in the old one (configurable)xx</li>
     </ul>
   </description>
-  <url type="homepage">http://extragear.kde.org/apps/kgraphviewer/</url>
+  <url type="homepage">https://www.kde.org/applications/graphics/kgraphviewer/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kgraphviewer</url>
-  <url type="help">http://docs.kde.org/development/en/extragear-graphics/kgraphviewer/index.html</url>
+  <url type="help">https://docs.kde.org/?application=kgraphviewer</url>
   <screenshots>
     <screenshot type="default">
       <image>http://kde.org/images/screenshots/kgraphviewer.png</image>
