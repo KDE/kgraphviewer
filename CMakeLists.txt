@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
 project(kgraphviewer VERSION 2.3.90)
 
-set(ECM_DEP_VERSION "1.6.0")
-find_package(ECM ${ECM_DEP_VERSION} REQUIRED CONFIG)
+set(QT_MIN_VERSION "5.4.0")
+set(KF5_MIN_VERSION "5.16.0")
+
+find_package(ECM ${KF5_MIN_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
@@ -13,14 +15,10 @@ include(ECMInstallIcons)
 include(ECMSetupVersion)
 include(ECMPackageConfigHelpers)
 
-# search packages used by KDE
-find_package(Qt5 CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)
+# search basic libraries first
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)
 
-find_package(Boost 1.36 REQUIRED)
-find_package(Graphviz REQUIRED)
-
-set(KF5_DEP_VERSION "5.16.0")
-find_package(KF5 ${KF5_DEP_VERSION} REQUIRED COMPONENTS
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
     DocTools
     Parts
@@ -28,6 +26,9 @@ find_package(KF5 ${KF5_DEP_VERSION} REQUIRED COMPONENTS
     WidgetsAddons
     IconThemes
 )
+
+find_package(Boost 1.36 REQUIRED)
+find_package(Graphviz REQUIRED)
 
 if(NOT DOT)
    MESSAGE(STATUS "dot executable from Graphviz not found. You will need it at runtime")
@@ -48,3 +49,5 @@ add_definitions(
 
 add_subdirectory(src)
 add_subdirectory(doc)
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
