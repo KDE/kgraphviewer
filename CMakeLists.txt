@@ -6,6 +6,8 @@ set(KF5_MIN_VERSION "5.16.0")
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
+
+include(CMakePackageConfigHelpers)
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
@@ -13,7 +15,6 @@ include(FeatureSummary)
 include(GenerateExportHeader)
 include(ECMInstallIcons)
 include(ECMSetupVersion)
-include(ECMPackageConfigHelpers)
 
 # search basic libraries first
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)

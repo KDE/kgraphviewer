@@ -78,7 +78,7 @@ install( TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KGraphViewerPart")
 
-ecm_configure_package_config_file(
+configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/KGraphViewerPartConfig.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/KGraphViewerPartConfig.cmake"
     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
