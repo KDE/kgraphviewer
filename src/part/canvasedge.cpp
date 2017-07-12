@@ -32,19 +32,17 @@
 #include "dot2qtconsts.h"
 #include "dotgraphview.h"
 #include "FontsCache.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <QAction>
 
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
 #include <QMenu>
-#include <QLoggingCategory>
 
 #include <klocalizedstring.h>
 
 #include <iostream>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 //
 // CanvasEdge
@@ -65,7 +63,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
     m_font(nullptr), m_view(view), m_popup(new QMenu())
 {
   Q_UNUSED(gh);
-  qCDebug(debugCategory) << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << m_gh;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "edge "  << edge()->fromNode()->id() << "->"  << edge()->toNode()->id() << m_gh;
   setBoundingRegionGranularity(0.9);
   m_font = FontsCache::changeable().fromName(e->fontName());
 
@@ -93,7 +91,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
 
   setAcceptHoverEvents ( true );
 
-  qCDebug(debugCategory) << "connect slotElementHoverEnter";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "connect slotElementHoverEnter";
   connect(this, &CanvasEdge::hoverEnter,
           view, static_cast<void(DotGraphView::*)(CanvasEdge*)>(&DotGraphView::slotElementHoverEnter));
   connect(this, &CanvasEdge::hoverLeave,
@@ -385,7 +383,7 @@ Q_UNUSED(widget)
       }
       if (edge()->attributes().contains("color"))
       {
-        qCDebug(debugCategory) << "set edge color to " << QColor(edge()->attributes()["color"]).name();
+        qCDebug(KGRAPHVIEWERLIB_LOG) << "set edge color to " << QColor(edge()->attributes()["color"]).name();
         lineColor = QColor(edge()->attributes()["color"]);
       }
       for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum==0 && edge()->colors().count()==0); splineNum++)
@@ -496,12 +494,12 @@ void CanvasEdge::computeBoundingRect()
 
     m_boundingRect = a.boundingRect();
   }
-  qCDebug(debugCategory) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "New bounding rect is:" << m_boundingRect;
 }
 
 void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
-  qCDebug(debugCategory) << event;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << event;
   if (m_view->isReadOnly())
   {
     return;
@@ -523,7 +521,7 @@ void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
       emit(selected(this,event->modifiers()));
       update();
     }
-    qCDebug(debugCategory) << "emiting edgeContextMenuEvent("<<m_edge->id()<<","<<event->screenPos()<<")";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting edgeContextMenuEvent("<<m_edge->id()<<","<<event->screenPos()<<")";
     emit(edgeContextMenuEvent(m_edge->id(), event->screenPos() ));
 // opens the selected edge contextual menu and if necessary select the edge
 /*    kDebug() << "opens the contextual menu";
@@ -544,14 +542,14 @@ void CanvasEdge::slotRemoveEdge()
 void CanvasEdge::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
-  qCDebug(debugCategory) << edge()->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->id();
   emit hoverEnter(this);
 }
 
 void CanvasEdge::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
-  qCDebug(debugCategory) << edge()->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->id();
   emit hoverLeave(this);
 }
 

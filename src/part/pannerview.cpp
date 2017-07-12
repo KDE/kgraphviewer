@@ -29,7 +29,9 @@
  * Callgraph View
  */
 
+#include "dotgraphview.h"
 #include "pannerview.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -38,14 +40,9 @@
 #include <QGraphicsScene>
 #include <QPainter>
 #include <QMouseEvent>
-
 #include <QDebug>
-#include <QLoggingCategory>
+
 #include <klocalizedstring.h>
-
-#include "dotgraphview.h"
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -112,7 +109,7 @@ void PannerView::moveZoomRectTo(const QPointF& newPos, bool notify)
   }
 
   if (m_zoomRect.center() == newPos) {
-    qCDebug(debugCategory) << "same pos, don't do anything";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "same pos, don't do anything";
     return;
   }
 

@@ -18,6 +18,7 @@
 
 
 #include "kgraphviewer_part.h"
+#include "kgraphviewerlib_debug.h"
 #include "dotgraphview.h"
 #include "dotgraph.h"
 #include "config-kgraphviewer.h"
@@ -35,7 +36,6 @@
 #include <QStandardPaths>
 #include <KAboutData>
 #include <klocalizedstring.h>
-#include <QLoggingCategory>
 #include <iostream>
 
 #include <graphviz/gvc.h>
@@ -43,8 +43,6 @@
 
 // #include "kgraphviewersettings.h"
 #include "kgraphviewer_partsettings.h"
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -185,7 +183,7 @@ KGraphViewerPart::~KGraphViewerPart()
 
 bool KGraphViewerPart::openFile()
 {
-  qCDebug(debugCategory) << " " << localFilePath();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << " " << localFilePath();
   //    d->m_widget->loadedDot( localFilePath() );
   switch (d->m_layoutMethod)
   {
@@ -311,7 +309,7 @@ void KGraphViewerPart::slotSelectNode(const QString& nodeName)
 
 void KGraphViewerPart::slotAddAttribute(const QString&)
 {
-  qCDebug(debugCategory) << "NOT IMPLEMENTED";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "NOT IMPLEMENTED";
 }
 
 void KGraphViewerPart::slotSetAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue)

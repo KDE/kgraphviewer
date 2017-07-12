@@ -35,6 +35,7 @@
 #include "dotdefaults.h"
 #include "dot2qtconsts.h"
 #include "FontsCache.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -46,13 +47,9 @@
 #include <QStyle>
 #include <QPolygonF>
 #include <QPixmap>
-
 #include <QDebug>
-#include <QLoggingCategory>
 
 #include <klocalizedstring.h>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -64,7 +61,7 @@ CanvasNode::CanvasNode(DotGraphView* v,
 : CanvasElement(v,(GraphElement*)s, c, parent)
 
 {
-  qCDebug(debugCategory) << s->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << s->id();
   connect(s, &GraphNode::changed,
           this, &CanvasNode::modelChanged);
 

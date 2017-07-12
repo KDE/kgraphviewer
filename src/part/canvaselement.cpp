@@ -23,6 +23,7 @@
 #include "dotdefaults.h"
 #include "dot2qtconsts.h"
 #include "FontsCache.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -36,9 +37,6 @@
 #include <QDebug>
 #include <QAction>
 #include <klocalizedstring.h>
-#include <QLoggingCategory>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 // comment out to get extended debug output during rendering
 // #define RENDER_DEBUG 1
@@ -128,7 +126,7 @@ CanvasElement::~CanvasElement()
 
 void CanvasElement::modelChanged()
 {
-  qCDebug(debugCategory) ;//<< id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) ;//<< id();
   m_pen = QPen(Dot2QtConsts::componentData().qtColor(m_element->fontColor()));
   m_font = FontsCache::changeable().fromName(m_element->fontName());
   prepareGeometryChange();
@@ -162,13 +160,13 @@ QRectF CanvasElement::boundingRect () const
 void CanvasElement::computeBoundingRect()
 {
 //   kDebug() << element();
-  qCDebug(debugCategory) << element()->id() << zValue();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << element()->id() << zValue();
   
   qreal adjust = 0.5;
   QRectF rect;
   if (element()->renderOperations().isEmpty())
   {
-    qCDebug(debugCategory) << "no render operation";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "no render operation";
     rect = QRectF(0,0,(m_view->defaultNewElementPixmap().size().width())*m_scaleX,(m_view->defaultNewElementPixmap().size().height())*m_scaleY);
     m_boundingRect = rect;
   }
@@ -187,7 +185,7 @@ void CanvasElement::computeBoundingRect()
         dd << i << " ";
       }
       dd << (*it).str;
-      qCDebug(debugCategory) << msg;
+      qCDebug(KGRAPHVIEWERLIB_LOG) << msg;
 #endif
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
@@ -255,7 +253,7 @@ QWidget *widget)
     }
     dd << op.str << endl;
   }
-  qCDebug(debugCategory) << msg;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << msg;
 #endif
 
   if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
@@ -547,7 +545,7 @@ QWidget *widget)
 
 void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-  qCDebug(debugCategory) << m_element->id() << boundingRect();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << m_element->id() << boundingRect();
   if (m_view->isReadOnly())
   {
     return;

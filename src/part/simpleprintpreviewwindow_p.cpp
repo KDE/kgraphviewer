@@ -28,15 +28,14 @@
 #include "simpleprintpreviewwindow_p.h"
 #include "simpleprintingengine.h"
 #include "simpleprintingsettings.h"
+#include "kgraphviewerlib_debug.h"
+
 #include <QDebug>
 #include <QPixmap>
 #include <QResizeEvent>
 #include <QPaintEvent>
 #include <QStyle>
 #include <QApplication>
-#include <QLoggingCategory>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -46,7 +45,7 @@ KGVSimplePrintPreviewView::KGVSimplePrintPreviewView(
  : QWidget(),
   m_window(window)
 {
-  qCDebug(debugCategory) << "KGVSimplePrintPreviewView";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "KGVSimplePrintPreviewView";
 /*  resize(300,400);
   resizeContents(200, 400);*/
 //setAttribute(Qt::WA_PaintOutsidePaintEvent,true);
@@ -54,7 +53,7 @@ KGVSimplePrintPreviewView::KGVSimplePrintPreviewView(
 
 void KGVSimplePrintPreviewView::paintEvent( QPaintEvent *pe )
 {
-  qCDebug(debugCategory) << pe;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << pe;
   Q_UNUSED(pe);
 
   QPainter p(this);
@@ -62,11 +61,11 @@ void KGVSimplePrintPreviewView::paintEvent( QPaintEvent *pe )
   //   p.begin(&pm);
 //   p.initFrom(this);
 //! @todo only for screen!
-  qCDebug(debugCategory) << "filling rect";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "filling rect";
   p.fillRect(QRect(QPoint(0,0),m_window->size()), QBrush(Qt::white));//pe->rect(), QBrush(white));
   if (m_window->currentPage()>=0)
   {
-    qCDebug(debugCategory) << "painting page";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "painting page";
     m_window->m_engine.paintPage(m_window->currentPage(), p);
   }
 //    emit m_window->paintingPageRequested(m_window->currentPage(), p);
@@ -94,7 +93,7 @@ KGVSimplePrintPreviewScrollView::KGVSimplePrintPreviewScrollView(
 
 void KGVSimplePrintPreviewScrollView::paintEvent( QPaintEvent *pe )
 {
-  qCDebug(debugCategory) << widget();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << widget();
   QScrollArea::paintEvent(pe);
   ((KGVSimplePrintPreviewView*)widget())->paintEvent(pe);
 }

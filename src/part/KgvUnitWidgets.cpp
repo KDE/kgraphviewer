@@ -25,16 +25,15 @@
    version 2 of the License, or (at your option) any later version.
  */
 
+#include "kgraphviewerlib_debug.h"
 #include "KgvUnitWidgets.h"
+
 #include <QDebug>
 #include <QLocale>
 #include <qpushbutton.h>
 #include <qlayout.h>
 #include <QGridLayout>
 #include <QEvent>
-#include <QLoggingCategory>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 // ----------------------------------------------------------------
 //                          Support classes
@@ -49,7 +48,7 @@ QValidator::State
 KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
 {
 
-    qCDebug(debugCategory) << "KgvUnitDoubleValidator::validate : " << s << " at " << pos;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "KgvUnitDoubleValidator::validate : " << s << " at " << pos;
     QValidator::State result = Acceptable;
 
     QRegExp regexp ("([ a-zA-Z]+)$"); // Letters or spaces at end
@@ -58,7 +57,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
     if ( res == -1 )
     {
         // Nothing like an unit? The user is probably editing the unit
-        qCDebug(debugCategory) << "Intermediate (no unit)";
+        qCDebug(KGRAPHVIEWERLIB_LOG) << "Intermediate (no unit)";
         return Intermediate;
     }
 
@@ -66,7 +65,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
     const QString number ( s.left( res ).trimmed() );
     const QString unitName ( regexp.cap( 1 ).trimmed().toLower() );
 
-    qCDebug(debugCategory) << "Split:" << number << ":" << unitName << ":";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "Split:" << number << ":" << unitName << ":";
 
     bool ok = false;
     const double value = m_base->toDouble( number, &ok );
@@ -79,7 +78,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
         else
         {
             // Probably the user is trying to edit the unit
-            qCDebug(debugCategory) << "Intermediate (unknown unit)";
+            qCDebug(KGRAPHVIEWERLIB_LOG) << "Intermediate (unknown unit)";
             return Intermediate;
         }
     }
@@ -100,7 +99,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
 QString KgvUnitDoubleBase::getVisibleText( double value ) const
 {
     const QString num ( QString( "%1%2").arg( QLocale().toString( value, m_precision ), KgvUnit::unitName( m_unit ) ) );
-    qCDebug(debugCategory) << "getVisibleText: " << QString::number( value, 'f', 12 ) << " => " << num;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "getVisibleText: " << QString::number( value, 'f', 12 ) << " => " << num;
     return num;
 }
 
@@ -115,7 +114,7 @@ double KgvUnitDoubleBase::toDouble( const QString& str, bool* ok ) const
     str2.remove( KgvUnit::unitName( m_unit ) );
     const double dbl = QLocale().toDouble( str2, ok );
     if ( ok )
-      qCDebug(debugCategory) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number( dbl, 'f', 12 );
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number( dbl, 'f', 12 );
     else
         qWarning() << "error:" << str << ": => :" << str2 << ":" << endl;
     return dbl;

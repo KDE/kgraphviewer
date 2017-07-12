@@ -14,6 +14,7 @@ include(KDECMakeSettings)
 include(FeatureSummary)
 include(GenerateExportHeader)
 include(ECMInstallIcons)
+include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
 
 # search basic libraries first

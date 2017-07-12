@@ -31,6 +31,7 @@
 #include "simpleprintingcommand.h"
 #include "simpleprintpreviewwindow.h"
 #include "dotgraphview.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <QApplication>
 #include <QStandardPaths>
@@ -43,7 +44,6 @@
 #include <QMessageBox>
 #include <QSpinBox>
 #include <QUrl>
-#include <QLoggingCategory>
 
 #include <qlabel.h>
 #include <qtimer.h>
@@ -59,8 +59,6 @@
 #include <klocalizedstring.h>
 #include <KIconTheme>
 #include <iostream>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -335,7 +333,7 @@ void KGVSimplePrintingPageSetup::slotAddTableBordersCheckboxToggled(bool set)
 
 void KGVSimplePrintingPageSetup::slotFittingButtonClicked(int id)
 {
-  qCDebug(debugCategory) << "KGVSimplePrintingPageSetup::slotFittingButtonClicked " << id;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "KGVSimplePrintingPageSetup::slotFittingButtonClicked " << id;
   if (id == NaturalSize)
   {
     m_settings->fitToOnePage = false;

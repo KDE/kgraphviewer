@@ -7,6 +7,13 @@ include_directories(
     ${graphviz_INCLUDE_DIRECTORIES}
 )
 
+ecm_qt_declare_logging_category(kgraphviewerlib_LIB_DEBUG_SRCS
+    HEADER kgraphviewerlib_debug.h
+    IDENTIFIER KGRAPHVIEWERLIB_LOG
+    CATEGORY_NAME org.kde.kgraphviewer.lib
+    DEFAULT_SEVERITY Warning
+)
+
 ########### next target ###############
 
 set( kgraphviewerlib_LIB_SRCS
@@ -42,6 +49,7 @@ set( kgraphviewerlib_LIB_SRCS
     KgvPageLayout.cpp
     KgvPageLayoutHeader.cpp
     KgvPageLayoutSize.cpp
+    ${kgraphviewerlib_LIB_DEBUG_SRCS}
 )
 
 kconfig_add_kcfg_files( kgraphviewerlib_LIB_SRCS kgraphviewer_partsettings.kcfgc )
@@ -49,7 +57,6 @@ kconfig_add_kcfg_files( kgraphviewerlib_LIB_SRCS kgraphviewer_partsettings.kcfgc
 set( kgraphviewerprinting_UI simpleprintingpagesetupbase.ui KgvPageLayoutColumnsBase.ui KgvPageLayoutHeaderBase.ui )
 
 ki18n_wrap_ui(kgraphviewerlib_LIB_SRCS ${kgraphviewerprinting_UI} )
-
 
 add_library(kgraphviewerlib ${kgraphviewerlib_LIB_SRCS})
 
@@ -67,7 +74,7 @@ ecm_setup_version(PROJECT
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGraphViewerPartConfigVersion.cmake"
 )
 
-set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp  )
+set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp ${kgraphviewerlib_LIB_DEBUG_SRCS})
 
 add_library(kgraphviewerpart MODULE ${kgraphviewerpart_PART_SRCS})
 generate_export_header(kgraphviewerpart BASE_NAME kgraphviewer)

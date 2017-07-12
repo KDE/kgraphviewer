@@ -17,6 +17,7 @@
 */
 
 
+#include "kgrapheditor_debug.h"
 #include "KGraphEditorElementTreeWidget.h"
 
 #include <QDebug>
@@ -24,9 +25,6 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 #include <klocalizedstring.h>
-#include <QLoggingCategory>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KGraphEditorElementTreeWidget::KGraphEditorElementTreeWidget(QWidget* parent) :
     QTreeWidget(parent),
@@ -41,7 +39,7 @@ KGraphEditorElementTreeWidget::~KGraphEditorElementTreeWidget()
 
 void KGraphEditorElementTreeWidget::setupPopup(const QPoint& point)
 {
-  qCDebug(debugCategory) << point;
+  qCDebug(KGRAPHEDITOR_LOG) << point;
 
   if (m_popup)
   {
@@ -75,7 +73,7 @@ void KGraphEditorElementTreeWidget::slotAddAttribute()
 
 void KGraphEditorElementTreeWidget::slotRemoveAttribute()
 {
-  qCDebug(debugCategory) << "Remove Attribute";
+  qCDebug(KGRAPHEDITOR_LOG) << "Remove Attribute";
   if (m_item == nullptr) // should not happen
   {
     qWarning() << "null item ; should not happen" << endl;

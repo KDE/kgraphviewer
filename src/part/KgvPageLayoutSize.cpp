@@ -25,6 +25,7 @@
    version 2 of the License, or (at your option) any later version.
  */
 
+#include "kgraphviewerlib_debug.h"
 #include <KgvPageLayoutSize.h>
 #include <KgvPageLayoutDia.h>
 #include <KgvUnit.h>
@@ -33,7 +34,6 @@
 #include <QIcon>
 #include <QMessageBox>
 #include <QDebug>
-#include <QLoggingCategory>
 
 #include <qlabel.h>
 #include <qlayout.h>
@@ -44,8 +44,6 @@
 #include <QPixmap>
 #include <KIconTheme>
 #include "klocalizedstring.h"
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KgvPageLayoutSize::KgvPageLayoutSize(
   QWidget *parent, 
@@ -319,7 +317,7 @@ void KgvPageLayoutSize::formatChanged( int format ) {
 
 void KgvPageLayoutSize::orientationChanged(int which) 
 {
-  qCDebug(debugCategory) << "KgvPageLayoutSize::orientationChanged";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "KgvPageLayoutSize::orientationChanged";
   m_layout.orientation = which == 0 ? PG_PORTRAIT : PG_LANDSCAPE;
 
   // swap dimension

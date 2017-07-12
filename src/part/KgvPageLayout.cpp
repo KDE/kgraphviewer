@@ -25,12 +25,13 @@
    version 2 of the License, or (at your option) any later version.
  */
 
+#include "kgraphviewerlib_debug.h"
 #include "KgvPageLayout.h"
+
 #include <KgvUnit.h>
 #include <QDebug>
 #include <KSharedConfig>
 #include <QPrinter>
-#include <QLoggingCategory>
 #include <qdom.h>
 #include <klocalizedstring.h>
 
@@ -50,8 +51,6 @@
 #define PG_US_EXECUTIVE_WIDTH	191.0
 #define PG_US_EXECUTIVE_HEIGHT	254.0
 
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
-
 KgvPageLayout KgvPageLayout::standardLayout()
 {
     KgvPageLayout layout;
@@ -65,7 +64,7 @@ KgvPageLayout KgvPageLayout::standardLayout()
     layout.ptBottom = MM_TO_POINT( 20.0 );
     layout.ptPageEdge = -1;
     layout.ptBindingSide = -1;
-    qCDebug(debugCategory) << "Returning standardLayout";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "Returning standardLayout";
     return layout;
 }
 

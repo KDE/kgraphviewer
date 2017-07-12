@@ -29,6 +29,7 @@
 
 /******************************************************************/
 
+#include "kgraphviewerlib_debug.h"
 #include <KgvPageLayoutDia.h>
 #include <KgvGlobal.h>
 #include <KgvPageLayoutColumns.h>
@@ -50,10 +51,7 @@
 #include <QHBoxLayout>
 #include <QPaintEngine>
 #include <klocalizedstring.h>
-#include <QLoggingCategory>
 #include <QPointer>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 /******************************************************************/
 /* class KgvPagePreview                                            */
@@ -96,7 +94,7 @@ void KgvPagePreview::setPageLayout( const KgvPageLayout &layout )
     m_textFrameWidth = m_pageWidth - ( layout.ptLeft + layout.ptRight ) * resolutionX * z;
     m_textFrameHeight = m_pageHeight - ( layout.ptTop + layout.ptBottom ) * resolutionY * z;
 
-    qCDebug(debugCategory) << "repaint in setPageLayout";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "repaint in setPageLayout";
     repaint();
 }
 

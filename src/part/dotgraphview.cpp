@@ -42,6 +42,7 @@
 #include "graphedge.h"
 #include "FontsCache.h"
 #include "kgraphviewer_partsettings.h"
+#include "kgraphviewerlib_debug.h"
 #include "simpleprintingcommand.h"
 #include "graphexporter.h"
 #include "loadagraphthread.h"
@@ -79,14 +80,11 @@
 #include <QStandardPaths>
 #include <kactionmenu.h>
 #include <klocalizedstring.h>
-#include <QLoggingCategory>
-    
+
 // DotGraphView defaults
 
 #define DEFAULT_ZOOMPOS      KGraphViewerInterface::Auto
 #define KGV_MAX_PANNER_NODES 100
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -303,7 +301,7 @@ void DotGraphViewPrivate::updateBirdEyeView()
     QPointF br1Pos = q->mapToScene(QPoint(x,y));
     QPointF br2Pos = q->mapToScene(QPoint(x+cvW,y+cvH));
     int tlCols = m_canvas->items(QRectF(tl1Pos.x(),tl1Pos.y(),tl2Pos.x(),tl2Pos.y())).count();
-    qCDebug(debugCategory) << tr1Pos.x() << tr1Pos.y() << tr2Pos.x() << tr2Pos.y();
+    qCDebug(KGRAPHVIEWERLIB_LOG) << tr1Pos.x() << tr1Pos.y() << tr2Pos.x() << tr2Pos.y();
     int trCols = m_canvas->items(QRectF(tr1Pos.x(),tr1Pos.y(),tr2Pos.x(),tr2Pos.y())).count();
     int blCols = m_canvas->items(QRectF(bl1Pos.x(),bl1Pos.y(),bl2Pos.x(),bl2Pos.y())).count();
     int brCols = m_canvas->items(QRectF(br1Pos.x(),br1Pos.y(),br2Pos.x(),br2Pos.y())).count();
@@ -363,7 +361,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
   
   if (gsubgraph->canvasSubgraph() == nullptr)
   {
-    qCDebug(debugCategory) << "Creating canvas subgraph for" << gsubgraph->id();
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating canvas subgraph for" << gsubgraph->id();
     CanvasSubgraph* csubgraph = new CanvasSubgraph(q, gsubgraph, m_canvas, parent);
     csubgraph->initialize(
       scale, scale, m_xMargin, m_yMargin, gh,
@@ -373,14 +371,14 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
     csubgraph->setZValue(zValue+=2);
     csubgraph->show();
     m_canvas->addItem(csubgraph);
-    qCDebug(debugCategory) << " one CanvasSubgraph... Done";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << " one CanvasSubgraph... Done";
   }
   foreach (GraphElement* element, gsubgraph->content())
   {
     GraphNode* gnode = dynamic_cast<GraphNode*>(element);
     if (gnode->canvasNode() == nullptr)
     {
-      qCDebug(debugCategory) << "Creating canvas node for:" << gnode->id();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating canvas node for:" << gnode->id();
       CanvasNode *cnode = new CanvasNode(q, gnode, m_canvas);
       if (cnode == nullptr) continue;
       cnode->initialize(
@@ -413,7 +411,7 @@ void DotGraphViewPrivate::setupPopup()
   {
     return;
   }
-  qCDebug(debugCategory) << "DotGraphView::setupPopup";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::setupPopup";
   m_popup = new QMenu();
   
   m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"),q);
@@ -565,7 +563,7 @@ void DotGraphViewPrivate::setupPopup()
   }
   
   
-  qCDebug(debugCategory) << "    m_bevEnabledAction setting checked to : " << KGraphViewerPartSettings::birdsEyeViewEnabled();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "    m_bevEnabledAction setting checked to : " << KGraphViewerPartSettings::birdsEyeViewEnabled();
   m_bevEnabledAction->setChecked(KGraphViewerPartSettings::birdsEyeViewEnabled());
   m_bevPopup->setEnabled(KGraphViewerPartSettings::birdsEyeViewEnabled());
 }
@@ -625,7 +623,7 @@ void DotGraphViewPrivate::exportToImage()
 DotGraphView::DotGraphView(KActionCollection* actions, QWidget* parent) : 
     QGraphicsView(parent), d_ptr(new DotGraphViewPrivate(actions, this))
 {
-  //qCDebug(debugCategory) << "New node pic=" << KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png");
+  //qCDebug(KGRAPHVIEWERLIB_LOG) << "New node pic=" << KGlobal::dirs()->findResource("data","kgraphviewerpart/pics/kgraphviewer-newnode.png");
   Q_D(DotGraphView);
   d->m_canvas = nullptr;
   d->m_xMargin = d->m_yMargin = 0;
@@ -774,7 +772,7 @@ bool DotGraphView::initEmpty()
 
 bool DotGraphView::slotLoadLibrary(graph_t* graph)
 {
-  qCDebug(debugCategory) << "graph_t";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "graph_t";
   Q_D(DotGraphView);
   d->m_birdEyeView->setScene(nullptr);
 
@@ -790,7 +788,7 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   if (layoutCommand.isEmpty())
   layoutCommand = "dot";
 
-  qCDebug(debugCategory) << "layoutCommand:" << layoutCommand;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "layoutCommand:" << layoutCommand;
   d->m_graph = new DotGraph(layoutCommand,"");
   d->m_graph->setUseLibrary(true);
 
@@ -822,7 +820,7 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
   d->m_yMargin = 50;
 
   QGraphicsScene* newCanvas = new QGraphicsScene();
-  qCDebug(debugCategory) << "Created canvas " << newCanvas;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "Created canvas " << newCanvas;
 
   d->m_birdEyeView->setScene(newCanvas);
   // std::cerr << "After m_birdEyeView set canvas" << std::endl;
@@ -844,7 +842,7 @@ bool DotGraphView::slotLoadLibrary(graph_t* graph)
 
 bool DotGraphView::loadDot(const QString& dotFileName)
 {
-  qCDebug(debugCategory) << "'" << dotFileName << "'";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "'" << dotFileName << "'";
   Q_D(DotGraphView);
   d->m_birdEyeView->setScene(nullptr);
 
@@ -876,7 +874,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   d->m_yMargin = 50;
 
   QGraphicsScene* newCanvas = new QGraphicsScene();
-  qCDebug(debugCategory) << "Created canvas " << newCanvas;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "Created canvas " << newCanvas;
 
   d->m_birdEyeView->setScene(newCanvas);
 //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
@@ -904,7 +902,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
 
 bool DotGraphView::loadLibrary(const QString& dotFileName)
 {
-  qCDebug(debugCategory) << "'" << dotFileName << "'";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "'" << dotFileName << "'";
   Q_D(DotGraphView);
   if (d->m_canvas)
     d->m_canvas->clear();
@@ -919,7 +917,7 @@ bool DotGraphView::loadLibrary(const QString& dotFileName)
 
 bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
 {
-  qCDebug(debugCategory) << "graph_t";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "graph_t";
   Q_D(DotGraphView);
   d->m_birdEyeView->setScene(nullptr);
   
@@ -935,7 +933,7 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
   if (!graph)
     return false;
 
-  qCDebug(debugCategory) << "layoutCommand:" << layoutCommand;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "layoutCommand:" << layoutCommand;
   d->m_graph = new DotGraph(layoutCommand,"");
   d->m_graph->setUseLibrary(true);
   
@@ -951,7 +949,7 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
   d->m_yMargin = 50;
   
   QGraphicsScene* newCanvas = new QGraphicsScene();
-  qCDebug(debugCategory) << "Created canvas " << newCanvas;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "Created canvas " << newCanvas;
   
   d->m_birdEyeView->setScene(newCanvas);
   setScene(newCanvas);
@@ -969,13 +967,13 @@ bool DotGraphView::loadLibrary(graph_t* graph, const QString& layoutCommand)
 
 void DotGraphView::slotSelectionChanged()
 {
-  qCDebug(debugCategory) << scene()->selectedItems().size();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << scene()->selectedItems().size();
 }
 
 bool DotGraphView::displayGraph()
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << d->m_graph->backColor();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << d->m_graph->backColor();
 //   hide();
   viewport()->setUpdatesEnabled(false);
 
@@ -1003,7 +1001,7 @@ bool DotGraphView::displayGraph()
   
 //   kDebug() << "sceneRect is now " << m_canvas->sceneRect();
   
-  qCDebug(debugCategory) << "Creating" << d->m_graph->subgraphs().size() << "CanvasSubgraphs from" << d->m_graph;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating" << d->m_graph->subgraphs().size() << "CanvasSubgraphs from" << d->m_graph;
   int zvalue = -1;
   foreach (GraphSubgraph* gsubgraph, d->m_graph->subgraphs())
   {
@@ -1012,18 +1010,18 @@ bool DotGraphView::displayGraph()
       zvalue = newZvalue;
   }
 
-  qCDebug(debugCategory) << "Creating" << d->m_graph->nodes().size() << "nodes from" << d->m_graph;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating" << d->m_graph->nodes().size() << "nodes from" << d->m_graph;
   GraphNodeMap::const_iterator it = d->m_graph->nodes().constBegin();
   for (; it != d->m_graph->nodes().constEnd();it++)
   {
     const QString& id = it.key();
     GraphNode* gnode = it.value();
-    qCDebug(debugCategory) << "Handling" << id << (void*)gnode;
-    qCDebug(debugCategory) << "  gnode id=" << gnode->id();
-    qCDebug(debugCategory)<<  "  canvasNode=" << (void*)gnode->canvasNode();
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "Handling" << id << (void*)gnode;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "  gnode id=" << gnode->id();
+    qCDebug(KGRAPHVIEWERLIB_LOG)<<  "  canvasNode=" << (void*)gnode->canvasNode();
     if (gnode->canvasNode() == nullptr)
     {
-      qCDebug(debugCategory) << "Creating canvas node for" << gnode->id();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating canvas node for" << gnode->id();
       CanvasNode *cnode = new CanvasNode(this, gnode, d->m_canvas);
       if (cnode == nullptr) continue;
       cnode->initialize(
@@ -1038,19 +1036,19 @@ bool DotGraphView::displayGraph()
     gnode->canvasNode()->computeBoundingRect();
   }
 
-  qCDebug(debugCategory) << "Creating" << d->m_graph->edges().size() << "edges from" << d->m_graph;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating" << d->m_graph->edges().size() << "edges from" << d->m_graph;
   foreach (GraphEdge* gedge, d->m_graph->edges())
   {
-    qCDebug(debugCategory) << "One GraphEdge:" << gedge->id();
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "One GraphEdge:" << gedge->id();
     if (gedge->canvasEdge() == nullptr
       && gedge->fromNode()
       && gedge->toNode())
     {
-      qCDebug(debugCategory) << "New CanvasEdge for" << gedge->id();
-      qCDebug(debugCategory) << "edge fromNode=" << (void*)gedge->fromNode();
-      qCDebug(debugCategory) << "              "<< gedge->fromNode()->id();
-      qCDebug(debugCategory) << "edge toNode=" << (void*)gedge->toNode();
-      qCDebug(debugCategory) << "              "<< gedge->toNode()->id();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "New CanvasEdge for" << gedge->id();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "edge fromNode=" << (void*)gedge->fromNode();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "              "<< gedge->fromNode()->id();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "edge toNode=" << (void*)gedge->toNode();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "              "<< gedge->toNode()->id();
       CanvasEdge* cedge = new CanvasEdge(this, gedge, scale, scale, d->m_xMargin,
           d->m_yMargin, gh, d->m_graph->wdhcf(), d->m_graph->hdvcf());
 
@@ -1064,7 +1062,7 @@ bool DotGraphView::displayGraph()
     if (gedge->canvasEdge())
       gedge->canvasEdge()->computeBoundingRect();
   }
-  qCDebug(debugCategory) << "Adding graph render operations: " << d->m_graph->renderOperations().size();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "Adding graph render operations: " << d->m_graph->renderOperations().size();
   foreach (const DotRenderOp& dro, d->m_graph->renderOperations())
   {
     if ( dro.renderop == "T" )
@@ -1100,7 +1098,7 @@ bool DotGraphView::displayGraph()
     }
   }
 
-  qCDebug(debugCategory) << "Finalizing";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "Finalizing";
   d->m_cvZoom = 0;
   d->updateSizes();
 
@@ -1187,7 +1185,7 @@ void DotGraphView::wheelEvent(QWheelEvent* e)
   if (QApplication::keyboardModifiers() == Qt::ShiftModifier ||
       QApplication::keyboardModifiers() == Qt::ControlModifier)
   {
-    qCDebug(debugCategory) << " + Shift/Ctrl: zooming";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << " + Shift/Ctrl: zooming";
     // move canvas...
     if (e->delta() < 0)
     {
@@ -1200,7 +1198,7 @@ void DotGraphView::wheelEvent(QWheelEvent* e)
   }
   else
   {
-    qCDebug(debugCategory) << " : scrolling ";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << " : scrolling ";
     scrollViewPercent(e->orientation() == Qt::Horizontal, e->delta() < 0 ? 10 : -10);
   }
 }
@@ -1254,7 +1252,7 @@ void DotGraphView::scrollContentsBy(int dx, int dy)
 void DotGraphView::resizeEvent(QResizeEvent* e)
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << "resizeEvent";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "resizeEvent";
   QGraphicsView::resizeEvent(e);
   if (d->m_canvas) d->updateSizes(e->size());
 //   std::cerr << "resizeEvent end" << std::endl;
@@ -1280,7 +1278,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
   if (e->button() != Qt::LeftButton) {
     return;
   }
-  qCDebug(debugCategory) << e << d->m_editingMode;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << e << d->m_editingMode;
   QGraphicsView::mousePressEvent(e);
 
   if (d->m_editingMode == AddNewElement)
@@ -1310,7 +1308,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
       d->m_graph->wdhcf(), d->m_graph->hdvcf());
     newNode->setCanvasNode(newCNode);
     scene()->addItem(newCNode);
-    qCDebug(debugCategory) << "setting pos to " << pos;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "setting pos to " << pos;
     newCNode->setPos(pos);
     newCNode->setZValue(100);
     newCNode->show();
@@ -1405,7 +1403,7 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
 void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << e << d->m_editingMode;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << e << d->m_editingMode;
 //   kDebug() << "setDragMode(NoDrag)";
 //   setDragMode(NoDrag);
   if (d->m_editingMode == AddNewElement)
@@ -1416,7 +1414,7 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
   else if (d->m_editingMode == SelectingElements)
   {
     QGraphicsView::mouseReleaseEvent(e);
-    qCDebug(debugCategory) << "Stopping selection" << scene() << d->m_canvas;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "Stopping selection" << scene() << d->m_canvas;
     QList<QGraphicsItem *> items = scene()->selectedItems();
     QList<QString> selection;
     foreach (QGraphicsItem * item, items)
@@ -1466,7 +1464,7 @@ void DotGraphView::slotContextMenuEvent(const QString& id, const QPoint& p)
 
 void DotGraphView::slotElementHoverEnter(CanvasElement* element)
 {
-  qCDebug(debugCategory) << element->element()->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << element->element()->id();
   //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
   
   emit (hoverEnter(element->element()->id()));
@@ -1474,7 +1472,7 @@ void DotGraphView::slotElementHoverEnter(CanvasElement* element)
 
 void DotGraphView::slotElementHoverLeave(CanvasElement* element)
 {
-  qCDebug(debugCategory) << element->element()->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << element->element()->id();
   //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
   
   emit (hoverLeave(element->element()->id()));
@@ -1482,7 +1480,7 @@ void DotGraphView::slotElementHoverLeave(CanvasElement* element)
 
 void DotGraphView::slotElementHoverEnter(CanvasEdge* element)
 {
-  qCDebug(debugCategory) << element->edge()->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << element->edge()->id();
   //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
   
   emit (hoverEnter(element->edge()->id()));
@@ -1490,7 +1488,7 @@ void DotGraphView::slotElementHoverEnter(CanvasEdge* element)
 
 void DotGraphView::slotElementHoverLeave(CanvasEdge* element)
 {
-  qCDebug(debugCategory) << element->edge()->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << element->edge()->id();
   //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
   
   emit (hoverLeave(element->edge()->id()));
@@ -1741,7 +1739,7 @@ void DotGraphView::slotLayoutReset()
 void DotGraphView::slotSelectLayoutAlgo(const QString& ttext)
 {
   QString text = ttext;//.mid(1);
-  qCDebug(debugCategory) << "DotGraphView::slotSelectLayoutAlgo '" << text << "'";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutAlgo '" << text << "'";
   if (text == "Dot")
   {
     setLayoutCommand("dot");
@@ -1770,39 +1768,39 @@ void DotGraphView::slotSelectLayoutAlgo(const QString& ttext)
 
 void DotGraphView::slotSelectLayoutDot()
 {
-  qCDebug(debugCategory) << "DotGraphView::slotSelectLayoutDot";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutDot";
   setLayoutCommand("dot -Txdot");
 }
 
 void DotGraphView::slotSelectLayoutNeato()
 {
-  qCDebug(debugCategory) << "DotGraphView::slotSelectLayoutNeato";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutNeato";
   setLayoutCommand("neato -Txdot");
 }
 
 void DotGraphView::slotSelectLayoutTwopi()
 {
-  qCDebug(debugCategory) << "DotGraphView::slotSelectLayoutTwopi";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutTwopi";
   setLayoutCommand("twopi -Txdot");
 }
 
 void DotGraphView::slotSelectLayoutFdp()
 {
-  qCDebug(debugCategory) << "DotGraphView::slotSelectLayoutFdp";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutFdp";
   setLayoutCommand("fdp -Txdot");
 }
 
 void DotGraphView::slotSelectLayoutCirco()
 {
-  qCDebug(debugCategory) << "DotGraphView::slotSelectLayoutCirco";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutCirco";
   setLayoutCommand("circo -Txdot");
 }
 
 void DotGraphView::slotBevToggled()
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << "DotGraphView::slotBevToggled";
-  qCDebug(debugCategory) << "    d->m_bevEnabledAction is checked ? " << d->m_bevEnabledAction->isChecked();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotBevToggled";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "    d->m_bevEnabledAction is checked ? " << d->m_bevEnabledAction->isChecked();
   setPannerEnabled(d->m_bevEnabledAction->isChecked());
 }
 
@@ -1850,7 +1848,7 @@ void DotGraphView::prepareAddNewElement(QMap<QString,QString> attribs)
 void DotGraphView::prepareAddNewEdge(QMap<QString,QString> attribs)
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << attribs;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << attribs;
   bool anySelected = false;
   foreach (GraphEdge* edge, d->m_graph->edges())
   {
@@ -1886,14 +1884,14 @@ void DotGraphView::prepareSelectElements()
 void DotGraphView::createNewEdgeDraftFrom(CanvasElement* node)
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << node->element()->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << node->element()->id();
   d->m_editingMode = DrawNewEdge;
   unsetCursor();
   d->m_newEdgeSource = node;
 
   if (d->m_newEdgeDraft)
   {
-    qCDebug(debugCategory) << "removing new edge draft";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "removing new edge draft";
     d->m_newEdgeDraft->hide();
     scene()->removeItem(d->m_newEdgeDraft);
     delete d->m_newEdgeDraft;
@@ -1903,19 +1901,19 @@ void DotGraphView::createNewEdgeDraftFrom(CanvasElement* node)
   scene()->addItem(d->m_newEdgeDraft);
   d->m_newEdgeDraft->setZValue(1000);
   d->m_newEdgeDraft->show();
-  qCDebug(debugCategory) << d->m_newEdgeDraft->line();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << d->m_newEdgeDraft->line();
 }
 
 void DotGraphView::finishNewEdgeTo(CanvasElement* node)
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << node->element()->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << node->element()->id();
   d->m_editingMode = None;
   unsetCursor();
 
   if (d->m_newEdgeDraft)
   {
-    qCDebug(debugCategory) << "removing new edge draft";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "removing new edge draft";
     d->m_newEdgeDraft->hide();
     scene()->removeItem(d->m_newEdgeDraft);
     delete d->m_newEdgeDraft;
@@ -1987,7 +1985,7 @@ void DotGraphView::setReadWrite()
 void DotGraphView::slotEdgeSelected(CanvasEdge* edge, Qt::KeyboardModifiers modifiers)
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << edge->edge()->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << edge->edge()->id();
   QList<QString> selection;
   selection.push_back(edge->edge()->id());
   if (!modifiers.testFlag(Qt::ControlModifier))
@@ -2100,7 +2098,7 @@ void DotGraphView::removeSelectedEdges()
   {
     if (e->isSelected())
     {
-      qCDebug(debugCategory) << "emiting removeEdge " << e->id();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting removeEdge " << e->id();
       d->m_graph->removeEdge(e->id());
       emit removeEdge(e->id());
     }
@@ -2110,12 +2108,12 @@ void DotGraphView::removeSelectedEdges()
 void DotGraphView::removeSelectedNodes()
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory);
+  qCDebug(KGRAPHVIEWERLIB_LOG);
   foreach(GraphNode* e, d->m_graph->nodes())
   {
     if (e->isSelected())
     {
-      qCDebug(debugCategory) << "emiting removeElement " << e->id();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting removeElement " << e->id();
       d->m_graph->removeElement(e->id());
       emit removeElement(e->id());
     }
@@ -2129,7 +2127,7 @@ void DotGraphView::removeSelectedSubgraphs()
   {
     if (e->isSelected())
     {
-      qCDebug(debugCategory) << "emiting removeElement " << e->id();
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting removeElement " << e->id();
       d->m_graph->removeElement(e->id());
       emit removeElement(e->id());
     }
@@ -2146,7 +2144,7 @@ void DotGraphView::removeSelectedElements()
 void DotGraphView::timerEvent ( QTimerEvent * event )
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << event->timerId();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << event->timerId();
   qreal vpercent = verticalScrollBar()->value()*1.0/100;
   qreal hpercent = horizontalScrollBar()->value()*1.0/100;
   if (d->m_scrollDirection == Left)
@@ -2170,7 +2168,7 @@ void DotGraphView::timerEvent ( QTimerEvent * event )
 void DotGraphView::leaveEvent ( QEvent * /*event*/ )
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory) << mapFromGlobal(QCursor::pos());
+  qCDebug(KGRAPHVIEWERLIB_LOG) << mapFromGlobal(QCursor::pos());
   if (d->m_editingMode == DrawNewEdge)
   {
     d->m_leavedTimer = startTimer(10);
@@ -2196,7 +2194,7 @@ void DotGraphView::leaveEvent ( QEvent * /*event*/ )
 void DotGraphView::enterEvent ( QEvent * /*event*/ )
 {
   Q_D(DotGraphView);
-  qCDebug(debugCategory);
+  qCDebug(KGRAPHVIEWERLIB_LOG);
   if (d->m_leavedTimer != std::numeric_limits<int>::max())
   {
     killTimer(d->m_leavedTimer);
@@ -2247,7 +2245,7 @@ void DotGraphView::slotAGraphLayoutFinished()
 
 void DotGraphView::slotSelectNode(const QString& nodeName)
 {
-  qCDebug(debugCategory) << nodeName;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << nodeName;
   GraphNode* node = dynamic_cast<GraphNode*>(graph()->elementNamed(nodeName));
   if (node == nullptr) return;
   node->setSelected(true);

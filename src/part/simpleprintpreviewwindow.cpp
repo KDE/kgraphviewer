@@ -28,6 +28,7 @@
 #include "simpleprintpreviewwindow.h"
 #include "simpleprintpreviewwindow_p.h"
 #include "simpleprintingengine.h"
+#include "kgraphviewerlib_debug.h"
 // #include <kexi_version.h>
 
 #include <qlayout.h>
@@ -48,13 +49,10 @@
 #include <QApplication>
 #include <kstandardaction.h>
 #include <QAction>
-#include <QLoggingCategory>
 #include <kparts/mainwindow.h>
 
 #include <iostream>
 #include <klocalizedstring.h>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -164,7 +162,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(
 
 void KGVSimplePrintPreviewWindow::initLater()
 {
-  qCDebug(debugCategory) ;
+  qCDebug(KGRAPHVIEWERLIB_LOG) ;
   setFullWidth();
   updatePagesCount();
   goToPage(0);
@@ -237,7 +235,7 @@ void KGVSimplePrintPreviewWindow::slotRedraw()
 
 void KGVSimplePrintPreviewWindow::goToPage(int pageNumber)
 {
-  qCDebug(debugCategory) << pageNumber;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << pageNumber;
   if (pageNumber==m_pageNumber || pageNumber < 0 || pageNumber > ((int)m_engine.pagesCount()-1))
     return;
   m_pageNumber = pageNumber;

@@ -34,13 +34,11 @@
 #include "pannerview.h"
 #include "canvasnode.h"
 #include "dotdefaults.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <math.h>
 
 #include <QDebug>
-#include <QLoggingCategory>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -68,7 +66,7 @@ GraphNode::GraphNode(node_t* gn) : GraphElement()
 
 void GraphNode::updateWithNode(const GraphNode& node)
 {
-  qCDebug(debugCategory) << id() << node.id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << id() << node.id();
   GraphElement::updateWithElement(node);
   if (canvasNode())
   {
@@ -80,7 +78,7 @@ void GraphNode::updateWithNode(const GraphNode& node)
 
 void GraphNode::updateWithNode(node_t* node)
 {
-  qCDebug(debugCategory) << agnameof(node);
+  qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(node);
   m_attributes["id"] = agnameof(node);
   m_attributes["label"] = ND_label(node)->text;
 
@@ -91,12 +89,12 @@ void GraphNode::updateWithNode(node_t* node)
   if (agget(node, (char*)"_draw_"))
   {
     parse_renderop(agget(node, (char*)"_draw_"), ops);
-    qCDebug(debugCategory) << "_draw_: element renderOperations size is now " << ops.size();
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "_draw_: element renderOperations size is now " << ops.size();
   }
   if (agget(node, (char*)"_ldraw_"))
   {
     parse_renderop(agget(node, (char*)"_ldraw_"), ops);
-    qCDebug(debugCategory) << "_ldraw_: element renderOperations size is now " << ops.size();
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "_ldraw_: element renderOperations size is now " << ops.size();
   }
 
   setRenderOperations(ops);
@@ -104,7 +102,7 @@ void GraphNode::updateWithNode(node_t* node)
   Agsym_t *attr = agnxtattr(agraphof(node), AGNODE, nullptr);
   while(attr)
   {
-    qCDebug(debugCategory) << agnameof(node) << ":" << attr->name << agxget(node,attr);
+    qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(node) << ":" << attr->name << agxget(node,attr);
     m_attributes[attr->name] = agxget(node,attr);
     attr = agnxtattr(agraphof(node), AGNODE, attr);
   }

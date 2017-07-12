@@ -20,6 +20,7 @@
 #include "kgrapheditor.h"
 #include "kgrapheditorConfigDialog.h"
 #include "kgrapheditorsettings.h"
+#include "kgrapheditor_debug.h"
 #include "KGraphEditorNodesTreeWidget.h"
 #include "KGraphEditorElementTreeWidget.h"
 #include "ui_preferencesReload.h"
@@ -51,14 +52,11 @@
 #include <klocalizedstring.h>
 #include <QtDBus/QtDBus>
 #include <QDockWidget>
-#include <QLoggingCategory>
 #include <QTreeWidget>
 
 #include <iostream>
 
 using namespace KGraphViewer;
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KGraphEditor::KGraphEditor() :
     KParts::MainWindow(),
@@ -110,13 +108,13 @@ KGraphEditor::KGraphEditor() :
 
   if (QDBusConnection::sessionBus().registerService( "org.kde.kgrapheditor" ))
   {
-    qCDebug(debugCategory) << "Service Registered successfully";
+    qCDebug(KGRAPHEDITOR_LOG) << "Service Registered successfully";
     QDBusConnection::sessionBus().registerObject("/", this, QDBusConnection::ExportAllSlots);
 
   }
   else
   {
-    qCDebug(debugCategory) << "Failed to register service...";
+    qCDebug(KGRAPHEDITOR_LOG) << "Failed to register service...";
   }
 
   // Create a KParts part manager, to handle part activation/deactivation
@@ -199,7 +197,7 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
 
 void KGraphEditor::openUrl(const QUrl& url)
 {
-  qCDebug(debugCategory) << url;
+  qCDebug(KGRAPHEDITOR_LOG) << url;
   KParts::ReadOnlyPart *part = slotNewGraph();
 
 //   (KGraphEditorSettings::parsingMode() == "external")
@@ -341,7 +339,7 @@ void KGraphEditor::optionsConfigure()
   KgeConfigurationDialog* dialog = new KgeConfigurationDialog(this, "settings", KGraphEditorSettings::self());
 
   Ui::KGraphViewerPreferencesParsingWidget*  parsingWidget = dialog->m_parsingWidget;
-  qCDebug(debugCategory) << KGraphEditorSettings::parsingMode();
+  qCDebug(KGRAPHEDITOR_LOG) << KGraphEditorSettings::parsingMode();
   if (KGraphEditorSettings::parsingMode() == "external")
   {
     parsingWidget->external->setChecked(true);
@@ -555,7 +553,7 @@ void KGraphEditor::fileSaveAs()
 
 void KGraphEditor::newTabSelectedSlot(int index)
 {
-//   qCDebug(debugCategory) << tab;
+//   qCDebug(KGRAPHEDITOR_LOG) << tab;
   emit(hide((KParts::Part*)(m_manager->activePart())));
   QWidget *tab = m_widget->widget(index);
   if (tab) {
@@ -605,7 +603,7 @@ void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
   QList<QTreeWidgetItem *> items;
   foreach (const QString& nodeId, nodesIds)
   {
-    qCDebug(debugCategory)<< "new item " << nodeId;
+    qCDebug(KGRAPHEDITOR_LOG)<< "new item " << nodeId;
     QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)nullptr, QStringList(nodeId));
     item->setFlags(item->flags() | Qt::ItemIsEditable);
     QMap<QString,QString> attributes;//TODO = m_currentPart->nodeAtributes(nodeId);
@@ -622,7 +620,7 @@ void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
     }
     items.append(item);
   }
-  qCDebug(debugCategory) << "inserting";
+  qCDebug(KGRAPHEDITOR_LOG) << "inserting";
   m_treeWidget->insertTopLevelItems(0, items);
 
 
@@ -653,26 +651,26 @@ void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
 
 void KGraphEditor::slotNewNodeAdded(const QString& id)
 {
-  qCDebug(debugCategory) << id;
+  qCDebug(KGRAPHEDITOR_LOG) << id;
   update();
 }
 
 void KGraphEditor::slotNewEdgeAdded(const QString& ids, const QString& idt)
 {
-  qCDebug(debugCategory) << ids << idt;
+  qCDebug(KGRAPHEDITOR_LOG) << ids << idt;
   update();
 }
 
 void KGraphEditor::slotNewEdgeFinished( const QString& srcId, const QString& tgtId, const QMap<QString, QString>&attribs)
 {
-  qCDebug(debugCategory) << srcId << tgtId << attribs;
+  qCDebug(KGRAPHEDITOR_LOG) << srcId << tgtId << attribs;
   emit saddNewEdge(srcId,tgtId,attribs);
   update();
 }
 
 void KGraphEditor::slotGraphLoaded()
 {
-  qCDebug(debugCategory);
+  qCDebug(KGRAPHEDITOR_LOG);
   disconnect(m_treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
            this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
   disconnect(m_treeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
@@ -682,7 +680,7 @@ void KGraphEditor::slotGraphLoaded()
   QList<QTreeWidgetItem *> items;
   foreach (const QString& nodeId, nodesIds)
   {
-    qCDebug(debugCategory)<< "item " << nodeId;
+    qCDebug(KGRAPHEDITOR_LOG)<< "item " << nodeId;
     QTreeWidgetItem* item;
     QList<QTreeWidgetItem*> existingItems = m_treeWidget->findItems(nodeId,Qt::MatchRecursive|Qt::MatchExactly);
     if (existingItems.isEmpty())
@@ -717,7 +715,7 @@ void KGraphEditor::slotGraphLoaded()
       }
     }
 }
-  qCDebug(debugCategory) << "inserting";
+  qCDebug(KGRAPHEDITOR_LOG) << "inserting";
   m_treeWidget->insertTopLevelItems(0, items);
   connect(m_treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
            this,SLOT(slotItemChanged(QTreeWidgetItem*,int)));
@@ -727,7 +725,7 @@ void KGraphEditor::slotGraphLoaded()
 
 void KGraphEditor::slotItemChanged ( QTreeWidgetItem * item, int column )
 {
-  qCDebug(debugCategory) ;
+  qCDebug(KGRAPHEDITOR_LOG) ;
   /* values column */
   if (column == 0)
   {
@@ -751,7 +749,7 @@ void KGraphEditor::slotItemChanged ( QTreeWidgetItem * item, int column )
 
 void KGraphEditor::slotItemClicked ( QTreeWidgetItem * item, int column )
 {
-  qCDebug(debugCategory) << column;
+  qCDebug(KGRAPHEDITOR_LOG) << column;
   m_currentTreeWidgetItemText = item->text(0);
 
   QString nodeName = item->parent() ?
@@ -764,10 +762,10 @@ void KGraphEditor::slotEditNewVertex()
 {
   if (m_currentPart == nullptr)
   {
-    qCDebug(debugCategory) << "new vertex: no part selected";
+    qCDebug(KGRAPHEDITOR_LOG) << "new vertex: no part selected";
     return;
   }
-  qCDebug(debugCategory) << "new vertex";
+  qCDebug(KGRAPHEDITOR_LOG) << "new vertex";
   emit(prepareAddNewElement(m_newElementAttributes));
 }
 
@@ -775,10 +773,10 @@ void KGraphEditor::slotEditNewEdge()
 {
   if (m_currentPart == nullptr)
   {
-    qCDebug(debugCategory) << "new edge: no part selected";
+    qCDebug(KGRAPHEDITOR_LOG) << "new edge: no part selected";
     return;
   }
-  qCDebug(debugCategory) << "new edge";
+  qCDebug(KGRAPHEDITOR_LOG) << "new edge";
   emit(prepareAddNewEdge(m_newElementAttributes));
 }
 
@@ -802,7 +800,7 @@ void KGraphEditor::slotRemoveAttribute(const QString& nodeName, const QString& a
 
 void KGraphEditor::slotNewElementItemChanged(QTreeWidgetItem* item ,int column)
 {
-  qCDebug(debugCategory);
+  qCDebug(KGRAPHEDITOR_LOG);
   if (column == 0)
   {
     qWarning() << "Item id change not handled";
@@ -831,14 +829,14 @@ void KGraphEditor::slotRemoveNewElementAttribute(const QString& attrib)
 
 void KGraphEditor::slotRemoveElement(const QString& id)
 {
-  qCDebug(debugCategory) << id;
+  qCDebug(KGRAPHEDITOR_LOG) << id;
   m_treeWidget->slotRemoveElement(id);
   emit(removeElement(id));
 }
 
 void KGraphEditor::slotSelectionIs(const QList<QString>& elements , const QPoint& p)
 {
-  qCDebug(debugCategory);
+  qCDebug(KGRAPHEDITOR_LOG);
   Q_UNUSED(p);
   QList<QTreeWidgetItem*> items = m_treeWidget->selectedItems();
   foreach (QTreeWidgetItem* item, items)
@@ -879,12 +877,12 @@ void KGraphEditor::slotParsingModeInternalToggled(bool value)
 
 void KGraphEditor::slotHoverEnter(const QString& id)
 {
-  qCDebug(debugCategory) << id;
+  qCDebug(KGRAPHEDITOR_LOG) << id;
   statusBar()->showMessage(id);
 }
 
 void KGraphEditor::slotHoverLeave(const QString& id)
 {
-  qCDebug(debugCategory) << id;
+  qCDebug(KGRAPHEDITOR_LOG) << id;
   statusBar()->showMessage("");
 }

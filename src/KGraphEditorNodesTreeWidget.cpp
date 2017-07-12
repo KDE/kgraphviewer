@@ -17,6 +17,7 @@
 */
 
 
+#include "kgrapheditor_debug.h"
 #include "KGraphEditorNodesTreeWidget.h"
 
 #include <QDebug>
@@ -24,10 +25,7 @@
 
 #include <QMenu>
 #include <QContextMenuEvent>
-#include <QLoggingCategory>
 #include <klocalizedstring.h>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KGraphEditorNodesTreeWidget::KGraphEditorNodesTreeWidget(QWidget* parent) :
     QTreeWidget(parent),
@@ -42,7 +40,7 @@ KGraphEditorNodesTreeWidget::~KGraphEditorNodesTreeWidget()
 
 void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
 {
-  qCDebug(debugCategory) << point;
+  qCDebug(KGRAPHEDITOR_LOG) << point;
 
   if (m_popup)
   {
@@ -53,7 +51,7 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint& point)
   m_item = itemAt(point);
   if (m_item == nullptr)
   {
-    qCDebug(debugCategory) << "no item at" << point;
+    qCDebug(KGRAPHEDITOR_LOG) << "no item at" << point;
     return;
   }
   QAction* aaa = new QAction(i18n("Add a new attribute"), this);
@@ -84,7 +82,7 @@ void KGraphEditorNodesTreeWidget::slotRemoveNode()
 
 void KGraphEditorNodesTreeWidget::slotRemoveElement(const QString& id)
 {
-  qCDebug(debugCategory) << id;
+  qCDebug(KGRAPHEDITOR_LOG) << id;
   QList<QTreeWidgetItem*> items = findItems(id,Qt::MatchExactly,0);
   foreach (QTreeWidgetItem* item, items)
   {
@@ -94,7 +92,7 @@ void KGraphEditorNodesTreeWidget::slotRemoveElement(const QString& id)
 
 void KGraphEditorNodesTreeWidget::slotAddAttribute()
 {
-  qCDebug(debugCategory) << "Add Attribute";
+  qCDebug(KGRAPHEDITOR_LOG) << "Add Attribute";
   QString nodeName = "NewAttribute";
   emit addAttribute(m_item->text(0));
   if (m_item->parent() == nullptr)
@@ -113,7 +111,7 @@ void KGraphEditorNodesTreeWidget::slotAddAttribute()
 
 void KGraphEditorNodesTreeWidget::slotRemoveAttribute()
 {
-  qCDebug(debugCategory) << "Remove Attribute";
+  qCDebug(KGRAPHEDITOR_LOG) << "Remove Attribute";
   emit removeAttribute(m_item->parent()->text(0), m_item->text(0));
   m_item->parent()->removeChild(m_item);
   m_item = nullptr;

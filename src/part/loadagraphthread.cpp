@@ -18,14 +18,13 @@
 */
 
 #include "loadagraphthread.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <QDebug>
-#include <QLoggingCategory>
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 void LoadAGraphThread::run()
 {
-  qCDebug(debugCategory) << m_dotFileName;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << m_dotFileName;
   FILE* fp = fopen(m_dotFileName.toUtf8().data(), "r");
   if (!fp)
   {

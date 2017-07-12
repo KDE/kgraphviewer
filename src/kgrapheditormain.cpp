@@ -18,6 +18,8 @@
 
 
 #include "kgrapheditor.h"
+#include "kgrapheditor_debug.h"
+
 #include <QApplication>
 #include <kaboutdata.h>
 #include <QCommandLineParser>
@@ -35,8 +37,6 @@
 #include <KAboutData>
 #include "kgrapheditoradaptor.h"
 #include "config-kgraphviewer.h"
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 int main(int argc, char **argv)
 {
@@ -109,7 +109,7 @@ int main(int argc, char **argv)
               QDBusReply<void> reply = iface.call("openUrl", url.url(QUrl::PreferLocalFile));
               if (reply.isValid())
               {
-                qCDebug(debugCategory) << "Reply was valid" << endl;
+                qCDebug(KGRAPHEDITOR_LOG) << "Reply was valid" << endl;
                 return 0;
               }
 

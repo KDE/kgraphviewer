@@ -27,15 +27,13 @@
 
 #include "graphexporter.h"
 #include "dotgraph.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <QFile>
 #include <QTextStream>
 
 #include <QDebug>
 #include <QTemporaryFile>
-#include <QLoggingCategory>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -50,7 +48,7 @@ GraphExporter::~GraphExporter()
 
 QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
 {
-  qCDebug(debugCategory) << fileName;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << fileName;
 
   QString actualFileName = fileName;
 
@@ -64,7 +62,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
       exit(2);
     }
     actualFileName = tempFile.fileName();
-    qCDebug(debugCategory) << "using " << actualFileName;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "using " << actualFileName;
   }
   
   QFile f(actualFileName);
@@ -104,12 +102,12 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
     (stream) << **nit;
   }
 
-  qCDebug(debugCategory) << "writing edges";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "writing edges";
   GraphEdgeMap::const_iterator eit;
   for ( eit = graph->edges().begin();
         eit != graph->edges().end(); ++eit )
   {
-    qCDebug(debugCategory) << "writing edge" << (*eit)->id();
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "writing edge" << (*eit)->id();
     stream << **eit;
   }
 
@@ -149,11 +147,11 @@ graph_t* GraphExporter::exportToGraphviz(const DotGraph* graph)
     n->exportToGraphviz(node);
   }
   
-  qCDebug(debugCategory) << "writing edges";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "writing edges";
   GraphEdgeMap::const_iterator eit;
   foreach (GraphEdge* e, graph->edges())
   {
-    qCDebug(debugCategory) << "writing edge" << e->id();
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "writing edge" << e->id();
     edge_t* edge = agedge(agraph, agnode(agraph, e->fromNode()->id().toUtf8().data(), 0),
                           agnode(agraph, e->toNode()->id().toUtf8().data(), 0), nullptr, 1);
     e->exportToGraphviz(edge);

@@ -29,6 +29,13 @@ ki18n_wrap_ui(
   preferencesAppearance.ui
 )
 
+ecm_qt_declare_logging_category(kgraphviewer_SRCS
+    HEADER kgraphviewer_debug.h
+    IDENTIFIER KGRAPHVIEWER_LOG
+    CATEGORY_NAME org.kde.kgraphviewer
+    DEFAULT_SEVERITY Warning
+)
+
 add_executable(kgraphviewer ${kgraphviewer_SRCS})
 
 target_link_libraries(kgraphviewer LINK_PRIVATE
@@ -66,6 +73,13 @@ qt5_add_dbus_adaptor(kgrapheditor_SRCS org.kde.kgrapheditor.xml kgrapheditor.h K
 kconfig_add_kcfg_files(kgrapheditor_SRCS kgrapheditorsettings.kcfgc)
 
 ki18n_wrap_ui(kgrapheditor_SRCS preferencesReload.ui preferencesParsing.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui)
+
+ecm_qt_declare_logging_category(kgrapheditor_SRCS
+    HEADER kgrapheditor_debug.h
+    IDENTIFIER KGRAPHEDITOR_LOG
+    CATEGORY_NAME org.kde.kgrapheditor
+    DEFAULT_SEVERITY Warning
+)
 
 add_executable(kgrapheditor ${kgrapheditor_SRCS})
 

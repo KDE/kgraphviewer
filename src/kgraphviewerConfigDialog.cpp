@@ -17,6 +17,7 @@
 */
 
 
+#include "kgraphviewer_debug.h"
 #include "kgraphviewerConfigDialog.h"
 #include "kgraphviewersettings.h"
 #include "ui_preferencesReload.h"
@@ -45,8 +46,6 @@
 
 #include <iostream>
 #include <QDialogButtonBox>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 KgvConfigurationDialog::KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config) :
   KConfigDialog(parent, name, config),
@@ -153,7 +152,7 @@ void KgvConfigurationDialog::updateSettings()
 void KgvConfigurationDialog::updateWidgets()
 {
   m_changed = false;
-  qCDebug(debugCategory) << "  openInExistingWindowMode: " << KGraphViewerSettings::openInExistingWindowMode();
+  qCDebug(KGRAPHVIEWER_LOG) << "  openInExistingWindowMode: " << KGraphViewerSettings::openInExistingWindowMode();
 //   if (KGraphViewerSettings::openInExistingWindowMode() == "no")
 //     openingWidget->openInExistingWindowMode->setButton(0);
 //   else if (KGraphViewerSettings::openInExistingWindowMode() == "yes")

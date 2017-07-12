@@ -27,6 +27,7 @@
 
 #include "simpleprintingengine.h"
 #include "simpleprintingsettings.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <QApplication>
 #include <QIcon>
@@ -46,10 +47,7 @@
 #include <QGraphicsScene>
 #include <QPaintDevice>
 #include <klocalizedstring.h>
-#include <QLoggingCategory>
 #include <math.h>
-
-static QLoggingCategory debugCategory("org.kde.kgraphviewer");
 
 namespace KGraphViewer
 {
@@ -102,7 +100,7 @@ void KGVSimplePrintingEngine::clear()
 
 void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool paint)
 {
-    qCDebug(debugCategory) << pageNumber << "/" << m_pagesCount << paint;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << pageNumber << "/" << m_pagesCount << paint;
 
 	uint y = 0;
 
@@ -113,7 +111,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 	int w = 0, h = 0;
 	QPaintDevice *pdm = painter.device();
 	const bool printer = pdm->devType() == QInternal::Printer;
-  qCDebug(debugCategory) << "printer:"<< printer;
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "printer:"<< printer;
 	
 	if (!printer) {
 		w = pdm->width();
@@ -126,7 +124,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 
 	if (!m_paintInitialized) 
   {
-    qCDebug(debugCategory) << "initializing";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "initializing";
     // HACK: some functions here do not work properly if were
     // are not in a paint event, so repeat this until we actually paint.
     m_paintInitialized = paint;
@@ -193,7 +191,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 		m_headerTextRect.setWidth(
 			qMin(int(m_pageWidth - m_dateTimeWidth), m_headerTextRect.width()));
   }
-  qCDebug(debugCategory) << "after initialization";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "after initialization";
   
   //screen only
   if(!printer) 
@@ -247,25 +245,25 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
     h -= (m_mainLineSpacing*3/2 + 1);
   }
 
-  qCDebug(debugCategory) << "(w, h) = (" << w << ", " << h <<")";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "(w, h) = (" << w << ", " << h <<")";
   if ( ( (m_settings->fitToOnePage) || 
     (m_painting.width()<=w && m_painting.height()<=h) )
        && !m_eof)
   {
-    qCDebug(debugCategory) << "single-page printing";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "single-page printing";
     if (paint)
     {
       QPixmap pix = m_painting.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-      qCDebug(debugCategory) << "drawPixmap";
+      qCDebug(KGRAPHVIEWERLIB_LOG) << "drawPixmap";
       painter.drawPixmap((int)leftMargin, y, pix);
     }
     m_eof = true;
   }
   else if (m_settings->horizFitting != 0 || m_settings->vertFitting != 0)
   {
-    qCDebug(debugCategory) << "fitted multi-pages printing page " << pageNumber;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "fitted multi-pages printing page " << pageNumber;
     int nbTilesByRow = (int)(ceil((double)m_painting.width())/w) + 1;
-    qCDebug(debugCategory) << "  nb tiles by row = " << nbTilesByRow;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "  nb tiles by row = " << nbTilesByRow;
 
     int tileWidth = w;
     int tileHeight = h;
@@ -279,7 +277,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
     {
       tileHeight = int(ceil(((double)m_painting.height())/m_settings->vertFitting));
     }
-    qCDebug(debugCategory) << "  tile size = "<<tileWidth<<"/"<<tileHeight;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "  tile size = "<<tileWidth<<"/"<<tileHeight;
     int rowNum = pageNumber / nbTilesByRow;
     int columnNum = pageNumber % nbTilesByRow;
     int x1, y1, x2, y2;
@@ -287,8 +285,8 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
     x2 = int(tileWidth * (columnNum+1));
     y1 = int(tileHeight * rowNum);
     y2 = int(tileHeight * (rowNum+1));
-    qCDebug(debugCategory) << "(x1, y1, x2, 2) = ("<<x1<<","<<y1<<","<<x2<<","<<y2<<")";
-    qCDebug(debugCategory) << "painting size = ("<<m_painting.width()<<"/"<<m_painting.height()<<")";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "(x1, y1, x2, 2) = ("<<x1<<","<<y1<<","<<x2<<","<<y2<<")";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "painting size = ("<<m_painting.width()<<"/"<<m_painting.height()<<")";
     if (paint)
     {
       Qt::AspectRatioMode scaleMode = Qt::IgnoreAspectRatio;
@@ -318,7 +316,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
   }
   else
   {
-    qCDebug(debugCategory) << "multi-pages printing page " << pageNumber;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "multi-pages printing page " << pageNumber;
     int nbTilesByRow = (int)(((double)m_painting.width())/w) + 1;
     int rowNum = pageNumber / nbTilesByRow;
     int columnNum = pageNumber % nbTilesByRow;
@@ -327,7 +325,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
     x2 = int(w * (columnNum+1));
     y1 = int(h * rowNum);
     y2 = int(h * (rowNum+1));
-    qCDebug(debugCategory) << "(x1, y1, x2, 2) = ("<<x1<<","<<y1<<","<<x2<<","<<y2<<")";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "(x1, y1, x2, 2) = ("<<x1<<","<<y1<<","<<x2<<","<<y2<<")";
     if (paint)
     {
       painter.drawPixmap((int)leftMargin, y, m_painting.copy(x1, y1, x2-x1+1, y2-y1+1));
@@ -340,7 +338,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
 
   if (m_settings->addTableBorders) 
   {
-    qCDebug(debugCategory) << "Adding table borders";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "Adding table borders";
     int y1 = (int)topMargin ;
     y1 += (m_headerTextRect.height());
     int y2 = (int)topMargin + m_pageHeight;
@@ -356,7 +354,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter& painter, bool 
       painter.drawLine((int)leftMargin, y2, (int)leftMargin, y1);
     }
   }
-  qCDebug(debugCategory) << "paintPage done";
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "paintPage done";
 }
 
 void KGVSimplePrintingEngine::calculatePagesCount(QPainter& painter)
