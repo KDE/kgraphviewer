@@ -70,7 +70,7 @@ PannerView::PannerView(DotGraphView * parent)
 
 void PannerView::setZoomRect(QRectF r)
 {
-//   kDebug() << "PannerView::setZoomRect " << r;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::setZoomRect " << r;
   if (r == m_zoomRect) {
     return;
   }
@@ -149,7 +149,7 @@ void PannerView::mousePressEvent(QMouseEvent* e)
   if (e->button() != Qt::LeftButton) {
     return;
   }
-/*  kDebug() << "PannerView::mousePressEvent " 
+/*  qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mousePressEvent " 
               << mapToScene(e->pos()) << " / " << m_zoomRect << " / " << m_zoomRect.center() <<endl;*/
   moveZoomRectTo(mapToScene(e->pos()));
   m_movingZoomRect = true;
@@ -161,7 +161,7 @@ void PannerView::mouseMoveEvent(QMouseEvent* e)
     return;
   }
 
-//   kDebug() << "PannerView::mouseMoveEvent " << pos;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mouseMoveEvent " << pos;
   moveZoomRectTo(mapToScene(e->pos()));
 }
 
@@ -171,7 +171,7 @@ void PannerView::mouseReleaseEvent(QMouseEvent* e)
     return;
   }
   moveZoomRectTo(mapToScene(e->pos()));
-//   kDebug() << "PannerView::mouseReleaseEvent " << pos;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mouseReleaseEvent " << pos;
   m_movingZoomRect = false;
   emit zoomRectMoveFinished();
 }

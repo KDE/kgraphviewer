@@ -62,7 +62,7 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
         if (dynamic_cast<GraphNode*>(ge))
         {
           dynamic_cast<GraphNode*>(ge)->updateWithNode(*dynamic_cast<GraphNode*>(updatingge));
-        //     kDebug() << "node " << ngn->id();
+        //     qCDebug(KGRAPHVIEWERLIB_LOG) << "node " << ngn->id();
         }
         else if (dynamic_cast<GraphSubgraph*>(ge))
         {
@@ -77,13 +77,13 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
     }
     if (!found)
     {
-  //       kDebug() << "new";
+  //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new";
       if (dynamic_cast<GraphNode*>(updatingge))
       {
         GraphNode* newgn = new GraphNode(*dynamic_cast<GraphNode*>(updatingge));
-  //       kDebug() << "new created";
+  //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
         content().push_back(newgn);
-  //       kDebug() << "new inserted";
+  //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
       }
       else if (dynamic_cast<GraphSubgraph*>(updatingge))
       {
@@ -98,7 +98,7 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
     canvasSubgraph()->modelChanged();
     canvasSubgraph()->computeBoundingRect();
   }
-//   kDebug() << "done";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "done";
 }
 
 void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
@@ -152,9 +152,9 @@ void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
     {
       qCDebug(KGRAPHVIEWERLIB_LOG) << "new subsubgraph";
       GraphSubgraph* newsg = new GraphSubgraph(sg);
-      //       kDebug() << "new created";
+      //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
       subgraphs().insert(agnameof(sg), newsg);
-      //       kDebug() << "new inserted";
+      //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
     }
     
   }

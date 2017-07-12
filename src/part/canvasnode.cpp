@@ -69,7 +69,7 @@ CanvasNode::CanvasNode(DotGraphView* v,
   QString id = s->id();
   QString label = s->label();
   tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-//   kDebug() << "CanvasEllipseNode setToolTip " << tipStr;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "CanvasEllipseNode setToolTip " << tipStr;
   setToolTip(tipStr);
 }
 
@@ -86,16 +86,16 @@ CanvasNode::CanvasNode(DotGraphView* v,
 // : KHTMLPart(v->viewport()), CanvasNode(v, n)
 // {
 //   m_renderOperations = dros;
-// //   kDebug() << "Creating "<<node()->id()<<" CanvasHtmlNode for" << n
+// //   qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating "<<node()->id()<<" CanvasHtmlNode for" << n
 // //     << " with label '" << n->label() << "'";
 // 
 //   QString myHTMLCode = n->label();
 //   myHTMLCode = myHTMLCode.mid(1, myHTMLCode.length() - 2);
-// //   kDebug() << "HTML = " << myHTMLCode;
+// //   qCDebug(KGRAPHVIEWERLIB_LOG) << "HTML = " << myHTMLCode;
 //   begin(KUrl(QString("file:") + QDir::currentPath() + "/index.html"));
 //   setAutoloadImages(true);
 //   write(myHTMLCode);
-//   kDebug() << "HTML written.";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "HTML written.";
 //   end();
 //   setStatusMessagesEnabled (false);
 // //   view()->setFrameShape ( QFrame::NoFrame );
@@ -129,7 +129,7 @@ CanvasNode::CanvasNode(DotGraphView* v,
 // 
 // void CanvasHtmlNode::move(int x, int y)
 // {
-// //   kDebug() << "CanvasHtmlNode::move("<<x<<", "<<y<<")";
+// //   qCDebug(KGRAPHVIEWERLIB_LOG) << "CanvasHtmlNode::move("<<x<<", "<<y<<")";
 //   m_xMovedTo = x; m_yMovedTo = y;
 //   view()->move(int((node()->x())*m_scaleX*m_zoomFactor - m_xMovedTo), int((m_gh-node()->y())*m_scaleY*m_zoomFactor) - m_yMovedTo);
 // //   view()->move(int(x*m_scaleX), int((m_gh-y)*m_scaleY));

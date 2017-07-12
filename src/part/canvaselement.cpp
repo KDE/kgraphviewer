@@ -65,11 +65,11 @@ CanvasElement::CanvasElement(
     m_hovered(false),
     m_lastRenderOpRev(0)
 {
-//   kDebug();
+//   qCDebug(KGRAPHVIEWERLIB_LOG);
   m_font = FontsCache::changeable().fromName(gelement->fontName());
 
-/*  kDebug() << "Creating CanvasElement for "<<gelement->id();
-  kDebug() << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
+/*  qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating CanvasElement for "<<gelement->id();
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "    data: " << wdhcf << "," << hdvcf << "," << gh << "," 
     << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
   
   if (element()->style() == "bold")
@@ -138,7 +138,7 @@ void CanvasElement::initialize(qreal scaleX, qreal scaleY,
                             qreal wdhcf, qreal hdvcf)
 {
   Q_UNUSED(gh);
-//   kDebug();
+//   qCDebug(KGRAPHVIEWERLIB_LOG);
   setFlag(QGraphicsItem::ItemIsMovable, true);
   setFlag(QGraphicsItem::ItemIsSelectable, true);
 
@@ -159,7 +159,7 @@ QRectF CanvasElement::boundingRect () const
 
 void CanvasElement::computeBoundingRect()
 {
-//   kDebug() << element();
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << element();
   qCDebug(KGRAPHVIEWERLIB_LOG) << element()->id() << zValue();
   
   qreal adjust = 0.5;
@@ -190,14 +190,14 @@ void CanvasElement::computeBoundingRect()
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
       {
-//         kDebug() << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
+//         qCDebug(KGRAPHVIEWERLIB_LOG) << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
 //             << "(*it).integers[0]/*%m_wdhcf*/=" << (*it).integers[0]/*%m_wdhcf*/;
         qreal w = m_scaleX * (*it).integers[2] * 2;
         qreal h = m_scaleY * (*it).integers[3] * 2;
         qreal x = m_xMargin + (((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
         qreal y = ((m_gh - (*it).integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
         m_boundingRect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
-//         kDebug() << "'" << element()->id() << "' set rect for ellipse to " << rect;
+//         qCDebug(KGRAPHVIEWERLIB_LOG) << "'" << element()->id() << "' set rect for ellipse to " << rect;
       }
       else if  ((*it).renderop == "p" || (*it).renderop == "P")
       {
@@ -217,7 +217,7 @@ void CanvasElement::computeBoundingRect()
           polygon[i] = p;
         }
         m_boundingRect = polygon.boundingRect();
-//         kDebug() << "'" << element()->id() << "' set rect for polygon to " << rect;
+//         qCDebug(KGRAPHVIEWERLIB_LOG) << "'" << element()->id() << "' set rect for polygon to " << rect;
       }
     }
   }
@@ -285,7 +285,7 @@ QWidget *widget)
       bool ok;
       c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
       lineColor = c;
-//       kDebug() << "c" << dro.str.mid(0,7) << lineColor;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "c" << dro.str.mid(0,7) << lineColor;
     }
     else if (dro.renderop == "C")
     {
@@ -297,7 +297,7 @@ QWidget *widget)
         c = c.lighter();
       }
       backColor = c;
-//       kDebug() << "C" << dro.str.mid(0,7) << backColor;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "C" << dro.str.mid(0,7) << backColor;
     }
     else if (dro.renderop == "e" || dro.renderop == "E")
     {
@@ -318,7 +318,7 @@ QWidget *widget)
       p->setBrush(backColor);
       p->setPen(pen);
 
-//       kDebug() << element()->id() << "drawEllipse" << lineColor << backColor << rect;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << element()->id() << "drawEllipse" << lineColor << backColor << rect;
 //       rect = QRectF(0,0,100,100);
       p->drawEllipse(rect);
     }
@@ -335,7 +335,7 @@ QWidget *widget)
                   (x*m_scaleX) + m_xMargin,
                   ((m_gh-y)*m_scaleY) + m_yMargin
                 );
-/*        kDebug() << "    point: (" << dro.integers[2*i+1] << ","
+/*        qCDebug(KGRAPHVIEWERLIB_LOG) << "    point: (" << dro.integers[2*i+1] << ","
                   << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf;*/
         points[i] = p;
       }
@@ -374,7 +374,7 @@ QWidget *widget)
       {
         p->setBrush(canvas()->backgroundColor());
       }*/
-//       kDebug() << element()->id() << "drawPolygon" << points;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << element()->id() << "drawPolygon" << points;
       p->drawPolygon(points);
       if (!element()->shapeFile().isEmpty())
       {
@@ -401,7 +401,7 @@ QWidget *widget)
       bool ok;
       c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
       lineColor = c;
-//       kDebug() << "c" << dro.str.mid(0,7) << lineColor;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "c" << dro.str.mid(0,7) << lineColor;
     }
     else if (dro.renderop == "C")
     {
@@ -413,11 +413,11 @@ QWidget *widget)
         c = c.lighter();
       }
       backColor = c;
-//       kDebug() << "C" << dro.str.mid(0,7) << backColor;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "C" << dro.str.mid(0,7) << backColor;
     }
     else if ( dro.renderop == "L" )
     {
-//       kDebug() << "Label";
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "Label";
       QPolygonF points(dro.integers[0]);
       for (int i = 0; i < dro.integers[0]; i++)
       {
@@ -441,13 +441,13 @@ QWidget *widget)
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));
       }
       p->setPen(pen);
-//       kDebug() << element()->id() << "drawPolyline" << points;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << element()->id() << "drawPolyline" << points;
       p->drawPolyline(points);
     }
   }
   p->setPen(oldPen);
 
-//   kDebug() << "Drawing" << element()->id() << "labels";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Drawing" << element()->id() << "labels";
   QString color = lineColor.name();
   it.toFront();
   uint num_T = 0;
@@ -457,13 +457,13 @@ QWidget *widget)
     if (dro.renderop == "c" || dro.renderop == "C")
     {
       color = dro.str.mid(0,7);
-//       kDebug() << dro.renderop << color;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << dro.renderop << color;
     }
     else if (dro.renderop == "F")
     {
       element()->setFontName(dro.str);
       element()->setFontSize(dro.integers[0]);
-//       kDebug() << "F" << element()->fontName() << element()->fontColor() << element()->fontSize();
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "F" << element()->fontName() << element()->fontColor() << element()->fontSize();
     }
     else if ( dro.renderop == "T" )
     {
@@ -471,7 +471,7 @@ QWidget *widget)
       // we suppose here that the color has been set just before
       element()->setFontColor(color);
       // draw a label
-//       kDebug() << "Drawing a label " << dro.integers[0]
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "Drawing a label " << dro.integers[0]
 //       << " " << dro.integers[1] << " " << dro.integers[2]
 //       << " " << dro.integers[3] << " " << dro.str
 //         << " (" << element()->fontName() << ", " << element()->fontSize()
@@ -479,7 +479,7 @@ QWidget *widget)
 
       int fontWidth = 0;
       bool cacheValid = false;
-//       kDebug() << element()->id() << " initial fontSize " << fontSize;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << element()->id() << " initial fontSize " << fontSize;
       if (m_lastRenderOpRev == element()->renderOperationsRevision()) {
         FontSizeCache::iterator cacheIt = m_fontSizeCache.find(num_T);
         if (cacheIt != m_fontSizeCache.end()) {
@@ -520,14 +520,14 @@ QWidget *widget)
                       + m_xMargin;
       qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
       QPointF point(x,y);
-//       kDebug() << element()->id() << "drawText" << point << " " << fontSize;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << element()->id() << "drawText" << point << " " << fontSize;
       p->drawText(point, dro.str);
     }
   }
 
   if (element()->isSelected())
   {
-//     kDebug() << "element is selected: draw selection marks";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << "element is selected: draw selection marks";
     p->setBrush(Qt::black);
     p->setPen(Qt::black);
     p->drawRect(QRectF(m_boundingRect.topLeft(),QSizeF(6,6)));
@@ -579,7 +579,7 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
       update();
     }
     
-//     kDebug() << "opens the contextual menu";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << "opens the contextual menu";
 //     m_popup->exec(event->screenPos());
     emit(elementContextMenuEvent(m_element->id(), event->screenPos() ));
   }
@@ -588,13 +588,13 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent* event)
 void CanvasElement::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
   Q_UNUSED(event)
-//   kDebug() ;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) ;
 }
 
 void CanvasElement::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
   Q_UNUSED(event)
-//   kDebug() ;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) ;
 }
 
 void CanvasElement::slotRemoveElement()
@@ -605,7 +605,7 @@ void CanvasElement::slotRemoveElement()
 void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
-//   kDebug();
+//   qCDebug(KGRAPHVIEWERLIB_LOG);
   m_hovered = true;
   update();
   emit hoverEnter(this);
@@ -614,7 +614,7 @@ void CanvasElement::hoverEnterEvent( QGraphicsSceneHoverEvent * event )
 void CanvasElement::hoverLeaveEvent( QGraphicsSceneHoverEvent * event )
 {
   Q_UNUSED(event)
-//   kDebug();
+//   qCDebug(KGRAPHVIEWERLIB_LOG);
   m_hovered = false;
   update();
   emit hoverLeave(this);

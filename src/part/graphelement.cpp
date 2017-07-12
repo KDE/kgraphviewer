@@ -123,7 +123,7 @@ void GraphElement::updateWithElement(const GraphElement& element)
         dd << i << " ";
       }
       dd << op.str;
-      kDebug() << msg;
+      qCDebug(KGRAPHVIEWERLIB_LOG) << msg;
     }
     g() << "modified: emiting changed";*/
     emit changed();
@@ -170,7 +170,7 @@ void GraphElement::exportToGraphviz(void* element) const
         if (label != "label")
         {
           label.replace(QRegExp("\n"),"\\n");
-          //           kDebug() << it.key() << "=\"" << label << "\",";
+          //           qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << "=\"" << label << "\",";
           agsafeset(element, it.key().toUtf8().data(), label.toUtf8().data(), QString().toUtf8().data());
         }
       }
@@ -179,7 +179,7 @@ void GraphElement::exportToGraphviz(void* element) const
       }
       else if (originalAttributes().isEmpty() || originalAttributes().contains(it.key()))
       {
-        //         kDebug() << it.key() << it.value();
+        //         qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << it.value();
         
         agsafeset(element, it.key().toUtf8().data(), it.value().toUtf8().data(), QString().toUtf8().data());
       }
@@ -202,7 +202,7 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
         if (label != "label")
         {
           label.replace(QRegExp("\n"),"\\n");
-//           kDebug() << it.key() << "=\"" << label << "\",";
+//           qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << "=\"" << label << "\",";
           if (firstAttr)
 	    firstAttr = false;
           else
@@ -215,7 +215,7 @@ QTextStream& operator<<(QTextStream& s, const GraphElement& n)
       }
       else if (n.originalAttributes().isEmpty() || n.originalAttributes().contains(it.key()))
       {
-//         kDebug() << it.key() << it.value();
+//         qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << it.value();
 
           if (firstAttr)
 	    firstAttr = false;

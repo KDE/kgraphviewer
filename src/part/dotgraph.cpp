@@ -291,13 +291,13 @@ void DotGraph::slotDotRunningError(QProcess::ProcessError error)
 
 unsigned int DotGraph::cellNumber(int x, int y)
 {
-/*  kDebug() << "x= " << x << ", y= " << y << ", m_width= " << m_width << ", m_height= " << m_height << ", m_horizCellFactor= " << m_horizCellFactor << ", m_vertCellFactor= " << m_vertCellFactor  << ", m_wdhcf= " << m_wdhcf << ", m_hdvcf= " << m_hdvcf;*/
+/*  qCDebug(KGRAPHVIEWERLIB_LOG) << "x= " << x << ", y= " << y << ", m_width= " << m_width << ", m_height= " << m_height << ", m_horizCellFactor= " << m_horizCellFactor << ", m_vertCellFactor= " << m_vertCellFactor  << ", m_wdhcf= " << m_wdhcf << ", m_hdvcf= " << m_hdvcf;*/
   
   unsigned int nx = (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
   unsigned int ny = (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
-/*  kDebug() << "nx = " << (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
-  kDebug() << "ny = " << (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
-  kDebug() << "res = " << ny * m_horizCellFactor + nx;*/
+/*  qCDebug(KGRAPHVIEWERLIB_LOG) << "nx = " << (unsigned int)(( x - ( x % int(m_wdhcf) ) ) / m_wdhcf);
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "ny = " << (unsigned int)(( y - ( y % int(m_hdvcf) ) ) / m_hdvcf);
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "res = " << ny * m_horizCellFactor + nx;*/
   
   unsigned int res = ny * m_horizCellFactor + nx;
   return res;
@@ -437,9 +437,9 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     {
       qCDebug(KGRAPHVIEWERLIB_LOG) << "new";
       GraphSubgraph* newsg = new GraphSubgraph(sg);
-      //       kDebug() << "new created";
+      //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
       subgraphs().insert(agnameof(sg), newsg);
-      //       kDebug() << "new inserted";
+      //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
     }
 
   }
@@ -467,16 +467,16 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
     {
       qCDebug(KGRAPHVIEWERLIB_LOG) << "new";
       GraphNode* newgn = new GraphNode(ngn);
-      //       kDebug() << "new created";
+      //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
       nodes().insert(agnameof(ngn), newgn);
-      //       kDebug() << "new inserted";
+      //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
     }
 
     // copy node edges
     edge_t* nge = agfstout(newGraph, ngn);
     while (nge)
     {
-//      kDebug() << "edge " << nge->id;
+//      qCDebug(KGRAPHVIEWERLIB_LOG) << "edge " << nge->id;
       const QString edgeName = QString::fromUtf8(agnameof(aghead(nge))) + QString::fromUtf8(agnameof(agtail(nge)));
       if (edges().contains(edgeName))
       {
@@ -498,14 +498,14 @@ void DotGraph::updateWithGraph(graph_t* newGraph)
           if (elementNamed(agnameof(agtail(nge))) == nullptr)
           {
             GraphNode* newgn = new GraphNode();
-            //       kDebug() << "new created";
+            //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
             nodes().insert(agnameof(agtail(nge)), newgn);
           }
           newEdge->setFromNode(elementNamed(agnameof(agtail(nge))));
           if (elementNamed(agnameof(aghead(nge))) == nullptr)
           {
             GraphNode* newgn = new GraphNode();
-            //       kDebug() << "new created";
+            //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
             nodes().insert(agnameof(aghead(nge)), newgn);
           }
           newEdge->setToNode(elementNamed(agnameof(aghead(nge))));
@@ -568,9 +568,9 @@ void DotGraph::updateWithGraph(const DotGraph& newGraph)
     {
       qCDebug(KGRAPHVIEWERLIB_LOG) << "new";
       GraphNode* newgn = new GraphNode(*ngn);
-//       kDebug() << "new created";
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
       nodes().insert(ngn->id(), newgn);
-//       kDebug() << "new inserted";
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
     }
   }
   foreach (GraphEdge* nge, newGraph.edges())

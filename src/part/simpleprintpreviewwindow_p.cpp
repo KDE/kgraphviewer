@@ -101,9 +101,9 @@ void KGVSimplePrintPreviewScrollView::paintEvent( QPaintEvent *pe )
 // void KGVSimplePrintPreviewScrollView::resizeEvent( QResizeEvent *re )
 // {
 //   QScrollArea::resizeEvent(re);
-// //  kDebug() << re->size().width() << " " << re->size().height();
-// //  kDebug() << contentsWidth() << " " << contentsHeight();
-// //  kDebug() << m_view->width() << " " << m_view->height();
+// //  qCDebug(KGRAPHVIEWERLIB_LOG) << re->size().width() << " " << re->size().height();
+// //  qCDebug(KGRAPHVIEWERLIB_LOG) << contentsWidth() << " " << contentsHeight();
+// //  qCDebug(KGRAPHVIEWERLIB_LOG) << m_view->width() << " " << m_view->height();
 //   setUpdatesEnabled(false);
 //   if (re->size().width() > (m_view->width()+2*KGVSimplePrintPreviewScrollView_MARGIN)
 //     || re->size().height() > (m_view->height()+2*KGVSimplePrintPreviewScrollView_MARGIN)) 
@@ -145,7 +145,7 @@ void KGVSimplePrintPreviewScrollView::setFullWidth()
 
 // void KGVSimplePrintPreviewScrollView::setContentsPos(int x, int y)
 // {
-// //  kDebug() << "############" << x << " " << y << " " << contentsX()<< " " <<contentsY();
+// //  qCDebug(KGRAPHVIEWERLIB_LOG) << "############" << x << " " << y << " " << contentsX()<< " " <<contentsY();
 //   if (x<0 || y<0) //to avoid endless loop on Linux
 //     return;
 //   QScrollArea::setContentsPos(x,y);

@@ -50,13 +50,13 @@ namespace KGraphViewer
 GraphNode::GraphNode() :
     GraphElement()
 {
-//   kDebug() ;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) ;
 }
 
 GraphNode::GraphNode(const GraphNode& gn) :
 GraphElement(gn)
 {
-  //   kDebug() ;
+  //   qCDebug(KGRAPHVIEWERLIB_LOG) ;
 }
 
 GraphNode::GraphNode(node_t* gn) : GraphElement()
@@ -73,7 +73,7 @@ void GraphNode::updateWithNode(const GraphNode& node)
     canvasNode()->computeBoundingRect();
     canvasNode()->modelChanged();
   }
-//   kDebug() << "done";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "done";
 }
 
 void GraphNode::updateWithNode(node_t* node)

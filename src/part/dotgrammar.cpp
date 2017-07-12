@@ -119,7 +119,7 @@ void incrz(char const /*first*/)
 void anychar(char const c)
 {
     Q_UNUSED(c);
-//   kDebug() << c;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << c;
 }
 
 void decrz(char const /*first*/)
@@ -145,24 +145,24 @@ void strict(char const* /*first*/, char const* /*last*/)
 void gotid(char const* first, char const* last)
 {
   std::string id(first,last);
-//   kDebug() << "Got ID  = '"<<QString::fromStdString(phelper->attrid)<<"'";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Got ID  = '"<<QString::fromStdString(phelper->attrid)<<"'";
 }
 
 void undigraph(char const* /*first*/, char const* /*last*/)
 {
-//   kDebug() << "Setting graph as undirected";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Setting graph as undirected";
   if (phelper) phelper->graph->directed(false);
 }
 
 void digraph(char const* /*first*/, char const* /*last*/)
 {
-//   kDebug() << "Setting graph as directed";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Setting graph as directed";
   if (phelper) phelper->graph->directed(true);
 }
 
 void graphid(char const* first, char const* last)
 {
-//   kDebug() << QString::fromStdString(std::string(first,last));
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << QString::fromStdString(std::string(first,last));
   if (phelper) phelper->graph->setId(QString::fromStdString(std::string(first,last)));
 }
 
@@ -175,20 +175,20 @@ void attrid(char const* first, char const* last)
     if (id.size()>0 && id[id.size()-1] == '"') id = id.substr(0,id.size()-1);
     phelper->attrid = id;
     phelper->valid = "";
-//     kDebug() << "Got attr ID  = '"<<QString::fromStdString(phelper->attrid)<<"'";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << "Got attr ID  = '"<<QString::fromStdString(phelper->attrid)<<"'";
   }
 }
 
 void subgraphid(char const* first, char const* last)
 {
   std::string id(first,last);
-//   kDebug() << QString::fromStdString(id);
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << QString::fromStdString(id);
   if (phelper) 
   {
     if (id.size()>0 && id[0] == '"') id = id.substr(1);
     if (id.size()>0 && id[id.size()-1] == '"') id = id.substr(0,id.size()-1);
     phelper->subgraphid = id;
-//     kDebug() << "Got subgraph id = '"<<QString::fromStdString(phelper->subgraphid)<<"'";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << "Got subgraph id = '"<<QString::fromStdString(phelper->subgraphid)<<"'";
   }
 }
 
@@ -200,7 +200,7 @@ void valid(char const* first, char const* last)
     if (id.size()>0 && id[0] == '"') id = id.substr(1);
     if (id.size()>0 && id[id.size()-1] == '"') id = id.substr(0,id.size()-1);
     phelper->valid = id;
-//     kDebug() << "Got attr val = '"<<QString::fromStdString(id)<<"'";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << "Got attr val = '"<<QString::fromStdString(id)<<"'";
   }
 }
 
@@ -219,7 +219,7 @@ void pushAttrListC(char const /*c*/)
 
 void pushAttrList(char const* /*first*/, char const* /*last*/)
 {
-//   kDebug() << "Pushing attributes";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Pushing attributes";
   if (phelper)
   {
     phelper->graphAttributesStack.push_back(phelper->graphAttributes);
@@ -235,7 +235,7 @@ void popAttrListC(char const /*c*/)
 
 void popAttrList(char const* /*first*/, char const* /*last*/)
 {
-//   kDebug() << "Poping attributes";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Poping attributes";
   if (phelper) 
   {
     phelper->graphAttributes = phelper->graphAttributesStack.back();
@@ -245,12 +245,12 @@ void popAttrList(char const* /*first*/, char const* /*last*/)
     phelper->edgesAttributes = phelper->edgesAttributesStack.back();
     phelper->edgesAttributesStack.pop_back();
   }
-//   kDebug() << "Poped";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Poped";
 }
 
 void createnode(char const* first, char const* last)
 {
-//   kDebug() << (void*)first << (void*)last << QString::fromStdString(std::string(first,last));
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << (void*)first << (void*)last << QString::fromStdString(std::string(first,last));
   if (phelper && first && last)
   {
     std::string id(first,last);
@@ -270,7 +270,7 @@ void createsubgraph(char const /*c*/)
 
 void setgraphattributes(char const* /*first*/, char const* /*last*/)
 {
-//   kDebug() << "setgraphattributes with z = " << phelper->z;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "setgraphattributes with z = " << phelper->z;
   if (phelper) 
   {
     if (phelper->z == 1) // main graph
@@ -286,7 +286,7 @@ void setgraphattributes(char const* /*first*/, char const* /*last*/)
 
 void setnodeattributes(char const* /*first*/, char const* /*last*/)
 {
-//   kDebug() << "setnodeattributes with z = " << phelper->z;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "setnodeattributes with z = " << phelper->z;
   if (phelper) 
   {
     phelper->setnodeattributes();
@@ -316,7 +316,7 @@ void checkedgeop(char const* first, char const* last)
 
 void edgebound(char const* first, char const* last)
 {
-//   kDebug() << "edgebound: " << QString::fromStdString(std::string(first,last));
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "edgebound: " << QString::fromStdString(std::string(first,last));
   if (phelper) 
   {
     std::string id(first,last);
@@ -416,7 +416,7 @@ bool parse_integers(char const* str, std::vector<int>& v)
 
 bool parse_spline(char const* str, QVector< QPair< float, float > >& points)
 {
-//   kDebug() << "Parsing spline..." << QString::fromStdString(str);
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Parsing spline..." << QString::fromStdString(str);
   char e = 'n', s = 'n';
   int sx,sy,ex,ey;
   QPair< float, float > p;
@@ -437,7 +437,7 @@ bool parse_spline(char const* str, QVector< QPair< float, float > >& points)
   if (!res) return false;
   if (s == 's')
   {
-//     kDebug() << "inserting the s point";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << "inserting the s point";
     points.insert(points.begin(), qMakePair(float(sx),float(sy)));
   }
   if (e == 'e')
@@ -462,7 +462,7 @@ void valid_op(char const* first, char const* last)
   renderop.renderop = QString::fromUtf8(therenderop.c_str());
   renderop.str = QString::fromUtf8(thestr.c_str());
 
-//   kDebug() << "Validating render operation '"<<QString::fromStdString(s)<<"': '"<<renderop.renderop<<"/"<<renderop.str<<"'";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Validating render operation '"<<QString::fromStdString(s)<<"': '"<<renderop.renderop<<"/"<<renderop.str<<"'";
   renderopvec->push_back(renderop);
   renderop.renderop = "";
   renderop.integers = QList<int>();
@@ -471,7 +471,7 @@ void valid_op(char const* first, char const* last)
 
 bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
 {
-//   kDebug() << QString::fromUtf8(str.c_str()) << str.size();
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << QString::fromUtf8(str.c_str()) << str.size();
   if (str.empty())
   {
     return false;

@@ -68,7 +68,7 @@ CanvasEdge::CanvasEdge(DotGraphView* view, GraphEdge* e,
   m_font = FontsCache::changeable().fromName(e->fontName());
 
   computeBoundingRect();
-//   kDebug() << "boundingRect computed: " << m_boundingRect;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "boundingRect computed: " << m_boundingRect;
   
   QString tipStr = i18n("%1 -> %2\nlabel='%3'",
       edge()->fromNode()->id(),edge()->toNode()->id(),e->label());
@@ -111,7 +111,7 @@ QRectF CanvasEdge::boundingRect() const
 
 QPainterPath CanvasEdge::shape () const
 {
-//   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
 
   if (!m_shape.isEmpty()) {
     return m_shape;
@@ -169,7 +169,7 @@ QPainterPath CanvasEdge::pathForSpline(int splineNum, const DotRenderOp& dro) co
         (m_gh-dro.integers[2*i+2]/*%m_hdvcf*/)*m_scaleY + m_yMargin + diffY
     );
     points[i] = p;
-//     kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << p;
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << p;
   }
 
   QPainterPath path;
@@ -185,7 +185,7 @@ QPainterPath CanvasEdge::pathForSpline(int splineNum, const DotRenderOp& dro) co
 void CanvasEdge::paint(QPainter* p, const QStyleOptionGraphicsItem* option,
                    QWidget* widget)
 {
-//   kDebug();
+//   qCDebug(KGRAPHVIEWERLIB_LOG);
 Q_UNUSED(option)
 Q_UNUSED(widget)
   if (m_boundingRect == QRectF())
@@ -226,14 +226,14 @@ Q_UNUSED(widget)
 
   foreach (const DotRenderOp& dro, edge()->renderOperations())
   {
-    //     kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << dro.renderop << "; selected:" << edge()->isSelected();
+    //     qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << dro.renderop << "; selected:" << edge()->isSelected();
     if (dro.renderop == "c")
     {
       QColor c(dro.str.mid(0,7));
       bool ok;
       c.setAlpha(255-dro.str.mid(8).toInt(&ok,16));
       lineColor = c;
-//       kDebug() << "c" << dro.str.mid(0,7) << lineColor;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "c" << dro.str.mid(0,7) << lineColor;
     }
     else if (dro.renderop == "C")
     {
@@ -245,7 +245,7 @@ Q_UNUSED(widget)
         c = c.lighter();
       }*/
       backColor = c;
-//       kDebug() << "C" << dro.str.mid(0,7) << backColor;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << "C" << dro.str.mid(0,7) << backColor;
     }
     else if ( dro.renderop == "T" )
     {
@@ -276,7 +276,7 @@ Q_UNUSED(widget)
                       + m_xMargin;
       qreal y = ((m_gh - (dro.integers[1]))*m_scaleY)+ m_yMargin;
       QPointF point(x,y);
-//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawText" << edge()->fontColor() << point;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawText" << edge()->fontColor() << point;
 
       p->drawText(point,str);
 
@@ -293,14 +293,14 @@ Q_UNUSED(widget)
             (int(m_gh-dro.integers[2*i+2])/*%m_hdvcf*/)*m_scaleY + m_yMargin
                 );
         polygon[i] = point;
-//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << point;
+//         qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << point;
         allPoints.append(point);
       }
       if (dro.renderop == "P" )
       {
         p->setBrush(lineColor);
         p->drawPolygon(polygon);
-//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
+//         qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
         p->setBrush(oldBrush);
       }
       else
@@ -319,7 +319,7 @@ Q_UNUSED(widget)
         pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(edge()->style()));
       }
       p->setPen(pen);
-//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
       p->drawPolyline(polygon);
       p->setPen(oldPen);
       p->setBrush(oldBrush);
@@ -351,7 +351,7 @@ Q_UNUSED(widget)
       }
       p->setPen(pen);
       QRectF rect(x,y,w,h);
-//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawEllipse" << edge()->color(0) << rect;
       p->drawEllipse(rect);
       p->setPen(oldPen);
       p->setBrush(oldBrush);
@@ -394,7 +394,7 @@ Q_UNUSED(widget)
 //         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
         p->setBrush(Qt::NoBrush);
         p->setPen(pen);
-//         kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
+//         qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
         p->drawPath(pathForSpline(splineNum, dro));
         p->setPen(oldPen);
         p->setBrush(oldBrush);
@@ -403,7 +403,7 @@ Q_UNUSED(widget)
   }
   if (edge()->isSelected())
   {
-//     kDebug() << "draw square";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << "draw square";
 //     p->drawRect(m_boundingRect);
     qreal maxDist = 0;
     QPair<QPointF,QPointF> pointsPair;
@@ -433,14 +433,14 @@ Q_UNUSED(widget)
 
 void CanvasEdge::modelChanged()
 {
-//   kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id();
   prepareGeometryChange();
   computeBoundingRect();
 }
 
 void CanvasEdge::computeBoundingRect()
 {
-//   kDebug();
+//   qCDebug(KGRAPHVIEWERLIB_LOG);
   //invalidate bounding region cache
   m_shape = QPainterPath();
   if (edge()->renderOperations().isEmpty())
@@ -456,7 +456,7 @@ void CanvasEdge::computeBoundingRect()
       QRectF br(
       edge()->fromNode()->canvasElement()->boundingRect().center()+edge()->fromNode()->canvasElement()->pos(),
                 edge()->toNode()->canvasElement()->boundingRect().center()+edge()->toNode()->canvasElement()->pos());
-//       kDebug() << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() <<br;
       m_boundingRect = br;
     }
   }
@@ -465,7 +465,7 @@ void CanvasEdge::computeBoundingRect()
     QPolygonF points;
     foreach (const DotRenderOp& dro, edge()->renderOperations())
     {
-//       kDebug() << dro.renderop  << ", ";
+//       qCDebug(KGRAPHVIEWERLIB_LOG) << dro.renderop  << ", ";
       if ( (dro.renderop != "B") && (dro.renderop != "p") &&  (dro.renderop != "P") ) continue;
       uint previousSize = points.size();
       points.resize(previousSize+dro.integers[0]);
@@ -478,7 +478,7 @@ void CanvasEdge::computeBoundingRect()
         points[previousSize+i] = p;
       }
     }
-//     kDebug() << points.size() << "points";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << points.size() << "points";
     if (points.size() == 0) return;
 
     int len = points.count();
@@ -490,7 +490,7 @@ void CanvasEdge::computeBoundingRect()
     {
       a[len+i] = b[i];
     }
-//     kDebug() << a.size() << "points";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << a.size() << "points";
 
     m_boundingRect = a.boundingRect();
   }
@@ -524,7 +524,7 @@ void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent * event)
     qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting edgeContextMenuEvent("<<m_edge->id()<<","<<event->screenPos()<<")";
     emit(edgeContextMenuEvent(m_edge->id(), event->screenPos() ));
 // opens the selected edge contextual menu and if necessary select the edge
-/*    kDebug() << "opens the contextual menu";
+/*    qCDebug(KGRAPHVIEWERLIB_LOG) << "opens the contextual menu";
     m_popup->exec(event->screenPos());*/
   }
 }

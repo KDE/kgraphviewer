@@ -907,7 +907,7 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
         }
         else
         {
-//           kWarning() << "Unknown DOT color '" << dotColor << "'. returning Qt black";
+//           qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown DOT color '" << dotColor << "'. returning Qt black";
           return Qt::black;
         }
     }

@@ -421,7 +421,7 @@ void KGraphEditor::applyNewToolbarConfig()
 
 // void KGraphViewer::reloadOnChangeMode_pressed(int value)
 // {
-//   kDebug() << "reloadOnChangeMode_pressed " << value;
+//   qCDebug(KGRAPHEDITOR_LOG) << "reloadOnChangeMode_pressed " << value;
 //   switch (value)
 //   {
 //   case 0:
@@ -437,7 +437,7 @@ void KGraphEditor::applyNewToolbarConfig()
 //   qCWarning(KGRAPHEDITOR_LOG) << "Invalid reload on change mode value: " << value;
 //     return;
 //   }
-//   kDebug() << "emiting";
+//   qCDebug(KGRAPHEDITOR_LOG) << "emiting";
 //   emit(settingsChanged());
 //   KGraphEditorSettings::save();
 // }
@@ -859,7 +859,7 @@ void KGraphEditor::slotParsingModeExternalToggled(bool value)
   {
     KGraphEditorSettings::setParsingMode("external");
   }
-  //   kDebug() << "emiting";
+  //   qCDebug(KGRAPHEDITOR_LOG) << "emiting";
   //   emit(settingsChanged());
   KGraphEditorSettings::self()->save();
 }
@@ -870,7 +870,7 @@ void KGraphEditor::slotParsingModeInternalToggled(bool value)
   {
     KGraphEditorSettings::setParsingMode("internal");
   }
-  //   kDebug() << "emiting";
+  //   qCDebug(KGRAPHEDITOR_LOG) << "emiting";
   //   emit(settingsChanged());
   KGraphEditorSettings::self()->save();
 }

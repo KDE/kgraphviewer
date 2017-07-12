@@ -407,7 +407,7 @@ uint KGVSimplePrintingEngine::maxVertFit() const
   {
     h -= (m_mainLineSpacing*3/2 + 1);
   }
-//   kDebug() << "maxVertFit: " << m_painting.height() << " / " << h
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "maxVertFit: " << m_painting.height() << " / " << h
 //     << " = " << m_painting.height()/h;
   return (uint)ceil(((double)m_painting.height()))/h + 1;
 }

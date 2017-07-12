@@ -47,12 +47,12 @@ GraphEdge::GraphEdge() :
     m_dir(DOT_DEFAULT_EDGE_DIR),
     m_arrowheads()
 {
-//   kDebug() ;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) ;
 }
 
 GraphEdge::~GraphEdge()
 {
-//   kDebug() ;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) ;
 }
 
 GraphEdge::GraphEdge(const GraphEdge& edge) :
@@ -69,7 +69,7 @@ GraphEdge::GraphEdge(const GraphEdge& edge) :
 void GraphEdge::colors(const QString& cs)
 {
   m_colors = cs.split(':');
-//   kDebug() << fromNode()->id() << " -> " << toNode()->id() << ": nb colors: " << m_colors.size();
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << fromNode()->id() << " -> " << toNode()->id() << ": nb colors: " << m_colors.size();
 }
 
 const QString GraphEdge::color(uint i) 
@@ -81,12 +81,12 @@ const QString GraphEdge::color(uint i)
   if (i < (uint)m_colors.count())
   {
 //     std::cerr << "edge color " << i << " is " << m_colors[i] << std::endl;
-//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "color" << i << "is" << m_colors[i];
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << fromNode()->id() << " -> " << toNode()->id() << "color" << i << "is" << m_colors[i];
     return m_colors[i];
   }
   else
   {
-//     kDebug() << fromNode()->id() << " -> " << toNode()->id() << "no edge color " << i << ". returning " << DOT_DEFAULT_EDGE_COLOR;
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << fromNode()->id() << " -> " << toNode()->id() << "no edge color " << i << ". returning " << DOT_DEFAULT_EDGE_COLOR;
     return DOT_DEFAULT_EDGE_COLOR;
   }
 }

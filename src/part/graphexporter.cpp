@@ -85,7 +85,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
 
   /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
   /// possible to save them back : to be changed !
-//   kDebug() << "writing subgraphs";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "writing subgraphs";
   GraphSubgraphMap::const_iterator sit;
   for ( sit = graph->subgraphs().begin();
   sit != graph->subgraphs().end(); ++sit )
@@ -94,7 +94,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
     (stream) << s;
   }
 
-//   kDebug() << "writing nodes";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "writing nodes";
   GraphNodeMap::const_iterator nit;
   for ( nit = graph->nodes().begin();
         nit != graph->nodes().end(); ++nit )
@@ -129,7 +129,7 @@ graph_t* GraphExporter::exportToGraphviz(const DotGraph* graph)
   graph->exportToGraphviz(agraph);
   /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
   /// possible to save them back : to be changed !
-  //   kDebug() << "writing subgraphs";
+  //   qCDebug(KGRAPHVIEWERLIB_LOG) << "writing subgraphs";
   GraphSubgraphMap::const_iterator sit;
   for ( sit = graph->subgraphs().begin();
   sit != graph->subgraphs().end(); ++sit )
@@ -139,7 +139,7 @@ graph_t* GraphExporter::exportToGraphviz(const DotGraph* graph)
     s.exportToGraphviz(subgraph);
   }
   
-  //   kDebug() << "writing nodes";
+  //   qCDebug(KGRAPHVIEWERLIB_LOG) << "writing nodes";
   GraphNodeMap::const_iterator nit;
   foreach (GraphNode* n, graph->nodes())
   {

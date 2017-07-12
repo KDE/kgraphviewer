@@ -204,7 +204,7 @@ bool KGraphViewerPart::openFile()
   delete d->m_watch;
   d->m_watch = new KDirWatch();
   
-  //   kDebug() << "Watching file " << localFilePath();
+  //   qCDebug(KGRAPHVIEWERLIB_LOG) << "Watching file " << localFilePath();
   d->m_watch->addFile(localFilePath());
   connect(d->m_watch, &KDirWatch::dirty, d->m_widget, &DotGraphView::dirty);
   QString label = localFilePath().section('/',-1,-1);

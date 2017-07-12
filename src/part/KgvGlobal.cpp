@@ -25,6 +25,7 @@
    version 2 of the License, or (at your option) any later version.
  */
 
+#include "kgraphviewerlib_debug.h"
 #include <KgvGlobal.h>
 #include <QDebug>
 #include <QDesktopWidget>
@@ -81,8 +82,8 @@ QFont KgvGlobal::_defaultFont()
         Q_ASSERT( m_pointSize != -1 );
         font.setPointSize( m_pointSize );
     }
-    //kDebug()<<"QFontInfo(font).pointSize() :"<<QFontInfo(font).pointSize();
-    //kDebug()<<"font.name() :"<<font.family ();
+    //qCDebug(KGRAPHVIEWERLIB_LOG)<<"QFontInfo(font).pointSize() :"<<QFontInfo(font).pointSize();
+    //qCDebug(KGRAPHVIEWERLIB_LOG)<<"font.name() :"<<font.family ();
     return font;
 }
 

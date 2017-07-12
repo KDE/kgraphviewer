@@ -750,13 +750,13 @@ bool DotGraphView::initEmpty()
     d->m_graph->setReadWrite();
   }
   
-//   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
   d->m_xMargin = 50;
   d->m_yMargin = 50;
 
   QGraphicsScene* newCanvas = new QGraphicsScene();
   QGraphicsSimpleTextItem* item = newCanvas->addSimpleText(i18n("no graph loaded"));
-//   kDebug() << "Created canvas " << newCanvas;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Created canvas " << newCanvas;
   
   d->m_birdEyeView->setScene(newCanvas);
 //   std::cerr << "After m_birdEyeView set canvas" << std::endl;
@@ -869,7 +869,7 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   }
   d->m_graph->layoutCommand(layoutCommand);
 
-//   kDebug() << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Parsing " << m_graph->dotFileName() << " with " << m_graph->layoutCommand();
   d->m_xMargin = 50;
   d->m_yMargin = 50;
 
@@ -999,7 +999,7 @@ bool DotGraphView::displayGraph()
 //   m_canvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
   d->m_canvas->setBackgroundBrush(QBrush(d->m_backgroundColor));
   
-//   kDebug() << "sceneRect is now " << m_canvas->sceneRect();
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "sceneRect is now " << m_canvas->sceneRect();
   
   qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating" << d->m_graph->subgraphs().size() << "CanvasSubgraphs from" << d->m_graph;
   int zvalue = -1;
@@ -1260,14 +1260,14 @@ void DotGraphView::resizeEvent(QResizeEvent* e)
 
 void DotGraphView::zoomRectMovedTo(QPointF newZoomPos)
 {
-//   kDebug() << "DotGraphView::zoomRectMovedTo " << newZoomPos;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::zoomRectMovedTo " << newZoomPos;
   centerOn(newZoomPos);
 }
                     
 void DotGraphView::zoomRectMoveFinished()
 {
   Q_D(DotGraphView);
-//    kDebug() << "zoomRectMoveFinished";
+//    qCDebug(KGRAPHVIEWERLIB_LOG) << "zoomRectMoveFinished";
   d->updateBirdEyeView();
 //   std::cerr << "zoomRectMoveFinished end" << std::endl;
 }
@@ -1374,7 +1374,7 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
 {
   Q_D(DotGraphView);
   QGraphicsView::mouseMoveEvent(e);
-//   kDebug() << scene()->selectedItems().size();
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << scene()->selectedItems().size();
 
   if (d->m_editingMode == DrawNewEdge)
   {
@@ -1383,17 +1383,17 @@ void DotGraphView::mouseMoveEvent(QMouseEvent* e)
       QPointF src = d->m_newEdgeDraft->line().p1();
       QPointF tgt = mapToScene(e->pos());
 
-//     kDebug() << "Setting new edge draft line to" << QLineF(src,tgt);
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << "Setting new edge draft line to" << QLineF(src,tgt);
       d->m_newEdgeDraft->setLine(QLineF(src,tgt));
     }
   }
   else if (d->m_editingMode == SelectingElements)
   {
-//     kDebug() << "selecting";
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << "selecting";
   }
   else if (e->buttons().testFlag(Qt::LeftButton))
   {
-//     kDebug() << (e->globalPos() - d->m_pressPos);
+//     qCDebug(KGRAPHVIEWERLIB_LOG) << (e->globalPos() - d->m_pressPos);
     QPoint diff = e->globalPos() - d->m_pressPos;
     horizontalScrollBar()->setValue(d->m_pressScrollBarsPos.x()-diff.x());
     verticalScrollBar()->setValue(d->m_pressScrollBarsPos.y()-diff.y());
@@ -1404,7 +1404,7 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent* e)
 {
   Q_D(DotGraphView);
   qCDebug(KGRAPHVIEWERLIB_LOG) << e << d->m_editingMode;
-//   kDebug() << "setDragMode(NoDrag)";
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "setDragMode(NoDrag)";
 //   setDragMode(NoDrag);
   if (d->m_editingMode == AddNewElement)
   {
@@ -1556,7 +1556,7 @@ void DotGraphView::readViewConfig()
 void DotGraphView::saveViewConfig()
 {
   Q_D(DotGraphView);
-//   kDebug() << "Saving view config";  
+//   qCDebug(KGRAPHVIEWERLIB_LOG) << "Saving view config";  
   KConfigGroup g(KSharedConfig::openConfig(), "GraphViewLayout");
 
     writeConfigEntry(&g, "DetailLevel", d->m_detailLevel, DEFAULT_DETAILLEVEL);
@@ -1930,7 +1930,7 @@ void DotGraphView::finishNewEdgeTo(CanvasElement* node)
 //       const QString& tgtId,
 //       const QMap<QString, QString> newElementAttributes)
 // {
-//   kDebug() ;
+//   qCDebug(KGRAPHVIEWERLIB_LOG) ;
 // 
 //   GraphEdge* gedge  = new GraphEdge();
 //   gedge->setFromNode(d->m_graph->nodes()[srcId]);
