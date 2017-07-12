@@ -25,7 +25,6 @@
 
 #include "kgraphviewer_interface.h"
 
-class KComponentData;
 class KAboutData;
 
 class QWidget;
