@@ -1,0 +1,4 @@
+# KGraphViewer's logging categories (for the kdebugsettings tool)
+org.kde.kgraphviewer KGraphViewer
+org.kde.kgrapheditor KGraphEditor
+org.kde.kgraphviewer.lib KGraphViewer (Library and KPart)
