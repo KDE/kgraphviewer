@@ -58,7 +58,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
     tempFile.setFileTemplate("XXXXXX.dot");
     if (!tempFile.open()) 
     {
-      qWarning() << "Unable to open for temp file for writing " << tempFile.fileName() << endl;
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Unable to open for temp file for writing " << tempFile.fileName() << endl;
       exit(2);
     }
     actualFileName = tempFile.fileName();
@@ -68,7 +68,7 @@ QString GraphExporter::writeDot(const DotGraph* graph, const QString& fileName)
   QFile f(actualFileName);
   if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
   {
-    qWarning() << "Unable to open file for writing " << fileName << endl;
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "Unable to open file for writing " << fileName << endl;
     exit(2);
   }
   

@@ -113,10 +113,10 @@ int main(int argc, char **argv)
                 return 0;
               }
 
-              qWarning() << "Call failed: " << reply.error().message() << endl;
+              qCWarning(KGRAPHEDITOR_LOG) << "Call failed: " << reply.error().message() << endl;
               return 1;
             }
-            qWarning() << "Invalid interface" << endl;
+            qCWarning(KGRAPHEDITOR_LOG) << "Invalid interface" << endl;
             exit(0);
           }
           else

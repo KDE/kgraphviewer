@@ -22,6 +22,7 @@
 #include "graphnode.h"
 #include "graphedge.h"
 #include "DotGraphParsingHelper.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <iostream>
 
@@ -133,7 +134,7 @@ void decrz(char const /*first*/)
 void dump(char const* first, char const* last)
 {
   std::string str(first, last);
-  qWarning() << ">>>> " << QString::fromStdString(str) << " <<<<" << endl;
+  qCWarning(KGRAPHVIEWERLIB_LOG) << ">>>> " << QString::fromStdString(str) << " <<<<" << endl;
 }
 
 void strict(char const* /*first*/, char const* /*last*/)
@@ -309,7 +310,7 @@ void checkedgeop(char const* first, char const* last)
       ( (!phelper->graph->directed()) && (str == "--") ) )
       return;
     
-    qWarning() << "Error !! uncoherent relation : directed = '" << phelper->graph->directed() << "' and op = '" << QString::fromStdString(str) << "'" << endl;
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "Error !! uncoherent relation : directed = '" << phelper->graph->directed() << "' and op = '" << QString::fromStdString(str) << "'" << endl;
   }
 }
 
@@ -527,8 +528,8 @@ bool parse_renderop(const std::string& str, DotRenderOpVec& arenderopvec)
              ).full;
   if (res ==false)
   {
-    qWarning() << "ERROR: parse_renderop failed on "<< QString::fromStdString(str);
-    qWarning() << "       Last renderop string is "<<QString::fromStdString(str.c_str());
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "ERROR: parse_renderop failed on "<< QString::fromStdString(str);
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "       Last renderop string is "<<QString::fromStdString(str.c_str());
   }
 //   delete renderop; renderop = 0;
   return res;

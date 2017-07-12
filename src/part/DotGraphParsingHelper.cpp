@@ -24,6 +24,7 @@
 //#include "graphsubgraph.h"
 #include "graphnode.h"
 #include "graphedge.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <boost/throw_exception.hpp>
 #include <boost/spirit/include/classic_core.hpp>
@@ -313,7 +314,7 @@ void DotGraphParsingHelper::createedges()
 //     kDebug() << "Found gn1="<<gn1<<" and gn2=" << gn2;
     if (gn1 == nullptr || gn2 == nullptr)
     {
-      qWarning() << "Unable to find or create edge bound(s) gn1=" << gn1 << "; gn2=" << gn2;
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Unable to find or create edge bound(s) gn1=" << gn1 << "; gn2=" << gn2;
     }
     ge->setFromNode(gn1);
     ge->setToNode(gn2);

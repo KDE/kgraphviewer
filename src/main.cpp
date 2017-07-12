@@ -18,6 +18,8 @@
 
 
 #include "kgraphviewer.h"
+#include "kgraphviewer_debug.h"
+
 #include <QApplication>
 #include <kaboutdata.h>
 #include <QCommandLineParser>
@@ -117,14 +119,14 @@ int main(int argc, char **argv)
               QDBusReply<void> reply = iface.call("openUrl", url.url(QUrl::PreferLocalFile));
               if (reply.isValid()) 
               {
-                qWarning() << "Reply was valid";
+                qCWarning(KGRAPHVIEWER_LOG) << "Reply was valid";
                 return 0;
               }
 
-              qWarning() << "Call failed: " << reply.error().message() << endl;
+              qCWarning(KGRAPHVIEWER_LOG) << "Call failed: " << reply.error().message() << endl;
               return 1;
             }
-            qWarning() << "Invalid interface" << endl;
+            qCWarning(KGRAPHVIEWER_LOG) << "Invalid interface" << endl;
             exit(0);
           }
           else

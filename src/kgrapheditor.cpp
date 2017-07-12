@@ -176,7 +176,7 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
   if (!view)
   {
     // This should not happen
-    qWarning() << "Failed to get KPart" << endl;
+    qCWarning(KGRAPHEDITOR_LOG) << "Failed to get KPart" << endl;
     return nullptr;
   }
   view->setReadWrite();
@@ -434,7 +434,7 @@ void KGraphEditor::applyNewToolbarConfig()
 //     KGraphEditorSettings::setReloadOnChangeMode("ask");
 //     break;
 //   default:
-//   qWarning() << "Invalid reload on change mode value: " << value;
+//   qCWarning(KGRAPHEDITOR_LOG) << "Invalid reload on change mode value: " << value;
 //     return;
 //   }
 //   kDebug() << "emiting";
@@ -457,7 +457,7 @@ void KGraphEditor::applyNewToolbarConfig()
 //     KGraphEditorSettings::setOpenInExistingWindowMode("ask");
 //     break;
 //   default:
-//   qWarning() << "Invalid OpenInExistingWindow value: " << value << endl;
+//   qCWarning(KGRAPHEDITOR_LOG) << "Invalid OpenInExistingWindow value: " << value << endl;
 //     return;
 //   }
 //
@@ -481,7 +481,7 @@ void KGraphEditor::applyNewToolbarConfig()
 //     KGraphEditorSettings::setReopenPreviouslyOpenedFilesMode("ask");
 //     break;
 //   default:
-//   qWarning() << "Invalid ReopenPreviouslyOpenedFilesMode value: " << value << endl;
+//   qCWarning(KGRAPHEDITOR_LOG) << "Invalid ReopenPreviouslyOpenedFilesMode value: " << value << endl;
 //     return;
 //   }
 //
@@ -803,7 +803,7 @@ void KGraphEditor::slotNewElementItemChanged(QTreeWidgetItem* item ,int column)
   qCDebug(KGRAPHEDITOR_LOG);
   if (column == 0)
   {
-    qWarning() << "Item id change not handled";
+    qCWarning(KGRAPHEDITOR_LOG) << "Item id change not handled";
     return;
   }
   else if (column == 1)
@@ -812,7 +812,7 @@ void KGraphEditor::slotNewElementItemChanged(QTreeWidgetItem* item ,int column)
   }
   else
   {
-    qWarning() << "Unknown column" << column;
+    qCWarning(KGRAPHEDITOR_LOG) << "Unknown column" << column;
     return;
   }
 }

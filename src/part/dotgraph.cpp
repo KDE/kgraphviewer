@@ -100,7 +100,7 @@ QString DotGraph::chooseLayoutProgramForFile(const QString& str)
 
   if (!iFILE.open(QIODevice::ReadOnly))
   {
-    qWarning() << "Can't test dot file. Will try to use the dot command on the file: '" << str << "'" << endl;
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "Can't test dot file. Will try to use the dot command on the file: '" << str << "'" << endl;
     return "dot";// -Txdot";
   }
 
@@ -249,7 +249,7 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
   }
   else
   {
-    qWarning() << "parsing failed";
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "parsing failed";
   }
 //   return parsingResult;
 //   if (m_readWrite && m_phase == Initial)
@@ -266,7 +266,7 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
 
 void DotGraph::slotDotRunningError(QProcess::ProcessError error)
 {
-  qWarning() << "DotGraph::slotDotRunningError" << error;
+  qCWarning(KGRAPHVIEWERLIB_LOG) << "DotGraph::slotDotRunningError" << error;
   switch (error)
   {
     case QProcess::FailedToStart:
@@ -609,7 +609,7 @@ void DotGraph::removeNodeNamed(const QString& nodeName)
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(nodeName));
   if (node == nullptr)
   {
-    qWarning() << "No such node " << nodeName;
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "No such node " << nodeName;
     return;
   }
   
@@ -654,14 +654,14 @@ void DotGraph::removeNodeFromSubgraph(
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(nodeName));
   if (node == nullptr)
   {
-    qWarning() << "No such node " << nodeName;
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "No such node " << nodeName;
     return;
   }
 
   GraphSubgraph* subgraph = subgraphs()[subgraphName];
   if (subgraph == nullptr)
   {
-    qWarning() << "No such subgraph " << subgraphName;
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "No such subgraph " << subgraphName;
     return;
   }
   
@@ -679,7 +679,7 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
 
   if (subgraph == nullptr)
   {
-    qWarning() << "Subgraph" << subgraphName << "not found";
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "Subgraph" << subgraphName << "not found";
     return;
   }
   GraphEdgeMap::iterator it, it_end;
@@ -723,7 +723,7 @@ void DotGraph::removeSubgraphNamed(const QString& subgraphName)
     }
     else
     {
-      qWarning() << "Don't know how to handle" << element->id();
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Don't know how to handle" << element->id();
     }
   }
   subgraph->content().clear();
@@ -861,7 +861,7 @@ void DotGraph::addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString s
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(attribs["id"]));
   if (node == nullptr)
   {
-    qWarning() << "No such node" << attribs["id"];
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "No such node" << attribs["id"];
     return;
   }
   if (nodes().contains(attribs["id"]))
@@ -902,12 +902,12 @@ void DotGraph::moveExistingNodeToMainGraph(QMap<QString,QString> attribs)
   GraphNode* node = dynamic_cast<GraphNode*>(elementNamed(attribs["id"]));
   if (node == nullptr)
   {
-    qWarning() << "No such node" << attribs["id"];
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "No such node" << attribs["id"];
     return;
   }
   else if (nodes().contains(attribs["id"]))
   {
-    qWarning() << "Node" << attribs["id"] << "already in main graph";
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "Node" << attribs["id"] << "already in main graph";
     return;
   }
   else
@@ -953,7 +953,7 @@ void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString,QString> attrib
   
   if (srcElement == nullptr || tgtElement == nullptr)
   {
-    qWarning() << src << "or" << tgt << "missing";
+    qCWarning(KGRAPHVIEWERLIB_LOG) << src << "or" << tgt << "missing";
     return;
   }
   if (attribs.contains("id"))

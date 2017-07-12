@@ -28,19 +28,19 @@ void LoadAGraphThread::run()
   FILE* fp = fopen(m_dotFileName.toUtf8().data(), "r");
   if (!fp)
   {
-      qWarning() << "Failed to open file " << m_dotFileName;
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to open file " << m_dotFileName;
       return;
   }
   m_g = agread(fp, nullptr);
   if (!m_g)
   {
-      qWarning() << "Failed to read file, retrying to work around graphviz bug(?)";
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to read file, retrying to work around graphviz bug(?)";
       rewind(fp);
       m_g = agread(fp, nullptr);
   }
   if (m_g == nullptr)
   {
-      qWarning() << "Failed to read file " << m_dotFileName;
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to read file " << m_dotFileName;
   }
   fclose(fp);
 }

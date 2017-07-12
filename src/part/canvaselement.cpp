@@ -258,7 +258,7 @@ QWidget *widget)
 
   if (element()->renderOperations().isEmpty() && m_view->isReadWrite())
   {
-    qWarning() << element()->id() << ": no render operation. This should not happen.";
+    qCWarning(KGRAPHVIEWERLIB_LOG) << element()->id() << ": no render operation. This should not happen.";
     return;
   }
 

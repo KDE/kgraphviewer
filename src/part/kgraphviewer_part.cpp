@@ -196,7 +196,7 @@ bool KGraphViewerPart::openFile()
         return false;
       break;
     default:
-      qWarning() << "Unsupported layout method " << d->m_layoutMethod;
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Unsupported layout method " << d->m_layoutMethod;
   }
   
   // deletes the existing file watcher because we have no way know here the name of the

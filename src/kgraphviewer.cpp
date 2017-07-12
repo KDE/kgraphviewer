@@ -154,7 +154,7 @@ void KGraphViewerWindow::openUrl(const QUrl& url)
     if( ! kgv )
     {
       // This should not happen
-      qWarning() << "Failed to get KPart" << endl;
+      qCWarning(KGRAPHVIEWER_LOG) << "Failed to get KPart" << endl;
       return;
     }
     kgv->setBackgroundColor(KGraphViewerSettings::backgroundColor());

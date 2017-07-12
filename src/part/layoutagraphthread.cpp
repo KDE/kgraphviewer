@@ -17,6 +17,7 @@
 
 */
 
+#include "kgraphviewerlib_debug.h"
 #include "layoutagraphthread.h"
 
 #include <QMutex>
@@ -54,7 +55,7 @@ void LayoutAGraphThread::run()
 {
   if (!m_g)
   {
-    qWarning() << "No graph loaded, skipping layout";
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "No graph loaded, skipping layout";
     return;
   }
   threadsafe_wrap_gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());

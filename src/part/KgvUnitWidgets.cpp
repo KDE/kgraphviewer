@@ -84,7 +84,7 @@ KgvUnitDoubleValidator::validate( QString &s, int &pos ) const
     }
     else
     {
-        qWarning() << "Not a number:" << number;
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Not a number:" << number;
         return Invalid;
     }
 
@@ -116,7 +116,7 @@ double KgvUnitDoubleBase::toDouble( const QString& str, bool* ok ) const
     if ( ok )
       qCDebug(KGRAPHVIEWERLIB_LOG) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number( dbl, 'f', 12 );
     else
-        qWarning() << "error:" << str << ": => :" << str2 << ":" << endl;
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "error:" << str << ": => :" << str2 << ":" << endl;
     return dbl;
 }
 

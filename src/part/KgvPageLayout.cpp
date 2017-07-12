@@ -121,12 +121,12 @@ int KgvPageFormat::printerPageSize( KgvFormat format )
 {
     if ( format == PG_SCREEN )
     {
-            qWarning() << "You use the page layout SCREEN. Printing in DIN A4 LANDSCAPE.";
+            qCWarning(KGRAPHVIEWERLIB_LOG) << "You use the page layout SCREEN. Printing in DIN A4 LANDSCAPE.";
             return QPrinter::A4;
     }
     else if ( format == PG_CUSTOM )
     {
-            qWarning() << "The used page layout (CUSTOM) is not supported by QPrinter. Printing in A4.";
+            qCWarning(KGRAPHVIEWERLIB_LOG) << "The used page layout (CUSTOM) is not supported by QPrinter. Printing in A4.";
             return QPrinter::A4;
     }
     else if ( format <= PG_LAST_FORMAT )

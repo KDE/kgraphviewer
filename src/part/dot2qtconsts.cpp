@@ -20,6 +20,7 @@
 #include "dot2qtconsts.h"
 #include "dotgrammar.h"
 #include "canvasnode.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <QDebug> 
 #include <QColor>
@@ -900,7 +901,7 @@ QColor Dot2QtConsts::qtColor(const QString& dotColor) const
             }
             else
             {
-                qWarning() << "Unknown stored DOT color '" << dotColor << "'. returning Qt black";
+                qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown stored DOT color '" << dotColor << "'. returning Qt black";
                 return Qt::black;
             }
         }
@@ -921,7 +922,7 @@ Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString& dotLineStyle) const
   {
     if (!dotLineStyle.left(12).isEmpty()
 	&& dotLineStyle.left(12) != "setlinewidth")
-      qWarning() << "Unknown DOT line style '" << dotLineStyle << "'. returning Qt solid line";
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown DOT line style '" << dotLineStyle << "'. returning Qt solid line";
     return Qt::SolidLine;
   }
 }
@@ -932,7 +933,7 @@ QFont Dot2QtConsts::qtFont(const QString& dotFont) const
     return (*(m_psFonts.find(dotFont)));
   else
   {
-    qWarning() << "Unknown DOT font '" << dotFont << "'. returning Qt default.";
+    qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown DOT font '" << dotFont << "'. returning Qt default.";
     return QFont(QFont::substitute(dotFont));
   }
 }

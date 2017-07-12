@@ -26,6 +26,7 @@
  */
 
 //#include <KoGlobal.h>
+#include "kgraphviewerlib_debug.h"
 #include "KgvUnit.h"
 
 #include <QLocale>
@@ -178,7 +179,7 @@ double KgvUnit::parseValue( const QString& sval, double defaultVal )
       return fromUserValue( val * 10.0, U_DM );
   else if( unit == "km" )
       return fromUserValue( val * 10000.0, U_DM );
-  qWarning() << "Unit" << unit << "is not supported, please report.";
+  qCWarning(KGRAPHVIEWERLIB_LOG) << "Unit" << unit << "is not supported, please report.";
 
   // TODO : add support for mi/ft ?
   return defaultVal;

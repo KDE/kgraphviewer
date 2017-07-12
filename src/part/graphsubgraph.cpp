@@ -70,7 +70,7 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
         }
         else
         {
-          qWarning() << "Updated element is neither a node nor a subgraph";
+          qCWarning(KGRAPHVIEWERLIB_LOG) << "Updated element is neither a node nor a subgraph";
         }
         break;
       }
