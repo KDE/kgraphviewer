@@ -115,6 +115,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 	m_contents->iconLabel->setFixedWidth(32+6);
     const int iconSize = KIconTheme(KIconTheme::current()).defaultSize(KIconLoader::Small);
   m_contents->iconLabel->setPixmap(QIcon::fromTheme("distribute-horizontal-page").pixmap(iconSize, iconSize));
+	m_contents->headerTitleFontButton->setText(i18n("Font..."));
 	m_contents->headerTitleFontButton->setWhatsThis(i18n("Changes font for title text."));
 	connect(m_contents->headerTitleFontButton, &QPushButton::clicked,
 		this, &KGVSimplePrintingPageSetup::slotChangeTitleFont);
@@ -145,6 +146,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 #endif
 
 	updatePageLayoutAndUnitInfo();
+	m_contents->changePageSizeAndMarginsButton->setText(i18n("Change Page Size and Margins..."));
 	m_contents->changePageSizeAndMarginsButton->setWhatsThis(i18n("Changes page size and margins."));
   connect(m_contents->changePageSizeAndMarginsButton, &QPushButton::clicked,
           this, &KGVSimplePrintingPageSetup::slotChangePageSizeAndMargins);
