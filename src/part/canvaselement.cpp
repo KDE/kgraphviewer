@@ -57,7 +57,7 @@ CanvasElement::CanvasElement(
                             )
   : QObject(), QAbstractGraphicsShapeItem(parent),
     m_scaleX(0), m_scaleY(0),
-    m_xMargin(0), m_yMargin(0), m_gh(0), m_wdhcf(0), m_hdvcf(0),
+    m_xMargin(0), m_yMargin(0), m_gh(0),
     m_element(gelement), m_view(v),
     m_font(nullptr),
     m_pen(Dot2QtConsts::componentData().qtColor(gelement->fontColor())),
@@ -134,8 +134,7 @@ void CanvasElement::modelChanged()
 }
 
 void CanvasElement::initialize(qreal scaleX, qreal scaleY,
-                            qreal xMargin, qreal yMargin, qreal gh,
-                            qreal wdhcf, qreal hdvcf)
+                            qreal xMargin, qreal yMargin, qreal gh)
 {
   Q_UNUSED(gh);
 //   qCDebug(KGRAPHVIEWERLIB_LOG);
@@ -145,7 +144,6 @@ void CanvasElement::initialize(qreal scaleX, qreal scaleY,
   m_scaleX = scaleX; m_scaleY = scaleY;
   m_xMargin = xMargin; m_yMargin = yMargin;
 //   m_gh = gh;
-  m_wdhcf = wdhcf; m_hdvcf = hdvcf;
 
   setZValue(m_element->z());
 
@@ -190,12 +188,11 @@ void CanvasElement::computeBoundingRect()
 
       if ((*it).renderop == "e" || (*it).renderop == "E")
       {
-//         qCDebug(KGRAPHVIEWERLIB_LOG) << "integers[0]=" << (*it).integers[0] << "; m_wdhcf=" << m_wdhcf
-//             << "(*it).integers[0]/*%m_wdhcf*/=" << (*it).integers[0]/*%m_wdhcf*/;
+//         qCDebug(KGRAPHVIEWERLIB_LOG) << "integers[0]=" << (*it).integers[0] << ";
         qreal w = m_scaleX * (*it).integers[2] * 2;
         qreal h = m_scaleY * (*it).integers[3] * 2;
-        qreal x = m_xMargin + (((*it).integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
-        qreal y = ((m_gh - (*it).integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
+        qreal x = m_xMargin + (((*it).integers[0])*m_scaleX) - w/2;
+        qreal y = ((m_gh - (*it).integers[1])*m_scaleY) + m_yMargin - h/2;
         m_boundingRect = QRectF(x - adjust,y - adjust, w + adjust, h + adjust);
 //         qCDebug(KGRAPHVIEWERLIB_LOG) << "'" << element()->id() << "' set rect for ellipse to " << rect;
       }
@@ -205,8 +202,8 @@ void CanvasElement::computeBoundingRect()
         for (int i = 0; i < (*it).integers[0]; i++)
         {
           qreal x,y;
-          x = ((*it).integers[2*i+1] == m_wdhcf)?(*it).integers[2*i+1]:(*it).integers[2*i+1]/*%m_wdhcf*/;
-          y = ((*it).integers[2*i+2] == m_hdvcf)?(*it).integers[2*i+2]:(*it).integers[2*i+2]/*%m_hdvcf*/;
+          x = (*it).integers[2*i+1];
+          y = (*it).integers[2*i+2];
           {
 
           }
@@ -304,8 +301,8 @@ QWidget *widget)
       QPen pen = oldPen;
       qreal w = m_scaleX * dro.integers[2] * 2;
       qreal h = m_scaleY * dro.integers[3] * 2;
-      qreal x = m_xMargin + ((dro.integers[0]/*%m_wdhcf*/)*m_scaleX) - w/2;
-      qreal y = ((m_gh - dro.integers[1]/*%m_hdvcf*/)*m_scaleY) + m_yMargin - h/2;
+      qreal x = m_xMargin + (dro.integers[0]*m_scaleX) - w/2;
+      qreal y = ((m_gh - dro.integers[1])*m_scaleY) + m_yMargin - h/2;
       QRectF rect(x,y,w,h);
       pen.setColor(lineColor);
       if (element()->attributes().contains("penwidth"))
@@ -329,14 +326,14 @@ QWidget *widget)
       for (int i = 0; i < dro.integers[0]; i++)
       {
         qreal x,y;
-        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
-        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
+        x = dro.integers[2*i+1];
+        y = dro.integers[2*i+2];
         QPointF p(
                   (x*m_scaleX) + m_xMargin,
                   ((m_gh-y)*m_scaleY) + m_yMargin
                 );
 /*        qCDebug(KGRAPHVIEWERLIB_LOG) << "    point: (" << dro.integers[2*i+1] << ","
-                  << dro.integers[2*i+2] << ") " << m_wdhcf << "/" << m_hdvcf;*/
+                  << dro.integers[2*i+2] << ") " */
         points[i] = p;
       }
 
@@ -422,8 +419,8 @@ QWidget *widget)
       for (int i = 0; i < dro.integers[0]; i++)
       {
         qreal x,y;
-        x = (dro.integers[2*i+1] == m_wdhcf)?dro.integers[2*i+1]:dro.integers[2*i+1]/*%m_wdhcf*/;
-        y = (dro.integers[2*i+2] == m_hdvcf)?dro.integers[2*i+2]:dro.integers[2*i+2]/*%m_hdvcf*/;
+        x = dro.integers[2*i+1];
+        y = dro.integers[2*i+2];
         QPointF p(
                   (x*m_scaleX) +m_xMargin,
                   ((m_gh-y)*m_scaleY) + m_yMargin

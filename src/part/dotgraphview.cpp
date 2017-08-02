@@ -363,9 +363,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
   {
     qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating canvas subgraph for" << gsubgraph->id();
     CanvasSubgraph* csubgraph = new CanvasSubgraph(q, gsubgraph, m_canvas, parent);
-    csubgraph->initialize(
-      scale, scale, m_xMargin, m_yMargin, gh,
-      m_graph->wdhcf(), m_graph->hdvcf());
+    csubgraph->initialize(scale, scale, m_xMargin, m_yMargin, gh);
     gsubgraph->setCanvasSubgraph(csubgraph);
     //       csubgraph->setZValue(gsubgraph->z());
     csubgraph->setZValue(zValue+=2);
@@ -381,9 +379,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph* gsubgraph, int zValue, C
       qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating canvas node for:" << gnode->id();
       CanvasNode *cnode = new CanvasNode(q, gnode, m_canvas);
       if (cnode == nullptr) continue;
-      cnode->initialize(
-        scale, scale, m_xMargin, m_yMargin, gh,
-        m_graph->wdhcf(), m_graph->hdvcf());
+      cnode->initialize(scale, scale, m_xMargin, m_yMargin, gh);
       gnode->setCanvasNode(cnode);
       m_canvas->addItem(cnode);
       //       cnode->setZValue(gnode->z());
@@ -1024,9 +1020,7 @@ bool DotGraphView::displayGraph()
       qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating canvas node for" << gnode->id();
       CanvasNode *cnode = new CanvasNode(this, gnode, d->m_canvas);
       if (cnode == nullptr) continue;
-      cnode->initialize(
-        scale, scale, d->m_xMargin, d->m_yMargin, gh,
-        d->m_graph->wdhcf(), d->m_graph->hdvcf());
+      cnode->initialize(scale, scale, d->m_xMargin, d->m_yMargin, gh);
       gnode->setCanvasNode(cnode);
       d->m_canvas->addItem(cnode);
 //       cnode->setZValue(gnode->z());
@@ -1303,9 +1297,7 @@ void DotGraphView::mousePressEvent(QMouseEvent* e)
     }
     d->m_graph->nodes().insert(newNode->id(), newNode);
     CanvasNode* newCNode = new CanvasNode(this, newNode, d->m_canvas);
-    newCNode->initialize(
-      scale, scale, d->m_xMargin, d->m_yMargin, gh,
-      d->m_graph->wdhcf(), d->m_graph->hdvcf());
+    newCNode->initialize(scale, scale, d->m_xMargin, d->m_yMargin, gh);
     newNode->setCanvasNode(newCNode);
     scene()->addItem(newCNode);
     qCDebug(KGRAPHVIEWERLIB_LOG) << "setting pos to " << pos;

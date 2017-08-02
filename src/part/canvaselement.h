@@ -59,8 +59,7 @@ public:
   void computeBoundingRect();
   
   void initialize(qreal scaleX, qreal scaleY,
-                  qreal xMargin, qreal yMargin, qreal gh,
-                  qreal wdhcf, qreal hdvcf);
+                  qreal xMargin, qreal yMargin, qreal gh);
 
   inline void setGh(qreal gh) {m_gh = gh;}
 
@@ -72,7 +71,7 @@ protected:
   void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
 
   qreal m_scaleX, m_scaleY;
-  qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
+  qreal m_xMargin, m_yMargin, m_gh;
   GraphElement* m_element;
   DotGraphView* m_view;
   QFont* m_font;
