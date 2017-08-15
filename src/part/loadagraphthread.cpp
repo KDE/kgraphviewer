@@ -47,6 +47,17 @@ void LoadAGraphThread::run()
 
 void LoadAGraphThread::loadFile(const QString& dotFileName)
 {
+  // FIXME: deadlock possible
+  // if thread is still running or queued finished signal of the thread has not
+  // yet been delivered so its handler who would release the semaphore,
+  // then the semaphore can not be acquired and this will block the (main) thread
+  // which called LoadAGraphThread::loadFile().
+  // That one though very much might have also been the one which before invoked this
+  // method and thus the still running thread or yet-to-be delivered finished signal.
+  // But being blocked now, it will not reach its event loop where the queued finished
+  // signal of the thread would be processed and delivered, so in the further processing
+  // by the signal handler this semaphore would be released
+  // -> blocked ourselves without any escape
   sem.acquire();
   m_dotFileName = dotFileName;
   m_g = nullptr;

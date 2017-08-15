@@ -896,6 +896,43 @@ bool DotGraphView::loadDot(const QString& dotFileName)
   return true;
 }
 
+bool DotGraphView::loadLibrarySync(const QString& dotFileName)
+{
+  qCDebug(KGRAPHVIEWERLIB_LOG) << "loading sync: '" << dotFileName << "'";
+  Q_D(DotGraphView);
+  if (d->m_canvas)
+    d->m_canvas->clear();
+  QGraphicsSimpleTextItem* loadingLabel = d->m_canvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
+  loadingLabel->setZValue(100);
+  centerOn(loadingLabel);
+
+  qCDebug(KGRAPHVIEWERLIB_LOG) << dotFileName;
+  FILE* fp = fopen(dotFileName.toUtf8().data(), "r");
+  if (!fp) {
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to open file " << dotFileName;
+      return false;
+  }
+  graph_t* graph = agread(fp, nullptr);
+  if (!graph) {
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to read file, retrying to work around graphviz bug(?)";
+      rewind(fp);
+     graph = agread(fp, nullptr);
+  }
+  fclose(fp);
+  if (!graph) {
+      qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to read file " << dotFileName;
+      return false;
+  }
+
+  QString layoutCommand = (d->m_graph ? d->m_graph->layoutCommand() : QString());
+  if (layoutCommand.isEmpty()) {
+      layoutCommand = d->m_graph ? d->m_graph->chooseLayoutProgramForFile(dotFileName) : "dot";
+  }
+  d->m_layoutThread.layoutGraph(graph, layoutCommand);
+
+  return true;
+}
+
 bool DotGraphView::loadLibrary(const QString& dotFileName)
 {
   qCDebug(KGRAPHVIEWERLIB_LOG) << "'" << dotFileName << "'";

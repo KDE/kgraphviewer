@@ -192,7 +192,8 @@ bool KGraphViewerPart::openFile()
         return false;
       break;
     case InternalLibrary:
-      if (!d->m_widget->loadLibrary(localFilePath()))
+      // kpart expects loading to be done sync in this method
+      if (!d->m_widget->loadLibrarySync(localFilePath()))
         return false;
       break;
     default:
