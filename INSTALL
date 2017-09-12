@@ -2,9 +2,9 @@ Basic Installation
 ==================
 
    These are generic installation instructions. It supposes that you have a
-   working KDE4 developpement environment. See the following URL if it is not
+   working KDE Frameworks development environment. See the following URL if it is not
    the case:
-   http://techbase.kde.org/index.php?title=Getting_Started
+   https://community.kde.org/Guidelines_and_HOWTOs/Build_from_source
 
    This package uses the cmake.
 
