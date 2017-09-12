@@ -62,14 +62,14 @@ add_library(kgraphviewerlib ${kgraphviewerlib_LIB_SRCS})
 
 target_link_libraries(kgraphviewerlib Qt5::Core Qt5::Svg Qt5::PrintSupport Qt5::Svg KF5::KIOWidgets KF5::WidgetsAddons KF5::IconThemes KF5::XmlGui KF5::I18n KF5::Parts ${graphviz_LIBRARIES})
 
-set_target_properties(kgraphviewerlib PROPERTIES SOVERSION ${KGRAPHVIEWER_SOVERSION} OUTPUT_NAME kgraphviewer )
+set_target_properties(kgraphviewerlib PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${KGRAPHVIEWER_SOVERSION} OUTPUT_NAME kgraphviewer )
 
 install( TARGETS kgraphviewerlib ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 
 ########### next target ###############
 
-ecm_setup_version(PROJECT
+ecm_setup_version(${PROJECT_VERSION}
     VARIABLE_PREFIX KGRAPHVIEWERPART
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGraphViewerPartConfigVersion.cmake"
 )

@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
-project(kgraphviewer VERSION 2.4.0)
+cmake_policy(SET CMP0048 NEW)
+project(kgraphviewer VERSION "2.4.0")
+set(KGRAPHVIEWERLIB_SOVERION 3)
 
 set(QT_MIN_VERSION "5.4.0")
 set(KF5_MIN_VERSION "5.16.0")
