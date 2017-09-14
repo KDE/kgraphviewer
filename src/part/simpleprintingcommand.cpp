@@ -271,8 +271,8 @@ void KGVSimplePrintingCommand::slotShowPageSetupRequested()
   {
     m_pageSetupDialog = new QDialog(nullptr);
     QMap<QString,QString> map;
-    map["action"]=="pageSetup";
-    map["title"]==m_graphView->dotFileName();
+    map["action"]="pageSetup";
+    map["title"]=m_graphView->dotFileName();
     QVBoxLayout *lyr = new QVBoxLayout(m_pageSetupDialog);
     KGVSimplePrintingPageSetup* sppsb = new KGVSimplePrintingPageSetup(this, m_graphView, m_pageSetupDialog, &map);
     if (m_previewWindow)
