@@ -1,14 +1,14 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="kgraphviewer_part" version="3" translationDomain="kgraphviewer">
+<gui name="kgraphviewer_part" version="4" translationDomain="kgraphviewer">
 <MenuBar>
-  <Menu name="file">
+  <Menu name="file"><text>&amp;File</text>
     <Action name="file_export" group="file_merge"/>
     <Separator group="file_merge"/>
     <Action name="file_print" group="file_merge"/>
     <Action name="file_print_preview" group="file_merge"/>
     <Action name="file_page_setup" group="file_merge"/>
   </Menu>
-  <Menu name="view">
+  <Menu name="view"><text>&amp;View</text>
     <Action name="view_zoom_in"/>
     <Action name="view_zoom_out"/>
     <Separator/>
