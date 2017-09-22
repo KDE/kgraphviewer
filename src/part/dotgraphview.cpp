@@ -906,6 +906,16 @@ bool DotGraphView::loadLibrarySync(const QString& dotFileName)
   loadingLabel->setZValue(100);
   centerOn(loadingLabel);
 
+  // HACK: store filename in m_loadThread data structure for pick up by slotAGraphLayoutFinished()
+  // Both methods loadLibrarySync(QString) and loadLibrary(QString) after loading the file
+  // activate the m_layoutThread. And it is only the handler of that thread's finished signal.
+  // slotAGraphLayoutFinished(), which then completes the loading of the file and stores the
+  // filename with the graph data, taking it from m_loadThread.
+  // As intermediate solution to a rewrite of the loading code, for now the filename is simply
+  // also stored in the m_loadThread object from this code path, so the rest of the existing code
+  // does not need to be further adapted.
+  d->m_loadThread.setDotFileName(dotFileName);
+
   qCDebug(KGRAPHVIEWERLIB_LOG) << dotFileName;
   FILE* fp = fopen(dotFileName.toUtf8().data(), "r");
   if (!fp) {
@@ -2252,6 +2262,8 @@ void DotGraphView::slotAGraphLayoutFinished()
   graph_t *g = d->m_layoutThread.g();
   bool result = loadLibrary(g, d->m_layoutThread.layoutCommand());
   if (result)
+    // file name can be taken from m_loadThread both in sync and async loading cases
+    // see comment in loadLibrarySync()
     d->m_graph->dotFileName(d->m_loadThread.dotFileName());
   else
   {

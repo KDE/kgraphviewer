@@ -35,7 +35,11 @@ public:
   inline graph_t* g() {return m_g;}
   inline const QString& dotFileName() {return m_dotFileName;}
   void processed_finished() { sem.release(); }
-  
+
+  // helper method only for DotGraphView::loadLibrarySync()
+  // see notes next to the call there
+  void setDotFileName(const QString& dotFileName) { m_dotFileName = dotFileName; }
+
 protected:
   void run() override;
 
