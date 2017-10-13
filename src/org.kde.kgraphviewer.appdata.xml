@@ -323,7 +323,7 @@
       <li xml:lang="et">Võimalus kasutada suvalist paigutusalgoritmi, kui see vaid tagab xdot-vormingu</li>
       <li xml:lang="fi">Mahdollisuus käyttää mitä tahansa asettelualgoritmia, kunhan se tuottaa xdot-muotoa</li>
       <li xml:lang="fr">Possibilité d'utiliser un algorithme de disposition arbitraire du moment qu'il produit le format xdot</li>
-      <li xml:lang="gl">Permit usar unha disposición arbitraria en canto produce o formato xdot.</li>
+      <li xml:lang="gl">Permite usar un algoritmo de disposición arbitraria en canto produce o formato xdot.</li>
       <li xml:lang="it">Possibilità di usare un qualsiasi algoritmo di disposizione che produca il formato xdot</li>
       <li xml:lang="ko">xdot 형식으로 변환한 이후 임의의 레이아웃 알고리즘 선택 가능</li>
       <li xml:lang="nl">Mogelijkheid om een willekeurig algoritme voor de opmaak te gebruiken wanneer het xdot-formaat produceert</li>
