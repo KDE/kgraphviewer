@@ -7,6 +7,10 @@ include_directories(
     ${graphviz_INCLUDE_DIRECTORIES}
 )
 
+link_directories(
+    ${graphviz_LIBRARY_DIRS}
+)
+
 ecm_qt_declare_logging_category(kgraphviewerlib_LIB_DEBUG_SRCS
     HEADER kgraphviewerlib_debug.h
     IDENTIFIER KGRAPHVIEWERLIB_LOG
