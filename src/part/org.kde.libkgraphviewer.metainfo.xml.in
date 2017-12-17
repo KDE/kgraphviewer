@@ -41,6 +41,7 @@
   <summary xml:lang="el">Ένας προβολέας Graphviz DOT γράφων (κοινόχρηστη βιβλιοθήκη)</summary>
   <summary xml:lang="en-GB">A Graphviz DOT graph viewer (shared library)</summary>
   <summary xml:lang="es">Un visor de grafos DOT de Graphviz (biblioteca compartida)</summary>
+  <summary xml:lang="fr">Un afficheur de graphes Graphviz (bibliothèque partagée)</summary>
   <summary xml:lang="it">Un visore di grafi DOT di Graphviz (libreria condivisa)</summary>
   <summary xml:lang="nl">Een viewer voor Graphviz DOT-bestanden (gedeelde bibliotheek)</summary>
   <summary xml:lang="pl">Przeglądarka grafów Graphviz DOT (biblioteka współdzielona)</summary>
