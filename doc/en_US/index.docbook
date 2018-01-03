@@ -1,17 +1,9 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY kgraphviewer "<application>KGraphViewer</application>">
   <!ENTITY graphviz "<application><ulink url=&#034;http://www.graphviz.org&#034;>Graphviz</ulink></application>">
   <!ENTITY boost "<ulink url=&#034;http://www.boost.org&#034;>Boost</ulink>">
-  <!ENTITY GUI "<acronym>GUI</acronym>">
-  <!ENTITY tcltk "<application>Tcl/Tk</application>">
-  <!ENTITY X11 "<application>X11</application>">
   <!ENTITY qanava "<application>Qanava</application>">
-  <!ENTITY kcachegrind "<application>KCacheGrind</application>">
-  <!ENTITY spirit "<application>Spirit</application>">
-  <!ENTITY kexi "<application>Kexi</application>">
-  <!ENTITY qt "<application>Qt</application>">
-  <!ENTITY png "<acronym>png</acronym>">
+  <!ENTITY kcachegrind "<application>KCacheGrind</application>"> <!--not in kdoctools 5.16-->
   <!ENTITY dot "<application>DOT</application>">
   <!ENTITY neato "<application>NEATO</application>">
   <!ENTITY twopi "<application>TWOPI</application>">
@@ -56,15 +48,15 @@
      and in the FDL itself on how to use it. -->
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2006-10-22</date>
-<releaseinfo>1.0.3</releaseinfo>
+<date>2018-01-03</date>
+<releaseinfo>&kgraphviewer; 2.42</releaseinfo>
 
 <abstract>
 <para>
-&kgraphviewer; is a &graphviz; &dot; graph viewer. It is developed in the &kde; community. The &graphviz; programs are free-software layout engines for graphs. Graphs are commonly used in scientific domains and particularly in computer science. Until now, there was a lack of a modern &GUI; to look at the graphs. The programs that come with &graphviz; are in my opinion out-of-date &X11; or &tcltk; applications with few features.
+&kgraphviewer; is a &graphviz; &dot; graph viewer. It is developed in the &kde; community. The &graphviz; programs are free-software layout engines for graphs. Graphs are commonly used in scientific domains and particularly in computer science.
 </para>
 <para>
-The &kgraphviewer; project aims to replace these tools with a modern, user-friendly &GUI;.
+&kgraphviewer; displays the graphs in a modern, user-friendly &GUI;.
 </para>
 </abstract>
 
@@ -89,9 +81,6 @@ The &kgraphviewer; project aims to replace these tools with a modern, user-frien
   <mediaobject>
     <imageobject>
       <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
-    </imageobject>
-    <imageobject>
-      <imagedata fileref="kgraphviewer-snap-main.eps" format="EPS"/>
     </imageobject>
     <textobject>
       <phrase>The main &kgraphviewer; window displaying one of the &graphviz; examples</phrase>
@@ -127,11 +116,11 @@ The &kgraphviewer; project aims to replace these tools with a modern, user-frien
 </itemizedlist></para>
 
 <note><para>Note that this program includes code from the GPL tool &kcachegrind; by Josef Weidendorfer, with his authorization.</para></note>
-<note><para>Note also that the printing system is from the &koffice;'s &kexi; database application.</para></note>
+<note><para>Note also that the printing system is from the &calligra;'s &kexi; database application.</para></note>
 
 <para>Other required software: &kgraphviewer; is a program that uses the &graphviz; tool &dot; for graph layout. Its dependencies are:
 <itemizedlist>
-	<listitem><para>The &qt; and &kf5; libraries version 5.x;</para></listitem>
+	<listitem><para>The &Qt; and &kf5; libraries version 5.x;</para></listitem>
 	<listitem><para>The &graphviz; tools as externals programs (tested with version 2.8);</para></listitem>
 	<listitem><para>The &boost; library version 1.36.</para></listitem>
 </itemizedlist></para>
@@ -391,6 +380,38 @@ shown:</para>
 <sect1 id="kgraphviewer-configuration">
 <title>Configuring &kgraphviewer;</title>
 
+<para>The <guilabel>Appearance</guilabel> page allows to change the default background
+color used in &kgraphviewer; if a graph does not have its own background color.</para>
+
+<screenshot>
+<screeninfo>Page to change the appearance of a graph</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG" />
+</imageobject>
+<textobject>
+<phrase>Page to change the appearance of a graph</phrase>
+</textobject>
+<caption><para>Page to change the appearance of a graph</para></caption>
+</mediaobject>
+</screenshot>
+
+<para>The <guilabel>Parsing</guilabel> page allows to select an external command
+or the internal library for parsing &graphviz; &dot; files.</para>
+
+<screenshot>
+<screeninfo>Page to reload files modified on disk in the configuration dialog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG" />
+</imageobject>
+<textobject>
+<phrase>Page to reload files modified on disk in the configuration dialog</phrase>
+</textobject>
+<caption><para>Page to reload files modified on disk in the configuration dialog</para></caption>
+</mediaobject>
+</screenshot>
+
 <para>The <guilabel>Reload</guilabel> page allows to change the behavior of &kgraphviewer; when a file is changed on disk by another application. You can choose a default action (reload automatically or ignore changes), or to be asked each time.</para>
 
 <screenshot>
@@ -492,7 +513,7 @@ shown:</para>
 	<variablelist>
 	<varlistentry>
 	<term><guimenuitem>As Image...</guimenuitem></term>
-	<listitem><para>Allows to export the full graph to a &png; image.</para></listitem>
+	<listitem><para>Allows to export the full graph to to all supported image formats.</para></listitem>
 	</varlistentry>
 	</variablelist>
 </para></listitem>
@@ -552,6 +573,11 @@ shown:</para>
 
 <variablelist>
 	<varlistentry>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut><guimenu>File</guimenu><guimenuitem>New</guimenuitem></menuchoice></term>
+	<listitem><para><action>Opens</action> a new &kgraphviewer; window.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
 	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice></term>
 	<listitem><para><action>Displays</action> the <guilabel>Open File</guilabel> dialog.</para></listitem>
 	</varlistentry>
@@ -563,7 +589,7 @@ shown:</para>
 
 	<varlistentry>
 	<term><menuchoice><guimenu>File</guimenu><guisubmenu>Export Graph</guisubmenu><guimenuitem>As Image...</guimenuitem></menuchoice></term>
-	<listitem><para>Allows to <action>export</action> the full graph to a &png; image.</para></listitem>
+	<listitem><para>Allows to <action>export</action> the full graph to all supported image formats.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
@@ -572,7 +598,7 @@ shown:</para>
 	</varlistentry>
 
 	<varlistentry>
-	<term><menuchoice><guimenu>File</guimenu><guimenuitem>Print Preview...</guimenuitem></menuchoice></term>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>P</keycap></keycombo></shortcut><guimenu>File</guimenu><guimenuitem>Print Preview...</guimenuitem></menuchoice></term>
 	<listitem><para><action>Opens</action> the <guilabel>Print Preview</guilabel> window for the current graph.</para></listitem>
 	</varlistentry>
 
@@ -593,11 +619,6 @@ shown:</para>
 
 <variablelist>
 	<varlistentry>
-	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Redisplay</guimenuitem></menuchoice></term>
-	<listitem><para><action>Reloads</action> the current graph.</para></listitem>
-	</varlistentry>
-
-	<varlistentry>
 	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></shortcut><guimenu>View</guimenu><guimenuitem>Zoom In</guimenuitem></menuchoice></term>
 	<listitem><para><action>Zoom in</action> the current graph by 10%.</para></listitem>
 	</varlistentry>
@@ -605,6 +626,16 @@ shown:</para>
 	<varlistentry>
 	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut><guimenu>View</guimenu><guimenuitem>Zoom Out</guimenuitem></menuchoice></term>
 	<listitem><para><action>Zoom out</action> the current graph by 10%.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Redisplay</guimenuitem></menuchoice></term>
+	<listitem><para><action>Reloads</action> the current graph.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Select Layout Algo</guimenuitem></menuchoice></term>
+	<listitem><para>Opens a submenu with various &graphviz; layout algorithms for the current graph.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
@@ -647,11 +678,13 @@ shown:</para>
 </sect2>
 
 <sect2>
-<title>The Help Menu</title>
+<title>The Settings and Help Menu</title>
 
-<para>&kgraphviewer; has the common &kde; <guimenu>Help</guimenu>
-menu items, for more information read the section about the
-<ulink url="help:/fundamentals/ui.html#menus-help">Help Menu</ulink> of the &kde; Fundamentals.</para>
+<para>&kgraphviewer; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
+menu items, for more information read the sections about the <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Settings Menu</ulink> and <ulink url="help:/fundamentals/ui.html#menus-help">Help Menu</ulink>
+of the &kde; Fundamentals.
+</para>
 
 </sect2>
 </sect1>
@@ -673,17 +706,17 @@ menu items, for more information read the section about the
 	<listitem><para><action>Shows</action> the list of recently opened files.</para></listitem>
 	</varlistentry>
 <!--document-close-->
-	<varlistentry><!--document-print-->
+	<!--varlistentry>
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-print.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Prints the graph</action> using current setup.</para></listitem>
-	</varlistentry>
+	</varlistentry-->
 
-	<!--varlistentry>
+	<varlistentry>
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-preview.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Shows</action> the <guilabel>Print Preview</guilabel> dialog.</para></listitem>
 	</varlistentry>
 
-	<varlistentry>
+	<!--varlistentry>
 	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
 	<listitem><para><action>Shows</action> the <guilabel>Page Setup</guilabel> dialog.</para></listitem>
 	</varlistentry-->
@@ -766,7 +799,7 @@ menu items, for more information read the section about the
 <para>This program contains reused code from the following Free Software projects:</para>
 <variablelist>
 	<varlistentry>
-	<term><ulink url="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi">&kcachegrind;</ulink></term>
+	<term><ulink url="https://kcachegrind.github.io/html/Home.html">&kcachegrind;</ulink></term>
 	<listitem><para>Initial graph model and view classes;</para></listitem>
 	</varlistentry>
 
