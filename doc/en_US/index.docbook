@@ -513,7 +513,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 	<variablelist>
 	<varlistentry>
 	<term><guimenuitem>As Image...</guimenuitem></term>
-	<listitem><para>Allows to export the full graph to to all supported image formats.</para></listitem>
+	<listitem><para>Allows to export the full graph to all supported image formats.</para></listitem>
 	</varlistentry>
 	</variablelist>
 </para></listitem>
