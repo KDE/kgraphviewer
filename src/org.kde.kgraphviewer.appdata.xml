@@ -38,6 +38,7 @@
   <summary xml:lang="el">Ένας προβολέας Graphviz DOT γράφων</summary>
   <summary xml:lang="en-GB">A Graphviz DOT graph viewer</summary>
   <summary xml:lang="es">Un visor de grafos DOT de Graphviz</summary>
+  <summary xml:lang="gl">Un visor de gráficos de Graphviz DOT.</summary>
   <summary xml:lang="it">Un visore di grafi DOT di Graphviz</summary>
   <summary xml:lang="nl">Een Graphviz DOT-grafiek-viewer</summary>
   <summary xml:lang="pl">Przeglądarka grafów Graphviz DOT</summary>
@@ -57,6 +58,7 @@
     <p xml:lang="el">Ο KGraphViewer είναι ένας προβολέας Graphviz DOT αρχείων γράφων, που έχει στόχο να αντικαταστήσει παλαιωμένα Graphviz εργαλεία. Οι γράφοι είναι συνήθως χρήσιμοι στα επιστημονικά πεδία και ειδικότερα στην πληροφορική.</p>
     <p xml:lang="en-GB">KGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools. Graphs are commonly used in scientific domains and particularly in computer science.</p>
     <p xml:lang="es">KGraphViewer es un visor de archivos de grafos DOT de Graphviz, que aspira a sustituir a otras herramientas obsoletas de Graphviz. Los grafos se usan a menudo en el campo científico y, particularmente, en la informática.</p>
+    <p xml:lang="gl">KGraphViewer é un visor de gráficos DOT de Graphviz que pretende substituír o resto de ferramentas obsoletas de Graphviz. Os gráficos adoitan usarse en contextos científicos e, especialmente, na enxeñaría informática.</p>
     <p xml:lang="it">KGraphViewer è un visore di file di grafi DOT, progettato per sostituire i più datati altri strumenti per Graphviz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor DOT-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
     <p xml:lang="pl">KGraphViewer jest przeglądarką plików Graphviz DOT graph, opracowaną w celu zastąpienia innych przestarzałych narzędzi Graphviz. Grafy są powszechnie używane w obszarach nauki, a w szczególności w obszarze nauki związanej z komputerami.</p>
