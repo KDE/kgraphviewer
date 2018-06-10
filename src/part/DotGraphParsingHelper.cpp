@@ -182,8 +182,8 @@ void DotGraphParsingHelper::setattributedlist()
   {
     if (attributes.find("bb") != attributes.end())
     {
-      std::vector< int > v;
-      parse_integers(attributes["bb"].c_str(), v);
+      std::vector< double > v;
+      parse_reals(attributes["bb"].c_str(), v);
       if (v.size()>=4)
       {
 //         qCDebug(KGRAPHVIEWERLIB_LOG) << "setting width and height to " << v[2] << v[3];
