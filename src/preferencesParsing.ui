@@ -6,34 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>242</width>
-    <height>133</height>
+    <width>188</width>
+    <height>104</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-    <horstretch>15</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>100</width>
-    <height>100</height>
-   </size>
-  </property>
   <layout class="QGridLayout">
-   <property name="sizeConstraint">
-    <enum>QLayout::SetMinimumSize</enum>
-   </property>
    <item row="0" column="0">
     <widget class="QGroupBox" name="parsingMode">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="title">
       <string>Parse using:</string>
      </property>
@@ -41,23 +20,17 @@
       <number>2</number>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
-      </property>
       <item>
        <widget class="QRadioButton" name="external">
         <property name="text">
-         <string>&amp;External command</string>
+         <string>E&amp;xternal command</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QRadioButton" name="internal">
         <property name="text">
-         <string>Internal library</string>
-        </property>
-        <property name="shortcut">
-         <string/>
+         <string>Internal &amp;library</string>
         </property>
        </widget>
       </item>
@@ -66,8 +39,6 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <resources/>
  <connections/>
 </ui>

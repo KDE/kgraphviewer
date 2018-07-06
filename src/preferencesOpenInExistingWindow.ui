@@ -6,41 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>225</width>
-    <height>131</height>
+    <width>197</width>
+    <height>128</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-    <horstretch>15</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>100</width>
-    <height>100</height>
-   </size>
-  </property>
   <layout class="QGridLayout">
-   <property name="sizeConstraint">
-    <enum>QLayout::SetMinimumSize</enum>
-   </property>
    <item row="0" column="0">
     <widget class="QGroupBox" name="openInExistingWindowMode">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="title">
       <string>Open in existing window</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
-      </property>
       <item>
        <widget class="QRadioButton" name="yes">
         <property name="text">
@@ -51,10 +27,7 @@
       <item>
        <widget class="QRadioButton" name="no">
         <property name="text">
-         <string>No</string>
-        </property>
-        <property name="shortcut">
-         <string/>
+         <string>&amp;No</string>
         </property>
        </widget>
       </item>
@@ -70,8 +43,6 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <resources/>
  <connections/>
 </ui>

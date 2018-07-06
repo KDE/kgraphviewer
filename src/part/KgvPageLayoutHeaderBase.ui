@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
-    <height>442</height>
+    <width>387</width>
+    <height>325</height>
    </rect>
   </property>
   <layout class="QVBoxLayout">
@@ -33,9 +33,6 @@
       </item>
       <item>
        <layout class="QHBoxLayout">
-        <property name="margin">
-         <number>0</number>
-        </property>
         <item>
          <spacer name="spacer2">
           <property name="orientation">
@@ -96,9 +93,6 @@
       </item>
       <item>
        <layout class="QHBoxLayout">
-        <property name="margin">
-         <number>0</number>
-        </property>
         <item>
          <spacer name="spacer3">
           <property name="orientation">
@@ -181,8 +175,6 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <resources/>
  <connections/>
 </ui>
