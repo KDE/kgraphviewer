@@ -93,12 +93,9 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(
 	m_unit = QLocale().measurementSystem() == QLocale::MetricSystem ? KgvUnit::U_CM : KgvUnit::U_INCH;
 
 	// GUI
-	QVBoxLayout *lyr = new QVBoxLayout(this);
-
-  QWidget* w = new QWidget(this);
 	m_contents = new Ui::KGVSimplePrintingPageSetupBase();
-  m_contents->setupUi(w);
-	lyr->addWidget(w);
+	m_contents->setupUi(this);
+	layout()->setMargin(0);
 
 	setFocusPolicy(Qt::WheelFocus);
 // 	m_contents->setFocusProxy(m_contents->headerTitleLineEdit);
