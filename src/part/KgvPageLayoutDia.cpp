@@ -277,13 +277,8 @@ const KgvKWHeaderFooter& KgvPageLayoutDia::headerFooter()
 /*================ setup page size & margins tab ==================*/
 void KgvPageLayoutDia::setupTab1( bool enableBorders )
 {
-  QFrame *page = new QFrame();
-  addPage(page, i18n( "Page Size & Margins" ));
-// QWidget *tab1 = addPage(i18n( "Page Size && &Margins" ));
-//     QHBoxLayout *lay = new QHBoxLayout(tab1);
-    m_pageSizeTab = new KgvPageLayoutSize(page, m_layout, m_unit, m_column, !(flags & DISABLE_UNIT), enableBorders );
-//     lay->addWidget(m_pageSizeTab);
-    m_pageSizeTab->show();
+    m_pageSizeTab = new KgvPageLayoutSize(nullptr, m_layout, m_unit, m_column, !(flags & DISABLE_UNIT), enableBorders );
+    addPage(m_pageSizeTab, i18n( "Page Size & Margins" ));
     connect(m_pageSizeTab, &KgvPageLayoutSize::propertyChange,
             this, &KgvPageLayoutDia::sizeUpdated);
 }
