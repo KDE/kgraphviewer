@@ -35,7 +35,7 @@
  * @brief Represents the paper format a document shall be printed on.
  *
  * For compatibility reasons, and because of screen and custom,
- * this enum doesn't map to QPrinter::PageSize but KgvPageFormat::printerPageSize
+ * this enum doesn't map to QPageSize::PageSizeId but KgvPageFormat::printerPageSize
  * does the conversion.
  *
  * @todo convert DIN to ISO in the names
@@ -85,16 +85,16 @@ enum KgvOrientation {
 namespace KgvPageFormat
 {
     /**
-     * @brief Convert a KgvFormat into a QPrinter::PageSize.
+     * @brief Convert a KgvFormat into a QPageSize::PageSizeId.
      *
      * If format is 'screen' it will use A4 landscape.
      * If format is 'custom' it will use A4 portrait.
      * (you may want to take care of those cases separately).
      * Usually passed to QPrinter::setPageSize().
      *
-     * @note We return int instead of the enum to avoid including QPrinter
+     * @note We return int instead of the enum to avoid including QPageSize
      */
-    int /*QPrinter::PageSize*/ printerPageSize( KgvFormat format );
+    int /*QPageSize::PageSizeId*/ printerPageSize( KgvFormat format );
 
     /**
      * Returns the width (in mm) for a given page format and orientation

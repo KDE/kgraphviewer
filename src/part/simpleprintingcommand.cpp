@@ -58,6 +58,7 @@
 //Added by qt3to4:
 #include <QLinkedList>
 #include <QVBoxLayout>
+#include <QPageSize>
 #include <klocalizedstring.h>
 #include <iostream>
 
@@ -123,7 +124,7 @@ bool KGVSimplePrintingCommand::print(const QString& aTitleText)
   printer.setOrientation( m_settings->pageLayout.orientation == PG_PORTRAIT 
     ? QPrinter::Portrait : QPrinter::Landscape );
   printer.setPageSize( 
-    (QPrinter::PageSize)KgvPageFormat::printerPageSize( m_settings->pageLayout.format ) );
+    QPageSize( (QPageSize::PageSizeId)KgvPageFormat::printerPageSize( m_settings->pageLayout.format ) ) );
 // #endif
 
   printer.setFullPage(true);
