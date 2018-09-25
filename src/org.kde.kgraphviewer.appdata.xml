@@ -45,6 +45,7 @@
   <summary xml:lang="pl">Przeglądarka grafów Graphviz DOT</summary>
   <summary xml:lang="pt">Um visualizador de grafos DOT do Graphviz</summary>
   <summary xml:lang="pt-BR">Um visualizador de grafos DOT do Graphviz</summary>
+  <summary xml:lang="ru">Программа просмотра графов Graphviz</summary>
   <summary xml:lang="sv">Visning av Graphviz dot-grafer</summary>
   <summary xml:lang="tr">Graphviz DOT graf görüntüleyici</summary>
   <summary xml:lang="uk">Засіб перегляду графів DOT Graphviz</summary>
@@ -93,6 +94,7 @@
     <p xml:lang="pl">Cechy:</p>
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Funcionalidades:</p>
+    <p xml:lang="ru">Возможности:</p>
     <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="tr">Özellikler:</p>
