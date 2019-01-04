@@ -1,5 +1,5 @@
 KGraphViewer is a Graphviz DOT graph file viewer.
-http://extragear.kde.org/apps/kgraphviewer/
+https://www.kde.org/applications/graphics/kgraphviewer/
 Copyright (C) 2005-2007 Gaël de Chalendar <kleag@free.fr>
     
     KGraphViewer is free software; you can redistribute it and/or
@@ -25,7 +25,7 @@ in an experimental DOT graphs editor called kgrapheditor released with in this
 package.
 
 I used, in this program, code from the profiling tool kcachegrind
- (http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex).
+ (https://kcachegrind.github.io/).
 For printing, I reused code from the KDE project koffice, namely Kexi, the
 database editor.
 
@@ -48,7 +48,7 @@ Kgraphviewer is available as source from the KDE repository.
 
 As usual, comments, bug reports and any help are very welcome !
 
-Please report bugs or install problems directly on http://bugs.kde.org. 
+Please report bugs or install problems directly on https://bugs.kde.org.
 
 Thanks.
 

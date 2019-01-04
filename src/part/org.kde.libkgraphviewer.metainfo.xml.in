@@ -54,7 +54,7 @@
   <summary xml:lang="tr">Graphviz DOT graf görüntüleyici (paylaşımlı kitaplık)</summary>
   <summary xml:lang="uk">Програма для перегляду графів DOT Graphviz (бібліотека спільного використання)</summary>
   <summary xml:lang="x-test">xxA Graphviz DOT graph viewer (shared library)xx</summary>
-  <url type="homepage">http://extragear.kde.org/apps/kgraphviewer/</url>
+  <url type="homepage">https://www.kde.org/applications/graphics/kgraphviewer/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kgraphviewer</url>
   <project_group>KDE</project_group>
   <provides>
