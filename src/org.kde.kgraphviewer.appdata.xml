@@ -39,6 +39,7 @@
   <summary xml:lang="el">Ένας προβολέας Graphviz DOT γράφων</summary>
   <summary xml:lang="en-GB">A Graphviz DOT graph viewer</summary>
   <summary xml:lang="es">Un visor de grafos DOT de Graphviz</summary>
+  <summary xml:lang="fi">Graphviz DOT -graafikatselin</summary>
   <summary xml:lang="fr">Un afficheur de graphes « DOT » au format « Graphviz »</summary>
   <summary xml:lang="gl">Un visor de gráficos de Graphviz DOT</summary>
   <summary xml:lang="id">Sebuah penampil grafik Graphviz DOT</summary>
@@ -63,6 +64,7 @@
     <p xml:lang="el">Ο KGraphViewer είναι ένας προβολέας Graphviz DOT αρχείων γράφων, που έχει στόχο να αντικαταστήσει παλαιωμένα Graphviz εργαλεία. Οι γράφοι είναι συνήθως χρήσιμοι στα επιστημονικά πεδία και ειδικότερα στην πληροφορική.</p>
     <p xml:lang="en-GB">KGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools. Graphs are commonly used in scientific domains and particularly in computer science.</p>
     <p xml:lang="es">KGraphViewer es un visor de archivos de grafos DOT de Graphviz, que aspira a sustituir a otras herramientas obsoletas de Graphviz. Los grafos se usan a menudo en el campo científico y, particularmente, en la informática.</p>
+    <p xml:lang="fi">KGraphViewer on Graphviz DOT -graafitiedostokatselin, jonka tavoitteena on korvata vanhentuneet GraphViz-työkalut. Graafeja käytetään usein tieteellisillä aloilla ja erityisesti tietojenkäsittelyssä.</p>
     <p xml:lang="fr">KGraphViewer est un afficheur de fichiers de graphes DOT au format Graphviz, prévu pour remplacer les autres outils Graphviz maintenant obsolètes. Les graphes sont utilisés couramment dans les domaines scientifiques, et en particulier en informatique.</p>
     <p xml:lang="gl">KGraphViewer é un visor de gráficos DOT de Graphviz que pretende substituír o resto de ferramentas obsoletas de Graphviz. Os gráficos adoitan usarse en contextos científicos e, especialmente, na enxeñaría informática.</p>
     <p xml:lang="id">KGraphViewer adalah sebuah penampil file grafik Graphviz DOT, ditujukan untuk mengganti alat grafis lainnya yang kedaluwarsa.</p>
