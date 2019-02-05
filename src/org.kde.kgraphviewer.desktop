@@ -41,6 +41,7 @@ MimeType=text/vnd.graphviz
 Exec=kgraphviewer -qwindowtitle %c %u
 Icon=kgraphviewer
 Type=Application
+StartupWMClass=kgraphviewer
 Categories=Qt;KDE;Graphics;Viewer;2DGraphics;DataVisualization;
 X-DocPath=kgraphviewer/index.html
 InitialPreference=10
