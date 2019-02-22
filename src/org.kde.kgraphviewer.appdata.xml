@@ -31,6 +31,7 @@
   <name xml:lang="tr">KGraphViewer</name>
   <name xml:lang="uk">KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewerxx</name>
+  <name xml:lang="zh-TW">KGraphViewer</name>
   <summary>A Graphviz DOT graph viewer</summary>
   <summary xml:lang="ca">Un visor de gràfics DOT del Graphviz</summary>
   <summary xml:lang="ca-valencia">Un visor de gràfics DOT del Graphviz</summary>
@@ -106,6 +107,7 @@
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
     <p xml:lang="zh-CN">功能：</p>
+    <p xml:lang="zh-TW">功能：</p>
     <ul>
       <li>Zooming</li>
       <li xml:lang="bs">Zumiranje</li>
@@ -134,6 +136,7 @@
       <li xml:lang="tr">Büyütme</li>
       <li xml:lang="uk">Масштабування.</li>
       <li xml:lang="x-test">xxZoomingxx</li>
+      <li xml:lang="zh-TW">支援縮放</li>
       <li>Threaded loading of several graphs in tabs</li>
       <li xml:lang="bs">Učitavanje preko niti nekih grafova u karticama</li>
       <li xml:lang="ca">Càrrega per subprocessos de diversos gràfics en pestanyes</li>
@@ -184,6 +187,7 @@
       <li xml:lang="tr">Geçerli dosya listesini kaydedebilme</li>
       <li xml:lang="uk">Зберігання списку нещодавно використаних файлів.</li>
       <li xml:lang="x-test">xxSaving of the recent files listxx</li>
+      <li xml:lang="zh-TW">會儲存最近使用的檔案列表</li>
       <li>Manual reload of files</li>
       <li xml:lang="bs">Ručno nadopunjavanje fajlova</li>
       <li xml:lang="ca">Recàrrega manual de fitxers</li>
@@ -209,6 +213,7 @@
       <li xml:lang="tr">Dosyaların elle yeniden yüklenmesi</li>
       <li xml:lang="uk">Перезавантаження файлів вручну.</li>
       <li xml:lang="x-test">xxManual reload of filesxx</li>
+      <li xml:lang="zh-TW">手動重新載入檔案</li>
       <li>Display of a bird-eye view of the graph</li>
       <li xml:lang="bs">Prikaz iz ptičije perspektive grafa</li>
       <li xml:lang="ca">Representació de vista d'ocell del gràfic</li>
@@ -284,6 +289,7 @@
       <li xml:lang="tr">Tam özellikli yazdırma</li>
       <li xml:lang="uk">Широкі можливості з друку.</li>
       <li xml:lang="x-test">xxFull featured printingxx</li>
+      <li xml:lang="zh-TW">全功能列印</li>
       <li>Perfect drawing of all graphviz example graphs</li>
       <li xml:lang="bs">Perfektno crtanje svih graphviz-ovih primjera grafa</li>
       <li xml:lang="ca">Dibuixat perfecte de tots els gràfics d'exemple del «graphviz»</li>

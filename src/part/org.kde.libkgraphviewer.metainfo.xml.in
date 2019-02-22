@@ -33,6 +33,7 @@
   <name xml:lang="tr">KGraphViewer Kitaplığı</name>
   <name xml:lang="uk">Бібліотека KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewer Libraryxx</name>
+  <name xml:lang="zh-TW">KGraphViewer 函式庫</name>
   <summary>A Graphviz DOT graph viewer (shared library)</summary>
   <summary xml:lang="ca">Un visor de gràfics DOT del Graphviz (biblioteca compartida)</summary>
   <summary xml:lang="ca-valencia">Un visor de gràfics DOT del Graphviz (biblioteca compartida)</summary>
