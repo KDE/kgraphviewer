@@ -45,6 +45,7 @@
   <summary xml:lang="gl">Un visor de gráficos de Graphviz DOT</summary>
   <summary xml:lang="id">Sebuah penampil grafik Graphviz DOT</summary>
   <summary xml:lang="it">Un visore di grafi DOT di Graphviz</summary>
+  <summary xml:lang="ko">Graphviz DOT 그래프 뷰어</summary>
   <summary xml:lang="nl">Een Graphviz DOT-grafiek-viewer</summary>
   <summary xml:lang="pl">Przeglądarka grafów Graphviz DOT</summary>
   <summary xml:lang="pt">Um visualizador de grafos DOT do Graphviz</summary>
@@ -70,6 +71,7 @@
     <p xml:lang="gl">KGraphViewer é un visor de gráficos DOT de Graphviz que pretende substituír o resto de ferramentas obsoletas de Graphviz. Os gráficos adoitan usarse en contextos científicos e, especialmente, na enxeñaría informática.</p>
     <p xml:lang="id">KGraphViewer adalah sebuah penampil file grafik Graphviz DOT, ditujukan untuk mengganti alat grafis lainnya yang kedaluwarsa.</p>
     <p xml:lang="it">KGraphViewer è un visore di file di grafi DOT, progettato per sostituire i più datati altri strumenti per Graphviz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
+    <p xml:lang="ko">KGraphViewer는 Graphviz DOT 그래프 파일 뷰어로, 오래된 GraphViz 도구 대신 사용할 수 있는 것을 목표로 합니다. 그래프는 전산학을 비롯한 여러 과학 분야에서 사용됩니다.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor DOT-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
     <p xml:lang="pl">KGraphViewer jest przeglądarką plików Graphviz DOT graph, opracowaną w celu zastąpienia innych przestarzałych narzędzi Graphviz. Grafy są powszechnie używane w obszarach nauki, a w szczególności w obszarze nauki związanej z komputerami.</p>
     <p xml:lang="pt">O KGraphViewer é um visualizador de ficheiros de grafos DOT do Graphviz, destinado a substituir as outras ferramentas desactualizadas do GraphViz. Os grafos são usados normalmente nos domínios científicos e, em particular, na informática.</p>
