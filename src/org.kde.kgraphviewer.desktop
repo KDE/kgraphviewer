@@ -46,6 +46,7 @@ StartupWMClass=kgraphviewer
 Categories=Qt;KDE;Graphics;Viewer;2DGraphics;DataVisualization;
 X-DocPath=kgraphviewer/index.html
 InitialPreference=10
+GenericName=Graphviz DOT graph viewer
 Comment=A Graphviz DOT graph viewer
 Comment[ca]=Un visor de gràfics DOT del Graphviz
 Comment[ca@valencia]=Un visor de gràfics DOT del Graphviz
