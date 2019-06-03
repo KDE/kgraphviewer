@@ -56,6 +56,7 @@ GenericName[pt]=Visualizador de grafos DOT do Graphviz
 GenericName[sv]=Visning av Graphviz dot-grafer
 GenericName[uk]=Засіб перегляду графів DOT Graphviz
 GenericName[x-test]=xxGraphviz DOT graph viewerxx
+GenericName[zh_TW]=Graphviz DOT 圖形檢視器
 Comment=A Graphviz DOT graph viewer
 Comment[ca]=Un visor de gràfics DOT del Graphviz
 Comment[ca@valencia]=Un visor de gràfics DOT del Graphviz
