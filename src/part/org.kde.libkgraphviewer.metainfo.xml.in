@@ -48,6 +48,7 @@
   <summary xml:lang="it">Un visore di grafi DOT di Graphviz (libreria condivisa)</summary>
   <summary xml:lang="ko">Graphviz DOT 그래프 뷰어(공유 라이브러리)</summary>
   <summary xml:lang="nl">Een viewer voor Graphviz DOT-bestanden (gedeelde bibliotheek)</summary>
+  <summary xml:lang="nn">Graphviz DOT-grafvisar (delt bibliotek)</summary>
   <summary xml:lang="pl">Przeglądarka grafów Graphviz DOT (biblioteka współdzielona)</summary>
   <summary xml:lang="pt">Um visualizador de grafos DOT do Graphviz (biblioteca dinâmica)</summary>
   <summary xml:lang="pt-BR">Um visualizador de grafos DOT do Graphviz (biblioteca compartilhada)</summary>
