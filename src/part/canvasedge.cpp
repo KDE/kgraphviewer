@@ -320,6 +320,7 @@ Q_UNUSED(widget)
       }
       p->setPen(pen);
 //       qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolyline" << edge()->color(0) << polygon;
+      polygon << polygon[0];
       p->drawPolyline(polygon);
       p->setPen(oldPen);
       p->setBrush(oldBrush);
