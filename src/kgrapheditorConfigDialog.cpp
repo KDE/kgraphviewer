@@ -16,154 +16,148 @@
    02110-1301, USA
 */
 
-
 #include "kgrapheditorConfigDialog.h"
 #include "kgrapheditorsettings.h"
-#include "ui_preferencesReload.h"
-#include "ui_preferencesParsing.h"
 #include "ui_preferencesOpenInExistingWindow.h"
+#include "ui_preferencesParsing.h"
+#include "ui_preferencesReload.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
 
-#include <QFileDialog>
-#include <kconfig.h>
-#include <QUrl>
-#include <QTabWidget>
-#include <kparts/partmanager.h>
-#include <kedittoolbar.h>
 #include <QDebug>
+#include <QFileDialog>
+#include <QTabWidget>
+#include <QUrl>
+#include <kconfig.h>
+#include <kedittoolbar.h>
+#include <kparts/partmanager.h>
 
-#include <KService>
 #include <KPluginLoader>
-#include <kmessagebox.h>
+#include <KService>
 #include <QStatusBar>
 #include <kconfigdialog.h>
 #include <klocalizedstring.h>
+#include <kmessagebox.h>
 
 //#include <kapp.h>
 //#include <dcopclient.h>
 
 #include <iostream>
 
-KgeConfigurationDialog::KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config) :
-  KConfigDialog(parent, name, config),
-  m_changed(false),
-  m_parsingWidget(new Ui::KGraphViewerPreferencesParsingWidget()),
-  m_reloadWidget(new Ui::KGraphViewerPreferencesReloadWidget()),
-  m_openingWidget(new Ui::KGraphViewerPreferencesOpenInExistingWindowWidget()),
-  m_reopeningWidget(new Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget())
+KgeConfigurationDialog::KgeConfigurationDialog(QWidget *parent, const QString &name, KConfigSkeleton *config)
+    : KConfigDialog(parent, name, config)
+    , m_changed(false)
+    , m_parsingWidget(new Ui::KGraphViewerPreferencesParsingWidget())
+    , m_reloadWidget(new Ui::KGraphViewerPreferencesReloadWidget())
+    , m_openingWidget(new Ui::KGraphViewerPreferencesOpenInExistingWindowWidget())
+    , m_reopeningWidget(new Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget())
 {
-  QWidget* page0 = new QWidget();
-  m_parsingWidget->setupUi(page0);
-  QWidget* page1 = new QWidget();
-  m_reloadWidget->setupUi(page1);
-  QWidget* page2 = new QWidget();
-  m_openingWidget->setupUi(page2);
-  QWidget* page3 = new QWidget();
-  m_reopeningWidget->setupUi(page3);
-  addPage( page0, i18n("Parsing"), "preferences-other", i18n("Parsing"), false);
-  addPage( page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
-  addPage( page2, i18n("Opening"), "document-open", i18n("Opening"), false);
-  addPage( page3, i18n("Session Management"), "preferences-other", i18n("Session Management"), false);
-  connect(m_parsingWidget->parsingMode, &QGroupBox::clicked,
-          this, &KgeConfigurationDialog::settingChanged);
-  connect(m_reloadWidget->reloadOnChangeMode, &QGroupBox::clicked,
-          this, &KgeConfigurationDialog::settingChanged);
-  connect(m_openingWidget->openInExistingWindowMode, &QGroupBox::clicked,
-          this, &KgeConfigurationDialog::settingChanged);
-  connect(m_reopeningWidget->reopenPreviouslyOpenedFilesMode, &QGroupBox::clicked,
-          this, &KgeConfigurationDialog::settingChanged);
+    QWidget *page0 = new QWidget();
+    m_parsingWidget->setupUi(page0);
+    QWidget *page1 = new QWidget();
+    m_reloadWidget->setupUi(page1);
+    QWidget *page2 = new QWidget();
+    m_openingWidget->setupUi(page2);
+    QWidget *page3 = new QWidget();
+    m_reopeningWidget->setupUi(page3);
+    addPage(page0, i18n("Parsing"), "preferences-other", i18n("Parsing"), false);
+    addPage(page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
+    addPage(page2, i18n("Opening"), "document-open", i18n("Opening"), false);
+    addPage(page3, i18n("Session Management"), "preferences-other", i18n("Session Management"), false);
+    connect(m_parsingWidget->parsingMode, &QGroupBox::clicked, this, &KgeConfigurationDialog::settingChanged);
+    connect(m_reloadWidget->reloadOnChangeMode, &QGroupBox::clicked, this, &KgeConfigurationDialog::settingChanged);
+    connect(m_openingWidget->openInExistingWindowMode, &QGroupBox::clicked, this, &KgeConfigurationDialog::settingChanged);
+    connect(m_reopeningWidget->reopenPreviouslyOpenedFilesMode, &QGroupBox::clicked, this, &KgeConfigurationDialog::settingChanged);
 }
 
-KgeConfigurationDialog::~KgeConfigurationDialog ()
+KgeConfigurationDialog::~KgeConfigurationDialog()
 {
 }
 
 void KgeConfigurationDialog::settingChanged(int)
 {
-//   std::cerr << "KgeConfigurationDialog::settingChanged" << std::endl;
-  m_changed = true;
+    //   std::cerr << "KgeConfigurationDialog::settingChanged" << std::endl;
+    m_changed = true;
 }
 
 bool KgeConfigurationDialog::hasChanged()
 {
-//   std::cerr << "KgeConfigurationDialog::hasChanged" << std::endl;
-  return m_changed;
+    //   std::cerr << "KgeConfigurationDialog::hasChanged" << std::endl;
+    return m_changed;
 }
 
 void KgeConfigurationDialog::updateSettings()
 {
-//   std::cerr << "KgeConfigurationDialog::updateSettings" << std::endl;
-  m_changed = false;
-/*  switch (m_openingWidget->openInExistingWindowMode->selectedId())
-  {
-    case 0: // no
-      KGraphViewerSettings::setOpenInExistingWindowMode("no");
-    break;
-    case 1: // yes
-      KGraphViewerSettings::setOpenInExistingWindowMode("yes");
-    break;
-    case 2: // ask
-      KGraphViewerSettings::setOpenInExistingWindowMode("ask");
-    break;
-    default: ;
-  }
-  switch (m_reloadWidget->reloadOnChangeMode->selectedId())
-  {
-    case 0: // no
-      KGraphViewerSettings::setReloadOnChangeMode("no");
-    break;
-    case 1: // yes
-      KGraphViewerSettings::setReloadOnChangeMode("yes");
-    break;
-    case 2: // ask
-      KGraphViewerSettings::setReloadOnChangeMode("ask");
-    break;
-    default: ;
-  }
-  switch (m_reopeningWidget->reopenPreviouslyOpenedFilesMode->selectedId())
-  {
-    case 0: // no
-      KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("no");
-    break;
-    case 1: // yes
-      KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("yes");
-    break;
-    case 2: // ask
-      KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("ask");
-    break;
-    default: ;
-  }*/
-   //@TODO to port
-   //KGraphViewerSettings::writeConfig();
+    //   std::cerr << "KgeConfigurationDialog::updateSettings" << std::endl;
+    m_changed = false;
+    /*  switch (m_openingWidget->openInExistingWindowMode->selectedId())
+      {
+        case 0: // no
+          KGraphViewerSettings::setOpenInExistingWindowMode("no");
+        break;
+        case 1: // yes
+          KGraphViewerSettings::setOpenInExistingWindowMode("yes");
+        break;
+        case 2: // ask
+          KGraphViewerSettings::setOpenInExistingWindowMode("ask");
+        break;
+        default: ;
+      }
+      switch (m_reloadWidget->reloadOnChangeMode->selectedId())
+      {
+        case 0: // no
+          KGraphViewerSettings::setReloadOnChangeMode("no");
+        break;
+        case 1: // yes
+          KGraphViewerSettings::setReloadOnChangeMode("yes");
+        break;
+        case 2: // ask
+          KGraphViewerSettings::setReloadOnChangeMode("ask");
+        break;
+        default: ;
+      }
+      switch (m_reopeningWidget->reopenPreviouslyOpenedFilesMode->selectedId())
+      {
+        case 0: // no
+          KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("no");
+        break;
+        case 1: // yes
+          KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("yes");
+        break;
+        case 2: // ask
+          KGraphViewerSettings::setReopenPreviouslyOpenedFilesMode("ask");
+        break;
+        default: ;
+      }*/
+    //@TODO to port
+    // KGraphViewerSettings::writeConfig();
 }
 
 void KgeConfigurationDialog::updateWidgets()
 {
-//   std::cerr << "KgeConfigurationDialog::updateWidgets" << std::endl;
+    //   std::cerr << "KgeConfigurationDialog::updateWidgets" << std::endl;
 
-  m_changed = false;
-//   std::cerr << "  openInExistingWindowMode: " << KGraphViewerSettings::openInExistingWindowMode() << std::endl;
-//   if (KGraphViewerSettings::openInExistingWindowMode() == "no")
-//     m_openingWidget->openInExistingWindowMode->setButton(0);
-//   else if (KGraphViewerSettings::openInExistingWindowMode() == "yes")
-//     m_openingWidget->openInExistingWindowMode->setButton(1);
-//   else if (KGraphViewerSettings::openInExistingWindowMode() == "ask")
-//     m_openingWidget->openInExistingWindowMode->setButton(2);
+    m_changed = false;
+    //   std::cerr << "  openInExistingWindowMode: " << KGraphViewerSettings::openInExistingWindowMode() << std::endl;
+    //   if (KGraphViewerSettings::openInExistingWindowMode() == "no")
+    //     m_openingWidget->openInExistingWindowMode->setButton(0);
+    //   else if (KGraphViewerSettings::openInExistingWindowMode() == "yes")
+    //     m_openingWidget->openInExistingWindowMode->setButton(1);
+    //   else if (KGraphViewerSettings::openInExistingWindowMode() == "ask")
+    //     m_openingWidget->openInExistingWindowMode->setButton(2);
 
+    //   std::cerr << "  reloadOnChangeMode: " << KGraphViewerSettings::reloadOnChangeMode() << std::endl;
+    //   if (KGraphViewerSettings::reloadOnChangeMode() == "no")
+    //     m_reloadWidget->reloadOnChangeMode->setButton(0);
+    //   else if (KGraphViewerSettings::reloadOnChangeMode() == "yes")
+    //     m_reloadWidget->reloadOnChangeMode->setButton(1);
+    //   else if (KGraphViewerSettings::reloadOnChangeMode() == "ask")
+    //     m_reloadWidget->reloadOnChangeMode->setButton(2);
 
-//   std::cerr << "  reloadOnChangeMode: " << KGraphViewerSettings::reloadOnChangeMode() << std::endl;
-//   if (KGraphViewerSettings::reloadOnChangeMode() == "no")
-//     m_reloadWidget->reloadOnChangeMode->setButton(0);
-//   else if (KGraphViewerSettings::reloadOnChangeMode() == "yes")
-//     m_reloadWidget->reloadOnChangeMode->setButton(1);
-//   else if (KGraphViewerSettings::reloadOnChangeMode() == "ask")
-//     m_reloadWidget->reloadOnChangeMode->setButton(2);
-
-//   std::cerr << "  reopenPreviouslyOpenedFilesMode: " << KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() << std::endl;
-/*  if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "no")
-    m_reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(0);
-  else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "yes")
-    m_reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(1);
-  else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "ask")
-    m_reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(2);*/
+    //   std::cerr << "  reopenPreviouslyOpenedFilesMode: " << KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() << std::endl;
+    /*  if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "no")
+        m_reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(0);
+      else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "yes")
+        m_reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(1);
+      else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "ask")
+        m_reopeningWidget->reopenPreviouslyOpenedFilesMode->setButton(2);*/
 }

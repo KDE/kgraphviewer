@@ -12,6 +12,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${CMAKE_MODULE_PATH} ${
 include(CMakePackageConfigHelpers)
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDEClangFormat)
 include(KDECMakeSettings)
 include(FeatureSummary)
 include(GenerateExportHeader)
@@ -54,5 +55,9 @@ add_subdirectory(src)
 add_subdirectory(doc)
 
 install(FILES kgraphviewer.categories DESTINATION ${KDE_INSTALL_CONFDIR})
+
+# add clang-format target for all our real source files
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES src/*.cpp src/*.h)
+kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

@@ -30,41 +30,41 @@
 /******************************************************************/
 
 #include "kgraphviewerlib_debug.h"
-#include <KgvPageLayoutDia.h>
 #include <KgvGlobal.h>
 #include <KgvPageLayoutColumns.h>
-#include <KgvPageLayoutSize.h>
+#include <KgvPageLayoutDia.h>
 #include <KgvPageLayoutHeader.h>
+#include <KgvPageLayoutSize.h>
 #include <KgvUnit.h>
 #include <KgvUnitWidgets.h>
 
+#include <QDebug>
 #include <QIcon>
 #include <QMessageBox>
-#include <QDebug>
 
+#include <qcheckbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qpainter.h>
 #include <qradiobutton.h>
-#include <qcheckbox.h>
-//Added by qt3to4:
+// Added by qt3to4:
 #include <QHBoxLayout>
 #include <QPaintEngine>
-#include <klocalizedstring.h>
 #include <QPointer>
+#include <klocalizedstring.h>
 
 /******************************************************************/
 /* class KgvPagePreview                                            */
 /******************************************************************/
 
 /*===================== constructor ==============================*/
-KgvPagePreview::KgvPagePreview( QWidget* parent, const char *name, const KgvPageLayout& layout )
-    : QGroupBox( i18n( "Page Preview" ), parent )
+KgvPagePreview::KgvPagePreview(QWidget *parent, const char *name, const KgvPageLayout &layout)
+    : QGroupBox(i18n("Page Preview"), parent)
 {
     setObjectName(name);
-    setPageLayout( layout );
+    setPageLayout(layout);
     columns = 1;
-    setMinimumSize( 150, 150 );
+    setMinimumSize(150, 150);
 }
 
 /*====================== destructor ==============================*/
@@ -73,75 +73,68 @@ KgvPagePreview::~KgvPagePreview()
 }
 
 /*=================== set layout =================================*/
-void KgvPagePreview::setPageLayout( const KgvPageLayout &layout )
+void KgvPagePreview::setPageLayout(const KgvPageLayout &layout)
 {
     // resolution[XY] is in pixel per pt
-    double resolutionX = POINT_TO_INCH( static_cast<double>(KgvGlobal::dpiX()) );
-    double resolutionY = POINT_TO_INCH( static_cast<double>(KgvGlobal::dpiY()) );
+    double resolutionX = POINT_TO_INCH(static_cast<double>(KgvGlobal::dpiX()));
+    double resolutionY = POINT_TO_INCH(static_cast<double>(KgvGlobal::dpiY()));
 
     m_pageWidth = layout.ptWidth * resolutionX;
     m_pageHeight = layout.ptHeight * resolutionY;
 
     double zh = 110.0 / m_pageHeight;
     double zw = 110.0 / m_pageWidth;
-    double z = qMin( zw, zh );
+    double z = qMin(zw, zh);
 
     m_pageWidth *= z;
     m_pageHeight *= z;
 
     m_textFrameX = layout.ptLeft * resolutionX * z;
     m_textFrameY = layout.ptTop * resolutionY * z;
-    m_textFrameWidth = m_pageWidth - ( layout.ptLeft + layout.ptRight ) * resolutionX * z;
-    m_textFrameHeight = m_pageHeight - ( layout.ptTop + layout.ptBottom ) * resolutionY * z;
+    m_textFrameWidth = m_pageWidth - (layout.ptLeft + layout.ptRight) * resolutionX * z;
+    m_textFrameHeight = m_pageHeight - (layout.ptTop + layout.ptBottom) * resolutionY * z;
 
     qCDebug(KGRAPHVIEWERLIB_LOG) << "repaint in setPageLayout";
     repaint();
 }
 
 /*=================== set layout =================================*/
-void KgvPagePreview::setPageColumns( const KgvColumns &_columns )
+void KgvPagePreview::setPageColumns(const KgvColumns &_columns)
 {
     columns = _columns.columns;
     repaint();
 }
 
 /*======================== draw contents =========================*/
-void KgvPagePreview::paintEvent ( QPaintEvent * event ) 
+void KgvPagePreview::paintEvent(QPaintEvent *event)
 {
-  QGroupBox::paintEvent(event);
-  QPainter painter(this);
-  painter.setRenderHint(QPainter::Antialiasing);
-  double cw = m_textFrameWidth;
-  if(columns!=1)
-  {
-    cw/=static_cast<double>(columns);
-  }
-  painter.setBrush( Qt::white );
-  painter.setPen( QPen( Qt::black ) );
+    QGroupBox::paintEvent(event);
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
+    double cw = m_textFrameWidth;
+    if (columns != 1) {
+        cw /= static_cast<double>(columns);
+    }
+    painter.setBrush(Qt::white);
+    painter.setPen(QPen(Qt::black));
 
-  int x=static_cast<int>( ( width() - m_pageWidth ) * 0.5 );
-  int y=static_cast<int>( ( height() - m_pageHeight ) * 0.5 );
-  int w=static_cast<int>(m_pageWidth);
-  int h=static_cast<int>(m_pageHeight);
-  //painter.drawRect( x + 1, y + 1, w, h);
-  painter.drawRect( x, y, w, h );
+    int x = static_cast<int>((width() - m_pageWidth) * 0.5);
+    int y = static_cast<int>((height() - m_pageHeight) * 0.5);
+    int w = static_cast<int>(m_pageWidth);
+    int h = static_cast<int>(m_pageHeight);
+    // painter.drawRect( x + 1, y + 1, w, h);
+    painter.drawRect(x, y, w, h);
 
-  painter.setBrush( QBrush( Qt::black, Qt::HorPattern ) );
-  if ( m_textFrameWidth == m_pageWidth || m_textFrameHeight == m_pageHeight )
-  {
-    painter.setPen( Qt::NoPen );
-  }
-  else
-  {
-    painter.setPen( Qt::lightGray );
-  }
+    painter.setBrush(QBrush(Qt::black, Qt::HorPattern));
+    if (m_textFrameWidth == m_pageWidth || m_textFrameHeight == m_pageHeight) {
+        painter.setPen(Qt::NoPen);
+    } else {
+        painter.setPen(Qt::lightGray);
+    }
 
-  for ( int i = 0; i < columns; ++i )
-  {
-    painter.drawRect( x + static_cast<int>(m_textFrameX) + static_cast<int>(i * cw),
-                        y + static_cast<int>(m_textFrameY), static_cast<int>(cw),
-                        static_cast<int>(m_textFrameHeight) );
-  }
+    for (int i = 0; i < columns; ++i) {
+        painter.drawRect(x + static_cast<int>(m_textFrameX) + static_cast<int>(i * cw), y + static_cast<int>(m_textFrameY), static_cast<int>(cw), static_cast<int>(m_textFrameHeight));
+    }
 }
 
 /******************************************************************/
@@ -149,57 +142,55 @@ void KgvPagePreview::paintEvent ( QPaintEvent * event )
 /******************************************************************/
 
 /*==================== constructor ===============================*/
-KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
-                                  KgvPageLayout& layout,
-                                  int tabs,
-                                  KgvUnit::Unit unit)
-                                  : KPageDialog(parent),
-/*                                  : KDialogBase( KDialogBase::Tabbed, i18n("Page Layout"), KDialogBase::Ok | KDialogBase::Cancel,
-                                  KDialogBase::Ok, parent, name, modal),*/
-      m_layout(layout),
-      m_unit(unit),
-      flags(tabs),
-      m_pageSizeTab(nullptr),
-      m_columnsTab(nullptr),
-      m_headerTab(nullptr)
+KgvPageLayoutDia::KgvPageLayoutDia(QWidget *parent, KgvPageLayout &layout, int tabs, KgvUnit::Unit unit)
+    : KPageDialog(parent)
+    ,
+    /*                                  : KDialogBase( KDialogBase::Tabbed, i18n("Page Layout"), KDialogBase::Ok | KDialogBase::Cancel,
+                                      KDialogBase::Ok, parent, name, modal),*/
+    m_layout(layout)
+    , m_unit(unit)
+    , flags(tabs)
+    , m_pageSizeTab(nullptr)
+    , m_columnsTab(nullptr)
+    , m_headerTab(nullptr)
 
 {
-    setStandardButtons( QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Apply );
+    setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Apply);
 
     m_column.columns = 1;
 
-    if ( tabs & FORMAT_AND_BORDERS ) setupTab1( true );
-//     if ( tabs & HEADER_AND_FOOTER ) setupTab2( hf );
+    if (tabs & FORMAT_AND_BORDERS)
+        setupTab1(true);
+    //     if ( tabs & HEADER_AND_FOOTER ) setupTab2( hf );
 
-    setFocusPolicy( Qt::StrongFocus );
+    setFocusPolicy(Qt::StrongFocus);
     setFocus();
     // TODO: make validation query code in slotOk work, or rather port to KWarningMessage
 }
 
 /*==================== constructor ===============================*/
-KgvPageLayoutDia::KgvPageLayoutDia( QWidget* parent,
-                  KgvPageLayout& layout,
-                  const KgvColumns& columns,
-                  int tabs, KgvUnit::Unit unit )
-                  : KPageDialog( parent ),
-/*                  : KDialogBase( KDialogBase::Tabbed, i18n("Page Layout"), KDialogBase::Ok | KDialogBase::Cancel,
-                  KDialogBase::Ok, parent, name, true),*/
-      m_layout(layout),
-    m_column(columns),
-    m_unit(unit),
-    flags(tabs),
-    m_pageSizeTab(nullptr),
-    m_columnsTab(nullptr),
-    m_headerTab(nullptr)
+KgvPageLayoutDia::KgvPageLayoutDia(QWidget *parent, KgvPageLayout &layout, const KgvColumns &columns, int tabs, KgvUnit::Unit unit)
+    : KPageDialog(parent)
+    ,
+    /*                  : KDialogBase( KDialogBase::Tabbed, i18n("Page Layout"), KDialogBase::Ok | KDialogBase::Cancel,
+                      KDialogBase::Ok, parent, name, true),*/
+    m_layout(layout)
+    , m_column(columns)
+    , m_unit(unit)
+    , flags(tabs)
+    , m_pageSizeTab(nullptr)
+    , m_columnsTab(nullptr)
+    , m_headerTab(nullptr)
 {
-  setStandardButtons( QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Apply );
+    setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Apply);
 
-    if ( tabs & FORMAT_AND_BORDERS ) setupTab1( !( tabs & DISABLE_BORDERS ) );
-//     if ( tabs & HEADER_AND_FOOTER ) setupTab2( hf );
-//     if ( tabs & COLUMNS ) setupTab3();
-//     if ( tabs & KW_HEADER_AND_FOOTER ) setupTab4(kwhf);
+    if (tabs & FORMAT_AND_BORDERS)
+        setupTab1(!(tabs & DISABLE_BORDERS));
+    //     if ( tabs & HEADER_AND_FOOTER ) setupTab2( hf );
+    //     if ( tabs & COLUMNS ) setupTab3();
+    //     if ( tabs & KW_HEADER_AND_FOOTER ) setupTab4(kwhf);
 
-    setFocusPolicy( Qt::StrongFocus );
+    setFocusPolicy(Qt::StrongFocus);
     setFocus();
 
     // TODO: make validation query code in slotOk work, or rather port to KWarningMessage
@@ -211,15 +202,17 @@ KgvPageLayoutDia::~KgvPageLayoutDia()
 }
 
 /*======================= show dialog ============================*/
-bool KgvPageLayoutDia::pageLayout( KgvPageLayout& layout, KgvHeadFoot& hf, int tabs, KgvUnit::Unit& unit, QWidget* parent )
+bool KgvPageLayoutDia::pageLayout(KgvPageLayout &layout, KgvHeadFoot &hf, int tabs, KgvUnit::Unit &unit, QWidget *parent)
 {
     bool res = false;
-    QPointer<KgvPageLayoutDia> dlg = new KgvPageLayoutDia( parent, layout, tabs, unit );
+    QPointer<KgvPageLayoutDia> dlg = new KgvPageLayoutDia(parent, layout, tabs, unit);
 
-    if ( dlg->exec() == QDialog::Accepted ) {
+    if (dlg->exec() == QDialog::Accepted) {
         res = true;
-        if ( tabs & FORMAT_AND_BORDERS ) layout = dlg->layout();
-        if ( tabs & HEADER_AND_FOOTER ) hf = dlg->headFoot();
+        if (tabs & FORMAT_AND_BORDERS)
+            layout = dlg->layout();
+        if (tabs & HEADER_AND_FOOTER)
+            hf = dlg->headFoot();
         unit = dlg->unit();
     }
 
@@ -229,18 +222,21 @@ bool KgvPageLayoutDia::pageLayout( KgvPageLayout& layout, KgvHeadFoot& hf, int t
 }
 
 /*======================= show dialog ============================*/
-bool KgvPageLayoutDia::pageLayout( KgvPageLayout& layout, KgvHeadFoot& hf, KgvColumns& columns,
-                                  KgvKWHeaderFooter &_kwhf, int tabs, KgvUnit::Unit& unit, QWidget* parent )
+bool KgvPageLayoutDia::pageLayout(KgvPageLayout &layout, KgvHeadFoot &hf, KgvColumns &columns, KgvKWHeaderFooter &_kwhf, int tabs, KgvUnit::Unit &unit, QWidget *parent)
 {
     bool res = false;
-    QPointer<KgvPageLayoutDia> dlg = new KgvPageLayoutDia( parent, layout, columns, tabs, unit );
+    QPointer<KgvPageLayoutDia> dlg = new KgvPageLayoutDia(parent, layout, columns, tabs, unit);
 
-    if ( dlg->exec() == QDialog::Accepted ) {
+    if (dlg->exec() == QDialog::Accepted) {
         res = true;
-        if ( tabs & FORMAT_AND_BORDERS ) layout = dlg->layout();
-        if ( tabs & HEADER_AND_FOOTER ) hf = dlg->headFoot();
-        if ( tabs & COLUMNS ) columns = dlg->columns();
-        if ( tabs & KW_HEADER_AND_FOOTER ) _kwhf = dlg->headerFooter();
+        if (tabs & FORMAT_AND_BORDERS)
+            layout = dlg->layout();
+        if (tabs & HEADER_AND_FOOTER)
+            hf = dlg->headFoot();
+        if (tabs & COLUMNS)
+            columns = dlg->columns();
+        if (tabs & KW_HEADER_AND_FOOTER)
+            _kwhf = dlg->headerFooter();
         unit = dlg->unit();
     }
 
@@ -269,21 +265,21 @@ KgvHeadFoot KgvPageLayoutDia::headFoot() const
 }
 
 /*================================================================*/
-const KgvKWHeaderFooter& KgvPageLayoutDia::headerFooter()
+const KgvKWHeaderFooter &KgvPageLayoutDia::headerFooter()
 {
     return m_headerTab->headerFooter();
 }
 
 /*================ setup page size & margins tab ==================*/
-void KgvPageLayoutDia::setupTab1( bool enableBorders )
+void KgvPageLayoutDia::setupTab1(bool enableBorders)
 {
-    m_pageSizeTab = new KgvPageLayoutSize(nullptr, m_layout, m_unit, m_column, !(flags & DISABLE_UNIT), enableBorders );
-    addPage(m_pageSizeTab, i18n( "Page Size & Margins" ));
-    connect(m_pageSizeTab, &KgvPageLayoutSize::propertyChange,
-            this, &KgvPageLayoutDia::sizeUpdated);
+    m_pageSizeTab = new KgvPageLayoutSize(nullptr, m_layout, m_unit, m_column, !(flags & DISABLE_UNIT), enableBorders);
+    addPage(m_pageSizeTab, i18n("Page Size & Margins"));
+    connect(m_pageSizeTab, &KgvPageLayoutSize::propertyChange, this, &KgvPageLayoutDia::sizeUpdated);
 }
 
-void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
+void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout)
+{
     m_layout.ptWidth = layout.ptWidth;
     m_layout.ptHeight = layout.ptHeight;
     m_layout.ptLeft = layout.ptLeft;
@@ -292,7 +288,7 @@ void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
     m_layout.ptBottom = layout.ptBottom;
     m_layout.format = layout.format;
     m_layout.orientation = layout.orientation;
-    if(m_columnsTab)
+    if (m_columnsTab)
         m_columnsTab->setLayout(layout);
 }
 
@@ -301,75 +297,75 @@ void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
 // {
 //     QWidget *tab2 = addPage(i18n( "H&eader && Footer" ));
 //     QGridLayout *grid2 = new QGridLayout( tab2, 7, 2, 0, KDialog::spacingHint() );
-// 
+//
 //     // ------------- header ---------------
 //     QGroupBox *gHead = new QGroupBox( 0, Qt::Vertical, i18n( "Head Line" ), tab2 );
 //     gHead->layout()->setSpacing(KDialog::spacingHint());
 //     gHead->layout()->setMargin(KDialog::marginHint());
 //     QGridLayout *headGrid = new QGridLayout( gHead->layout(), 2, 3 );
-// 
+//
 //     QLabel *lHeadLeft = new QLabel( i18n( "Left:" ), gHead );
 //     headGrid->addWidget( lHeadLeft, 0, 0 );
-// 
+//
 //     eHeadLeft = new KLineEdit( gHead );
 //     headGrid->addWidget( eHeadLeft, 1, 0 );
 //     eHeadLeft->setText( hf.headLeft );
-// 
+//
 //     QLabel *lHeadMid = new QLabel( i18n( "Mid:" ), gHead );
 //     headGrid->addWidget( lHeadMid, 0, 1 );
-// 
+//
 //     eHeadMid = new KLineEdit( gHead );
 //     headGrid->addWidget( eHeadMid, 1, 1 );
 //     eHeadMid->setText( hf.headMid );
-// 
+//
 //     QLabel *lHeadRight = new QLabel( i18n( "Right:" ), gHead );
 //     headGrid->addWidget( lHeadRight, 0, 2 );
-// 
+//
 //     eHeadRight = new KLineEdit( gHead );
 //     headGrid->addWidget( eHeadRight, 1, 2 );
 //     eHeadRight->setText( hf.headRight );
-// 
+//
 //     grid2->addMultiCellWidget( gHead, 0, 1, 0, 1 );
-// 
+//
 //     // ------------- footer ---------------
 //     QGroupBox *gFoot = new QGroupBox( 0, Qt::Vertical, i18n( "Foot Line" ), tab2 );
 //     gFoot->layout()->setSpacing(KDialog::spacingHint());
 //     gFoot->layout()->setMargin(KDialog::marginHint());
 //     QGridLayout *footGrid = new QGridLayout( gFoot->layout(), 2, 3 );
-// 
+//
 //     QLabel *lFootLeft = new QLabel( i18n( "Left:" ), gFoot );
 //     footGrid->addWidget( lFootLeft, 0, 0 );
-// 
+//
 //     eFootLeft = new KLineEdit( gFoot );
 //     footGrid->addWidget( eFootLeft, 1, 0 );
 //     eFootLeft->setText( hf.footLeft );
-// 
+//
 //     QLabel *lFootMid = new QLabel( i18n( "Mid:" ), gFoot );
 //     footGrid->addWidget( lFootMid, 0, 1 );
-// 
+//
 //     eFootMid = new KLineEdit( gFoot );
 //     footGrid->addWidget( eFootMid, 1, 1 );
 //     eFootMid->setText( hf.footMid );
-// 
+//
 //     QLabel *lFootRight = new QLabel( i18n( "Right:" ), gFoot );
 //     footGrid->addWidget( lFootRight, 0, 2 );
-// 
+//
 //     eFootRight = new KLineEdit( gFoot );
 //     footGrid->addWidget( eFootRight, 1, 2 );
 //     eFootRight->setText( hf.footRight );
-// 
+//
 //     grid2->addMultiCellWidget( gFoot, 2, 3, 0, 1 );
-// 
+//
 //     QLabel *lMacros2 = new QLabel( i18n( "You can insert several tags in the text:" ), tab2 );
 //     grid2->addMultiCellWidget( lMacros2, 4, 4, 0, 1 );
-// 
+//
 //     QLabel *lMacros3 = new QLabel( i18n("<qt><ul><li>&lt;sheet&gt; The sheet name</li>"
 //                            "<li>&lt;page&gt; The current page</li>"
 //                            "<li>&lt;pages&gt; The total number of pages</li>"
 //                            "<li>&lt;name&gt; The filename or URL</li>"
 //                            "<li>&lt;file&gt; The filename with complete path or the URL</li></ul></qt>"), tab2 );
 //     grid2->addMultiCellWidget( lMacros3, 5, 6, 0, 0, Qt::AlignTop );
-// 
+//
 //     QLabel *lMacros4 = new QLabel( i18n("<qt><ul><li>&lt;time&gt; The current time</li>"
 //                            "<li>&lt;date&gt; The current date</li>"
 //                            "<li>&lt;author&gt; Your full name</li>"
@@ -377,7 +373,7 @@ void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
 //                            "<li>&lt;email&gt; Your email address</li></ul></qt>"), tab2 );
 //     grid2->addMultiCellWidget( lMacros4, 5, 6, 1, 1, Qt::AlignTop );
 // }
-// 
+//
 // /*================================================================*/
 // void KgvPageLayoutDia::setupTab3()
 // {
@@ -390,14 +386,14 @@ void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
 //     connect (m_columnsTab, SIGNAL(propertyChange(KgvColumns&)),
 //             this, SLOT(columnsUpdated(KgvColumns&)));
 // }
-// 
+//
 // void KgvPageLayoutDia::columnsUpdated(KgvColumns &columns) {
 //     m_column.columns = columns.columns;
 //     m_column.ptColumnSpacing = columns.ptColumnSpacing;
 //     if(m_pageSizeTab)
 //         m_pageSizeTab->setColumns(columns);
 // }
-// 
+//
 // /*================================================================*/
 // void KgvPageLayoutDia::setupTab4(const KgvKWHeaderFooter kwhf )
 // {
@@ -407,16 +403,16 @@ void KgvPageLayoutDia::sizeUpdated(KgvPageLayout &layout) {
 //     m_headerTab->layout()->setMargin(0);
 //     lay->addWidget(m_headerTab);
 //     m_headerTab->show();
-// 
+//
 // }
-// 
+//
 
 /* Validation when closing. Error messages are never liked, but
   better let the users enter all values in any order, and have one
   final validation, than preventing them from entering values. */
 void KgvPageLayoutDia::slotOk()
 {
-    if( m_pageSizeTab )
+    if (m_pageSizeTab)
         m_pageSizeTab->queryClose();
     KPageDialog::accept(); // accept
 }

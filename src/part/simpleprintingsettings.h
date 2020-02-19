@@ -32,35 +32,29 @@
 
 namespace KGraphViewer
 {
-
-enum FittingModes
-{
-  NaturalSize = 0,
-  FitToOnePage,
-  FitToSeveralPages
-};
+enum FittingModes { NaturalSize = 0, FitToOnePage, FitToSeveralPages };
 
 //! @short Settings data for simple printing engine.
 class KGVSimplePrintingSettings
 {
 public:
-  KGVSimplePrintingSettings();
-  ~KGVSimplePrintingSettings();
+    KGVSimplePrintingSettings();
+    ~KGVSimplePrintingSettings();
 
-  static KGVSimplePrintingSettings load();
-  void save();
+    static KGVSimplePrintingSettings load();
+    void save();
 
-  KgvPageLayout pageLayout;
-  KgvUnit::Unit unit;
-  QFont pageTitleFont;
-  bool addPageNumbers;
-  bool addDateAndTime;
-  bool addTableBorders;
-  FittingModes fittingMode;
-  bool fitToOnePage;
-  unsigned int horizFitting;
-  unsigned int vertFitting;
-  bool chainedFittings;
+    KgvPageLayout pageLayout;
+    KgvUnit::Unit unit;
+    QFont pageTitleFont;
+    bool addPageNumbers;
+    bool addDateAndTime;
+    bool addTableBorders;
+    FittingModes fittingMode;
+    bool fitToOnePage;
+    unsigned int horizFitting;
+    unsigned int vertFitting;
+    bool chainedFittings;
 };
 
 }

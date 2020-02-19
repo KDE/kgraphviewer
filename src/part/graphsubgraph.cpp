@@ -21,277 +21,216 @@
  */
 
 #include "graphsubgraph.h"
-#include "graphnode.h"
 #include "canvassubgraph.h"
 #include "dotdefaults.h"
+#include "graphnode.h"
 #include "kgraphviewerlib_debug.h"
 
 #include <QDebug>
 
 namespace KGraphViewer
 {
-  
 //
 // GraphSubgraph
 //
 
-GraphSubgraph::GraphSubgraph() :
-  GraphElement(), m_content()
+GraphSubgraph::GraphSubgraph()
+    : GraphElement()
+    , m_content()
 {
 }
 
-GraphSubgraph::GraphSubgraph(graph_t* sg) :
-  GraphElement(), m_content()
+GraphSubgraph::GraphSubgraph(graph_t *sg)
+    : GraphElement()
+    , m_content()
 {
-  updateWithSubgraph(sg);
+    updateWithSubgraph(sg);
 }
 
-void GraphSubgraph::updateWithSubgraph(const GraphSubgraph& subgraph)
+void GraphSubgraph::updateWithSubgraph(const GraphSubgraph &subgraph)
 {
-  qCDebug(KGRAPHVIEWERLIB_LOG) << id() << subgraph.id();
-  GraphElement::updateWithElement(subgraph);
+    qCDebug(KGRAPHVIEWERLIB_LOG) << id() << subgraph.id();
+    GraphElement::updateWithElement(subgraph);
 
-  bool found = false;
-  foreach (GraphElement* updatingge, subgraph.content())
-  {
-    foreach (GraphElement* ge, content())
-    {
-      if (ge->id() == updatingge->id())
-      {
-        found = true;
-        if (dynamic_cast<GraphNode*>(ge))
-        {
-          dynamic_cast<GraphNode*>(ge)->updateWithNode(*dynamic_cast<GraphNode*>(updatingge));
-        //     qCDebug(KGRAPHVIEWERLIB_LOG) << "node " << ngn->id();
+    bool found = false;
+    foreach (GraphElement *updatingge, subgraph.content()) {
+        foreach (GraphElement *ge, content()) {
+            if (ge->id() == updatingge->id()) {
+                found = true;
+                if (dynamic_cast<GraphNode *>(ge)) {
+                    dynamic_cast<GraphNode *>(ge)->updateWithNode(*dynamic_cast<GraphNode *>(updatingge));
+                    //     qCDebug(KGRAPHVIEWERLIB_LOG) << "node " << ngn->id();
+                } else if (dynamic_cast<GraphSubgraph *>(ge)) {
+                    dynamic_cast<GraphSubgraph *>(ge)->updateWithSubgraph(*dynamic_cast<GraphSubgraph *>(updatingge));
+                } else {
+                    qCWarning(KGRAPHVIEWERLIB_LOG) << "Updated element is neither a node nor a subgraph";
+                }
+                break;
+            }
         }
-        else if (dynamic_cast<GraphSubgraph*>(ge))
-        {
-          dynamic_cast<GraphSubgraph*>(ge)->updateWithSubgraph(*dynamic_cast<GraphSubgraph*>(updatingge));
+        if (!found) {
+            //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new";
+            if (dynamic_cast<GraphNode *>(updatingge)) {
+                GraphNode *newgn = new GraphNode(*dynamic_cast<GraphNode *>(updatingge));
+                //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
+                content().push_back(newgn);
+                //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
+            } else if (dynamic_cast<GraphSubgraph *>(updatingge)) {
+                GraphSubgraph *newsg = new GraphSubgraph(*dynamic_cast<GraphSubgraph *>(updatingge));
+                content().push_back(newsg);
+            }
         }
-        else
-        {
-          qCWarning(KGRAPHVIEWERLIB_LOG) << "Updated element is neither a node nor a subgraph";
-        }
-        break;
-      }
     }
-    if (!found)
-    {
-  //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new";
-      if (dynamic_cast<GraphNode*>(updatingge))
-      {
-        GraphNode* newgn = new GraphNode(*dynamic_cast<GraphNode*>(updatingge));
-  //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
-        content().push_back(newgn);
-  //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
-      }
-      else if (dynamic_cast<GraphSubgraph*>(updatingge))
-      {
-        GraphSubgraph* newsg = new GraphSubgraph(*dynamic_cast<GraphSubgraph*>(updatingge));
-        content().push_back(newsg);
-      }
-    }
-  }
 
-  if (canvasSubgraph())
-  {
-    canvasSubgraph()->modelChanged();
-    canvasSubgraph()->computeBoundingRect();
-  }
-//   qCDebug(KGRAPHVIEWERLIB_LOG) << "done";
+    if (canvasSubgraph()) {
+        canvasSubgraph()->modelChanged();
+        canvasSubgraph()->computeBoundingRect();
+    }
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) << "done";
 }
 
-void GraphSubgraph::updateWithSubgraph(graph_t* subgraph)
+void GraphSubgraph::updateWithSubgraph(graph_t *subgraph)
 {
-  qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(subgraph);
-  m_attributes["id"] = agnameof(subgraph);
-  if (GD_label(subgraph))
-    m_attributes["label"] = GD_label(subgraph)->text;
-  
-  DotRenderOpVec ops;
-  // decrease mem peak
-  setRenderOperations(ops);
+    qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(subgraph);
+    m_attributes["id"] = agnameof(subgraph);
+    if (GD_label(subgraph))
+        m_attributes["label"] = GD_label(subgraph)->text;
 
-  if (agget(subgraph, (char*)"_draw_"))
-  {
-    parse_renderop(agget(subgraph, (char*)"_draw_"), ops);
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "_draw_: element renderOperations size is now " << ops.size();
-  }
-  if (agget(subgraph, (char*)"_ldraw_"))
-  {
-    parse_renderop(agget(subgraph, (char*)"_ldraw_"), ops);
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "_ldraw_: element renderOperations size is now " << ops.size();
-  }
+    DotRenderOpVec ops;
+    // decrease mem peak
+    setRenderOperations(ops);
 
-  setRenderOperations(ops);
-
-  Agsym_t *attr = agnxtattr(subgraph, AGRAPH, nullptr);
-  while(attr)
-  {
-    qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(subgraph) << ":" << attr->name << agxget(subgraph,attr);
-    m_attributes[attr->name] = agxget(subgraph,attr);
-    attr = agnxtattr(subgraph, AGRAPH, attr);
-  }
-
-
-  for (graph_t* sg = agfstsubg(subgraph); sg; sg = agnxtsubg(sg))
-  {
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "subsubgraph:" << agnameof(sg);
-    if ( subgraphs().contains(agnameof(sg)))
-    {
-      qCDebug(KGRAPHVIEWERLIB_LOG) << "known subsubgraph";
-      // ???
-      //       nodes()[ngn->name]->setZ(ngn->z());
-      subgraphs()[agnameof(sg)]->updateWithSubgraph(sg);
-      if (subgraphs()[agnameof(sg)]->canvasElement())
-      {
-        //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
-      }
+    if (agget(subgraph, (char *)"_draw_")) {
+        parse_renderop(agget(subgraph, (char *)"_draw_"), ops);
+        qCDebug(KGRAPHVIEWERLIB_LOG) << "_draw_: element renderOperations size is now " << ops.size();
     }
-    else
-    {
-      qCDebug(KGRAPHVIEWERLIB_LOG) << "new subsubgraph";
-      GraphSubgraph* newsg = new GraphSubgraph(sg);
-      //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
-      subgraphs().insert(agnameof(sg), newsg);
-      //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
+    if (agget(subgraph, (char *)"_ldraw_")) {
+        parse_renderop(agget(subgraph, (char *)"_ldraw_"), ops);
+        qCDebug(KGRAPHVIEWERLIB_LOG) << "_ldraw_: element renderOperations size is now " << ops.size();
     }
-    
-  }
+
+    setRenderOperations(ops);
+
+    Agsym_t *attr = agnxtattr(subgraph, AGRAPH, nullptr);
+    while (attr) {
+        qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(subgraph) << ":" << attr->name << agxget(subgraph, attr);
+        m_attributes[attr->name] = agxget(subgraph, attr);
+        attr = agnxtattr(subgraph, AGRAPH, attr);
+    }
+
+    for (graph_t *sg = agfstsubg(subgraph); sg; sg = agnxtsubg(sg)) {
+        qCDebug(KGRAPHVIEWERLIB_LOG) << "subsubgraph:" << agnameof(sg);
+        if (subgraphs().contains(agnameof(sg))) {
+            qCDebug(KGRAPHVIEWERLIB_LOG) << "known subsubgraph";
+            // ???
+            //       nodes()[ngn->name]->setZ(ngn->z());
+            subgraphs()[agnameof(sg)]->updateWithSubgraph(sg);
+            if (subgraphs()[agnameof(sg)]->canvasElement()) {
+                //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
+            }
+        } else {
+            qCDebug(KGRAPHVIEWERLIB_LOG) << "new subsubgraph";
+            GraphSubgraph *newsg = new GraphSubgraph(sg);
+            //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
+            subgraphs().insert(agnameof(sg), newsg);
+            //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
+        }
+    }
 }
-
 
 QString GraphSubgraph::backColor() const
 {
-  if (m_attributes.find("bgcolor") != m_attributes.end())
-  {
-    return m_attributes["bgcolor"];
-  }
-  else if ( (m_attributes.find("style") != m_attributes.end())
-    && (m_attributes["style"] == "filled")
-    && (m_attributes.find("color") != m_attributes.end()) )
-  {
-    return m_attributes["color"];
-  }
-  else if ((m_attributes.find("style") != m_attributes.end())
-    && (m_attributes["style"] == "filled")
-    && (m_attributes.find("fillcolor") != m_attributes.end()))
-  {
-    return m_attributes["fillcolor"];
-  }
-  else
-  {
-    return DOT_DEFAULT_BACKCOLOR;
-  }
+    if (m_attributes.find("bgcolor") != m_attributes.end()) {
+        return m_attributes["bgcolor"];
+    } else if ((m_attributes.find("style") != m_attributes.end()) && (m_attributes["style"] == "filled") && (m_attributes.find("color") != m_attributes.end())) {
+        return m_attributes["color"];
+    } else if ((m_attributes.find("style") != m_attributes.end()) && (m_attributes["style"] == "filled") && (m_attributes.find("fillcolor") != m_attributes.end())) {
+        return m_attributes["fillcolor"];
+    } else {
+        return DOT_DEFAULT_BACKCOLOR;
+    }
 }
 
-void GraphSubgraph::removeElement(GraphElement* element)
+void GraphSubgraph::removeElement(GraphElement *element)
 {
-  m_content.removeAll(element);
+    m_content.removeAll(element);
 }
 
-GraphElement* GraphSubgraph::elementNamed(const QString& id)
+GraphElement *GraphSubgraph::elementNamed(const QString &id)
 {
-  if (this->id() == id) return this;
-  foreach (GraphElement* element, content())
-  {
-    if (element->id() == id)
-    {
-      return element;
+    if (this->id() == id)
+        return this;
+    foreach (GraphElement *element, content()) {
+        if (element->id() == id) {
+            return element;
+        } else if (dynamic_cast<GraphSubgraph *>(element)) {
+            GraphElement *subgraphElement = dynamic_cast<GraphSubgraph *>(element)->elementNamed(id);
+            if (subgraphElement) {
+                return subgraphElement;
+            }
+        }
     }
-    else if (dynamic_cast<GraphSubgraph*>(element))
-    {
-      GraphElement* subgraphElement = dynamic_cast<GraphSubgraph*>(element)->elementNamed(id);
-      if (subgraphElement)
-      {
-        return subgraphElement;
-      }
-    }
-  }
-  return nullptr;
+    return nullptr;
 }
 
-bool GraphSubgraph::setElementSelected(
-    GraphElement* element,
-    bool selectValue,
-    bool unselectOthers)
+bool GraphSubgraph::setElementSelected(GraphElement *element, bool selectValue, bool unselectOthers)
 {
-  if (element)
-    qCDebug(KGRAPHVIEWERLIB_LOG) << element->id() << selectValue << unselectOthers;
-  bool res = false;
-  if (element == this)
-  {
-    if (isSelected() != selectValue)
-    {
-      setSelected(selectValue);
-      canvasElement()->update();
+    if (element)
+        qCDebug(KGRAPHVIEWERLIB_LOG) << element->id() << selectValue << unselectOthers;
+    bool res = false;
+    if (element == this) {
+        if (isSelected() != selectValue) {
+            setSelected(selectValue);
+            canvasElement()->update();
+        }
+        res = true;
+    } else if (isSelected() && unselectOthers) {
+        setSelected(false);
+        canvasElement()->update();
     }
-    res = true;
-  }
-  else if (isSelected() && unselectOthers)
-  {
-    setSelected(false);
-    canvasElement()->update();
-  }
-  foreach (GraphElement* el, content())
-  {
-    if (dynamic_cast<GraphSubgraph*>(el))
-    {
-      bool subres = dynamic_cast<GraphSubgraph*>(el)->setElementSelected(element, selectValue, unselectOthers);
-      if (!res) res = subres;
+    foreach (GraphElement *el, content()) {
+        if (dynamic_cast<GraphSubgraph *>(el)) {
+            bool subres = dynamic_cast<GraphSubgraph *>(el)->setElementSelected(element, selectValue, unselectOthers);
+            if (!res)
+                res = subres;
+        } else if (element == el) {
+            res = true;
+            if (el->isSelected() != selectValue) {
+                el->setSelected(selectValue);
+                el->canvasElement()->update();
+            }
+        } else {
+            if (unselectOthers && el->isSelected()) {
+                el->setSelected(false);
+                el->canvasElement()->update();
+            }
+        }
     }
-    else if (element == el)
-    {
-      res = true;
-      if (el->isSelected() != selectValue)
-      {
-        el->setSelected(selectValue);
-        el->canvasElement()->update();
-      }
-    }
-    else 
-    {
-      if (unselectOthers && el->isSelected())
-      {
-        el->setSelected(false);
-        el->canvasElement()->update();
-      }
-    }
-  }
-  return res;
+    return res;
 }
 
 void GraphSubgraph::retrieveSelectedElementsIds(QList<QString> selection)
 {
-  if (isSelected())
-  {
-    selection.push_back(id());
-  }
-  foreach (GraphElement* el, content())
-  {
-    if (dynamic_cast<GraphSubgraph*>(el))
-    {
-      dynamic_cast<GraphSubgraph*>(el)->retrieveSelectedElementsIds(selection);
+    if (isSelected()) {
+        selection.push_back(id());
     }
-    else  if (el->isSelected())
-    {
-      selection.push_back(el->id());
+    foreach (GraphElement *el, content()) {
+        if (dynamic_cast<GraphSubgraph *>(el)) {
+            dynamic_cast<GraphSubgraph *>(el)->retrieveSelectedElementsIds(selection);
+        } else if (el->isSelected()) {
+            selection.push_back(el->id());
+        }
     }
-  }
 }
 
-QTextStream& operator<<(QTextStream& s, const GraphSubgraph& sg)
+QTextStream &operator<<(QTextStream &s, const GraphSubgraph &sg)
 {
-  s << "subgraph " << sg.id() << "  {" << endl
-    << "graph [ "
-    << dynamic_cast<const GraphElement&>(sg)
-    << " ] " << endl;
-  foreach (const GraphElement* el, sg.content())
-  {
-    s << *(dynamic_cast<const GraphNode*>(el));
-  }
-  s <<"}"<<endl;
-  return s;
+    s << "subgraph " << sg.id() << "  {" << endl << "graph [ " << dynamic_cast<const GraphElement &>(sg) << " ] " << endl;
+    foreach (const GraphElement *el, sg.content()) {
+        s << *(dynamic_cast<const GraphNode *>(el));
+    }
+    s << "}" << endl;
+    return s;
 }
 
 }

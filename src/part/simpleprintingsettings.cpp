@@ -30,8 +30,8 @@
 // #include <core/keximainwindow.h>
 // #include <kexiutils/utils.h>
 
-#include <QApplication>
 #include <KSharedConfig>
+#include <QApplication>
 // #include <kiconloader.h>
 // #include <kfontdialog.h>
 // #include <kurllabel.h>
@@ -51,21 +51,20 @@
 
 namespace KGraphViewer
 {
-  
 KGVSimplePrintingSettings::KGVSimplePrintingSettings()
 {
-	pageLayout = KgvPageLayout::standardLayout();
-	addPageNumbers = true;
-	addDateAndTime = true;
-	addTableBorders = false;
-	pageTitleFont = qApp->font();
-	pageTitleFont.setPointSizeF( (double)QFontInfo(pageTitleFont).pointSize()*1.5 );
-	pageTitleFont.setBold(true);
-  fittingMode = FitToOnePage;
-  fitToOnePage = true;
-  horizFitting = 0;
-  vertFitting = 0;
-  chainedFittings = true;
+    pageLayout = KgvPageLayout::standardLayout();
+    addPageNumbers = true;
+    addDateAndTime = true;
+    addTableBorders = false;
+    pageTitleFont = qApp->font();
+    pageTitleFont.setPointSizeF((double)QFontInfo(pageTitleFont).pointSize() * 1.5);
+    pageTitleFont.setBold(true);
+    fittingMode = FitToOnePage;
+    fitToOnePage = true;
+    horizFitting = 0;
+    vertFitting = 0;
+    chainedFittings = true;
 }
 
 KGVSimplePrintingSettings::~KGVSimplePrintingSettings()
@@ -74,68 +73,66 @@ KGVSimplePrintingSettings::~KGVSimplePrintingSettings()
 
 KGVSimplePrintingSettings KGVSimplePrintingSettings::load()
 {
-	KGVSimplePrintingSettings settings; //this will set defaults
+    KGVSimplePrintingSettings settings; // this will set defaults
 
-        KConfigGroup simplegroup(KSharedConfig::openConfig(), "Simple Printing");
-  
-// 	if (simplegroup.hasKey("pageTitleFont"))
-// 		settings.pageTitleFont = simplegroup.readFontEntry("pageTitleFont");
-//! @todo system default?
-	if (simplegroup.hasKey("pageFormat"))
-		settings.pageLayout.format = KgvPageFormat::formatFromString( 
-			simplegroup.readEntry("pageFormat" ) );
-	if (simplegroup.readEntry("pageOrientation", "portrait").toLower()=="landscape")
-		settings.pageLayout.orientation = PG_LANDSCAPE;
-	else
-		settings.pageLayout.orientation = PG_PORTRAIT;
-	if (simplegroup.hasKey("pageWidth"))
-		settings.pageLayout.ptWidth = simplegroup.readEntry("pageWidth",0.0);
-	if (simplegroup.hasKey("pageHeight"))
-		settings.pageLayout.ptHeight = simplegroup.readEntry("pageHeight",0.0);
-	if (simplegroup.hasKey("pageLeftMargin"))
-		settings.pageLayout.ptLeft = simplegroup.readEntry("pageLeftMargin",0.0);
-	if (simplegroup.hasKey("pageRightMargin"))
-		settings.pageLayout.ptRight = simplegroup.readEntry("pageRightMargin",0.0);
-	if (simplegroup.hasKey("pageTopMargin"))
-		settings.pageLayout.ptTop = simplegroup.readEntry("pageTopMargin",0.0);
-	if (simplegroup.hasKey("pageBottomMargin"))
-		settings.pageLayout.ptBottom = simplegroup.readEntry("pageBottomMargin", 0.0);
-	settings.addPageNumbers = simplegroup.readEntry("addPageNumbersToPage", true);
-	settings.addDateAndTime = simplegroup.readEntry("addDateAndTimePage", true);
-  settings.addTableBorders = simplegroup.readEntry("addTableBorders", false);
-  if (simplegroup.hasKey("fittingMode") && simplegroup.readEntry("fittingMode",0) <= FitToSeveralPages)
-    settings.fittingMode = FittingModes(simplegroup.readEntry("fittingMode",0));
-//   std::cerr << "fittingMode after loading: " << settings.fittingMode << std::endl;
-  settings.fitToOnePage = settings.fittingMode==FitToOnePage?true:false;
-  if (simplegroup.hasKey("horizFitting"))
-    settings.horizFitting = simplegroup.readEntry("horizFitting",0);
-  if (simplegroup.hasKey("vertFitting"))
-    settings.vertFitting = simplegroup.readEntry("vertFitting",0);
-  settings.chainedFittings = simplegroup.readEntry("chainedFittings", true);
-  return settings;
+    KConfigGroup simplegroup(KSharedConfig::openConfig(), "Simple Printing");
+
+    // 	if (simplegroup.hasKey("pageTitleFont"))
+    // 		settings.pageTitleFont = simplegroup.readFontEntry("pageTitleFont");
+    //! @todo system default?
+    if (simplegroup.hasKey("pageFormat"))
+        settings.pageLayout.format = KgvPageFormat::formatFromString(simplegroup.readEntry("pageFormat"));
+    if (simplegroup.readEntry("pageOrientation", "portrait").toLower() == "landscape")
+        settings.pageLayout.orientation = PG_LANDSCAPE;
+    else
+        settings.pageLayout.orientation = PG_PORTRAIT;
+    if (simplegroup.hasKey("pageWidth"))
+        settings.pageLayout.ptWidth = simplegroup.readEntry("pageWidth", 0.0);
+    if (simplegroup.hasKey("pageHeight"))
+        settings.pageLayout.ptHeight = simplegroup.readEntry("pageHeight", 0.0);
+    if (simplegroup.hasKey("pageLeftMargin"))
+        settings.pageLayout.ptLeft = simplegroup.readEntry("pageLeftMargin", 0.0);
+    if (simplegroup.hasKey("pageRightMargin"))
+        settings.pageLayout.ptRight = simplegroup.readEntry("pageRightMargin", 0.0);
+    if (simplegroup.hasKey("pageTopMargin"))
+        settings.pageLayout.ptTop = simplegroup.readEntry("pageTopMargin", 0.0);
+    if (simplegroup.hasKey("pageBottomMargin"))
+        settings.pageLayout.ptBottom = simplegroup.readEntry("pageBottomMargin", 0.0);
+    settings.addPageNumbers = simplegroup.readEntry("addPageNumbersToPage", true);
+    settings.addDateAndTime = simplegroup.readEntry("addDateAndTimePage", true);
+    settings.addTableBorders = simplegroup.readEntry("addTableBorders", false);
+    if (simplegroup.hasKey("fittingMode") && simplegroup.readEntry("fittingMode", 0) <= FitToSeveralPages)
+        settings.fittingMode = FittingModes(simplegroup.readEntry("fittingMode", 0));
+    //   std::cerr << "fittingMode after loading: " << settings.fittingMode << std::endl;
+    settings.fitToOnePage = settings.fittingMode == FitToOnePage ? true : false;
+    if (simplegroup.hasKey("horizFitting"))
+        settings.horizFitting = simplegroup.readEntry("horizFitting", 0);
+    if (simplegroup.hasKey("vertFitting"))
+        settings.vertFitting = simplegroup.readEntry("vertFitting", 0);
+    settings.chainedFittings = simplegroup.readEntry("chainedFittings", true);
+    return settings;
 }
 
 void KGVSimplePrintingSettings::save()
 {
-	KConfigGroup simplegroup(KSharedConfig::openConfig(), "Simple Printing");
+    KConfigGroup simplegroup(KSharedConfig::openConfig(), "Simple Printing");
 
-	simplegroup.writeEntry( "pageTitleFont", pageTitleFont );
-	simplegroup.writeEntry( "pageFormat", KgvPageFormat::formatString( pageLayout.format ) );
-	simplegroup.writeEntry("pageOrientation",
-		pageLayout.orientation == PG_PORTRAIT ? "portrait" : "landscape");
-	simplegroup.writeEntry("pageWidth", pageLayout.ptWidth);
-	simplegroup.writeEntry("pageHeight", pageLayout.ptHeight);
-	simplegroup.writeEntry("pageLeftMargin", pageLayout.ptLeft);
-	simplegroup.writeEntry("pageRightMargin", pageLayout.ptRight);
-	simplegroup.writeEntry("pageTopMargin", pageLayout.ptTop);
-	simplegroup.writeEntry("pageBottomMargin", pageLayout.ptBottom);
-	simplegroup.writeEntry("addPageNumbersToPage", addPageNumbers);
-  simplegroup.writeEntry("addDateAndTimePage", addDateAndTime);
-  simplegroup.writeEntry("addTableBorders", addTableBorders);
-  simplegroup.writeEntry("fittingMode", (int)fittingMode);
-  simplegroup.writeEntry("horizFitting", horizFitting);
-  simplegroup.writeEntry("vertFitting", vertFitting);
-  simplegroup.writeEntry("chainedFittings", chainedFittings);
+    simplegroup.writeEntry("pageTitleFont", pageTitleFont);
+    simplegroup.writeEntry("pageFormat", KgvPageFormat::formatString(pageLayout.format));
+    simplegroup.writeEntry("pageOrientation", pageLayout.orientation == PG_PORTRAIT ? "portrait" : "landscape");
+    simplegroup.writeEntry("pageWidth", pageLayout.ptWidth);
+    simplegroup.writeEntry("pageHeight", pageLayout.ptHeight);
+    simplegroup.writeEntry("pageLeftMargin", pageLayout.ptLeft);
+    simplegroup.writeEntry("pageRightMargin", pageLayout.ptRight);
+    simplegroup.writeEntry("pageTopMargin", pageLayout.ptTop);
+    simplegroup.writeEntry("pageBottomMargin", pageLayout.ptBottom);
+    simplegroup.writeEntry("addPageNumbersToPage", addPageNumbers);
+    simplegroup.writeEntry("addDateAndTimePage", addDateAndTime);
+    simplegroup.writeEntry("addTableBorders", addTableBorders);
+    simplegroup.writeEntry("fittingMode", (int)fittingMode);
+    simplegroup.writeEntry("horizFitting", horizFitting);
+    simplegroup.writeEntry("vertFitting", vertFitting);
+    simplegroup.writeEntry("chainedFittings", chainedFittings);
 }
 
 }

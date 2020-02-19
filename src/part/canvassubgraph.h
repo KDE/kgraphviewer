@@ -29,20 +29,17 @@ class QGraphicsScene;
 
 namespace KGraphViewer
 {
-  
 class GraphSubgraph;
 class DotGraphView;
 
-class CanvasSubgraph: public CanvasElement
+class CanvasSubgraph : public CanvasElement
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  CanvasSubgraph(
-      DotGraphView* v, 
-      GraphSubgraph* s,
-      QGraphicsScene* c,
-      QGraphicsItem* parent = nullptr);
-  ~CanvasSubgraph() override {}
+    CanvasSubgraph(DotGraphView *v, GraphSubgraph *s, QGraphicsScene *c, QGraphicsItem *parent = nullptr);
+    ~CanvasSubgraph() override
+    {
+    }
 
 protected:
 };
@@ -50,6 +47,3 @@ protected:
 }
 
 #endif
-
-
-

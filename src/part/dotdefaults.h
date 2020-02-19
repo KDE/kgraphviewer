@@ -32,4 +32,3 @@
 #define DOT_DEFAULT_NODE_BACKCOLOR "lightgrey"
 #define DOT_DEFAULT_BACKCOLOR "white"
 #endif
-

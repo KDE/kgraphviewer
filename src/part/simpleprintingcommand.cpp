@@ -26,271 +26,244 @@
  */
 
 #include "simpleprintingcommand.h"
-#include "simpleprintingsettings.h"
-#include "simpleprintingpagesetup.h"
-#include "simpleprintpreviewwindow.h"
 #include "kgraphviewerlib_debug.h"
+#include "simpleprintingpagesetup.h"
+#include "simpleprintingsettings.h"
+#include "simpleprintpreviewwindow.h"
 
 // #include <core/keximainwindow.h>
 // #include <kexiutils/utils.h>
 // #include <kexi_version.h>
 
 #include <QApplication>
-#include <QStandardPaths>
-#include <QIcon>
 #include <QFontDialog>
-#include <kurllabel.h>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QMessageBox>
+#include <QIcon>
 #include <QInputDialog>
+#include <QLineEdit>
+#include <QMessageBox>
 #include <QPrintDialog>
+#include <QPushButton>
+#include <QStandardPaths>
+#include <kurllabel.h>
 
-#include <QPrinter>
 #include <QPrintDialog>
+#include <QPrinter>
+#include <qcheckbox.h>
 #include <qlabel.h>
-#include <qtimer.h>
 #include <qlayout.h>
 #include <qpainter.h>
-#include <qcheckbox.h>
-#include <qtooltip.h>
 #include <qslider.h>
-//Added by qt3to4:
+#include <qtimer.h>
+#include <qtooltip.h>
+// Added by qt3to4:
 #include <QLinkedList>
-#include <QVBoxLayout>
 #include <QPageSize>
-#include <klocalizedstring.h>
+#include <QVBoxLayout>
 #include <iostream>
+#include <klocalizedstring.h>
 
 namespace KGraphViewer
 {
-KGVSimplePrintingCommand::KGVSimplePrintingCommand(
-  DotGraphView* mainWin, int objectId, QObject* parent)
- : QObject(parent)
- , m_previewEngine(nullptr)
- , m_graphView(mainWin)
- , m_objectId(objectId)
- , m_settings(new KGVSimplePrintingSettings(KGVSimplePrintingSettings::load()))
- , m_previewWindow(nullptr)
- , m_printPreviewNeedsReloading(true)
- , m_pageSetupDialog(nullptr)
+KGVSimplePrintingCommand::KGVSimplePrintingCommand(DotGraphView *mainWin, int objectId, QObject *parent)
+    : QObject(parent)
+    , m_previewEngine(nullptr)
+    , m_graphView(mainWin)
+    , m_objectId(objectId)
+    , m_settings(new KGVSimplePrintingSettings(KGVSimplePrintingSettings::load()))
+    , m_previewWindow(nullptr)
+    , m_printPreviewNeedsReloading(true)
+    , m_pageSetupDialog(nullptr)
 {
-  setObjectName("KGVSimplePrintCommand");
-  connect(this, &KGVSimplePrintingCommand::showPageSetupRequested,
-          this, &KGVSimplePrintingCommand::slotShowPageSetupRequested);
+    setObjectName("KGVSimplePrintCommand");
+    connect(this, &KGVSimplePrintingCommand::showPageSetupRequested, this, &KGVSimplePrintingCommand::slotShowPageSetupRequested);
 }
 
 KGVSimplePrintingCommand::~KGVSimplePrintingCommand()
 {
-  delete m_previewWindow;
-  delete m_previewEngine;
-  delete m_settings;
+    delete m_previewWindow;
+    delete m_previewEngine;
+    delete m_settings;
 }
 
-bool KGVSimplePrintingCommand::init(const QString& aTitleText)
+bool KGVSimplePrintingCommand::init(const QString &aTitleText)
 {
-  if (!m_previewEngine)
-    m_previewEngine = new KGVSimplePrintingEngine(m_settings, this);
+    if (!m_previewEngine)
+        m_previewEngine = new KGVSimplePrintingEngine(m_settings, this);
 
-  QString titleText(aTitleText.trimmed());
-  if (!m_previewWindow) 
-  {
-    QString errorMessage;
-    if (!m_previewEngine->init(
-      *m_graphView, titleText, errorMessage)) {
-      if (!errorMessage.isEmpty())
-        QMessageBox::warning(m_graphView, i18n("Print Preview"), errorMessage); 
-      return false;
+    QString titleText(aTitleText.trimmed());
+    if (!m_previewWindow) {
+        QString errorMessage;
+        if (!m_previewEngine->init(*m_graphView, titleText, errorMessage)) {
+            if (!errorMessage.isEmpty())
+                QMessageBox::warning(m_graphView, i18n("Print Preview"), errorMessage);
+            return false;
+        }
+        m_previewWindow = new KGVSimplePrintPreviewWindow(*m_previewEngine, QString(), nullptr);
+        connect(m_previewWindow, &KGVSimplePrintPreviewWindow::printRequested, this, [&]() { print(); });
+        connect(m_previewWindow, &KGVSimplePrintPreviewWindow::pageSetupRequested, this, &KGVSimplePrintingCommand::slotShowPageSetupRequested);
+        //     KDialog::centerOnScreen(m_previewWindow);
+        m_printPreviewNeedsReloading = false;
     }
-    m_previewWindow = new KGVSimplePrintPreviewWindow(
-      *m_previewEngine, QString(), nullptr);
-    connect(m_previewWindow, &KGVSimplePrintPreviewWindow::printRequested,
-            this, [&] () { print(); } );
-    connect(m_previewWindow, &KGVSimplePrintPreviewWindow::pageSetupRequested,
-            this, &KGVSimplePrintingCommand::slotShowPageSetupRequested);
-//     KDialog::centerOnScreen(m_previewWindow);
-    m_printPreviewNeedsReloading = false;
-  }
-  return true;
-}
-
-bool KGVSimplePrintingCommand::print(const QString& aTitleText)
-{
-  init(aTitleText);
-  m_previewEngine->clear();
-
-  //setup printing
-  QPrinter printer;
-  printer.setOrientation( m_settings->pageLayout.orientation == PG_PORTRAIT 
-    ? QPrinter::Portrait : QPrinter::Landscape );
-  printer.setPageSize( 
-    QPageSize( (QPageSize::PageSizeId)KgvPageFormat::printerPageSize( m_settings->pageLayout.format ) ) );
-// #endif
-
-  printer.setFullPage(true);
-  QString docName( aTitleText );
-  printer.setDocName( docName );
-  printer.setCreator("kgraphviewer");
-  QPointer<QPrintDialog> dlg = new QPrintDialog(&printer, m_graphView);
-  if (dlg->exec() != QDialog::Accepted) {
     return true;
-  }
-
-  // now we have final settings
-
-  //! @todo get printer.pageOrder() (for reversed order requires improved engine)
-  QPainter painter;
-
-  if (!painter.begin(&printer)) 
-  {
-    //! @todo msg
-    return false;
-  }
-  m_previewEngine->calculatePagesCount(painter);
-
-  uint loops, loopsPerPage;
-  QList<int> pagesToPrint;
-  int fromPage = 0;
-  // on !win32 print QPrinter::numCopies() times (the OS does not perform buffering)
-//   pagesToPrint = printer.pageList();
-//   qCDebug(KGRAPHVIEWERLIB_LOG) << pagesToPrint;
-  if (pagesToPrint.isEmpty()) 
-  {
-    fromPage = 0;
-    for (int i = 0; i<(int)m_previewEngine->pagesCount(); i++) 
-    {
-//       std::cerr << "Page " << i << " has to be printed" << std::endl;
-      pagesToPrint.append(i);
-    }
-  }
-  else
-    fromPage = pagesToPrint.first();
-  if (printer.collateCopies()) 
-  {
-    //collation: p1, p2,..pn; p1, p2,..pn; ......; p1, p2,..pn
-    loops = printer.numCopies();
-    loopsPerPage = 1;
-  }
-  else 
-  {
-    //no collation: p1, p1, ..., p1; p2, p2, ..., p2; ......; pn, pn,..pn
-    loops = 1; 
-    loopsPerPage = printer.numCopies();
-  }
-  //! @todo also look at printer.pageSet() option : all/odd/even pages
-// #endif
-  // now, total number of printed pages is printer.numCopies()*printer.pageList().count()
-
-//   qCDebug(KGRAPHVIEWERLIB_LOG) << "printing...";
-  bool firstPage = true;
-  for (uint copy = 0;copy < loops; copy++) 
-  {
-//     qCDebug(KGRAPHVIEWERLIB_LOG) << "copy " << (copy+1) << " of " << loops;
-//     std::cerr << "fromPage = " << fromPage << " ; eof = " << m_previewEngine->eof() << std::endl;
-    uint pageNumber = fromPage;
-    QList<int>::ConstIterator pagesIt = pagesToPrint.constBegin();
-    for(;(int)pageNumber == fromPage || !m_previewEngine->eof(); ++pageNumber) 
-    {
-//       std::cerr << "printing..." << std::endl;
-      if (pagesIt == pagesToPrint.constEnd()) //no more pages to print
-        break;
-      if ((int)pageNumber < *pagesIt) 
-      { //skip pages without printing (needed for computation)
-        m_previewEngine->paintPage(pageNumber, painter, false);
-        continue;
-      }
-      if (*pagesIt < (int)pageNumber) 
-      { //sanity
-        ++pagesIt;
-        continue;
-      }
-      for (uint onePageCounter = 0; onePageCounter < loopsPerPage; onePageCounter++) 
-      {
-        if (!firstPage)
-          printer.newPage();
-        else
-          firstPage = false;
-//         std::cerr << "page #" << pageNumber << std::endl;
-        m_previewEngine->paintPage(pageNumber, painter);
-      }
-      ++pagesIt;
-    }
-  }
-//   qCDebug(KGRAPHVIEWERLIB_LOG) << "end of printing.";
-
-  // stop painting, this will automatically send the print data to the printer
-  if (!painter.end())
-    return false;
-
-//   if (!m_previewEngine->done())
-//     return false;
-
-  return true;
 }
 
-bool KGVSimplePrintingCommand::showPrintPreview(const QString& aTitleText, bool reload)
+bool KGVSimplePrintingCommand::print(const QString &aTitleText)
 {
-  init(aTitleText);
-  
-  if (reload)
-    m_printPreviewNeedsReloading = true;
-  
-  if (m_printPreviewNeedsReloading) 
-  {//dirty
+    init(aTitleText);
     m_previewEngine->clear();
-    //! @todo progress bar...
-    m_previewEngine->setTitleText( aTitleText );
-    m_previewWindow->setFullWidth();
-    m_previewWindow->updatePagesCount();
-    m_printPreviewNeedsReloading = false;
-    m_previewWindow->goToPage(0);
-  }
-  m_previewWindow->show();
-  m_previewWindow->raise();
-  return true;
+
+    // setup printing
+    QPrinter printer;
+    printer.setOrientation(m_settings->pageLayout.orientation == PG_PORTRAIT ? QPrinter::Portrait : QPrinter::Landscape);
+    printer.setPageSize(QPageSize((QPageSize::PageSizeId)KgvPageFormat::printerPageSize(m_settings->pageLayout.format)));
+    // #endif
+
+    printer.setFullPage(true);
+    QString docName(aTitleText);
+    printer.setDocName(docName);
+    printer.setCreator("kgraphviewer");
+    QPointer<QPrintDialog> dlg = new QPrintDialog(&printer, m_graphView);
+    if (dlg->exec() != QDialog::Accepted) {
+        return true;
+    }
+
+    // now we have final settings
+
+    //! @todo get printer.pageOrder() (for reversed order requires improved engine)
+    QPainter painter;
+
+    if (!painter.begin(&printer)) {
+        //! @todo msg
+        return false;
+    }
+    m_previewEngine->calculatePagesCount(painter);
+
+    uint loops, loopsPerPage;
+    QList<int> pagesToPrint;
+    int fromPage = 0;
+    // on !win32 print QPrinter::numCopies() times (the OS does not perform buffering)
+    //   pagesToPrint = printer.pageList();
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) << pagesToPrint;
+    if (pagesToPrint.isEmpty()) {
+        fromPage = 0;
+        for (int i = 0; i < (int)m_previewEngine->pagesCount(); i++) {
+            //       std::cerr << "Page " << i << " has to be printed" << std::endl;
+            pagesToPrint.append(i);
+        }
+    } else
+        fromPage = pagesToPrint.first();
+    if (printer.collateCopies()) {
+        // collation: p1, p2,..pn; p1, p2,..pn; ......; p1, p2,..pn
+        loops = printer.numCopies();
+        loopsPerPage = 1;
+    } else {
+        // no collation: p1, p1, ..., p1; p2, p2, ..., p2; ......; pn, pn,..pn
+        loops = 1;
+        loopsPerPage = printer.numCopies();
+    }
+    //! @todo also look at printer.pageSet() option : all/odd/even pages
+    // #endif
+    // now, total number of printed pages is printer.numCopies()*printer.pageList().count()
+
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) << "printing...";
+    bool firstPage = true;
+    for (uint copy = 0; copy < loops; copy++) {
+        //     qCDebug(KGRAPHVIEWERLIB_LOG) << "copy " << (copy+1) << " of " << loops;
+        //     std::cerr << "fromPage = " << fromPage << " ; eof = " << m_previewEngine->eof() << std::endl;
+        uint pageNumber = fromPage;
+        QList<int>::ConstIterator pagesIt = pagesToPrint.constBegin();
+        for (; (int)pageNumber == fromPage || !m_previewEngine->eof(); ++pageNumber) {
+            //       std::cerr << "printing..." << std::endl;
+            if (pagesIt == pagesToPrint.constEnd()) // no more pages to print
+                break;
+            if ((int)pageNumber < *pagesIt) { // skip pages without printing (needed for computation)
+                m_previewEngine->paintPage(pageNumber, painter, false);
+                continue;
+            }
+            if (*pagesIt < (int)pageNumber) { // sanity
+                ++pagesIt;
+                continue;
+            }
+            for (uint onePageCounter = 0; onePageCounter < loopsPerPage; onePageCounter++) {
+                if (!firstPage)
+                    printer.newPage();
+                else
+                    firstPage = false;
+                //         std::cerr << "page #" << pageNumber << std::endl;
+                m_previewEngine->paintPage(pageNumber, painter);
+            }
+            ++pagesIt;
+        }
+    }
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) << "end of printing.";
+
+    // stop painting, this will automatically send the print data to the printer
+    if (!painter.end())
+        return false;
+
+    //   if (!m_previewEngine->done())
+    //     return false;
+
+    return true;
+}
+
+bool KGVSimplePrintingCommand::showPrintPreview(const QString &aTitleText, bool reload)
+{
+    init(aTitleText);
+
+    if (reload)
+        m_printPreviewNeedsReloading = true;
+
+    if (m_printPreviewNeedsReloading) { // dirty
+        m_previewEngine->clear();
+        //! @todo progress bar...
+        m_previewEngine->setTitleText(aTitleText);
+        m_previewWindow->setFullWidth();
+        m_previewWindow->updatePagesCount();
+        m_printPreviewNeedsReloading = false;
+        m_previewWindow->goToPage(0);
+    }
+    m_previewWindow->show();
+    m_previewWindow->raise();
+    return true;
 }
 
 void KGVSimplePrintingCommand::hidePageSetup()
 {
-  if (m_pageSetupDialog)
-  {
-    m_pageSetupDialog->hide();
-  }
+    if (m_pageSetupDialog) {
+        m_pageSetupDialog->hide();
+    }
 }
 
 void KGVSimplePrintingCommand::hidePrintPreview()
 {
-  if (m_previewWindow)
-  {
-    m_previewWindow->hide();
-  }
+    if (m_previewWindow) {
+        m_previewWindow->hide();
+    }
 }
 
 void KGVSimplePrintingCommand::slotShowPageSetupRequested()
 {
-  if (m_pageSetupDialog == nullptr)
-  {
-    m_pageSetupDialog = new QDialog(nullptr);
-    QMap<QString,QString> map;
-    map["action"]="pageSetup";
-    map["title"]=m_graphView->dotFileName();
-    QVBoxLayout *lyr = new QVBoxLayout(m_pageSetupDialog);
-    KGVSimplePrintingPageSetup* sppsb = new KGVSimplePrintingPageSetup(this, m_graphView, m_pageSetupDialog, &map);
-    if (m_previewWindow)
-    {
-      connect(sppsb, &KGVSimplePrintingPageSetup::needsRedraw,
-              m_previewWindow, &KGVSimplePrintPreviewWindow::slotRedraw);
+    if (m_pageSetupDialog == nullptr) {
+        m_pageSetupDialog = new QDialog(nullptr);
+        QMap<QString, QString> map;
+        map["action"] = "pageSetup";
+        map["title"] = m_graphView->dotFileName();
+        QVBoxLayout *lyr = new QVBoxLayout(m_pageSetupDialog);
+        KGVSimplePrintingPageSetup *sppsb = new KGVSimplePrintingPageSetup(this, m_graphView, m_pageSetupDialog, &map);
+        if (m_previewWindow) {
+            connect(sppsb, &KGVSimplePrintingPageSetup::needsRedraw, m_previewWindow, &KGVSimplePrintPreviewWindow::slotRedraw);
+        }
+        lyr->addWidget(sppsb);
     }
-    lyr->addWidget(sppsb);
-  }
-  m_pageSetupDialog->show();
-  m_pageSetupDialog->raise();
+    m_pageSetupDialog->show();
+    m_pageSetupDialog->raise();
 }
 
-void KGVSimplePrintingCommand::showPageSetup(const QString& aTitleText)
+void KGVSimplePrintingCommand::showPageSetup(const QString &aTitleText)
 {
-  init(aTitleText);
-  emit showPageSetupRequested();
+    init(aTitleText);
+    emit showPageSetupRequested();
 }
 
 }

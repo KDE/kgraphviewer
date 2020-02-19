@@ -27,76 +27,89 @@
 #include <QTextStream>
 
 #include "dotgrammar.h"
-#include "graphelement.h"
 #include "dotrenderop.h"
+#include "graphelement.h"
 
 #include <graphviz/gvc.h>
 
 namespace KGraphViewer
 {
-  
-  
 class CanvasSubgraph;
 class GraphSubgraph;
 
-typedef QMap<QString, GraphSubgraph*> GraphSubgraphMap;
-
+typedef QMap<QString, GraphSubgraph *> GraphSubgraphMap;
 
 /**
  * Colors and styles are DOT names
  */
 class GraphSubgraph : public GraphElement
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  GraphSubgraph();
-  explicit GraphSubgraph(graph_t* sg);
+    GraphSubgraph();
+    explicit GraphSubgraph(graph_t *sg);
 
-  ~GraphSubgraph() override {}
+    ~GraphSubgraph() override
+    {
+    }
 
-  inline const GraphSubgraphMap& subgraphs() const {return m_subgraphsMap;}
-  inline GraphSubgraphMap& subgraphs() {return m_subgraphsMap;}
-  
-  void updateWithSubgraph(const GraphSubgraph& subgraph);
-  void updateWithSubgraph(graph_t* subgraph);
-  
-  CanvasSubgraph* canvasSubgraph() { return (CanvasSubgraph*)canvasElement();  }
-  void setCanvasSubgraph(CanvasSubgraph* cs) { setCanvasElement((CanvasElement*)cs); }
+    inline const GraphSubgraphMap &subgraphs() const
+    {
+        return m_subgraphsMap;
+    }
+    inline GraphSubgraphMap &subgraphs()
+    {
+        return m_subgraphsMap;
+    }
 
-  QString backColor() const override;
+    void updateWithSubgraph(const GraphSubgraph &subgraph);
+    void updateWithSubgraph(graph_t *subgraph);
 
-  inline const QList<GraphElement*>& content() const {return m_content;}
-  inline QList<GraphElement*>& content() {return m_content;}
-  inline void setContent(QList<GraphElement*>& c) {m_content=c;}
+    CanvasSubgraph *canvasSubgraph()
+    {
+        return (CanvasSubgraph *)canvasElement();
+    }
+    void setCanvasSubgraph(CanvasSubgraph *cs)
+    {
+        setCanvasElement((CanvasElement *)cs);
+    }
 
-  void removeElement(GraphElement* element);
+    QString backColor() const override;
 
-  /// Recursively walk through this subgraph and its subsubgraphs to find an element named id
-  /// @return the node found or 0 if there is no such node
-  GraphElement* elementNamed(const QString& id);
+    inline const QList<GraphElement *> &content() const
+    {
+        return m_content;
+    }
+    inline QList<GraphElement *> &content()
+    {
+        return m_content;
+    }
+    inline void setContent(QList<GraphElement *> &c)
+    {
+        m_content = c;
+    }
 
+    void removeElement(GraphElement *element);
 
-  /// Recursively walk through this subgraph and its subsubgraphs to make
-  /// the given element selected or not depending on the selectValue parameter
-  /// and unselect other elements depending on the  unselect others parameter
-  /// @return true if the given node was found
-  virtual bool setElementSelected(
-      GraphElement* element,
-      bool selectValue,
-      bool unselectOthers);
+    /// Recursively walk through this subgraph and its subsubgraphs to find an element named id
+    /// @return the node found or 0 if there is no such node
+    GraphElement *elementNamed(const QString &id);
 
-  void retrieveSelectedElementsIds(QList<QString> selection);
-  
- private:
-  QList<GraphElement*> m_content;
-  GraphSubgraphMap m_subgraphsMap;
+    /// Recursively walk through this subgraph and its subsubgraphs to make
+    /// the given element selected or not depending on the selectValue parameter
+    /// and unselect other elements depending on the  unselect others parameter
+    /// @return true if the given node was found
+    virtual bool setElementSelected(GraphElement *element, bool selectValue, bool unselectOthers);
+
+    void retrieveSelectedElementsIds(QList<QString> selection);
+
+private:
+    QList<GraphElement *> m_content;
+    GraphSubgraphMap m_subgraphsMap;
 };
 
-QTextStream& operator<<(QTextStream& stream, const GraphSubgraph& s);
+QTextStream &operator<<(QTextStream &stream, const GraphSubgraph &s);
 
 }
 
 #endif
-
-
-

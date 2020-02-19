@@ -28,8 +28,8 @@
 #ifndef kgvpagelayoutheader_h
 #define kgvpagelayoutheader_h
 
-#include <KgvUnit.h>
 #include <KgvPageLayout.h>
+#include <KgvUnit.h>
 #include <ui_KgvPageLayoutHeaderBase.h>
 
 class QWidget;
@@ -38,7 +38,7 @@ class KgvUnitDoubleSpinBox;
 /**
  * This class is a widget that shows the KgvKWHeaderFooter data structure and allows the user to change it.
  */
-class KgvPageLayoutHeader : public QWidget, public Ui::KgvPageLayoutHeaderBase 
+class KgvPageLayoutHeader : public QWidget, public Ui::KgvPageLayoutHeaderBase
 {
     Q_OBJECT
 
@@ -53,7 +53,7 @@ public:
     /**
      * @return the altered data as it is currently set by the user.
      */
-    const KgvKWHeaderFooter& headerFooter();
+    const KgvKWHeaderFooter &headerFooter();
 
 private:
     KgvUnitDoubleSpinBox *m_headerSpacing, *m_footerSpacing, *m_footnoteSpacing;
@@ -62,4 +62,3 @@ private:
 };
 
 #endif
-

@@ -24,42 +24,39 @@
 
 void LoadAGraphThread::run()
 {
-  qCDebug(KGRAPHVIEWERLIB_LOG) << m_dotFileName;
-  FILE* fp = fopen(m_dotFileName.toUtf8().data(), "r");
-  if (!fp)
-  {
-      qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to open file " << m_dotFileName;
-      return;
-  }
-  m_g = agread(fp, nullptr);
-  if (!m_g)
-  {
-      qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to read file, retrying to work around graphviz bug(?)";
-      rewind(fp);
-      m_g = agread(fp, nullptr);
-  }
-  if (m_g == nullptr)
-  {
-      qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to read file " << m_dotFileName;
-  }
-  fclose(fp);
+    qCDebug(KGRAPHVIEWERLIB_LOG) << m_dotFileName;
+    FILE *fp = fopen(m_dotFileName.toUtf8().data(), "r");
+    if (!fp) {
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to open file " << m_dotFileName;
+        return;
+    }
+    m_g = agread(fp, nullptr);
+    if (!m_g) {
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to read file, retrying to work around graphviz bug(?)";
+        rewind(fp);
+        m_g = agread(fp, nullptr);
+    }
+    if (m_g == nullptr) {
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Failed to read file " << m_dotFileName;
+    }
+    fclose(fp);
 }
 
-void LoadAGraphThread::loadFile(const QString& dotFileName)
+void LoadAGraphThread::loadFile(const QString &dotFileName)
 {
-  // FIXME: deadlock possible
-  // if thread is still running or queued finished signal of the thread has not
-  // yet been delivered so its handler who would release the semaphore,
-  // then the semaphore can not be acquired and this will block the (main) thread
-  // which called LoadAGraphThread::loadFile().
-  // That one though very much might have also been the one which before invoked this
-  // method and thus the still running thread or yet-to-be delivered finished signal.
-  // But being blocked now, it will not reach its event loop where the queued finished
-  // signal of the thread would be processed and delivered, so in the further processing
-  // by the signal handler this semaphore would be released
-  // -> blocked ourselves without any escape
-  sem.acquire();
-  m_dotFileName = dotFileName;
-  m_g = nullptr;
-  start();
+    // FIXME: deadlock possible
+    // if thread is still running or queued finished signal of the thread has not
+    // yet been delivered so its handler who would release the semaphore,
+    // then the semaphore can not be acquired and this will block the (main) thread
+    // which called LoadAGraphThread::loadFile().
+    // That one though very much might have also been the one which before invoked this
+    // method and thus the still running thread or yet-to-be delivered finished signal.
+    // But being blocked now, it will not reach its event loop where the queued finished
+    // signal of the thread would be processed and delivered, so in the further processing
+    // by the signal handler this semaphore would be released
+    // -> blocked ourselves without any escape
+    sem.acquire();
+    m_dotFileName = dotFileName;
+    m_g = nullptr;
+    start();
 }

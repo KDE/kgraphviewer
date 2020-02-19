@@ -32,12 +32,12 @@
 
 #include <QButtonGroup>
 
-namespace Ui {
-  class KGVSimplePrintingPageSetupBase;
+namespace Ui
+{
+class KGVSimplePrintingPageSetupBase;
 }
 namespace KGraphViewer
 {
-
 class DotGraphView;
 class KGVSimplePrintingCommand;
 class KgvPageLayoutSize;
@@ -45,55 +45,54 @@ class KgvPageLayoutSize;
 //! @short A window for displaying settings for simple printing.
 class KGVSimplePrintingPageSetup : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		KGVSimplePrintingPageSetup(KGVSimplePrintingCommand* command, 
-      DotGraphView *mainWin, QWidget *parent, QMap<QString,QString>* args );
-		~KGVSimplePrintingPageSetup();
+public:
+    KGVSimplePrintingPageSetup(KGVSimplePrintingCommand *command, DotGraphView *mainWin, QWidget *parent, QMap<QString, QString> *args);
+    ~KGVSimplePrintingPageSetup();
 
-	public Q_SLOTS:
-		void slotPrint();
-		void slotPrintPreview();
+public Q_SLOTS:
+    void slotPrint();
+    void slotPrintPreview();
 
-	Q_SIGNALS:
-		void print(KGVSimplePrintingSettings* settings, const QString& titleText);
-		void printPreview(KGVSimplePrintingSettings* settings, const QString& titleText, bool reload);
-		void print();
-		void printPreview();
+Q_SIGNALS:
+    void print(KGVSimplePrintingSettings *settings, const QString &titleText);
+    void printPreview(KGVSimplePrintingSettings *settings, const QString &titleText, bool reload);
+    void print();
+    void printPreview();
     void needsRedraw();
 
-	protected Q_SLOTS:
-		void slotSaveSetup();
-		void slotChangeTitleFont();
-		void slotChangePageSizeAndMargins();
-		void slotAddPageNumbersCheckboxToggled(bool set);
-		void slotAddDateTimeCheckboxToggled(bool set);
-		void slotAddTableBordersCheckboxToggled(bool set);
-		void slotTitleTextChanged(const QString&);
+protected Q_SLOTS:
+    void slotSaveSetup();
+    void slotChangeTitleFont();
+    void slotChangePageSizeAndMargins();
+    void slotAddPageNumbersCheckboxToggled(bool set);
+    void slotAddDateTimeCheckboxToggled(bool set);
+    void slotAddTableBordersCheckboxToggled(bool set);
+    void slotTitleTextChanged(const QString &);
     void slotClose();
     void slotFittingButtonClicked(int id);
     void slotHorizFitChanged(int newValue);
     void slotVertFitChanged(int newValue);
     void slotMaintainAspectButtonToggled();
 
-	protected:
-		void setupPrintingCommand();
-		void updatePageLayoutAndUnitInfo();
-		void setDirty(bool set);
+protected:
+    void setupPrintingCommand();
+    void updatePageLayoutAndUnitInfo();
+    void setDirty(bool set);
 
-		KGVSimplePrintingSettings* m_settings;
+    KGVSimplePrintingSettings *m_settings;
 
-//		KGVSimplePrintingEngine *m_engine;
-//    get engine with m_command->engine()
+    //		KGVSimplePrintingEngine *m_engine;
+    //    get engine with m_command->engine()
 
-		KgvUnit::Unit m_unit;
-		Ui::KGVSimplePrintingPageSetupBase *m_contents;
-		KgvPageLayoutSize *m_pageLayoutWidget;
-		DotGraphView *m_graphView;
-		KGVSimplePrintingCommand *m_command;
-		bool m_printPreviewNeedsReloading : 1;
-  
+    KgvUnit::Unit m_unit;
+    Ui::KGVSimplePrintingPageSetupBase *m_contents;
+    KgvPageLayoutSize *m_pageLayoutWidget;
+    DotGraphView *m_graphView;
+    KGVSimplePrintingCommand *m_command;
+    bool m_printPreviewNeedsReloading : 1;
+
     QButtonGroup m_fittingModeButtons;
 };
 

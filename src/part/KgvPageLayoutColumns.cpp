@@ -32,50 +32,53 @@
 
 #include <qlabel.h>
 #include <qlayout.h>
-//Added by qt3to4:
+// Added by qt3to4:
 #include <QHBoxLayout>
 
-KgvPageLayoutColumns::KgvPageLayoutColumns(QWidget *parent, const KgvColumns& columns, KgvUnit::Unit unit, const KgvPageLayout& layout)
-    : QWidget(parent), Ui::KgvPageLayoutColumnsBase() 
+KgvPageLayoutColumns::KgvPageLayoutColumns(QWidget *parent, const KgvColumns &columns, KgvUnit::Unit unit, const KgvPageLayout &layout)
+    : QWidget(parent)
+    , Ui::KgvPageLayoutColumnsBase()
 {
     m_columns = columns;
     QHBoxLayout *lay = new QHBoxLayout(previewPane);
-    m_preview = new KgvPagePreview( previewPane, "Preview", layout );
+    m_preview = new KgvPagePreview(previewPane, "Preview", layout);
     lay->addWidget(m_preview);
     lay = new QHBoxLayout(columnSpacingPane);
-    m_spacing = new KgvUnitDoubleSpinBox( columnSpacingPane );
-    m_spacing->setValue(  m_columns.ptColumnSpacing );
-    m_spacing->setUnit( unit );
-    double dStep = KgvUnit::fromUserValue( 0.2, unit );
-    m_spacing->setMinMaxStep( 0, layout.ptWidth/2, dStep );
+    m_spacing = new KgvUnitDoubleSpinBox(columnSpacingPane);
+    m_spacing->setValue(m_columns.ptColumnSpacing);
+    m_spacing->setUnit(unit);
+    double dStep = KgvUnit::fromUserValue(0.2, unit);
+    m_spacing->setMinMaxStep(0, layout.ptWidth / 2, dStep);
     lay->addWidget(m_spacing);
-    labelSpacing->setBuddy( m_spacing );
-    nColumns->setValue( m_columns.columns );
-    m_preview->setPageColumns( m_columns );
+    labelSpacing->setBuddy(m_spacing);
+    nColumns->setValue(m_columns.columns);
+    m_preview->setPageColumns(m_columns);
 
-    connect(nColumns, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),
-            this, &KgvPageLayoutColumns::nColChanged);
-    connect(m_spacing, &KgvUnitDoubleSpinBox::valueChangedPt,
-            this, &KgvPageLayoutColumns::nSpaceChanged);
+    connect(nColumns, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &KgvPageLayoutColumns::nColChanged);
+    connect(m_spacing, &KgvUnitDoubleSpinBox::valueChangedPt, this, &KgvPageLayoutColumns::nSpaceChanged);
 }
 
-void KgvPageLayoutColumns::setEnableColumns(bool on) {
+void KgvPageLayoutColumns::setEnableColumns(bool on)
+{
     nColumns->setEnabled(on);
     m_spacing->setEnabled(on);
-    nColChanged(on ? nColumns->value(): 1 );
+    nColChanged(on ? nColumns->value() : 1);
 }
 
-void KgvPageLayoutColumns::nColChanged( int columns ) {
+void KgvPageLayoutColumns::nColChanged(int columns)
+{
     m_columns.columns = columns;
-    m_preview->setPageColumns( m_columns );
+    m_preview->setPageColumns(m_columns);
     emit propertyChange(m_columns);
 }
 
-void KgvPageLayoutColumns::nSpaceChanged( double spacing ) {
+void KgvPageLayoutColumns::nSpaceChanged(double spacing)
+{
     m_columns.ptColumnSpacing = spacing;
     emit propertyChange(m_columns);
 }
 
-void KgvPageLayoutColumns::setLayout(KgvPageLayout &layout) {
-    m_preview->setPageLayout( layout );
+void KgvPageLayoutColumns::setLayout(KgvPageLayout &layout)
+{
+    m_preview->setPageLayout(layout);
 }

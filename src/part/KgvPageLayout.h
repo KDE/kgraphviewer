@@ -77,72 +77,68 @@ enum KgvFormat {
 /**
  *  Represents the orientation of a printed document.
  */
-enum KgvOrientation {
-    PG_PORTRAIT = 0,
-    PG_LANDSCAPE = 1
-};
+enum KgvOrientation { PG_PORTRAIT = 0, PG_LANDSCAPE = 1 };
 
 namespace KgvPageFormat
 {
-    /**
-     * @brief Convert a KgvFormat into a QPageSize::PageSizeId.
-     *
-     * If format is 'screen' it will use A4 landscape.
-     * If format is 'custom' it will use A4 portrait.
-     * (you may want to take care of those cases separately).
-     * Usually passed to QPrinter::setPageSize().
-     *
-     * @note We return int instead of the enum to avoid including QPageSize
-     */
-    int /*QPageSize::PageSizeId*/ printerPageSize( KgvFormat format );
+/**
+ * @brief Convert a KgvFormat into a QPageSize::PageSizeId.
+ *
+ * If format is 'screen' it will use A4 landscape.
+ * If format is 'custom' it will use A4 portrait.
+ * (you may want to take care of those cases separately).
+ * Usually passed to QPrinter::setPageSize().
+ *
+ * @note We return int instead of the enum to avoid including QPageSize
+ */
+int /*QPageSize::PageSizeId*/ printerPageSize(KgvFormat format);
 
-    /**
-     * Returns the width (in mm) for a given page format and orientation
-     * 'Custom' isn't supported by this function, obviously.
-     */
-    double width( KgvFormat format, KgvOrientation orientation );
+/**
+ * Returns the width (in mm) for a given page format and orientation
+ * 'Custom' isn't supported by this function, obviously.
+ */
+double width(KgvFormat format, KgvOrientation orientation);
 
-    /**
-     * Returns the height (in mm) for a given page format and orientation
-     * 'Custom' isn't supported by this function, obviously.
-     */
-    double height( KgvFormat format, KgvOrientation orientation );
+/**
+ * Returns the height (in mm) for a given page format and orientation
+ * 'Custom' isn't supported by this function, obviously.
+ */
+double height(KgvFormat format, KgvOrientation orientation);
 
-    /**
-     * Returns the internal name of the given page format.
-     * Use for saving.
-     */
-    QString formatString( KgvFormat format );
+/**
+ * Returns the internal name of the given page format.
+ * Use for saving.
+ */
+QString formatString(KgvFormat format);
 
-    /**
-     * Convert a format string (internal name) to a page format value.
-     * Use for loading.
-     */
-    KgvFormat formatFromString( const QString & string );
+/**
+ * Convert a format string (internal name) to a page format value.
+ * Use for loading.
+ */
+KgvFormat formatFromString(const QString &string);
 
-    /**
-     * Returns the default format (based on the KControl settings)
-     */
-    KgvFormat defaultFormat();
+/**
+ * Returns the default format (based on the KControl settings)
+ */
+KgvFormat defaultFormat();
 
-    /**
-     * Returns the translated name of the given page format.
-     * Use for showing the user.
-     */
-    QString name( KgvFormat format );
+/**
+ * Returns the translated name of the given page format.
+ * Use for showing the user.
+ */
+QString name(KgvFormat format);
 
-    /**
-     * Lists the translated names of all the available formats
-     */
-    QStringList allFormats();
+/**
+ * Lists the translated names of all the available formats
+ */
+QStringList allFormats();
 
-    /**
-     * Try to find the paper format for the given width and height (in mm).
-     * Useful to some import filters.
-     */
-    KgvFormat guessFormat( double width, double height );
+/**
+ * Try to find the paper format for the given width and height (in mm).
+ * Useful to some import filters.
+ */
+KgvFormat guessFormat(double width, double height);
 }
-
 
 /**
  * @brief Header/Footer type.
@@ -151,18 +147,17 @@ namespace KgvPageFormat
  * In the long run this should be replaced with a more flexible repetition/section concept.
  */
 enum KgvHFType {
-    HF_SAME = 0,            ///< 0: Header/Footer is the same on all pages
-    HF_FIRST_EO_DIFF = 1,   ///< 1: Header/Footer is different on first, even and odd pages (2&3)
-    HF_FIRST_DIFF = 2,      ///< 2: Header/Footer for the first page differs
-    HF_EO_DIFF = 3          ///< 3: Header/Footer for even - odd pages are different
+    HF_SAME = 0,          ///< 0: Header/Footer is the same on all pages
+    HF_FIRST_EO_DIFF = 1, ///< 1: Header/Footer is different on first, even and odd pages (2&3)
+    HF_FIRST_DIFF = 2,    ///< 2: Header/Footer for the first page differs
+    HF_EO_DIFF = 3        ///< 3: Header/Footer for even - odd pages are different
 };
 
 /**
  * This structure defines the page layout, including
  * its size in pt, its format (e.g. A4), orientation, unit, margins etc.
  */
-struct KgvPageLayout
-{
+struct KgvPageLayout {
     /** Page format */
     KgvFormat format;
     /** Page orientation */
@@ -183,18 +178,13 @@ struct KgvPageLayout
     double ptPageEdge;
     double ptBindingSide;
 
-    bool operator==( const KgvPageLayout& l ) const {
-       return ( ptWidth == l.ptWidth &&
-                ptHeight == l.ptHeight &&
-                ptLeft == l.ptLeft &&
-                ptRight == l.ptRight &&
-                ptTop == l.ptTop &&
-                ptBottom == l.ptBottom &&
-                ptPageEdge == l.ptPageEdge &&
-                ptBindingSide == l.ptBindingSide);
+    bool operator==(const KgvPageLayout &l) const
+    {
+        return (ptWidth == l.ptWidth && ptHeight == l.ptHeight && ptLeft == l.ptLeft && ptRight == l.ptRight && ptTop == l.ptTop && ptBottom == l.ptBottom && ptPageEdge == l.ptPageEdge && ptBindingSide == l.ptBindingSide);
     }
-    bool operator!=( const KgvPageLayout& l ) const {
-        return !( (*this) == l );
+    bool operator!=(const KgvPageLayout &l) const
+    {
+        return !((*this) == l);
     }
 
     /**
@@ -206,8 +196,7 @@ struct KgvPageLayout
 };
 
 /** structure for header-footer */
-struct KgvHeadFoot
-{
+struct KgvHeadFoot {
     QString headLeft;
     QString headMid;
     QString headRight;
@@ -217,38 +206,35 @@ struct KgvHeadFoot
 };
 
 /** structure for columns */
-struct KgvColumns
-{
+struct KgvColumns {
     int columns;
     double ptColumnSpacing;
-    bool operator==( const KgvColumns& rhs ) const {
-        return columns == rhs.columns &&
-               qAbs(ptColumnSpacing - rhs.ptColumnSpacing) <= 1E-10;
+    bool operator==(const KgvColumns &rhs) const
+    {
+        return columns == rhs.columns && qAbs(ptColumnSpacing - rhs.ptColumnSpacing) <= 1E-10;
     }
-    bool operator!=( const KgvColumns& rhs ) const {
-        return columns != rhs.columns ||
-               qAbs(ptColumnSpacing - rhs.ptColumnSpacing) > 1E-10;
+    bool operator!=(const KgvColumns &rhs) const
+    {
+        return columns != rhs.columns || qAbs(ptColumnSpacing - rhs.ptColumnSpacing) > 1E-10;
     }
 };
 
 /** structure for KWord header-footer */
-struct KgvKWHeaderFooter
-{
+struct KgvKWHeaderFooter {
     KgvHFType header;
     KgvHFType footer;
     double ptHeaderBodySpacing;
     double ptFooterBodySpacing;
     double ptFootNoteBodySpacing;
-    bool operator==( const KgvKWHeaderFooter& rhs ) const {
-        return header == rhs.header && footer == rhs.footer &&
-               qAbs(ptHeaderBodySpacing - rhs.ptHeaderBodySpacing) <= 1E-10 &&
-               qAbs(ptFooterBodySpacing - rhs.ptFooterBodySpacing) <= 1E-10 &&
-               qAbs(ptFootNoteBodySpacing - rhs.ptFootNoteBodySpacing) <= 1E-10;
+    bool operator==(const KgvKWHeaderFooter &rhs) const
+    {
+        return header == rhs.header && footer == rhs.footer && qAbs(ptHeaderBodySpacing - rhs.ptHeaderBodySpacing) <= 1E-10 && qAbs(ptFooterBodySpacing - rhs.ptFooterBodySpacing) <= 1E-10 &&
+            qAbs(ptFootNoteBodySpacing - rhs.ptFootNoteBodySpacing) <= 1E-10;
     }
-    bool operator!=( const KgvKWHeaderFooter& rhs ) const {
-        return !( *this == rhs );
+    bool operator!=(const KgvKWHeaderFooter &rhs) const
+    {
+        return !(*this == rhs);
     }
 };
 
 #endif /* KOPAGELAYOUT_H */
-

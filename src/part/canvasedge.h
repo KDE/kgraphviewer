@@ -24,19 +24,17 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
 #ifndef CANVAS_EDGE_H
 #define CANVAS_EDGE_H
 
-#include <QGraphicsScene>
-#include <QGraphicsPathItem>
 #include <QAbstractGraphicsShapeItem>
-#include <QWidget>
-#include <QMap>
 #include <QFont>
+#include <QGraphicsPathItem>
+#include <QGraphicsScene>
+#include <QMap>
+#include <QWidget>
 
 #include "graphexporter.h"
-
 
 class QMenu;
 
@@ -51,7 +49,6 @@ struct DotRenderOp;
  */
 namespace KGraphViewer
 {
-
 class CanvasNode;
 class CanvasEdge;
 class GraphEdge;
@@ -59,60 +56,63 @@ class DotGraphView;
 
 class CanvasEdge : public QObject, public QAbstractGraphicsShapeItem
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-  explicit CanvasEdge(DotGraphView* v, GraphEdge*,
-             qreal scaleX, qreal scaleY,
-             qreal xMargin, qreal yMargin, qreal gh,
-             qreal wdhcf, qreal hdvcf, QGraphicsItem* parent = nullptr);
+    explicit CanvasEdge(DotGraphView *v, GraphEdge *, qreal scaleX, qreal scaleY, qreal xMargin, qreal yMargin, qreal gh, qreal wdhcf, qreal hdvcf, QGraphicsItem *parent = nullptr);
 
-  ~CanvasEdge() override;
-  
-  QRectF boundingRect() const override;
+    ~CanvasEdge() override;
 
-  QPainterPath shape () const override;
+    QRectF boundingRect() const override;
 
-  void paint(QPainter* p, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    QPainterPath shape() const override;
 
-  inline GraphEdge* edge() { return m_edge; }
-  inline const GraphEdge* edge() const { return m_edge; }
+    void paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-  inline void setGh(qreal gh) {m_gh = gh;}
-  
-  void computeBoundingRect();
+    inline GraphEdge *edge()
+    {
+        return m_edge;
+    }
+    inline const GraphEdge *edge() const
+    {
+        return m_edge;
+    }
+
+    inline void setGh(qreal gh)
+    {
+        m_gh = gh;
+    }
+
+    void computeBoundingRect();
 
 Q_SIGNALS:
-  void selected(CanvasEdge*, Qt::KeyboardModifiers);
-  void edgeContextMenuEvent(const QString&, const QPoint&);
-  void hoverEnter(CanvasEdge*);
-  void hoverLeave(CanvasEdge*);
-  
+    void selected(CanvasEdge *, Qt::KeyboardModifiers);
+    void edgeContextMenuEvent(const QString &, const QPoint &);
+    void hoverEnter(CanvasEdge *);
+    void hoverLeave(CanvasEdge *);
+
 public Q_SLOTS:
-  void modelChanged();
-  void slotRemoveEdge();
+    void modelChanged();
+    void slotRemoveEdge();
 
 protected:
-  void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
-  void hoverEnterEvent(QGraphicsSceneHoverEvent* event) override;
-  void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
-  
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
+
 private:
-  QPainterPath pathForSpline(int splineNum, const DotRenderOp& dro) const;
-  qreal distance(const QPointF& point1, const QPointF& point2);
-  
-  qreal m_scaleX, m_scaleY;
-  qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
-  GraphEdge* m_edge;
-  QRectF m_boundingRect;
-  QFont* m_font;
-  DotGraphView* m_view;
-  QMenu* m_popup;
-  mutable QPainterPath m_shape;
+    QPainterPath pathForSpline(int splineNum, const DotRenderOp &dro) const;
+    qreal distance(const QPointF &point1, const QPointF &point2);
+
+    qreal m_scaleX, m_scaleY;
+    qreal m_xMargin, m_yMargin, m_gh, m_wdhcf, m_hdvcf;
+    GraphEdge *m_edge;
+    QRectF m_boundingRect;
+    QFont *m_font;
+    DotGraphView *m_view;
+    QMenu *m_popup;
+    mutable QPainterPath m_shape;
 };
 
 }
 
 #endif
-
-
-

@@ -28,14 +28,14 @@
 #ifndef kgvpagelayoutsize_h
 #define kgvpagelayoutsize_h
 
-#include <QGroupBox>
 #include <QButtonGroup>
+#include <QGroupBox>
 // #include <KgvGlobal.h>
-#include <KgvUnit.h>
-#include <QDialog>
 #include <KgvPageLayout.h>
 #include <KgvPageLayoutDia.h>
+#include <KgvUnit.h>
 #include <QComboBox>
+#include <QDialog>
 
 class KComboBox;
 class KgvUnitDoubleSpinBox;
@@ -43,7 +43,8 @@ class KgvUnitDoubleSpinBox;
 /**
  * This class is a widget that shows the KgvPageLayout data structure and allows the user to change it.
  */
-class KgvPageLayoutSize : public QWidget {
+class KgvPageLayoutSize : public QWidget
+{
     Q_OBJECT
 
 public:
@@ -56,8 +57,7 @@ public:
      * @param unitChooser if true a combobox with the unit-type is shown for the user to change
      * @param enableBorders if true enable the user to change the margins (aka borders) of the page
      */
-    KgvPageLayoutSize(QWidget *parent, const KgvPageLayout& layout, KgvUnit::Unit unit,
-            const KgvColumns& columns, bool unitChooser, bool enableBorders);
+    KgvPageLayoutSize(QWidget *parent, const KgvPageLayout &layout, KgvUnit::Unit unit, const KgvColumns &columns, bool unitChooser, bool enableBorders);
 
     /**
      * @return if the dialog is in a sane state and the values can be used.
@@ -74,7 +74,7 @@ public Q_SLOTS:
      * Set a new unit for the widget updating the widgets.
      * @param unit the new unit
      */
-    void setUnit( KgvUnit::Unit unit );
+    void setUnit(KgvUnit::Unit unit);
     /**
      * Enable the user to edit the page border size
      * @param on if true enable the user to change the margins (aka borders) of the page
@@ -101,17 +101,17 @@ protected:
     KgvPagePreview *pgPreview;
     QGroupBox *m_orientGroup;
     QButtonGroup m_orientButtons;
-    
+
 protected Q_SLOTS:
-    void formatChanged( int );
-    void widthChanged( double );
-    void heightChanged( double );
-    void leftChanged( double );
-    void rightChanged( double );
-    void topChanged( double );
-    void bottomChanged( double );
-    void orientationChanged( int );
-    void setUnitInt( int unit );
+    void formatChanged(int);
+    void widthChanged(double);
+    void heightChanged(double);
+    void leftChanged(double);
+    void rightChanged(double);
+    void topChanged(double);
+    void bottomChanged(double);
+    void orientationChanged(int);
+    void setUnitInt(int unit);
 
 private:
     void updatePreview();

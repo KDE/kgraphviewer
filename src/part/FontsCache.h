@@ -16,7 +16,6 @@
    02110-1301, USA
 */
 
-
 #ifndef KGRAPHVIEWER_FONTSCACHE_H
 #define KGRAPHVIEWER_FONTSCACHE_H
 
@@ -32,22 +31,22 @@
  * @short A fonts map
  * @author Gaël de Chalendar <kleag@free.fr>
  */
-class FontsCache : 
-  public Singleton<FontsCache>,
-  public QMap<QString, QFont*>
+class FontsCache : public Singleton<FontsCache>, public QMap<QString, QFont *>
 {
-friend class Singleton<FontsCache>;
+    friend class Singleton<FontsCache>;
 
 public:
-  ~FontsCache();
+    ~FontsCache();
 
-  QFont* cachedFont(const QFont& font);
-  QFont* fromName(const QString& font);
+    QFont *cachedFont(const QFont &font);
+    QFont *fromName(const QString &font);
 
 private:
-  FontsCache() {}
+    FontsCache()
+    {
+    }
 
-  QMap<QString, QFont*> m_namesToFonts;
+    QMap<QString, QFont *> m_namesToFonts;
 };
 
 #endif

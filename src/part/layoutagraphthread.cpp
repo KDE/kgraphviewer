@@ -17,8 +17,8 @@
 
 */
 
-#include "kgraphviewerlib_debug.h"
 #include "layoutagraphthread.h"
+#include "kgraphviewerlib_debug.h"
 
 #include <QMutex>
 
@@ -31,42 +31,41 @@ static QMutex gv_mutex;
 
 int threadsafe_wrap_gvLayout(GVC_t *gvc, graph_t *g, const char *engine)
 {
-  QMutexLocker locker(&gv_mutex);
-  return gvLayout(gvc, g, engine);
+    QMutexLocker locker(&gv_mutex);
+    return gvLayout(gvc, g, engine);
 }
 
 int threadsafe_wrap_gvRender(GVC_t *gvc, graph_t *g, const char *format, FILE *out)
 {
-  QMutexLocker locker(&gv_mutex);
-  return gvRender(gvc, g, format, out);
+    QMutexLocker locker(&gv_mutex);
+    return gvRender(gvc, g, format, out);
 }
 
-LayoutAGraphThread::LayoutAGraphThread() : sem(1)
+LayoutAGraphThread::LayoutAGraphThread()
+    : sem(1)
 {
-  m_gvc = gvContext();
+    m_gvc = gvContext();
 }
 
 LayoutAGraphThread::~LayoutAGraphThread()
 {
-  gvFreeContext(m_gvc);
+    gvFreeContext(m_gvc);
 }
 
 void LayoutAGraphThread::run()
 {
-  if (!m_g)
-  {
-    qCWarning(KGRAPHVIEWERLIB_LOG) << "No graph loaded, skipping layout";
-    return;
-  }
-  threadsafe_wrap_gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
-  threadsafe_wrap_gvRender(m_gvc, m_g, "xdot", nullptr);
+    if (!m_g) {
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "No graph loaded, skipping layout";
+        return;
+    }
+    threadsafe_wrap_gvLayout(m_gvc, m_g, m_layoutCommand.toUtf8().data());
+    threadsafe_wrap_gvRender(m_gvc, m_g, "xdot", nullptr);
 }
 
-void LayoutAGraphThread::layoutGraph(graph_t* graph, const QString& layoutCommand)
+void LayoutAGraphThread::layoutGraph(graph_t *graph, const QString &layoutCommand)
 {
-  sem.acquire();
-  m_g = graph;
-  m_layoutCommand = layoutCommand;
-  start();
+    sem.acquire();
+    m_g = graph;
+    m_layoutCommand = layoutCommand;
+    start();
 }
-

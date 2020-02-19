@@ -26,381 +26,372 @@
  */
 
 #include "kgraphviewerlib_debug.h"
-#include <KgvPageLayoutSize.h>
 #include <KgvPageLayoutDia.h>
+#include <KgvPageLayoutSize.h>
 #include <KgvUnit.h>
 #include <KgvUnitWidgets.h>
 
+#include <QDebug>
 #include <QIcon>
 #include <QMessageBox>
-#include <QDebug>
 
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qradiobutton.h>
-//Added by qt3to4:
-#include <QHBoxLayout>
-#include <QGridLayout>
-#include <QPixmap>
-#include <KIconTheme>
+// Added by qt3to4:
 #include "klocalizedstring.h"
+#include <KIconTheme>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QPixmap>
 
-KgvPageLayoutSize::KgvPageLayoutSize(
-  QWidget *parent, 
-  const KgvPageLayout& layout, 
-  KgvUnit::Unit unit,
-  const KgvColumns& columns,  
-  bool unitChooser, 
-  bool enableBorders)
-    : QWidget(parent), 
-      m_blockSignals(false) 
+KgvPageLayoutSize::KgvPageLayoutSize(QWidget *parent, const KgvPageLayout &layout, KgvUnit::Unit unit, const KgvColumns &columns, bool unitChooser, bool enableBorders)
+    : QWidget(parent)
+    , m_blockSignals(false)
 {
     m_layout = layout;
     m_unit = unit;
 
-    QGridLayout *grid1 = new QGridLayout( this );
-    if ( unitChooser ) {
+    QGridLayout *grid1 = new QGridLayout(this);
+    if (unitChooser) {
         // ------------- unit _______________
-        QWidget* unitFrame = new QWidget( this );
-        grid1->addWidget( unitFrame, 0, 0, Qt::AlignLeft );
-        QBoxLayout* unitLayout = new QHBoxLayout( unitFrame );
+        QWidget *unitFrame = new QWidget(this);
+        grid1->addWidget(unitFrame, 0, 0, Qt::AlignLeft);
+        QBoxLayout *unitLayout = new QHBoxLayout(unitFrame);
 
         // label unit
-        QLabel *lpgUnit = new QLabel( i18n( "Unit:" ), unitFrame );
-        unitLayout->addWidget( lpgUnit, 0, Qt::AlignRight | Qt::AlignVCenter );
+        QLabel *lpgUnit = new QLabel(i18n("Unit:"), unitFrame);
+        unitLayout->addWidget(lpgUnit, 0, Qt::AlignRight | Qt::AlignVCenter);
 
         // combo unit
-        QComboBox *cpgUnit = new QComboBox( unitFrame );
-        lpgUnit->setBuddy( cpgUnit );
-        cpgUnit->addItems( KgvUnit::listOfUnitName() );
-        cpgUnit->setCurrentIndex( unit );
-        unitLayout->addWidget( cpgUnit, 0, Qt::AlignLeft | Qt::AlignVCenter );
-        connect(cpgUnit, static_cast<void(QComboBox::*)(int)>(&QComboBox::activated),
-                this, &KgvPageLayoutSize::setUnitInt);
-    }
-    else {
-        QString str=KgvUnit::unitDescription(unit);
+        QComboBox *cpgUnit = new QComboBox(unitFrame);
+        lpgUnit->setBuddy(cpgUnit);
+        cpgUnit->addItems(KgvUnit::listOfUnitName());
+        cpgUnit->setCurrentIndex(unit);
+        unitLayout->addWidget(cpgUnit, 0, Qt::AlignLeft | Qt::AlignVCenter);
+        connect(cpgUnit, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &KgvPageLayoutSize::setUnitInt);
+    } else {
+        QString str = KgvUnit::unitDescription(unit);
 
-        QLabel *lpgUnit = new QLabel( i18n("All values are given in %1.",str), this );
-        grid1->addWidget( lpgUnit, 0, 0, Qt::AlignLeft );
+        QLabel *lpgUnit = new QLabel(i18n("All values are given in %1.", str), this);
+        grid1->addWidget(lpgUnit, 0, 0, Qt::AlignLeft);
     }
 
     // -------------- page size -----------------
-    QGroupBox* formatFrame = new QGroupBox( i18n( "Page Size" ), this );
-    grid1->addWidget( formatFrame, 1, 0 );
+    QGroupBox *formatFrame = new QGroupBox(i18n("Page Size"), this);
+    grid1->addWidget(formatFrame, 1, 0);
     QVBoxLayout *vlay = new QVBoxLayout;
 
-    QWidget *formatPageSize = new QWidget( formatFrame );
+    QWidget *formatPageSize = new QWidget(formatFrame);
     vlay->addWidget(formatPageSize);
-//     formatPageSize->setSpacing( KDialog::spacingHint() );
+    //     formatPageSize->setSpacing( KDialog::spacingHint() );
 
     // label page size
-    QLabel *lpgFormat = new QLabel( i18n( "&Size:" ), formatPageSize );
+    QLabel *lpgFormat = new QLabel(i18n("&Size:"), formatPageSize);
 
     // combo size
-    cpgFormat = new QComboBox( formatPageSize );
-    cpgFormat->addItems( KgvPageFormat::allFormats() );
-    lpgFormat->setBuddy( cpgFormat );
-    connect(cpgFormat, static_cast<void(QComboBox::*)(int)>(&QComboBox::activated),
-            this, &KgvPageLayoutSize::formatChanged);
+    cpgFormat = new QComboBox(formatPageSize);
+    cpgFormat->addItems(KgvPageFormat::allFormats());
+    lpgFormat->setBuddy(cpgFormat);
+    connect(cpgFormat, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &KgvPageLayoutSize::formatChanged);
     QHBoxLayout *lay = new QHBoxLayout;
     lay->addWidget(lpgFormat);
     lay->addWidget(cpgFormat);
     formatPageSize->setLayout(lay);
     // spacer
-//     formatPageSize->setStretchFactor( new QWidget( formatPageSize ), 10 );
+    //     formatPageSize->setStretchFactor( new QWidget( formatPageSize ), 10 );
 
     QHBoxLayout *lay2 = new QHBoxLayout;
-    QWidget *formatCustomSize = new QWidget( formatFrame );
+    QWidget *formatCustomSize = new QWidget(formatFrame);
     vlay->addWidget(formatCustomSize);
     formatFrame->setLayout(vlay);
-//     formatCustomSize->setSpacing( KDialog::spacingHint() );
+    //     formatCustomSize->setSpacing( KDialog::spacingHint() );
 
     // label width
-    QLabel *lpgWidth = new QLabel( i18n( "&Width:" ), formatCustomSize );
+    QLabel *lpgWidth = new QLabel(i18n("&Width:"), formatCustomSize);
     lay2->addWidget(lpgWidth);
     // linedit width
     epgWidth = new KgvUnitDoubleSpinBox(formatCustomSize);
     lay2->addWidget(epgWidth);
-    lpgWidth->setBuddy( epgWidth );
-    if ( m_layout.format != PG_CUSTOM )
-        epgWidth->setEnabled( false );
-    connect(epgWidth, &KgvUnitDoubleSpinBox::valueChangedPt,
-            this, &KgvPageLayoutSize::widthChanged);
+    lpgWidth->setBuddy(epgWidth);
+    if (m_layout.format != PG_CUSTOM)
+        epgWidth->setEnabled(false);
+    connect(epgWidth, &KgvUnitDoubleSpinBox::valueChangedPt, this, &KgvPageLayoutSize::widthChanged);
 
     // label height
-    QLabel *lpgHeight = new QLabel( i18n( "&Height:" ), formatCustomSize );
+    QLabel *lpgHeight = new QLabel(i18n("&Height:"), formatCustomSize);
     lay2->addWidget(lpgHeight);
 
     // linedit height
     epgHeight = new KgvUnitDoubleSpinBox(formatCustomSize);
     lay2->addWidget(epgHeight);
-    lpgHeight->setBuddy( epgHeight );
-    if ( m_layout.format != PG_CUSTOM )
-        epgHeight->setEnabled( false );
-    connect(epgHeight, &KgvUnitDoubleSpinBox::valueChangedPt,
-            this, &KgvPageLayoutSize::heightChanged);
+    lpgHeight->setBuddy(epgHeight);
+    if (m_layout.format != PG_CUSTOM)
+        epgHeight->setEnabled(false);
+    connect(epgHeight, &KgvUnitDoubleSpinBox::valueChangedPt, this, &KgvPageLayoutSize::heightChanged);
     formatCustomSize->setLayout(lay2);
-    
+
     // --------------- orientation ---------------
     QHBoxLayout *lay3 = new QHBoxLayout;
-    m_orientGroup = new QGroupBox( i18n( "Orientation" ), this );
-//     m_orientGroup->setInsideSpacing( KDialog::spacingHint() );
-    grid1->addWidget( m_orientGroup, 2, 0 );
+    m_orientGroup = new QGroupBox(i18n("Orientation"), this);
+    //     m_orientGroup->setInsideSpacing( KDialog::spacingHint() );
+    grid1->addWidget(m_orientGroup, 2, 0);
 
     const int iconSize = KIconTheme(KIconTheme::current()).defaultSize(KIconLoader::Small);
-    QLabel* lbPortrait = new QLabel( m_orientGroup );
-    lbPortrait->setPixmap( QPixmap( QIcon::fromTheme( "koPortrait" ).pixmap(iconSize, iconSize) ) );
-    lbPortrait->setMaximumWidth( lbPortrait->pixmap()->width() );
+    QLabel *lbPortrait = new QLabel(m_orientGroup);
+    lbPortrait->setPixmap(QPixmap(QIcon::fromTheme("koPortrait").pixmap(iconSize, iconSize)));
+    lbPortrait->setMaximumWidth(lbPortrait->pixmap()->width());
     lay3->addWidget(lbPortrait);
-    QRadioButton* rbPortrait = new QRadioButton( i18n("&Portrait"), m_orientGroup );
+    QRadioButton *rbPortrait = new QRadioButton(i18n("&Portrait"), m_orientGroup);
     lay3->addWidget(rbPortrait);
     m_orientButtons.addButton(rbPortrait);
-  
-    QLabel* lbLandscape = new QLabel( m_orientGroup );
-    lbLandscape->setPixmap( QPixmap( QIcon::fromTheme( "koLandscape" ).pixmap(iconSize, iconSize) ) );
-    lbLandscape->setMaximumWidth( lbLandscape->pixmap()->width() );
+
+    QLabel *lbLandscape = new QLabel(m_orientGroup);
+    lbLandscape->setPixmap(QPixmap(QIcon::fromTheme("koLandscape").pixmap(iconSize, iconSize)));
+    lbLandscape->setMaximumWidth(lbLandscape->pixmap()->width());
     lay3->addWidget(lbLandscape);
-    QRadioButton* rbLandscape = new QRadioButton( i18n("La&ndscape"), m_orientGroup );
+    QRadioButton *rbLandscape = new QRadioButton(i18n("La&ndscape"), m_orientGroup);
     lay3->addWidget(rbLandscape);
     m_orientGroup->setLayout(lay3);
     m_orientButtons.addButton(rbLandscape);
-    
-    connect(&m_orientButtons, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked),
-            this, &KgvPageLayoutSize::orientationChanged);
-    
+
+    connect(&m_orientButtons, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KgvPageLayoutSize::orientationChanged);
+
     // --------------- page margins ---------------
-    QGroupBox* marginsFrame = new QGroupBox( i18n( "Margins" ), this );
-//     marginsFrame->setColumnLayout( 0, Qt::Vertical );
-//     marginsFrame->setMargin( KDialog::marginHint() );
-    grid1->addWidget( marginsFrame, 3, 0 );
-    
-    QWidget* marginsWidget = new QWidget(marginsFrame);
-    QGridLayout *marginsLayout = new QGridLayout( marginsFrame );
+    QGroupBox *marginsFrame = new QGroupBox(i18n("Margins"), this);
+    //     marginsFrame->setColumnLayout( 0, Qt::Vertical );
+    //     marginsFrame->setMargin( KDialog::marginHint() );
+    grid1->addWidget(marginsFrame, 3, 0);
+
+    QWidget *marginsWidget = new QWidget(marginsFrame);
+    QGridLayout *marginsLayout = new QGridLayout(marginsFrame);
 
     // left margin
     ebrLeft = new KgvUnitDoubleSpinBox(marginsWidget);
-    marginsLayout->addWidget( ebrLeft, 1, 0 );
-    connect(ebrLeft, &KgvUnitDoubleSpinBox::valueChangedPt,
-            this, &KgvPageLayoutSize::leftChanged);
+    marginsLayout->addWidget(ebrLeft, 1, 0);
+    connect(ebrLeft, &KgvUnitDoubleSpinBox::valueChangedPt, this, &KgvPageLayoutSize::leftChanged);
 
     // right margin
     ebrRight = new KgvUnitDoubleSpinBox(marginsWidget);
-    marginsLayout->addWidget( ebrRight, 1, 2 );
-    connect(ebrRight, &KgvUnitDoubleSpinBox::valueChangedPt,
-            this, &KgvPageLayoutSize::rightChanged);
+    marginsLayout->addWidget(ebrRight, 1, 2);
+    connect(ebrRight, &KgvUnitDoubleSpinBox::valueChangedPt, this, &KgvPageLayoutSize::rightChanged);
 
     // top margin
     ebrTop = new KgvUnitDoubleSpinBox(marginsWidget);
-    marginsLayout->addWidget( ebrTop, 0, 1 , Qt::AlignCenter );
-    connect(ebrTop, &KgvUnitDoubleSpinBox::valueChangedPt,
-            this, &KgvPageLayoutSize::topChanged);
+    marginsLayout->addWidget(ebrTop, 0, 1, Qt::AlignCenter);
+    connect(ebrTop, &KgvUnitDoubleSpinBox::valueChangedPt, this, &KgvPageLayoutSize::topChanged);
 
     // bottom margin
     ebrBottom = new KgvUnitDoubleSpinBox(marginsWidget);
-    marginsLayout->addWidget( ebrBottom, 2, 1, Qt::AlignCenter );
-    connect(ebrBottom, &KgvUnitDoubleSpinBox::valueChangedPt,
-            this, &KgvPageLayoutSize::bottomChanged);
+    marginsLayout->addWidget(ebrBottom, 2, 1, Qt::AlignCenter);
+    connect(ebrBottom, &KgvUnitDoubleSpinBox::valueChangedPt, this, &KgvPageLayoutSize::bottomChanged);
 
     marginsFrame->setLayout(marginsLayout);
 
     // ------------- preview -----------
-    pgPreview = new KgvPagePreview( this, "Preview", m_layout );
-    grid1->addWidget( pgPreview, 1, 1, 3, 1 );
+    pgPreview = new KgvPagePreview(this, "Preview", m_layout);
+    grid1->addWidget(pgPreview, 1, 1, 3, 1);
 
     // ------------- spacers -----------
-    QWidget* spacer1 = new QWidget( this );
-    QWidget* spacer2 = new QWidget( this );
-    spacer1->setSizePolicy( QSizePolicy( QSizePolicy::Expanding,
-       QSizePolicy::Expanding ) );
-    spacer2->setSizePolicy( QSizePolicy( QSizePolicy::Expanding,
-       QSizePolicy::Expanding ) );
-    grid1->addWidget( spacer1, 4, 0 );
-    grid1->addWidget( spacer2, 4, 1 );
+    QWidget *spacer1 = new QWidget(this);
+    QWidget *spacer2 = new QWidget(this);
+    spacer1->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
+    spacer2->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
+    grid1->addWidget(spacer1, 4, 0);
+    grid1->addWidget(spacer2, 4, 1);
 
     setValues();
     updatePreview();
-    pgPreview->setPageColumns( columns );
+    pgPreview->setPageColumns(columns);
     setEnableBorders(enableBorders);
 }
 
-void KgvPageLayoutSize::setEnableBorders(bool on) {
+void KgvPageLayoutSize::setEnableBorders(bool on)
+{
     m_haveBorders = on;
-    ebrLeft->setEnabled( on );
-    ebrRight->setEnabled( on );
-    ebrTop->setEnabled( on );
-    ebrBottom->setEnabled( on );
+    ebrLeft->setEnabled(on);
+    ebrRight->setEnabled(on);
+    ebrTop->setEnabled(on);
+    ebrBottom->setEnabled(on);
 
     // update m_layout
-    m_layout.ptLeft = on?ebrLeft->value():0;
-    m_layout.ptRight = on?ebrRight->value():0;
-    m_layout.ptTop = on?ebrTop->value():0;
-    m_layout.ptBottom = on?ebrBottom->value():0;
+    m_layout.ptLeft = on ? ebrLeft->value() : 0;
+    m_layout.ptRight = on ? ebrRight->value() : 0;
+    m_layout.ptTop = on ? ebrTop->value() : 0;
+    m_layout.ptBottom = on ? ebrBottom->value() : 0;
 
     // use updated m_layout
     updatePreview();
     emit propertyChange(m_layout);
 }
 
-void KgvPageLayoutSize::updatePreview() {
-    pgPreview->setPageLayout( m_layout );
+void KgvPageLayoutSize::updatePreview()
+{
+    pgPreview->setPageLayout(m_layout);
 }
 
-void KgvPageLayoutSize::setValues() {
+void KgvPageLayoutSize::setValues()
+{
     // page format
-    cpgFormat->setCurrentIndex( m_layout.format );
+    cpgFormat->setCurrentIndex(m_layout.format);
     // orientation
-//     m_orientGroup->setButton( m_layout.orientation == PG_PORTRAIT ? 0: 1 );
+    //     m_orientGroup->setButton( m_layout.orientation == PG_PORTRAIT ? 0: 1 );
 
-    setUnit( m_unit );
+    setUnit(m_unit);
     updatePreview();
 }
 
-void KgvPageLayoutSize::setUnit( KgvUnit::Unit unit ) {
+void KgvPageLayoutSize::setUnit(KgvUnit::Unit unit)
+{
     m_unit = unit;
     m_blockSignals = true; // due to non-atomic changes the propertyChange emits should be blocked
 
-    epgWidth->setUnit( m_unit );
-    epgWidth->setMinMaxStep( 0, KgvUnit::fromUserValue( 9999, m_unit ), KgvUnit::fromUserValue( 0.01, m_unit ) );
-    epgWidth->changeValue( m_layout.ptWidth );
+    epgWidth->setUnit(m_unit);
+    epgWidth->setMinMaxStep(0, KgvUnit::fromUserValue(9999, m_unit), KgvUnit::fromUserValue(0.01, m_unit));
+    epgWidth->changeValue(m_layout.ptWidth);
 
-    epgHeight->setUnit( m_unit );
-    epgHeight->setMinMaxStep( 0, KgvUnit::fromUserValue( 9999, m_unit ), KgvUnit::fromUserValue( 0.01, m_unit ) );
-    epgHeight->changeValue( m_layout.ptHeight );
+    epgHeight->setUnit(m_unit);
+    epgHeight->setMinMaxStep(0, KgvUnit::fromUserValue(9999, m_unit), KgvUnit::fromUserValue(0.01, m_unit));
+    epgHeight->changeValue(m_layout.ptHeight);
 
-    double dStep = KgvUnit::fromUserValue( 0.2, m_unit );
+    double dStep = KgvUnit::fromUserValue(0.2, m_unit);
 
-    ebrLeft->setUnit( m_unit );
-    ebrLeft->changeValue( m_layout.ptLeft );
-    ebrLeft->setMinMaxStep( 0, m_layout.ptWidth, dStep );
+    ebrLeft->setUnit(m_unit);
+    ebrLeft->changeValue(m_layout.ptLeft);
+    ebrLeft->setMinMaxStep(0, m_layout.ptWidth, dStep);
 
-    ebrRight->setUnit( m_unit );
-    ebrRight->changeValue( m_layout.ptRight );
-    ebrRight->setMinMaxStep( 0, m_layout.ptWidth, dStep );
+    ebrRight->setUnit(m_unit);
+    ebrRight->changeValue(m_layout.ptRight);
+    ebrRight->setMinMaxStep(0, m_layout.ptWidth, dStep);
 
-    ebrTop->setUnit( m_unit );
-    ebrTop->changeValue( m_layout.ptTop );
-    ebrTop->setMinMaxStep( 0, m_layout.ptHeight, dStep );
+    ebrTop->setUnit(m_unit);
+    ebrTop->changeValue(m_layout.ptTop);
+    ebrTop->setMinMaxStep(0, m_layout.ptHeight, dStep);
 
-    ebrBottom->setUnit( m_unit );
-    ebrBottom->changeValue( m_layout.ptBottom );
-    ebrBottom->setMinMaxStep( 0, m_layout.ptHeight, dStep );
+    ebrBottom->setUnit(m_unit);
+    ebrBottom->changeValue(m_layout.ptBottom);
+    ebrBottom->setMinMaxStep(0, m_layout.ptHeight, dStep);
 
     m_blockSignals = false;
 }
 
-void KgvPageLayoutSize::setUnitInt( int unit ) {
+void KgvPageLayoutSize::setUnitInt(int unit)
+{
     setUnit((KgvUnit::Unit)unit);
 }
 
-void KgvPageLayoutSize::formatChanged( int format ) {
-    if ( ( KgvFormat )format == m_layout.format )
+void KgvPageLayoutSize::formatChanged(int format)
+{
+    if ((KgvFormat)format == m_layout.format)
         return;
-    m_layout.format = ( KgvFormat )format;
-    bool enable =  (KgvFormat) format == PG_CUSTOM;
-    epgWidth->setEnabled( enable );
-    epgHeight->setEnabled( enable );
+    m_layout.format = (KgvFormat)format;
+    bool enable = (KgvFormat)format == PG_CUSTOM;
+    epgWidth->setEnabled(enable);
+    epgHeight->setEnabled(enable);
 
-    if ( m_layout.format != PG_CUSTOM ) {
-        m_layout.ptWidth = MM_TO_POINT( KgvPageFormat::width(
-                    m_layout.format, m_layout.orientation ) );
-        m_layout.ptHeight = MM_TO_POINT( KgvPageFormat::height(
-                    m_layout.format, m_layout.orientation ) );
+    if (m_layout.format != PG_CUSTOM) {
+        m_layout.ptWidth = MM_TO_POINT(KgvPageFormat::width(m_layout.format, m_layout.orientation));
+        m_layout.ptHeight = MM_TO_POINT(KgvPageFormat::height(m_layout.format, m_layout.orientation));
     }
 
-    epgWidth->changeValue( m_layout.ptWidth );
-    epgHeight->changeValue( m_layout.ptHeight );
+    epgWidth->changeValue(m_layout.ptWidth);
+    epgHeight->changeValue(m_layout.ptHeight);
 
-    updatePreview( );
+    updatePreview();
     emit propertyChange(m_layout);
 }
 
-void KgvPageLayoutSize::orientationChanged(int which) 
+void KgvPageLayoutSize::orientationChanged(int which)
 {
-  qCDebug(KGRAPHVIEWERLIB_LOG) << "KgvPageLayoutSize::orientationChanged";
-  m_layout.orientation = which == 0 ? PG_PORTRAIT : PG_LANDSCAPE;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "KgvPageLayoutSize::orientationChanged";
+    m_layout.orientation = which == 0 ? PG_PORTRAIT : PG_LANDSCAPE;
 
-  // swap dimension
-  double val = epgWidth->value();
-  epgWidth->changeValue(epgHeight->value());
-  epgHeight->changeValue(val);
-  // and adjust margins
-  m_blockSignals = true;
-  val = ebrTop->value();
-  if(m_layout.orientation == PG_PORTRAIT) 
-  { // clockwise
-    ebrTop->changeValue(ebrRight->value());
-    ebrRight->changeValue(ebrBottom->value());
-    ebrBottom->changeValue(ebrLeft->value());
-    ebrLeft->changeValue(val);
-  } 
-  else 
-  { // counter clockwise
-    ebrTop->changeValue(ebrLeft->value());
-    ebrLeft->changeValue(ebrBottom->value());
-    ebrBottom->changeValue(ebrRight->value());
-    ebrRight->changeValue(val);
-  }
-  m_blockSignals = false;
+    // swap dimension
+    double val = epgWidth->value();
+    epgWidth->changeValue(epgHeight->value());
+    epgHeight->changeValue(val);
+    // and adjust margins
+    m_blockSignals = true;
+    val = ebrTop->value();
+    if (m_layout.orientation == PG_PORTRAIT) { // clockwise
+        ebrTop->changeValue(ebrRight->value());
+        ebrRight->changeValue(ebrBottom->value());
+        ebrBottom->changeValue(ebrLeft->value());
+        ebrLeft->changeValue(val);
+    } else { // counter clockwise
+        ebrTop->changeValue(ebrLeft->value());
+        ebrLeft->changeValue(ebrBottom->value());
+        ebrBottom->changeValue(ebrRight->value());
+        ebrRight->changeValue(val);
+    }
+    m_blockSignals = false;
 
-  setEnableBorders(m_haveBorders); // will update preview+emit
+    setEnableBorders(m_haveBorders); // will update preview+emit
 }
 
-void KgvPageLayoutSize::widthChanged(double width) {
-    if(m_blockSignals) return;
+void KgvPageLayoutSize::widthChanged(double width)
+{
+    if (m_blockSignals)
+        return;
     m_layout.ptWidth = width;
     updatePreview();
     emit propertyChange(m_layout);
 }
-void KgvPageLayoutSize::heightChanged(double height) {
-    if(m_blockSignals) return;
+void KgvPageLayoutSize::heightChanged(double height)
+{
+    if (m_blockSignals)
+        return;
     m_layout.ptHeight = height;
-    updatePreview( );
+    updatePreview();
     emit propertyChange(m_layout);
 }
-void KgvPageLayoutSize::leftChanged( double left ) {
-    if(m_blockSignals) return;
+void KgvPageLayoutSize::leftChanged(double left)
+{
+    if (m_blockSignals)
+        return;
     m_layout.ptLeft = left;
     updatePreview();
     emit propertyChange(m_layout);
 }
-void KgvPageLayoutSize::rightChanged(double right) {
-    if(m_blockSignals) return;
+void KgvPageLayoutSize::rightChanged(double right)
+{
+    if (m_blockSignals)
+        return;
     m_layout.ptRight = right;
     updatePreview();
     emit propertyChange(m_layout);
 }
-void KgvPageLayoutSize::topChanged(double top) {
-    if(m_blockSignals) return;
+void KgvPageLayoutSize::topChanged(double top)
+{
+    if (m_blockSignals)
+        return;
     m_layout.ptTop = top;
     updatePreview();
     emit propertyChange(m_layout);
 }
-void KgvPageLayoutSize::bottomChanged(double bottom) {
-    if(m_blockSignals) return;
+void KgvPageLayoutSize::bottomChanged(double bottom)
+{
+    if (m_blockSignals)
+        return;
     m_layout.ptBottom = bottom;
     updatePreview();
     emit propertyChange(m_layout);
 }
 
-bool KgvPageLayoutSize::queryClose() {
-    if ( m_layout.ptLeft + m_layout.ptRight > m_layout.ptWidth ) {
-        QMessageBox::critical( this,
-            i18n("Page Layout Problem"),
-            i18n("The page width is smaller than the left and right margins.")
-        );
+bool KgvPageLayoutSize::queryClose()
+{
+    if (m_layout.ptLeft + m_layout.ptRight > m_layout.ptWidth) {
+        QMessageBox::critical(this, i18n("Page Layout Problem"), i18n("The page width is smaller than the left and right margins."));
         return false;
     }
-    if ( m_layout.ptTop + m_layout.ptBottom > m_layout.ptHeight ) {
-        QMessageBox::critical( this,
-            i18n("Page Layout Problem"),
-            i18n("The page height is smaller than the top and bottom margins.")
-        );
+    if (m_layout.ptTop + m_layout.ptBottom > m_layout.ptHeight) {
+        QMessageBox::critical(this, i18n("Page Layout Problem"), i18n("The page height is smaller than the top and bottom margins."));
         return false;
     }
     return true;
 }
 
-void KgvPageLayoutSize::setColumns(KgvColumns &columns) {
+void KgvPageLayoutSize::setColumns(KgvColumns &columns)
+{
     pgPreview->setPageColumns(columns);
 }

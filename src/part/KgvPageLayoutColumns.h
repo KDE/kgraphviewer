@@ -30,8 +30,8 @@
 #ifndef kgvpagelayoutcolumns_h
 #define kgvpagelayoutcolumns_h
 
-#include <KgvUnit.h>
 #include <KgvPageLayout.h>
+#include <KgvUnit.h>
 #include <ui_KgvPageLayoutColumnsBase.h>
 
 class QWidget;
@@ -41,7 +41,8 @@ class KgvPagePreview;
 /**
  * This class is a widget that shows the KgvColumns data structure and allows the user to change it.
  */
-class KgvPageLayoutColumns : public QWidget, public Ui::KgvPageLayoutColumnsBase {
+class KgvPageLayoutColumns : public QWidget, public Ui::KgvPageLayoutColumnsBase
+{
     Q_OBJECT
 
 public:
@@ -52,7 +53,7 @@ public:
      * @param unit the unit-type (mm/cm/inch) that the dialog should show
      * @param layout the page layout that the preview should be initialized with.
      */
-    KgvPageLayoutColumns(QWidget *parent, const KgvColumns& columns, KgvUnit::Unit unit, const KgvPageLayout& layout);
+    KgvPageLayoutColumns(QWidget *parent, const KgvColumns &columns, KgvUnit::Unit unit, const KgvPageLayout &layout);
 
     /**
      * Update the page preview widget with the param layout.
@@ -76,8 +77,8 @@ protected:
     KgvUnitDoubleSpinBox *m_spacing;
 
 private Q_SLOTS:
-    void nColChanged( int );
-    void nSpaceChanged( double );
+    void nColChanged(int);
+    void nSpaceChanged(double);
 };
 
 #endif

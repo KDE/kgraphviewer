@@ -24,23 +24,22 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
 /*
  * Callgraph View
  */
 
-#include "dotgraphview.h"
 #include "pannerview.h"
+#include "dotgraphview.h"
 #include "kgraphviewerlib_debug.h"
 
-#include <stdlib.h>
-#include <math.h>
 #include <iostream>
+#include <math.h>
+#include <stdlib.h>
 
-#include <QGraphicsScene>
-#include <QPainter>
-#include <QMouseEvent>
 #include <QDebug>
+#include <QGraphicsScene>
+#include <QMouseEvent>
+#include <QPainter>
 
 #include <klocalizedstring.h>
 
@@ -49,136 +48,130 @@ namespace KGraphViewer
 //
 // PannerView
 //
-PannerView::PannerView(DotGraphView * parent)
-  : QGraphicsView(parent), m_drawContents(true), m_parent(parent)
+PannerView::PannerView(DotGraphView *parent)
+    : QGraphicsView(parent)
+    , m_drawContents(true)
+    , m_parent(parent)
 {
-  m_movingZoomRect = false;
+    m_movingZoomRect = false;
 
-  // why doesn't this avoid flicker ?
-  // viewport()->setBackgroundMode(Qt::NoBackground);
+    // why doesn't this avoid flicker ?
+    // viewport()->setBackgroundMode(Qt::NoBackground);
 
-  // if there are ever graphic glitches to be found, remove this again
-  setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing | QGraphicsView::DontClipPainter |
-                        QGraphicsView::DontSavePainterState);
+    // if there are ever graphic glitches to be found, remove this again
+    setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing | QGraphicsView::DontClipPainter | QGraphicsView::DontSavePainterState);
 
-  setToolTip(i18n("View of the complete graph. Click and drag to move the visible part."));
-  setWhatsThis(i18n("<h1>View of the Complete Graph</h1>"
-    "<p>Single clicking somewhere without the red square will move the center of the "
-    "view to where the mouse was clicked.</p><p>Clicking and dragging within the red square "
-    "will cause the view to follow the movement.</p>"));
+    setToolTip(i18n("View of the complete graph. Click and drag to move the visible part."));
+    setWhatsThis(
+        i18n("<h1>View of the Complete Graph</h1>"
+             "<p>Single clicking somewhere without the red square will move the center of the "
+             "view to where the mouse was clicked.</p><p>Clicking and dragging within the red square "
+             "will cause the view to follow the movement.</p>"));
 }
 
 void PannerView::setZoomRect(QRectF r)
 {
-//   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::setZoomRect " << r;
-  if (r == m_zoomRect) {
-    return;
-  }
-  scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
-  // get new zoom rect
-  m_zoomRect = r;
-  qreal q = mapToScene(15,0).x();
-  if (!m_zoomRect.isValid() || m_zoomRect.width() < q || m_zoomRect.height() < q) 
-  {
-    double factor = ((double)m_zoomRect.width())/m_zoomRect.height();
-    qreal newWidth, newHeight;
-    if (factor < 1.0)
-    {
-      newWidth = q;
-      newHeight = newWidth/factor;
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::setZoomRect " << r;
+    if (r == m_zoomRect) {
+        return;
     }
-    else
-    {
-      newHeight = q;
-      newWidth = newHeight*factor;
+    scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
+    // get new zoom rect
+    m_zoomRect = r;
+    qreal q = mapToScene(15, 0).x();
+    if (!m_zoomRect.isValid() || m_zoomRect.width() < q || m_zoomRect.height() < q) {
+        double factor = ((double)m_zoomRect.width()) / m_zoomRect.height();
+        qreal newWidth, newHeight;
+        if (factor < 1.0) {
+            newWidth = q;
+            newHeight = newWidth / factor;
+        } else {
+            newHeight = q;
+            newWidth = newHeight * factor;
+        }
+        qreal newXPos = m_zoomRect.x() + (m_zoomRect.width() - newWidth) / 2;
+        qreal newYPos = m_zoomRect.y() + (m_zoomRect.height() - newHeight) / 2;
+        m_zoomRect.setX(newXPos);
+        m_zoomRect.setY(newYPos);
+        m_zoomRect.setWidth(newWidth);
+        m_zoomRect.setHeight(newHeight);
     }
-    qreal newXPos = m_zoomRect.x() + (m_zoomRect.width() - newWidth)/2;
-    qreal newYPos = m_zoomRect.y() + (m_zoomRect.height() - newHeight)/2;
-    m_zoomRect.setX(newXPos);
-    m_zoomRect.setY(newYPos);
-    m_zoomRect.setWidth(newWidth);
-    m_zoomRect.setHeight(newHeight);
-  }
-  scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
+    scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
 }
 
-void PannerView::moveZoomRectTo(const QPointF& newPos, bool notify)
+void PannerView::moveZoomRectTo(const QPointF &newPos, bool notify)
 {
-  if (!m_zoomRect.isValid()) {
-    return;
-  }
-
-  if (m_zoomRect.center() == newPos) {
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "same pos, don't do anything";
-    return;
-  }
-
-  scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
-  m_zoomRect.moveCenter(newPos);
-  scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
-
-  if (m_zoomRect.isValid() && notify) {
-    emit zoomRectMovedTo(newPos);
-    m_lastPos = newPos;
-  }
-}
-
-void PannerView::drawForeground(QPainter * p, const QRectF & rect )
-{
-  if (m_zoomRect.isValid() && rect.intersects(m_zoomRect))
-  {
-    p->save();
-    if (m_zoomRect.width() > 10 && m_zoomRect.height() > 10)
-    {
-      p->setPen(Qt::red);
-      // subtract pen width, i.e. draw inside
-      qreal penWidth = p->pen().widthF();
-      p->drawRect(m_zoomRect.adjusted(-penWidth, -penWidth, -penWidth, -penWidth));
+    if (!m_zoomRect.isValid()) {
+        return;
     }
-    else
-    {
-      QBrush brush(Qt::red);
-      p->fillRect(m_zoomRect, brush);
+
+    if (m_zoomRect.center() == newPos) {
+        qCDebug(KGRAPHVIEWERLIB_LOG) << "same pos, don't do anything";
+        return;
     }
-    p->restore();
-  }
+
+    scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
+    m_zoomRect.moveCenter(newPos);
+    scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
+
+    if (m_zoomRect.isValid() && notify) {
+        emit zoomRectMovedTo(newPos);
+        m_lastPos = newPos;
+    }
 }
 
-void PannerView::mousePressEvent(QMouseEvent* e)
+void PannerView::drawForeground(QPainter *p, const QRectF &rect)
 {
-  if (e->button() != Qt::LeftButton) {
-    return;
-  }
-/*  qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mousePressEvent " 
-              << mapToScene(e->pos()) << " / " << m_zoomRect << " / " << m_zoomRect.center() <<endl;*/
-  moveZoomRectTo(mapToScene(e->pos()));
-  m_movingZoomRect = true;
+    if (m_zoomRect.isValid() && rect.intersects(m_zoomRect)) {
+        p->save();
+        if (m_zoomRect.width() > 10 && m_zoomRect.height() > 10) {
+            p->setPen(Qt::red);
+            // subtract pen width, i.e. draw inside
+            qreal penWidth = p->pen().widthF();
+            p->drawRect(m_zoomRect.adjusted(-penWidth, -penWidth, -penWidth, -penWidth));
+        } else {
+            QBrush brush(Qt::red);
+            p->fillRect(m_zoomRect, brush);
+        }
+        p->restore();
+    }
 }
 
-void PannerView::mouseMoveEvent(QMouseEvent* e)
+void PannerView::mousePressEvent(QMouseEvent *e)
 {
-  if (!m_movingZoomRect) {
-    return;
-  }
-
-//   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mouseMoveEvent " << pos;
-  moveZoomRectTo(mapToScene(e->pos()));
+    if (e->button() != Qt::LeftButton) {
+        return;
+    }
+    /*  qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mousePressEvent "
+                  << mapToScene(e->pos()) << " / " << m_zoomRect << " / " << m_zoomRect.center() <<endl;*/
+    moveZoomRectTo(mapToScene(e->pos()));
+    m_movingZoomRect = true;
 }
 
-void PannerView::mouseReleaseEvent(QMouseEvent* e)
+void PannerView::mouseMoveEvent(QMouseEvent *e)
 {
-  if (e->button() != Qt::LeftButton) {
-    return;
-  }
-  moveZoomRectTo(mapToScene(e->pos()));
-//   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mouseReleaseEvent " << pos;
-  m_movingZoomRect = false;
-  emit zoomRectMoveFinished();
+    if (!m_movingZoomRect) {
+        return;
+    }
+
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mouseMoveEvent " << pos;
+    moveZoomRectTo(mapToScene(e->pos()));
 }
 
-void PannerView::contextMenuEvent(QContextMenuEvent* event)
+void PannerView::mouseReleaseEvent(QMouseEvent *e)
 {
-  m_parent->contextMenuEvent(event);
+    if (e->button() != Qt::LeftButton) {
+        return;
+    }
+    moveZoomRectTo(mapToScene(e->pos()));
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mouseReleaseEvent " << pos;
+    m_movingZoomRect = false;
+    emit zoomRectMoveFinished();
+}
+
+void PannerView::contextMenuEvent(QContextMenuEvent *event)
+{
+    m_parent->contextMenuEvent(event);
 }
 
 }

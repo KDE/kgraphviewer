@@ -16,134 +16,117 @@
    02110-1301, USA
 */
 
-
 #include "kgraphviewer.h"
 #include "kgraphviewer_debug.h"
 
+#include "config-kgraphviewer.h"
+#include "kgraphvieweradaptor.h"
+#include <KAboutData>
 #include <QApplication>
-#include <kaboutdata.h>
-#include <QCommandLineParser>
-#include <QMessageBox>
-#include <QDebug>
-#include <iostream>
-#include <QDir>
 #include <QByteArray>
-#include <QDBusInterface>
+#include <QCommandLineParser>
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
+#include <QDBusInterface>
 #include <QDBusReply>
+#include <QDebug>
+#include <QDir>
+#include <QMessageBox>
+#include <iostream>
+#include <kaboutdata.h>
 #include <klocalizedstring.h>
-#include <KAboutData>
-#include "kgraphvieweradaptor.h"
-#include "config-kgraphviewer.h"
 
 int main(int argc, char **argv)
 {
-  QApplication app(argc, argv);
+    QApplication app(argc, argv);
 
-  KLocalizedString::setApplicationDomain("kgraphviewer");
+    KLocalizedString::setApplicationDomain("kgraphviewer");
 
-  KAboutData about(QStringLiteral("kgraphviewer"),
-                   i18n("KGraphViewer"),
-                   KGRAPHVIEWER_VERSION_STRING,
-                   i18n("A Graphviz DOT graph viewer"),
-                   KAboutLicense::GPL,
-                   i18n("(C) 2005-2010 Gaël de Chalendar"),
-                   QString(),
-                   QStringLiteral("https://www.kde.org/applications/graphics/kgraphviewer"));
-  about.addAuthor( i18n("Gaël de Chalendar"), i18n("Original Author and current maintainer"), "kleag@free.fr" );
-  about.addAuthor( i18n("Reimar Döffinger"), i18n("Contributor"), "kde@reimardoeffinger.de" );
-  about.addAuthor( i18n("Matthias Peinhardt"), i18n("Contributor"), "matthias.peinhardt@googlemail.com" );
-  about.addAuthor( i18n("Sandro Andrade"), i18n("Contributor"), "sandro.andrade@gmail.com" );
-  about.addAuthor( i18n("Milian Wolff"), i18n("Contributor"), "mail@milianw.de" );
-  about.addAuthor( i18n("Martin Sandsmark"), i18n("Port to KF5"), "martin.sandsmark@kde.org" );
-  
-  app.setOrganizationDomain(QStringLiteral("kde.org"));
-  app.setOrganizationName(QStringLiteral("KDE"));
+    KAboutData about(QStringLiteral("kgraphviewer"),
+                     i18n("KGraphViewer"),
+                     KGRAPHVIEWER_VERSION_STRING,
+                     i18n("A Graphviz DOT graph viewer"),
+                     KAboutLicense::GPL,
+                     i18n("(C) 2005-2010 Gaël de Chalendar"),
+                     QString(),
+                     QStringLiteral("https://www.kde.org/applications/graphics/kgraphviewer"));
+    about.addAuthor(i18n("Gaël de Chalendar"), i18n("Original Author and current maintainer"), "kleag@free.fr");
+    about.addAuthor(i18n("Reimar Döffinger"), i18n("Contributor"), "kde@reimardoeffinger.de");
+    about.addAuthor(i18n("Matthias Peinhardt"), i18n("Contributor"), "matthias.peinhardt@googlemail.com");
+    about.addAuthor(i18n("Sandro Andrade"), i18n("Contributor"), "sandro.andrade@gmail.com");
+    about.addAuthor(i18n("Milian Wolff"), i18n("Contributor"), "mail@milianw.de");
+    about.addAuthor(i18n("Martin Sandsmark"), i18n("Port to KF5"), "martin.sandsmark@kde.org");
 
-  KAboutData::setApplicationData(about);
+    app.setOrganizationDomain(QStringLiteral("kde.org"));
+    app.setOrganizationName(QStringLiteral("KDE"));
 
-  app.setWindowIcon(QIcon::fromTheme("kgraphviewer", app.windowIcon()));
+    KAboutData::setApplicationData(about);
 
-  QCommandLineParser options;
-  options.addHelpOption();
-  options.addVersionOption();
-  options.addPositionalArgument(QStringLiteral("url"), i18n("Path or URL to scan"), i18n("[url]"));
-  about.setupCommandLine(&options);
-  options.process(app);
-  about.processCommandLine(&options);
-  
-// see if we are starting with session management
-  if (app.isSessionRestored())
-  {
-    RESTORE(KGraphViewerWindow);
-  }
-  else
-  {
-      // no session.. just start up normally
-      QStringList args = options.positionalArguments();
+    app.setWindowIcon(QIcon::fromTheme("kgraphviewer", app.windowIcon()));
 
-      KGraphViewerWindow *widget = nullptr;
-      if ( args.count() == 0 )
-      {
-        widget = new KGraphViewerWindow;
-        new KgraphviewerAdaptor(widget);
-        QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
-        widget->show();
-      }
-      else
-      {
-        QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered( "org.kde.kgraphviewer" );
-      
-        bool instanceExists = reply.value();
-  
-        for (int i = 0; i < args.count(); i++ )
-        {
-          if (instanceExists 
-              && (QMessageBox::question(nullptr,
-                                        i18n("Opening in new window confirmation"),
-                                        i18n("A KGraphViewer window is already open, where do you want to open this file in the existing window?"))
-              == QMessageBox::Yes))
-          {
-            QByteArray tosenddata;
-            QDataStream arg(&tosenddata, QIODevice::WriteOnly);
-            QString strarg = args[i];
-            QUrl url;
-            if (strarg.left(1) == "/")
-              url = QUrl::fromUserInput(strarg);
-            else url = QUrl::fromLocalFile(QDir::currentPath() + '/' + strarg);
-            arg << url;
-            QDBusInterface iface("org.kde.kgraphviewer", "/KGraphViewer", "", QDBusConnection::sessionBus());
-            if (iface.isValid()) 
-            {
-              QDBusReply<void> reply = iface.call("openUrl", url.url(QUrl::PreferLocalFile));
-              if (reply.isValid()) 
-              {
-                qCWarning(KGRAPHVIEWER_LOG) << "Reply was valid";
-                return 0;
-              }
+    QCommandLineParser options;
+    options.addHelpOption();
+    options.addVersionOption();
+    options.addPositionalArgument(QStringLiteral("url"), i18n("Path or URL to scan"), i18n("[url]"));
+    about.setupCommandLine(&options);
+    options.process(app);
+    about.processCommandLine(&options);
 
-              qCWarning(KGRAPHVIEWER_LOG) << "Call failed: " << reply.error().message() << endl;
-              return 1;
-            }
-            qCWarning(KGRAPHVIEWER_LOG) << "Invalid interface" << endl;
-            exit(0);
-          }
-          else
-          {
+    // see if we are starting with session management
+    if (app.isSessionRestored()) {
+        RESTORE(KGraphViewerWindow);
+    } else {
+        // no session.. just start up normally
+        QStringList args = options.positionalArguments();
+
+        KGraphViewerWindow *widget = nullptr;
+        if (args.count() == 0) {
             widget = new KGraphViewerWindow;
             new KgraphviewerAdaptor(widget);
             QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
             widget->show();
-            widget->openUrl( QUrl::fromUserInput(args[i]));
-          }
+        } else {
+            QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered("org.kde.kgraphviewer");
+
+            bool instanceExists = reply.value();
+
+            for (int i = 0; i < args.count(); i++) {
+                if (instanceExists &&
+                    (QMessageBox::question(nullptr, i18n("Opening in new window confirmation"), i18n("A KGraphViewer window is already open, where do you want to open this file in the existing window?")) == QMessageBox::Yes)) {
+                    QByteArray tosenddata;
+                    QDataStream arg(&tosenddata, QIODevice::WriteOnly);
+                    QString strarg = args[i];
+                    QUrl url;
+                    if (strarg.left(1) == "/")
+                        url = QUrl::fromUserInput(strarg);
+                    else
+                        url = QUrl::fromLocalFile(QDir::currentPath() + '/' + strarg);
+                    arg << url;
+                    QDBusInterface iface("org.kde.kgraphviewer", "/KGraphViewer", "", QDBusConnection::sessionBus());
+                    if (iface.isValid()) {
+                        QDBusReply<void> reply = iface.call("openUrl", url.url(QUrl::PreferLocalFile));
+                        if (reply.isValid()) {
+                            qCWarning(KGRAPHVIEWER_LOG) << "Reply was valid";
+                            return 0;
+                        }
+
+                        qCWarning(KGRAPHVIEWER_LOG) << "Call failed: " << reply.error().message() << endl;
+                        return 1;
+                    }
+                    qCWarning(KGRAPHVIEWER_LOG) << "Invalid interface" << endl;
+                    exit(0);
+                } else {
+                    widget = new KGraphViewerWindow;
+                    new KgraphviewerAdaptor(widget);
+                    QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
+                    widget->show();
+                    widget->openUrl(QUrl::fromUserInput(args[i]));
+                }
+            }
         }
-      }
-    if (widget)
-    {
-      widget->reloadPreviousFiles();
+        if (widget) {
+            widget->reloadPreviousFiles();
+        }
     }
-    
-  }
-  return app.exec();
+    return app.exec();
 }

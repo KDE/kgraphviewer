@@ -24,7 +24,6 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
 /*
  * Graph Node model
  */
@@ -32,22 +31,21 @@
 #ifndef GRAPH_NODE_H
 #define GRAPH_NODE_H
 
-#include <QVector>
 #include <QList>
 #include <QMap>
 #include <QTextStream>
+#include <QVector>
 
 #include <graphviz/gvc.h>
 
-#include "dotrenderop.h"
-#include "dotgrammar.h"
-#include "graphelement.h"
 #include "canvaselement.h"
 #include "canvasnode.h"
+#include "dotgrammar.h"
+#include "dotrenderop.h"
+#include "graphelement.h"
 
 namespace KGraphViewer
 {
-  
 class CanvasNode;
 
 /**
@@ -55,33 +53,40 @@ class CanvasNode;
  */
 class GraphNode : public GraphElement
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  GraphNode();
-  explicit GraphNode(const GraphNode& gn);
-  explicit GraphNode(node_t* gn);
+    GraphNode();
+    explicit GraphNode(const GraphNode &gn);
+    explicit GraphNode(node_t *gn);
 
-  ~GraphNode() override {}
+    ~GraphNode() override
+    {
+    }
 
-  inline CanvasNode* canvasNode() { return dynamic_cast<CanvasNode*>(canvasElement()); }
-  inline const CanvasNode* canvasNode() const { return dynamic_cast<const CanvasNode*>(canvasElement()); }
-  inline void setCanvasNode(CanvasNode* cn) { setCanvasElement((CanvasElement*)cn); }
+    inline CanvasNode *canvasNode()
+    {
+        return dynamic_cast<CanvasNode *>(canvasElement());
+    }
+    inline const CanvasNode *canvasNode() const
+    {
+        return dynamic_cast<const CanvasNode *>(canvasElement());
+    }
+    inline void setCanvasNode(CanvasNode *cn)
+    {
+        setCanvasElement((CanvasElement *)cn);
+    }
 
-  void updateWithNode(const GraphNode& node);
-  void updateWithNode(node_t* node);
+    void updateWithNode(const GraphNode &node);
+    void updateWithNode(node_t *node);
 
-  
 private:
 };
 
 /** A map associating the ids of a graph's nodes to these nodes */
-typedef QMap<QString, GraphNode*> GraphNodeMap;
+typedef QMap<QString, GraphNode *> GraphNodeMap;
 
-QTextStream& operator<<(QTextStream& s, const GraphNode& n);
+QTextStream &operator<<(QTextStream &s, const GraphNode &n);
 
 }
 
 #endif
-
-
-

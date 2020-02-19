@@ -16,7 +16,6 @@
    02110-1301, USA
 */
 
-
 #ifndef _KGRAPHEDITORELEMENTTREEWIDGET_H_
 #define _KGRAPHEDITORELEMENTTREEWIDGET_H_
 
@@ -30,36 +29,34 @@
  */
 class KGraphEditorElementTreeWidget : public QTreeWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  /**
-    * Default Constructor
-    */
-  explicit KGraphEditorElementTreeWidget(QWidget* parent = nullptr);
+    /**
+     * Default Constructor
+     */
+    explicit KGraphEditorElementTreeWidget(QWidget *parent = nullptr);
 
-  /**
-    * Default Destructor
-    */
-  ~KGraphEditorElementTreeWidget() override;
+    /**
+     * Default Destructor
+     */
+    ~KGraphEditorElementTreeWidget() override;
 
 protected:
-
-  void contextMenuEvent(QContextMenuEvent* e) override;
+    void contextMenuEvent(QContextMenuEvent *e) override;
 
 protected Q_SLOTS:
-  void slotAddAttribute();
-  void slotRemoveAttribute();
+    void slotAddAttribute();
+    void slotRemoveAttribute();
 
 Q_SIGNALS:
-  void addAttribute(const QString&);
-  void removeAttribute(const QString&);
+    void addAttribute(const QString &);
+    void removeAttribute(const QString &);
 
 private:
-  void setupPopup(const QPoint& point);
+    void setupPopup(const QPoint &point);
 
-  QMenu* m_popup;
-  QTreeWidgetItem* m_item;
+    QMenu *m_popup;
+    QTreeWidgetItem *m_item;
 };
-
 
 #endif // _KGRAPHEDITORELEMENTTREEWIDGET_H_

@@ -16,124 +16,101 @@
    02110-1301, USA
 */
 
-
 #include "kgrapheditor.h"
 #include "kgrapheditor_debug.h"
 
 #include <QApplication>
-#include <kaboutdata.h>
-#include <QCommandLineParser>
-#include <QMessageBox>
-#include <QDebug>
-#include <iostream>
-#include <QDir>
 #include <QByteArray>
-#include <QDBusInterface>
+#include <QCommandLineParser>
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
+#include <QDBusInterface>
 #include <QDBusReply>
+#include <QDebug>
+#include <QDir>
+#include <QMessageBox>
+#include <iostream>
+#include <kaboutdata.h>
 
-#include <klocalizedstring.h>
-#include <KAboutData>
-#include "kgrapheditoradaptor.h"
 #include "config-kgraphviewer.h"
+#include "kgrapheditoradaptor.h"
+#include <KAboutData>
+#include <klocalizedstring.h>
 
 int main(int argc, char **argv)
 {
-  QApplication app(argc, argv);
+    QApplication app(argc, argv);
 
-  KLocalizedString::setApplicationDomain("kgraphviewer");
+    KLocalizedString::setApplicationDomain("kgraphviewer");
 
-  KAboutData about(QStringLiteral("kgrapheditor"),
-                   i18n("KGraphEditor"),
-                   KGRAPHVIEWER_VERSION_STRING,
-                   i18n("A Graphviz DOT graph editor by KDE"),
-                   KAboutLicense::GPL,
-                   i18n("(C) 2005-2010 Gaël de Chalendar"));
+    KAboutData about(QStringLiteral("kgrapheditor"), i18n("KGraphEditor"), KGRAPHVIEWER_VERSION_STRING, i18n("A Graphviz DOT graph editor by KDE"), KAboutLicense::GPL, i18n("(C) 2005-2010 Gaël de Chalendar"));
 
-  app.setOrganizationDomain(QStringLiteral("kde.org"));
-  app.setOrganizationName(QStringLiteral("KDE"));
+    app.setOrganizationDomain(QStringLiteral("kde.org"));
+    app.setOrganizationName(QStringLiteral("KDE"));
 
-  KAboutData::setApplicationData(about);
+    KAboutData::setApplicationData(about);
 
-  app.setWindowIcon(QIcon::fromTheme("kgraphviewer", app.windowIcon()));
+    app.setWindowIcon(QIcon::fromTheme("kgraphviewer", app.windowIcon()));
 
-  QCommandLineParser options;
-  options.addHelpOption();
-  options.addVersionOption();
-  options.addPositionalArgument(QStringLiteral("url"), i18n("Path or URL to scan"), i18n("[url]"));
-  about.setupCommandLine(&options);
-  options.process(app);
-  about.processCommandLine(&options);
+    QCommandLineParser options;
+    options.addHelpOption();
+    options.addVersionOption();
+    options.addPositionalArgument(QStringLiteral("url"), i18n("Path or URL to scan"), i18n("[url]"));
+    about.setupCommandLine(&options);
+    options.process(app);
+    about.processCommandLine(&options);
 
-// see if we are starting with session management
-  if (app.isSessionRestored())
-  {
-      RESTORE(KGraphEditor);
-  }
-  else
-  {
-      // no session.. just start up normally
-      QStringList args = options.positionalArguments();
+    // see if we are starting with session management
+    if (app.isSessionRestored()) {
+        RESTORE(KGraphEditor);
+    } else {
+        // no session.. just start up normally
+        QStringList args = options.positionalArguments();
 
-      KGraphEditor *widget = nullptr;
-      if ( args.count() == 0 )
-      {
-        widget = new KGraphEditor;
-        new KgrapheditorAdaptor(widget);
-        QDBusConnection::sessionBus().registerObject("/KGraphEditor", widget);
-        widget->show();
-      }
-      else
-      {
-        QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered( "org.kde.kgrapheditor" );
-
-        bool instanceExists = reply.value();
-
-        for (int i = 0; i < args.count(); i++ )
-        {
-          if (instanceExists
-              && (QMessageBox::question(nullptr,
-                                         i18n("A KGraphEditor window is already open, do you want to open the file in it?"),
-                                         i18n("Opening in new window confirmation"),
-                                             "openInNewWindowMode"   ) == QMessageBox::Yes) )
-          {
-            QByteArray tosenddata;
-            QDataStream arg(&tosenddata, QIODevice::WriteOnly);
-            QString strarg = args[i];
-            QUrl url = QUrl::fromUserInput(strarg, QDir::currentPath(), QUrl::AssumeLocalFile);
-            arg << url;
-            QDBusInterface iface("org.kde.kgrapheditor", "/KGraphEditor", "", QDBusConnection::sessionBus());
-            if (iface.isValid())
-            {
-              QDBusReply<void> reply = iface.call("openUrl", url.url(QUrl::PreferLocalFile));
-              if (reply.isValid())
-              {
-                qCDebug(KGRAPHEDITOR_LOG) << "Reply was valid" << endl;
-                return 0;
-              }
-
-              qCWarning(KGRAPHEDITOR_LOG) << "Call failed: " << reply.error().message() << endl;
-              return 1;
-            }
-            qCWarning(KGRAPHEDITOR_LOG) << "Invalid interface" << endl;
-            exit(0);
-          }
-          else
-          {
+        KGraphEditor *widget = nullptr;
+        if (args.count() == 0) {
             widget = new KGraphEditor;
             new KgrapheditorAdaptor(widget);
             QDBusConnection::sessionBus().registerObject("/KGraphEditor", widget);
             widget->show();
-            widget->openUrl(QUrl::fromUserInput(args[0], QDir::currentPath(), QUrl::AssumeLocalFile));
-          }
-        }
-      }
-    if (widget)
-    {
-      widget->reloadPreviousFiles();
-    }
+        } else {
+            QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered("org.kde.kgrapheditor");
 
-  }
-  return app.exec();
+            bool instanceExists = reply.value();
+
+            for (int i = 0; i < args.count(); i++) {
+                if (instanceExists &&
+                    (QMessageBox::question(nullptr, i18n("A KGraphEditor window is already open, do you want to open the file in it?"), i18n("Opening in new window confirmation"), "openInNewWindowMode") == QMessageBox::Yes)) {
+                    QByteArray tosenddata;
+                    QDataStream arg(&tosenddata, QIODevice::WriteOnly);
+                    QString strarg = args[i];
+                    QUrl url = QUrl::fromUserInput(strarg, QDir::currentPath(), QUrl::AssumeLocalFile);
+                    arg << url;
+                    QDBusInterface iface("org.kde.kgrapheditor", "/KGraphEditor", "", QDBusConnection::sessionBus());
+                    if (iface.isValid()) {
+                        QDBusReply<void> reply = iface.call("openUrl", url.url(QUrl::PreferLocalFile));
+                        if (reply.isValid()) {
+                            qCDebug(KGRAPHEDITOR_LOG) << "Reply was valid" << endl;
+                            return 0;
+                        }
+
+                        qCWarning(KGRAPHEDITOR_LOG) << "Call failed: " << reply.error().message() << endl;
+                        return 1;
+                    }
+                    qCWarning(KGRAPHEDITOR_LOG) << "Invalid interface" << endl;
+                    exit(0);
+                } else {
+                    widget = new KGraphEditor;
+                    new KgrapheditorAdaptor(widget);
+                    QDBusConnection::sessionBus().registerObject("/KGraphEditor", widget);
+                    widget->show();
+                    widget->openUrl(QUrl::fromUserInput(args[0], QDir::currentPath(), QUrl::AssumeLocalFile));
+                }
+            }
+        }
+        if (widget) {
+            widget->reloadPreviousFiles();
+        }
+    }
+    return app.exec();
 }

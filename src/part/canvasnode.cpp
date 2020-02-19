@@ -24,62 +24,56 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
 /*
  * Callgraph View
  */
 
 #include "canvasnode.h"
+#include "FontsCache.h"
+#include "dot2qtconsts.h"
+#include "dotdefaults.h"
 #include "dotgraphview.h"
 #include "graphnode.h"
-#include "dotdefaults.h"
-#include "dot2qtconsts.h"
-#include "FontsCache.h"
 #include "kgraphviewerlib_debug.h"
 
-#include <stdlib.h>
-#include <math.h>
 #include <iostream>
+#include <math.h>
+#include <stdlib.h>
 
+#include <QDebug>
 #include <QGraphicsScene>
 #include <QMatrix>
 #include <QPainter>
-#include <QStyle>
-#include <QPolygonF>
 #include <QPixmap>
-#include <QDebug>
+#include <QPolygonF>
+#include <QStyle>
 
 #include <klocalizedstring.h>
 
 namespace KGraphViewer
 {
-  
-CanvasNode::CanvasNode(DotGraphView* v,
-                        GraphNode* s,
-                        QGraphicsScene* c,
-                        QGraphicsItem* parent)
-: CanvasElement(v,(GraphElement*)s, c, parent)
+CanvasNode::CanvasNode(DotGraphView *v, GraphNode *s, QGraphicsScene *c, QGraphicsItem *parent)
+    : CanvasElement(v, (GraphElement *)s, c, parent)
 
 {
-  qCDebug(KGRAPHVIEWERLIB_LOG) << s->id();
-  connect(s, &GraphNode::changed,
-          this, &CanvasNode::modelChanged);
+    qCDebug(KGRAPHVIEWERLIB_LOG) << s->id();
+    connect(s, &GraphNode::changed, this, &CanvasNode::modelChanged);
 
-  QString tipStr;
-  QString id = s->id();
-  QString label = s->label();
-  tipStr = i18n("id='%1'\nlabel='%2'",id,label);
-//   qCDebug(KGRAPHVIEWERLIB_LOG) << "CanvasEllipseNode setToolTip " << tipStr;
-  setToolTip(tipStr);
+    QString tipStr;
+    QString id = s->id();
+    QString label = s->label();
+    tipStr = i18n("id='%1'\nlabel='%2'", id, label);
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) << "CanvasEllipseNode setToolTip " << tipStr;
+    setToolTip(tipStr);
 }
 
 // CanvasHtmlNode::CanvasHtmlNode(
-//                                           DotGraphView* v, 
+//                                           DotGraphView* v,
 //                                           GraphNode* n,
 //                                           const DotRenderOp& dro,
 //                                           const DotRenderOpVec& dros,
 //                                           QGraphicsScene* c,
-//                                           double scaleX, double scaleY, 
+//                                           double scaleX, double scaleY,
 //                                           int xMargin, int yMargin, int gh,
 //                                           int wdhcf, int hdvcf
 //                                         )
@@ -88,7 +82,7 @@ CanvasNode::CanvasNode(DotGraphView* v,
 //   m_renderOperations = dros;
 // //   qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating "<<node()->id()<<" CanvasHtmlNode for" << n
 // //     << " with label '" << n->label() << "'";
-// 
+//
 //   QString myHTMLCode = n->label();
 //   myHTMLCode = myHTMLCode.mid(1, myHTMLCode.length() - 2);
 // //   qCDebug(KGRAPHVIEWERLIB_LOG) << "HTML = " << myHTMLCode;
@@ -116,17 +110,17 @@ CanvasNode::CanvasNode(DotGraphView* v,
 //   CanvasHtmlNode::connect(v, SIGNAL(contentsMoving(int,int)), this, SLOT(move(int,int)));
 //   CanvasHtmlNode::connect(v, SIGNAL(zoomed(double)), this, SLOT(zoomed(double)));
 // }
-// 
-// CanvasHtmlNode::~CanvasHtmlNode() 
+//
+// CanvasHtmlNode::~CanvasHtmlNode()
 // {
 //   KHTMLPart::hide();
 // }
-// 
+//
 // // void CanvasHtmlNode::paint(QPainter& p)
 // // {
 // //   view()->drawContents(&p);
 // // }
-// 
+//
 // void CanvasHtmlNode::move(int x, int y)
 // {
 // //   qCDebug(KGRAPHVIEWERLIB_LOG) << "CanvasHtmlNode::move("<<x<<", "<<y<<")";
@@ -134,7 +128,7 @@ CanvasNode::CanvasNode(DotGraphView* v,
 //   view()->move(int((node()->x())*m_scaleX*m_zoomFactor - m_xMovedTo), int((m_gh-node()->y())*m_scaleY*m_zoomFactor) - m_yMovedTo);
 // //   view()->move(int(x*m_scaleX), int((m_gh-y)*m_scaleY));
 // }
-// 
+//
 // void CanvasHtmlNode::zoomed(double factor)
 // {
 //   m_zoomFactor = factor;

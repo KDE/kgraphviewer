@@ -24,7 +24,6 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
 /*
  * Callgraph View
  */
@@ -32,8 +31,8 @@
 #ifndef DOTGRAPHVIEW_H
 #define DOTGRAPHVIEW_H
 
-#include <kconfig.h>
 #include <kactioncollection.h>
+#include <kconfig.h>
 #include <kconfiggroup.h>
 
 #include <QGraphicsView>
@@ -56,7 +55,6 @@ class QWidget;
 
 namespace KGraphViewer
 {
-
 class GraphElement;
 class CanvasElement;
 class CanvasEdge;
@@ -70,182 +68,175 @@ class DotGraphViewPrivate;
  * and another zoomed out CanvasView in a border acting as
  * a panner to select to visible part (only if needed)
  */
-class KGRAPHVIEWER_EXPORT DotGraphView: public QGraphicsView
+class KGRAPHVIEWER_EXPORT DotGraphView : public QGraphicsView
 {
- Q_OBJECT
+    Q_OBJECT
 
 public:
-  enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge, SelectingElements };
-  enum ScrollDirection { Here, Left, Right, Top, Bottom };
-  
-  explicit KGRAPHVIEWER_EXPORT DotGraphView(KActionCollection* actions, QWidget* parent = nullptr);
-  ~DotGraphView() override;
+    enum EditingMode { None, AddNewElement, AddNewEdge, DrawNewEdge, SelectingElements };
+    enum ScrollDirection { Here, Left, Right, Top, Bottom };
 
-  bool KGRAPHVIEWER_EXPORT loadDot(const QString& dotFileName);
-  bool KGRAPHVIEWER_EXPORT loadLibrary(const QString& dotFileName);
-  bool KGRAPHVIEWER_EXPORT loadLibrarySync(const QString& dotFileName);
-  bool loadLibrary(graph_t* graph, const QString& layoutCommand = "dot");
+    explicit KGRAPHVIEWER_EXPORT DotGraphView(KActionCollection *actions, QWidget *parent = nullptr);
+    ~DotGraphView() override;
 
-  void readViewConfig();
-  void saveViewConfig();
+    bool KGRAPHVIEWER_EXPORT loadDot(const QString &dotFileName);
+    bool KGRAPHVIEWER_EXPORT loadLibrary(const QString &dotFileName);
+    bool KGRAPHVIEWER_EXPORT loadLibrarySync(const QString &dotFileName);
+    bool loadLibrary(graph_t *graph, const QString &layoutCommand = "dot");
 
-  //TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
-  KGraphViewerInterface::PannerPosition zoomPos() const;
-  static KGraphViewerInterface::PannerPosition zoomPos(const QString&);
-  static QString zoomPosString(KGraphViewerInterface::PannerPosition);
-  void setPannerEnabled(bool enabled);
-  
-  static KConfigGroup* configGroup(KConfig*, const QString& prefix, const QString& postfix);
-  static void writeConfigEntry(KConfigGroup*, const char* pKey, const QString& value,
-                               const char* def);
-  static void writeConfigEntry(KConfigGroup*, const char* pKey,
-                               int value, int def);
-  static void writeConfigEntry(KConfigGroup*, const char* pKey,
-                               bool value, bool def);
-  static void writeConfigEntry(KConfigGroup*, const char* pKey,
-                               double value, double def);
+    void readViewConfig();
+    void saveViewConfig();
 
-  /// multiplies current zoom factor with @p factor
-  void applyZoom(double factor);
-  /// sets zoom factor to @p factor
-  void setZoomFactor(double factor);
-  
-  void setLayoutCommand(const QString& command);
-    
-  const QString& dotFileName();
+    // TODO: rename zoomPos -> bev / panner, but _please_ make it consistent...
+    KGraphViewerInterface::PannerPosition zoomPos() const;
+    static KGraphViewerInterface::PannerPosition zoomPos(const QString &);
+    static QString zoomPosString(KGraphViewerInterface::PannerPosition);
+    void setPannerEnabled(bool enabled);
 
-  void hideToolsWindows();
-  double zoom() const;
-  KSelectAction* bevPopup();
+    static KConfigGroup *configGroup(KConfig *, const QString &prefix, const QString &postfix);
+    static void writeConfigEntry(KConfigGroup *, const char *pKey, const QString &value, const char *def);
+    static void writeConfigEntry(KConfigGroup *, const char *pKey, int value, int def);
+    static void writeConfigEntry(KConfigGroup *, const char *pKey, bool value, bool def);
+    static void writeConfigEntry(KConfigGroup *, const char *pKey, double value, double def);
 
-  DotGraph* graph();
-  const DotGraph* graph() const;
+    /// multiplies current zoom factor with @p factor
+    void applyZoom(double factor);
+    /// sets zoom factor to @p factor
+    void setZoomFactor(double factor);
 
-  const GraphElement* defaultNewElement() const;
-  QPixmap defaultNewElementPixmap() const;
+    void setLayoutCommand(const QString &command);
 
-  void setDefaultNewElement(GraphElement* elem);
-  void setDefaultNewElementPixmap(const QPixmap& pm);
+    const QString &dotFileName();
 
-  void prepareAddNewElement(QMap<QString,QString> attribs);
-  void prepareAddNewEdge(QMap<QString,QString> attribs);
-  void prepareSelectElements();
-  
-  void createNewEdgeDraftFrom(CanvasElement* node);
-  void finishNewEdgeTo(CanvasElement* node);
+    void hideToolsWindows();
+    double zoom() const;
+    KSelectAction *bevPopup();
 
-  EditingMode editingMode() const;
+    DotGraph *graph();
+    const DotGraph *graph() const;
 
-  void KGRAPHVIEWER_EXPORT setReadOnly();
-  void KGRAPHVIEWER_EXPORT setReadWrite();
-  bool isReadWrite() const;
-  bool isReadOnly() const;
-  
-  void removeSelectedNodes();
-  void removeSelectedEdges();
-  void removeSelectedSubgraphs();
-  void removeSelectedElements();
-  
-  bool highlighting();
-  void setHighlighting(bool highlightingValue);
+    const GraphElement *defaultNewElement() const;
+    QPixmap defaultNewElementPixmap() const;
 
-  // public so that the panner view can bubble through
-  void contextMenuEvent(QContextMenuEvent*) override;
+    void setDefaultNewElement(GraphElement *elem);
+    void setDefaultNewElementPixmap(const QPixmap &pm);
 
-  void setBackgroundColor(const QColor& color);
-  
+    void prepareAddNewElement(QMap<QString, QString> attribs);
+    void prepareAddNewEdge(QMap<QString, QString> attribs);
+    void prepareSelectElements();
+
+    void createNewEdgeDraftFrom(CanvasElement *node);
+    void finishNewEdgeTo(CanvasElement *node);
+
+    EditingMode editingMode() const;
+
+    void KGRAPHVIEWER_EXPORT setReadOnly();
+    void KGRAPHVIEWER_EXPORT setReadWrite();
+    bool isReadWrite() const;
+    bool isReadOnly() const;
+
+    void removeSelectedNodes();
+    void removeSelectedEdges();
+    void removeSelectedSubgraphs();
+    void removeSelectedElements();
+
+    bool highlighting();
+    void setHighlighting(bool highlightingValue);
+
+    // public so that the panner view can bubble through
+    void contextMenuEvent(QContextMenuEvent *) override;
+
+    void setBackgroundColor(const QColor &color);
+
 Q_SIGNALS:
-  void zoomed(double factor);
-  void sigViewBevEnabledToggled(bool value);
-  void sigViewBevActivated(int newPos);
-  void graphLoaded();
-  void newNodeAdded(const QString&);
-  void newEdgeAdded(const QString&, const QString&);
-  /** signals that the user has activated a remove edge command */
-  void removeEdge(const QString&);
-  /** signals that the user has activated a remove edge command */
-  void removeNodeNamed(const QString&);
-  /** signals that the user has activated a remove element command */
-  void removeElement(const QString&);
-  /** signals the content of the new selection */
-  void selectionIs(const QList<QString>, const QPoint&);
-  /** let the application tweak the created edge if necessary */
-  void newEdgeFinished(
-      const QString&, const QString&,
-      const QMap<QString, QString>&);
-  void contextMenuEvent(const QString&, const QPoint&);
-  void hoverEnter(const QString&);
-  void hoverLeave(const QString&);
-  
+    void zoomed(double factor);
+    void sigViewBevEnabledToggled(bool value);
+    void sigViewBevActivated(int newPos);
+    void graphLoaded();
+    void newNodeAdded(const QString &);
+    void newEdgeAdded(const QString &, const QString &);
+    /** signals that the user has activated a remove edge command */
+    void removeEdge(const QString &);
+    /** signals that the user has activated a remove edge command */
+    void removeNodeNamed(const QString &);
+    /** signals that the user has activated a remove element command */
+    void removeElement(const QString &);
+    /** signals the content of the new selection */
+    void selectionIs(const QList<QString>, const QPoint &);
+    /** let the application tweak the created edge if necessary */
+    void newEdgeFinished(const QString &, const QString &, const QMap<QString, QString> &);
+    void contextMenuEvent(const QString &, const QPoint &);
+    void hoverEnter(const QString &);
+    void hoverLeave(const QString &);
+
 public Q_SLOTS:
-  void zoomIn();
-  void zoomOut();  
-  void zoomRectMovedTo(QPointF newZoomPos);
-  void zoomRectMoveFinished();
-  bool initEmpty();
-  bool slotLoadLibrary(graph_t* graph);
-  bool reload();
-  void dirty(const QString& dotFileName);
-  void pageSetup();
-  void print();
-  void printPreview();
-  void viewBevActivated(int newPos);
-  void slotExportImage();
-  void slotSelectLayoutAlgo(const QString& text);
-  void slotLayoutSpecify();
-  void slotLayoutReset();
-  void slotSelectLayoutDot();
-  void slotSelectLayoutNeato();
-  void slotSelectLayoutTwopi();
-  void slotSelectLayoutFdp();
-  void slotSelectLayoutCirco();
-  void slotBevToggled();
-  void slotBevTopLeft();
-  void slotBevTopRight();
-  void slotBevBottomLeft();
-  void slotBevBottomRight();
-  void slotBevAutomatic();
-  void slotUpdate();
-  bool displayGraph();
-  void slotEdgeSelected(CanvasEdge*, Qt::KeyboardModifiers);
-  void slotElementSelected(CanvasElement*, Qt::KeyboardModifiers);
-  void slotSelectionChanged();
-  void slotContextMenuEvent(const QString&, const QPoint&);
-  void slotElementHoverEnter(CanvasElement*);
-  void slotElementHoverLeave(CanvasElement*);
-  void slotElementHoverEnter(CanvasEdge*);
-  void slotElementHoverLeave(CanvasEdge*);
-  void slotSelectNode(const QString& nodeName);
-  void centerOnNode(const QString& nodeId);
+    void zoomIn();
+    void zoomOut();
+    void zoomRectMovedTo(QPointF newZoomPos);
+    void zoomRectMoveFinished();
+    bool initEmpty();
+    bool slotLoadLibrary(graph_t *graph);
+    bool reload();
+    void dirty(const QString &dotFileName);
+    void pageSetup();
+    void print();
+    void printPreview();
+    void viewBevActivated(int newPos);
+    void slotExportImage();
+    void slotSelectLayoutAlgo(const QString &text);
+    void slotLayoutSpecify();
+    void slotLayoutReset();
+    void slotSelectLayoutDot();
+    void slotSelectLayoutNeato();
+    void slotSelectLayoutTwopi();
+    void slotSelectLayoutFdp();
+    void slotSelectLayoutCirco();
+    void slotBevToggled();
+    void slotBevTopLeft();
+    void slotBevTopRight();
+    void slotBevBottomLeft();
+    void slotBevBottomRight();
+    void slotBevAutomatic();
+    void slotUpdate();
+    bool displayGraph();
+    void slotEdgeSelected(CanvasEdge *, Qt::KeyboardModifiers);
+    void slotElementSelected(CanvasElement *, Qt::KeyboardModifiers);
+    void slotSelectionChanged();
+    void slotContextMenuEvent(const QString &, const QPoint &);
+    void slotElementHoverEnter(CanvasElement *);
+    void slotElementHoverLeave(CanvasElement *);
+    void slotElementHoverEnter(CanvasEdge *);
+    void slotElementHoverLeave(CanvasEdge *);
+    void slotSelectNode(const QString &nodeName);
+    void centerOnNode(const QString &nodeId);
 
 protected:
-  void scrollViewPercent(bool horizontal, int percent);
+    void scrollViewPercent(bool horizontal, int percent);
 
-  void scrollContentsBy(int dx, int dy) override;
-  void resizeEvent(QResizeEvent*) override;
-  void mousePressEvent(QMouseEvent*) override;
-  void mouseMoveEvent(QMouseEvent*) override;
-  void mouseReleaseEvent(QMouseEvent*) override;
-  void mouseDoubleClickEvent(QMouseEvent*) override;
-  void keyPressEvent(QKeyEvent*) override;
-  void wheelEvent(QWheelEvent* e) override;
-  void focusInEvent(QFocusEvent*) override;
-  void focusOutEvent(QFocusEvent*) override;
-  
-  void timerEvent(QTimerEvent* event) override;
-  void leaveEvent(QEvent* event) override;
-  void enterEvent(QEvent* event) override;
-  
+    void scrollContentsBy(int dx, int dy) override;
+    void resizeEvent(QResizeEvent *) override;
+    void mousePressEvent(QMouseEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void mouseReleaseEvent(QMouseEvent *) override;
+    void mouseDoubleClickEvent(QMouseEvent *) override;
+    void keyPressEvent(QKeyEvent *) override;
+    void wheelEvent(QWheelEvent *e) override;
+    void focusInEvent(QFocusEvent *) override;
+    void focusOutEvent(QFocusEvent *) override;
+
+    void timerEvent(QTimerEvent *event) override;
+    void leaveEvent(QEvent *event) override;
+    void enterEvent(QEvent *event) override;
+
 private Q_SLOTS:
-  void slotAGraphReadFinished();
-  void slotAGraphLayoutFinished();
-  
+    void slotAGraphReadFinished();
+    void slotAGraphLayoutFinished();
+
 protected:
-  DotGraphViewPrivate * const d_ptr;
+    DotGraphViewPrivate *const d_ptr;
 
 private:
-  Q_DECLARE_PRIVATE(DotGraphView);
-  
+    Q_DECLARE_PRIVATE(DotGraphView);
 };
 
 }

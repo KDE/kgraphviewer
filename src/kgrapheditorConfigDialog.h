@@ -16,14 +16,14 @@
    02110-1301, USA
 */
 
-
 #ifndef KGRAPHEDITORCONFIGDIALOG_H
 #define KGRAPHEDITORCONFIGDIALOG_H
 
-#include <kconfigdialog.h>
 #include <KConfigSkeleton>
+#include <kconfigdialog.h>
 
-namespace Ui {
+namespace Ui
+{
 class KGraphViewerPreferencesParsingWidget;
 class KGraphViewerPreferencesReloadWidget;
 class KGraphViewerPreferencesOpenInExistingWindowWidget;
@@ -39,29 +39,29 @@ class KGraphViewerPreferencesAppearanceWidget;
  */
 class KgeConfigurationDialog : public KConfigDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-   KgeConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config);
+    KgeConfigurationDialog(QWidget *parent, const QString &name, KConfigSkeleton *config);
 
-  ~KgeConfigurationDialog() override;
+    ~KgeConfigurationDialog() override;
 
 protected Q_SLOTS:
-  void updateSettings() override;
-  void updateWidgets() override;
+    void updateSettings() override;
+    void updateWidgets() override;
 
-  void settingChanged(int);
+    void settingChanged(int);
 
 protected:
-  bool hasChanged() override;
+    bool hasChanged() override;
 
-  bool m_changed;
+    bool m_changed;
 
 public:
-  Ui::KGraphViewerPreferencesParsingWidget*  m_parsingWidget;
-  Ui::KGraphViewerPreferencesReloadWidget*  m_reloadWidget;
-  Ui::KGraphViewerPreferencesOpenInExistingWindowWidget* m_openingWidget;
-  Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget* m_reopeningWidget;
-  Ui::KGraphViewerPreferencesAppearanceWidget* m_appearanceWidget;
+    Ui::KGraphViewerPreferencesParsingWidget *m_parsingWidget;
+    Ui::KGraphViewerPreferencesReloadWidget *m_reloadWidget;
+    Ui::KGraphViewerPreferencesOpenInExistingWindowWidget *m_openingWidget;
+    Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget *m_reopeningWidget;
+    Ui::KGraphViewerPreferencesAppearanceWidget *m_appearanceWidget;
 };
 
 #endif

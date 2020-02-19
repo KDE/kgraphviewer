@@ -16,17 +16,16 @@
    02110-1301, USA
 */
 
-
 #ifndef _KGRAPHVIEWER_H_
 #define _KGRAPHVIEWER_H_
 
 //#include <config-kgraphviewer.h>
 
+#include <KParts/MainWindow>
+#include <KRecentFilesAction>
 #include <QAction>
 #include <QDir>
 #include <QTabWidget>
-#include <KParts/MainWindow>
-#include <KRecentFilesAction>
 
 #include <graphviz/gvc.h>
 
@@ -41,89 +40,89 @@ class KToggleAction;
  */
 class KGraphViewerWindow : public KParts::MainWindow
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  /**
-    * Default Constructor
-    */
-  KGraphViewerWindow();
+    /**
+     * Default Constructor
+     */
+    KGraphViewerWindow();
 
-  /**
-    * Default Destructor
-    */
-  ~KGraphViewerWindow() override;
+    /**
+     * Default Destructor
+     */
+    ~KGraphViewerWindow() override;
 
-  /**
-    * Use this method to load whatever file/URL you have
-    */
-  void openUrl(const QUrl& url);
+    /**
+     * Use this method to load whatever file/URL you have
+     */
+    void openUrl(const QUrl &url);
 
-  void reloadPreviousFiles();
+    void reloadPreviousFiles();
 
 protected:
-
-  void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
 
 Q_SIGNALS:
-  void hide(KParts::Part* part);
+    void hide(KParts::Part *part);
 
 public Q_SLOTS:
-  /**
-    * Use this method to load whatever file/URL you have
-    */
-  void openUrl(const QString& url) {
-      openUrl(QUrl::fromUserInput(url, QDir::currentPath(), QUrl::AssumeLocalFile));
-  }
+    /**
+     * Use this method to load whatever file/URL you have
+     */
+    void openUrl(const QString &url)
+    {
+        openUrl(QUrl::fromUserInput(url, QDir::currentPath(), QUrl::AssumeLocalFile));
+    }
 
-  void close();
+    void close();
 
-  void slotReloadOnChangeModeYesToggled(bool value);
-  void slotReloadOnChangeModeNoToggled(bool value);
-  void slotReloadOnChangeModeAskToggled(bool value);
-  void slotOpenInExistingWindowModeYesToggled(bool value);
-  void slotOpenInExistingWindowModeNoToggled(bool value);
-  void slotOpenInExistingWindowModeAskToggled(bool value);
-  void slotReopenPreviouslyOpenedFilesModeYesToggled(bool value);
-  void slotReopenPreviouslyOpenedFilesModeNoToggled(bool value);
-  void slotReopenPreviouslyOpenedFilesModeAskToggled(bool value);
-  void slotParsingModeExternalToggled(bool value);
-  void slotParsingModeInternalToggled(bool value);
+    void slotReloadOnChangeModeYesToggled(bool value);
+    void slotReloadOnChangeModeNoToggled(bool value);
+    void slotReloadOnChangeModeAskToggled(bool value);
+    void slotOpenInExistingWindowModeYesToggled(bool value);
+    void slotOpenInExistingWindowModeNoToggled(bool value);
+    void slotOpenInExistingWindowModeAskToggled(bool value);
+    void slotReopenPreviouslyOpenedFilesModeYesToggled(bool value);
+    void slotReopenPreviouslyOpenedFilesModeNoToggled(bool value);
+    void slotReopenPreviouslyOpenedFilesModeAskToggled(bool value);
+    void slotParsingModeExternalToggled(bool value);
+    void slotParsingModeInternalToggled(bool value);
 
 private Q_SLOTS:
-  void fileNew();
-  void fileOpen();
-  void close(int index);
-  void slotURLSelected(const QUrl&);
-  void optionsShowToolbar();
-  void optionsShowStatusbar();
-  void optionsConfigureKeys();
-  void optionsConfigureToolbars();
-  void optionsConfigure();
-  void newTabSelectedSlot(int index);
+    void fileNew();
+    void fileOpen();
+    void close(int index);
+    void slotURLSelected(const QUrl &);
+    void optionsShowToolbar();
+    void optionsShowStatusbar();
+    void optionsConfigureKeys();
+    void optionsConfigureToolbars();
+    void optionsConfigure();
+    void newTabSelectedSlot(int index);
 
-  void applyNewToolbarConfig();
+    void applyNewToolbarConfig();
 
-  void slotHoverEnter(const QString&);
-  void slotHoverLeave(const QString&);
-  void slotBackgroundColorChanged(const QColor&);
-
-private:
-  void setupAccel();
-  void setupActions();
+    void slotHoverEnter(const QString &);
+    void slotHoverLeave(const QString &);
+    void slotBackgroundColorChanged(const QColor &);
 
 private:
-  QTabWidget* m_widget;
-  KRecentFilesAction* m_rfa;
-  KParts::PartManager* m_manager;
+    void setupAccel();
+    void setupActions();
 
-  KToggleAction *m_toolbarAction;
-  KToggleAction *m_statusbarAction;
-  QAction *m_closeAction;
+private:
+    QTabWidget *m_widget;
+    KRecentFilesAction *m_rfa;
+    KParts::PartManager *m_manager;
 
-  QStringList m_openedFiles;
+    KToggleAction *m_toolbarAction;
+    KToggleAction *m_statusbarAction;
+    QAction *m_closeAction;
 
-  QMap<QWidget*, KParts::Part*> m_tabsPartsMap;
-  QMap<QWidget*, QString> m_tabsFilesMap;
+    QStringList m_openedFiles;
+
+    QMap<QWidget *, KParts::Part *> m_tabsPartsMap;
+    QMap<QWidget *, QString> m_tabsFilesMap;
 };
 
 #endif // _KGRAPHVIEWER_H_

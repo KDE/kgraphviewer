@@ -24,17 +24,16 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
 /*
  * Graph Node
  */
 
 #include "graphnode.h"
-#include "dotgraphview.h"
-#include "pannerview.h"
 #include "canvasnode.h"
 #include "dotdefaults.h"
+#include "dotgraphview.h"
 #include "kgraphviewerlib_debug.h"
+#include "pannerview.h"
 
 #include <math.h>
 
@@ -42,78 +41,72 @@
 
 namespace KGraphViewer
 {
-  
 //
 // GraphNode
 //
 
-GraphNode::GraphNode() :
-    GraphElement()
+GraphNode::GraphNode()
+    : GraphElement()
 {
-//   qCDebug(KGRAPHVIEWERLIB_LOG) ;
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) ;
 }
 
-GraphNode::GraphNode(const GraphNode& gn) :
-GraphElement(gn)
+GraphNode::GraphNode(const GraphNode &gn)
+    : GraphElement(gn)
 {
-  //   qCDebug(KGRAPHVIEWERLIB_LOG) ;
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) ;
 }
 
-GraphNode::GraphNode(node_t* gn) : GraphElement()
+GraphNode::GraphNode(node_t *gn)
+    : GraphElement()
 {
-  updateWithNode(gn);
+    updateWithNode(gn);
 }
 
-void GraphNode::updateWithNode(const GraphNode& node)
+void GraphNode::updateWithNode(const GraphNode &node)
 {
-  qCDebug(KGRAPHVIEWERLIB_LOG) << id() << node.id();
-  GraphElement::updateWithElement(node);
-  if (canvasNode())
-  {
-    canvasNode()->computeBoundingRect();
-    canvasNode()->modelChanged();
-  }
-//   qCDebug(KGRAPHVIEWERLIB_LOG) << "done";
+    qCDebug(KGRAPHVIEWERLIB_LOG) << id() << node.id();
+    GraphElement::updateWithElement(node);
+    if (canvasNode()) {
+        canvasNode()->computeBoundingRect();
+        canvasNode()->modelChanged();
+    }
+    //   qCDebug(KGRAPHVIEWERLIB_LOG) << "done";
 }
 
-void GraphNode::updateWithNode(node_t* node)
+void GraphNode::updateWithNode(node_t *node)
 {
-  qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(node);
-  m_attributes["id"] = agnameof(node);
-  m_attributes["label"] = ND_label(node)->text;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(node);
+    m_attributes["id"] = agnameof(node);
+    m_attributes["label"] = ND_label(node)->text;
 
-  DotRenderOpVec ops;
-  // decrease mem peak
-  setRenderOperations(ops);
+    DotRenderOpVec ops;
+    // decrease mem peak
+    setRenderOperations(ops);
 
-  if (agget(node, (char*)"_draw_"))
-  {
-    parse_renderop(agget(node, (char*)"_draw_"), ops);
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "_draw_: element renderOperations size is now " << ops.size();
-  }
-  if (agget(node, (char*)"_ldraw_"))
-  {
-    parse_renderop(agget(node, (char*)"_ldraw_"), ops);
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "_ldraw_: element renderOperations size is now " << ops.size();
-  }
+    if (agget(node, (char *)"_draw_")) {
+        parse_renderop(agget(node, (char *)"_draw_"), ops);
+        qCDebug(KGRAPHVIEWERLIB_LOG) << "_draw_: element renderOperations size is now " << ops.size();
+    }
+    if (agget(node, (char *)"_ldraw_")) {
+        parse_renderop(agget(node, (char *)"_ldraw_"), ops);
+        qCDebug(KGRAPHVIEWERLIB_LOG) << "_ldraw_: element renderOperations size is now " << ops.size();
+    }
 
-  setRenderOperations(ops);
+    setRenderOperations(ops);
 
-  Agsym_t *attr = agnxtattr(agraphof(node), AGNODE, nullptr);
-  while(attr)
-  {
-    qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(node) << ":" << attr->name << agxget(node,attr);
-    m_attributes[attr->name] = agxget(node,attr);
-    attr = agnxtattr(agraphof(node), AGNODE, attr);
-  }
+    Agsym_t *attr = agnxtattr(agraphof(node), AGNODE, nullptr);
+    while (attr) {
+        qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(node) << ":" << attr->name << agxget(node, attr);
+        m_attributes[attr->name] = agxget(node, attr);
+        attr = agnxtattr(agraphof(node), AGNODE, attr);
+    }
 }
 
-QTextStream& operator<<(QTextStream& s, const GraphNode& n)
+QTextStream &operator<<(QTextStream &s, const GraphNode &n)
 {
-  s << n.id() << "  ["
-    << dynamic_cast<const GraphElement&>(n)
-    <<"];"<<endl;
-  return s;
+    s << n.id() << "  [" << dynamic_cast<const GraphElement &>(n) << "];" << endl;
+    return s;
 }
 
 }

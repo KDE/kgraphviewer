@@ -16,7 +16,6 @@
    02110-1301, USA
 */
 
-
 #ifndef _KGRAPHEDITORNODESTREEWIDGET_H_
 #define _KGRAPHEDITORNODESTREEWIDGET_H_
 
@@ -30,40 +29,39 @@
  */
 class KGraphEditorNodesTreeWidget : public QTreeWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  /**
-    * Default Constructor
-    */
-  explicit KGraphEditorNodesTreeWidget(QWidget* parent = nullptr);
+    /**
+     * Default Constructor
+     */
+    explicit KGraphEditorNodesTreeWidget(QWidget *parent = nullptr);
 
-  /**
-    * Default Destructor
-    */
-  ~KGraphEditorNodesTreeWidget() override;
+    /**
+     * Default Destructor
+     */
+    ~KGraphEditorNodesTreeWidget() override;
 
 protected:
-
-  void contextMenuEvent(QContextMenuEvent* e) override;
+    void contextMenuEvent(QContextMenuEvent *e) override;
 
 protected Q_SLOTS:
-  void slotRemoveNode();
-  void slotAddAttribute();
-  void slotRemoveAttribute();
+    void slotRemoveNode();
+    void slotAddAttribute();
+    void slotRemoveAttribute();
 
 public Q_SLOTS:
-  void slotRemoveElement(const QString& id);
+    void slotRemoveElement(const QString &id);
 
 Q_SIGNALS:
-  void removeNode(const QString&);
-  void addAttribute(const QString&);
-  void removeAttribute(const QString&,const QString&);
+    void removeNode(const QString &);
+    void addAttribute(const QString &);
+    void removeAttribute(const QString &, const QString &);
 
 private:
-  void setupPopup(const QPoint& point);
+    void setupPopup(const QPoint &point);
 
-  QMenu* m_popup;
-  QTreeWidgetItem* m_item;
+    QMenu *m_popup;
+    QTreeWidgetItem *m_item;
 };
 
 #endif // _KGRAPHEDITORNODESTREEWIDGET_H_

@@ -29,43 +29,43 @@
 #define KGVSIMPLEPRINTPREVIEWWINDOW_P_H
 
 #include "simpleprintpreviewwindow.h"
-//Added by qt3to4:
+// Added by qt3to4:
 #include <QPaintEvent>
 #include <QResizeEvent>
 #include <QScrollArea>
 
 namespace KGraphViewer
 {
-
 class KGVSimplePrintPreviewView : public QWidget
 {
-  Q_OBJECT
-	public:
-		explicit KGVSimplePrintPreviewView(KGVSimplePrintPreviewWindow *window);
+    Q_OBJECT
+public:
+    explicit KGVSimplePrintPreviewView(KGVSimplePrintPreviewWindow *window);
 
-		void paintEvent(QPaintEvent* pe) override;
-	protected:
-		KGVSimplePrintPreviewWindow *m_window;
+    void paintEvent(QPaintEvent *pe) override;
+
+protected:
+    KGVSimplePrintPreviewWindow *m_window;
 };
 
 class KGVSimplePrintPreviewScrollView : public QScrollArea
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		explicit KGVSimplePrintPreviewScrollView(KGVSimplePrintPreviewWindow *window);
+public:
+    explicit KGVSimplePrintPreviewScrollView(KGVSimplePrintPreviewWindow *window);
 
-		KGVSimplePrintPreviewView *m_view;
+    KGVSimplePrintPreviewView *m_view;
 
-	public Q_SLOTS:
-		void setFullWidth();
-// 		void setContentsPos(int x, int y);
+public Q_SLOTS:
+    void setFullWidth();
+    // 		void setContentsPos(int x, int y);
 
-	protected:
-        void paintEvent(QPaintEvent* pe) override;
-   
-// 		virtual void resizeEvent( QResizeEvent *re );
-		KGVSimplePrintPreviewWindow *m_window;
+protected:
+    void paintEvent(QPaintEvent *pe) override;
+
+    // 		virtual void resizeEvent( QResizeEvent *re );
+    KGVSimplePrintPreviewWindow *m_window;
 };
 
 }

@@ -29,18 +29,17 @@
 #define KGVSIMPLEPRINTPREVIEWWINDOW_H
 
 #include <qpainter.h>
-//Added by qt3to4:
-#include <QEvent>
-#include <ktoolbar.h>
-#include <kactioncollection.h>
+// Added by qt3to4:
 #include <KgvPageLayoutDia.h>
+#include <QEvent>
+#include <kactioncollection.h>
+#include <ktoolbar.h>
 
 class QLabel;
 class QScrollArea;
 
 namespace KGraphViewer
 {
-
 class KGVSimplePrintPreviewScrollView;
 class KGVSimplePrintPreviewView;
 class KGVSimplePrintingSettings;
@@ -49,54 +48,59 @@ class KGVSimplePrintingEngine;
 //! @short A window for displaying print preview for simple printing.
 class KGVSimplePrintPreviewWindow : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	public:
-		KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine &engine,
-			const QString& previewName, QWidget *parent);
-		~KGVSimplePrintPreviewWindow();
+public:
+    KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine &engine, const QString &previewName, QWidget *parent);
+    ~KGVSimplePrintPreviewWindow();
 
-		int currentPage() const { return m_pageNumber; }
+    int currentPage() const
+    {
+        return m_pageNumber;
+    }
 
-		KGVSimplePrintingSettings* settings() const { return m_settings; }
+    KGVSimplePrintingSettings *settings() const
+    {
+        return m_settings;
+    }
 
-	public Q_SLOTS:
-		void updatePagesCount();
-//		void setPagesCount(int pagesCount);
-		void goToPage(int pageNumber);
+public Q_SLOTS:
+    void updatePagesCount();
+    //		void setPagesCount(int pagesCount);
+    void goToPage(int pageNumber);
     void setFullWidth();
     void slotRedraw();
 
-	Q_SIGNALS:
-		void printRequested();
-		void pageSetupRequested();
+Q_SIGNALS:
+    void printRequested();
+    void pageSetupRequested();
 
-	protected Q_SLOTS:
-		void slotPageSetup();
-		void slotPrintClicked();
-		void slotZoomInClicked();
-		void slotZoomOutClicked();
-		void slotFirstClicked();
-		void slotPreviousClicked();
-		void slotNextClicked();
-		void slotLastClicked();
-		void initLater();
+protected Q_SLOTS:
+    void slotPageSetup();
+    void slotPrintClicked();
+    void slotZoomInClicked();
+    void slotZoomOutClicked();
+    void slotFirstClicked();
+    void slotPreviousClicked();
+    void slotNextClicked();
+    void slotLastClicked();
+    void initLater();
 
-	protected:
-		bool event(QEvent* e) override;
+protected:
+    bool event(QEvent *e) override;
 
-		KGVSimplePrintingEngine &m_engine;
-		KGVSimplePrintingSettings* m_settings;
-		KToolBar *m_toolbar, *m_navToolbar;
-		int m_pageNumber;//, m_pagesCount;
-		int m_idFirst, m_idLast, m_idPrevious, m_idNext;
-    QLabel* m_pageNumberLabel;
-//     QScrollArea* m_scrollView;
-		KGVSimplePrintPreviewScrollView *m_scrollView;
-		KGVSimplePrintPreviewView *m_view;
+    KGVSimplePrintingEngine &m_engine;
+    KGVSimplePrintingSettings *m_settings;
+    KToolBar *m_toolbar, *m_navToolbar;
+    int m_pageNumber; //, m_pagesCount;
+    int m_idFirst, m_idLast, m_idPrevious, m_idNext;
+    QLabel *m_pageNumberLabel;
+    //     QScrollArea* m_scrollView;
+    KGVSimplePrintPreviewScrollView *m_scrollView;
+    KGVSimplePrintPreviewView *m_view;
     KActionCollection m_actions;
 
-		friend class KGVSimplePrintPreviewView;
+    friend class KGVSimplePrintPreviewView;
 };
 
 }

@@ -24,151 +24,231 @@
 #define DOT_GRAPH_H
 
 #include <QList>
+#include <QMutex>
+#include <QProcess>
 #include <QSet>
 #include <QString>
-#include <QProcess>
-#include <QMutex>
 
 #include <graphviz/gvc.h>
 
-#include "kgraphviewer_export.h"
-#include "graphelement.h"
-#include "graphsubgraph.h"
-#include "graphnode.h"
-#include "graphedge.h"
 #include "dotdefaults.h"
+#include "graphedge.h"
+#include "graphelement.h"
+#include "graphnode.h"
+#include "graphsubgraph.h"
+#include "kgraphviewer_export.h"
 
 namespace KGraphViewer
 {
-  
 /**
-  * A class representing the model of a Graphviz DOT graph
-  */
+ * A class representing the model of a Graphviz DOT graph
+ */
 class DotGraph : public GraphElement
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  enum ParsePhase {Initial, Final};
-  
-  DotGraph();
-  DotGraph(const QString& command, const QString& fileName);
+    enum ParsePhase { Initial, Final };
 
-  ~DotGraph() override;
+    DotGraph();
+    DotGraph(const QString &command, const QString &fileName);
 
-  QString chooseLayoutProgramForFile(const QString& str);
-  bool parseDot(const QString& str);
-  
-  /** Constant accessor to the nodes of this graph */
-  inline const GraphNodeMap& nodes() const {return m_nodesMap;}
-  /** Constant accessor to the edges of this graph */
-  inline const GraphEdgeMap& edges() const {return m_edgesMap;}
-  inline const GraphSubgraphMap& subgraphs() const {return m_subgraphsMap;}
-  /** Accessor to the nodes of this graph */
-  inline GraphNodeMap& nodes() {return m_nodesMap;}
-  /** Accessor to the edges of this graph */
-  inline GraphEdgeMap& edges() {return m_edgesMap;}
-  inline GraphSubgraphMap& subgraphs() {return m_subgraphsMap;}
-  double width() const {return m_width;}
-  double height() const {return m_height;}
-  double scale() const {return m_scale;}
-  void width(double w) {m_width = w;}
-  void height(double h) {m_height = h;}
-  void scale(double s) {m_scale = s;}
-  QString backColor() const override;
-  
-  inline void strict(bool s) {m_strict = s;}
-  inline void directed(bool d) {m_directed = d;}
-  inline bool strict() const {return m_strict;}
-  inline bool directed() const {return m_directed;}
+    ~DotGraph() override;
 
-  QSet< GraphNode* >& nodesOfCell(unsigned int id);
-  
-  inline unsigned int horizCellFactor() const {return m_horizCellFactor;}
-  inline unsigned int vertCellFactor() const {return m_vertCellFactor;}
-  inline double wdhcf() const {return m_wdhcf;}
-  inline double hdvcf() const {return m_hdvcf;}
-  
-  inline void layoutCommand(const QString& command) {m_layoutCommand = command;}
-  inline const QString& layoutCommand() {return m_layoutCommand;}
-  
-  inline void dotFileName(const QString& fileName) {m_dotFileName = fileName;}
-  inline const QString& dotFileName() const {return m_dotFileName;}
+    QString chooseLayoutProgramForFile(const QString &str);
+    bool parseDot(const QString &str);
 
-  bool update();
+    /** Constant accessor to the nodes of this graph */
+    inline const GraphNodeMap &nodes() const
+    {
+        return m_nodesMap;
+    }
+    /** Constant accessor to the edges of this graph */
+    inline const GraphEdgeMap &edges() const
+    {
+        return m_edgesMap;
+    }
+    inline const GraphSubgraphMap &subgraphs() const
+    {
+        return m_subgraphsMap;
+    }
+    /** Accessor to the nodes of this graph */
+    inline GraphNodeMap &nodes()
+    {
+        return m_nodesMap;
+    }
+    /** Accessor to the edges of this graph */
+    inline GraphEdgeMap &edges()
+    {
+        return m_edgesMap;
+    }
+    inline GraphSubgraphMap &subgraphs()
+    {
+        return m_subgraphsMap;
+    }
+    double width() const
+    {
+        return m_width;
+    }
+    double height() const
+    {
+        return m_height;
+    }
+    double scale() const
+    {
+        return m_scale;
+    }
+    void width(double w)
+    {
+        m_width = w;
+    }
+    void height(double h)
+    {
+        m_height = h;
+    }
+    void scale(double s)
+    {
+        m_scale = s;
+    }
+    QString backColor() const override;
 
-  inline void setReadWrite() {m_readWrite = true;}
-  inline void setReadOnly() {m_readWrite = false;}
+    inline void strict(bool s)
+    {
+        m_strict = s;
+    }
+    inline void directed(bool d)
+    {
+        m_directed = d;
+    }
+    inline bool strict() const
+    {
+        return m_strict;
+    }
+    inline bool directed() const
+    {
+        return m_directed;
+    }
 
-  void storeOriginalAttributes() override;
+    QSet<GraphNode *> &nodesOfCell(unsigned int id);
 
-  void KGRAPHVIEWER_EXPORT saveTo(const QString& fileName);
+    inline unsigned int horizCellFactor() const
+    {
+        return m_horizCellFactor;
+    }
+    inline unsigned int vertCellFactor() const
+    {
+        return m_vertCellFactor;
+    }
+    inline double wdhcf() const
+    {
+        return m_wdhcf;
+    }
+    inline double hdvcf() const
+    {
+        return m_hdvcf;
+    }
 
-  void updateWithGraph(graph_t* newGraph);
-  void updateWithGraph(const DotGraph& graph);
+    inline void layoutCommand(const QString &command)
+    {
+        m_layoutCommand = command;
+    }
+    inline const QString &layoutCommand()
+    {
+        return m_layoutCommand;
+    }
 
-  void KGRAPHVIEWER_EXPORT setAttribute(const QString& elementId, const QString& attributeName, const QString& attributeValue);
+    inline void dotFileName(const QString &fileName)
+    {
+        m_dotFileName = fileName;
+    }
+    inline const QString &dotFileName() const
+    {
+        return m_dotFileName;
+    }
 
-  GraphElement* elementNamed(const QString& id);
+    bool update();
 
-  inline void setUseLibrary(bool value) {m_useLibrary = value;}
-  inline bool useLibrary() {return m_useLibrary;}
+    inline void setReadWrite()
+    {
+        m_readWrite = true;
+    }
+    inline void setReadOnly()
+    {
+        m_readWrite = false;
+    }
 
-  void KGRAPHVIEWER_EXPORT setGraphAttributes(QMap<QString,QString> attribs);
-  void KGRAPHVIEWER_EXPORT addNewNode(QMap<QString,QString> attribs);
-  void KGRAPHVIEWER_EXPORT addNewSubgraph(QMap<QString,QString> attribs);
-  void KGRAPHVIEWER_EXPORT addNewNodeToSubgraph(QMap<QString,QString> attribs, QString subgraph);
-  void KGRAPHVIEWER_EXPORT addExistingNodeToSubgraph(QMap<QString,QString> attribs,QString subgraph);
-  void KGRAPHVIEWER_EXPORT moveExistingNodeToMainGraph(QMap<QString,QString> attribs);
-  void KGRAPHVIEWER_EXPORT addNewEdge(QString src, QString tgt, QMap<QString,QString> attribs);
-  using GraphElement::removeAttribute;
-  void KGRAPHVIEWER_EXPORT removeAttribute(const QString& nodeName, const QString& attribName);
-  void KGRAPHVIEWER_EXPORT renameNode(const QString& oldNodeName, const QString& newNodeName);
-  void KGRAPHVIEWER_EXPORT removeNodeNamed(const QString& nodeName);
-  void KGRAPHVIEWER_EXPORT removeNodeFromSubgraph(const QString& nodeName, const QString& subgraphName);
-  void KGRAPHVIEWER_EXPORT removeSubgraphNamed(const QString& subgraphName);
-  void KGRAPHVIEWER_EXPORT removeEdge(const QString& id);
-  void KGRAPHVIEWER_EXPORT removeElement(const QString& id);
+    void storeOriginalAttributes() override;
+
+    void KGRAPHVIEWER_EXPORT saveTo(const QString &fileName);
+
+    void updateWithGraph(graph_t *newGraph);
+    void updateWithGraph(const DotGraph &graph);
+
+    void KGRAPHVIEWER_EXPORT setAttribute(const QString &elementId, const QString &attributeName, const QString &attributeValue);
+
+    GraphElement *elementNamed(const QString &id);
+
+    inline void setUseLibrary(bool value)
+    {
+        m_useLibrary = value;
+    }
+    inline bool useLibrary()
+    {
+        return m_useLibrary;
+    }
+
+    void KGRAPHVIEWER_EXPORT setGraphAttributes(QMap<QString, QString> attribs);
+    void KGRAPHVIEWER_EXPORT addNewNode(QMap<QString, QString> attribs);
+    void KGRAPHVIEWER_EXPORT addNewSubgraph(QMap<QString, QString> attribs);
+    void KGRAPHVIEWER_EXPORT addNewNodeToSubgraph(QMap<QString, QString> attribs, QString subgraph);
+    void KGRAPHVIEWER_EXPORT addExistingNodeToSubgraph(QMap<QString, QString> attribs, QString subgraph);
+    void KGRAPHVIEWER_EXPORT moveExistingNodeToMainGraph(QMap<QString, QString> attribs);
+    void KGRAPHVIEWER_EXPORT addNewEdge(QString src, QString tgt, QMap<QString, QString> attribs);
+    using GraphElement::removeAttribute;
+    void KGRAPHVIEWER_EXPORT removeAttribute(const QString &nodeName, const QString &attribName);
+    void KGRAPHVIEWER_EXPORT renameNode(const QString &oldNodeName, const QString &newNodeName);
+    void KGRAPHVIEWER_EXPORT removeNodeNamed(const QString &nodeName);
+    void KGRAPHVIEWER_EXPORT removeNodeFromSubgraph(const QString &nodeName, const QString &subgraphName);
+    void KGRAPHVIEWER_EXPORT removeSubgraphNamed(const QString &subgraphName);
+    void KGRAPHVIEWER_EXPORT removeEdge(const QString &id);
+    void KGRAPHVIEWER_EXPORT removeElement(const QString &id);
 
 Q_SIGNALS:
-  void readyToDisplay();
+    void readyToDisplay();
 
 private Q_SLOTS:
-  void slotDotRunningDone(int,QProcess::ExitStatus);
-  void slotDotRunningError(QProcess::ProcessError);
-  
+    void slotDotRunningDone(int, QProcess::ExitStatus);
+    void slotDotRunningError(QProcess::ProcessError);
+
 private:
-  unsigned int cellNumber(int x, int y);
-  void computeCells();
-  QByteArray getDotResult(int exitCode, QProcess::ExitStatus exitStatus);
-    
-  QString m_dotFileName;
-  GraphSubgraphMap m_subgraphsMap;
-  GraphNodeMap m_nodesMap;
-  GraphEdgeMap m_edgesMap;
-  double m_width, m_height;
-  double m_scale;
-  bool m_directed;
-  bool m_strict;
-  QString m_layoutCommand;
-  
-  unsigned int m_horizCellFactor, m_vertCellFactor;
-  QVector< QSet< GraphNode* > > m_cells;
-  
-  double m_wdhcf, m_hdvcf;
+    unsigned int cellNumber(int x, int y);
+    void computeCells();
+    QByteArray getDotResult(int exitCode, QProcess::ExitStatus exitStatus);
 
-  bool m_readWrite;
-  QProcess* m_dot;
+    QString m_dotFileName;
+    GraphSubgraphMap m_subgraphsMap;
+    GraphNodeMap m_nodesMap;
+    GraphEdgeMap m_edgesMap;
+    double m_width, m_height;
+    double m_scale;
+    bool m_directed;
+    bool m_strict;
+    QString m_layoutCommand;
 
-  ParsePhase m_phase;
+    unsigned int m_horizCellFactor, m_vertCellFactor;
+    QVector<QSet<GraphNode *>> m_cells;
 
-  QMutex m_dotProcessMutex;
+    double m_wdhcf, m_hdvcf;
 
-  bool m_useLibrary;
+    bool m_readWrite;
+    QProcess *m_dot;
+
+    ParsePhase m_phase;
+
+    QMutex m_dotProcessMutex;
+
+    bool m_useLibrary;
 };
 
 }
 
 #endif
-
-
-

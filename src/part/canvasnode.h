@@ -35,19 +35,17 @@
 
 namespace KGraphViewer
 {
-  
 class GraphNode;
 
 class CanvasNode : public CanvasElement
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  CanvasNode(DotGraphView* v,
-            GraphNode* s,
-            QGraphicsScene* c,
-            QGraphicsItem* parent = nullptr);
+    CanvasNode(DotGraphView *v, GraphNode *s, QGraphicsScene *c, QGraphicsItem *parent = nullptr);
 
-  ~CanvasNode() override {}
+    ~CanvasNode() override
+    {
+    }
 };
 
 // class CanvasHtmlNode: public KHTMLPart, public CanvasNode
@@ -55,7 +53,7 @@ public:
 //   Q_OBJECT
 // public:
 //   CanvasHtmlNode(
-//                      DotGraphView* v, 
+//                      DotGraphView* v,
 //                      GraphNode* n,
 //                      const DotRenderOp& dro,
 //                      const DotRenderOpVec& dros,
@@ -63,16 +61,16 @@ public:
 //                      double scaleX, double scaleY, int xMargin, int yMargin, int gh,
 //                      int wdhcf, int hdvcf);
 //   virtual ~CanvasHtmlNode();
-//   
+//
 //   QRect rect() {return view()->contentsRect();}
-//   
+//
 // protected:
 // //   virtual void paint(QPainter&);
-// 
+//
 // public Q_SLOTS:
 //   void move(int x, int y);
 //   void zoomed(double factor);
-// 
+//
 // private:
 //   double m_zoomFactor;
 //   int m_xMovedTo, m_yMovedTo;
@@ -80,6 +78,3 @@ public:
 
 }
 #endif
-
-
-

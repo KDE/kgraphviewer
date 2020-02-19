@@ -28,43 +28,45 @@
 #include <KgvPageLayoutHeader.h>
 #include <KgvUnitWidgets.h>
 
-#include <qlayout.h>
 #include <qcheckbox.h>
-//Added by qt3to4:
+#include <qlayout.h>
+// Added by qt3to4:
 #include <QHBoxLayout>
 
 KgvPageLayoutHeader::KgvPageLayoutHeader(QWidget *parent, KgvUnit::Unit unit, const KgvKWHeaderFooter &kwhf)
-    : QWidget(parent), Ui::KgvPageLayoutHeaderBase() 
+    : QWidget(parent)
+    , Ui::KgvPageLayoutHeaderBase()
 {
     m_headerFooters = kwhf;
     QHBoxLayout *lay = new QHBoxLayout(headerSpacingPane);
-    m_headerSpacing = new KgvUnitDoubleSpinBox( headerSpacingPane, 0.0, 999.0, 0.5, kwhf.ptHeaderBodySpacing, unit );
+    m_headerSpacing = new KgvUnitDoubleSpinBox(headerSpacingPane, 0.0, 999.0, 0.5, kwhf.ptHeaderBodySpacing, unit);
     lay->addWidget(m_headerSpacing);
 
     lay = new QHBoxLayout(footerSpacingPane);
-    m_footerSpacing = new KgvUnitDoubleSpinBox( footerSpacingPane, 0.0, 999.0, 0.5, kwhf.ptFooterBodySpacing, unit );
+    m_footerSpacing = new KgvUnitDoubleSpinBox(footerSpacingPane, 0.0, 999.0, 0.5, kwhf.ptFooterBodySpacing, unit);
     lay->addWidget(m_footerSpacing);
 
     lay = new QHBoxLayout(footnotePane);
-    m_footnoteSpacing = new KgvUnitDoubleSpinBox( footnotePane, 0.0, 999.0, 0.5, kwhf.ptFootNoteBodySpacing, unit );
+    m_footnoteSpacing = new KgvUnitDoubleSpinBox(footnotePane, 0.0, 999.0, 0.5, kwhf.ptFootNoteBodySpacing, unit);
     lay->addWidget(m_footnoteSpacing);
 
-    if ( kwhf.header == HF_FIRST_DIFF || kwhf.header == HF_FIRST_EO_DIFF )
-        rhFirst->setChecked( true );
-    if ( kwhf.header == HF_EO_DIFF || kwhf.header == HF_FIRST_EO_DIFF )
-        rhEvenOdd->setChecked( true );
-    if ( kwhf.footer == HF_FIRST_DIFF || kwhf.footer == HF_FIRST_EO_DIFF )
-        rfFirst->setChecked( true );
-    if ( kwhf.footer == HF_EO_DIFF || kwhf.footer == HF_FIRST_EO_DIFF )
-        rfEvenOdd->setChecked( true );
+    if (kwhf.header == HF_FIRST_DIFF || kwhf.header == HF_FIRST_EO_DIFF)
+        rhFirst->setChecked(true);
+    if (kwhf.header == HF_EO_DIFF || kwhf.header == HF_FIRST_EO_DIFF)
+        rhEvenOdd->setChecked(true);
+    if (kwhf.footer == HF_FIRST_DIFF || kwhf.footer == HF_FIRST_EO_DIFF)
+        rfFirst->setChecked(true);
+    if (kwhf.footer == HF_EO_DIFF || kwhf.footer == HF_FIRST_EO_DIFF)
+        rfEvenOdd->setChecked(true);
 }
 
-const KgvKWHeaderFooter& KgvPageLayoutHeader::headerFooter() {
-    if ( rhFirst->isChecked() && rhEvenOdd->isChecked() )
+const KgvKWHeaderFooter &KgvPageLayoutHeader::headerFooter()
+{
+    if (rhFirst->isChecked() && rhEvenOdd->isChecked())
         m_headerFooters.header = HF_FIRST_EO_DIFF;
-    else if ( rhFirst->isChecked() )
+    else if (rhFirst->isChecked())
         m_headerFooters.header = HF_FIRST_DIFF;
-    else if ( rhEvenOdd->isChecked() )
+    else if (rhEvenOdd->isChecked())
         m_headerFooters.header = HF_EO_DIFF;
     else
         m_headerFooters.header = HF_SAME;
@@ -72,11 +74,11 @@ const KgvKWHeaderFooter& KgvPageLayoutHeader::headerFooter() {
     m_headerFooters.ptHeaderBodySpacing = m_headerSpacing->value();
     m_headerFooters.ptFooterBodySpacing = m_footerSpacing->value();
     m_headerFooters.ptFootNoteBodySpacing = m_footnoteSpacing->value();
-    if ( rfFirst->isChecked() && rfEvenOdd->isChecked() )
+    if (rfFirst->isChecked() && rfEvenOdd->isChecked())
         m_headerFooters.footer = HF_FIRST_EO_DIFF;
-    else if ( rfFirst->isChecked() )
+    else if (rfFirst->isChecked())
         m_headerFooters.footer = HF_FIRST_DIFF;
-    else if ( rfEvenOdd->isChecked() )
+    else if (rfEvenOdd->isChecked())
         m_headerFooters.footer = HF_EO_DIFF;
     else
         m_headerFooters.footer = HF_SAME;

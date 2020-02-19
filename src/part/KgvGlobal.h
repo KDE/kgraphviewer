@@ -28,11 +28,11 @@
 #ifndef kgvGlobal_h
 #define kgvGlobal_h
 
-#include <QStringList>
+#include <QApplication>
 #include <QFont>
 #include <QMap>
 #include <QScreen>
-#include <QApplication>
+#include <QStringList>
 
 class KConfig;
 
@@ -40,7 +40,8 @@ class KgvGlobal
 {
 public:
     /// For KgvApplication
-    static void initialize()  {
+    static void initialize()
+    {
         (void)self(); // I don't want to make KGlobal instances public, so self() is private
     }
     /**
@@ -49,7 +50,8 @@ public:
      * except that it is guaranteed to have a point size set,
      * never a pixel size (see @ref QFont).
      */
-    static QFont defaultFont()  {
+    static QFont defaultFont()
+    {
         return self()->_defaultFont();
     }
 
@@ -59,52 +61,55 @@ public:
      * so this is the centralization of the KConfig object so that the file is
      * parsed only once
      */
-    static KConfig* kofficeConfig() {
+    static KConfig *kofficeConfig()
+    {
         return self()->_kofficeConfig();
     }
 
-    static int dpiX() {
+    static int dpiX()
+    {
         return qApp->primaryScreen()->physicalDotsPerInchX();
     }
-    static int dpiY() {
+    static int dpiY()
+    {
         return qApp->primaryScreen()->physicalDotsPerInchY();
     }
 
     /// Return the list of available languages, in their displayable form
     /// (translated names)
-//     static QStringList listOfLanguages() {
-//         return self()->_listOfLanguages();
-//     }
+    //     static QStringList listOfLanguages() {
+    //         return self()->_listOfLanguages();
+    //     }
     /// Return the list of available languages, in their internal form
     /// e.g. "fr" or "en_US", here called "tag"
-//     static QStringList listTagOfLanguages() { // TODO rename to listOfLanguageTags
-//         return self()->_listOfLanguageTags();
-//     }
+    //     static QStringList listTagOfLanguages() { // TODO rename to listOfLanguageTags
+    //         return self()->_listOfLanguageTags();
+    //     }
     /// For a given language display name, return its tag
-    static QString tagOfLanguage( const QString & _lang );
+    static QString tagOfLanguage(const QString &_lang);
     /// For a given language tag, return its display name
-    static QString languageFromTag( const QString &_lang );
+    static QString languageFromTag(const QString &_lang);
 
     ~KgvGlobal();
 
 private:
-    static KgvGlobal* self();
+    static KgvGlobal *self();
     KgvGlobal();
     QFont _defaultFont();
-//     QStringList _listOfLanguages();
-//     QStringList _listOfLanguageTags();
-    KConfig* _kofficeConfig();
-//     void createListOfLanguages();
+    //     QStringList _listOfLanguages();
+    //     QStringList _listOfLanguageTags();
+    KConfig *_kofficeConfig();
+    //     void createListOfLanguages();
 
     int m_pointSize;
     typedef QMap<QString, QString> LanguageMap;
     LanguageMap m_langMap; // display-name -> language tag
-    KConfig* m_kofficeConfig;
+    KConfig *m_kofficeConfig;
     // No BC problem here, constructor is private, feel free to add members
 
     // Singleton pattern. Maybe this should even be refcounted, so
     // that it gets cleaned up when closing all koffice parts in e.g. konqueror?
-    static KgvGlobal* s_global;
+    static KgvGlobal *s_global;
     friend class this_is_a_singleton; // work around gcc warning
 };
 

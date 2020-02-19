@@ -25,28 +25,42 @@
 
 #include <graphviz/gvc.h>
 
-
 class LoadAGraphThread : public QThread
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  LoadAGraphThread() : sem(1) {}
-  void loadFile(const QString& dotFileName);
-  inline graph_t* g() {return m_g;}
-  inline const QString& dotFileName() {return m_dotFileName;}
-  void processed_finished() { sem.release(); }
+    LoadAGraphThread()
+        : sem(1)
+    {
+    }
+    void loadFile(const QString &dotFileName);
+    inline graph_t *g()
+    {
+        return m_g;
+    }
+    inline const QString &dotFileName()
+    {
+        return m_dotFileName;
+    }
+    void processed_finished()
+    {
+        sem.release();
+    }
 
-  // helper method only for DotGraphView::loadLibrarySync()
-  // see notes next to the call there
-  void setDotFileName(const QString& dotFileName) { m_dotFileName = dotFileName; }
+    // helper method only for DotGraphView::loadLibrarySync()
+    // see notes next to the call there
+    void setDotFileName(const QString &dotFileName)
+    {
+        m_dotFileName = dotFileName;
+    }
 
 protected:
-  void run() override;
+    void run() override;
 
 private:
-  QSemaphore sem;
-  QString m_dotFileName;
-  graph_t *m_g;
+    QSemaphore sem;
+    QString m_dotFileName;
+    graph_t *m_g;
 };
 
 #endif // LOADAGRAPHTHREAD_H

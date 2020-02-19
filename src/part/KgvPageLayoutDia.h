@@ -30,11 +30,11 @@
 #ifndef KGVPAGELAYOUTDIA_H
 #define KGVPAGELAYOUTDIA_H
 
-#include <QGroupBox>
-#include <KgvUnit.h>
-#include <kpagedialog.h>
 #include <KgvPageLayout.h>
+#include <KgvUnit.h>
+#include <QGroupBox>
 #include <QLineEdit>
+#include <kpagedialog.h>
 
 class KLineEdit;
 class QPaintEvent;
@@ -43,8 +43,7 @@ class KgvPageLayoutColumns;
 class KgvPageLayoutSize;
 class KgvPageLayoutHeader;
 
-enum { FORMAT_AND_BORDERS = 1, HEADER_AND_FOOTER = 2, COLUMNS = 4, DISABLE_BORDERS = 8,
-       KW_HEADER_AND_FOOTER = 16, DISABLE_UNIT = 32 };
+enum { FORMAT_AND_BORDERS = 1, HEADER_AND_FOOTER = 2, COLUMNS = 4, DISABLE_BORDERS = 8, KW_HEADER_AND_FOOTER = 16, DISABLE_UNIT = 32 };
 
 /**
  *  KgvPagePreview.
@@ -55,11 +54,10 @@ class KgvPagePreview : public QGroupBox
     Q_OBJECT
 
 public:
-
     /**
      *  constructor
      */
-    KgvPagePreview( QWidget*, const char*, const KgvPageLayout & );
+    KgvPagePreview(QWidget *, const char *, const KgvPageLayout &);
     /**
      *  destructor
      */
@@ -68,13 +66,12 @@ public:
     /**
      *  set page layout
      */
-    void setPageLayout( const KgvPageLayout& );
-    void setPageColumns( const KgvColumns& );
+    void setPageLayout(const KgvPageLayout &);
+    void setPageColumns(const KgvColumns &);
 
 protected:
-
     // paint page
-    void paintEvent(QPaintEvent* event) override;
+    void paintEvent(QPaintEvent *event) override;
 
     double m_pageHeight, m_pageWidth, m_textFrameX, m_textFrameY, m_textFrameWidth, m_textFrameHeight;
     int columns;
@@ -90,7 +87,6 @@ class KgvPageLayoutDia : public KPageDialog
     Q_OBJECT
 
 public:
-
     /**
      *  Constructor.
      *
@@ -102,9 +98,7 @@ public:
      *  @param unit     The unit to use for displaying the values to the user.
      *  @param modal    Whether the dialog is modal or not.
      */
-    KgvPageLayoutDia( QWidget* parent,
-             KgvPageLayout& layout,
-             int flags, KgvUnit::Unit unit);
+    KgvPageLayoutDia(QWidget *parent, KgvPageLayout &layout, int flags, KgvUnit::Unit unit);
 
     /**
      *  Constructor.
@@ -118,10 +112,7 @@ public:
      *  @param tabs       The number of tabs.
      *  @param unit       The unit to use for displaying the values to the user
      */
-    KgvPageLayoutDia( QWidget* parent,
-             KgvPageLayout& layout,
-             const KgvColumns& columns,
-             int tabs, KgvUnit::Unit unit );
+    KgvPageLayoutDia(QWidget *parent, KgvPageLayout &layout, const KgvColumns &columns, int tabs, KgvUnit::Unit unit);
 
     /**
      *  Destructor.
@@ -132,18 +123,21 @@ public:
      *  Show page layout dialog.
      *  See constructor for documentation on the parameters
      */
-    static bool pageLayout(KgvPageLayout&, KgvHeadFoot&, int tabs, KgvUnit::Unit& unit, QWidget* parent = nullptr);
+    static bool pageLayout(KgvPageLayout &, KgvHeadFoot &, int tabs, KgvUnit::Unit &unit, QWidget *parent = nullptr);
 
     /**
      *  Show page layout dialog.
      *  See constructor for documentation on the parameters
      */
-    static bool pageLayout(KgvPageLayout&, KgvHeadFoot&, KgvColumns&, KgvKWHeaderFooter&, int tabs, KgvUnit::Unit& unit, QWidget* parent = nullptr);
+    static bool pageLayout(KgvPageLayout &, KgvHeadFoot &, KgvColumns &, KgvKWHeaderFooter &, int tabs, KgvUnit::Unit &unit, QWidget *parent = nullptr);
 
     /**
      *  Returns the layout
      */
-    const KgvPageLayout& layout() const { return m_layout; }
+    const KgvPageLayout &layout() const
+    {
+        return m_layout;
+    }
 
     /**
      *  Returns the header and footer information
@@ -153,17 +147,23 @@ public:
     /**
      *  Returns the unit
      */
-    KgvUnit::Unit unit() const { return m_unit; }
+    KgvUnit::Unit unit() const
+    {
+        return m_unit;
+    }
 
 private:
-    const KgvColumns& columns() { return m_column; }
-    const KgvKWHeaderFooter& headerFooter();
+    const KgvColumns &columns()
+    {
+        return m_column;
+    }
+    const KgvKWHeaderFooter &headerFooter();
 
     // setup tabs
-    void setupTab1( bool enableBorders );
-//     void setupTab2( const KgvHeadFoot& hf );
-//     void setupTab3();
-//     void setupTab4( const KgvKWHeaderFooter kwhf );
+    void setupTab1(bool enableBorders);
+    //     void setupTab2( const KgvHeadFoot& hf );
+    //     void setupTab3();
+    //     void setupTab4( const KgvKWHeaderFooter kwhf );
 
     // dialog objects
     QLineEdit *eHeadLeft;
@@ -174,7 +174,7 @@ private:
     QLineEdit *eFootRight;
 
     // layout
-    struct ::KgvPageLayout& m_layout;
+    struct ::KgvPageLayout &m_layout;
     KgvColumns m_column;
 
     KgvUnit::Unit m_unit;
@@ -186,7 +186,7 @@ protected Q_SLOTS:
 
 private Q_SLOTS:
     void sizeUpdated(struct ::KgvPageLayout &layout);
-//     void columnsUpdated(KgvColumns &columns);
+    //     void columnsUpdated(KgvColumns &columns);
 
 private:
     KgvPageLayoutSize *m_pageSizeTab;

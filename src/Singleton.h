@@ -16,7 +16,6 @@
    02110-1301, USA
 */
 
-
 #ifndef KGRAPHVIEWER_SINGLETON_H
 #define KGRAPHVIEWER_SINGLETON_H
 
@@ -26,48 +25,39 @@
  * @short Singleton pattern implementation
  * @author Gaël de Chalendar <kleag@free.fr>
  */
-template<typename Object>
-class Singleton
+template<typename Object> class Singleton
 {
 public:
+    /**
+     * @brief const singleton accessor
+     */
+    static const Object &single();
 
-  /**
-    * @brief const singleton accessor
-    */
-  static const Object& single();
-
-  /**
-    * @brief singleton accessor
-    */
-  static Object& changeable();
-
+    /**
+     * @brief singleton accessor
+     */
+    static Object &changeable();
 
 private:
-  static Object* s_instance;
-
+    static Object *s_instance;
 };
 
-template<typename Object>
-Object* Singleton<Object>::s_instance(nullptr);
+template<typename Object> Object *Singleton<Object>::s_instance(nullptr);
 
-template<typename Object>
-const Object& Singleton<Object>::single()
+template<typename Object> const Object &Singleton<Object>::single()
 {
-  if (s_instance == nullptr)
-  {
-    s_instance=new Object();
-  }
-  return *s_instance;
+    if (s_instance == nullptr) {
+        s_instance = new Object();
+    }
+    return *s_instance;
 }
 
-template<typename Object>
-Object& Singleton<Object>::changeable()
+template<typename Object> Object &Singleton<Object>::changeable()
 {
-  if (s_instance == nullptr)
-  {
-    s_instance=new Object();
-  }
-  return *s_instance;
+    if (s_instance == nullptr) {
+        s_instance = new Object();
+    }
+    return *s_instance;
 }
 
 #endif

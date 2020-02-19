@@ -24,81 +24,78 @@
 #define CANVAS_ELEMENT_H
 
 #include <QAbstractGraphicsShapeItem>
-#include <QPen>
 #include <QBrush>
+#include <QPen>
 
 #include "dotgrammar.h"
 
 class QMenu;
 class QGraphicsScene;
 
-
 namespace KGraphViewer
 {
 class GraphElement;
 class DotGraphView;
 
-class CanvasElement: public QObject, public QAbstractGraphicsShapeItem
+class CanvasElement : public QObject, public QAbstractGraphicsShapeItem
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-  CanvasElement(
-      DotGraphView* v, 
-      GraphElement* s,
-      QGraphicsScene* c,
-      QGraphicsItem* parent = nullptr);
-      
-  ~CanvasElement() override;
+    CanvasElement(DotGraphView *v, GraphElement *s, QGraphicsScene *c, QGraphicsItem *parent = nullptr);
 
-  GraphElement* element() { return m_element; }
+    ~CanvasElement() override;
 
-  void paint(QPainter* p, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
+    GraphElement *element()
+    {
+        return m_element;
+    }
 
-  QRectF boundingRect() const override;
+    void paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
 
-  void computeBoundingRect();
-  
-  void initialize(qreal scaleX, qreal scaleY,
-                  qreal xMargin, qreal yMargin, qreal gh);
+    QRectF boundingRect() const override;
 
-  inline void setGh(qreal gh) {m_gh = gh;}
+    void computeBoundingRect();
+
+    void initialize(qreal scaleX, qreal scaleY, qreal xMargin, qreal yMargin, qreal gh);
+
+    inline void setGh(qreal gh)
+    {
+        m_gh = gh;
+    }
 
 protected:
-  void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
-  void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
-  void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
-  void hoverEnterEvent(QGraphicsSceneHoverEvent* event) override;
-  void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
 
-  qreal m_scaleX, m_scaleY;
-  qreal m_xMargin, m_yMargin, m_gh;
-  GraphElement* m_element;
-  DotGraphView* m_view;
-  QFont* m_font;
-  QPen m_pen;
-  QBrush m_brush;
-  QRectF m_boundingRect;
-  QMenu* m_popup;
+    qreal m_scaleX, m_scaleY;
+    qreal m_xMargin, m_yMargin, m_gh;
+    GraphElement *m_element;
+    DotGraphView *m_view;
+    QFont *m_font;
+    QPen m_pen;
+    QBrush m_brush;
+    QRectF m_boundingRect;
+    QMenu *m_popup;
 
-  bool m_hovered;
+    bool m_hovered;
 
-  quint32 m_lastRenderOpRev;
-  typedef QHash<int, QPair<int, int> > FontSizeCache;
-  FontSizeCache m_fontSizeCache;
+    quint32 m_lastRenderOpRev;
+    typedef QHash<int, QPair<int, int>> FontSizeCache;
+    FontSizeCache m_fontSizeCache;
 Q_SIGNALS:
-  void selected(CanvasElement*, Qt::KeyboardModifiers);
-  void elementContextMenuEvent(const QString&, const QPoint&);
-  void hoverEnter(CanvasElement*);
-  void hoverLeave(CanvasElement*);
-  
+    void selected(CanvasElement *, Qt::KeyboardModifiers);
+    void elementContextMenuEvent(const QString &, const QPoint &);
+    void hoverEnter(CanvasElement *);
+    void hoverLeave(CanvasElement *);
+
 public Q_SLOTS:
-  void modelChanged();
-  void slotRemoveElement();
+    void modelChanged();
+    void slotRemoveElement();
 };
 
 }
 
 #endif // CANVAS_ELEMENT_H
-
-
-

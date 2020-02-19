@@ -36,50 +36,52 @@ namespace KGraphViewer
 {
 class KGVSimplePrintPreviewWindow;
 
-/*! @short A command for simple printing and print preview. 
+/*! @short A command for simple printing and print preview.
  This class is instantiated in KGVMainWindowImpl so there's:
  - a single print preview window per part item regardless of a way how user invoked
-    the 'print preview' command (using 'File->Print Preview' command or 'Print Preview' button 
+    the 'print preview' command (using 'File->Print Preview' command or 'Print Preview' button
     of the 'Page Setup' dialog)
  - a single printing engine per part item regardless of a way how user started
    (using 'File->Print' command or 'Print' button of the 'Page Setup' dialog)
 */
 class KGVSimplePrintingCommand : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-  KGVSimplePrintingCommand(DotGraphView* mainWin, int objectId, 
-      QObject* parent = nullptr);
-  ~KGVSimplePrintingCommand();
+    KGVSimplePrintingCommand(DotGraphView *mainWin, int objectId, QObject *parent = nullptr);
+    ~KGVSimplePrintingCommand();
 
-  inline KGVSimplePrintingEngine* engine() {return m_previewEngine;}
+    inline KGVSimplePrintingEngine *engine()
+    {
+        return m_previewEngine;
+    }
 
-  void hidePageSetup();
-  void hidePrintPreview();
+    void hidePageSetup();
+    void hidePrintPreview();
 
 public Q_SLOTS:
-  bool print(const QString& aTitleText = QString());
-  bool showPrintPreview(const QString& aTitleText = QString(), bool reload = false);
-  void showPageSetup(const QString& aTitleText = QString());
+    bool print(const QString &aTitleText = QString());
+    bool showPrintPreview(const QString &aTitleText = QString(), bool reload = false);
+    void showPageSetup(const QString &aTitleText = QString());
 
 Q_SIGNALS:
-  //! connected to KGV Main Window
-  void showPageSetupRequested();
+    //! connected to KGV Main Window
+    void showPageSetupRequested();
 
 protected Q_SLOTS:
-  void slotShowPageSetupRequested();
+    void slotShowPageSetupRequested();
 
 protected:
-  bool init(const QString& aTitleText = QString());
+    bool init(const QString &aTitleText = QString());
 
-  KGVSimplePrintingEngine* m_previewEngine;
-  DotGraphView* m_graphView;
-  int m_objectId;
-  KGVSimplePrintingSettings* m_settings;
-  KGVSimplePrintPreviewWindow *m_previewWindow;
-  bool m_printPreviewNeedsReloading : 1;
-  QDialog* m_pageSetupDialog;
+    KGVSimplePrintingEngine *m_previewEngine;
+    DotGraphView *m_graphView;
+    int m_objectId;
+    KGVSimplePrintingSettings *m_settings;
+    KGVSimplePrintPreviewWindow *m_previewWindow;
+    bool m_printPreviewNeedsReloading : 1;
+    QDialog *m_pageSetupDialog;
 };
 
 }

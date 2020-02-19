@@ -30,9 +30,9 @@
 
 #include "KgvPageLayoutDia.h"
 
-#include <qfontmetrics.h>
 #include <qfont.h>
-//Added by qt3to4:
+#include <qfontmetrics.h>
+// Added by qt3to4:
 #include <QPixmap>
 
 class QPaintDevice;
@@ -47,66 +47,76 @@ class KGVSimplePrintingSettings;
  The engine allows for random access to any page. */
 class KGVSimplePrintingEngine : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-  KGVSimplePrintingEngine( KGVSimplePrintingSettings* settings, QObject* parent );
-  ~KGVSimplePrintingEngine();
+    KGVSimplePrintingEngine(KGVSimplePrintingSettings *settings, QObject *parent);
+    ~KGVSimplePrintingEngine();
 
-  bool init(DotGraphView& data,
-    const QString& titleText, QString& errorMessage);
+    bool init(DotGraphView &data, const QString &titleText, QString &errorMessage);
 
-  void setTitleText(const QString& titleText);
+    void setTitleText(const QString &titleText);
 
-  //! Calculates page count that can be later obtained using pagesCount().
-  //! Page count can depend on \a painter (printer/screen) and on printing settings.
-  void calculatePagesCount(QPainter& painter);
+    //! Calculates page count that can be later obtained using pagesCount().
+    //! Page count can depend on \a painter (printer/screen) and on printing settings.
+    void calculatePagesCount(QPainter &painter);
 
-  bool done();
-  void clear();
-  KGVSimplePrintingSettings* settings() { return m_settings; }
+    bool done();
+    void clear();
+    KGVSimplePrintingSettings *settings()
+    {
+        return m_settings;
+    }
 
-  //! \return true when all records has been painted
-  bool eof() const { return m_eof; }
+    //! \return true when all records has been painted
+    bool eof() const
+    {
+        return m_eof;
+    }
 
-  //! \return number of pages. Can be used after calculatePagesCount().
-  uint pagesCount() { return m_pagesCount; }
+    //! \return number of pages. Can be used after calculatePagesCount().
+    uint pagesCount()
+    {
+        return m_pagesCount;
+    }
 
-  uint maxHorizFit() const;
-  uint maxVertFit() const;
+    uint maxHorizFit() const;
+    uint maxVertFit() const;
 
-	inline DotGraphView* data() {return m_data;}
-
+    inline DotGraphView *data()
+    {
+        return m_data;
+    }
 
 public Q_SLOTS:
-  /*! Paints a page number \a pageNumber (counted from 0) on \a painter.
-    If \a paint is false, drawings are only computed but not painted, 
-    so this can be used for calculating page number before printing or previewing. */
-  void paintPage(int pageNumber, QPainter& painter, bool paint = true);
+    /*! Paints a page number \a pageNumber (counted from 0) on \a painter.
+      If \a paint is false, drawings are only computed but not painted,
+      so this can be used for calculating page number before printing or previewing. */
+    void paintPage(int pageNumber, QPainter &painter, bool paint = true);
 
 protected:
-  KGVSimplePrintingSettings* m_settings;
+    KGVSimplePrintingSettings *m_settings;
 
-  QFont m_mainFont;
-  int m_dpiX, m_dpiY;
-  uint m_pageWidth, m_pageHeight;
-  //QFontMetrics m_headerFM, m_mainFM;
-  DotGraphView* m_data;
-  QString m_headerText;
-  QString m_dateTimeText;
-  uint m_dateTimeWidth;
-  QRect m_headerTextRect;
-  int m_mainLineSpacing;
-  uint m_pagesCount;
-  bool m_eof;
-  bool m_paintInitialized; //!< used by paintPage()
-  double leftMargin;
-  double rightMargin;
-  double topMargin;
-  double bottomMargin;
-  double m_fx, m_fy;
-  
-  QPixmap m_painting;
+    QFont m_mainFont;
+    int m_dpiX, m_dpiY;
+    uint m_pageWidth, m_pageHeight;
+    // QFontMetrics m_headerFM, m_mainFM;
+    DotGraphView *m_data;
+    QString m_headerText;
+    QString m_dateTimeText;
+    uint m_dateTimeWidth;
+    QRect m_headerTextRect;
+    int m_mainLineSpacing;
+    uint m_pagesCount;
+    bool m_eof;
+    bool m_paintInitialized; //!< used by paintPage()
+    double leftMargin;
+    double rightMargin;
+    double topMargin;
+    double bottomMargin;
+    double m_fx, m_fy;
+
+    QPixmap m_painting;
 };
 
 }

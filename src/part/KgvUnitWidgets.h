@@ -28,17 +28,16 @@
 #ifndef KGVUNITWIDGETS_H
 #define KGVUNITWIDGETS_H
 
-#include <QSpinBox>
+#include <KgvUnit.h>
+#include <QComboBox>
+#include <QDoubleSpinBox>
+#include <QEvent>
 #include <QIntValidator>
 #include <QLineEdit>
-#include <QComboBox>
-#include <KgvUnit.h>
-#include <QEvent>
-#include <QDoubleSpinBox>
+#include <QSpinBox>
 
 // ----------------------------------------------------------------
 //                          Support classes
-
 
 class KgvUnitDoubleBase;
 
@@ -53,12 +52,11 @@ class KgvUnitDoubleValidator : public QDoubleValidator
 public:
     KgvUnitDoubleValidator(KgvUnitDoubleBase *base, QObject *parent);
 
-    QValidator::State validate(QString&, int&) const override;
+    QValidator::State validate(QString &, int &) const override;
 
 private:
     KgvUnitDoubleBase *m_base;
 };
-
 
 /**
  * Base for the unit widgets
@@ -67,18 +65,27 @@ private:
 class KgvUnitDoubleBase
 {
 public:
-    KgvUnitDoubleBase( KgvUnit::Unit unit, unsigned int precision ) : m_unit( unit ), m_precision( precision ) {}
-    virtual ~KgvUnitDoubleBase() {}
-
-    virtual void changeValue( double ) = 0;
-    virtual void setUnit( KgvUnit::Unit = KgvUnit::U_PT ) = 0;
-
-    void setValueInUnit( double value, KgvUnit::Unit unit )
+    KgvUnitDoubleBase(KgvUnit::Unit unit, unsigned int precision)
+        : m_unit(unit)
+        , m_precision(precision)
     {
-        changeValue( KgvUnit::ptToUnit( KgvUnit::fromUserValue( value, unit ), m_unit ) );
+    }
+    virtual ~KgvUnitDoubleBase()
+    {
     }
 
-    void setPrecision( unsigned int precision ) { m_precision = precision; };
+    virtual void changeValue(double) = 0;
+    virtual void setUnit(KgvUnit::Unit = KgvUnit::U_PT) = 0;
+
+    void setValueInUnit(double value, KgvUnit::Unit unit)
+    {
+        changeValue(KgvUnit::ptToUnit(KgvUnit::fromUserValue(value, unit), m_unit));
+    }
+
+    void setPrecision(unsigned int precision)
+    {
+        m_precision = precision;
+    };
 
 protected:
     friend class KgvUnitDoubleValidator;
@@ -87,14 +94,14 @@ protected:
      * @param value the number as double
      * @return the resulting string
      */
-    QString getVisibleText( double value ) const;
+    QString getVisibleText(double value) const;
     /**
      * Transform a string into a double, while taking care of locale specific symbols.
      * @param str the string to transform into a number
      * @param ok true, if the conversion was successful
      * @return the value as double
      */
-    double toDouble( const QString& str, bool* ok ) const;
+    double toDouble(const QString &str, bool *ok) const;
 
 protected:
     KgvUnitDoubleValidator *m_validator;
@@ -102,10 +109,8 @@ protected:
     unsigned int m_precision;
 };
 
-
 // ----------------------------------------------------------------
 //                          Widget classes
-
 
 /**
  * Spin box for double precision numbers with unit display
@@ -117,14 +122,13 @@ class KgvUnitDoubleSpinBox : public QDoubleSpinBox, public KgvUnitDoubleBase
 public:
     explicit KgvUnitDoubleSpinBox(QWidget *parent = nullptr);
     // lower, upper, step and value are in pt
-    KgvUnitDoubleSpinBox( QWidget *parent, double lower, double upper, double step, double value = 0.0,
-                         KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
+    KgvUnitDoubleSpinBox(QWidget *parent, double lower, double upper, double step, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
     // added so the class can be used in .ui files(by Tymoteusz Majewski, maju7@o2.pl)
     void changeValue(double) override;
     void setUnit(KgvUnit::Unit = KgvUnit::U_PT) override;
 
     /// @return the current value, converted in points
-    double value( void ) const;
+    double value(void) const;
 
     /// Set minimum value in points.
     void setMinValue(double min);
@@ -139,12 +143,11 @@ public:
     void setLineStepPt(double step);
 
     /// Set minimum, maximum value and the step size (all in points) (by Tymoteusz Majewski, maju7@o2.pl)
-    void setMinMaxStep( double min, double max, double step );
+    void setMinMaxStep(double min, double max, double step);
 
 Q_SIGNALS:
     /// emitted like valueChanged in the parent, but this one emits the point value
-    void valueChangedPt( double );
-
+    void valueChangedPt(double);
 
 private:
     double m_lowerInPoints; ///< lowest value in points
@@ -156,7 +159,6 @@ private Q_SLOTS:
     void privateValueChanged();
 };
 
-
 /**
  * Line edit for double precision numbers with unit display
  * \since 1.4 (change of behavior)
@@ -166,16 +168,16 @@ class KgvUnitDoubleLineEdit : public QLineEdit, public KgvUnitDoubleBase
     Q_OBJECT
 public:
     explicit KgvUnitDoubleLineEdit(QWidget *parent = nullptr);
-    KgvUnitDoubleLineEdit( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
+    KgvUnitDoubleLineEdit(QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
 
     void changeValue(double) override;
     void setUnit(KgvUnit::Unit = KgvUnit::U_PT) override;
 
     /// @return the current value, converted in points
-    double value( void ) const;
+    double value(void) const;
 
 protected:
-    bool eventFilter(QObject* obj, QEvent* ev) override;
+    bool eventFilter(QObject *obj, QEvent *ev) override;
 
 private:
     double m_value;
@@ -194,24 +196,24 @@ class KgvUnitDoubleComboBox : public QComboBox, public KgvUnitDoubleBase
     Q_OBJECT
 public:
     explicit KgvUnitDoubleComboBox(QWidget *parent = nullptr);
-    KgvUnitDoubleComboBox( QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
+    KgvUnitDoubleComboBox(QWidget *parent, double lower, double upper, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
 
     void changeValue(double) override;
-    void updateValue( double );
+    void updateValue(double);
     void setUnit(KgvUnit::Unit = KgvUnit::U_PT) override;
 
     /// @return the current value, converted in points
-    double value( void ) const;
-    void insertItem( double, int index = -1 );
+    double value(void) const;
+    void insertItem(double, int index = -1);
 
 protected:
-    bool eventFilter(QObject* obj, QEvent* ev) override;
+    bool eventFilter(QObject *obj, QEvent *ev) override;
 
 Q_SIGNALS:
     void valueChanged(double);
 
 private Q_SLOTS:
-    void slotActivated( int );
+    void slotActivated(int);
 
 protected:
     double m_value;
@@ -230,12 +232,12 @@ class KgvUnitDoubleSpinComboBox : public QWidget
     Q_OBJECT
 public:
     explicit KgvUnitDoubleSpinComboBox(QWidget *parent = nullptr);
-    KgvUnitDoubleSpinComboBox( QWidget *parent, double lower, double upper, double step, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
+    KgvUnitDoubleSpinComboBox(QWidget *parent, double lower, double upper, double step, double value = 0.0, KgvUnit::Unit unit = KgvUnit::U_PT, unsigned int precision = 2);
 
-    void insertItem( double, int index = -1 );
-    void updateValue( double );
+    void insertItem(double, int index = -1);
+    void updateValue(double);
     /// @return the current value, converted in points
-    double value( void ) const;
+    double value(void) const;
 
 Q_SIGNALS:
     void valueChanged(double);
@@ -250,4 +252,3 @@ private:
 };
 
 #endif // KGVUNITWIDGETS_H
-

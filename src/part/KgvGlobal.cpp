@@ -26,39 +26,39 @@
  */
 
 #include "kgraphviewerlib_debug.h"
+#include <KSharedConfig>
 #include <KgvGlobal.h>
+#include <QApplication>
 #include <QDebug>
 #include <QDesktopWidget>
+#include <QPaintDevice>
+#include <QStandardPaths>
 #include <qfont.h>
 #include <qfontinfo.h>
-#include <QPaintDevice>
-#include <QApplication>
-#include <KSharedConfig>
-#include <QStandardPaths>
 // #include <k3staticdeleter.h>
-#include <QImage>
 #include <QIcon>
+#include <QImage>
 
-
-KgvGlobal* KgvGlobal::s_global = nullptr;
+KgvGlobal *KgvGlobal::s_global = nullptr;
 // static K3StaticDeleter<KgvGlobal> sdg;
 
-KgvGlobal* KgvGlobal::self()
+KgvGlobal *KgvGlobal::self()
 {
-    if ( !s_global )
-        s_global = new KgvGlobal ;
-//         sdg.setObject( s_global, new KgvGlobal );
+    if (!s_global)
+        s_global = new KgvGlobal;
+    //         sdg.setObject( s_global, new KgvGlobal );
     return s_global;
 }
 
 KgvGlobal::KgvGlobal()
-    : m_pointSize( -1 ), m_kofficeConfig(nullptr)
+    : m_pointSize(-1)
+    , m_kofficeConfig(nullptr)
 {
     // Install the libkoffice* translations
-//     KGlobal::locale()->insertCatalogue("koffice");
+    //     KGlobal::locale()->insertCatalogue("koffice");
 
     // Tell the iconloader about share/apps/koffice/icons
-//     KGlobal::iconLoader()->addAppDir("koffice");
+    //     KGlobal::iconLoader()->addAppDir("koffice");
 
     // Another way to get the DPI of the display would be QPaintDeviceMetrics,
     // but we have no widget here (and moving this to KgvView wouldn't allow
@@ -74,16 +74,15 @@ QFont KgvGlobal::_defaultFont()
 {
     QFont font = qApp->font();
     // we have to use QFontInfo, in case the font was specified with a pixel size
-    if ( font.pointSize() == -1 )
-    {
+    if (font.pointSize() == -1) {
         // cache size into m_pointSize, since QFontInfo loads the font -> slow
-        if ( m_pointSize == -1 )
+        if (m_pointSize == -1)
             m_pointSize = QFontInfo(font).pointSize();
-        Q_ASSERT( m_pointSize != -1 );
-        font.setPointSize( m_pointSize );
+        Q_ASSERT(m_pointSize != -1);
+        font.setPointSize(m_pointSize);
     }
-    //qCDebug(KGRAPHVIEWERLIB_LOG)<<"QFontInfo(font).pointSize() :"<<QFontInfo(font).pointSize();
-    //qCDebug(KGRAPHVIEWERLIB_LOG)<<"font.name() :"<<font.family ();
+    // qCDebug(KGRAPHVIEWERLIB_LOG)<<"QFontInfo(font).pointSize() :"<<QFontInfo(font).pointSize();
+    // qCDebug(KGRAPHVIEWERLIB_LOG)<<"font.name() :"<<font.family ();
     return font;
 }
 
@@ -106,7 +105,7 @@ QFont KgvGlobal::_defaultFont()
 // //     KConfig config( "all_languages", true, false, "locale" );
 //     KConfig config( "locale" );
 //     // Note that we could also use KLocale::allLanguagesTwoAlpha
-// 
+//
 //     QMap<QString, bool> seenLanguages;
 //     const QStringList langlist = config.groupList();
 //     for ( QStringList::ConstIterator itall = langlist.begin();
@@ -116,18 +115,18 @@ QFont KgvGlobal::_defaultFont()
 //         config.setGroup( tag );
 //         const QString name = config.readEntry("Name", tag);
 //         // e.g. name is "French" and tag is "fr"
-// 
+//
 //         // The QMap does the sorting on the display-name, so that
 //         // comboboxes are sorted.
 //         m_langMap.insert( name, tag );
-// 
+//
 //         seenLanguages.insert( tag, true );
 //     }
-// 
+//
 //     // Also take a look at the installed translations.
 //     // Many of them are already in all_languages but all_languages doesn't
 //     // currently have en_GB or en_US etc.
-// 
+//
 //     const QStringList translationList = KGlobal::dirs()->findAllResources("locale",
 //                                                             QString::fromLatin1("*/entry.desktop"));
 //     for ( QStringList::ConstIterator it = translationList.begin();
@@ -139,52 +138,52 @@ QFont KgvGlobal::_defaultFont()
 //         tag = tag.left(index);
 //         index = tag.findRev('/');
 //         tag = tag.mid(index+1);
-// 
+//
 //         if ( seenLanguages.find( tag ) == seenLanguages.end() ) {
 // //             KSimpleConfig entry(*it);
 // //             entry.setGroup("KCM Locale");
-// 
+//
 // //             const QString name = entry.readEntry("Name", tag);
 //             // e.g. name is "US English" and tag is "en_US"
 // //             m_langMap.insert( name, tag );
-// 
+//
 //             // enable this if writing a third way of finding languages below
 //             //seenLanguages.insert( tag, true );
 //         }
-// 
+//
 //     }
-// 
+//
 //     // #### We also might not have an entry for a language where spellchecking is supported,
 //     //      but no KDE translation is available, like fr_CA.
 //     // How to add them?
 // }
 
-QString KgvGlobal::tagOfLanguage( const QString & _lang)
+QString KgvGlobal::tagOfLanguage(const QString &_lang)
 {
-    const LanguageMap& map = self()->m_langMap;
-    QMap<QString,QString>::ConstIterator it = map.find( _lang );
-    if ( it != map.end() )
+    const LanguageMap &map = self()->m_langMap;
+    QMap<QString, QString>::ConstIterator it = map.find(_lang);
+    if (it != map.end())
         return *it;
     return QString();
 }
 
-QString KgvGlobal::languageFromTag( const QString &langTag )
+QString KgvGlobal::languageFromTag(const QString &langTag)
 {
-    const LanguageMap& map = self()->m_langMap;
-    QMap<QString,QString>::ConstIterator it = map.begin();
-    const QMap<QString,QString>::ConstIterator end = map.end();
-    for ( ; it != end; ++it )
-        if ( it.value() == langTag )
+    const LanguageMap &map = self()->m_langMap;
+    QMap<QString, QString>::ConstIterator it = map.begin();
+    const QMap<QString, QString>::ConstIterator end = map.end();
+    for (; it != end; ++it)
+        if (it.value() == langTag)
             return it.key();
 
     // Language code not found. Better return the code (tag) than nothing.
     return langTag;
 }
 
-KConfig* KgvGlobal::_kofficeConfig()
+KConfig *KgvGlobal::_kofficeConfig()
 {
-    if ( !m_kofficeConfig ) {
-        m_kofficeConfig = new KConfig( "kofficerc" );
+    if (!m_kofficeConfig) {
+        m_kofficeConfig = new KConfig("kofficerc");
     }
     return m_kofficeConfig;
 }

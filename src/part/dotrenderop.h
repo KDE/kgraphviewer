@@ -19,21 +19,20 @@
 #ifndef DOT_RENDEROP_H
 #define DOT_RENDEROP_H
 
-#include <QString>
 #include <QList>
+#include <QString>
 #include <QTextStream>
 
 /**
  * members are interpreted in function of render operations definitions given at:
  * @URL http://www.graphviz.org/cvs/doc/info/output.html#d:dot
  */
-struct DotRenderOp
-{
-  QString renderop;
-  QList< int > integers;
-  QString str;
+struct DotRenderOp {
+    QString renderop;
+    QList<int> integers;
+    QString str;
 };
 
-typedef QList< DotRenderOp > DotRenderOpVec;
+typedef QList<DotRenderOp> DotRenderOpVec;
 
 #endif

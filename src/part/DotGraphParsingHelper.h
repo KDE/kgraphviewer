@@ -19,8 +19,8 @@
 #ifndef DOT_GRAPHPARSINGHELPER_H
 #define DOT_GRAPHPARSINGHELPER_H
 
-#include <map>
 #include <list>
+#include <map>
 #include <string>
 
 namespace KGraphViewer
@@ -31,54 +31,53 @@ class GraphNode;
 class GraphEdge;
 class GraphElement;
 
-struct DotGraphParsingHelper
-{
-  typedef std::map< std::string, std::string > AttributesMap;
+struct DotGraphParsingHelper {
+    typedef std::map<std::string, std::string> AttributesMap;
 
-  DotGraphParsingHelper();
+    DotGraphParsingHelper();
 
-  void createnode(const std::string& nodeid);
-  void createsubgraph();
-  void setgraphattributes();
-  void setsubgraphattributes();
-      void setnodeattributes();
-  void setedgeattributes();
-  void setattributedlist();
-  void createedges();
-  void edgebound(const std::string& bound) {edgebounds.push_back(bound);}
-  void finalactions();
-  void setgraphelementattributes(GraphElement* ge, const AttributesMap& attributes);
+    void createnode(const std::string &nodeid);
+    void createsubgraph();
+    void setgraphattributes();
+    void setsubgraphattributes();
+    void setnodeattributes();
+    void setedgeattributes();
+    void setattributedlist();
+    void createedges();
+    void edgebound(const std::string &bound)
+    {
+        edgebounds.push_back(bound);
+    }
+    void finalactions();
+    void setgraphelementattributes(GraphElement *ge, const AttributesMap &attributes);
 
-  std::string attrid;
-  std::string valid;
-  std::string attributed;
-  std::string subgraphid;
-  
-  unsigned int uniq;
-  
-  AttributesMap attributes;
-  AttributesMap graphAttributes;
-  AttributesMap nodesAttributes;
-  AttributesMap edgesAttributes;
-  std::list< AttributesMap > graphAttributesStack;
-  std::list< AttributesMap > nodesAttributesStack;
-  std::list< AttributesMap > edgesAttributesStack;
-  
-  std::list< std::string > edgebounds;
-  
-  unsigned int z;
-  unsigned int maxZ;
-  
-  DotGraph* graph;
-  
-  GraphSubgraph* gs;
-  GraphNode* gn;
-  GraphEdge* ge;
+    std::string attrid;
+    std::string valid;
+    std::string attributed;
+    std::string subgraphid;
+
+    unsigned int uniq;
+
+    AttributesMap attributes;
+    AttributesMap graphAttributes;
+    AttributesMap nodesAttributes;
+    AttributesMap edgesAttributes;
+    std::list<AttributesMap> graphAttributesStack;
+    std::list<AttributesMap> nodesAttributesStack;
+    std::list<AttributesMap> edgesAttributesStack;
+
+    std::list<std::string> edgebounds;
+
+    unsigned int z;
+    unsigned int maxZ;
+
+    DotGraph *graph;
+
+    GraphSubgraph *gs;
+    GraphNode *gn;
+    GraphEdge *ge;
 };
 
 }
 
 #endif
-
-
-

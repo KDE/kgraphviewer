@@ -24,7 +24,6 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
 /*
  * Callgraph View
  */
@@ -34,51 +33,50 @@
 
 #include <QGraphicsView>
 #include <QWidget>
-//Added by qt3to4:
+// Added by qt3to4:
 #include <QMouseEvent>
 
 namespace KGraphViewer
 {
-
 class DotGraphView;
 
 /**
  * A panner laid over a QCanvas
  */
-class PannerView: public QGraphicsView
+class PannerView : public QGraphicsView
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit PannerView(DotGraphView * parent);
+    explicit PannerView(DotGraphView *parent);
 
-  inline void setDrawingEnabled(bool val) {m_drawContents = val;}
+    inline void setDrawingEnabled(bool val)
+    {
+        m_drawContents = val;
+    }
 
 public Q_SLOTS:
-  void setZoomRect(QRectF r);
-  void moveZoomRectTo(const QPointF& newPos, const bool notify = true);
+    void setZoomRect(QRectF r);
+    void moveZoomRectTo(const QPointF &newPos, const bool notify = true);
 
 Q_SIGNALS:
-  void zoomRectMovedTo(QPointF newPos);
-  void zoomRectMoveFinished();
+    void zoomRectMovedTo(QPointF newPos);
+    void zoomRectMoveFinished();
 
 protected:
-  void mousePressEvent(QMouseEvent*) override;
-  void mouseMoveEvent(QMouseEvent*) override;
-  void mouseReleaseEvent(QMouseEvent*) override;
-  void drawForeground(QPainter* p, const QRectF& rect) override;
-  void contextMenuEvent(QContextMenuEvent* event) override;
+    void mousePressEvent(QMouseEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void mouseReleaseEvent(QMouseEvent *) override;
+    void drawForeground(QPainter *p, const QRectF &rect) override;
+    void contextMenuEvent(QContextMenuEvent *event) override;
 
-  QRectF m_zoomRect;
-  bool m_movingZoomRect;
-  QPointF m_lastPos;
-  bool m_drawContents;
-  DotGraphView* m_parent;
+    QRectF m_zoomRect;
+    bool m_movingZoomRect;
+    QPointF m_lastPos;
+    bool m_drawContents;
+    DotGraphView *m_parent;
 };
 
 }
 
 #endif
-
-
-

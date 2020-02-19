@@ -35,11 +35,10 @@
 
 #include <graphviz/gvc.h>
 
-
 namespace KGraphViewer
 {
 class DotGraph;
-  
+
 /**
  * GraphExporter
  *
@@ -48,16 +47,13 @@ class DotGraph;
 class GraphExporter
 {
 public:
-  GraphExporter();
-  ~GraphExporter();
+    GraphExporter();
+    ~GraphExporter();
 
-  QString writeDot(const DotGraph* graph, const QString& fileName = QString());
-  graph_t* exportToGraphviz(const DotGraph* graph);
+    QString writeDot(const DotGraph *graph, const QString &fileName = QString());
+    graph_t *exportToGraphviz(const DotGraph *graph);
 };
 
 }
 
 #endif
-
-
-

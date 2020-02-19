@@ -16,19 +16,12 @@
    02110-1301, USA
 */
 
-
 #include "canvassubgraph.h"
 
 namespace KGraphViewer
 {
-  
-  
-CanvasSubgraph::CanvasSubgraph(
-                              DotGraphView* v,
-                              GraphSubgraph* gsubgraph,
-                              QGraphicsScene* c,
-                              QGraphicsItem* parent
-                            ) : CanvasElement(v,(GraphElement*)gsubgraph,c,parent)
+CanvasSubgraph::CanvasSubgraph(DotGraphView *v, GraphSubgraph *gsubgraph, QGraphicsScene *c, QGraphicsItem *parent)
+    : CanvasElement(v, (GraphElement *)gsubgraph, c, parent)
 {
 }
 

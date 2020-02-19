@@ -24,7 +24,6 @@
    License as published by the Free Software Foundation, version 2.
 */
 
-
 /*
  * Graph Edge
  */
@@ -33,90 +32,133 @@
 #define GRAPH_EDGE_H
 
 #include "canvasnode.h"
-#include "graphelement.h"
 #include "dotgrammar.h"
 #include "dotrenderop.h"
+#include "graphelement.h"
 
 #include <graphviz/gvc.h>
 
-#include <QStringList>
 #include <QMap>
+#include <QStringList>
 #include <QTextStream>
 
 namespace KGraphViewer
 {
-  
 class CanvasEdge;
 
 class GraphEdge : public GraphElement
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  GraphEdge();
-  ~GraphEdge() override;
+    GraphEdge();
+    ~GraphEdge() override;
 
-  explicit GraphEdge(const GraphEdge& edge);
-  explicit GraphEdge(edge_t* edge);
-  
-  CanvasEdge* canvasEdge() { return (CanvasEdge*)canvasElement(); }
-  const CanvasEdge* canvasEdge() const { return (CanvasEdge*)canvasElement(); }
-  void setCanvasEdge(CanvasEdge* ce) { setCanvasElement((CanvasElement*)ce); }
+    explicit GraphEdge(const GraphEdge &edge);
+    explicit GraphEdge(edge_t *edge);
 
-  bool isVisible() { return m_visible; }
-  void setVisible(bool v) { m_visible = v; }
+    CanvasEdge *canvasEdge()
+    {
+        return (CanvasEdge *)canvasElement();
+    }
+    const CanvasEdge *canvasEdge() const
+    {
+        return (CanvasEdge *)canvasElement();
+    }
+    void setCanvasEdge(CanvasEdge *ce)
+    {
+        setCanvasElement((CanvasElement *)ce);
+    }
 
-  GraphElement* fromNode() { return m_fromNode; }
-  GraphElement* toNode() { return m_toNode; }
-  const GraphElement* fromNode() const { return m_fromNode; }
-  const GraphElement* toNode() const { return m_toNode; }
+    bool isVisible()
+    {
+        return m_visible;
+    }
+    void setVisible(bool v)
+    {
+        m_visible = v;
+    }
 
-  void setFromNode(GraphElement* n) { m_fromNode = n; }
-  void setToNode(GraphElement* n) { m_toNode = n; }
+    GraphElement *fromNode()
+    {
+        return m_fromNode;
+    }
+    GraphElement *toNode()
+    {
+        return m_toNode;
+    }
+    const GraphElement *fromNode() const
+    {
+        return m_fromNode;
+    }
+    const GraphElement *toNode() const
+    {
+        return m_toNode;
+    }
 
-//   inline const QVector< QPair< float, float > >& edgePoints() const {return m_edgePoints;}
-//   inline QVector< QPair< float, float > >& edgePoints() {return m_edgePoints;}
-//   inline void edgePoints(const QVector< QPair< float, float > >& ep) {m_edgePoints = ep;}
-  
-  inline const QStringList& colors() const {return m_colors;}
-  const QString color(uint i);
-  void colors(const QString& cs); 
-  
-/*  inline void labelX(float x) {m_labelX = x;}
-  inline void labelY(float y) {m_labelY = y;}
-  inline float labelX() const {return m_labelX;}
-  inline float labelY() const {return m_labelY;}*/
-  
-  inline const QString& dir() const {return m_dir;}
-  inline void dir(const QString& dir) {m_dir = dir;}
+    void setFromNode(GraphElement *n)
+    {
+        m_fromNode = n;
+    }
+    void setToNode(GraphElement *n)
+    {
+        m_toNode = n;
+    }
 
-  inline QList< DotRenderOp >&  arrowheads() {return m_arrowheads;}
-  inline const QList< DotRenderOp >&  arrowheads() const {return m_arrowheads;}
+    //   inline const QVector< QPair< float, float > >& edgePoints() const {return m_edgePoints;}
+    //   inline QVector< QPair< float, float > >& edgePoints() {return m_edgePoints;}
+    //   inline void edgePoints(const QVector< QPair< float, float > >& ep) {m_edgePoints = ep;}
 
-  void updateWithEdge(const GraphEdge& edge);
-  void updateWithEdge(edge_t* edge);
+    inline const QStringList &colors() const
+    {
+        return m_colors;
+    }
+    const QString color(uint i);
+    void colors(const QString &cs);
+
+    /*  inline void labelX(float x) {m_labelX = x;}
+      inline void labelY(float y) {m_labelY = y;}
+      inline float labelX() const {return m_labelX;}
+      inline float labelY() const {return m_labelY;}*/
+
+    inline const QString &dir() const
+    {
+        return m_dir;
+    }
+    inline void dir(const QString &dir)
+    {
+        m_dir = dir;
+    }
+
+    inline QList<DotRenderOp> &arrowheads()
+    {
+        return m_arrowheads;
+    }
+    inline const QList<DotRenderOp> &arrowheads() const
+    {
+        return m_arrowheads;
+    }
+
+    void updateWithEdge(const GraphEdge &edge);
+    void updateWithEdge(edge_t *edge);
 
 private:
-  // we have a _ce *and* _from/_to because for collapsed edges,
-  // only _to or _from will be unequal nullptr
-  GraphElement *m_fromNode, *m_toNode;
-  bool m_visible;
-  QStringList m_colors;
-  QString m_dir;
-//   QVector< QPair< float, float > > m_edgePoints;
-//   float m_labelX, m_labelY;
-  
-  QList< DotRenderOp > m_arrowheads;
+    // we have a _ce *and* _from/_to because for collapsed edges,
+    // only _to or _from will be unequal nullptr
+    GraphElement *m_fromNode, *m_toNode;
+    bool m_visible;
+    QStringList m_colors;
+    QString m_dir;
+    //   QVector< QPair< float, float > > m_edgePoints;
+    //   float m_labelX, m_labelY;
+
+    QList<DotRenderOp> m_arrowheads;
 };
 
-
 /** A map associating the bounds nodes of a graph's edges to these edges */
-typedef QMap<QString, GraphEdge*> GraphEdgeMap;
+typedef QMap<QString, GraphEdge *> GraphEdgeMap;
 
-QTextStream& operator<<(QTextStream& s, const GraphEdge& e);
+QTextStream &operator<<(QTextStream &s, const GraphEdge &e);
 
 }
 
 #endif
-
-
-

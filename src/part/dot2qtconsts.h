@@ -20,9 +20,9 @@
 #ifndef DOT2QTCONSTS_H
 #define DOT2QTCONSTS_H
 
+#include <QFont>
 #include <QMap>
 #include <QString>
-#include <QFont>
 
 /**
 @author Gael de Chalendar
@@ -30,24 +30,26 @@
 class Dot2QtConsts
 {
 public:
-  static const Dot2QtConsts& componentData() {return m_componentData;}
-  
-  QColor qtColor(const QString& dotColor) const;
-  Qt::PenStyle qtPenStyle(const QString& dotLineStyle) const;
-  QFont qtFont(const QString& dotFont) const;
+    static const Dot2QtConsts &componentData()
+    {
+        return m_componentData;
+    }
+
+    QColor qtColor(const QString &dotColor) const;
+    Qt::PenStyle qtPenStyle(const QString &dotLineStyle) const;
+    QFont qtFont(const QString &dotFont) const;
 
 private:
     Dot2QtConsts();
 
     ~Dot2QtConsts();
 
-  static const Dot2QtConsts m_componentData;
-  
-  QMap< QString, Qt::PenStyle > m_penStyles;
-  QMap< QString, QString > m_colors;
-  QMap< QString, QColor > m_qcolors;
-  QMap< QString, QFont > m_psFonts;
-  
+    static const Dot2QtConsts m_componentData;
+
+    QMap<QString, Qt::PenStyle> m_penStyles;
+    QMap<QString, QString> m_colors;
+    QMap<QString, QColor> m_qcolors;
+    QMap<QString, QFont> m_psFonts;
 };
 
 #endif

@@ -16,21 +16,21 @@
    02110-1301, USA
 */
 
-
 #ifndef KGRAPHVIEWERCONFIGDIALOG_H
 #define KGRAPHVIEWERCONFIGDIALOG_H
 
 #include <QLoggingCategory>
 
-#include <kconfigdialog.h>
 #include <KConfigSkeleton>
+#include <kconfigdialog.h>
 
-namespace Ui {
-  class KGraphViewerPreferencesParsingWidget;
-  class KGraphViewerPreferencesReloadWidget;
-  class KGraphViewerPreferencesOpenInExistingWindowWidget;
-  class KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget;
-  class KGraphViewerPreferencesAppearanceWidget;
+namespace Ui
+{
+class KGraphViewerPreferencesParsingWidget;
+class KGraphViewerPreferencesReloadWidget;
+class KGraphViewerPreferencesOpenInExistingWindowWidget;
+class KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget;
+class KGraphViewerPreferencesAppearanceWidget;
 }
 
 /**
@@ -41,33 +41,33 @@ namespace Ui {
  */
 class KgvConfigurationDialog : public KConfigDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-   KgvConfigurationDialog (QWidget *parent, const QString& name, KConfigSkeleton *config);
+    KgvConfigurationDialog(QWidget *parent, const QString &name, KConfigSkeleton *config);
 
-  ~KgvConfigurationDialog() override;
+    ~KgvConfigurationDialog() override;
 
 Q_SIGNALS:
-  void backgroundColorChanged(const QColor& color);
-  
-protected Q_SLOTS:
-  void updateSettings() override;
-  void updateWidgets() override;
+    void backgroundColorChanged(const QColor &color);
 
-  void settingChanged(int);
-  void slotBackgroundColorChanged(const QColor& color);
+protected Q_SLOTS:
+    void updateSettings() override;
+    void updateWidgets() override;
+
+    void settingChanged(int);
+    void slotBackgroundColorChanged(const QColor &color);
 
 protected:
-  bool hasChanged() override;
+    bool hasChanged() override;
 
-  bool m_changed;
+    bool m_changed;
 
 public:
-  Ui::KGraphViewerPreferencesParsingWidget*  parsingWidget;
-  Ui::KGraphViewerPreferencesReloadWidget*  reloadWidget;
-  Ui::KGraphViewerPreferencesOpenInExistingWindowWidget* openingWidget;
-  Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget* reopeningWidget;
-  Ui::KGraphViewerPreferencesAppearanceWidget* appearanceWidget;
+    Ui::KGraphViewerPreferencesParsingWidget *parsingWidget;
+    Ui::KGraphViewerPreferencesReloadWidget *reloadWidget;
+    Ui::KGraphViewerPreferencesOpenInExistingWindowWidget *openingWidget;
+    Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget *reopeningWidget;
+    Ui::KGraphViewerPreferencesAppearanceWidget *appearanceWidget;
 };
 
 #endif

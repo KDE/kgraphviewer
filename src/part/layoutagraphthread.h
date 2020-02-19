@@ -20,8 +20,8 @@
 #ifndef LAYOUTAGRAPHTHREAD_H
 #define LAYOUTAGRAPHTHREAD_H
 
-#include <QThread>
 #include <QSemaphore>
+#include <QThread>
 
 #include <graphviz/gvc.h>
 
@@ -30,24 +30,36 @@ int threadsafe_wrap_gvRender(GVC_t *gvc, graph_t *g, const char *format, FILE *o
 
 class LayoutAGraphThread : public QThread
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  LayoutAGraphThread();
-  ~LayoutAGraphThread() override;
-  void layoutGraph(graph_t* graph, const QString& layoutCommand);
-  inline graph_t* g() {return m_g;}
-  inline GVC_t* gvc() {return m_gvc;}
-  inline const QString& layoutCommand() const {return m_layoutCommand;}
-  void processed_finished() { sem.release(); }
-  
+    LayoutAGraphThread();
+    ~LayoutAGraphThread() override;
+    void layoutGraph(graph_t *graph, const QString &layoutCommand);
+    inline graph_t *g()
+    {
+        return m_g;
+    }
+    inline GVC_t *gvc()
+    {
+        return m_gvc;
+    }
+    inline const QString &layoutCommand() const
+    {
+        return m_layoutCommand;
+    }
+    void processed_finished()
+    {
+        sem.release();
+    }
+
 protected:
-  void run() override;
+    void run() override;
 
 private:
-  QSemaphore sem;
-  QString m_layoutCommand;
-  graph_t* m_g;
-  GVC_t *m_gvc;
+    QSemaphore sem;
+    QString m_layoutCommand;
+    graph_t *m_g;
+    GVC_t *m_gvc;
 };
 
 #endif // LAYOUTAGRAPHTHREAD_H
