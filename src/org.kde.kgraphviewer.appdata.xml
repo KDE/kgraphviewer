@@ -31,6 +31,7 @@
   <name xml:lang="tr">KGraphViewer</name>
   <name xml:lang="uk">KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewerxx</name>
+  <name xml:lang="zh-CN">KGraphViewer</name>
   <name xml:lang="zh-TW">KGraphViewer</name>
   <summary>A Graphviz DOT graph viewer</summary>
   <summary xml:lang="ca">Un visor de gràfics DOT del Graphviz</summary>
@@ -56,6 +57,7 @@
   <summary xml:lang="tr">Graphviz DOT graf görüntüleyici</summary>
   <summary xml:lang="uk">Засіб перегляду графів DOT Graphviz</summary>
   <summary xml:lang="x-test">xxA Graphviz DOT graph viewerxx</summary>
+  <summary xml:lang="zh-CN">Graphviz DOT 图形查看器</summary>
   <description>
     <p>
       KGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools.
@@ -82,6 +84,7 @@
     <p xml:lang="tr">KGraphViewer bir Graphiz DOT graf dosyası görüntüleyicisidir. Zamanı dolmuş diğer GraphViz araçlarının yerini alması amaçlanmıştır. Grafikler genel olarak bilimsel alanda ve bilgisayar bilişmlerinde kullanılmaktadır.</p>
     <p xml:lang="uk">KGraphViewer — програма для перегляду графів у форматі DOT Graphviz. Її створено як заміну застарілим інструментам для роботи з Graphviz. Графи широко використовуються у наукових дослідженнях, зокрема у комп’ютерних науках.</p>
     <p xml:lang="x-test">xxKGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools. Graphs are commonly used in scientific domains and particularly in computer science.xx</p>
+    <p xml:lang="zh-CN">KGraphViewer 是 Graphviz DOT 图形文件查看器，旨在替换其他过时的 Graphviz 工具。Graphs 通常用于科学领域，特别是计算机科学。</p>
     <p>Features:</p>
     <p xml:lang="bs">Svojstva:</p>
     <p xml:lang="ca">Característiques:</p>
@@ -140,6 +143,7 @@
       <li xml:lang="tr">Büyütme</li>
       <li xml:lang="uk">Масштабування.</li>
       <li xml:lang="x-test">xxZoomingxx</li>
+      <li xml:lang="zh-CN">缩放</li>
       <li xml:lang="zh-TW">支援縮放</li>
       <li>Threaded loading of several graphs in tabs</li>
       <li xml:lang="bs">Učitavanje preko niti nekih grafova u karticama</li>
@@ -191,6 +195,7 @@
       <li xml:lang="tr">Geçerli dosya listesini kaydedebilme</li>
       <li xml:lang="uk">Зберігання списку нещодавно використаних файлів.</li>
       <li xml:lang="x-test">xxSaving of the recent files listxx</li>
+      <li xml:lang="zh-CN">保存最近使用的文件列表</li>
       <li xml:lang="zh-TW">會儲存最近使用的檔案列表</li>
       <li>Manual reload of files</li>
       <li xml:lang="bs">Ručno nadopunjavanje fajlova</li>
@@ -217,6 +222,7 @@
       <li xml:lang="tr">Dosyaların elle yeniden yüklenmesi</li>
       <li xml:lang="uk">Перезавантаження файлів вручну.</li>
       <li xml:lang="x-test">xxManual reload of filesxx</li>
+      <li xml:lang="zh-CN">手动重新加载文件</li>
       <li xml:lang="zh-TW">手動重新載入檔案</li>
       <li>Display of a bird-eye view of the graph</li>
       <li xml:lang="bs">Prikaz iz ptičije perspektive grafa</li>
@@ -243,6 +249,7 @@
       <li xml:lang="tr">Grafiğin kuş bakışı görüntülenmesi</li>
       <li xml:lang="uk">Показ панелі загального вигляду графу.</li>
       <li xml:lang="x-test">xxDisplay of a bird-eye view of the graphxx</li>
+      <li xml:lang="zh-CN">显示图形的鸟瞰图</li>
       <li>Moving of the graph by dragging</li>
       <li xml:lang="bs">Pomjeranje grafa povlačenjem</li>
       <li xml:lang="ca">Moviment del gràfic en arrossegar</li>
@@ -293,6 +300,7 @@
       <li xml:lang="tr">Tam özellikli yazdırma</li>
       <li xml:lang="uk">Широкі можливості з друку.</li>
       <li xml:lang="x-test">xxFull featured printingxx</li>
+      <li xml:lang="zh-CN">全功能打印</li>
       <li xml:lang="zh-TW">全功能列印</li>
       <li>Perfect drawing of all graphviz example graphs</li>
       <li xml:lang="bs">Perfektno crtanje svih graphviz-ovih primjera grafa</li>
@@ -394,6 +402,7 @@
       <li xml:lang="tr">Değişiklik yapılmış(harici) dosyalarda(yapılandırılabilir), kullanıcı onaylamasıyla otomatik yeniden yükleme</li>
       <li xml:lang="uk">Автоматичне перезавантаження даних з підтвердженням з боку користувача для файлів, змінених сторонніми програмами (можна налаштувати).</li>
       <li xml:lang="x-test">xxAutomatic reloading with user confirmation of (externally) modified files (configurable)xx</li>
+      <li xml:lang="zh-CN">自动重新加载用户外部修改的文件 (可配置)</li>
       <li>Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="bs">Otvori nove kopije kao nove kartice u starom (podesivo)</li>
       <li xml:lang="ca">Obre noves instàncies com a pestanyes noves en l'antiga (configurable)</li>
@@ -419,6 +428,7 @@
       <li xml:lang="tr">Eskisi içinde(yapılandırılabilir) yeni sekmeler olarak yeni örnekler aç</li>
       <li xml:lang="uk">Відкриття нових екземплярів програми у вкладках того самого вікна (можна налаштувати).</li>
       <li xml:lang="x-test">xxOpen new instances as new tabs in the old one (configurable)xx</li>
+      <li xml:lang="zh-CN">以新标签打开新实例(可配置)</li>
     </ul>
   </description>
   <url type="homepage">https://www.kde.org/applications/graphics/kgraphviewer/</url>
