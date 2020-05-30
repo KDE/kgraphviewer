@@ -32,11 +32,15 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
 )
 
 find_package(Boost 1.36 REQUIRED)
-find_package(Graphviz REQUIRED)
+find_package(Graphviz 2.30.0 REQUIRED)
 
-if(NOT DOT)
-   MESSAGE(STATUS "dot executable from Graphviz not found. You will need it at runtime")
-endif(NOT DOT)
+find_package(DOT)
+set_package_properties(DOT PROPERTIES
+    DESCRIPTION "Tool to draw directed graphs"
+    URL "http://www.graphviz.org/"
+    PURPOSE "Needed for parsing .dot files"
+    TYPE RUNTIME
+)
 
 option(BUILD_GRAPHEDITOR "Build the graph editor app (WIP, not yet functional). [default=OFF]" OFF)
 

@@ -26,140 +26,54 @@
 # graphviz_FOUND
 # graphviz_INCLUDE_DIRECTORIES
 
-if ( NOT WIN32 )
-  
-  find_package(PkgConfig)
-  pkg_check_modules( graphviz ${REQUIRED} libgvc libcdt libcgraph libpathplan )
-  if ( graphviz_FOUND )
-    set ( graphviz_INCLUDE_DIRECTORIES ${graphviz_INCLUDE_DIRS} )
-  endif ( graphviz_FOUND )
+find_package(PkgConfig)
+pkg_check_modules(pc_graphviz ${REQUIRED} libgvc libcdt libcgraph libpathplan)
     
-endif ( NOT WIN32 )
-    
-find_path( graphviz_INCLUDE_DIRECTORIES
+find_path(graphviz_INCLUDE_DIRECTORIES
     NAMES gvc.h
-    PATHS
-    ${graphviz_INCLUDE_DIRS}
-    /usr/local/include
-    /usr/include
-    PATH_SUFFIXES graphviz
+    HINTS ${pc_graphviz_INCLUDEDIR}
+          ${pc_graphviz_INCLUDE_DIRS}
     )
     
-find_library( graphviz_GVC_LIBRARY
+find_library(graphviz_GVC_LIBRARY
     NAMES gvc
-    PATHS
-    ${graphviz_LIBRARY_DIRS}
-    /usr/local/lib64
-    /usr/lib64
-    /usr/local/lib
-    /usr/lib
+    HINTS ${pc_graphviz_LIBDIR}
+          ${pc_graphviz_LIBRARY_DIRS}
     )
 
-find_library( graphviz_CDT_LIBRARY
+find_library(graphviz_CDT_LIBRARY
     NAMES cdt
-    PATHS
-    ${graphviz_LIBRARY_DIRS}
-    /usr/local/lib64
-    /usr/lib64
-    /usr/local/lib
-    /usr/lib
+    HINTS ${pc_graphviz_LIBDIR}
+          ${pc_graphviz_LIBRARY_DIRS}
     )
 
-find_library( graphviz_GRAPH_LIBRARY
+find_library(graphviz_GRAPH_LIBRARY
     NAMES cgraph
-    PATHS
-    ${graphviz_LIBRARY_DIRS}
-    /usr/local/lib64
-    /usr/lib64
-    /usr/local/lib
-    /usr/lib
+    HINTS ${pc_graphviz_LIBDIR}
+          ${pc_graphviz_LIBRARY_DIRS}
     )
 
-find_library( graphviz_PATHPLAN_LIBRARY
+find_library(graphviz_PATHPLAN_LIBRARY
     NAMES pathplan
-    PATHS
-    ${graphviz_LIBRARY_DIRS}
-    /usr/local/lib64
-    /usr/lib64
-    /usr/local/lib
-    /usr/lib
+    HINTS ${pc_graphviz_LIBDIR}
+          ${pc_graphviz_LIBRARY_DIRS}
     )
 
-if ( graphviz_INCLUDE_DIRECTORIES AND
-      graphviz_GVC_LIBRARY AND graphviz_CDT_LIBRARY AND
-      graphviz_GRAPH_LIBRARY AND graphviz_PATHPLAN_LIBRARY )
-  set ( graphviz_FOUND 1 )
-  set ( graphviz_LIBRARIES
-      "${graphviz_GVC_LIBRARY};${graphviz_GRAPH_LIBRARY};"
-      "${graphviz_CDT_LIBRARY};${graphviz_PATHPLAN_LIBRARY}"
-      CACHE FILEPATH "Libraries for graphviz" )
-else ( graphviz_INCLUDE_DIRECTORIES AND
-        graphviz_GVC_LIBRARY AND graphviz_CDT_LIBRARY AND
-        graphviz_GRAPH_LIBRARY AND graphviz_PATHPLAN_LIBRARY )
-  set ( graphviz_FOUND 0 )
-endif ( graphviz_INCLUDE_DIRECTORIES AND
-        graphviz_GVC_LIBRARY AND graphviz_CDT_LIBRARY AND
-        graphviz_GRAPH_LIBRARY AND graphviz_PATHPLAN_LIBRARY )
+set(graphviz_LIBRARIES
+    "${graphviz_GVC_LIBRARY}" "${graphviz_CDT_LIBRARY}"
+    "${graphviz_GRAPH_LIBRARY}" "${graphviz_PATHPLAN_LIBRARY}")
 
+if (EXISTS "${graphviz_INCLUDE_DIRECTORIES}/graphviz_version.h")
+    file(READ "${graphviz_INCLUDE_DIRECTORIES}/graphviz_version.h" _graphviz_version_content)
+    string(REGEX MATCH "#define +PACKAGE_VERSION +\"([0-9]+\\.[0-9]+\\.[0-9]+)\"" _dummy "${_graphviz_version_content}")
+    set(graphviz_VERSION "${CMAKE_MATCH_1}")
+endif ()
 
-find_program(DOT dot)
-
-if (DOT)
-
-EXECUTE_PROCESS(COMMAND dot -V
-  OUTPUT_VARIABLE _dot_query_output
-  RESULT_VARIABLE _dot_result
-  ERROR_VARIABLE _dot_query_output )
-
-IF(_dot_result MATCHES 0)
-  STRING(REGEX REPLACE ".*([0-9]+\\.[0-9]+\\.[0-9]+).*" "\\1" GRAPHVIZVERSION "${_dot_query_output}" )
-ELSE(_dot_result MATCHES 0)
-  SET(_dot_query_output)
-ENDIF(_dot_result MATCHES 0)
-IF (GRAPHVIZVERSION)
-
-# we need at least version 2.30.0
-IF (NOT GRAPHVIZ_MIN_VERSION)
-SET(GRAPHVIZ_MIN_VERSION "2.30.0")
-ENDIF (NOT GRAPHVIZ_MIN_VERSION)
-
-#now parse the parts of the user given version string into variables
-STRING(REGEX MATCH "^[0-9]+\\.[0-9]+\\.[0-9]+" req_graphviz_major_vers "${GRAPHVIZ_MIN_VERSION}")
-IF (NOT req_graphviz_major_vers)
-MESSAGE( FATAL_ERROR "Invalid GraphViz version string given: \"${GRAPHVIZ_MIN_VERSION}\", expected e.g. \"2.30.0\"")
-ENDIF (NOT req_graphviz_major_vers)
-
-# now parse the parts of the user given version string into variables
-STRING(REGEX REPLACE "^([0-9]+)\\.[0-9]+\\.[0-9]+" "\\1" req_graphviz_major_vers "${GRAPHVIZ_MIN_VERSION}")
-STRING(REGEX REPLACE "^[0-9]+\\.([0-9])+\\.[0-9]+" "\\1" req_graphviz_minor_vers "${GRAPHVIZ_MIN_VERSION}")
-STRING(REGEX REPLACE "^[0-9]+\\.[0-9]+\\.([0-9]+)" "\\1" req_graphviz_patch_vers "${GRAPHVIZ_MIN_VERSION}")
-
-IF (NOT req_graphviz_major_vers EQUAL 2)
-MESSAGE( FATAL_ERROR "Invalid GraphViz version string given: \"${GRAPHVIZ_MIN_VERSION}\", major version 4 is required, e.g. \"2.30.0\"")
-ENDIF (NOT req_graphviz_major_vers EQUAL 2)
-
-# and now the version string given by qmake
-STRING(REGEX REPLACE "^([0-9]+)\\.[0-9]+\\.[0-9]+.*" "\\1" GRAPHVIZ_VERSION_MAJOR "${GRAPHVIZVERSION}")
-STRING(REGEX REPLACE "^[0-9]+\\.([0-9])+\\.[0-9]+.*" "\\1" GRAPHVIZ_VERSION_MINOR "${GRAPHVIZVERSION}")
-STRING(REGEX REPLACE "^[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" GRAPHVIZ_VERSION_PATCH "${GRAPHVIZVERSION}")
-
-# compute an overall version number which can be compared at once
-MATH(EXPR req_vers "${req_graphviz_major_vers}*10000 + ${req_graphviz_minor_vers}*100 + ${req_graphviz_patch_vers}")
-MATH(EXPR found_vers "${GRAPHVIZ_VERSION_MAJOR}*10000 + ${GRAPHVIZ_VERSION_MINOR}*100 + ${GRAPHVIZ_VERSION_PATCH}")
-
-IF (found_vers LESS req_vers)
-SET(graphviz_FOUND FALSE)
-SET(GRAPHVIZ_INSTALLED_VERSION_TOO_OLD TRUE)
-ELSE (found_vers LESS req_vers)
-SET(graphviz_FOUND TRUE)
-ENDIF (found_vers LESS req_vers)
-ENDIF (GRAPHVIZVERSION)
-
-
-endif (DOT)
+if ("${Graphviz_FIND_VERSION}" VERSION_GREATER "${graphviz_VERSION}")
+    message(FATAL_ERROR "Required version (" ${Graphviz_FIND_VERSION} ") is higher than found version (" ${graphviz_VERSION} ")")
+endif ()
 
 include(FindPackageHandleStandardArgs)
-
-# handle the QUIETLY and REQUIRED arguments and set GRAPHVIZ_FOUND to TRUE if 
-# all listed variables are TRUE
-find_package_handle_standard_args(GraphViz DEFAULT_MSG graphviz_LIBRARIES graphviz_INCLUDE_DIRECTORIES)
+find_package_handle_standard_args(GraphViz
+    REQUIRED_VARS graphviz_LIBRARIES graphviz_INCLUDE_DIRECTORIES
+    VERSION_VAR   graphviz_VERSION)
