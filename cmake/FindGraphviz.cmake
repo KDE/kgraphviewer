@@ -20,60 +20,61 @@
 # 
 # For more information, contact the authors of this software at
 # moab@sandia.gov.
-# 
-# this will set the following variables:
-# graphviz_LIBRARIES
-# graphviz_FOUND
-# graphviz_INCLUDE_DIRECTORIES
+#
+# Find Graphviz libraries.  This will set the following variables:
+#     Graphviz_LIBRARIES
+#     Graphviz_FOUND
+#     Graphviz_INCLUDE_DIRECTORIES
+#     Graphviz_VERSION
 
 find_package(PkgConfig)
 pkg_check_modules(pc_graphviz ${REQUIRED} libgvc libcdt libcgraph libpathplan)
     
-find_path(graphviz_INCLUDE_DIRECTORIES
+find_path(Graphviz_INCLUDE_DIRECTORIES
     NAMES gvc.h
     HINTS ${pc_graphviz_INCLUDEDIR}
           ${pc_graphviz_INCLUDE_DIRS}
     )
     
-find_library(graphviz_GVC_LIBRARY
+find_library(Graphviz_GVC_LIBRARY
     NAMES gvc
     HINTS ${pc_graphviz_LIBDIR}
           ${pc_graphviz_LIBRARY_DIRS}
     )
 
-find_library(graphviz_CDT_LIBRARY
+find_library(Graphviz_CDT_LIBRARY
     NAMES cdt
     HINTS ${pc_graphviz_LIBDIR}
           ${pc_graphviz_LIBRARY_DIRS}
     )
 
-find_library(graphviz_GRAPH_LIBRARY
+find_library(Graphviz_GRAPH_LIBRARY
     NAMES cgraph
     HINTS ${pc_graphviz_LIBDIR}
           ${pc_graphviz_LIBRARY_DIRS}
     )
 
-find_library(graphviz_PATHPLAN_LIBRARY
+find_library(Graphviz_PATHPLAN_LIBRARY
     NAMES pathplan
     HINTS ${pc_graphviz_LIBDIR}
           ${pc_graphviz_LIBRARY_DIRS}
     )
 
-set(graphviz_LIBRARIES
-    "${graphviz_GVC_LIBRARY}" "${graphviz_CDT_LIBRARY}"
-    "${graphviz_GRAPH_LIBRARY}" "${graphviz_PATHPLAN_LIBRARY}")
+set(Graphviz_LIBRARIES
+    "${Graphviz_GVC_LIBRARY}" "${Graphviz_CDT_LIBRARY}"
+    "${Graphviz_GRAPH_LIBRARY}" "${Graphviz_PATHPLAN_LIBRARY}")
 
-if (EXISTS "${graphviz_INCLUDE_DIRECTORIES}/graphviz_version.h")
-    file(READ "${graphviz_INCLUDE_DIRECTORIES}/graphviz_version.h" _graphviz_version_content)
+if (EXISTS "${Graphviz_INCLUDE_DIRECTORIES}/graphviz_version.h")
+    file(READ "${Graphviz_INCLUDE_DIRECTORIES}/graphviz_version.h" _graphviz_version_content)
     string(REGEX MATCH "#define +PACKAGE_VERSION +\"([0-9]+\\.[0-9]+\\.[0-9]+)\"" _dummy "${_graphviz_version_content}")
-    set(graphviz_VERSION "${CMAKE_MATCH_1}")
+    set(Graphviz_VERSION "${CMAKE_MATCH_1}")
 endif ()
 
-if ("${Graphviz_FIND_VERSION}" VERSION_GREATER "${graphviz_VERSION}")
-    message(FATAL_ERROR "Required version (" ${Graphviz_FIND_VERSION} ") is higher than found version (" ${graphviz_VERSION} ")")
+if ("${Graphviz_FIND_VERSION}" VERSION_GREATER "${Graphviz_VERSION}")
+    message(FATAL_ERROR "Required version (" ${Graphviz_FIND_VERSION} ") is higher than found version (" ${Graphviz_VERSION} ")")
 endif ()
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(GraphViz
-    REQUIRED_VARS graphviz_LIBRARIES graphviz_INCLUDE_DIRECTORIES
-    VERSION_VAR   graphviz_VERSION)
+find_package_handle_standard_args(Graphviz
+    REQUIRED_VARS Graphviz_LIBRARIES Graphviz_INCLUDE_DIRECTORIES
+    VERSION_VAR   Graphviz_VERSION)
