@@ -8,7 +8,7 @@ add_subdirectory( part )
 
 include_directories(
     part
-    ${graphviz_INCLUDE_DIRECTORIES}
+    ${Graphviz_INCLUDE_DIRECTORIES}
 )
 
 

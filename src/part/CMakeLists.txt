@@ -4,11 +4,7 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}/..
     ${CMAKE_CURRENT_SOURCE_DIR}/..
     ${Boost_INCLUDE_DIRS}
-    ${graphviz_INCLUDE_DIRECTORIES}
-)
-
-link_directories(
-    ${graphviz_LIBRARY_DIRS}
+    ${Graphviz_INCLUDE_DIRECTORIES}
 )
 
 ecm_qt_declare_logging_category(kgraphviewerlib_LIB_DEBUG_SRCS
@@ -64,7 +60,7 @@ ki18n_wrap_ui(kgraphviewerlib_LIB_SRCS ${kgraphviewerprinting_UI} )
 
 add_library(kgraphviewerlib ${kgraphviewerlib_LIB_SRCS})
 
-target_link_libraries(kgraphviewerlib Qt5::Core Qt5::Svg Qt5::PrintSupport Qt5::Svg KF5::WidgetsAddons KF5::IconThemes KF5::XmlGui KF5::I18n KF5::Parts ${graphviz_LIBRARIES})
+target_link_libraries(kgraphviewerlib Qt5::Core Qt5::Svg Qt5::PrintSupport Qt5::Svg KF5::WidgetsAddons KF5::IconThemes KF5::XmlGui KF5::I18n KF5::Parts ${Graphviz_LIBRARIES})
 
 set_target_properties(kgraphviewerlib PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${KGRAPHVIEWER_SOVERSION} OUTPUT_NAME kgraphviewer )
 
@@ -83,7 +79,7 @@ set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp ${kgraphviewerlib_LIB_DEBU
 add_library(kgraphviewerpart MODULE ${kgraphviewerpart_PART_SRCS})
 generate_export_header(kgraphviewerpart BASE_NAME kgraphviewer)
 
-target_link_libraries(kgraphviewerpart Qt5::Core KF5::Parts gvc cgraph pathplan cdt kgraphviewerlib)
+target_link_libraries(kgraphviewerpart Qt5::Core KF5::Parts ${Graphviz_LIBRARIES} kgraphviewerlib)
 
 install( TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
