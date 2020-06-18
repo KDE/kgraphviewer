@@ -50,6 +50,7 @@ Name[th]=kgraphviewerPart
 Name[tr]=kgraphviewerPart
 Name[uk]=kgraphviewerPart
 Name[vi]=kgraphviewerPart
+Name[x-test]=xxkgraphviewerPartxx
 Name[zh_TW]=kgraphviewerPart
 MimeType=text/vnd.graphviz
 ServiceTypes=KParts/ReadOnlyPart
