@@ -360,6 +360,7 @@
       <li xml:lang="pt">Escolha automática do 'dot' para grafos direccionados e do 'neato' para os não-direccionados</li>
       <li xml:lang="pt-BR">Escolha automática do 'dot' para grafos direcionados e do 'neato' para os não-direcionados</li>
       <li xml:lang="sk">Automaticky vybrať bot pre riadený graf a neato pre neriadený</li>
+      <li xml:lang="sl">Samodejno izberi DOT za usmerjene grafe in NEATO za neusmerjene</li>
       <li xml:lang="sv">Välj automatiskt dot för riktade grafer och neato för oriktade</li>
       <li xml:lang="tr">Yönlendirilmiş grafikler için dot, yönlendirilmemişler için neato seçin</li>
       <li xml:lang="uk">Автоматичний вибір dot для орієнтованих графів і neato для неорієнтованих.</li>
