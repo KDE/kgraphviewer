@@ -152,8 +152,8 @@
       <li xml:lang="zh-TW">支援縮放</li>
       <li>Threaded loading of several graphs in tabs</li>
       <li xml:lang="bs">Učitavanje preko niti nekih grafova u karticama</li>
-      <li xml:lang="ca">Càrrega per subprocessos de diversos gràfics en pestanyes</li>
-      <li xml:lang="ca-valencia">Càrrega per subprocessos de diversos gràfics en pestanyes</li>
+      <li xml:lang="ca">Carrega per subprocessos de diversos gràfics en pestanyes</li>
+      <li xml:lang="ca-valencia">Carrega per subprocessos de diversos gràfics en pestanyes</li>
       <li xml:lang="da">Trådet indlæsning af flere grafer i faneblade</li>
       <li xml:lang="de">Gleichzeitiges Laden mehrerer Graphen in Unterfenstern</li>
       <li xml:lang="el">Νηματική φόρτωση πολλών γράφων σε καρτέλες</li>
@@ -206,8 +206,8 @@
       <li xml:lang="zh-TW">會儲存最近使用的檔案列表</li>
       <li>Manual reload of files</li>
       <li xml:lang="bs">Ručno nadopunjavanje fajlova</li>
-      <li xml:lang="ca">Recàrrega manual de fitxers</li>
-      <li xml:lang="ca-valencia">Recàrrega manual de fitxers</li>
+      <li xml:lang="ca">Recarrega manualment els fitxers</li>
+      <li xml:lang="ca-valencia">Recarrega manualment els fitxers</li>
       <li xml:lang="da">Manuel genindlæsning af filer</li>
       <li xml:lang="de">Manuelles neu laden von Dateien</li>
       <li xml:lang="el">Χειροκίνητη επαναφόρτωση αρχείων</li>
@@ -341,8 +341,8 @@
       <li xml:lang="x-test">xxPerfect drawing of all graphviz example graphsxx</li>
       <li>Automatically choose dot for directed graphs and neato for undirected</li>
       <li xml:lang="bs">Automatski odabir za tačku za usmjerene grafove i neato za neusmjerene</li>
-      <li xml:lang="ca">Selecció automàtica de «dot» pels gràfics dirigits i «neato» pels no dirigits</li>
-      <li xml:lang="ca-valencia">Selecció automàtica de «dot» pels gràfics dirigits i «neato» pels no dirigits</li>
+      <li xml:lang="ca">Selecció automàtica de «dot» per als gràfics dirigits i «neato» per als no dirigits</li>
+      <li xml:lang="ca-valencia">Selecció automàtica de «dot» per als gràfics dirigits i «neato» per als no dirigits</li>
       <li xml:lang="da">Vælg automatisk dot for dirigerede grafer og neato for ikke-dirigerede</li>
       <li xml:lang="de">Automatische Wahl von „dot“ für gerichtete und „neato“ für ungerichtete Graphen</li>
       <li xml:lang="el">Αυτόματη επιλογή dot για κατευθυνόμενους γράφους και neato για μη κατευθυνόμενους</li>
@@ -393,8 +393,8 @@
       <li xml:lang="x-test">xxPossibility to use an arbitrary layout algorithm as soon as it produces xdot formatxx</li>
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="bs">Automatsko ponovno učitavanje potvrdom korisnika o (izvana) modificiranim datotekama (podesivo)</li>
-      <li xml:lang="ca">Recàrrega automàtica amb confirmació d'usuari de fitxers (externament) modificats (configurable)</li>
-      <li xml:lang="ca-valencia">Recàrrega automàtica amb confirmació d'usuari de fitxers (externament) modificats (configurable)</li>
+      <li xml:lang="ca">Recarrega automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
+      <li xml:lang="ca-valencia">Recarrega automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
       <li xml:lang="da">Automatisk genindlæsning med brugerbekræftelse af (eksternt) ændrede filer (konfigurerbart)</li>
       <li xml:lang="de">Erneutes Laden von (extern) geänderten Dateien - automatisch mit Bestätigung durch den Benutzer (einstellbar)</li>
       <li xml:lang="el">Αυτόματη επαναφόρτωση με επιβεβαίωση από το χρήστη των (εξωτερικά) τροποιοιημένων αρχείων (διαμορφώσιμο)</li>
@@ -420,8 +420,8 @@
       <li xml:lang="zh-CN">自动重新加载用户外部修改的文件 (可配置)</li>
       <li>Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="bs">Otvori nove kopije kao nove kartice u starom (podesivo)</li>
-      <li xml:lang="ca">Obre noves instàncies com a pestanyes noves en l'antiga (configurable)</li>
-      <li xml:lang="ca-valencia">Obri noves instàncies com a pestanyes noves en l'antiga (configurable)</li>
+      <li xml:lang="ca">Obre les instàncies noves com a pestanyes noves en l'antiga (configurable)</li>
+      <li xml:lang="ca-valencia">Obri les instàncies noves com a pestanyes noves en l'antiga (configurable)</li>
       <li xml:lang="da">Åbn nye instanser som nye faneblade i det gamle (konfigurerbart)</li>
       <li xml:lang="de">Öffnen neuer Instanzen als Unterfenster im aktuellen Unterfenster (einstellbar)</li>
       <li xml:lang="el">Άνοιγμα νέων διεργασιών σε νέες καρτέλες της παλιάς διεργασίας (διαμορφώσιμο)</li>
