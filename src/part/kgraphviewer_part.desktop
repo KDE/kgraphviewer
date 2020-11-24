@@ -52,9 +52,17 @@ Name[uk]=kgraphviewerPart
 Name[vi]=kgraphviewerPart
 Name[x-test]=xxkgraphviewerPartxx
 Name[zh_TW]=kgraphviewerPart
+Comment=Graphviz DOT files viewer
 MimeType=text/vnd.graphviz
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=kgraphviewerpart
 Type=Service
 InitialPreference=10
 Categories=Qt;KDE;Graphics;Viewer;2DGraphics;DataVisualization;
+
+X-KDE-PluginInfo-Name=kgraphviewerpart
+X-KDE-PluginInfo-Version=@PROJECT_VERSION@
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-Copyright=Copyright 2005-2006 Gaël de Chalendar
+X-KDE-PluginInfo-Author=Gaël de Chalendar
+X-KDE-PluginInfo-Email=kleag@free.fr

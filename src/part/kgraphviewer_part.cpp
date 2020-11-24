@@ -22,7 +22,9 @@
 #include "dotgraphview.h"
 #include "kgraphviewerlib_debug.h"
 
+#if KPARTS_VERSION < QT_VERSION_CHECK(5, 77, 0)
 #include <KAboutData>
+#endif
 #include <KDirWatch>
 #include <KPluginFactory>
 #include <KSharedConfig>
@@ -44,7 +46,9 @@
 
 namespace KGraphViewer
 {
-K_PLUGIN_FACTORY(KGraphViewerPartFactory, registerPlugin<KGraphViewerPart>();)
+K_PLUGIN_FACTORY_WITH_JSON(KGraphViewerPartFactory,
+                           "kgraphviewer_part.json",
+                           registerPlugin<KGraphViewerPart>();)
 
 class KGraphViewerPartPrivate
 {
@@ -65,7 +69,11 @@ public:
     KGraphViewerPart::LayoutMethod m_layoutMethod;
 };
 
+#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
+KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const KPluginMetaData &metaData, const QVariantList &)
+#else
 KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const QVariantList &)
+#endif
     : KParts::ReadOnlyPart(parent)
     , d(new KGraphViewerPartPrivate())
 {
@@ -73,8 +81,12 @@ KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const
        file is found also when this part is called from applications
        different then kgraphviewer (like kgrapheditor and konqueror).
      */
+#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
+    setMetaData(metaData);
+#else
     KAboutData aboutData(QStringLiteral("kgraphviewer"), i18n("KGraphViewerPart"), KGRAPHVIEWER_VERSION_STRING, i18n("Graphviz DOT files viewer"), KAboutLicense::GPL, i18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
     setComponentData(aboutData, false);
+#endif
 
     // set our XML-UI resource file
     setXMLFile(QStringLiteral("kgraphviewer_part.rc"), true);
@@ -123,6 +135,16 @@ KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const
     // xgettext: no-c-format
     zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
     zoomOutAct->setShortcut(Qt::Key_F8);
+}
+
+QString KGraphViewerPart::componentName() const
+{
+    // also the part ui.rc file is in the program folder
+    // TODO: change the component name to "kgraphviewerpart" by removing this method and
+    // adapting the folder where the file is placed.
+    // Needs a way to also move any potential custom user ui.rc files
+    // from kgraphviewer/kgraphviewer_part.rc to kgraphviewerpart/kgraphviewer_part.rc
+    return QStringLiteral("kgraphviewer");
 }
 
 /*DotGraph* KGraphViewerPart::graph()

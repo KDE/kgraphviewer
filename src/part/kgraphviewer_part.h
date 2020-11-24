@@ -22,10 +22,9 @@
 #include <KParts/ReadOnlyPart>
 #include <KPluginFactory>
 #include <kparts/part.h>
+#include <kparts_version.h>
 
 #include "kgraphviewer_interface.h"
-
-class KAboutData;
 
 class QWidget;
 
@@ -65,15 +64,16 @@ public:
     /**
      * Default constructor
      */
+#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
+    KGraphViewerPart(QWidget *parentWidget, QObject *parent, const KPluginMetaData &metaData, const QVariantList &);
+#else
     KGraphViewerPart(QWidget *parentWidget, QObject *parent, const QVariantList &);
+#endif
 
     /**
      * Destructor
      */
     ~KGraphViewerPart() override;
-
-    // Return information about the part
-    static KAboutData *createAboutData();
 
 Q_SIGNALS:
     void graphLoaded();
@@ -127,6 +127,12 @@ public Q_SLOTS:
 
     /*  inline DotGraph* graph() {return m_widget->graph();}
       inline const DotGraph* graph() const {return m_widget->graph();}*/
+
+public:
+    /**
+     * Return custom compnentName for KXMLGUIClient, as by history not the plugin id is used
+     */
+    QString componentName() const override;
 
 protected:
     /**

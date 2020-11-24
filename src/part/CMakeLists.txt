@@ -69,18 +69,22 @@ install( TARGETS kgraphviewerlib ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
+configure_file(kgraphviewer_part.desktop ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop @ONLY)
+
 ecm_setup_version(${PROJECT_VERSION}
     VARIABLE_PREFIX KGRAPHVIEWERPART
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGraphViewerPartConfigVersion.cmake"
 )
 
-set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp ${kgraphviewerlib_LIB_DEBUG_SRCS})
+set( kgraphviewerpart_PART_SRCS  kgraphviewer_part.cpp ${kgraphviewerlib_LIB_DEBUG_SRCS})
 
 qt5_add_resources(kgraphviewerpart_PART_SRCS
     kgraphviewer_part.qrc
 )
 
 add_library(kgraphviewerpart MODULE ${kgraphviewerpart_PART_SRCS})
+kcoreaddons_desktop_to_json(kgraphviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop)
+
 generate_export_header(kgraphviewerpart BASE_NAME kgraphviewer)
 
 target_link_libraries(kgraphviewerpart Qt5::Core KF5::Parts ${Graphviz_LIBRARIES} kgraphviewerlib)
@@ -100,11 +104,9 @@ configure_file(org.kde.libkgraphviewer.metainfo.xml.in "${CMAKE_CURRENT_BINARY_D
 
 ########### install files ###############
 
-kcoreaddons_desktop_to_json(kgraphviewerpart ${CMAKE_CURRENT_SOURCE_DIR}/kgraphviewer_part.desktop)
-
 install( FILES kgraphviewer_partsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
 
-install( FILES kgraphviewer_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )
+install( FILES ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )
 install( FILES chain.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES chain-broken.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-bev.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
