@@ -275,7 +275,7 @@ void KGraphViewerWindow::optionsConfigureToolbars()
 
     // use the standard toolbar editor
     KEditToolBar dlg(factory());
-    connect(&dlg, &KEditToolBar::newToolbarConfig, this, &KGraphViewerWindow::applyNewToolbarConfig);
+    connect(&dlg, &KEditToolBar::newToolBarConfig, this, &KGraphViewerWindow::applyNewToolbarConfig);
     dlg.exec();
 }
 
