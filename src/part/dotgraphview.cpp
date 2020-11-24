@@ -1701,8 +1701,7 @@ void DotGraphView::slotLayoutSpecify()
                                                            "The command MUST write its results on stdout in xdot format."),
                                                       QLineEdit::Normal,
                                                       currentLayoutCommand,
-                                                      &ok,
-                                                      nullptr);
+                                                      &ok);
         //       std::cerr << "Got layout command: " << layoutCommand << std::endl;
         if (ok && layoutCommand != currentLayoutCommand) {
             //         std::cerr << "Setting new layout command: " << layoutCommand << std::endl;
