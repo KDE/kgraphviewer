@@ -157,7 +157,11 @@ bool DotGraph::parseDot(const QString &str)
     }
     m_dot = new QProcess();
     connect(m_dot, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &DotGraph::slotDotRunningDone);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+    connect(m_dot, &QProcess::errorOccurred, this, &DotGraph::slotDotRunningError);
+#else
     connect(m_dot, static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::error), this, &DotGraph::slotDotRunningError);
+#endif
     m_dot->start(m_layoutCommand, options);
     qCDebug(KGRAPHVIEWERLIB_LOG) << "process started";
     return true;
