@@ -36,6 +36,10 @@ ecm_qt_declare_logging_category(kgraphviewer_SRCS
     DEFAULT_SEVERITY Warning
 )
 
+qt5_add_resources(kgraphviewer_SRCS
+    kgraphviewer.qrc
+)
+
 add_executable(kgraphviewer ${kgraphviewer_SRCS})
 
 target_link_libraries(kgraphviewer LINK_PRIVATE
@@ -57,7 +61,6 @@ ecm_install_icons(
 )
 
 install( FILES kgraphviewersettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
-install( FILES kgraphviewerui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kgraphviewer )
 install( PROGRAMS org.kde.kgraphviewer.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
 install(FILES org.kde.kgraphviewer.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 

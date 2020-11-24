@@ -76,6 +76,10 @@ ecm_setup_version(${PROJECT_VERSION}
 
 set( kgraphviewerpart_PART_SRCS kgraphviewer_part.cpp ${kgraphviewerlib_LIB_DEBUG_SRCS})
 
+qt5_add_resources(kgraphviewerpart_PART_SRCS
+    kgraphviewer_part.qrc
+)
+
 add_library(kgraphviewerpart MODULE ${kgraphviewerpart_PART_SRCS})
 generate_export_header(kgraphviewerpart BASE_NAME kgraphviewer)
 
@@ -99,7 +103,6 @@ configure_file(org.kde.libkgraphviewer.metainfo.xml.in "${CMAKE_CURRENT_BINARY_D
 kcoreaddons_desktop_to_json(kgraphviewerpart ${CMAKE_CURRENT_SOURCE_DIR}/kgraphviewer_part.desktop)
 
 install( FILES kgraphviewer_partsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
-install( FILES kgraphviewer_part.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kgraphviewer )
 
 install( FILES kgraphviewer_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )
 install( FILES chain.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
