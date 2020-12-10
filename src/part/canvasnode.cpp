@@ -42,7 +42,6 @@
 
 #include <QDebug>
 #include <QGraphicsScene>
-#include <QMatrix>
 #include <QPainter>
 #include <QPixmap>
 #include <QPolygonF>

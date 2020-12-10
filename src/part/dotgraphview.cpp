@@ -62,7 +62,6 @@
 #include <QImageWriter>
 #include <QInputDialog>
 #include <QKeyEvent>
-#include <QMatrix>
 #include <QMenu>
 #include <QMouseEvent>
 #include <QPainter>
@@ -72,6 +71,7 @@
 #include <QStandardPaths>
 #include <QStyle>
 #include <QSvgGenerator>
+#include <QTransform>
 #include <QUuid>
 #include <QWheelEvent>
 #include <kactionmenu.h>
@@ -246,9 +246,9 @@ void DotGraphViewPrivate::updateSizes(QSizeF s)
     if (zoom != m_cvZoom) {
         m_cvZoom = zoom;
 
-        QMatrix wm;
+        QTransform wm;
         wm.scale(zoom, zoom);
-        m_birdEyeView->setMatrix(wm);
+        m_birdEyeView->setTransform(wm);
 
         // make it a little bigger to compensate for widget frame
         m_birdEyeView->resize((cWidth * zoom) + 4, (cHeight * zoom) + 4);
@@ -657,9 +657,9 @@ DotGraphView::DotGraphView(KActionCollection *actions, QWidget *parent)
 
     readViewConfig();
 
-    QMatrix m;
+    QTransform m;
     m.scale(d->m_zoom, d->m_zoom);
-    setMatrix(m);
+    setTransform(m);
     d->setupPopup();
     setInteractive(true);
     setDragMode(NoDrag);
@@ -1251,9 +1251,9 @@ void DotGraphView::setZoomFactor(double newZoom)
     }
 
     setUpdatesEnabled(false);
-    QMatrix m;
+    QTransform m;
     m.scale(d->m_zoom, d->m_zoom);
-    setMatrix(m);
+    setTransform(m);
     emit zoomed(d->m_zoom);
     setUpdatesEnabled(true);
     d->updateSizes();
