@@ -69,7 +69,7 @@ install( TARGETS kgraphviewerlib ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
-configure_file(kgraphviewer_part.desktop ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop @ONLY)
+configure_file(kgraphviewer_part.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop @ONLY)
 
 ecm_setup_version(${PROJECT_VERSION}
     VARIABLE_PREFIX KGRAPHVIEWERPART
