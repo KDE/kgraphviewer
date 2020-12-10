@@ -68,7 +68,6 @@ ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=kgraphviewerpart
 Type=Service
 InitialPreference=10
-Categories=Qt;KDE;Graphics;Viewer;2DGraphics;DataVisualization;
 
 X-KDE-PluginInfo-Name=kgraphviewerpart
 X-KDE-PluginInfo-Version=@PROJECT_VERSION@
