@@ -65,8 +65,6 @@ int main(int argc, char **argv)
     app.setWindowIcon(QIcon::fromTheme("kgraphviewer", app.windowIcon()));
 
     QCommandLineParser options;
-    options.addHelpOption();
-    options.addVersionOption();
     options.addPositionalArgument(QStringLiteral("url"), i18n("Path or URL to scan"), i18n("[url]"));
     about.setupCommandLine(&options);
     options.process(app);
