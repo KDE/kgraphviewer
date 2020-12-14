@@ -48,8 +48,8 @@
      and in the FDL itself on how to use it. -->
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2018-01-03</date>
-<releaseinfo>&kgraphviewer; 2.42</releaseinfo>
+<date>2020-12-14</date>
+<releaseinfo>&kgraphviewer; 2.4.3</releaseinfo>
 
 <abstract>
 <para>
@@ -133,7 +133,7 @@
 <sect1 id="using-kgraphviewer-mainwin">
 <title>The Main Window</title>
 
-<para>The main window displays the loaded graphs, each in its own tab. Initially, if you start &kgraphviewer; without arguments, its main window will be empty as in the screenshot below. In this case, the toolbar contains only the <guimenuitem>Open File</guimenuitem> and the (empty) <guimenuitem>Recently Opened Files</guimenuitem> items. Click on the first one to open the standard <guilabel>Open File</guilabel> dialog.</para>
+<para>The main window displays the loaded graphs, each in its own tab. Initially, if you start &kgraphviewer; without arguments, its main window will be empty as in the screenshot below. In this case, the toolbar contains only the <guibutton>Open...</guibutton> and the (empty) <guibutton>Open Recent</guibutton> buttons. Click on the first one to open the standard <guilabel>Open File</guilabel> dialog.</para>
 
 <screenshot>
 <screeninfo>The initial main window when opening &kgraphviewer; for the first time</screeninfo>
@@ -249,7 +249,7 @@ shown:</para>
 </mediaobject>
 </screenshot>
 
-<para>You can choose to reload the graph or to ignore the change. You can also get &kgraphviewer; to remember your choice, so it will do the same thing the next time. If you later want to modify your choice, choose the <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure &kgraphviewer;</guimenuitem></menuchoice> menu item. See <xref linkend="kgraphviewer-configuration"/>.</para>
+<para>You can choose to reload the graph or to ignore the change. You can also get &kgraphviewer; to remember your choice, so it will do the same thing the next time. If you later want to modify your choice, choose the <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure &kgraphviewer;...</guimenuitem></menuchoice> menu item. See <xref linkend="kgraphviewer-configuration"/>.</para>
 </sect3>
 
 <sect3><title>Files and Windows</title>
@@ -268,7 +268,7 @@ shown:</para>
 </mediaobject>
 </screenshot>
 
-<para>As for the previous option, you can save your default choice and modify it later in the configuration dialog.</para>
+<para>As for the previous option, you can save your choice as the default and modify it later in the configuration dialog.</para>
 
 </sect3>
 
@@ -298,7 +298,7 @@ shown:</para>
 
 <sect1 id="kgraphviewer-printing">
 <title>Graph Printing</title>
-<para>Try the <guilabel>Print preview</guilabel> or the <guilabel>Page setup</guilabel> buttons to explore the printing options.</para>
+<para>Try the <guibutton>Print preview</guibutton> or <guibutton>Page setup</guibutton> buttons to explore the printing options.</para>
 
 <screenshot>
 <screeninfo>Page setup dialog</screeninfo>
@@ -465,7 +465,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 <para>The context menu, usually obtained  by clicking the &RMB; in the graph view, offers some other possibilities:
 <variablelist>
 <varlistentry>
-<term><guimenu>Layout</guimenu></term>
+<term><guisubmenu>Layout</guisubmenu></term>
 <listitem><para>This allows to choose between various &graphviz; layout algorithms or to choose your own one. The entries, as described on the &graphviz; homepage, are the following:
 
 	<variablelist>
@@ -500,7 +500,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 	</varlistentry>
 
 	<varlistentry>
-	<term><guimenuitem>Reset layout command to defaults</guimenuitem></term>
+	<term><guimenuitem>Reset layout command to default</guimenuitem></term>
 	<listitem><para>Determine the graph type (directed or not) and apply the default algorithm to it, currently &dot; and &neato; respectively.</para></listitem>
 	</varlistentry>
 	</variablelist>
@@ -508,7 +508,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 </varlistentry>
 
 <varlistentry>
-<term><guimenu>Export Graph</guimenu></term>
+<term><guisubmenu>Export Graph</guisubmenu></term>
 <listitem><para>
 	<variablelist>
 	<varlistentry>
@@ -525,7 +525,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 </varlistentry>
 
 <varlistentry>
-<term><guimenu>Bird's-eye View</guimenu></term>
+<term><guisubmenu>Bird's-eye View</guisubmenu></term>
 <listitem><para>Configure where to place the bird's-eye view in the graph view. The possible choices are:
 	<variablelist>
 	<varlistentry>
@@ -634,7 +634,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 	</varlistentry>
 
 	<varlistentry>
-	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Select Layout Algo</guimenuitem></menuchoice></term>
+	<term><menuchoice><guimenu>View</guimenu><guisubmenu>Select Layout Algo</guisubmenu></menuchoice></term>
 	<listitem><para>Opens a submenu with various &graphviz; layout algorithms for the current graph.</para></listitem>
 	</varlistentry>
 
