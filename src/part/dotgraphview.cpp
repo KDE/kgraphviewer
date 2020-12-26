@@ -74,6 +74,8 @@
 #include <QTransform>
 #include <QUuid>
 #include <QWheelEvent>
+
+#include <kwidgetsaddons_version.h>
 #include <kactionmenu.h>
 #include <klocalizedstring.h>
 #include <kmessagebox.h>
@@ -458,7 +460,11 @@ void DotGraphViewPrivate::setupPopup()
              "generate a graph in the xdot format on its standard output. For example, to "
              "manually specify the <tt>G</tt> option to the dot command, type in: "
              "<tt>dot -Gname=MyGraphName -Txdot </tt>"));
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 78, 0)
+    QObject::connect(m_layoutAlgoSelectAction, &KSelectAction::textTriggered, q, &DotGraphView::slotSelectLayoutAlgo);
+#else
     QObject::connect(m_layoutAlgoSelectAction, static_cast<void (KSelectAction::*)(const QString &)>(&KSelectAction::triggered), q, &DotGraphView::slotSelectLayoutAlgo);
+#endif
 
     QMenu *layoutPopup = m_popup->addMenu(i18n("Layout"));
     layoutPopup->addAction(m_layoutAlgoSelectAction);
