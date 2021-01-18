@@ -91,7 +91,7 @@ target_link_libraries(kgraphviewerpart Qt5::Core KF5::Parts ${Graphviz_LIBRARIES
 
 install( TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
-set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KGraphViewerPart")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KGraphViewerPart")
 
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/KGraphViewerPartConfig.cmake.in"
