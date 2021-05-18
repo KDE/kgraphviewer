@@ -6,43 +6,40 @@ ecm_setup_version(${PROJECT_VERSION}
 
 add_subdirectory( part )
 
-include_directories(
-    part
-    ${Graphviz_INCLUDE_DIRECTORIES}
-)
-
-
 ########### kgraphviewer target ###############
 
-set(kgraphviewer_SRCS main.cpp kgraphviewer.cpp kgraphviewerConfigDialog.cpp)
+add_executable(kgraphviewer)
 
-qt5_add_dbus_adaptor(kgraphviewer_SRCS org.kde.kgraphviewer.xml kgraphviewer.h KGraphViewerWindow)
+target_sources(kgraphviewer PRIVATE
+    main.cpp
+    kgraphviewer.cpp
+    kgraphviewerConfigDialog.cpp
 
-kconfig_add_kcfg_files( kgraphviewer_SRCS kgraphviewersettings.kcfgc )
-
-ki18n_wrap_ui(
-  kgraphviewer_SRCS
-  preferencesReload.ui
-  preferencesParsing.ui
-  preferencesOpenInExistingWindow.ui
-  preferencesReopenPreviouslyOpenedFiles.ui
-  preferencesAppearance.ui
+    kgraphviewer.qrc
 )
 
-ecm_qt_declare_logging_category(kgraphviewer_SRCS
+set(kgraphviewer_dbus_SRCS)
+qt5_add_dbus_adaptor(kgraphviewer_dbus_SRCS org.kde.kgraphviewer.xml kgraphviewer.h KGraphViewerWindow)
+target_sources(kgraphviewer PRIVATE ${kgraphviewer_dbus_SRCS})
+
+kconfig_add_kcfg_files(kgraphviewer kgraphviewersettings.kcfgc)
+
+ki18n_wrap_ui(kgraphviewer
+    preferencesReload.ui
+    preferencesParsing.ui
+    preferencesOpenInExistingWindow.ui
+    preferencesReopenPreviouslyOpenedFiles.ui
+    preferencesAppearance.ui
+)
+
+ecm_qt_declare_logging_category(kgraphviewer
     HEADER kgraphviewer_debug.h
     IDENTIFIER KGRAPHVIEWER_LOG
     CATEGORY_NAME org.kde.kgraphviewer
     DEFAULT_SEVERITY Warning
 )
 
-qt5_add_resources(kgraphviewer_SRCS
-    kgraphviewer.qrc
-)
-
-add_executable(kgraphviewer ${kgraphviewer_SRCS})
-
-target_link_libraries(kgraphviewer LINK_PRIVATE
+target_link_libraries(kgraphviewer PRIVATE
     KF5::CoreAddons
     KF5::Parts
 )
@@ -69,24 +66,37 @@ if(NOT BUILD_GRAPHEDITOR)
     return()
 endif()
 
-set(kgrapheditor_SRCS kgrapheditormain.cpp kgrapheditor.cpp kgrapheditorConfigDialog.cpp KGraphEditorNodesTreeWidget.cpp KGraphEditorElementTreeWidget.cpp)
+add_executable(kgrapheditor)
 
-qt5_add_dbus_adaptor(kgrapheditor_SRCS org.kde.kgrapheditor.xml kgrapheditor.h KGraphEditor)
+target_sources(kgrapheditor PRIVATE
+    kgrapheditormain.cpp
+    kgrapheditor.cpp
+    kgrapheditorConfigDialog.cpp
+    KGraphEditorNodesTreeWidget.cpp
+    KGraphEditorElementTreeWidget.cpp
+)
 
-kconfig_add_kcfg_files(kgrapheditor_SRCS kgrapheditorsettings.kcfgc)
+set(kgrapheditor_dbus_SRCS)
+qt5_add_dbus_adaptor(kgrapheditor_dbus_SRCS org.kde.kgrapheditor.xml kgrapheditor.h KGraphEditor)
+target_sources(kgrapheditor PRIVATE ${kgrapheditor_dbus_SRCS})
 
-ki18n_wrap_ui(kgrapheditor_SRCS preferencesReload.ui preferencesParsing.ui preferencesOpenInExistingWindow.ui preferencesReopenPreviouslyOpenedFiles.ui)
+kconfig_add_kcfg_files(kgrapheditor kgrapheditorsettings.kcfgc)
 
-ecm_qt_declare_logging_category(kgrapheditor_SRCS
+ki18n_wrap_ui(kgrapheditor
+    preferencesReload.ui
+    preferencesParsing.ui
+    preferencesOpenInExistingWindow.ui
+    preferencesReopenPreviouslyOpenedFiles.ui
+)
+
+ecm_qt_declare_logging_category(kgrapheditor
     HEADER kgrapheditor_debug.h
     IDENTIFIER KGRAPHEDITOR_LOG
     CATEGORY_NAME org.kde.kgrapheditor
     DEFAULT_SEVERITY Warning
 )
 
-add_executable(kgrapheditor ${kgrapheditor_SRCS})
-
-target_link_libraries(kgrapheditor LINK_PRIVATE
+target_link_libraries(kgrapheditor PRIVATE
     KF5::CoreAddons
     KF5::Parts
 )

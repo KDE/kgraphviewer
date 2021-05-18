@@ -78,3 +78,12 @@ include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Graphviz
     REQUIRED_VARS Graphviz_LIBRARIES Graphviz_INCLUDE_DIRECTORIES
     VERSION_VAR   Graphviz_VERSION)
+
+if(Graphviz_FOUND AND NOT TARGET Graphviz::Graphviz)
+    add_library(Graphviz::Graphviz UNKNOWN IMPORTED)
+    set_target_properties(Graphviz::Graphviz PROPERTIES
+        IMPORTED_LOCATION "${Graphviz_GVC_LIBRARY}" # randomly picked, should this be another one?
+        INTERFACE_LINK_LIBRARIES  "${Graphviz_CDT_LIBRARY};${Graphviz_GRAPH_LIBRARY};${Graphviz_PATHPLAN_LIBRARY}"
+        INTERFACE_INCLUDE_DIRECTORIES "${Graphviz_INCLUDE_DIRECTORIES}"
+    )
+endif()

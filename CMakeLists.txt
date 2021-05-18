@@ -1,19 +1,20 @@
-cmake_minimum_required(VERSION 3.0)
-cmake_policy(SET CMP0048 NEW)
+cmake_minimum_required(VERSION 3.16)
+
 project(kgraphviewer VERSION "2.4.3")
 set(KGRAPHVIEWERLIB_SOVERION 3)
 
-set(QT_MIN_VERSION "5.4.0")
-set(KF5_MIN_VERSION "5.16.0")
+set(QT_MIN_VERSION "5.15.0")
+set(KF5_MIN_VERSION "5.80.0")
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
-include(CMakePackageConfigHelpers)
 include(KDEInstallDirs)
-include(KDECompilerSettings NO_POLICY_SCOPE)
-include(KDEClangFormat)
 include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+
+include(CMakePackageConfigHelpers)
+include(KDEClangFormat)
 include(FeatureSummary)
 include(GenerateExportHeader)
 include(ECMInstallIcons)
