@@ -22,9 +22,6 @@
 #include "dotgraphview.h"
 #include "kgraphviewerlib_debug.h"
 
-#if KPARTS_VERSION < QT_VERSION_CHECK(5, 77, 0)
-#include <KAboutData>
-#endif
 #include <KDirWatch>
 #include <KPluginFactory>
 #include <KSharedConfig>
@@ -69,11 +66,7 @@ public:
     KGraphViewerPart::LayoutMethod m_layoutMethod;
 };
 
-#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
 KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const KPluginMetaData &metaData, const QVariantList &)
-#else
-KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const QVariantList &)
-#endif
     : KParts::ReadOnlyPart(parent)
     , d(new KGraphViewerPartPrivate())
 {
@@ -81,12 +74,7 @@ KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const
        file is found also when this part is called from applications
        different then kgraphviewer (like kgrapheditor and konqueror).
      */
-#if KPARTS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
     setMetaData(metaData);
-#else
-    KAboutData aboutData(QStringLiteral("kgraphviewer"), i18n("KGraphViewerPart"), KGRAPHVIEWER_VERSION_STRING, i18n("Graphviz DOT files viewer"), KAboutLicense::GPL, i18n("(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"));
-    setComponentData(aboutData, false);
-#endif
 
     // set our XML-UI resource file
     setXMLFile(QStringLiteral("kgraphviewer_part.rc"), true);
