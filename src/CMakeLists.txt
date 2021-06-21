@@ -37,6 +37,8 @@ ecm_qt_declare_logging_category(kgraphviewer
     IDENTIFIER KGRAPHVIEWER_LOG
     CATEGORY_NAME org.kde.kgraphviewer
     DEFAULT_SEVERITY Warning
+    DESCRIPTION "KGraphViewer"
+    EXPORT KGRAPHVIEWER
 )
 
 target_link_libraries(kgraphviewer PRIVATE
@@ -94,6 +96,8 @@ ecm_qt_declare_logging_category(kgrapheditor
     IDENTIFIER KGRAPHEDITOR_LOG
     CATEGORY_NAME org.kde.kgrapheditor
     DEFAULT_SEVERITY Warning
+    DESCRIPTION "KGraphEditor"
+    EXPORT KGRAPHVIEWER
 )
 
 target_link_libraries(kgrapheditor PRIVATE

@@ -59,7 +59,11 @@ add_definitions(
 add_subdirectory(src)
 add_subdirectory(doc)
 
-install(FILES kgraphviewer.categories DESTINATION ${KDE_INSTALL_CONFDIR})
+ecm_qt_install_logging_categories(
+    EXPORT KGRAPHVIEWER
+    FILE kgraphviewer.categories
+    DESTINATION "${KDE_INSTALL_LOGGINGCATEGORIESDIR}"
+)
 
 # add clang-format target for all our real source files
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES src/*.cpp src/*.h)
