@@ -176,6 +176,7 @@
       <li xml:lang="tr">Birden çok grafiği sekmelere yükleyebilme</li>
       <li xml:lang="uk">Завантаження декількох графів до вкладок у окремих обчислювальних потоках.</li>
       <li xml:lang="x-test">xxThreaded loading of several graphs in tabsxx</li>
+      <li xml:lang="zh-CN">在标签页中多线程加载图表</li>
       <li>Saving of the recent files list</li>
       <li xml:lang="bs">Snimanje nedavne liste fajlova</li>
       <li xml:lang="ca">Desament de la llista de fitxers recents</li>
@@ -285,6 +286,7 @@
       <li xml:lang="tr">Grafiği sürükleyerek taşıyabilme</li>
       <li xml:lang="uk">Пересування графу перетягуванням.</li>
       <li xml:lang="x-test">xxMoving of the graph by draggingxx</li>
+      <li xml:lang="zh-CN">拖拽移动图表</li>
       <li>Full featured printing</li>
       <li xml:lang="bs">Cijelo istaknuto printanje</li>
       <li xml:lang="ca">Impressió amb totes les funcionalitats</li>
@@ -339,6 +341,7 @@
       <li xml:lang="tr">Tüm graphviz örnek grafiklerinin mükemmel çizimi</li>
       <li xml:lang="uk">Ідеальне креслення усіх прикладів графів graphviz.</li>
       <li xml:lang="x-test">xxPerfect drawing of all graphviz example graphsxx</li>
+      <li xml:lang="zh-CN">完美绘制所有 Graphviz 实例图表</li>
       <li>Automatically choose dot for directed graphs and neato for undirected</li>
       <li xml:lang="bs">Automatski odabir za tačku za usmjerene grafove i neato za neusmjerene</li>
       <li xml:lang="ca">Selecció automàtica de «dot» per als gràfics dirigits i «neato» per als no dirigits</li>
@@ -365,6 +368,7 @@
       <li xml:lang="tr">Yönlendirilmiş grafikler için dot, yönlendirilmemişler için neato seçin</li>
       <li xml:lang="uk">Автоматичний вибір dot для орієнтованих графів і neato для неорієнтованих.</li>
       <li xml:lang="x-test">xxAutomatically choose dot for directed graphs and neato for undirectedxx</li>
+      <li xml:lang="zh-CN">自动为有向图使用 dot 并为无向图使用 neato。</li>
       <li>Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="bs">Mogućnost korištenja proizvoljnog rasporeda algoritma dokle god proizvodi xdot format</li>
       <li xml:lang="ca">Possibilitat d'utilitzar un algorisme de disposició arbitrari si produeix un format «xdot»</li>
