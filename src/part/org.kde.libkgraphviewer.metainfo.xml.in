@@ -27,6 +27,7 @@
   <name xml:lang="pl">Biblioteka KGraphViewer</name>
   <name xml:lang="pt">Biblioteca do KGraphViewer</name>
   <name xml:lang="pt-BR">Biblioteca KGraphViewer</name>
+  <name xml:lang="ro">Bibliotecă KGraphViewer</name>
   <name xml:lang="ru">Библиотека KGraphViewer</name>
   <name xml:lang="sk">Knižnica KGraphViewer</name>
   <name xml:lang="sl">Knjižnica KGraphViewer</name>
@@ -55,6 +56,7 @@
   <summary xml:lang="pl">Przeglądarka grafów Graphviz DOT (biblioteka współdzielona)</summary>
   <summary xml:lang="pt">Um visualizador de grafos DOT do Graphviz (biblioteca dinâmica)</summary>
   <summary xml:lang="pt-BR">Um visualizador de grafos DOT do Graphviz (biblioteca compartilhada)</summary>
+  <summary xml:lang="ro">Vizualizor de grafuri DOT Graphviz (bibliotecă partajată)</summary>
   <summary xml:lang="ru">Просмотрщик графов Graphviz (разделяемая библиотека)</summary>
   <summary xml:lang="sl">A Graphviz DOT vpogledovalnik grafov (skupna deljena knjižnica)</summary>
   <summary xml:lang="sv">Visning av Graphviz dot-grafer (delat bibliotek)</summary>

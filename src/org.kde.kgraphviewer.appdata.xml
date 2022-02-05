@@ -25,6 +25,7 @@
   <name xml:lang="pl">KGraphViewer</name>
   <name xml:lang="pt">KGraphViewer</name>
   <name xml:lang="pt-BR">KGraphViewer</name>
+  <name xml:lang="ro">KGraphViewer</name>
   <name xml:lang="ru">KGraphViewer</name>
   <name xml:lang="sk">KGraphViewer</name>
   <name xml:lang="sl">KGraphViewer</name>
@@ -53,6 +54,7 @@
   <summary xml:lang="pl">Przeglądarka grafów Graphviz DOT</summary>
   <summary xml:lang="pt">Um visualizador de grafos DOT do Graphviz</summary>
   <summary xml:lang="pt-BR">Um visualizador de grafos DOT do Graphviz</summary>
+  <summary xml:lang="ro">Vizualizor de grafuri DOT Graphviz</summary>
   <summary xml:lang="ru">Программа просмотра графов Graphviz</summary>
   <summary xml:lang="sl">Pregledovalnik grafov Graphviz DOT</summary>
   <summary xml:lang="sv">Visning av Graphviz dot-grafer</summary>
@@ -110,6 +112,7 @@
     <p xml:lang="pl">Cechy:</p>
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Funcionalidades:</p>
+    <p xml:lang="ro">Caracteristici:</p>
     <p xml:lang="ru">Возможности:</p>
     <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="sl">Zmožnosti:</p>
@@ -142,6 +145,7 @@
       <li xml:lang="pl">Powiększanie</li>
       <li xml:lang="pt">Ampliação</li>
       <li xml:lang="pt-BR">Ampliação</li>
+      <li xml:lang="ro">Apropiere</li>
       <li xml:lang="sk">Priblíženie</li>
       <li xml:lang="sl">Zoomiranje</li>
       <li xml:lang="sv">Zoom</li>
@@ -197,6 +201,7 @@
       <li xml:lang="pl">Zachowywanie spisu ostatnio otwieranych plików</li>
       <li xml:lang="pt">Gravação da lista de ficheiros recentes</li>
       <li xml:lang="pt-BR">Gravação da lista de arquivos recentes</li>
+      <li xml:lang="ro">Salvarea listei de fișiere recente</li>
       <li xml:lang="sk">Ukladanie zoznamu nedávnych súborov</li>
       <li xml:lang="sl">Shranjevanje seznama zadnje uporabljenih datotek</li>
       <li xml:lang="sv">Sparar listan med senaste filer</li>
@@ -225,6 +230,7 @@
       <li xml:lang="pl">Ręczne wczytywanie plików</li>
       <li xml:lang="pt">Recarregamento manual dos ficheiros</li>
       <li xml:lang="pt-BR">Recarregamento manual dos arquivos</li>
+      <li xml:lang="ro">Reîncărcarea manuală a fișierelor</li>
       <li xml:lang="sk">Ručné znovunačítanie súborov</li>
       <li xml:lang="sl">Ročno ponovno nalaganje datotek</li>
       <li xml:lang="sv">Manuell återinläsning av filer</li>
@@ -253,6 +259,7 @@
       <li xml:lang="pl">Przedstawianie grafu w widoku ptasiego oka</li>
       <li xml:lang="pt">Apresentação de uma visão geral do grafo</li>
       <li xml:lang="pt-BR">Apresentação de uma visão geral do grafo</li>
+      <li xml:lang="ro">Afișarea unei vizualizări sumare a grafului</li>
       <li xml:lang="sk">Zobrazenie vtáčej perspektívy grafu</li>
       <li xml:lang="sl">Prikaz pogleda na graf s ptičje perspektive</li>
       <li xml:lang="sv">Visar en översiktsbild av grafen</li>
@@ -280,6 +287,7 @@
       <li xml:lang="pl">Przesuwanie grafu poprzez przeciąganie</li>
       <li xml:lang="pt">Movimentação do grafo por arrastamento</li>
       <li xml:lang="pt-BR">Movimentação do grafo por arrastamento</li>
+      <li xml:lang="ro">Mutarea grafului prin tragere</li>
       <li xml:lang="sk">Presun grafov posunom</li>
       <li xml:lang="sl">Premik grafa z vlečenjem</li>
       <li xml:lang="sv">Flytta grafen genom att dra</li>
@@ -307,6 +315,7 @@
       <li xml:lang="pl">Pełnowartościowe drukowanie</li>
       <li xml:lang="pt">Impressão com diversas funcionalidades</li>
       <li xml:lang="pt-BR">Impressão com todas as funcionalidades</li>
+      <li xml:lang="ro">Tipărire cu funcționalitate completă</li>
       <li xml:lang="sk">Plne funkčná tlač</li>
       <li xml:lang="sl">Veliko možnosti tiskanja</li>
       <li xml:lang="sv">Fullständig utskriftsfunktion</li>
@@ -335,6 +344,7 @@
       <li xml:lang="pl">Perfekcyjne rysowanie wszystkich grafów przykładowych graphviz</li>
       <li xml:lang="pt">Desenho perfeito de todos os grafos de exemplo do 'graphviz'</li>
       <li xml:lang="pt-BR">Desenho perfeito de todos os grafos de exemplo do 'graphviz'</li>
+      <li xml:lang="ro">Desenare perfectă a tuturor grafurilor</li>
       <li xml:lang="sk">Výborné kreslenie všetkých ukážkových grafov graphviz</li>
       <li xml:lang="sl">Popoln izris vseh vzorčnih grafov graphviz</li>
       <li xml:lang="sv">Perfekt uppritning av alla exempelgrafer från Graphviz</li>
