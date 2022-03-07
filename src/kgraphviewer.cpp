@@ -21,10 +21,7 @@
 #include "kgraphviewer_debug.h"
 #include "kgraphviewersettings.h"
 #include "part/kgraphviewer_interface.h"
-#include "ui_preferencesOpenInExistingWindow.h"
-#include "ui_preferencesParsing.h"
-#include "ui_preferencesReload.h"
-#include "ui_preferencesReopenPreviouslyOpenedFiles.h"
+#include "ui_preferences.h"
 
 #include <KActionCollection>
 #include <KColorScheme>
@@ -290,58 +287,55 @@ void KGraphViewerWindow::optionsConfigure()
     // KConfigDialog didn't find an instance of this dialog, so lets create it :
     KgvConfigurationDialog *dialog = new KgvConfigurationDialog(this, "settings", KGraphViewerSettings::self());
     connect(dialog, &KgvConfigurationDialog::backgroundColorChanged, this, &KGraphViewerWindow::slotBackgroundColorChanged);
-    Ui::KGraphViewerPreferencesParsingWidget *parsingWidget = dialog->parsingWidget;
+    Ui::KGraphViewerPreferencesWidget *optionsWidget = dialog->appearanceWidget;
     qCDebug(KGRAPHVIEWER_LOG) << KGraphViewerSettings::parsingMode();
     if (KGraphViewerSettings::parsingMode() == "external") {
-        parsingWidget->external->setChecked(true);
+        optionsWidget->external->setChecked(true);
     } else if (KGraphViewerSettings::parsingMode() == "internal") {
-        parsingWidget->internal->setChecked(true);
+        optionsWidget->internal->setChecked(true);
     }
-    connect(parsingWidget->external, &QRadioButton::toggled, this, &KGraphViewerWindow::slotParsingModeExternalToggled);
-    connect(parsingWidget->internal, &QRadioButton::toggled, this, &KGraphViewerWindow::slotParsingModeInternalToggled);
+    connect(optionsWidget->external, &QRadioButton::toggled, this, &KGraphViewerWindow::slotParsingModeExternalToggled);
+    connect(optionsWidget->internal, &QRadioButton::toggled, this, &KGraphViewerWindow::slotParsingModeInternalToggled);
 
-    Ui::KGraphViewerPreferencesReloadWidget *reloadWidget = dialog->reloadWidget;
     qCDebug(KGRAPHVIEWER_LOG) << KGraphViewerSettings::reloadOnChangeMode();
     if (KGraphViewerSettings::reloadOnChangeMode() == "true") {
-        reloadWidget->yes->setChecked(true);
+        optionsWidget->reload_yes->setChecked(true);
     } else if (KGraphViewerSettings::reloadOnChangeMode() == "false") {
-        reloadWidget->no->setChecked(true);
+        optionsWidget->reload_no->setChecked(true);
     } else // if (KGraphViewerSettings::reloadOnChangeMode() == "ask")
     {
-        reloadWidget->ask->setChecked(true);
+        optionsWidget->reload_ask->setChecked(true);
     }
 
-    connect(reloadWidget->yes, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReloadOnChangeModeYesToggled);
-    connect(reloadWidget->no, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReloadOnChangeModeNoToggled);
-    connect(reloadWidget->ask, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReloadOnChangeModeAskToggled);
+    connect(optionsWidget->reload_yes, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReloadOnChangeModeYesToggled);
+    connect(optionsWidget->reload_no, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReloadOnChangeModeNoToggled);
+    connect(optionsWidget->reload_ask, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReloadOnChangeModeAskToggled);
 
-    Ui::KGraphViewerPreferencesOpenInExistingWindowWidget *openingWidget = dialog->openingWidget;
     if (KGraphViewerSettings::openInExistingWindowMode() == "true") {
-        openingWidget->yes->setChecked(true);
+        optionsWidget->open_existing_yes->setChecked(true);
     } else if (KGraphViewerSettings::openInExistingWindowMode() == "false") {
-        openingWidget->no->setChecked(true);
+        optionsWidget->open_existing_no->setChecked(true);
     } else // if (KGraphViewerSettings::openInExistingWindowMode() == "ask")
     {
-        openingWidget->ask->setChecked(true);
+        optionsWidget->open_existing_ask->setChecked(true);
     }
 
-    connect(openingWidget->yes, &QRadioButton::toggled, this, &KGraphViewerWindow::slotOpenInExistingWindowModeYesToggled);
-    connect(openingWidget->no, &QRadioButton::toggled, this, &KGraphViewerWindow::slotOpenInExistingWindowModeNoToggled);
-    connect(openingWidget->ask, &QRadioButton::toggled, this, &KGraphViewerWindow::slotOpenInExistingWindowModeAskToggled);
+    connect(optionsWidget->open_existing_yes, &QRadioButton::toggled, this, &KGraphViewerWindow::slotOpenInExistingWindowModeYesToggled);
+    connect(optionsWidget->open_existing_no, &QRadioButton::toggled, this, &KGraphViewerWindow::slotOpenInExistingWindowModeNoToggled);
+    connect(optionsWidget->open_existing_ask, &QRadioButton::toggled, this, &KGraphViewerWindow::slotOpenInExistingWindowModeAskToggled);
 
-    Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget *reopeningWidget = dialog->reopeningWidget;
     if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "true") {
-        reopeningWidget->yes->setChecked(true);
+        optionsWidget->restore_yes->setChecked(true);
     } else if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "false") {
-        reopeningWidget->no->setChecked(true);
+        optionsWidget->restore_no->setChecked(true);
     } else // if (KGraphViewerSettings::reopenPreviouslyOpenedFilesMode() == "ask")
     {
-        reopeningWidget->ask->setChecked(true);
+        optionsWidget->restore_ask->setChecked(true);
     }
 
-    connect(reopeningWidget->yes, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeYesToggled);
-    connect(reopeningWidget->no, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeNoToggled);
-    connect(reopeningWidget->ask, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeAskToggled);
+    connect(optionsWidget->restore_yes, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeYesToggled);
+    connect(optionsWidget->restore_no, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeNoToggled);
+    connect(optionsWidget->restore_ask, &QRadioButton::toggled, this, &KGraphViewerWindow::slotReopenPreviouslyOpenedFilesModeAskToggled);
 
     dialog->show();
 }

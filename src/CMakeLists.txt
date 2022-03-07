@@ -25,11 +25,7 @@ target_sources(kgraphviewer PRIVATE ${kgraphviewer_dbus_SRCS})
 kconfig_add_kcfg_files(kgraphviewer kgraphviewersettings.kcfgc)
 
 ki18n_wrap_ui(kgraphviewer
-    preferencesReload.ui
-    preferencesParsing.ui
-    preferencesOpenInExistingWindow.ui
-    preferencesReopenPreviouslyOpenedFiles.ui
-    preferencesAppearance.ui
+    preferences.ui
 )
 
 ecm_qt_declare_logging_category(kgraphviewer

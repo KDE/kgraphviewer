@@ -26,11 +26,7 @@
 
 namespace Ui
 {
-class KGraphViewerPreferencesParsingWidget;
-class KGraphViewerPreferencesReloadWidget;
-class KGraphViewerPreferencesOpenInExistingWindowWidget;
-class KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget;
-class KGraphViewerPreferencesAppearanceWidget;
+class KGraphViewerPreferencesWidget;
 }
 
 /**
@@ -54,7 +50,7 @@ protected Q_SLOTS:
     void updateSettings() override;
     void updateWidgets() override;
 
-    void settingChanged(int);
+    void settingChanged();
     void slotBackgroundColorChanged(const QColor &color);
 
 protected:
@@ -63,11 +59,7 @@ protected:
     bool m_changed;
 
 public:
-    Ui::KGraphViewerPreferencesParsingWidget *parsingWidget;
-    Ui::KGraphViewerPreferencesReloadWidget *reloadWidget;
-    Ui::KGraphViewerPreferencesOpenInExistingWindowWidget *openingWidget;
-    Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget *reopeningWidget;
-    Ui::KGraphViewerPreferencesAppearanceWidget *appearanceWidget;
+    Ui::KGraphViewerPreferencesWidget *appearanceWidget;
 };
 
 #endif

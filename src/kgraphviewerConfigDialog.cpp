@@ -19,11 +19,7 @@
 #include "kgraphviewerConfigDialog.h"
 #include "kgraphviewer_debug.h"
 #include "kgraphviewersettings.h"
-#include "ui_preferencesAppearance.h"
-#include "ui_preferencesOpenInExistingWindow.h"
-#include "ui_preferencesParsing.h"
-#include "ui_preferencesReload.h"
-#include "ui_preferencesReopenPreviouslyOpenedFiles.h"
+#include "ui_preferences.h"
 
 #include <QDebug>
 #include <QFileDialog>
@@ -35,6 +31,7 @@
 
 #include <KPluginFactory>
 #include <KService>
+#include <QButtonGroup>
 #include <QMessageBox>
 #include <QStatusBar>
 #include <kconfigdialog.h>
@@ -49,34 +46,40 @@
 KgvConfigurationDialog::KgvConfigurationDialog(QWidget *parent, const QString &name, KConfigSkeleton *config)
     : KConfigDialog(parent, name, config)
     , m_changed(false)
-    , parsingWidget(new Ui::KGraphViewerPreferencesParsingWidget())
-    , reloadWidget(new Ui::KGraphViewerPreferencesReloadWidget())
-    , openingWidget(new Ui::KGraphViewerPreferencesOpenInExistingWindowWidget())
-    , reopeningWidget(new Ui::KGraphViewerPreferencesReopenPreviouslyOpenedFilesWidget())
-    , appearanceWidget(new Ui::KGraphViewerPreferencesAppearanceWidget())
+    , appearanceWidget(new Ui::KGraphViewerPreferencesWidget())
 {
     QWidget *page4 = new QWidget();
     appearanceWidget->setupUi(page4);
-    QWidget *page0 = new QWidget();
-    parsingWidget->setupUi(page0);
-    QWidget *page1 = new QWidget();
-    reloadWidget->setupUi(page1);
-    QWidget *page2 = new QWidget();
-    openingWidget->setupUi(page2);
-    QWidget *page3 = new QWidget();
-    reopeningWidget->setupUi(page3);
+
+    QButtonGroup *parserButtonGroup = new QButtonGroup(this);
+    parserButtonGroup->addButton(appearanceWidget->internal);
+    parserButtonGroup->addButton(appearanceWidget->external);
+
+    QButtonGroup *reloadButtonGroup = new QButtonGroup(this);
+    reloadButtonGroup->addButton(appearanceWidget->reload_yes);
+    reloadButtonGroup->addButton(appearanceWidget->reload_no);
+    reloadButtonGroup->addButton(appearanceWidget->reload_ask);
+
+    QButtonGroup *openExistingButtonGroup = new QButtonGroup(this);
+    openExistingButtonGroup->addButton(appearanceWidget->open_existing_yes);
+    openExistingButtonGroup->addButton(appearanceWidget->open_existing_no);
+    openExistingButtonGroup->addButton(appearanceWidget->open_existing_ask);
+
+    QButtonGroup *restoreButtonGroup = new QButtonGroup(this);
+    restoreButtonGroup->addButton(appearanceWidget->restore_yes);
+    restoreButtonGroup->addButton(appearanceWidget->restore_no);
+    restoreButtonGroup->addButton(appearanceWidget->restore_ask);
 
     appearanceWidget->kcolorbutton->setColor(KGraphViewerSettings::backgroundColor());
     appearanceWidget->kcolorbutton->setDefaultColor(KGraphViewerSettings::backgroundColor());
-    addPage(page4, i18n("Appearance"), "preferences-other", i18n("Appearance"), false);
-    addPage(page0, i18n("Parsing"), "preferences-other", i18n("Parsing"), false);
-    addPage(page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
-    addPage(page2, i18n("Opening"), "document-open", i18n("Opening"), false);
-    addPage(page3, i18n("Session Management"), "preferences-other", i18n("Session Management"), false);
-    connect(parsingWidget->parsingMode, &QGroupBox::clicked, this, &KgvConfigurationDialog::settingChanged);
-    connect(reloadWidget->reloadOnChangeMode, &QGroupBox::clicked, this, &KgvConfigurationDialog::settingChanged);
-    connect(openingWidget->openInExistingWindowMode, &QGroupBox::clicked, this, &KgvConfigurationDialog::settingChanged);
-    connect(reopeningWidget->reopenPreviouslyOpenedFilesMode, &QGroupBox::clicked, this, &KgvConfigurationDialog::settingChanged);
+
+    addPage(page4, i18n("Settings"), "preferences", i18n("Settings"), false);
+
+    connect(parserButtonGroup, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KgvConfigurationDialog::settingChanged);
+    connect(reloadButtonGroup, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KgvConfigurationDialog::settingChanged);
+    connect(openExistingButtonGroup, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KgvConfigurationDialog::settingChanged);
+    connect(restoreButtonGroup, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &KgvConfigurationDialog::settingChanged);
+
     connect(appearanceWidget->kcolorbutton, &KColorButton::changed, this, &KgvConfigurationDialog::slotBackgroundColorChanged);
 }
 
@@ -84,7 +87,7 @@ KgvConfigurationDialog::~KgvConfigurationDialog()
 {
 }
 
-void KgvConfigurationDialog::settingChanged(int)
+void KgvConfigurationDialog::settingChanged()
 {
     //   std::cerr << "KgvConfigurationDialog::settingChanged" << std::endl;
     m_changed = true;

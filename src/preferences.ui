@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>KGraphViewerPreferencesWidget</class>
+  <widget class="QWidget" name="KGraphViewerPreferencesWidget">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>455</width>
+        <height>109</height>
+      </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+        <widget class="QLabel">
+          <property name="text">
+            <string>Default background color:</string>
+          </property>
+        </widget>
+      </item>
+      <item row="0" column="1">
+        <widget class="KColorButton" name="kcolorbutton">
+          <property name="color">
+            <color>
+              <red>220</red>
+              <green>220</green>
+              <blue>220</blue>
+            </color>
+          </property>
+          <property name="defaultColor">
+            <color>
+              <red>220</red>
+              <green>220</green>
+              <blue>220</blue>
+            </color>
+          </property>
+        </widget>
+      </item>
+      <item row="1" column="0">
+        <widget class="QLabel">
+          <property name="text">
+            <string>Parse using:</string>
+          </property>
+        </widget>
+      </item>
+      <item row="1" column="1">
+        <widget class="QRadioButton" name="external">
+          <property name="text">
+            <string>External command</string>
+          </property>
+        </widget>
+      </item>
+      <item row="2 " column="1">
+        <widget class="QRadioButton" name="internal">
+          <property name="text">
+            <string>Internal library</string>
+          </property>
+        </widget>
+      </item>
+      <item row="3" column="0">
+        <widget class="QLabel">
+          <property name="text">
+            <string>Reload files modified on disk:</string>
+          </property>
+        </widget>
+      </item>
+      <item row="3" column="1">
+        <widget class="QRadioButton" name="reload_yes">
+          <property name="text">
+            <string>Yes</string>
+          </property>
+        </widget>
+      </item>
+      <item row="4" column="1">
+        <widget class="QRadioButton" name="reload_no">
+          <property name="text">
+            <string>No</string>
+          </property>
+        </widget>
+      </item>
+      <item row="5" column="1">
+        <widget class="QRadioButton" name="reload_ask">
+          <property name="text">
+            <string>Ask</string>
+          </property>
+        </widget>
+      </item>
+      <item row="6" column="0">
+        <widget class="QLabel">
+          <property name="text">
+            <string>Open in existing window:</string>
+          </property>
+        </widget>
+      </item>
+      <item row="6" column="1">
+        <widget class="QRadioButton" name="open_existing_yes">
+          <property name="text">
+            <string>Yes</string>
+          </property>
+        </widget>
+      </item>
+      <item row="7" column="1">
+        <widget class="QRadioButton" name="open_existing_no">
+          <property name="text">
+            <string>No</string>
+          </property>
+        </widget>
+      </item>
+      <item row="8" column="1">
+        <widget class="QRadioButton" name="open_existing_ask">
+          <property name="text">
+            <string>Ask</string>
+          </property>
+        </widget>
+      </item>
+      <item row="9" column="0">
+        <widget class="QLabel">
+          <property name="text">
+            <string>Reopen previously opened files:</string>
+          </property>
+        </widget>
+      </item>
+      <item row="9" column="1">
+        <widget class="QRadioButton" name="restore_yes">
+          <property name="text">
+            <string>Yes</string>
+          </property>
+        </widget>
+      </item>
+      <item row="10" column="1">
+        <widget class="QRadioButton" name="restore_no">
+          <property name="text">
+            <string>No</string>
+          </property>
+        </widget>
+      </item>
+      <item row="11" column="1">
+        <widget class="QRadioButton" name="restore_ask">
+          <property name="text">
+            <string>Ask</string>
+          </property>
+        </widget>
+      </item>
+    </layout>
+  </widget>
+  <customwidgets>
+    <customwidget>
+      <class>KColorButton</class>
+      <extends>QPushButton</extends>
+      <header>kcolorbutton.h</header>
+    </customwidget>
+  </customwidgets>
+  <resources />
+  <connections />
+</ui>
