@@ -184,7 +184,7 @@
       <li>Saving of the recent files list</li>
       <li xml:lang="bs">Snimanje nedavne liste fajlova</li>
       <li xml:lang="ca">Desament de la llista de fitxers recents</li>
-      <li xml:lang="ca-valencia">Guardar de la llista de fitxers recents</li>
+      <li xml:lang="ca-valencia">Guardada de la llista de fitxers recents</li>
       <li xml:lang="da">Gemning af liste over nylige filer</li>
       <li xml:lang="de">Speicherung der Liste der zuletzt geöffneten Dateien</li>
       <li xml:lang="el">Αποθήκευση της πρόσφατης λίστας αρχείων</li>
@@ -213,7 +213,7 @@
       <li>Manual reload of files</li>
       <li xml:lang="bs">Ručno nadopunjavanje fajlova</li>
       <li xml:lang="ca">Recarrega manualment els fitxers</li>
-      <li xml:lang="ca-valencia">Recarrega manualment els fitxers</li>
+      <li xml:lang="ca-valencia">Torna a carregar manualment els fitxers</li>
       <li xml:lang="da">Manuel genindlæsning af filer</li>
       <li xml:lang="de">Manuelles neu laden von Dateien</li>
       <li xml:lang="el">Χειροκίνητη επαναφόρτωση αρχείων</li>
@@ -408,7 +408,7 @@
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="bs">Automatsko ponovno učitavanje potvrdom korisnika o (izvana) modificiranim datotekama (podesivo)</li>
       <li xml:lang="ca">Recarrega automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
-      <li xml:lang="ca-valencia">Recarrega automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
+      <li xml:lang="ca-valencia">Torna a carregar automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
       <li xml:lang="da">Automatisk genindlæsning med brugerbekræftelse af (eksternt) ændrede filer (konfigurerbart)</li>
       <li xml:lang="de">Erneutes Laden von (extern) geänderten Dateien - automatisch mit Bestätigung durch den Benutzer (einstellbar)</li>
       <li xml:lang="el">Αυτόματη επαναφόρτωση με επιβεβαίωση από το χρήστη των (εξωτερικά) τροποιοιημένων αρχείων (διαμορφώσιμο)</li>
