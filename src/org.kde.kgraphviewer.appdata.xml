@@ -405,6 +405,7 @@
       <li xml:lang="tr">Genellikle hızlı bir biçimde xdot biçiminde üretmek için rastgele düzen algoritması kullanır</li>
       <li xml:lang="uk">Можливість використання довільного алгоритму компонування, який може створювати дані у форматі xdot.</li>
       <li xml:lang="x-test">xxPossibility to use an arbitrary layout algorithm as soon as it produces xdot formatxx</li>
+      <li xml:lang="zh-CN">是否可以在生成 xdot 格式时使用任意布局算法</li>
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="bs">Automatsko ponovno učitavanje potvrdom korisnika o (izvana) modificiranim datotekama (podesivo)</li>
       <li xml:lang="ca">Recarrega automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
