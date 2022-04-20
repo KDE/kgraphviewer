@@ -67,8 +67,8 @@ target_link_libraries(kgraphviewerlib
         KF5::Parts
         Graphviz::Graphviz
     PRIVATE
-        Qt5::Svg
-        Qt5::PrintSupport
+        Qt${QT_MAJOR_VERSION}::Svg
+        Qt${QT_MAJOR_VERSION}::PrintSupport
         KF5::WidgetsAddons
         KF5::XmlGui
         KF5::I18n
@@ -131,7 +131,7 @@ configure_file(org.kde.libkgraphviewer.metainfo.xml.in "${CMAKE_CURRENT_BINARY_D
 
 install( FILES kgraphviewer_partsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
 
-install( FILES ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )
+install( FILES ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop DESTINATION ${KDE_INSTALL_KSERVICESDIR} )
 install( FILES chain.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES chain-broken.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-bev.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )

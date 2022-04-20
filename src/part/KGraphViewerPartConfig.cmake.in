@@ -2,6 +2,6 @@
 
 include(CMakeFindDependencyMacro)
 
-find_dependency(Qt5Core @REQUIRED_QT_VERSION@)
+find_dependency(Qt@QT_MAJOR_VERSION@Core @REQUIRED_QT_VERSION@)
 
 set(KGraphViewerPart_INCLUDE_DIRS "@KDE_INSTALL_FULL_INCLUDEDIR@/kgraphviewer")

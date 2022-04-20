@@ -19,7 +19,7 @@ target_sources(kgraphviewer PRIVATE
 )
 
 set(kgraphviewer_dbus_SRCS)
-qt5_add_dbus_adaptor(kgraphviewer_dbus_SRCS org.kde.kgraphviewer.xml kgraphviewer.h KGraphViewerWindow)
+qt_add_dbus_adaptor(kgraphviewer_dbus_SRCS org.kde.kgraphviewer.xml kgraphviewer.h KGraphViewerWindow)
 target_sources(kgraphviewer PRIVATE ${kgraphviewer_dbus_SRCS})
 
 kconfig_add_kcfg_files(kgraphviewer kgraphviewersettings.kcfgc)
@@ -79,7 +79,7 @@ target_sources(kgrapheditor PRIVATE
 )
 
 set(kgrapheditor_dbus_SRCS)
-qt5_add_dbus_adaptor(kgrapheditor_dbus_SRCS org.kde.kgrapheditor.xml kgrapheditor.h KGraphEditor)
+qt_add_dbus_adaptor(kgrapheditor_dbus_SRCS org.kde.kgrapheditor.xml kgrapheditor.h KGraphEditor)
 target_sources(kgrapheditor PRIVATE ${kgrapheditor_dbus_SRCS})
 
 kconfig_add_kcfg_files(kgrapheditor kgrapheditorsettings.kcfgc)
