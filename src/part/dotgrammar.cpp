@@ -109,7 +109,7 @@ void decrz(char const /*first*/)
 void dump(char const *first, char const *last)
 {
     std::string str(first, last);
-    qCWarning(KGRAPHVIEWERLIB_LOG) << ">>>> " << QString::fromStdString(str) << " <<<<" << endl;
+    qCWarning(KGRAPHVIEWERLIB_LOG) << ">>>> " << QString::fromStdString(str) << " <<<<";
 }
 
 void strict(char const * /*first*/, char const * /*last*/)
@@ -282,7 +282,7 @@ void checkedgeop(char const *first, char const *last)
         if (((phelper->graph->directed()) && (str == "->")) || ((!phelper->graph->directed()) && (str == "--")))
             return;
 
-        qCWarning(KGRAPHVIEWERLIB_LOG) << "Error !! uncoherent relation : directed = '" << phelper->graph->directed() << "' and op = '" << QString::fromStdString(str) << "'" << endl;
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Error !! uncoherent relation : directed = '" << phelper->graph->directed() << "' and op = '" << QString::fromStdString(str) << "'";
     }
 }
 

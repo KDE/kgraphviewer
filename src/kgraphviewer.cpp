@@ -138,7 +138,7 @@ void KGraphViewerWindow::openUrl(const QUrl &url)
     KGraphViewer::KGraphViewerInterface *kgv = qobject_cast<KGraphViewer::KGraphViewerInterface *>(part);
     if (!kgv) {
         // This should not happen
-        qCWarning(KGRAPHVIEWER_LOG) << "Failed to get KPart" << endl;
+        qCWarning(KGRAPHVIEWER_LOG) << "Failed to get KPart";
         return;
     }
     kgv->setBackgroundColor(KGraphViewerSettings::backgroundColor());

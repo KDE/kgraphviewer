@@ -108,7 +108,7 @@ double KgvUnitDoubleBase::toDouble(const QString &str, bool *ok) const
     if (ok)
         qCDebug(KGRAPHVIEWERLIB_LOG) << "toDouble:" << str << ": => :" << str2 << ": => " << QString::number(dbl, 'f', 12);
     else
-        qCWarning(KGRAPHVIEWERLIB_LOG) << "error:" << str << ": => :" << str2 << ":" << endl;
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "error:" << str << ": => :" << str2 << ":";
     return dbl;
 }
 

@@ -108,7 +108,7 @@ QString DotGraph::chooseLayoutProgramForFile(const QString &str)
     QFile iFILE(str);
 
     if (!iFILE.open(QIODevice::ReadOnly)) {
-        qCWarning(KGRAPHVIEWERLIB_LOG) << "Can't test dot file. Will try to use the dot command on the file: '" << str << "'" << endl;
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Can't test dot file. Will try to use the dot command on the file: '" << str << "'";
         return "dot"; // -Txdot";
     }
 
@@ -208,7 +208,7 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
     QByteArray result = getDotResult(exitCode, exitStatus);
     result.replace("\\\n", "");
 
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "string content is:" << endl << result << endl << "=====================" << result.size();
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "string content is:" << Qt::endl << result << Qt::endl << "=====================" << result.size();
     std::string s = result.data();
     //   std::cerr << "stdstring content is:" << std::endl << s << std::endl << "===================== " << s.size() << std::endl;
     if (phelper) {
@@ -301,7 +301,7 @@ unsigned int DotGraph::cellNumber(int x, int y)
 void DotGraph::computeCells()
 {
     return;
-    qCDebug(KGRAPHVIEWERLIB_LOG) << m_width << m_height << endl;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << m_width << m_height;
     m_horizCellFactor = m_vertCellFactor = 1;
     m_wdhcf = (int)ceil(((double)m_width) / m_horizCellFactor) + 1;
     m_hdvcf = (int)ceil(((double)m_height) / m_vertCellFactor) + 1;
@@ -341,8 +341,8 @@ void DotGraph::computeCells()
             }
         }
     } while (!stop);
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "m_wdhcf=" << m_wdhcf << "; m_hdvcf=" << m_hdvcf << endl;
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "finished" << endl;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "m_wdhcf=" << m_wdhcf << "; m_hdvcf=" << m_hdvcf;
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "finished";
 }
 
 QSet<GraphNode *> &DotGraph::nodesOfCell(unsigned int id)

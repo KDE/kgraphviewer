@@ -149,7 +149,7 @@ QTextStream &operator<<(QTextStream &s, const GraphEdge &e)
     if (dynamic_cast<const GraphSubgraph *>(e.toNode())) {
         tgtLabel = QString("subgraph ") + tgtLabel;
     }
-    s << srcLabel << " -> " << tgtLabel << "  [" << dynamic_cast<const GraphElement &>(e) << "];" << endl;
+    s << srcLabel << " -> " << tgtLabel << "  [" << dynamic_cast<const GraphElement &>(e) << "];" << Qt::endl;
 
     return s;
 }

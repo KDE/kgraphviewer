@@ -109,10 +109,10 @@ int main(int argc, char **argv)
                             return 0;
                         }
 
-                        qCWarning(KGRAPHVIEWER_LOG) << "Call failed: " << reply.error().message() << endl;
+                        qCWarning(KGRAPHVIEWER_LOG) << "Call failed: " << reply.error().message();
                         return 1;
                     }
-                    qCWarning(KGRAPHVIEWER_LOG) << "Invalid interface" << endl;
+                    qCWarning(KGRAPHVIEWER_LOG) << "Invalid interface";
                     exit(0);
                 } else {
                     widget = new KGraphViewerWindow;

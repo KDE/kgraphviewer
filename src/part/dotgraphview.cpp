@@ -910,7 +910,7 @@ bool DotGraphView::loadDot(const QString &dotFileName)
     d->m_cvZoom = 0;
 
     if (!d->m_graph->parseDot(d->m_graph->dotFileName())) {
-        qCWarning(KGRAPHVIEWERLIB_LOG) << "NOT successfully parsed!" << endl;
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "NOT successfully parsed!";
         loadingLabel->setText(i18n("error parsing file %1", dotFileName));
         return false;
     }

@@ -54,7 +54,7 @@ QString GraphExporter::writeDot(const DotGraph *graph, const QString &fileName)
         QTemporaryFile tempFile;
         tempFile.setFileTemplate("XXXXXX.dot");
         if (!tempFile.open()) {
-            qCWarning(KGRAPHVIEWERLIB_LOG) << "Unable to open for temp file for writing " << tempFile.fileName() << endl;
+            qCWarning(KGRAPHVIEWERLIB_LOG) << "Unable to open for temp file for writing " << tempFile.fileName();
             exit(2);
         }
         actualFileName = tempFile.fileName();
@@ -63,7 +63,7 @@ QString GraphExporter::writeDot(const DotGraph *graph, const QString &fileName)
 
     QFile f(actualFileName);
     if (!f.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qCWarning(KGRAPHVIEWERLIB_LOG) << "Unable to open file for writing " << fileName << endl;
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Unable to open file for writing " << fileName;
         exit(2);
     }
 
@@ -75,7 +75,7 @@ QString GraphExporter::writeDot(const DotGraph *graph, const QString &fileName)
     }
     stream << "\" {\n";
 
-    stream << "graph [" << *graph << "]" << endl;
+    stream << "graph [" << *graph << "]" << Qt::endl;
 
     /// @TODO Subgraph are not represented as needed in DotGraph, so it is not
     /// possible to save them back : to be changed !
