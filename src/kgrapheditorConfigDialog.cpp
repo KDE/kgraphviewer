@@ -31,7 +31,6 @@
 #include <kedittoolbar.h>
 #include <kparts/partmanager.h>
 
-#include <KPluginLoader>
 #include <KService>
 #include <QStatusBar>
 #include <kconfigdialog.h>

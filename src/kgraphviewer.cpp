@@ -124,7 +124,7 @@ void KGraphViewerWindow::reloadPreviousFiles()
 void KGraphViewerWindow::openUrl(const QUrl &url)
 {
     qCDebug(KGRAPHVIEWER_LOG) << url;
-    KPluginFactory *factory = KPluginLoader("kgraphviewerpart").factory();
+    KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData("kgraphviewerpart")).plugin;
     if (!factory) {
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful

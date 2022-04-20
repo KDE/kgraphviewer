@@ -49,7 +49,7 @@ namespace KGraphViewer
  * Use it like this:
  * \code
  *  // fetch the Part..
- *  KPluginFactory *factory = KPluginLoader("kgraphviewerpart").factory();
+ *  KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData("kgraphviewerpart")).plugin;
  *  if (factory) {
  *      KParts::ReadOnlyPart* part = factory->create<KParts::ReadOnlyPart>(this);
  *
