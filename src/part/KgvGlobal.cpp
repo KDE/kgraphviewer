@@ -30,7 +30,6 @@
 #include <KgvGlobal.h>
 #include <QApplication>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QPaintDevice>
 #include <QStandardPaths>
 #include <qfont.h>
