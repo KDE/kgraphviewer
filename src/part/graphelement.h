@@ -25,6 +25,7 @@
 #include <QMap>
 #include <QTextStream>
 #include <QVector>
+#include <QObject>
 
 namespace KGraphViewer
 {
