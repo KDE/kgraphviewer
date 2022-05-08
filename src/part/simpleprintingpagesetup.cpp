@@ -54,7 +54,6 @@
 #include <qtimer.h>
 #include <qtooltip.h>
 // Added by qt3to4:
-#include <KIconTheme>
 #include <QPixmap>
 #include <QVBoxLayout>
 #include <iostream>
@@ -102,9 +101,6 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     m_contents->printPreviewButton->setText(i18n("Print Preview..."));
     connect(m_contents->printPreviewButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotPrintPreview);
 
-    m_contents->iconLabel->setFixedWidth(32 + 6);
-    const int iconSize = KIconTheme(KIconTheme::current()).defaultSize(KIconLoader::Small);
-    m_contents->iconLabel->setPixmap(QIcon::fromTheme("distribute-horizontal-page").pixmap(iconSize, iconSize));
     m_contents->headerTitleFontButton->setText(i18n("Font..."));
     m_contents->headerTitleFontButton->setWhatsThis(i18n("Changes font for title text."));
     connect(m_contents->headerTitleFontButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotChangeTitleFont);

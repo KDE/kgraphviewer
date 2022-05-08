@@ -29,7 +29,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     DocTools
     Parts
     WidgetsAddons
-    IconThemes
 )
 
 find_package(Boost 1.36 REQUIRED)

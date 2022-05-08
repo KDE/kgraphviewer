@@ -70,7 +70,6 @@ target_link_libraries(kgraphviewerlib
         Qt5::Svg
         Qt5::PrintSupport
         KF5::WidgetsAddons
-        KF5::IconThemes
         KF5::XmlGui
         KF5::I18n
 )

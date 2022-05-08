@@ -40,7 +40,6 @@
 #include <qradiobutton.h>
 // Added by qt3to4:
 #include "klocalizedstring.h"
-#include <KIconTheme>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QPixmap>
@@ -137,19 +136,10 @@ KgvPageLayoutSize::KgvPageLayoutSize(QWidget *parent, const KgvPageLayout &layou
     //     m_orientGroup->setInsideSpacing( KDialog::spacingHint() );
     grid1->addWidget(m_orientGroup, 2, 0);
 
-    const int iconSize = KIconTheme(KIconTheme::current()).defaultSize(KIconLoader::Small);
-    QLabel *lbPortrait = new QLabel(m_orientGroup);
-    lbPortrait->setPixmap(QPixmap(QIcon::fromTheme("koPortrait").pixmap(iconSize, iconSize)));
-    lbPortrait->setMaximumWidth(lbPortrait->pixmap()->width());
-    lay3->addWidget(lbPortrait);
     QRadioButton *rbPortrait = new QRadioButton(i18n("&Portrait"), m_orientGroup);
     lay3->addWidget(rbPortrait);
     m_orientButtons.addButton(rbPortrait);
 
-    QLabel *lbLandscape = new QLabel(m_orientGroup);
-    lbLandscape->setPixmap(QPixmap(QIcon::fromTheme("koLandscape").pixmap(iconSize, iconSize)));
-    lbLandscape->setMaximumWidth(lbLandscape->pixmap()->width());
-    lay3->addWidget(lbLandscape);
     QRadioButton *rbLandscape = new QRadioButton(i18n("La&ndscape"), m_orientGroup);
     lay3->addWidget(rbLandscape);
     m_orientGroup->setLayout(lay3);
