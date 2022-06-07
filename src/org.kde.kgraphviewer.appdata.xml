@@ -68,7 +68,7 @@
       Graphs are commonly used in scientific domains and particularly in computer science.
     </p>
     <p xml:lang="ca">El KGraphViewer és un visor de fitxers gràfics DOT del Graphviz, destinat a substituir les altres eines obsoletes del Graphviz. Els gràfics normalment s'utilitzen en dominis científics i particularment en informàtica.</p>
-    <p xml:lang="ca-valencia">KGraphViewer és un visor de fitxers gràfics DOT de Graphviz, destinat a substituir les atres eines obsoletes de Graphviz. Els gràfics normalment s'utilisen en dominis científics i particularment en informàtica.</p>
+    <p xml:lang="ca-valencia">KGraphViewer és un visor de fichers gràfics DOT de Graphviz, destinat a substituir les atres eines obsoletes de Graphviz. Els gràfics normalment s'utilisen en dominis científics i particularment en informàtica.</p>
     <p xml:lang="de">KGraphViewer ist Anzeigeprogramm für Graphviz-Dot-Diagrammdateien und soll die anderen veralteten Graphviz-Programme ersetzen. Graphen werden in der Wissenschaft, insbesondere in der Informatik, verwendet.</p>
     <p xml:lang="el">Ο KGraphViewer είναι ένας προβολέας Graphviz DOT αρχείων γράφων, που έχει στόχο να αντικαταστήσει παλαιωμένα Graphviz εργαλεία. Οι γράφοι είναι συνήθως χρήσιμοι στα επιστημονικά πεδία και ειδικότερα στην πληροφορική.</p>
     <p xml:lang="en-GB">KGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools. Graphs are commonly used in scientific domains and particularly in computer science.</p>
@@ -184,7 +184,7 @@
       <li>Saving of the recent files list</li>
       <li xml:lang="bs">Snimanje nedavne liste fajlova</li>
       <li xml:lang="ca">Desament de la llista de fitxers recents</li>
-      <li xml:lang="ca-valencia">Guardada de la llista de fitxers recents</li>
+      <li xml:lang="ca-valencia">Guardada de la llista de fichers recents</li>
       <li xml:lang="da">Gemning af liste over nylige filer</li>
       <li xml:lang="de">Speicherung der Liste der zuletzt geöffneten Dateien</li>
       <li xml:lang="el">Αποθήκευση της πρόσφατης λίστας αρχείων</li>
@@ -213,7 +213,7 @@
       <li>Manual reload of files</li>
       <li xml:lang="bs">Ručno nadopunjavanje fajlova</li>
       <li xml:lang="ca">Recarrega manualment els fitxers</li>
-      <li xml:lang="ca-valencia">Torna a carregar manualment els fitxers</li>
+      <li xml:lang="ca-valencia">Torna a carregar manualment els fichers</li>
       <li xml:lang="da">Manuel genindlæsning af filer</li>
       <li xml:lang="de">Manuelles neu laden von Dateien</li>
       <li xml:lang="el">Χειροκίνητη επαναφόρτωση αρχείων</li>
@@ -409,7 +409,7 @@
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="bs">Automatsko ponovno učitavanje potvrdom korisnika o (izvana) modificiranim datotekama (podesivo)</li>
       <li xml:lang="ca">Recarrega automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
-      <li xml:lang="ca-valencia">Torna a carregar automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
+      <li xml:lang="ca-valencia">Torna a carregar automàticament amb confirmació d'usuari els fichers (externament) modificats (configurable)</li>
       <li xml:lang="da">Automatisk genindlæsning med brugerbekræftelse af (eksternt) ændrede filer (konfigurerbart)</li>
       <li xml:lang="de">Erneutes Laden von (extern) geänderten Dateien - automatisch mit Bestätigung durch den Benutzer (einstellbar)</li>
       <li xml:lang="el">Αυτόματη επαναφόρτωση με επιβεβαίωση από το χρήστη των (εξωτερικά) τροποιοιημένων αρχείων (διαμορφώσιμο)</li>
