@@ -68,7 +68,7 @@
       Graphs are commonly used in scientific domains and particularly in computer science.
     </p>
     <p xml:lang="ca">El KGraphViewer és un visor de fitxers gràfics DOT del Graphviz, destinat a substituir les altres eines obsoletes del Graphviz. Els gràfics normalment s'utilitzen en dominis científics i particularment en informàtica.</p>
-    <p xml:lang="ca-valencia">KGraphViewer és un visor de fitxers gràfics DOT de Graphviz, destinat a substituir les atres eines obsoletes de Graphviz. Els gràfics normalment s'utilisen en dominis científics i particularment en informàtica.</p>
+    <p xml:lang="ca-valencia">KGraphViewer és un visor de fitxers gràfics DOT de Graphviz, destinat a substituir les altres eines obsoletes de Graphviz. Els gràfics normalment s'utilitzen en dominis científics i particularment en informàtica.</p>
     <p xml:lang="de">KGraphViewer ist Anzeigeprogramm für Graphviz-Dot-Diagrammdateien und soll die anderen veralteten Graphviz-Programme ersetzen. Graphen werden in der Wissenschaft, insbesondere in der Informatik, verwendet.</p>
     <p xml:lang="el">Ο KGraphViewer είναι ένας προβολέας Graphviz DOT αρχείων γράφων, που έχει στόχο να αντικαταστήσει παλαιωμένα Graphviz εργαλεία. Οι γράφοι είναι συνήθως χρήσιμοι στα επιστημονικά πεδία και ειδικότερα στην πληροφορική.</p>
     <p xml:lang="en-GB">KGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools. Graphs are commonly used in scientific domains and particularly in computer science.</p>
@@ -382,7 +382,7 @@
       <li>Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="bs">Mogućnost korištenja proizvoljnog rasporeda algoritma dokle god proizvodi xdot format</li>
       <li xml:lang="ca">Possibilitat d'utilitzar un algorisme de disposició arbitrari si produeix un format «xdot»</li>
-      <li xml:lang="ca-valencia">Possibilitat d'utilisar un algorisme de disposició arbitrari si produeix un format «xdot»</li>
+      <li xml:lang="ca-valencia">Possibilitat d'utilitzar un algorisme de disposició arbitrari si produeix un format «xdot»</li>
       <li xml:lang="da">Mulighed for at bruge en vilkårlig layout-algoritme når bare den producerer xdot-format</li>
       <li xml:lang="de">Es kann ein beliebiger Layout-Algorithmus verwendet werden, sofern die Ausgabe im Format „xdot“ möglich ist.</li>
       <li xml:lang="el">Δυνατότητα χρήσης αλγορίθμου αυθαίρετης διατάξης με την παραγωγή αρχείου xdot</li>
