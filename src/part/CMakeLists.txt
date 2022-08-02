@@ -114,9 +114,16 @@ target_link_libraries(kgraphviewerpart
     KF5::Parts
 )
 
-install( TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
+add_library(KGraphViewerPart INTERFACE)
+
+target_include_directories(KGraphViewerPart INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/kgraphviewer>")
+
+install(TARGETS KGraphViewerPart EXPORT KGraphViewerPartTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KGraphViewerPart")
+install(EXPORT KGraphViewerPartTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KGraphViewerPartTargets.cmake)
+
+install(TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/KGraphViewerPartConfig.cmake.in"
