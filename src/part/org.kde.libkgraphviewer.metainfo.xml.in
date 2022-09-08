@@ -38,7 +38,7 @@
   <name xml:lang="zh-CN">KGraphViewer 库</name>
   <name xml:lang="zh-TW">KGraphViewer 函式庫</name>
   <summary>A Graphviz DOT graph viewer (shared library)</summary>
-  <summary xml:lang="ca">Un visor de gràfics DOT del Graphviz (biblioteca compartida)</summary>
+  <summary xml:lang="ca">Un visualitzador de gràfics DOT del Graphviz (biblioteca compartida)</summary>
   <summary xml:lang="ca-valencia">Un visor de gràfics DOT de Graphviz (biblioteca compartida)</summary>
   <summary xml:lang="cs">Prohlížeč grafů DOT Graphviz (sdílená knihovna)</summary>
   <summary xml:lang="de">Ein Anzeigeprogramm für Graphviz Dot-Diagramme (gemeinsame Bibliothek)</summary>
