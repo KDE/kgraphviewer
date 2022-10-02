@@ -1,0 +1,1222 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kgraphviewer package.
+# Shinjo Park <kde@peremen.name>, 2021, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kgraphviewer\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:43+0000\n"
+"PO-Revision-Date: 2022-05-07 02:10+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "박신조"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kde@peremen.name"
+
+#: kgrapheditor.cpp:131 kgraphviewer.cpp:113
+#, kde-format
+msgid "Session Restore"
+msgstr "세션 복원"
+
+#: kgrapheditor.cpp:131
+#, kde-format
+msgid "Do you want to reload files from previous session?"
+msgstr "이전 세션에서 편집한 파일을 다시 불러오시겠습니까?"
+
+#: kgrapheditor.cpp:147
+#, kde-format
+msgid "Unable to start"
+msgstr "시작할 수 없음"
+
+#: kgrapheditor.cpp:147 kgraphviewer.cpp:131
+#, kde-format
+msgid "Could not find the KGraphViewer part."
+msgstr "KGraphViewer 부분을 찾을 수 없습니다."
+
+#: kgrapheditor.cpp:228 kgraphviewer.cpp:211
+#, kde-format
+msgid "Closes the current file"
+msgstr "현재 파일 닫기"
+
+#: kgrapheditor.cpp:241
+#, kde-format
+msgid "Create a New Vertex"
+msgstr "새 꼭짓점 만들기"
+
+#: kgrapheditor.cpp:246
+#, kde-format
+msgid "Create a New Edge"
+msgstr "새 변 만들기"
+
+#: kgrapheditor.cpp:506
+#, kde-format
+msgid "Save current graph"
+msgstr "현재 그래프 저장"
+
+#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
+#, kde-format
+msgid "Parsing"
+msgstr "처리 중"
+
+#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
+#, kde-format
+msgid "Reloading"
+msgstr "다시 불러오는 중"
+
+#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
+#, kde-format
+msgid "Opening"
+msgstr "여는 중"
+
+#: kgrapheditorConfigDialog.cpp:64 kgraphviewerConfigDialog.cpp:75
+#, kde-format
+msgid "Session Management"
+msgstr "세션 관리"
+
+#: KGraphEditorElementTreeWidget.cpp:49 KGraphEditorNodesTreeWidget.cpp:54
+#, kde-format
+msgid "Add a new attribute"
+msgstr "새 속성 추가"
+
+#: KGraphEditorElementTreeWidget.cpp:55 KGraphEditorNodesTreeWidget.cpp:60
+#, kde-format
+msgid "Remove this attribute"
+msgstr "이 속성 삭제"
+
+#: kgrapheditormain.cpp:46
+#, kde-format
+msgid "KGraphEditor"
+msgstr "KGraphEditor"
+
+#: kgrapheditormain.cpp:46
+#, kde-format
+msgid "A Graphviz DOT graph editor by KDE"
+msgstr "KDE의 Graphviz DOT 그래프 편집기"
+
+#: kgrapheditormain.cpp:46 main.cpp:51
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2010 Gaël de Chalendar"
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "Path or URL to scan"
+msgstr "검색할 경로나 URL"
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "[url]"
+msgstr "[url]"
+
+#: kgrapheditormain.cpp:83
+#, kde-format
+msgid ""
+"A KGraphEditor window is already open, do you want to open the file in it?"
+msgstr "KGraphEditor 창이 열려 있습니다. 해당 창에 파일을 여시겠습니까?"
+
+#: kgrapheditormain.cpp:83 main.cpp:94
+#, kde-format
+msgid "Opening in new window confirmation"
+msgstr "새 창에서 열기 확인"
+
+#: KGraphEditorNodesTreeWidget.cpp:65
+#, kde-format
+msgid "Remove this node"
+msgstr "이 노드 삭제"
+
+#. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
+#, kde-format
+msgid "The answer to the question 'File modified, do you want to reload it'"
+msgstr "'파일이 수정되었습니다. 새로 고치시겠습니까' 질문의 답"
+
+#. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
+#, kde-format
+msgid ""
+"To choose whether to parse using an external command (usually dot) or the "
+"graphviz library"
+msgstr "외부 명령(대개의 경우 dot) 또는 graphviz 라이브러리로 해석할지 여부"
+
+#. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
+#, kde-format
+msgid ""
+"The answer to the question 'If another window already exist when launching "
+"kgraphviewer, should we open in it, open a new window or ask?'"
+msgstr ""
+"'KGraphViewer를 실행할 때 다른 창이 이미 있으면 해당 창에서 열지, 새 창으로 "
+"열지, 물어볼지 여부'에 대한 답"
+
+#. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
+#, kde-format
+msgid ""
+"The answer to the question 'Should the files that were opened in previous "
+"sessions be reopened at startup?'"
+msgstr "'시작할 때 이전 세션에서 열었던 파일을 다시 열지 여부'에 대한 답"
+
+#. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
+#: part/kgraphviewer_partsettings.kcfg:9
+#, kde-format
+msgid "If true, the bird's eye view will be shown if needed."
+msgstr "이 옵션을 사용하면 필요한 경우 멀리 보기를 사용합니다."
+
+#. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
+#, kde-format
+msgid "The list of files that were opened in past instances of kgraphviewer"
+msgstr "KGraphViewer에서 이전에 열었던 파일 목록"
+
+#. i18n: ectx: ToolBar (viewToolBar)
+#: kgrapheditorui.rc:23 kgraphviewerui.rc:17
+#, kde-format
+msgid "View Toolbar"
+msgstr "보기 도구 모음"
+
+#. i18n: ectx: ToolBar (helpToolBar)
+#: kgrapheditorui.rc:26 kgraphviewerui.rc:20
+#, kde-format
+msgid "Help Toolbar"
+msgstr "도움말 도구 모음"
+
+#. i18n: ectx: ToolBar (editToolBar)
+#: kgrapheditorui.rc:31
+#, kde-format
+msgid "Edit Toolbar"
+msgstr "편집 도구 모음"
+
+#: kgraphviewer.cpp:113
+#, kde-format
+msgid "Do you want to reload files from the previous session?"
+msgstr "이전 세션에서 편집한 파일을 다시 불러오시겠습니까?"
+
+#: kgraphviewer.cpp:198
+#, kde-format
+msgid "Opens a new empty KGraphViewer window."
+msgstr "새 빈 KGraphViewer 창을 엽니다."
+
+#: kgraphviewer.cpp:201
+#, kde-format
+msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
+msgstr "열 Graphviz DOT 파일을 선택하는 파일 열기 대화 상자를 엽니다."
+
+#: kgraphviewer.cpp:205
+#, kde-format
+msgid ""
+"This lists files which you have opened recently, and allows you to easily "
+"open them again."
+msgstr ""
+"이 목록은 최근에 열었던 파일 목록이며, 다시 쉽게 열 수 있도록 도와 줍니다."
+
+#: kgraphviewer.cpp:215
+#, kde-format
+msgid "Quits KGraphViewer."
+msgstr "KGraphViewer를 끝냅니다."
+
+#: kgraphviewer.cpp:218
+#, kde-format
+msgid "Shows or hides the status bar."
+msgstr "상태 표시줄을 표시하거나 숨깁니다."
+
+#: kgraphviewer.cpp:221
+#, kde-format
+msgid "Configure the bindings between keys and actions."
+msgstr "키와 동작 사이의 연결을 설정합니다."
+
+#: kgraphviewer.cpp:224
+#, kde-format
+msgid "Toolbar configuration."
+msgstr "도구 모음 설정입니다."
+
+#: kgraphviewer.cpp:227
+#, kde-format
+msgid "Main KGraphViewer configuration options."
+msgstr "주 KGraphView 설정 옵션입니다."
+
+#: kgraphviewerConfigDialog.cpp:71
+#, kde-format
+msgid "Appearance"
+msgstr "모양"
+
+#. i18n: ectx: label, entry (backgroundColor), group (Appearance)
+#: kgraphviewersettings.kcfg:34
+#, kde-format
+msgid "Background color of the graph view."
+msgstr "그래프 보기의 배경색입니다."
+
+#: main.cpp:47
+#, kde-format
+msgid "KGraphViewer"
+msgstr "KGraphViewer"
+
+#: main.cpp:49
+#, kde-format
+msgid "A Graphviz DOT graph viewer"
+msgstr "Graphviz DOT 그래프 뷰어"
+
+#: main.cpp:54
+#, kde-format
+msgid "Gaël de Chalendar"
+msgstr "Gaël de Chalendar"
+
+#: main.cpp:54
+#, kde-format
+msgid "Original Author and current maintainer"
+msgstr "원 작성자 및 현재 관리자"
+
+#: main.cpp:55
+#, kde-format
+msgid "Reimar Döffinger"
+msgstr "Reimar Döffinger"
+
+#: main.cpp:55 main.cpp:56 main.cpp:57 main.cpp:58
+#, kde-format
+msgid "Contributor"
+msgstr "기여자"
+
+#: main.cpp:56
+#, kde-format
+msgid "Matthias Peinhardt"
+msgstr "Matthias Peinhardt"
+
+#: main.cpp:57
+#, kde-format
+msgid "Sandro Andrade"
+msgstr "Sandro Andrade"
+
+#: main.cpp:58
+#, kde-format
+msgid "Milian Wolff"
+msgstr "Milian Wolff"
+
+#: main.cpp:59
+#, kde-format
+msgid "Martin Sandsmark"
+msgstr "Martin Sandsmark"
+
+#: main.cpp:59
+#, kde-format
+msgid "Port to KF5"
+msgstr "KF5 이식"
+
+#: main.cpp:94
+#, kde-format
+msgid ""
+"A KGraphViewer window is already open, where do you want to open this file "
+"in the existing window?"
+msgstr "KGraphEditor 창이 열려 있습니다. 해당 창에 파일을 여시겠습니까?"
+
+#: part/canvasedge.cpp:74
+#, kde-format
+msgid ""
+"%1 -> %2\n"
+"label='%3'"
+msgstr ""
+"%1 -> %2\n"
+"이름표='%3'"
+
+#: part/canvasedge.cpp:78
+#, kde-format
+msgid "Remove selected edge(s)"
+msgstr "선택한 변 삭제"
+
+#: part/canvaselement.cpp:92
+#, kde-format
+msgid "Remove selected element(s)"
+msgstr "선택한 원소 삭제"
+
+#: part/canvasnode.cpp:64
+#, kde-format
+msgid ""
+"id='%1'\n"
+"label='%2'"
+msgstr ""
+"id='%1'\n"
+"이름표='%2'"
+
+#: part/dotgraph.cpp:265 part/dotgraph.cpp:268 part/dotgraph.cpp:271
+#: part/dotgraph.cpp:274 part/dotgraph.cpp:277 part/dotgraph.cpp:280
+#, kde-format
+msgid "Layout process failed"
+msgstr "레이아웃 프로세스 실패"
+
+#: part/dotgraph.cpp:265
+#, kde-format
+msgid "Unable to start %1."
+msgstr "%1을(를) 시작할 수 없습니다."
+
+#: part/dotgraph.cpp:268
+#, kde-format
+msgid "%1 crashed."
+msgstr "%1이(가) 충돌했습니다."
+
+#: part/dotgraph.cpp:271
+#, kde-format
+msgid "%1 timed out."
+msgstr "%1에서 시간이 초과되었습니다."
+
+#: part/dotgraph.cpp:274
+#, kde-format
+msgid "Was not able to write data to the %1 process."
+msgstr "%1 프로세스에 데이터를 쓸 수 없습니다."
+
+#: part/dotgraph.cpp:277
+#, kde-format
+msgid "Was not able to read data from the %1 process."
+msgstr "%1 프로세스에서 데이터를 읽을 수 없습니다."
+
+#: part/dotgraph.cpp:280
+#, kde-format
+msgid "Unknown error running %1."
+msgstr "%1을(를) 실행하는 중 오류가 발생했습니다."
+
+#: part/dotgraphview.cpp:421
+#, kde-format
+msgid "Select Layout Algo"
+msgstr "레이아웃 알고리즘 선택"
+
+#: part/dotgraphview.cpp:424
+#, kde-format
+msgid "Dot"
+msgstr "Dot"
+
+#: part/dotgraphview.cpp:425
+#, kde-format
+msgid "Layout the graph using the dot program."
+msgstr "dot 프로그램으로 그래프 레이아웃을 지정합니다."
+
+#: part/dotgraphview.cpp:429
+#, kde-format
+msgid "Neato"
+msgstr "Neato"
+
+#: part/dotgraphview.cpp:430
+#, kde-format
+msgid "Layout the graph using the neato program."
+msgstr "neato 프로그램으로 그래프 레이아웃을 지정합니다."
+
+#: part/dotgraphview.cpp:434
+#, kde-format
+msgid "Twopi"
+msgstr "Twopi"
+
+#: part/dotgraphview.cpp:435
+#, kde-format
+msgid "Layout the graph using the twopi program."
+msgstr "twopi 프로그램으로 그래프 레이아웃을 지정합니다."
+
+#: part/dotgraphview.cpp:439
+#, kde-format
+msgid "Fdp"
+msgstr "Fdp"
+
+#: part/dotgraphview.cpp:440
+#, kde-format
+msgid "Layout the graph using the fdp program."
+msgstr "fdp 프로그램으로 그래프 레이아웃을 지정합니다."
+
+#: part/dotgraphview.cpp:444
+#, kde-format
+msgid "Circo"
+msgstr "Circo"
+
+#: part/dotgraphview.cpp:445
+#, kde-format
+msgid "Layout the graph using the circo program."
+msgstr "circo 프로그램으로 그래프 레이아웃을 지정합니다."
+
+#: part/dotgraphview.cpp:457
+#, kde-format
+msgid "Choose a Graphviz layout algorithm or edit your own one."
+msgstr ""
+"Graphviz 레이아웃 알고리즘을 지정하거나 사용자 정의 알고리즘을 편집할 수 있습"
+"니다."
+
+#: part/dotgraphview.cpp:459
+#, kde-format
+msgid ""
+"Choose a Graphviz layout algorithm or type in your own command that will "
+"generate a graph in the xdot format on its standard output. For example, to "
+"manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+msgstr ""
+"Graphviz 레이아웃 알고리즘을 선택하거나, xdot 형식으로 표준 출력으로 그래프"
+"를 생성하는 사용자 정의 명령을 입력하십시오. 예를 들어 dot 명령에 <tt>G</tt> "
+"옵션을 직접 지정하려면 <tt>dot -Gname=MyGraphName -Txdot</tt>을 입력하십시오."
+
+#: part/dotgraphview.cpp:465
+#, kde-format
+msgid "Layout"
+msgstr "레이아웃"
+
+#: part/dotgraphview.cpp:467
+#, kde-format
+msgid "Specify layout command"
+msgstr "레이아웃 명령 지정"
+
+#: part/dotgraphview.cpp:468
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"사용할 레이아웃 명령을 설정하십시오. dot 파일을 지정하면 xdot 형식으로 표준 "
+"출력으로 그래프를 생성해야 합니다."
+
+#: part/dotgraphview.cpp:469
+#, kde-format
+msgid "Reset layout command to default"
+msgstr "레이아웃 명령 기본값으로 초기화"
+
+#: part/dotgraphview.cpp:470
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+"사용할 레이아웃 명령을 그래프 형식에 따른 기본값으로 초기화합니다(유향 및 무"
+"향)."
+
+#: part/dotgraphview.cpp:472
+#, kde-format
+msgid "Zoom In"
+msgstr "확대"
+
+#: part/dotgraphview.cpp:473
+#, kde-format
+msgid "Zoom Out"
+msgstr "축소"
+
+#: part/dotgraphview.cpp:477
+#, kde-format
+msgid "Export Graph"
+msgstr "그래프 내보내기"
+
+#: part/dotgraphview.cpp:479
+#, kde-format
+msgid "Allows the graph to be exported in another format."
+msgstr "그래프를 다른 형식으로 내보냅니다."
+
+#: part/dotgraphview.cpp:481
+#, kde-format
+msgid ""
+"Use the Export Graph menu to export the graph in another format. There is "
+"currently only one export format supported: as a PNG image."
+msgstr ""
+"그래프를 다른 형식으로 내보내려면 그래프 내보내기 메뉴를 사용하십시오. 현재"
+"는 PNG 그림으로만 내보낼 수 있습니다."
+
+#: part/dotgraphview.cpp:485
+#, kde-format
+msgid "As Image..."
+msgstr "그림으로..."
+
+#: part/dotgraphview.cpp:486
+#, kde-format
+msgid "Export the graph to an image file."
+msgstr "그래프를 그림 파일로 내보냅니다."
+
+#: part/dotgraphview.cpp:494
+#, kde-format
+msgid "Enable Bird's-eye View"
+msgstr "멀리 보기 활성화"
+
+#: part/dotgraphview.cpp:497
+#, kde-format
+msgid "Enables or disables the Bird's-eye View"
+msgstr "멀리 보기 사용/사용 안 함"
+
+#: part/dotgraphview.cpp:502
+#, kde-format
+msgid "Birds-eye View"
+msgstr "멀리 보기"
+
+#: part/dotgraphview.cpp:503
+#, kde-format
+msgid "Allows the Bird's-eye View to be setup."
+msgstr "시작할 때 멀리 보기를 사용합니다."
+
+#: part/dotgraphview.cpp:507
+#, kde-format
+msgid "Top Left"
+msgstr "왼쪽 위"
+
+#: part/dotgraphview.cpp:508
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-left corner."
+msgstr "멀리 보기 시점을 왼쪽 위 꼭짓점에 둡니다."
+
+#: part/dotgraphview.cpp:512
+#, kde-format
+msgid "Top Right"
+msgstr "오른쪽 위"
+
+#: part/dotgraphview.cpp:513
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-right corner."
+msgstr "멀리 보기 시점을 오른쪽 위 꼭짓점에 둡니다."
+
+#: part/dotgraphview.cpp:517
+#, kde-format
+msgid "Bottom Left"
+msgstr "왼쪽 아래"
+
+#: part/dotgraphview.cpp:518
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-left corner."
+msgstr "멀리 보기 시점을 왼쪽 아래 꼭짓점에 둡니다."
+
+#: part/dotgraphview.cpp:522
+#, kde-format
+msgid "Bottom Right"
+msgstr "오른쪽 아래"
+
+#: part/dotgraphview.cpp:523
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-right corner."
+msgstr "멀리 보기 시점을 오른쪽 아래 꼭짓점에 둡니다."
+
+#: part/dotgraphview.cpp:527
+#, kde-format
+msgid "Automatic"
+msgstr "자동"
+
+#: part/dotgraphview.cpp:528
+#, kde-format
+msgid ""
+"Let KGraphViewer automatically choose the position of the Bird's-eye View."
+msgstr "KGraphViewer에서 멀리 보기 시점을 자동으로 선택합니다."
+
+#: part/dotgraphview.cpp:575
+#, kde-format
+msgid "Select file"
+msgstr "파일 선택"
+
+#: part/dotgraphview.cpp:589
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer"
+msgstr "KGraphViewer에서 생성한 그래프 SVG"
+
+#: part/dotgraphview.cpp:590
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer."
+msgstr "KGraphViewer에서 생성한 그래프 SVG입니다."
+
+#: part/dotgraphview.cpp:637
+#, kde-format
+msgid ""
+"<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
+"than the widget area, an overview panner is shown in one edge. Choose "
+"through the context menu if the optimal position of this overview should be "
+"automatically computed or put it where you want.</p><h2>How to work with it?"
+"</h2><ul><li>To move the graph, you can:  <ul>    <li>click & drag it</"
+"li>    <li>use the elevators</li>    <li>press the arrows keys</li>    "
+"<li>click somewhere in the panner view</li>    <li>use the mouse wheel (up "
+"and down with no modifier, left and right with the <Alt> key pressed)</"
+"li>    <li>or click & drag the panner view</li>  </ul></li><li>To zoom, you "
+"can either use the zoom in and zoom out toolbar buttons, or click on the "
+"<Shift> key while rolling your mouse wheel.</li><li>Try the contextual menu "
+"(usually by right-clicking) to discover other possibilities.</li><li>Try the "
+"<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
+"printing options.</li></ul>"
+msgstr ""
+"<h1>Graphviz DOT 형식 그래프 시각화</h1><p>그래프가 위젯 영역보다 더 크면 미"
+"리 보기 이동 도구를 한 쪽에 표시합니다. 콘텍스트 메뉴를 사용하여 자동으로 계"
+"산한 최적 위치에 표시할지 사용자 정의 위치에 표시할지 설정할 수 있습니다.</"
+"p><h2>무엇을 할 수 있나요?</h2><ul><li>다음과 같이 그래프를 움직일 수 있습니"
+"다:  <ul>    <li>클릭하고 드래그</li>    <li>엘리베이터 사용</li>    <li>화살"
+"표 키 사용</li>    <li>미리 보기에서 영역 클릭</li>    <li>마우스 휠 사용(수"
+"정자 키를 누르지 않으면 위나 아래, <Alt> 키를 누르고 있으면 왼쪽이나 오른"
+"쪽)</li>    <li>미리 보기에서 클릭하고 드래그</li>  </ul></li><li>크기를 조정"
+"하려면 도구 모음 단추에서 확대나 축소하거나, <Shift> 키를 누르면서 마우스 휠"
+"을 굴리십시오.</li><li>다른 기능을 확인하려면 콘텍스트 메뉴(대개 오른쪽 클릭)"
+"를 확인하십시오.</li><li>인쇄 옵션을 확인하려면 <tt>인쇄 미리 보기</tt>나 "
+"<tt>쪽 설정</tt> 단추를 확인하십시오.</li></ul>"
+
+#: part/dotgraphview.cpp:790
+#, kde-format
+msgid "no graph loaded"
+msgstr "불러온 그래프 없음"
+
+#: part/dotgraphview.cpp:906 part/dotgraphview.cpp:927
+#: part/dotgraphview.cpp:974
+#, kde-format
+msgid "graph %1 is getting loaded..."
+msgstr "%1 그래프를 불러오는 중..."
+
+#: part/dotgraphview.cpp:914
+#, kde-format
+msgid "error parsing file %1"
+msgstr "%1 파일 처리 오류"
+
+#: part/dotgraphview.cpp:1615
+#, kde-format
+msgid "Reload Confirmation"
+msgstr "새로 고침 확인"
+
+#: part/dotgraphview.cpp:1615
+#, kde-format
+msgid ""
+"The file %1 has been modified on disk.\n"
+"Do you want to reload it?"
+msgstr ""
+"파일 %1이(가) 디스크에서 변경되었습니다.\n"
+"다시 불러오시겠습니까?"
+
+#: part/dotgraphview.cpp:1701
+#, kde-format
+msgid "Layout Command"
+msgstr "레이아웃 명령"
+
+#: part/dotgraphview.cpp:1702
+#, kde-format
+msgid ""
+"Specify here the command that will be used to layout the graph.\n"
+"The command MUST write its results on stdout in xdot format."
+msgstr ""
+"그래프 레이아웃 작업에 사용할 명령을 지정하십시오.\n"
+"해당 명령은 표준 출력에 xdot 형식으로 결과를 출력해야 합니다."
+
+#: part/dotgraphview.cpp:2155
+#, kde-format
+msgid "Failed to open %1"
+msgstr "%1을(를) 열 수 없음"
+
+#: part/kgraphviewer_part.cpp:102
+#, kde-format
+msgid "Print the graph using current page setup settings"
+msgstr "현재 쪽 설정으로 그래프 인쇄"
+
+#: part/kgraphviewer_part.cpp:106
+#, kde-format
+msgid "Open the print preview window"
+msgstr "인쇄 미리 보기 창 열기"
+
+#: part/kgraphviewer_part.cpp:110
+#, kde-format
+msgid "Page setup"
+msgstr "쪽 설정"
+
+#: part/kgraphviewer_part.cpp:111
+#, kde-format
+msgid "Opens the Page Setup dialog to allow graph printing to be setup"
+msgstr "그래프 인쇄를 설정하는 쪽 설정 대화 상자 열기"
+
+#: part/kgraphviewer_part.cpp:114
+#, kde-format
+msgid "Reload the current graph from file"
+msgstr "파일에서 현재 그래프 새로 고침"
+
+#: part/kgraphviewer_part.cpp:119
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "현재 보고 있는 그래프를 10% 확대"
+
+#: part/kgraphviewer_part.cpp:124
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "현재 보고 있는 그래프를 10% 축소"
+
+#. i18n: ectx: Menu (file)
+#: part/kgraphviewer_part.rc:4
+#, kde-format
+msgid "&File"
+msgstr "파일(&F)"
+
+#. i18n: ectx: Menu (view)
+#: part/kgraphviewer_part.rc:11
+#, kde-format
+msgid "&View"
+msgstr "보기(&V)"
+
+#: part/KgvPageLayout.cpp:68
+#, kde-format
+msgctxt "Page size"
+msgid "Screen"
+msgstr "화면"
+
+#: part/KgvPageLayout.cpp:69
+#, kde-format
+msgctxt "Page size"
+msgid "Custom"
+msgstr "사용자 정의"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: part/KgvPageLayoutColumnsBase.ui:27
+#, kde-format
+msgid "Columns:"
+msgstr "열:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelSpacing)
+#: part/KgvPageLayoutColumnsBase.ui:37
+#, kde-format
+msgid "Column spacing:"
+msgstr "열 간격:"
+
+#: part/KgvPageLayoutDia.cpp:62
+#, kde-format
+msgid "Page Preview"
+msgstr "쪽 미리 보기"
+
+#: part/KgvPageLayoutDia.cpp:277
+#, kde-format
+msgid "Page Size & Margins"
+msgstr "쪽 크기와 여백"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/KgvPageLayoutHeaderBase.ui:17
+#, kde-format
+msgid "Header"
+msgstr "머리글"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhFirst)
+#: part/KgvPageLayoutHeaderBase.ui:23
+#, kde-format
+msgid "Different header for the first page"
+msgstr "첫 쪽에 다른 머리글 사용"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:30
+#, kde-format
+msgid "Different header for even and odd pages"
+msgstr "홀수 쪽과 짝수 쪽에 다른 머리글 사용"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: part/KgvPageLayoutHeaderBase.ui:55
+#, kde-format
+msgid "Spacing between header and body:"
+msgstr "머리글과 본문 사이의 간격:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/KgvPageLayoutHeaderBase.ui:77
+#, kde-format
+msgid "Footer"
+msgstr "바닥글"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfFirst)
+#: part/KgvPageLayoutHeaderBase.ui:83
+#, kde-format
+msgid "Different footer for the first page"
+msgstr "첫 쪽에 다른 바닥글 사용"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:90
+#, kde-format
+msgid "Different footer for even and odd pages"
+msgstr "홀수 쪽과 짝수 쪽에 다른 바닥글 사용"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: part/KgvPageLayoutHeaderBase.ui:115
+#, kde-format
+msgid "Spacing between footer and body:"
+msgstr "바닥글과 본문 사이의 간격:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/KgvPageLayoutHeaderBase.ui:137
+#, kde-format
+msgid "Footnote/Endnote"
+msgstr "각주/미주"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: part/KgvPageLayoutHeaderBase.ui:159
+#, kde-format
+msgid "Spacing between footnote and body:"
+msgstr "각주와 본문 사이의 간격:"
+
+#: part/KgvPageLayoutSize.cpp:62
+#, kde-format
+msgid "Unit:"
+msgstr "단위:"
+
+#: part/KgvPageLayoutSize.cpp:75
+#, kde-format
+msgid "All values are given in %1."
+msgstr "모든 값은 %1 단위입니다."
+
+#: part/KgvPageLayoutSize.cpp:80
+#, kde-format
+msgid "Page Size"
+msgstr "쪽 크기"
+
+#: part/KgvPageLayoutSize.cpp:89
+#, kde-format
+msgid "&Size:"
+msgstr "크기(&S):"
+
+#: part/KgvPageLayoutSize.cpp:110
+#, kde-format
+msgid "&Width:"
+msgstr "너비(&W):"
+
+#: part/KgvPageLayoutSize.cpp:121
+#, kde-format
+msgid "&Height:"
+msgstr "높이(&H):"
+
+#: part/KgvPageLayoutSize.cpp:135
+#, kde-format
+msgid "Orientation"
+msgstr "방향"
+
+#: part/KgvPageLayoutSize.cpp:139
+#, kde-format
+msgid "&Portrait"
+msgstr "세로(&P)"
+
+#: part/KgvPageLayoutSize.cpp:143
+#, kde-format
+msgid "La&ndscape"
+msgstr "가로(&N)"
+
+#: part/KgvPageLayoutSize.cpp:151
+#, kde-format
+msgid "Margins"
+msgstr "여백"
+
+#: part/KgvPageLayoutSize.cpp:374 part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "Page Layout Problem"
+msgstr "쪽 레이아웃 문제"
+
+#: part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "The page width is smaller than the left and right margins."
+msgstr "쪽 너비가 왼쪽과 오른쪽 여백보다 작습니다."
+
+#: part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "The page height is smaller than the top and bottom margins."
+msgstr "쪽 높이가 위쪽과 아래쪽 여백보다 작습니다."
+
+#: part/KgvUnit.cpp:51
+#, kde-format
+msgid "Millimeters (mm)"
+msgstr "밀리미터(mm)"
+
+#: part/KgvUnit.cpp:53
+#, kde-format
+msgid "Centimeters (cm)"
+msgstr "센티미터(cm)"
+
+#: part/KgvUnit.cpp:55
+#, kde-format
+msgid "Decimeters (dm)"
+msgstr "데시미터(dm)"
+
+#: part/KgvUnit.cpp:57
+#, kde-format
+msgid "Inches (in)"
+msgstr "인치(in)"
+
+#: part/KgvUnit.cpp:59
+#, kde-format
+msgid "Pica (pi)"
+msgstr "파이카(pi)"
+
+#: part/KgvUnit.cpp:61
+#, kde-format
+msgid "Didot (dd)"
+msgstr "디도(dd)"
+
+#: part/KgvUnit.cpp:63
+#, kde-format
+msgid "Cicero (cc)"
+msgstr "시세로(cc)"
+
+#: part/KgvUnit.cpp:65
+#, kde-format
+msgid "Points (pt)"
+msgstr "포인트(pt)"
+
+#: part/KgvUnit.cpp:67
+#, kde-format
+msgid "Error."
+msgstr "오류."
+
+#: part/pannerview.cpp:64
+#, kde-format
+msgid "View of the complete graph. Click and drag to move the visible part."
+msgstr ""
+"완전한 그래프 보기입니다. 보이는 부분을 이동하려면 클릭한 후 드래그하십시오."
+
+#: part/pannerview.cpp:66
+#, kde-format
+msgid ""
+"<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
+"red square will move the center of the view to where the mouse was clicked.</"
+"p><p>Clicking and dragging within the red square will cause the view to "
+"follow the movement.</p>"
+msgstr ""
+"<h1>완전한 그래프 보기</h1><p>빨간 사각형 이외 영역에서 한 번 클릭하면 마우스"
+"를 클릭한 지점으로 그래프 중심점을 이동합니다.</p><p>빨간 사각형을 클릭하고 "
+"드래그하면 보기를 마우스에 따라서 이동합니다.</p>"
+
+#: part/simpleprintingcommand.cpp:98
+#, kde-format
+msgid "Print Preview"
+msgstr "인쇄 미리 보기"
+
+#: part/simpleprintingengine.cpp:200 part/simpleprintpreviewwindow.cpp:219
+#: part/simpleprintpreviewwindow.cpp:237
+#, kde-format
+msgctxt "Page (number) of (total)"
+msgid "Page %1 of %2"
+msgstr "%2쪽 중 %1쪽"
+
+#: part/simpleprintingengine.cpp:202
+#, kde-format
+msgid "Page %1"
+msgstr "%1쪽"
+
+#: part/simpleprintingpagesetup.cpp:101
+#, kde-format
+msgid "Print Preview..."
+msgstr "인쇄 미리 보기..."
+
+#: part/simpleprintingpagesetup.cpp:104
+#, kde-format
+msgid "Font..."
+msgstr "글꼴..."
+
+#: part/simpleprintingpagesetup.cpp:105
+#, kde-format
+msgid "Changes font for title text."
+msgstr "제목 텍스트의 글꼴을 변경합니다."
+
+#: part/simpleprintingpagesetup.cpp:111
+#, kde-format
+msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
+msgstr "<qt><h2>그래프 \"%1\"의 인쇄 설정</h2></qt>"
+
+#: part/simpleprintingpagesetup.cpp:116
+#, kde-format
+msgid "Saves settings for this setup as default."
+msgstr "이 설정을 기본값으로 저장합니다."
+
+#: part/simpleprintingpagesetup.cpp:119
+#, kde-format
+msgid "Adds date and time to the header."
+msgstr "머리글에 날짜와 시간을 추가합니다."
+
+#: part/simpleprintingpagesetup.cpp:120
+#, kde-format
+msgid "Adds page numbers to the footer."
+msgstr "바닥글에 쪽 번호를 추가합니다."
+
+#: part/simpleprintingpagesetup.cpp:121
+#, kde-format
+msgid "Adds table borders."
+msgstr "표 테두리를 추가합니다."
+
+#: part/simpleprintingpagesetup.cpp:129
+#, kde-format
+msgid "Change Page Size and Margins..."
+msgstr "쪽 크기와 여백 변경..."
+
+#: part/simpleprintingpagesetup.cpp:130
+#, kde-format
+msgid "Changes page size and margins."
+msgstr "쪽 크기와 여백을 변경합니다."
+
+#: part/simpleprintingpagesetup.cpp:187
+#, kde-format
+msgid "Chosen font looks like this"
+msgstr "선택한 글꼴 미리 보기"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Portrait"
+msgstr "세로"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Landscape"
+msgstr "가로"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "margins:"
+msgstr "여백:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: part/simpleprintingpagesetupbase.ui:68
+#, kde-format
+msgid "Pa&ge font:"
+msgstr "쪽 글꼴(&G):"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/simpleprintingpagesetupbase.ui:97
+#, kde-format
+msgid "Page Size && Margins"
+msgstr "쪽 크기와 여백"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:122
+#, kde-format
+msgid "Add &borders"
+msgstr "테두리 추가(&B)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
+#: part/simpleprintingpagesetupbase.ui:129
+#, kde-format
+msgid "Add date and time"
+msgstr "날짜와 시간 추가"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:152
+#, kde-format
+msgid "Add page numbers"
+msgstr "쪽 번호 추가"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
+#: part/simpleprintingpagesetupbase.ui:163
+#, kde-format
+msgid "Number of pages to fit on"
+msgstr "맞출 쪽 개수"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/simpleprintingpagesetupbase.ui:195
+#, kde-format
+msgid "Horizontally"
+msgstr "수평으로"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/simpleprintingpagesetupbase.ui:207
+#, kde-format
+msgid "Vertically"
+msgstr "수직으로"
+
+#. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
+#: part/simpleprintingpagesetupbase.ui:232
+#, kde-format
+msgid "&Natural size"
+msgstr "자연스러운 크기(&N)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
+#: part/simpleprintingpagesetupbase.ui:239
+#, kde-format
+msgid "Fit &to one page"
+msgstr "한 쪽에 맞춤(&T)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
+#: part/simpleprintingpagesetupbase.ui:246
+#, kde-format
+msgid "F&it to several pages"
+msgstr "여러 쪽으로 맞춤(&I)"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: part/simpleprintingpagesetupbase.ui:262
+#, kde-format
+msgid "Related actions:"
+msgstr "관련 동작:"
+
+#: part/simpleprintpreviewwindow.cpp:69
+#, kde-format
+msgid "%1 - Print Preview - %2"
+msgstr "%1 - 인쇄 미리 보기 - %2"
+
+#: part/simpleprintpreviewwindow.cpp:84
+#, kde-format
+msgid "&Page setup"
+msgstr "쪽 설정(&P)"
+
+#: part/simpleprintpreviewwindow.cpp:123
+#, kde-format
+msgid "Previous Page"
+msgstr "이전 쪽"
+
+#: part/simpleprintpreviewwindow.cpp:133
+#, kde-format
+msgid "Next Page"
+msgstr "다음 쪽"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: preferencesAppearance.ui:19
+#, kde-format
+msgid "Default background color:"
+msgstr "기본 배경색:"
+
+#. i18n: ectx: property (text), widget (QLabel, note)
+#: preferencesAppearance.ui:51
+#, kde-format
+msgid "Note: this will be overridden if the graph has its own background color"
+msgstr "메모: 그래프에서 배경색을 지정했다면 해당 배경색을 사용합니다"
+
+#. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
+#: preferencesOpenInExistingWindow.ui:17
+#, kde-format
+msgid "Open in existing window"
+msgstr "기존 창으로 열기"
+
+#. i18n: ectx: property (text), widget (QRadioButton, yes)
+#: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
+#: preferencesReopenPreviouslyOpenedFiles.ui:29
+#, kde-format
+msgid "&Yes"
+msgstr "예(&Y)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, no)
+#: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
+#: preferencesReopenPreviouslyOpenedFiles.ui:36
+#, kde-format
+msgid "&No"
+msgstr "아니요(&N)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesOpenInExistingWindow.ui:37
+#: preferencesReopenPreviouslyOpenedFiles.ui:43
+#, kde-format
+msgid "As&k"
+msgstr "묻기(&K)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, parsingMode)
+#: preferencesParsing.ui:17
+#, kde-format
+msgid "Parse using:"
+msgstr "다음으로 해석:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, external)
+#: preferencesParsing.ui:26
+#, kde-format
+msgid "E&xternal command"
+msgstr "외부 명령(&X)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, internal)
+#: preferencesParsing.ui:33
+#, kde-format
+msgid "Internal &library"
+msgstr "내부 라이브러리(&L)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
+#: preferencesReload.ui:17
+#, kde-format
+msgid "Reload files modified on disk"
+msgstr "디스크에서 수정된 파일 새로 고침"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesReload.ui:40
+#, kde-format
+msgid "&Ask"
+msgstr "묻기(&A)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
+#: preferencesReopenPreviouslyOpenedFiles.ui:17
+#, kde-format
+msgid "Reopen previously opened files"
+msgstr "이전에 열었던 파일 다시 열기"

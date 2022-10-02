@@ -1,0 +1,1644 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY graphviz "<application
+><ulink url=&#034;https://www.graphviz.org&#034;
+>Graphviz</ulink
+></application
+>">
+  <!ENTITY boost "<ulink url=&#034;https://www.boost.org&#034;
+>Boost</ulink
+>">
+  <!ENTITY qanava "<application
+>Qanava</application
+>">
+  <!ENTITY kcachegrind "<application
+>KCacheGrind</application
+>"
+> <!--not in kdoctools 5.16-->
+  <!ENTITY dot "<application
+>DOT</application
+>">
+  <!ENTITY neato "<application
+>NEATO</application
+>">
+  <!ENTITY twopi "<application
+>TWOPI</application
+>">
+  <!ENTITY fdp "<application
+>FDP</application
+>">
+  <!ENTITY circo "<application
+>CIRCO</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE"
+><!-- change language only here -->
+]>
+
+
+<book id="kgraphviewer" lang="&language;">
+
+<bookinfo>
+<title
+>El manual del &kgraphviewer;</title>
+
+<authorgroup>
+<author
+><firstname
+>Gaël</firstname
+> <othername
+></othername
+> <surname
+>de Chalendar</surname
+> <affiliation
+> <address
+><email
+>kleag@free.fr</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Federico</firstname
+> <othername
+></othername
+> <surname
+>Zenith</surname
+> <affiliation
+> <address
+><email
+>federico.zenith@member.fsf.org</email
+></address>
+</affiliation>
+</author>
+&traductor.Antoni.Bella; 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Ga&euml;l de Chalendar</holder>
+</copyright>
+<!-- Translators: put here the copyright notice of the translation -->
+<!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
+     and in the FDL itself on how to use it. -->
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>14 de desembre de 2020</date>
+<releaseinfo
+>&kgraphviewer; 2.4.3</releaseinfo>
+
+<abstract>
+<para
+>El &kgraphviewer; és un visualitzador de gràfiques &dot; del &graphviz;. Està desenvolupat en la comunitat &kde;. Els programes del &graphviz; són motors de disseny de programari lliure per a gràfiques. Les gràfiques s'utilitzen habitualment en dominis científics i particularment en les ciències de la computació. </para>
+<para
+>El &kgraphviewer; mostra les gràfiques en una &IGU; moderna i fàcil d'emprar. </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kgraphviewer</keyword>
+<keyword
+>graphviz</keyword>
+<keyword
+>dot</keyword>
+<keyword
+>neato</keyword>
+<keyword
+>visualitzador</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducció</title>
+
+<para
+>El &kgraphviewer; és un visualitzador de gràfiques &dot; del &graphviz;. Els programes &graphviz; són motors de disseny de programari lliure per a gràfiques. El &kgraphviewer; mostra les gràfiques en una &IGU; moderna i fàcil d'emprar. Disposa de les següents característiques: <screenshot>
+<screeninfo
+>Aquí hi ha una captura de pantalla del &kgraphviewer;</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>La finestra principal del &kgraphviewer; mostrant un dels exemples del &graphviz;</phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+<itemizedlist>
+  <listitem
+><para
+>Fer «zoom».</para
+></listitem>
+  <listitem
+><para
+>Càrrega de gràfiques diferents en pestanyes al mateix temps.</para
+></listitem>
+  <listitem
+><para
+>Emmagatzematge d'una llista dels fitxers recents.</para
+></listitem>
+  <listitem
+><para
+>Una vista d'ocell de la gràfica.</para
+></listitem>
+  <listitem
+><para
+>Panoràmica de la gràfica arrossegant el ratolí.</para
+></listitem>
+  <listitem
+><para
+>Impressió amb totes les característiques.</para
+></listitem>
+  <listitem
+><para
+>Dibuixat perfecte de totes les gràfiques d'exemple del &graphviz;.</para
+></listitem>
+  <listitem
+><para
+>S'admeten els colors de node i vora, i totes les formes de node.</para
+></listitem>
+  <listitem
+><para
+>Elecció automàtica de &dot; per a gràfiques dirigides i &neato; per a les no dirigides.</para
+></listitem>
+  <listitem
+><para
+>Recàrrega manual o automàtica amb confirmació de l'usuari dels fitxers modificats (externament, i és configurable).</para
+></listitem>
+  <listitem
+><para
+>Obertura d'instàncies noves de programa com a pestanyes noves en una instància existent (és configurable).</para
+></listitem>
+  <listitem
+><para
+>Sistema d'ajuda.</para
+></listitem>
+  <listitem
+><para
+>Internacionalització.</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Les característiques planificades són: <itemizedlist>
+	<listitem
+><para
+>Ús eventual de la biblioteca &qanava; per a donar suport a la representació interna de gràfiques.</para
+></listitem>
+	<listitem
+><para
+>Desa les dades de la sessió sobre les gràfiques (programa de disseny emprat, factor de zoom, &etc;)</para
+></listitem>
+	<listitem
+><para
+>Integració en el &kate; i &konqueror; (de manera que un canvi en la vista del &kate; de la gràfica redissenyarà i tornarà a carregar el fitxer en el &kgraphviewer;).</para
+></listitem>
+	<listitem
+><para
+>Menú per a obrir el fitxer en el &kate; <emphasis
+>o</emphasis
+> per a obrir una katepart dins de la finestra del &kgraphviewer;.</para
+></listitem>
+	<listitem
+><para
+>Càrrega de gràfiques grans i enormes (actualment, hi ha problemes de rendiment al voltant de 1.000 nodes i un truc per a no rebre nodes per sobre d'un límit especificat).</para
+></listitem>
+	<listitem
+><para
+>El suport progressiu de cada vegada més atributs i valors de &dot;.</para
+></listitem>
+	<listitem
+><para
+>Disposició en segon pla (amb subprocessos per a no bloquejar la interfície, amb una barra de progrés).</para
+></listitem>
+</itemizedlist
+></para>
+
+<note
+><para
+>Recordeu que aquest programa inclou codi de l'eina GPL &kcachegrind; d'en Josef Weidendorfer, amb la seva autorització.</para
+></note>
+<note
+><para
+>També cal tenir en compte que el sistema d'impressió és de l'aplicació de base de dades &kexi; del &calligra;.</para
+></note>
+
+<para
+>Un altre programari necessari: el &kgraphviewer; és un programa que utilitza l'eina &graphviz; de &dot; per al disseny de les gràfiques. Les seves dependències són: <itemizedlist>
+	<listitem
+><para
+>Les biblioteques &Qt; i &kf5; versió 5.x.</para
+></listitem>
+	<listitem
+><para
+>Les eines &graphviz; com a programes externs (provat amb la versió 2.8).</para
+></listitem>
+	<listitem
+><para
+>La biblioteca &boost; versió 1.36.</para
+></listitem>
+</itemizedlist
+></para>
+
+</chapter>
+
+<chapter id="using-kgraphviewer">
+<title
+>Ús del &kgraphviewer;</title>
+
+<sect1 id="using-kgraphviewer-mainwin">
+<title
+>La finestra principal</title>
+
+<para
+>La finestra principal mostra les gràfiques carregades, cadascuna en la seva pròpia pestanya. Inicialment, si inicieu el &kgraphviewer; sense arguments, la seva finestra principal estarà buida com en la captura de pantalla següent. En aquest cas, la barra d'eines només conté els elements <guibutton
+>Obre...</guibutton
+> i <guibutton
+>Obre'n un de recent</guibutton
+> (buit). Feu clic sobre el primer per a obrir el diàleg <guilabel
+>Obre un fitxer</guilabel
+> estàndard.</para>
+
+<screenshot>
+<screeninfo
+>La finestra principal inicial en obrir el &kgraphviewer; per primera vegada</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>La finestra principal inicial en obrir el &kgraphviewer; per primera vegada</phrase>
+    </textobject>
+    <caption
+><para
+>La finestra principal inicial en obrir el &kgraphviewer; per primera vegada</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Després de seleccionar un o diversos fitxers &dot;, la finestra principal s'assembla a la següent captura de pantalla:</para>
+
+<screenshot>
+<screeninfo
+>La finestra principal del &kgraphviewer; amb diversos fitxers oberts</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>La finestra principal del &kgraphviewer; amb diversos fitxers oberts</phrase>
+    </textobject>
+    <caption
+><para
+>La finestra principal del &kgraphviewer; amb diversos fitxers oberts</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Com podeu veure, si la gràfica és més gran que l'àrea disponible, es mostrarà una vista d'ocell en una cantonada. Podreu escollir amb el menú contextual si la posició òptima d'aquest resum s'ha de calcular automàticament o col·locar-lo on vulgueu.</para>
+
+<sect2>
+<title
+>Moure la gràfica dins de la finestra</title>
+
+<para
+>Per a moure la gràfica, podeu: <itemizedlist>
+	<listitem
+><para
+>Fer-hi clic i arrossegar-la.</para
+></listitem>
+	<listitem
+><para
+>Utilitzar les barres de desplaçament.</para
+></listitem>
+	<listitem
+><para
+>Prémer les tecles de fletxa.</para
+></listitem>
+	<listitem
+><para
+>Fer clic en algun lloc de la vista d'ocell.</para
+></listitem>
+	<listitem
+><para
+>Utilitzar la roda del ratolí (amunt i avall sense modificador, esquerra i dreta amb la tecla &Alt; premuda).</para
+></listitem>
+	<listitem
+><para
+>O fer clic i arrossegar en la vista d'ocell.</para
+></listitem>
+</itemizedlist
+></para>
+</sect2>
+
+<sect2>
+<title
+>Fer «zoom»</title>
+
+<para
+>Per a fer zoom, podeu utilitzar els botons <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> i <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> de la barra d'eines per a apropar i allunyar, o mantenir premuda la tecla &Maj; mentre feu girar la roda del ratolí. En fer zoom, el rectangle vermell a la vista d'ocell indicarà que la zona mostrada es fa cada vegada més petita. Si fos més petit que 10 píxels en el seu costat més curt, per a romandre visible serà substituït per un rectangle vermell ple. Ho podeu veure en la captura de pantalla a continuació.</para>
+
+<screenshot>
+<screeninfo
+>Una gràfica en el nivell de zoom màxim</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmax.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Una gràfica en el nivell de zoom màxim</phrase>
+</textobject>
+<caption
+><para
+>Una gràfica en el nivell de zoom màxim</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>El zoom està limitat en ambdues direccions per un factor de 10. Podeu veure a continuació el factor de zoom màxim sobre una gràfica.</para>
+
+<screenshot>
+<screeninfo
+>Una gràfica en el nivell màxim d'allunyament</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmin.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Una gràfica en el nivell màxim d'allunyament</phrase>
+</textobject>
+<caption
+><para
+>Una gràfica en el nivell màxim d'allunyament</para
+></caption>
+</mediaobject>
+</screenshot>
+</sect2>
+
+<sect2>
+<title
+>Maneig dels fitxers de gràfica</title>
+
+<sect3>
+<title
+>Fitxers modificats en el disc</title>
+
+<para
+>Si un fitxer carregat en el &kgraphviewer; és modificat per un altre programa, es mostrarà el següent diàleg:</para>
+
+<screenshot>
+<screeninfo
+>Diàleg per a recarregar un fitxer modificat en el disc</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Diàleg per a recarregar un fitxer modificat en el disc</phrase>
+</textobject>
+<caption
+><para
+>Diàleg per a recarregar un fitxer modificat en el disc</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Podeu optar per tornar a carregar la gràfica o ignorar el canvi. També podeu fer que el &kgraphviewer; recordi la vostra elecció, per la qual cosa farà el mateix la pròxima vegada. Si més tard voleu modificar la vostra elecció, trieu l'element de menú <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura el &kgraphviewer;...</guimenuitem
+></menuchoice
+>. Vegeu <xref linkend="kgraphviewer-configuration"/>.</para>
+</sect3>
+
+<sect3
+><title
+>Fitxers i finestres</title>
+<para
+>Quan obriu un fitxer de gràfica des de fora d'una instància del &kgraphviewer; en execució, &pex;, des d'un navegador de fitxers o la línia d'ordres, teniu l'opció d'obrir una finestra nova del &kgraphviewer; o obrir la gràfica en una pestanya nova a la finestra existent. Això es fa amb el diàleg de sota.</para>
+
+<screenshot>
+<screeninfo
+>Diàleg per a obrir una finestra nova</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Diàleg per a obrir una finestra nova</phrase>
+</textobject>
+<caption
+><para
+>Diàleg per a obrir una finestra nova</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Pel que fa a l'opció anterior, podreu desar la vostra elecció com a predeterminada i modificar-la més tard en el diàleg de configuració.</para>
+
+</sect3>
+
+<sect3>
+<title
+>Maneig de les sessions</title>
+
+<para
+>A l'inici, podreu optar per tornar a obrir les gràfiques que havíeu obert la vegada anterior. De nou, podreu desar la vostra elecció i canviar-la més tard.</para>
+
+<screenshot>
+<screeninfo
+>Diàleg per a tornar a carregar la gràfica de la sessió anterior a l'inici</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Diàleg per a tornar a carregar la gràfica de la sessió anterior a l'inici</phrase>
+</textobject>
+<caption
+><para
+>Diàleg per a tornar a carregar la gràfica de la sessió anterior a l'inici</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect3>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="kgraphviewer-printing">
+<title
+>Imprimir les gràfiques</title>
+<para
+>Proveu els botons <guibutton
+>Vista prèvia d'impressió</guibutton
+> o <guibutton
+>Configuració de la pàgina</guibutton
+> per a explorar les opcions d'impressió.</para>
+
+<screenshot>
+<screeninfo
+>Diàleg de configuració de la pàgina</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-psetup1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Diàleg de configuració de la pàgina</phrase>
+</textobject>
+<caption
+><para
+>Diàleg de configuració de la pàgina</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Podeu configurar les opcions d'impressió perquè ajustin la gràfica exactament en una pàgina, com es mostra a continuació:</para>
+
+<screenshot>
+<screeninfo
+>Configuració de la vista prèvia de la pàgina perquè càpiga en una pàgina</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Configuració de la vista prèvia de la pàgina perquè càpiga en una pàgina</phrase>
+</textobject>
+<caption
+><para
+>Configuració de la vista prèvia de la pàgina perquè càpiga en una pàgina</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>També podreu triar com dividir la gràfica en múltiples pàgines. El nombre de pàgines horitzontals i verticals es pot triar de forma independent.</para>
+
+<screenshot>
+<screeninfo
+>Vista prèvia de la pàgina configurada per a cabre en múltiples pàgines i per a emplenar</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Vista prèvia de la pàgina configurada per a cabre en múltiples pàgines i per a emplenar</phrase>
+</textobject>
+<caption
+><para
+>Vista prèvia de la pàgina configurada per a cabre en múltiples pàgines i per a emplenar</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Finalment, quan utilitzeu múltiples pàgines, podreu optar per fer que la part de la gràfica en cada pàgina s'ajusti a la seva pàgina com es mostra a sobre, sense mantenir la relació d'aspecte o mantenint-la. En aquest últim cas, les pàgines no s'emplenaran.</para>
+
+<para
+>Podeu canviar la mida de les pàgines i els marges:</para>
+
+<screenshot>
+<screeninfo
+>Diàleg de mida i marges de la pàgina</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-pagesmarges.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Diàleg de mida i marges de la pàgina</phrase>
+</textobject>
+<caption
+><para
+>Diàleg de mida i marges de la pàgina</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>També podeu canviar el tipus de lletra, capçaleres i peus de pàgina:</para>
+
+<screenshot>
+<screeninfo
+>Configuració de la vista prèvia de la pàgina per a cabre en múltiples pàgines sense capçalera i un tipus de lletra diferent</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Configuració de la vista prèvia de la pàgina per a cabre en múltiples pàgines sense capçalera i un tipus de lletra diferent</phrase>
+</textobject>
+<caption
+><para
+>Configuració de la vista prèvia de la pàgina per a cabre en múltiples pàgines sense capçalera i un tipus de lletra diferent</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="kgraphviewer-configuration">
+<title
+>Configurar el &kgraphviewer;</title>
+
+<para
+>La pàgina <guilabel
+>Aparença</guilabel
+> permet canviar el color de fons predeterminat que s'empra en el &kgraphviewer; si una gràfica no té el seu propi color de fons.</para>
+
+<screenshot>
+<screeninfo
+>Pàgina per a canviar l'aparença d'una gràfica</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pàgina per a canviar l'aparença d'una gràfica</phrase>
+</textobject>
+<caption
+><para
+>Pàgina per a canviar l'aparença d'una gràfica</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>La pàgina <guilabel
+>En analitzar</guilabel
+> permet seleccionar una ordre externa o la biblioteca interna per a analitzar els fitxers &dot; del &graphviz;.</para>
+
+<screenshot>
+<screeninfo
+>Pàgina per a tornar a carregar els fitxers modificats en el disc al diàleg de configuració</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pàgina per a tornar a carregar els fitxers modificats en el disc al diàleg de configuració</phrase>
+</textobject>
+<caption
+><para
+>Pàgina per a tornar a carregar els fitxers modificats en el disc al diàleg de configuració</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>La pàgina <guilabel
+>En tornar a carregar</guilabel
+> permet canviar el comportament del &kgraphviewer; quan una altra aplicació canvia un fitxer en el disc. Podeu triar una acció predeterminada (recarregar automàticament o ignorar els canvis) o que se us pregunti cada vegada.</para>
+
+<screenshot>
+<screeninfo
+>Pàgina per a tornar a carregar els fitxers modificats en el disc al diàleg de configuració</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pàgina per a tornar a carregar els fitxers modificats en el disc al diàleg de configuració</phrase>
+</textobject>
+<caption
+><para
+>Pàgina per a tornar a carregar els fitxers modificats en el disc al diàleg de configuració</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>La pàgina <guilabel
+>En obrir</guilabel
+> permet canviar el comportament del &kgraphviewer; quan s'obre un fitxer de gràfica des de fora de la sessió actual. Podeu triar una acció predeterminada (obrir en una finestra existent o en una nova) o que se us pregunti cada vegada.</para>
+
+<screenshot>
+<screeninfo
+>Pàgina per a obrir fitxers nous en una finestra existent en el diàleg de configuració</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pàgina per a obrir fitxers nous en una finestra existent en el diàleg de configuració</phrase>
+</textobject>
+<caption
+><para
+>Pàgina per a obrir fitxers nous en una finestra existent en el diàleg de configuració</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>La pàgina <guilabel
+>Gestió de sessions</guilabel
+> permet canviar el comportament d'inici del &kgraphviewer;. Podeu triar una acció predeterminada (tornar a obrir o no els fitxers de la sessió anterior) o que se us pregunti cada vegada.</para>
+
+<screenshot>
+<screeninfo
+>Pàgina per a tornar a obrir fitxers de la sessió anterior en el diàleg de configuració</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pàgina per a tornar a obrir fitxers de la sessió anterior en el diàleg de configuració</phrase>
+</textobject>
+<caption
+><para
+>Pàgina per a tornar a obrir fitxers de la sessió anterior en el diàleg de configuració</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="using-kgraphviewer-misc">
+<title
+>Funcions de miscel·lània</title>
+
+<para
+>El menú contextual, que normalment s'obté fent clic amb el &BDR; sobre la vista de la gràfica, ofereix altres possibilitats: <variablelist>
+<varlistentry>
+<term
+><guisubmenu
+>Disseny</guisubmenu
+></term>
+<listitem
+><para
+>Permet triar entre diversos algoritmes de disseny del &graphviz; o triar-ne un propi. Les entrades, com es descriu a la pàgina inicial del &graphviz;, són les següents: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>&dot;</guimenuitem
+></term>
+	<listitem
+><para
+>Algorisme &dot;, predeterminat per a gràfiques dirigides. Produeix dibuixos <quote
+>jeràrquics</quote
+> o en capes de gràfiques dirigides. L'algoritme de disseny col·loca les vores en la mateixa direcció (de dalt a baix o d'esquerra a dreta) i després intenta evitar els encreuaments de les vores i reduir la longitud de la vora.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&neato;</guimenuitem
+></term>
+	<listitem
+><para
+>Algorisme &neato;, predeterminat per a gràfiques no dirigides. Produeix disposicions de <quote
+>model de primavera</quote
+>. Utilitza l'algoritme Kamada-Kawai, el qual és equivalent a l'escalat estadístic multidimensional.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&twopi;</guimenuitem
+></term>
+	<listitem
+><para
+>Algorisme &twopi;, per a gràfiques dirigides i no dirigides. Disposició radial, després de Graham Wills 1997.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&fdp;</guimenuitem
+></term>
+	<listitem
+><para
+>Algorisme &fdp;, per a gràfiques no dirigides. Produeix disposicions de <quote
+>model de primavera</quote
+>. Implementa l'heurística Fruchterman-Reingold, inclòs un solucionador de quadrícula múltiple que gestiona gràfiques més grans i gràfiques agrupades no dirigides.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&circo;</guimenuitem
+></term>
+	<listitem
+><para
+>Algorisme &circo;. Produeix un disseny circular, després de Six i Tollis 1999, Kauffman i Wiese 2002. Adequat per a certs diagrames de múltiples estructures cícliques.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Especifica l'ordre de disseny</guimenuitem
+></term>
+	<listitem
+><para
+>Obre un diàleg que us permetrà especificar una ordre de disseny executada per l'intèrpret d'ordres. Aquesta ordre haurà d'acceptar un paràmetre, el nom del fitxer de gràfica, i escriure el seu disseny a la sortida estàndard en el llenguatge xdot. D'aquesta manera, podreu donar opcions específiques a una de les ordres anteriors, o aplicar un filtre modificant la vostra gràfica abans d'executar-lo a través del &dot;.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Reinicialitza l'ordre de disseny a la predeterminada</guimenuitem
+></term>
+	<listitem
+><para
+>Determina el tipus de gràfica (dirigida o no) i aplica l'algorisme predeterminat, actualment &dot; i &neato; respectivament.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+	</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Exporta la gràfica</guisubmenu
+></term>
+<listitem
+><para>
+	<variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Com a imatge...</guimenuitem
+></term>
+	<listitem
+><para
+>Permet exportar tota la gràfica a tots els formats d'imatge admesos.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guimenu
+>Habilita la vista d'ocell</guimenu
+></term>
+<listitem
+><para
+>Quan està marcada, la vista d'ocell es mostrarà quan sigui necessari. En cas contrari, s'ocultarà i el seu menú de posicionament estarà desactivat.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Vista d'ocell</guisubmenu
+></term>
+<listitem
+><para
+>Configura on posar la vista d'ocell en la vista de la gràfica. Les opcions possibles són: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Extrem superior esquerre</guimenuitem
+></term>
+	<listitem
+><para
+>Col·loca la vista d'ocell a la cantonada superior esquerra.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Extrem superior dret</guimenuitem
+></term>
+	<listitem
+><para
+>Col·loca la vista d'ocell a la cantonada superior dreta.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Extrem inferior esquerre</guimenuitem
+></term>
+	<listitem
+><para
+>Col·loca la vista d'ocell a la cantonada inferior esquerra.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Extrem inferior dret</guimenuitem
+></term>
+	<listitem
+><para
+>Col·loca la vista d'ocell a la cantonada inferior dreta.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Automàtica</guimenuitem
+></term>
+	<listitem
+><para
+>Tria automàticament la millor posició per a ocultar la menor quantitat possible de la gràfica.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist
+></para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commands">
+<title
+>Referència d'ordres</title>
+
+<sect1 id="kgraphviewer-commands-menus">
+<title
+>Els menús del &kgraphviewer;</title>
+
+<sect2>
+<title
+>El menú Fitxer</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Nou</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Obre</action
+> una finestra nova del &kgraphviewer;.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Obre...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Mostra</action
+> el diàleg <guilabel
+>Obre un fitxer</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guisubmenu
+>Obre'n un de recent</guisubmenu
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Mostra</action
+> la llista dels deu fitxers de gràfica oberts més recentment.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Fitxer</guimenu
+><guisubmenu
+>Exporta la gràfica</guisubmenu
+><guimenuitem
+>Com a imatge...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Permet <action
+>exportar</action
+> tota la gràfica a tots els formats d'imatge admesos.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Imprimeix...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Imprimeix</action
+> la gràfica actual utilitzant els paràmetres d'impressió establerts actualment.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>P</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Vista prèvia d'impressió...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Obre</action
+> la finestra <guilabel
+>Vista prèvia d'impressió</guilabel
+> per a la gràfica actual.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Configuració de la pàgina</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Obre</action
+> el diàleg <guilabel
+>Configuració de la pàgina</guilabel
+> per a la gràfica actual.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Surt</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Surt</action
+> del &kgraphviewer;.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>El menú Visualitza</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Amplia</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Amplia</action
+> la gràfica actual en un 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Redueix</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Redueix</action
+> la gràfica actual en un 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Torna a mostrar</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Torna a carregar</action
+> la gràfica actual.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Visualitza</guimenu
+><guisubmenu
+>Selecciona l'algoritme de disseny</guisubmenu
+></menuchoice
+></term>
+	<listitem
+><para
+>Obre un submenú amb diversos algoritmes de disseny del &graphviz; per a la gràfica actual.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+></shortcut
+><guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Habilita la vista d'ocell</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Quan està marcada, la vista d'ocell es mostrarà quan sigui necessari. En cas contrari, s'ocultarà i el seu menú de posicionament estarà desactivat.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Vista d'ocell</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Configura on posar la vista d'ocell a la vista de la gràfica. Les opcions són: <variablelist>
+		<varlistentry>
+		<term
+><guimenuitem
+>Extrem superior esquerre</guimenuitem
+></term>
+		<listitem
+><para
+>Col·loca la vista d'ocell a la cantonada superior esquerra.</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Extrem superior dret</guimenuitem
+></term>
+		<listitem
+><para
+>Col·loca la vista d'ocell a la cantonada superior dreta.</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Extrem inferior esquerre</guimenuitem
+></term>
+		<listitem
+><para
+>Col·loca la vista d'ocell a la cantonada inferior esquerra.</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Extrem inferior dret</guimenuitem
+></term>
+		<listitem
+><para
+>Col·loca la vista d'ocell a la cantonada inferior dreta.</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Automàtica</guimenuitem
+></term>
+		<listitem
+><para
+>Tria automàticament la millor posició per a ocultar la menor quantitat possible de la gràfica.</para
+></listitem>
+		</varlistentry>
+	</variablelist
+></para
+></listitem>
+	</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Els menús Arranjament i Ajuda</title>
+
+<para
+>El &kgraphviewer; té la configuració comuna al &kde; i els elements dels menús <guimenu
+>Arranjament</guimenu
+> i <guimenu
+>Ajuda</guimenu
+>. Per a obtenir més informació, llegiu les seccions sobre <ulink url="help:/fundamentals/menus.html#menus-settings"
+>El menú Arranjament</ulink
+> i <ulink url="help:/fundamentals/menus.html#menus-help"
+>El menú Ajuda</ulink
+> en els Fonaments del &kde;. </para>
+
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-commands-toolbars">
+<title
+>Les barres d'eines del &kgraphviewer;</title>
+
+<sect2>
+<title
+>La barra d'eines principal</title>
+<!--document-new-->
+<variablelist>
+	<varlistentry
+><!--document-open-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-open.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Mostra</action
+> el diàleg <guilabel
+>Obre un fitxer</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--document-open-recent-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-prev.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Mostra</action
+> la llista dels fitxers oberts recentment.</para
+></listitem>
+	</varlistentry>
+<!--document-close-->
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-print.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prints the graph</action
+> using current setup.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-preview.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Mostra</action
+> el diàleg <guilabel
+>Vista prèvia d'impressió</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Shows</action
+> the <guilabel
+>Page Setup</guilabel
+> dialog.</para
+></listitem>
+	</varlistentry-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>La barra d'eines de visualització</title>
+
+<variablelist>
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-reload.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Reloads</action
+> the current graph.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-layout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Edita</action
+> l'ordre de disseny o <action
+>mostra</action
+> la llista d'algoritmes de disseny que hi ha predefinits.</para
+></listitem>
+	</varlistentry>
+	
+	<varlistentry
+><!--zoom-in-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Amplia</action
+> la gràfica actual en un 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--zoom-out-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Redueix</action
+> la gràfica actual en un 10%.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+<!--kgraphviewer-bev "Enable Bird's-eye View"-->
+</sect2>
+
+<sect2>
+<title
+>La barra d'eines d'ajuda</title>
+
+<variablelist>
+	<varlistentry
+><!--help-contextual-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Mostra</action
+> el punter del ratolí «<guilabel
+>Què és això?</guilabel
+>». Feu clic amb ell sobre un element de la &IGU; per a obtenir ajuda sobre com emprar-lo (si aquesta ajuda existeix).</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+<title
+>Crèdits i llicència</title>
+
+<sect1 id="kgraphviewer-credits-program">
+<title
+>Programa</title>
+
+<sect2>
+<title
+>Autors principals</title>
+<para
+>Copyright del programa 2005-2006 Ga&euml;l de Chalendar <email
+>kleag@free.fr</email
+></para>
+</sect2>
+
+<sect2>
+<title
+>Col·laboradors (a completar)</title>
+<itemizedlist>
+	<listitem
+><para
+>Reimar D&ouml;ffinger <email
+>Reimar.Doeffinger@stud.uni-karlsruhe.de</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-userguide">
+<title
+>Guia d'usuari</title>
+<para
+>Copyright de la documentació 2006 Ga&euml;l de Chalendar <email
+>kleag@free.fr</email
+></para>
+<sect2>
+<title
+>Col·laboradors</title>
+<itemizedlist>
+  <listitem
+><para
+>Federico Zenith <email
+>federico.zenith@member.fsf.org</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-other">
+<title
+>Altres crèdits</title>
+<para
+>Aquest programa conté codi reutilitzat dels següents projectes de programari lliure:</para>
+<variablelist>
+	<varlistentry>
+	<term
+><ulink url="https://kcachegrind.github.io/html/Home.html"
+>&kcachegrind;</ulink
+></term>
+	<listitem
+><para
+>Classes de model i vista inicial de la gràfica.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><ulink url="http://www.kexi-project.org/"
+>&kexi;</ulink
+></term>
+	<listitem
+><para
+>Classes de configuració de la impressió i vista prèvia.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-licenses"
+><title
+>Llicències</title>
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </sect1>
+
+</chapter>
+
+&documentation.index;
+</book>

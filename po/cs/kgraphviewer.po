@@ -1,0 +1,1237 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Vít Pelčák <vit@pelcak.org>, 2010, 2011, 2013, 2014, 2017, 2018.
+# Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kgraphviewer\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:43+0000\n"
+"PO-Revision-Date: 2018-07-10 13:58+0100\n"
+"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Vít Pelčák, Zdeněk Pech"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "vit@pelcak.org, dom.toretto@seznam.cz"
+
+#: kgrapheditor.cpp:131 kgraphviewer.cpp:113
+#, kde-format
+msgid "Session Restore"
+msgstr "Obnovení sezení"
+
+#: kgrapheditor.cpp:131
+#, kde-format
+msgid "Do you want to reload files from previous session?"
+msgstr "Přejete si znovu načíst soubory z předchozího sezení?"
+
+#: kgrapheditor.cpp:147
+#, kde-format
+msgid "Unable to start"
+msgstr "Nelze spustit"
+
+#: kgrapheditor.cpp:147 kgraphviewer.cpp:131
+#, kde-format
+msgid "Could not find the KGraphViewer part."
+msgstr "Nelze nalézt součást KGraphViewer."
+
+#: kgrapheditor.cpp:228 kgraphviewer.cpp:211
+#, kde-format
+msgid "Closes the current file"
+msgstr "Zavře současný soubor"
+
+#: kgrapheditor.cpp:241
+#, kde-format
+msgid "Create a New Vertex"
+msgstr "Vytvořit nový vertex"
+
+#: kgrapheditor.cpp:246
+#, kde-format
+msgid "Create a New Edge"
+msgstr "Vytvořit nový okraj"
+
+#: kgrapheditor.cpp:506
+#, kde-format
+msgid "Save current graph"
+msgstr "Uložit současný graf"
+
+#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
+#, kde-format
+msgid "Parsing"
+msgstr "Zpracovávám"
+
+#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
+#, kde-format
+msgid "Reloading"
+msgstr "Znova načítám"
+
+#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
+#, kde-format
+msgid "Opening"
+msgstr "Otevírám"
+
+#: kgrapheditorConfigDialog.cpp:64 kgraphviewerConfigDialog.cpp:75
+#, kde-format
+msgid "Session Management"
+msgstr "Správa sezení"
+
+#: KGraphEditorElementTreeWidget.cpp:49 KGraphEditorNodesTreeWidget.cpp:54
+#, kde-format
+msgid "Add a new attribute"
+msgstr "Přidat nový atribut"
+
+#: KGraphEditorElementTreeWidget.cpp:55 KGraphEditorNodesTreeWidget.cpp:60
+#, kde-format
+msgid "Remove this attribute"
+msgstr "Odstranit tento atribut"
+
+#: kgrapheditormain.cpp:46
+#, kde-format
+msgid "KGraphEditor"
+msgstr "KGraphEditor"
+
+#: kgrapheditormain.cpp:46
+#, kde-format
+msgid "A Graphviz DOT graph editor by KDE"
+msgstr "Editor grafů DOT Graphviz pro KDE"
+
+#: kgrapheditormain.cpp:46 main.cpp:51
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2010 Gaël de Chalendar"
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "Path or URL to scan"
+msgstr "Cesta nebo URL pro prozkoumání"
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "[url]"
+msgstr "[url]"
+
+#: kgrapheditormain.cpp:83
+#, kde-format
+msgid ""
+"A KGraphEditor window is already open, do you want to open the file in it?"
+msgstr ""
+"Okno KGraphEditoru je již otevřeno. Kde si přejete si v něm otevřít soubor?"
+
+#: kgrapheditormain.cpp:83 main.cpp:94
+#, kde-format
+msgid "Opening in new window confirmation"
+msgstr "Potvrzení otevření v novém okně"
+
+#: KGraphEditorNodesTreeWidget.cpp:65
+#, kde-format
+msgid "Remove this node"
+msgstr "Odstranit tento uzel"
+
+#. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
+#, kde-format
+msgid "The answer to the question 'File modified, do you want to reload it'"
+msgstr "Odpověď na dotaz 'Soubor byl změněn, přejete si jej znovu načíst?'"
+
+#. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
+#, kde-format
+msgid ""
+"To choose whether to parse using an external command (usually dot) or the "
+"graphviz library"
+msgstr ""
+"Zvolit způsob zpracování buď pomocí externího příkazu (obvykle dot), nebo "
+"knihovnou graphviz"
+
+#. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
+#, kde-format
+msgid ""
+"The answer to the question 'If another window already exist when launching "
+"kgraphviewer, should we open in it, open a new window or ask?'"
+msgstr ""
+"Odpověď na dotaz 'Pokud již existuje jiné okno ve spuštěném KGraphVieweru, "
+"má se otevřít v něm, otevřít v novém okně, nebo se dotázat?'"
+
+#. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
+#, kde-format
+msgid ""
+"The answer to the question 'Should the files that were opened in previous "
+"sessions be reopened at startup?'"
+msgstr ""
+"Odpověď na dotaz 'Mají se soubory otevřené při posledním sezení znovu načíst "
+"při spuštění?'"
+
+#. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
+#: part/kgraphviewer_partsettings.kcfg:9
+#, kde-format
+msgid "If true, the bird's eye view will be shown if needed."
+msgstr ""
+"V kladném případě, pokud je třeba, bude zobrazen Pohled z ptačí perspektivy."
+
+#. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
+#, kde-format
+msgid "The list of files that were opened in past instances of kgraphviewer"
+msgstr "Seznam souborů otevřených při posledním sezení KGraphVieweru"
+
+#. i18n: ectx: ToolBar (viewToolBar)
+#: kgrapheditorui.rc:23 kgraphviewerui.rc:17
+#, kde-format
+msgid "View Toolbar"
+msgstr "Zobrazit panel pohledu"
+
+#. i18n: ectx: ToolBar (helpToolBar)
+#: kgrapheditorui.rc:26 kgraphviewerui.rc:20
+#, kde-format
+msgid "Help Toolbar"
+msgstr "Pomocný panel nástrojů"
+
+#. i18n: ectx: ToolBar (editToolBar)
+#: kgrapheditorui.rc:31
+#, kde-format
+msgid "Edit Toolbar"
+msgstr "Upravit panel nástrojů"
+
+#: kgraphviewer.cpp:113
+#, kde-format
+msgid "Do you want to reload files from the previous session?"
+msgstr "Přejete si znovu načíst soubory z předchozího sezení?"
+
+#: kgraphviewer.cpp:198
+#, kde-format
+msgid "Opens a new empty KGraphViewer window."
+msgstr "Otevře nové prázdné okno KGraphVieweru."
+
+#: kgraphviewer.cpp:201
+#, kde-format
+msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
+msgstr ""
+"Zobrazí dialog otevření souboru pro výběr DOT souborů Graphviz, které mají "
+"být otevřeny."
+
+#: kgraphviewer.cpp:205
+#, kde-format
+msgid ""
+"This lists files which you have opened recently, and allows you to easily "
+"open them again."
+msgstr ""
+"Zde je seznam soubor, které jste nedávno otevřeli; můžete je nyní snadno "
+"otevřít znovu."
+
+#: kgraphviewer.cpp:215
+#, kde-format
+msgid "Quits KGraphViewer."
+msgstr "Ukončit KGraphViewer"
+
+#: kgraphviewer.cpp:218
+#, kde-format
+msgid "Shows or hides the status bar."
+msgstr "Zobrazí nebo skryje stavový panel."
+
+#: kgraphviewer.cpp:221
+#, kde-format
+msgid "Configure the bindings between keys and actions."
+msgstr "Nastavit klávesové zkratky činností."
+
+#: kgraphviewer.cpp:224
+#, kde-format
+msgid "Toolbar configuration."
+msgstr "Nastavení panelu nástrojů."
+
+#: kgraphviewer.cpp:227
+#, kde-format
+msgid "Main KGraphViewer configuration options."
+msgstr "Hlavní volby nastavení KGraphVieweru."
+
+#: kgraphviewerConfigDialog.cpp:71
+#, kde-format
+msgid "Appearance"
+msgstr "Vzhled"
+
+#. i18n: ectx: label, entry (backgroundColor), group (Appearance)
+#: kgraphviewersettings.kcfg:34
+#, kde-format
+msgid "Background color of the graph view."
+msgstr "Barva pozadí pohledu na graf."
+
+#: main.cpp:47
+#, kde-format
+msgid "KGraphViewer"
+msgstr "KGraphViewer"
+
+#: main.cpp:49
+#, kde-format
+msgid "A Graphviz DOT graph viewer"
+msgstr "Prohlížeč bodových grafů Graphviz"
+
+#: main.cpp:54
+#, kde-format
+msgid "Gaël de Chalendar"
+msgstr "Gaël de Chalendar"
+
+#: main.cpp:54
+#, kde-format
+msgid "Original Author and current maintainer"
+msgstr "Původní autor a současný správce"
+
+#: main.cpp:55
+#, kde-format
+msgid "Reimar Döffinger"
+msgstr "Reimar Döffinger"
+
+#: main.cpp:55 main.cpp:56 main.cpp:57 main.cpp:58
+#, kde-format
+msgid "Contributor"
+msgstr "Spolupracovník"
+
+#: main.cpp:56
+#, kde-format
+msgid "Matthias Peinhardt"
+msgstr "Matthias Peinhardt"
+
+#: main.cpp:57
+#, kde-format
+msgid "Sandro Andrade"
+msgstr "Sandro Andrade"
+
+#: main.cpp:58
+#, kde-format
+msgid "Milian Wolff"
+msgstr "Milian Wolff"
+
+#: main.cpp:59
+#, kde-format
+msgid "Martin Sandsmark"
+msgstr "Martin Sandsmark"
+
+#: main.cpp:59
+#, kde-format
+msgid "Port to KF5"
+msgstr "Přenos do KF5"
+
+#: main.cpp:94
+#, kde-format
+msgid ""
+"A KGraphViewer window is already open, where do you want to open this file "
+"in the existing window?"
+msgstr ""
+"Okno KGraphVieweru je již otevřeno. Kde v existujícím okně si přejete tento "
+"soubor otevřít?"
+
+#: part/canvasedge.cpp:74
+#, kde-format
+msgid ""
+"%1 -> %2\n"
+"label='%3'"
+msgstr ""
+"%1 -> %2\n"
+"štítek='%3'"
+
+#: part/canvasedge.cpp:78
+#, kde-format
+msgid "Remove selected edge(s)"
+msgstr "Odstranit vybrané okraje"
+
+#: part/canvaselement.cpp:92
+#, kde-format
+msgid "Remove selected element(s)"
+msgstr "Odstranit vybrané prvky"
+
+#: part/canvasnode.cpp:64
+#, kde-format
+msgid ""
+"id='%1'\n"
+"label='%2'"
+msgstr ""
+"id='%1'\n"
+"štítek='%2'"
+
+#: part/dotgraph.cpp:265 part/dotgraph.cpp:268 part/dotgraph.cpp:271
+#: part/dotgraph.cpp:274 part/dotgraph.cpp:277 part/dotgraph.cpp:280
+#, kde-format
+msgid "Layout process failed"
+msgstr "Proces rozvržení se nezdařil"
+
+#: part/dotgraph.cpp:265
+#, kde-format
+msgid "Unable to start %1."
+msgstr "Nelze spustit %1."
+
+#: part/dotgraph.cpp:268
+#, kde-format
+msgid "%1 crashed."
+msgstr "'%1' zhavaroval."
+
+#: part/dotgraph.cpp:271
+#, kde-format
+msgid "%1 timed out."
+msgstr "%1 překročil časový limit."
+
+#: part/dotgraph.cpp:274
+#, kde-format
+msgid "Was not able to write data to the %1 process."
+msgstr "Do procesu %1 nebylo možno zapisovat data."
+
+#: part/dotgraph.cpp:277
+#, kde-format
+msgid "Was not able to read data from the %1 process."
+msgstr "Nebylo možno přečíst data z procesu %1."
+
+#: part/dotgraph.cpp:280
+#, kde-format
+msgid "Unknown error running %1."
+msgstr "Neznámá chyba za běhu %1."
+
+#: part/dotgraphview.cpp:421
+#, kde-format
+msgid "Select Layout Algo"
+msgstr "Vybrat algoritmus rozvržení"
+
+#: part/dotgraphview.cpp:424
+#, kde-format
+msgid "Dot"
+msgstr "DOT"
+
+#: part/dotgraphview.cpp:425
+#, kde-format
+msgid "Layout the graph using the dot program."
+msgstr "Rozvržení grafu pomocí programu DOT."
+
+#: part/dotgraphview.cpp:429
+#, kde-format
+msgid "Neato"
+msgstr "Neato"
+
+#: part/dotgraphview.cpp:430
+#, kde-format
+msgid "Layout the graph using the neato program."
+msgstr "Rozvržení grafu pomocí programu neato."
+
+#: part/dotgraphview.cpp:434
+#, kde-format
+msgid "Twopi"
+msgstr "Twopi"
+
+#: part/dotgraphview.cpp:435
+#, kde-format
+msgid "Layout the graph using the twopi program."
+msgstr "Rozvržení grafu pomocí programu twopi."
+
+#: part/dotgraphview.cpp:439
+#, kde-format
+msgid "Fdp"
+msgstr "Fdp"
+
+#: part/dotgraphview.cpp:440
+#, kde-format
+msgid "Layout the graph using the fdp program."
+msgstr "Rozvržení grafu pomocí programu fdp."
+
+#: part/dotgraphview.cpp:444
+#, kde-format
+msgid "Circo"
+msgstr "Circo"
+
+#: part/dotgraphview.cpp:445
+#, kde-format
+msgid "Layout the graph using the circo program."
+msgstr "Rozvržení grafu pomocí programu circo."
+
+#: part/dotgraphview.cpp:457
+#, kde-format
+msgid "Choose a Graphviz layout algorithm or edit your own one."
+msgstr "Vybrat, nebo upravit váš vlastní algoritmus rozvržení Graphviz."
+
+#: part/dotgraphview.cpp:459
+#, kde-format
+msgid ""
+"Choose a Graphviz layout algorithm or type in your own command that will "
+"generate a graph in the xdot format on its standard output. For example, to "
+"manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+msgstr ""
+"Vyberte, nebo napište svůj vlastní algoritmus rozvržení Graphviz, který "
+"vygeneruje graf ve formátu xdot a svůj standardní výstup. Například pro "
+"ruční zadání volby <tt>G</tt> do příkazu DOT napište: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+
+#: part/dotgraphview.cpp:465
+#, kde-format
+msgid "Layout"
+msgstr "Rozvržení"
+
+#: part/dotgraphview.cpp:467
+#, kde-format
+msgid "Specify layout command"
+msgstr "Zadat příkaz pro rozvržení"
+
+#: part/dotgraphview.cpp:468
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"Zadejte vlastní příkaz, který se má použít pro rozvržení. Zvolený soubor DOT "
+"by měl vytvořit soubor xdot na svém standardním výstupu."
+
+#: part/dotgraphview.cpp:469
+#, kde-format
+msgid "Reset layout command to default"
+msgstr "Obnovit výchozí hodnoty příkazu pro rozvržení"
+
+#: part/dotgraphview.cpp:470
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+"Obnoví výchozí nastavení příkazu pro rozvržení grafu v závislosti na jeho "
+"typu (orientovaný nebo neorientovaný)."
+
+#: part/dotgraphview.cpp:472
+#, kde-format
+msgid "Zoom In"
+msgstr "Přiblížit"
+
+#: part/dotgraphview.cpp:473
+#, kde-format
+msgid "Zoom Out"
+msgstr "Oddálit"
+
+#: part/dotgraphview.cpp:477
+#, kde-format
+msgid "Export Graph"
+msgstr "Exportovat graf"
+
+#: part/dotgraphview.cpp:479
+#, kde-format
+msgid "Allows the graph to be exported in another format."
+msgstr "Povolit exportovat graf do jiného formátu."
+
+#: part/dotgraphview.cpp:481
+#, kde-format
+msgid ""
+"Use the Export Graph menu to export the graph in another format. There is "
+"currently only one export format supported: as a PNG image."
+msgstr ""
+"Použít nabídku Export grafu pro jeho exportování do jiného formátu. V "
+"současnosti je podporován pouze jeden formát exportu: jako obrázek PNG."
+
+#: part/dotgraphview.cpp:485
+#, kde-format
+msgid "As Image..."
+msgstr "Jako obrázek..."
+
+#: part/dotgraphview.cpp:486
+#, kde-format
+msgid "Export the graph to an image file."
+msgstr "Exportovat graf do obrázkového souboru."
+
+#: part/dotgraphview.cpp:494
+#, kde-format
+msgid "Enable Bird's-eye View"
+msgstr "Povolit Pohled z ptačí perspektivy"
+
+#: part/dotgraphview.cpp:497
+#, kde-format
+msgid "Enables or disables the Bird's-eye View"
+msgstr "Povolit nebo zakázat Pohled z ptačí perspektivy"
+
+#: part/dotgraphview.cpp:502
+#, kde-format
+msgid "Birds-eye View"
+msgstr "Pohled z ptačí perspektivy"
+
+#: part/dotgraphview.cpp:503
+#, kde-format
+msgid "Allows the Bird's-eye View to be setup."
+msgstr "Povolení nastavení Pohledu z ptačí perspektivy."
+
+#: part/dotgraphview.cpp:507
+#, kde-format
+msgid "Top Left"
+msgstr "Nahoře vlevo"
+
+#: part/dotgraphview.cpp:508
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-left corner."
+msgstr "Umístí Pohled z ptačí perspektivy do levého horního rohu."
+
+#: part/dotgraphview.cpp:512
+#, kde-format
+msgid "Top Right"
+msgstr "Nahoře vpravo"
+
+#: part/dotgraphview.cpp:513
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-right corner."
+msgstr "Umístí Pohled z ptačí perspektivy do pravého horního rohu."
+
+#: part/dotgraphview.cpp:517
+#, kde-format
+msgid "Bottom Left"
+msgstr "Dole vlevo"
+
+#: part/dotgraphview.cpp:518
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-left corner."
+msgstr "Umístí Pohled z ptačí perspektivy do levého dolního rohu."
+
+#: part/dotgraphview.cpp:522
+#, kde-format
+msgid "Bottom Right"
+msgstr "Dole vpravo"
+
+#: part/dotgraphview.cpp:523
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-right corner."
+msgstr "Umístí Pohled z ptačí perspektivy do pravého dolního rohu."
+
+#: part/dotgraphview.cpp:527
+#, kde-format
+msgid "Automatic"
+msgstr "Automatické"
+
+#: part/dotgraphview.cpp:528
+#, kde-format
+msgid ""
+"Let KGraphViewer automatically choose the position of the Bird's-eye View."
+msgstr ""
+"Nechat KGraphViewer automaticky zvolit umístění Pohledu z ptačí perspektivy."
+
+#: part/dotgraphview.cpp:575
+#, kde-format
+msgid "Select file"
+msgstr "Vybrat soubor"
+
+#: part/dotgraphview.cpp:589
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer"
+msgstr "Graf SVG vytvořený aplikací KGraphViewer"
+
+#: part/dotgraphview.cpp:590
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer."
+msgstr "Graf SVG vytvořený aplikací KGraphViewer."
+
+#: part/dotgraphview.cpp:637
+#, kde-format
+msgid ""
+"<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
+"than the widget area, an overview panner is shown in one edge. Choose "
+"through the context menu if the optimal position of this overview should be "
+"automatically computed or put it where you want.</p><h2>How to work with it?"
+"</h2><ul><li>To move the graph, you can:  <ul>    <li>click & drag it</"
+"li>    <li>use the elevators</li>    <li>press the arrows keys</li>    "
+"<li>click somewhere in the panner view</li>    <li>use the mouse wheel (up "
+"and down with no modifier, left and right with the <Alt> key pressed)</"
+"li>    <li>or click & drag the panner view</li>  </ul></li><li>To zoom, you "
+"can either use the zoom in and zoom out toolbar buttons, or click on the "
+"<Shift> key while rolling your mouse wheel.</li><li>Try the contextual menu "
+"(usually by right-clicking) to discover other possibilities.</li><li>Try the "
+"<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
+"printing options.</li></ul>"
+msgstr ""
+"<h1>Vizualizace grafu DOT formátu Graphviz</h1><p>Pokud je graf větší, než "
+"určená oblast, zobrazí se v rohu políčko s přehledem. V kontextové nabídce "
+"vyberte, zda má být optimální umístění tohoto políčka automaticky "
+"vypočítáno, nebo si umístění zvolíte sami.</p><h2>Jak se s tím pracuje?</"
+"h2><ul><li>K přesunu grafu můžete:  <ul>    <li>uchopit jej a přetáhnout</"
+"li>    <li>použít posuvníky</li>    <li>stisknout klávesy se šipkou</li>    "
+"<li>kliknout kdekoliv v políčku s náhledem</li>    <li>použít kolečko myši "
+"(nahoru a dolů bez stisku klávesy, vlevo a vpravo při současném stisku "
+"klávesy <Alt>)</li>    <li>nebo přetažením na políčku s náhledem</li>  </"
+"ul></li><li>Pro změnu velikosti můžete použít buď  tlačítek Přiblížit a "
+"Oddálit na nástrojovém panelu, nebo otáčení kolečka myši při současném "
+"držení klávesy <Shift>.</li><li>Další možnosti se zobrazí v kontextové "
+"nabídce (obvykle po tisku pravého tlačítka myši).</li><li>Vyzkoušejte "
+"zobrazit možnosti tisku stiskem tlačítka <tt>Náhled před tiskem</tt> nebo "
+"<tt>Nastavení stránky</tt>.</li></ul>"
+
+#: part/dotgraphview.cpp:790
+#, kde-format
+msgid "no graph loaded"
+msgstr "žádný graf není načten"
+
+#: part/dotgraphview.cpp:906 part/dotgraphview.cpp:927
+#: part/dotgraphview.cpp:974
+#, kde-format
+msgid "graph %1 is getting loaded..."
+msgstr "graf %1 se načítá..."
+
+#: part/dotgraphview.cpp:914
+#, kde-format
+msgid "error parsing file %1"
+msgstr "chyba při zpracování souboru %1"
+
+#: part/dotgraphview.cpp:1615
+#, kde-format
+msgid "Reload Confirmation"
+msgstr "Potvrzení znovu načtení"
+
+#: part/dotgraphview.cpp:1615
+#, kde-format
+msgid ""
+"The file %1 has been modified on disk.\n"
+"Do you want to reload it?"
+msgstr ""
+"Soubor %1 byl změněn na disku.\n"
+"Přejete si jej znovu načíst?"
+
+#: part/dotgraphview.cpp:1701
+#, kde-format
+msgid "Layout Command"
+msgstr "Příkaz rozvržení"
+
+#: part/dotgraphview.cpp:1702
+#, kde-format
+msgid ""
+"Specify here the command that will be used to layout the graph.\n"
+"The command MUST write its results on stdout in xdot format."
+msgstr ""
+"Sem zadejte příkaz, který bude použit pro rozvržení grafu.\n"
+"Příkaz MUSÍ vypsat svůj výsledek na standardní výstup ve formátu xdot."
+
+#: part/dotgraphview.cpp:2155
+#, kde-format
+msgid "Failed to open %1"
+msgstr "Otevření %1 selhalo"
+
+#: part/kgraphviewer_part.cpp:102
+#, kde-format
+msgid "Print the graph using current page setup settings"
+msgstr "Vytisknout graf s použitím nastavení aktuální stránky"
+
+#: part/kgraphviewer_part.cpp:106
+#, kde-format
+msgid "Open the print preview window"
+msgstr "Otevřít okno s náhledem tisku"
+
+#: part/kgraphviewer_part.cpp:110
+#, kde-format
+msgid "Page setup"
+msgstr "Nastavení stránky"
+
+#: part/kgraphviewer_part.cpp:111
+#, kde-format
+msgid "Opens the Page Setup dialog to allow graph printing to be setup"
+msgstr "Umožní nastavení tisku grafu otevřením dialogu pro nastavení stránky"
+
+#: part/kgraphviewer_part.cpp:114
+#, kde-format
+msgid "Reload the current graph from file"
+msgstr "Znovu načíst současný graf ze souboru"
+
+#: part/kgraphviewer_part.cpp:119
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "Přiblížit aktuálně zobrazený graf o 10%"
+
+#: part/kgraphviewer_part.cpp:124
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "Oddálit aktuálně zobrazený graf o 10%"
+
+#. i18n: ectx: Menu (file)
+#: part/kgraphviewer_part.rc:4
+#, kde-format
+msgid "&File"
+msgstr "Sou&bor"
+
+#. i18n: ectx: Menu (view)
+#: part/kgraphviewer_part.rc:11
+#, kde-format
+msgid "&View"
+msgstr "Poh&led"
+
+#: part/KgvPageLayout.cpp:68
+#, kde-format
+msgctxt "Page size"
+msgid "Screen"
+msgstr "Obrazovka"
+
+#: part/KgvPageLayout.cpp:69
+#, kde-format
+msgctxt "Page size"
+msgid "Custom"
+msgstr "Vlastní"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: part/KgvPageLayoutColumnsBase.ui:27
+#, kde-format
+msgid "Columns:"
+msgstr "Sloupce:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelSpacing)
+#: part/KgvPageLayoutColumnsBase.ui:37
+#, kde-format
+msgid "Column spacing:"
+msgstr "Vzdálenost sloupců:"
+
+#: part/KgvPageLayoutDia.cpp:62
+#, kde-format
+msgid "Page Preview"
+msgstr "Náhled strany"
+
+#: part/KgvPageLayoutDia.cpp:277
+#, kde-format
+msgid "Page Size & Margins"
+msgstr "Velikost strany a okraje"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/KgvPageLayoutHeaderBase.ui:17
+#, kde-format
+msgid "Header"
+msgstr "Záhlaví"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhFirst)
+#: part/KgvPageLayoutHeaderBase.ui:23
+#, kde-format
+msgid "Different header for the first page"
+msgstr "Rozdílné záhlaví pro první stranu"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:30
+#, kde-format
+msgid "Different header for even and odd pages"
+msgstr "Rozdílná záhlaví pro sudé a liché strany"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: part/KgvPageLayoutHeaderBase.ui:55
+#, kde-format
+msgid "Spacing between header and body:"
+msgstr "Vzdálenost mezi záhlavím a tělem:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/KgvPageLayoutHeaderBase.ui:77
+#, kde-format
+msgid "Footer"
+msgstr "Zápatí"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfFirst)
+#: part/KgvPageLayoutHeaderBase.ui:83
+#, kde-format
+msgid "Different footer for the first page"
+msgstr "Rozdílné zápatí pro první stranu"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:90
+#, kde-format
+msgid "Different footer for even and odd pages"
+msgstr "Rozdílná zápatí pro sudé a liché strany"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: part/KgvPageLayoutHeaderBase.ui:115
+#, kde-format
+msgid "Spacing between footer and body:"
+msgstr "Vzdálenost mezi zápatím a tělem:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/KgvPageLayoutHeaderBase.ui:137
+#, kde-format
+msgid "Footnote/Endnote"
+msgstr "Zápatí/poznámka na konci"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: part/KgvPageLayoutHeaderBase.ui:159
+#, kde-format
+msgid "Spacing between footnote and body:"
+msgstr "Vzdálenost mezi zápatím a tělem:"
+
+#: part/KgvPageLayoutSize.cpp:62
+#, kde-format
+msgid "Unit:"
+msgstr "Jednotka:"
+
+#: part/KgvPageLayoutSize.cpp:75
+#, kde-format
+msgid "All values are given in %1."
+msgstr "Všechny hodnoty jsou dány v '%1'."
+
+#: part/KgvPageLayoutSize.cpp:80
+#, kde-format
+msgid "Page Size"
+msgstr "Velikost strany"
+
+#: part/KgvPageLayoutSize.cpp:89
+#, kde-format
+msgid "&Size:"
+msgstr "Veliko&st:"
+
+#: part/KgvPageLayoutSize.cpp:110
+#, kde-format
+msgid "&Width:"
+msgstr "Šíř&ka:"
+
+#: part/KgvPageLayoutSize.cpp:121
+#, kde-format
+msgid "&Height:"
+msgstr "&Výška:"
+
+#: part/KgvPageLayoutSize.cpp:135
+#, kde-format
+msgid "Orientation"
+msgstr "Orientace"
+
+#: part/KgvPageLayoutSize.cpp:139
+#, kde-format
+msgid "&Portrait"
+msgstr "&Na výšku"
+
+#: part/KgvPageLayoutSize.cpp:143
+#, kde-format
+msgid "La&ndscape"
+msgstr "Kraji&na"
+
+#: part/KgvPageLayoutSize.cpp:151
+#, kde-format
+msgid "Margins"
+msgstr "Okraje"
+
+#: part/KgvPageLayoutSize.cpp:374 part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "Page Layout Problem"
+msgstr "Problém s rozvržením stránky"
+
+#: part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "The page width is smaller than the left and right margins."
+msgstr "Stránka je užší než levý a pravý okraj."
+
+#: part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "The page height is smaller than the top and bottom margins."
+msgstr "Stránka je užší než horní a dolní okraj."
+
+#: part/KgvUnit.cpp:51
+#, kde-format
+msgid "Millimeters (mm)"
+msgstr "Milimetry (mm)"
+
+#: part/KgvUnit.cpp:53
+#, kde-format
+msgid "Centimeters (cm)"
+msgstr "Centimetry (cm)"
+
+#: part/KgvUnit.cpp:55
+#, kde-format
+msgid "Decimeters (dm)"
+msgstr "Decimetry (dm)"
+
+#: part/KgvUnit.cpp:57
+#, kde-format
+msgid "Inches (in)"
+msgstr "Palce (in)"
+
+#: part/KgvUnit.cpp:59
+#, kde-format
+msgid "Pica (pi)"
+msgstr "Pica (pi)"
+
+#: part/KgvUnit.cpp:61
+#, kde-format
+msgid "Didot (dd)"
+msgstr "Didot (dd)"
+
+#: part/KgvUnit.cpp:63
+#, kde-format
+msgid "Cicero (cc)"
+msgstr "Cicero (cc)"
+
+#: part/KgvUnit.cpp:65
+#, kde-format
+msgid "Points (pt)"
+msgstr "Body (pt)"
+
+#: part/KgvUnit.cpp:67
+#, kde-format
+msgid "Error."
+msgstr "Chyba."
+
+#: part/pannerview.cpp:64
+#, kde-format
+msgid "View of the complete graph. Click and drag to move the visible part."
+msgstr "Pohled na celý graf. Uchopením můžete přetáhnout na viditelnou část."
+
+#: part/pannerview.cpp:66
+#, kde-format
+msgid ""
+"<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
+"red square will move the center of the view to where the mouse was clicked.</"
+"p><p>Clicking and dragging within the red square will cause the view to "
+"follow the movement.</p>"
+msgstr ""
+"<h1>Pohled na celý graf</h1><p>Jedním kliknutím někde mimo červený čtverec "
+"přesunete střed pohledu do místa ukazatele myši v době kliknutí.</"
+"p><p>Uchopení a přetažení uvnitř červeného čtverce způsobí, že pohled bude "
+"následovat tento přesun.</p>"
+
+#: part/simpleprintingcommand.cpp:98
+#, kde-format
+msgid "Print Preview"
+msgstr "Náhled před tiskem"
+
+#: part/simpleprintingengine.cpp:200 part/simpleprintpreviewwindow.cpp:219
+#: part/simpleprintpreviewwindow.cpp:237
+#, kde-format
+msgctxt "Page (number) of (total)"
+msgid "Page %1 of %2"
+msgstr "Strana %1 z %2"
+
+#: part/simpleprintingengine.cpp:202
+#, kde-format
+msgid "Page %1"
+msgstr "Strana %1"
+
+#: part/simpleprintingpagesetup.cpp:101
+#, kde-format
+msgid "Print Preview..."
+msgstr "Náhled před tiskem..."
+
+#: part/simpleprintingpagesetup.cpp:104
+#, kde-format
+msgid "Font..."
+msgstr "Písmo..."
+
+#: part/simpleprintingpagesetup.cpp:105
+#, kde-format
+msgid "Changes font for title text."
+msgstr "Změní písmo textu názvu."
+
+#: part/simpleprintingpagesetup.cpp:111
+#, kde-format
+msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
+msgstr "<qt><h2>Nastavení stránky pro tisk grafu \"%1\"</h2></qt>"
+
+#: part/simpleprintingpagesetup.cpp:116
+#, kde-format
+msgid "Saves settings for this setup as default."
+msgstr "Uloží toto nastavení jako výchozí."
+
+#: part/simpleprintingpagesetup.cpp:119
+#, kde-format
+msgid "Adds date and time to the header."
+msgstr "Přidá datum a čas do záhlaví."
+
+#: part/simpleprintingpagesetup.cpp:120
+#, kde-format
+msgid "Adds page numbers to the footer."
+msgstr "Přidat čísla stránek do zápatí."
+
+#: part/simpleprintingpagesetup.cpp:121
+#, kde-format
+msgid "Adds table borders."
+msgstr "Přidat okraje tabulky."
+
+#: part/simpleprintingpagesetup.cpp:129
+#, kde-format
+msgid "Change Page Size and Margins..."
+msgstr "Změnit velikost strany a okraje..."
+
+#: part/simpleprintingpagesetup.cpp:130
+#, kde-format
+msgid "Changes page size and margins."
+msgstr "Změní velikost strany a okraje."
+
+#: part/simpleprintingpagesetup.cpp:187
+#, kde-format
+msgid "Chosen font looks like this"
+msgstr "Zvolené písmo vypadá takto"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Portrait"
+msgstr "Na výšku"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Landscape"
+msgstr "Na šířku"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "margins:"
+msgstr "okraje:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: part/simpleprintingpagesetupbase.ui:68
+#, kde-format
+msgid "Pa&ge font:"
+msgstr "Písmo strán&ky:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/simpleprintingpagesetupbase.ui:97
+#, kde-format
+msgid "Page Size && Margins"
+msgstr "Velikost strany a okraje"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:122
+#, kde-format
+msgid "Add &borders"
+msgstr "Přidat o&kraje"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
+#: part/simpleprintingpagesetupbase.ui:129
+#, kde-format
+msgid "Add date and time"
+msgstr "Přidat datum a čas"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:152
+#, kde-format
+msgid "Add page numbers"
+msgstr "Přidat čísla stránek"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
+#: part/simpleprintingpagesetupbase.ui:163
+#, kde-format
+msgid "Number of pages to fit on"
+msgstr "Počet stran, na které se má přizpůsobit"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/simpleprintingpagesetupbase.ui:195
+#, kde-format
+msgid "Horizontally"
+msgstr "Vodorovně"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/simpleprintingpagesetupbase.ui:207
+#, kde-format
+msgid "Vertically"
+msgstr "Svisle"
+
+#. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
+#: part/simpleprintingpagesetupbase.ui:232
+#, kde-format
+msgid "&Natural size"
+msgstr "Přiroze&ná velikost"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
+#: part/simpleprintingpagesetupbase.ui:239
+#, kde-format
+msgid "Fit &to one page"
+msgstr "Přizpůsobi&t jedné stránce"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
+#: part/simpleprintingpagesetupbase.ui:246
+#, kde-format
+msgid "F&it to several pages"
+msgstr "Přizpůsob&it více stránkám"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: part/simpleprintingpagesetupbase.ui:262
+#, kde-format
+msgid "Related actions:"
+msgstr "Související činnosti:"
+
+#: part/simpleprintpreviewwindow.cpp:69
+#, kde-format
+msgid "%1 - Print Preview - %2"
+msgstr "%1 - Náhled před tiskem - %2"
+
+#: part/simpleprintpreviewwindow.cpp:84
+#, kde-format
+msgid "&Page setup"
+msgstr "&Nastavení stránky"
+
+#: part/simpleprintpreviewwindow.cpp:123
+#, kde-format
+msgid "Previous Page"
+msgstr "Předchozí strana"
+
+#: part/simpleprintpreviewwindow.cpp:133
+#, kde-format
+msgid "Next Page"
+msgstr "Následující strana"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: preferencesAppearance.ui:19
+#, kde-format
+msgid "Default background color:"
+msgstr "Výchozí barva pozadí:"
+
+#. i18n: ectx: property (text), widget (QLabel, note)
+#: preferencesAppearance.ui:51
+#, kde-format
+msgid "Note: this will be overridden if the graph has its own background color"
+msgstr "Poznámka: toto bude ignorováno, pokud má graf vlastní barvu pozadí"
+
+#. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
+#: preferencesOpenInExistingWindow.ui:17
+#, kde-format
+msgid "Open in existing window"
+msgstr "Otevřít v existujícím okně"
+
+#. i18n: ectx: property (text), widget (QRadioButton, yes)
+#: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
+#: preferencesReopenPreviouslyOpenedFiles.ui:29
+#, kde-format
+msgid "&Yes"
+msgstr "&Ano"
+
+#. i18n: ectx: property (text), widget (QRadioButton, no)
+#: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
+#: preferencesReopenPreviouslyOpenedFiles.ui:36
+#, kde-format
+msgid "&No"
+msgstr "&Ne"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesOpenInExistingWindow.ui:37
+#: preferencesReopenPreviouslyOpenedFiles.ui:43
+#, kde-format
+msgid "As&k"
+msgstr "Do&tázat se"
+
+#. i18n: ectx: property (title), widget (QGroupBox, parsingMode)
+#: preferencesParsing.ui:17
+#, kde-format
+msgid "Parse using:"
+msgstr "Zpracovat pomocí:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, external)
+#: preferencesParsing.ui:26
+#, kde-format
+msgid "E&xternal command"
+msgstr "E&xterní příkaz"
+
+#. i18n: ectx: property (text), widget (QRadioButton, internal)
+#: preferencesParsing.ui:33
+#, kde-format
+msgid "Internal &library"
+msgstr "Interní &knihovna"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
+#: preferencesReload.ui:17
+#, kde-format
+msgid "Reload files modified on disk"
+msgstr "Znovu načíst soubory změněné na disku?"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesReload.ui:40
+#, kde-format
+msgid "&Ask"
+msgstr "Dotáz&at se"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
+#: preferencesReopenPreviouslyOpenedFiles.ui:17
+#, kde-format
+msgid "Reopen previously opened files"
+msgstr "Znovu otevřít naposledy otevřené soubory"

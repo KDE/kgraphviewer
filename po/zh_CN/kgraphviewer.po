@@ -1,0 +1,1212 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeorg\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:43+0000\n"
+"PO-Revision-Date: 2022-09-20 01:55\n"
+"Last-Translator: \n"
+"Language-Team: Chinese Simplified\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: kdeorg\n"
+"X-Crowdin-Project-ID: 269464\n"
+"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-File: /kf5-trunk/messages/kgraphviewer/kgraphviewer.pot\n"
+"X-Crowdin-File-ID: 6164\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "KDE 中国, Guo Yunhe, Henry Hu, Wordless Echo"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+"kde-china@kde.org, i@guoyunhe.me, henry.hu.sh@gmail.com, wordless@echo.moe"
+
+#: kgrapheditor.cpp:131 kgraphviewer.cpp:113
+#, kde-format
+msgid "Session Restore"
+msgstr "会话恢复"
+
+#: kgrapheditor.cpp:131
+#, kde-format
+msgid "Do you want to reload files from previous session?"
+msgstr "您想要重新加载上次会话中的文件吗？"
+
+#: kgrapheditor.cpp:147
+#, kde-format
+msgid "Unable to start"
+msgstr "无法启动"
+
+#: kgrapheditor.cpp:147 kgraphviewer.cpp:131
+#, kde-format
+msgid "Could not find the KGraphViewer part."
+msgstr "无法找到 KGraphViewer 部件。"
+
+#: kgrapheditor.cpp:228 kgraphviewer.cpp:211
+#, kde-format
+msgid "Closes the current file"
+msgstr "关闭当前文件"
+
+#: kgrapheditor.cpp:241
+#, kde-format
+msgid "Create a New Vertex"
+msgstr "创建新顶点"
+
+#: kgrapheditor.cpp:246
+#, kde-format
+msgid "Create a New Edge"
+msgstr "创建新边"
+
+#: kgrapheditor.cpp:506
+#, kde-format
+msgid "Save current graph"
+msgstr "保存当前图"
+
+#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
+#, kde-format
+msgid "Parsing"
+msgstr "正在解析"
+
+#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
+#, kde-format
+msgid "Reloading"
+msgstr "重新載入中"
+
+#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
+#, kde-format
+msgid "Opening"
+msgstr "正在打开"
+
+#: kgrapheditorConfigDialog.cpp:64 kgraphviewerConfigDialog.cpp:75
+#, kde-format
+msgid "Session Management"
+msgstr "会话管理"
+
+#: KGraphEditorElementTreeWidget.cpp:49 KGraphEditorNodesTreeWidget.cpp:54
+#, kde-format
+msgid "Add a new attribute"
+msgstr "添加新属性"
+
+#: KGraphEditorElementTreeWidget.cpp:55 KGraphEditorNodesTreeWidget.cpp:60
+#, kde-format
+msgid "Remove this attribute"
+msgstr "删除此属性"
+
+#: kgrapheditormain.cpp:46
+#, kde-format
+msgid "KGraphEditor"
+msgstr "KGraphEditor"
+
+#: kgrapheditormain.cpp:46
+#, kde-format
+msgid "A Graphviz DOT graph editor by KDE"
+msgstr "一款 KDE 的 Graphviz DOT 图编辑器"
+
+#: kgrapheditormain.cpp:46 main.cpp:51
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2010 Gaël de Chalendar"
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "Path or URL to scan"
+msgstr "要扫描的路径或 URL"
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "[url]"
+msgstr "[url]"
+
+#: kgrapheditormain.cpp:83
+#, kde-format
+msgid ""
+"A KGraphEditor window is already open, do you want to open the file in it?"
+msgstr "一个 KGraphEditor 窗口已打开，您是否要在其中打开文件？"
+
+#: kgrapheditormain.cpp:83 main.cpp:94
+#, kde-format
+msgid "Opening in new window confirmation"
+msgstr "在新窗口打开确认"
+
+#: KGraphEditorNodesTreeWidget.cpp:65
+#, kde-format
+msgid "Remove this node"
+msgstr "删除此节点"
+
+#. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
+#, kde-format
+msgid "The answer to the question 'File modified, do you want to reload it'"
+msgstr "问题“文件已更改，您想要重新加载它吗？”的回答"
+
+#. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
+#, kde-format
+msgid ""
+"To choose whether to parse using an external command (usually dot) or the "
+"graphviz library"
+msgstr "选择是使用一个外部命令 (一般是 dot) 来解析还是用 graphviz 库"
+
+#. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
+#, kde-format
+msgid ""
+"The answer to the question 'If another window already exist when launching "
+"kgraphviewer, should we open in it, open a new window or ask?'"
+msgstr ""
+"问题“如果启动 kgraphviewer 时已存在其他窗口，我们应该在其中打开、打开新窗口还"
+"是进行询问？”的回答"
+
+#. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
+#, kde-format
+msgid ""
+"The answer to the question 'Should the files that were opened in previous "
+"sessions be reopened at startup?'"
+msgstr "问题“上次会话中打开的文件应该在启动时重新打开吗？”的回答"
+
+#. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
+#: part/kgraphviewer_partsettings.kcfg:9
+#, kde-format
+msgid "If true, the bird's eye view will be shown if needed."
+msgstr "如果为真，则会在需要时显示鸟瞰视图。"
+
+#. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
+#, kde-format
+msgid "The list of files that were opened in past instances of kgraphviewer"
+msgstr "过去在 kgraphviewer 实例中打开过的文件列表"
+
+#. i18n: ectx: ToolBar (viewToolBar)
+#: kgrapheditorui.rc:23 kgraphviewerui.rc:17
+#, kde-format
+msgid "View Toolbar"
+msgstr "视图工具栏"
+
+#. i18n: ectx: ToolBar (helpToolBar)
+#: kgrapheditorui.rc:26 kgraphviewerui.rc:20
+#, kde-format
+msgid "Help Toolbar"
+msgstr "帮助工具栏"
+
+#. i18n: ectx: ToolBar (editToolBar)
+#: kgrapheditorui.rc:31
+#, kde-format
+msgid "Edit Toolbar"
+msgstr "编辑工具栏"
+
+#: kgraphviewer.cpp:113
+#, kde-format
+msgid "Do you want to reload files from the previous session?"
+msgstr "您想要重新加载上次会话中的文件吗？"
+
+#: kgraphviewer.cpp:198
+#, kde-format
+msgid "Opens a new empty KGraphViewer window."
+msgstr "打开一个新的空 KGraphViewer 窗口。"
+
+#: kgraphviewer.cpp:201
+#, kde-format
+msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
+msgstr "显示一个打开文件对话框来选择一个 Graphviz DOT 文件来打开。"
+
+#: kgraphviewer.cpp:205
+#, kde-format
+msgid ""
+"This lists files which you have opened recently, and allows you to easily "
+"open them again."
+msgstr "您最近打开过的文件列表，让您更方便地再次打开它们。"
+
+#: kgraphviewer.cpp:215
+#, kde-format
+msgid "Quits KGraphViewer."
+msgstr "退出 KGraphViewer。"
+
+#: kgraphviewer.cpp:218
+#, kde-format
+msgid "Shows or hides the status bar."
+msgstr "显示或隐藏状态栏。"
+
+#: kgraphviewer.cpp:221
+#, kde-format
+msgid "Configure the bindings between keys and actions."
+msgstr "配置按键和操作间的绑定。"
+
+#: kgraphviewer.cpp:224
+#, kde-format
+msgid "Toolbar configuration."
+msgstr "工具栏配置。"
+
+#: kgraphviewer.cpp:227
+#, kde-format
+msgid "Main KGraphViewer configuration options."
+msgstr "主要的 KGraphviewer 配置选项。"
+
+#: kgraphviewerConfigDialog.cpp:71
+#, kde-format
+msgid "Appearance"
+msgstr "外观"
+
+#. i18n: ectx: label, entry (backgroundColor), group (Appearance)
+#: kgraphviewersettings.kcfg:34
+#, kde-format
+msgid "Background color of the graph view."
+msgstr "图视图的背景色。"
+
+#: main.cpp:47
+#, kde-format
+msgid "KGraphViewer"
+msgstr "KGraphViewer"
+
+#: main.cpp:49
+#, kde-format
+msgid "A Graphviz DOT graph viewer"
+msgstr "Graphviz DOT 图表查看器"
+
+#: main.cpp:54
+#, kde-format
+msgid "Gaël de Chalendar"
+msgstr "Gaël de Chalendar"
+
+#: main.cpp:54
+#, kde-format
+msgid "Original Author and current maintainer"
+msgstr "原作者和当前维护者"
+
+#: main.cpp:55
+#, kde-format
+msgid "Reimar Döffinger"
+msgstr "Reimar Döffinger"
+
+#: main.cpp:55 main.cpp:56 main.cpp:57 main.cpp:58
+#, kde-format
+msgid "Contributor"
+msgstr "贡献者"
+
+#: main.cpp:56
+#, kde-format
+msgid "Matthias Peinhardt"
+msgstr "Matthias Peinhardt"
+
+#: main.cpp:57
+#, kde-format
+msgid "Sandro Andrade"
+msgstr "Sandro Andrade"
+
+#: main.cpp:58
+#, kde-format
+msgid "Milian Wolff"
+msgstr "Milian Wolff"
+
+#: main.cpp:59
+#, kde-format
+msgid "Martin Sandsmark"
+msgstr "Martin Sandsmark"
+
+#: main.cpp:59
+#, kde-format
+msgid "Port to KF5"
+msgstr "移植到 KF5"
+
+#: main.cpp:94
+#, kde-format
+msgid ""
+"A KGraphViewer window is already open, where do you want to open this file "
+"in the existing window?"
+msgstr "一个 KGraphViewer 窗口已打开，请问您是否需要在现有窗口中打开此文件？"
+
+#: part/canvasedge.cpp:74
+#, kde-format
+msgid ""
+"%1 -> %2\n"
+"label='%3'"
+msgstr ""
+"%1 -> %2\n"
+"label='%3'"
+
+#: part/canvasedge.cpp:78
+#, kde-format
+msgid "Remove selected edge(s)"
+msgstr "删除选中的边"
+
+#: part/canvaselement.cpp:92
+#, kde-format
+msgid "Remove selected element(s)"
+msgstr "删除所选元素"
+
+#: part/canvasnode.cpp:64
+#, kde-format
+msgid ""
+"id='%1'\n"
+"label='%2'"
+msgstr ""
+"id='%1'\n"
+"label='%2'"
+
+#: part/dotgraph.cpp:265 part/dotgraph.cpp:268 part/dotgraph.cpp:271
+#: part/dotgraph.cpp:274 part/dotgraph.cpp:277 part/dotgraph.cpp:280
+#, kde-format
+msgid "Layout process failed"
+msgstr "布局处理失败"
+
+#: part/dotgraph.cpp:265
+#, kde-format
+msgid "Unable to start %1."
+msgstr "无法启动 %1。"
+
+#: part/dotgraph.cpp:268
+#, kde-format
+msgid "%1 crashed."
+msgstr "%1 已崩溃。"
+
+#: part/dotgraph.cpp:271
+#, kde-format
+msgid "%1 timed out."
+msgstr "%1 已超时。"
+
+#: part/dotgraph.cpp:274
+#, kde-format
+msgid "Was not able to write data to the %1 process."
+msgstr "无法向 %1 进程写入数据。"
+
+#: part/dotgraph.cpp:277
+#, kde-format
+msgid "Was not able to read data from the %1 process."
+msgstr "无法从 %1 进程读取数据。"
+
+#: part/dotgraph.cpp:280
+#, kde-format
+msgid "Unknown error running %1."
+msgstr "运行 %1 发生未知错误。"
+
+#: part/dotgraphview.cpp:421
+#, kde-format
+msgid "Select Layout Algo"
+msgstr "选择布局算法"
+
+#: part/dotgraphview.cpp:424
+#, kde-format
+msgid "Dot"
+msgstr "Dot"
+
+#: part/dotgraphview.cpp:425
+#, kde-format
+msgid "Layout the graph using the dot program."
+msgstr "使用 dot 程序布局图。"
+
+#: part/dotgraphview.cpp:429
+#, kde-format
+msgid "Neato"
+msgstr "Neato"
+
+#: part/dotgraphview.cpp:430
+#, kde-format
+msgid "Layout the graph using the neato program."
+msgstr "使用 neato 程序布局图。"
+
+#: part/dotgraphview.cpp:434
+#, kde-format
+msgid "Twopi"
+msgstr "Twopi"
+
+#: part/dotgraphview.cpp:435
+#, kde-format
+msgid "Layout the graph using the twopi program."
+msgstr "使用 twopi 程序布局图。"
+
+#: part/dotgraphview.cpp:439
+#, kde-format
+msgid "Fdp"
+msgstr "Fdp"
+
+#: part/dotgraphview.cpp:440
+#, kde-format
+msgid "Layout the graph using the fdp program."
+msgstr "使用 fdp 程序布局图。"
+
+#: part/dotgraphview.cpp:444
+#, kde-format
+msgid "Circo"
+msgstr "Circo"
+
+#: part/dotgraphview.cpp:445
+#, kde-format
+msgid "Layout the graph using the circo program."
+msgstr "使用 circo 程序布局图。"
+
+#: part/dotgraphview.cpp:457
+#, kde-format
+msgid "Choose a Graphviz layout algorithm or edit your own one."
+msgstr "选择 Graphviz 布局算法或编辑您自己的。"
+
+#: part/dotgraphview.cpp:459
+#, kde-format
+msgid ""
+"Choose a Graphviz layout algorithm or type in your own command that will "
+"generate a graph in the xdot format on its standard output. For example, to "
+"manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+msgstr ""
+"选择一个 Graphviz 布局算法，或者输入您自己的命令。该命令需要在它的标准输出中"
+"给出一个 xdot 格式的图。例如，如果您需要手动为 dot 命令指定 <tt>G</tt> 参数，"
+"可以输入：<tt>dot -Gname=MyGraphName -Txdot </tt>"
+
+#: part/dotgraphview.cpp:465
+#, kde-format
+msgid "Layout"
+msgstr "布局"
+
+#: part/dotgraphview.cpp:467
+#, kde-format
+msgid "Specify layout command"
+msgstr "指定布局命令"
+
+#: part/dotgraphview.cpp:468
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"指定您自己的布局命令。给定一个 dot 文件，它应该在标准输出中给出一个 xdot 文"
+"件。"
+
+#: part/dotgraphview.cpp:469
+#, kde-format
+msgid "Reset layout command to default"
+msgstr "重置布局命令为默认值"
+
+#: part/dotgraphview.cpp:470
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr "重置布局命令为根据图类型选择的默认值 (有向图或者无向图)。"
+
+#: part/dotgraphview.cpp:472
+#, kde-format
+msgid "Zoom In"
+msgstr "放大"
+
+#: part/dotgraphview.cpp:473
+#, kde-format
+msgid "Zoom Out"
+msgstr "缩小"
+
+#: part/dotgraphview.cpp:477
+#, kde-format
+msgid "Export Graph"
+msgstr "将图表导出"
+
+#: part/dotgraphview.cpp:479
+#, kde-format
+msgid "Allows the graph to be exported in another format."
+msgstr "允许将图导出为其他格式。"
+
+#: part/dotgraphview.cpp:481
+#, kde-format
+msgid ""
+"Use the Export Graph menu to export the graph in another format. There is "
+"currently only one export format supported: as a PNG image."
+msgstr ""
+"使用“导出图”菜单来将图导出为另一个格式。目前仅支持导出为一个格式：PNG 图像。"
+
+#: part/dotgraphview.cpp:485
+#, kde-format
+msgid "As Image..."
+msgstr "为图像..."
+
+#: part/dotgraphview.cpp:486
+#, kde-format
+msgid "Export the graph to an image file."
+msgstr "导出图为图像文件。"
+
+#: part/dotgraphview.cpp:494
+#, kde-format
+msgid "Enable Bird's-eye View"
+msgstr "启用鸟瞰图"
+
+#: part/dotgraphview.cpp:497
+#, kde-format
+msgid "Enables or disables the Bird's-eye View"
+msgstr "启用或禁用鸟瞰视图"
+
+#: part/dotgraphview.cpp:502
+#, kde-format
+msgid "Birds-eye View"
+msgstr "鸟瞰图"
+
+#: part/dotgraphview.cpp:503
+#, kde-format
+msgid "Allows the Bird's-eye View to be setup."
+msgstr "允许对鸟瞰视图进行设置。"
+
+#: part/dotgraphview.cpp:507
+#, kde-format
+msgid "Top Left"
+msgstr "左上"
+
+#: part/dotgraphview.cpp:508
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-left corner."
+msgstr "将鸟瞰视图放在左上角。"
+
+#: part/dotgraphview.cpp:512
+#, kde-format
+msgid "Top Right"
+msgstr "右上"
+
+#: part/dotgraphview.cpp:513
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-right corner."
+msgstr "将鸟瞰视图放在右上角。"
+
+#: part/dotgraphview.cpp:517
+#, kde-format
+msgid "Bottom Left"
+msgstr "左下"
+
+#: part/dotgraphview.cpp:518
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-left corner."
+msgstr "将鸟瞰视图放在左下角。"
+
+#: part/dotgraphview.cpp:522
+#, kde-format
+msgid "Bottom Right"
+msgstr "右下"
+
+#: part/dotgraphview.cpp:523
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-right corner."
+msgstr "将鸟瞰视图放在右下角。"
+
+#: part/dotgraphview.cpp:527
+#, kde-format
+msgid "Automatic"
+msgstr "自动"
+
+#: part/dotgraphview.cpp:528
+#, kde-format
+msgid ""
+"Let KGraphViewer automatically choose the position of the Bird's-eye View."
+msgstr "让 KGraphViewer 自动选择鸟瞰视图的位置。"
+
+#: part/dotgraphview.cpp:575
+#, kde-format
+msgid "Select file"
+msgstr "选择文件"
+
+#: part/dotgraphview.cpp:589
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer"
+msgstr "由 KGraphViewer 生成的 SVG 图"
+
+#: part/dotgraphview.cpp:590
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer."
+msgstr "由 KGraphViewer 生成的 SVG 图。"
+
+#: part/dotgraphview.cpp:637
+#, kde-format
+msgid ""
+"<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
+"than the widget area, an overview panner is shown in one edge. Choose "
+"through the context menu if the optimal position of this overview should be "
+"automatically computed or put it where you want.</p><h2>How to work with it?"
+"</h2><ul><li>To move the graph, you can:  <ul>    <li>click & drag it</"
+"li>    <li>use the elevators</li>    <li>press the arrows keys</li>    "
+"<li>click somewhere in the panner view</li>    <li>use the mouse wheel (up "
+"and down with no modifier, left and right with the <Alt> key pressed)</"
+"li>    <li>or click & drag the panner view</li>  </ul></li><li>To zoom, you "
+"can either use the zoom in and zoom out toolbar buttons, or click on the "
+"<Shift> key while rolling your mouse wheel.</li><li>Try the contextual menu "
+"(usually by right-clicking) to discover other possibilities.</li><li>Try the "
+"<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
+"printing options.</li></ul>"
+msgstr ""
+"<h1>Graphviz DOT 格式图可视化</h1><p>如果图比控件区域大，在某一边会显示一个概"
+"览视图。通过右键菜单可以选择是自动计算概览图位置较好，还是将其放置于您希望的"
+"位置。</p><h2>怎么使用它？</h2><ul><li>要移动图，您可以：<ul>  <li>点击并拖拽"
+"它</li>  <li>使用导航</li>  <li>按方向键</li>  <li>点击概览视图中的某处</"
+"li>  <li>使用鼠标滚轮 (上下移动可直接完成，左右移动需要按下 <Alt> 键)</li>  "
+"<li>或者点击并拖拽概览视图</li>  </ul></li><li>要进行缩放，您可以使用放大缩小"
+"工具栏按钮，或者按住 <Shift> 键同时滚动鼠标滚轮。</li><li>您可以探索右键菜单 "
+"(一般通过右键) 来发现其他可能性。</li><li>尝试 <tt>打印预览</tt> 或者 <tt>页"
+"面设置</tt> 按钮来探索打印选项。</li></ul>"
+
+#: part/dotgraphview.cpp:790
+#, kde-format
+msgid "no graph loaded"
+msgstr "未加载图表"
+
+#: part/dotgraphview.cpp:906 part/dotgraphview.cpp:927
+#: part/dotgraphview.cpp:974
+#, kde-format
+msgid "graph %1 is getting loaded..."
+msgstr "正在载入图表 %1..."
+
+#: part/dotgraphview.cpp:914
+#, kde-format
+msgid "error parsing file %1"
+msgstr "解析文件 %1 出错"
+
+#: part/dotgraphview.cpp:1615
+#, kde-format
+msgid "Reload Confirmation"
+msgstr "重新加载确认"
+
+#: part/dotgraphview.cpp:1615
+#, kde-format
+msgid ""
+"The file %1 has been modified on disk.\n"
+"Do you want to reload it?"
+msgstr ""
+"磁盘上的文件 %1 已更改。\n"
+"您想要重新加载它吗？"
+
+#: part/dotgraphview.cpp:1701
+#, kde-format
+msgid "Layout Command"
+msgstr "布局命令"
+
+#: part/dotgraphview.cpp:1702
+#, kde-format
+msgid ""
+"Specify here the command that will be used to layout the graph.\n"
+"The command MUST write its results on stdout in xdot format."
+msgstr ""
+"指定计算图的布局要用的命令。\n"
+"这个命令必需在它的标准输出中以 xdot 格式给出结果。"
+
+#: part/dotgraphview.cpp:2155
+#, kde-format
+msgid "Failed to open %1"
+msgstr "打开 %1 失败"
+
+#: part/kgraphviewer_part.cpp:102
+#, kde-format
+msgid "Print the graph using current page setup settings"
+msgstr "用当前页面设置打印图"
+
+#: part/kgraphviewer_part.cpp:106
+#, kde-format
+msgid "Open the print preview window"
+msgstr "打开打印预览窗口"
+
+#: part/kgraphviewer_part.cpp:110
+#, kde-format
+msgid "Page setup"
+msgstr "页面设置"
+
+#: part/kgraphviewer_part.cpp:111
+#, kde-format
+msgid "Opens the Page Setup dialog to allow graph printing to be setup"
+msgstr "打开“页面设置”对话框来设置图的打印结果"
+
+#: part/kgraphviewer_part.cpp:114
+#, kde-format
+msgid "Reload the current graph from file"
+msgstr "重新从文件加载当前图表"
+
+#: part/kgraphviewer_part.cpp:119
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "将当前所观察的图放大10%"
+
+#: part/kgraphviewer_part.cpp:124
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "将当前所观察的图缩小10%"
+
+#. i18n: ectx: Menu (file)
+#: part/kgraphviewer_part.rc:4
+#, kde-format
+msgid "&File"
+msgstr "文件(&F)"
+
+#. i18n: ectx: Menu (view)
+#: part/kgraphviewer_part.rc:11
+#, kde-format
+msgid "&View"
+msgstr "视图(&V)"
+
+#: part/KgvPageLayout.cpp:68
+#, kde-format
+msgctxt "Page size"
+msgid "Screen"
+msgstr "滤色"
+
+#: part/KgvPageLayout.cpp:69
+#, kde-format
+msgctxt "Page size"
+msgid "Custom"
+msgstr "定制"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: part/KgvPageLayoutColumnsBase.ui:27
+#, kde-format
+msgid "Columns:"
+msgstr "栏数："
+
+#. i18n: ectx: property (text), widget (QLabel, labelSpacing)
+#: part/KgvPageLayoutColumnsBase.ui:37
+#, kde-format
+msgid "Column spacing:"
+msgstr "栏间距："
+
+#: part/KgvPageLayoutDia.cpp:62
+#, kde-format
+msgid "Page Preview"
+msgstr "页面预览"
+
+#: part/KgvPageLayoutDia.cpp:277
+#, kde-format
+msgid "Page Size & Margins"
+msgstr "页面大小和页边距"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/KgvPageLayoutHeaderBase.ui:17
+#, kde-format
+msgid "Header"
+msgstr "报头"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhFirst)
+#: part/KgvPageLayoutHeaderBase.ui:23
+#, kde-format
+msgid "Different header for the first page"
+msgstr "首页使用不同的页眉"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:30
+#, kde-format
+msgid "Different header for even and odd pages"
+msgstr "对偶数页和奇数页使用不同的页眉"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: part/KgvPageLayoutHeaderBase.ui:55
+#, kde-format
+msgid "Spacing between header and body:"
+msgstr "页眉与正文间距："
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/KgvPageLayoutHeaderBase.ui:77
+#, kde-format
+msgid "Footer"
+msgstr "页脚"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfFirst)
+#: part/KgvPageLayoutHeaderBase.ui:83
+#, kde-format
+msgid "Different footer for the first page"
+msgstr "首页使用不同的页脚"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:90
+#, kde-format
+msgid "Different footer for even and odd pages"
+msgstr "对偶数页和奇数页使用不同的页脚"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: part/KgvPageLayoutHeaderBase.ui:115
+#, kde-format
+msgid "Spacing between footer and body:"
+msgstr "页脚与正文间距："
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/KgvPageLayoutHeaderBase.ui:137
+#, kde-format
+msgid "Footnote/Endnote"
+msgstr "脚注/尾注"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: part/KgvPageLayoutHeaderBase.ui:159
+#, kde-format
+msgid "Spacing between footnote and body:"
+msgstr "脚注与正文间距："
+
+#: part/KgvPageLayoutSize.cpp:62
+#, kde-format
+msgid "Unit:"
+msgstr "单位："
+
+#: part/KgvPageLayoutSize.cpp:75
+#, kde-format
+msgid "All values are given in %1."
+msgstr "所有值的单位均为 %1。"
+
+#: part/KgvPageLayoutSize.cpp:80
+#, kde-format
+msgid "Page Size"
+msgstr "页面大小"
+
+#: part/KgvPageLayoutSize.cpp:89
+#, kde-format
+msgid "&Size:"
+msgstr "大小(&S)："
+
+#: part/KgvPageLayoutSize.cpp:110
+#, kde-format
+msgid "&Width:"
+msgstr "宽度(&W)："
+
+#: part/KgvPageLayoutSize.cpp:121
+#, kde-format
+msgid "&Height:"
+msgstr "高度(&H)："
+
+#: part/KgvPageLayoutSize.cpp:135
+#, kde-format
+msgid "Orientation"
+msgstr "朝向"
+
+#: part/KgvPageLayoutSize.cpp:139
+#, kde-format
+msgid "&Portrait"
+msgstr "纵向(&P)"
+
+#: part/KgvPageLayoutSize.cpp:143
+#, kde-format
+msgid "La&ndscape"
+msgstr "横向(&N)"
+
+#: part/KgvPageLayoutSize.cpp:151
+#, kde-format
+msgid "Margins"
+msgstr "页边距"
+
+#: part/KgvPageLayoutSize.cpp:374 part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "Page Layout Problem"
+msgstr "页面布局问题"
+
+#: part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "The page width is smaller than the left and right margins."
+msgstr "页面宽度小于左右页边距。"
+
+#: part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "The page height is smaller than the top and bottom margins."
+msgstr "页面高度小于上下页边距。"
+
+#: part/KgvUnit.cpp:51
+#, kde-format
+msgid "Millimeters (mm)"
+msgstr "毫米(mm)"
+
+#: part/KgvUnit.cpp:53
+#, kde-format
+msgid "Centimeters (cm)"
+msgstr "厘米(cm)"
+
+#: part/KgvUnit.cpp:55
+#, kde-format
+msgid "Decimeters (dm)"
+msgstr "分米(dm)"
+
+#: part/KgvUnit.cpp:57
+#, kde-format
+msgid "Inches (in)"
+msgstr "英寸(in)"
+
+#: part/KgvUnit.cpp:59
+#, kde-format
+msgid "Pica (pi)"
+msgstr "Pica (pi)"
+
+#: part/KgvUnit.cpp:61
+#, kde-format
+msgid "Didot (dd)"
+msgstr "迪道点活字 (dd)"
+
+#: part/KgvUnit.cpp:63
+#, kde-format
+msgid "Cicero (cc)"
+msgstr "Cicero (cc)"
+
+#: part/KgvUnit.cpp:65
+#, kde-format
+msgid "Points (pt)"
+msgstr "磅(pt)"
+
+#: part/KgvUnit.cpp:67
+#, kde-format
+msgid "Error."
+msgstr "错误。"
+
+#: part/pannerview.cpp:64
+#, kde-format
+msgid "View of the complete graph. Click and drag to move the visible part."
+msgstr "查看完整图。点击并拖拽可移动可视区域。"
+
+#: part/pannerview.cpp:66
+#, kde-format
+msgid ""
+"<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
+"red square will move the center of the view to where the mouse was clicked.</"
+"p><p>Clicking and dragging within the red square will cause the view to "
+"follow the movement.</p>"
+msgstr ""
+"<h1>观察全图</h1><p>单击没有红框的任意位置会将视图中心移到点击位置。</p><p>点"
+"击并拖拽红框会使视图跟着一起移动。</p>"
+
+#: part/simpleprintingcommand.cpp:98
+#, kde-format
+msgid "Print Preview"
+msgstr "打印预览"
+
+#: part/simpleprintingengine.cpp:200 part/simpleprintpreviewwindow.cpp:219
+#: part/simpleprintpreviewwindow.cpp:237
+#, kde-format
+msgctxt "Page (number) of (total)"
+msgid "Page %1 of %2"
+msgstr "第 %1 页，共 %2 页"
+
+#: part/simpleprintingengine.cpp:202
+#, kde-format
+msgid "Page %1"
+msgstr "第%1页"
+
+#: part/simpleprintingpagesetup.cpp:101
+#, kde-format
+msgid "Print Preview..."
+msgstr "打印预览..."
+
+#: part/simpleprintingpagesetup.cpp:104
+#, kde-format
+msgid "Font..."
+msgstr "字体..."
+
+#: part/simpleprintingpagesetup.cpp:105
+#, kde-format
+msgid "Changes font for title text."
+msgstr "更改标题文本的字体。"
+
+#: part/simpleprintingpagesetup.cpp:111
+#, kde-format
+msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
+msgstr "<qt><h2>用于打印图 \"%1\" 的页面设置</h2></qt>"
+
+#: part/simpleprintingpagesetup.cpp:116
+#, kde-format
+msgid "Saves settings for this setup as default."
+msgstr "将此设置保存为默认设置。"
+
+#: part/simpleprintingpagesetup.cpp:119
+#, kde-format
+msgid "Adds date and time to the header."
+msgstr "向页眉添加日期和时间。"
+
+#: part/simpleprintingpagesetup.cpp:120
+#, kde-format
+msgid "Adds page numbers to the footer."
+msgstr "向页脚添加页码。"
+
+#: part/simpleprintingpagesetup.cpp:121
+#, kde-format
+msgid "Adds table borders."
+msgstr "添加表格边框。"
+
+#: part/simpleprintingpagesetup.cpp:129
+#, kde-format
+msgid "Change Page Size and Margins..."
+msgstr "更改页面大小和页边距..."
+
+#: part/simpleprintingpagesetup.cpp:130
+#, kde-format
+msgid "Changes page size and margins."
+msgstr "更改页面大小和页边距。"
+
+#: part/simpleprintingpagesetup.cpp:187
+#, kde-format
+msgid "Chosen font looks like this"
+msgstr "选定的字体看起来是这样"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Portrait"
+msgstr "肖像"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Landscape"
+msgstr "风景"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "margins:"
+msgstr "页边距："
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: part/simpleprintingpagesetupbase.ui:68
+#, kde-format
+msgid "Pa&ge font:"
+msgstr "页面字体(&g)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/simpleprintingpagesetupbase.ui:97
+#, kde-format
+msgid "Page Size && Margins"
+msgstr "页面大小和边距"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:122
+#, kde-format
+msgid "Add &borders"
+msgstr "添加边框(&b)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
+#: part/simpleprintingpagesetupbase.ui:129
+#, kde-format
+msgid "Add date and time"
+msgstr "添加日期和时间"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:152
+#, kde-format
+msgid "Add page numbers"
+msgstr "添加页码"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
+#: part/simpleprintingpagesetupbase.ui:163
+#, kde-format
+msgid "Number of pages to fit on"
+msgstr "要适配到的页面数量"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/simpleprintingpagesetupbase.ui:195
+#, kde-format
+msgid "Horizontally"
+msgstr "水平"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/simpleprintingpagesetupbase.ui:207
+#, kde-format
+msgid "Vertically"
+msgstr "垂直"
+
+#. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
+#: part/simpleprintingpagesetupbase.ui:232
+#, kde-format
+msgid "&Natural size"
+msgstr "自然大小(&N)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
+#: part/simpleprintingpagesetupbase.ui:239
+#, kde-format
+msgid "Fit &to one page"
+msgstr "适配到一页 (&T)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
+#: part/simpleprintingpagesetupbase.ui:246
+#, kde-format
+msgid "F&it to several pages"
+msgstr "适配到多页 (&I)"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: part/simpleprintingpagesetupbase.ui:262
+#, kde-format
+msgid "Related actions:"
+msgstr "相关操作："
+
+#: part/simpleprintpreviewwindow.cpp:69
+#, kde-format
+msgid "%1 - Print Preview - %2"
+msgstr "%1 - 打印预览 - %2"
+
+#: part/simpleprintpreviewwindow.cpp:84
+#, kde-format
+msgid "&Page setup"
+msgstr "页面设置(&P)"
+
+#: part/simpleprintpreviewwindow.cpp:123
+#, kde-format
+msgid "Previous Page"
+msgstr "上一页"
+
+#: part/simpleprintpreviewwindow.cpp:133
+#, kde-format
+msgid "Next Page"
+msgstr "下一页"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: preferencesAppearance.ui:19
+#, kde-format
+msgid "Default background color:"
+msgstr "默认背景颜色："
+
+#. i18n: ectx: property (text), widget (QLabel, note)
+#: preferencesAppearance.ui:51
+#, kde-format
+msgid "Note: this will be overridden if the graph has its own background color"
+msgstr "提示：如果图有自己的背景色，这会被覆盖"
+
+#. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
+#: preferencesOpenInExistingWindow.ui:17
+#, kde-format
+msgid "Open in existing window"
+msgstr "在已有窗口中打开"
+
+#. i18n: ectx: property (text), widget (QRadioButton, yes)
+#: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
+#: preferencesReopenPreviouslyOpenedFiles.ui:29
+#, kde-format
+msgid "&Yes"
+msgstr "是(&Y)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, no)
+#: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
+#: preferencesReopenPreviouslyOpenedFiles.ui:36
+#, kde-format
+msgid "&No"
+msgstr "否(&N)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesOpenInExistingWindow.ui:37
+#: preferencesReopenPreviouslyOpenedFiles.ui:43
+#, kde-format
+msgid "As&k"
+msgstr "询问(&K)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, parsingMode)
+#: preferencesParsing.ui:17
+#, kde-format
+msgid "Parse using:"
+msgstr "解析使用："
+
+#. i18n: ectx: property (text), widget (QRadioButton, external)
+#: preferencesParsing.ui:26
+#, kde-format
+msgid "E&xternal command"
+msgstr "外部命令(&X)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, internal)
+#: preferencesParsing.ui:33
+#, kde-format
+msgid "Internal &library"
+msgstr "内部库(&L)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
+#: preferencesReload.ui:17
+#, kde-format
+msgid "Reload files modified on disk"
+msgstr "重新加载磁盘上已修改的文件"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesReload.ui:40
+#, kde-format
+msgid "&Ask"
+msgstr "&询问"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
+#: preferencesReopenPreviouslyOpenedFiles.ui:17
+#, kde-format
+msgid "Reopen previously opened files"
+msgstr "重新打开上次打开的文件"

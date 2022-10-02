@@ -1,0 +1,1656 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY graphviz "<application
+><ulink url=&#034;https://www.graphviz.org&#034;
+>Graphviz</ulink
+></application
+>">
+  <!ENTITY boost "<ulink url=&#034;https://www.boost.org&#034;
+>Boost</ulink
+>">
+  <!ENTITY qanava "<application
+>Qanava</application
+>">
+  <!ENTITY kcachegrind "<application
+>KCacheGrind</application
+>"
+> <!--not in kdoctools 5.16-->
+  <!ENTITY dot "<application
+>DOT</application
+>">
+  <!ENTITY neato "<application
+>NEATO</application
+>">
+  <!ENTITY twopi "<application
+>TWOPI</application
+>">
+  <!ENTITY fdp "<application
+>FDP</application
+>">
+  <!ENTITY circo "<application
+>CIRCO</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE"
+><!-- change language only here -->
+]>
+
+
+<book id="kgraphviewer" lang="&language;">
+
+<bookinfo>
+<title
+>Handbok &kgraphviewer;</title>
+
+<authorgroup>
+<author
+><firstname
+>Gaël</firstname
+> <othername
+></othername
+> <surname
+>de Chalendar</surname
+> <affiliation
+> <address
+><email
+>kleag@free.fr</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Federico</firstname
+> <othername
+></othername
+> <surname
+>Zenith</surname
+> <affiliation
+> <address
+><email
+>federico.zenith@member.fsf.org</email
+></address>
+</affiliation>
+</author>
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Gaël de Chalendar</holder>
+</copyright>
+<!-- Translators: put here the copyright notice of the translation -->
+<!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
+     and in the FDL itself on how to use it. -->
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2020-12-14</date>
+<releaseinfo
+>&kgraphviewer; 2.4.3</releaseinfo>
+
+<abstract>
+<para
+>&kgraphviewer; är ett grafvisningsverktyg av &graphviz; &dot;-grafer. Det är utvecklat inom &kde;-gemenskapen. Programmen i &graphviz; är fri programvara för layout av grafer. Grafer används vanligtvis i vetenskapliga sammanhang och i synnerhet inom datavetenskap. </para>
+<para
+>&kgraphviewer; visar graferna i ett modernt användarvänligt grafiskt gränssnitt. </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kgraphviewer</keyword>
+<keyword
+>graphviz</keyword>
+<keyword
+>dot</keyword>
+<keyword
+>neato</keyword>
+<keyword
+>visning</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inledning</title>
+
+<para
+>&kgraphviewer; är ett grafvisningsverktyg av &graphviz; &dot;-grafer. Programmen i &graphviz; är fri programvara för layout av grafer. &kgraphviewer; visar graferna i ett modernt användarvänligt grafiskt gränssnitt. Det har följande funktioner: <screenshot>
+<screeninfo
+>Här är en skärmbild av &kgraphviewer;</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Huvudfönstret i &kgraphviewer; som visar ett av exemplen från &graphviz;</phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+<itemizedlist>
+  <listitem
+><para
+>Zoomning,</para
+></listitem>
+  <listitem
+><para
+>Samtidig laddning av flera grafer under flikar,</para
+></listitem>
+  <listitem
+><para
+>Lagring av en lista med senaste öppnade filer,</para
+></listitem>
+  <listitem
+><para
+>En översiktsvy av grafen,</para
+></listitem>
+  <listitem
+><para
+>Panorering av grafen genom att dra musen,</para
+></listitem>
+  <listitem
+><para
+>Utskrift med fullständig funktion,</para
+></listitem>
+  <listitem
+><para
+>Perfekt uppritning av alla exempelgrafer från &graphviz;,</para
+></listitem>
+  <listitem
+><para
+>Färger på noder och bågar samt alla nodformer stöds,</para
+></listitem>
+  <listitem
+><para
+>Automatiskt val av &dot; för riktade grafer och &neato; för oriktade,</para
+></listitem>
+  <listitem
+><para
+>Manuell eller automatisk inläsning med bekräftelse av användaren för (externt) ändrade filer (anpassningsbart),</para
+></listitem>
+  <listitem
+><para
+>Öppnar nya instanser som nya flikar i den tidigare (anpassningsbart),</para
+></listitem>
+  <listitem
+><para
+>Hjälpsystem,</para
+></listitem>
+  <listitem
+><para
+>Översättning av programmet.</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Planerade funktioner är: <itemizedlist>
+	<listitem
+><para
+>Framtida användning av &qanava;-biblioteket för att stödja intern representation av grafer,</para
+></listitem>
+	<listitem
+><para
+>Spara sessionsdata om grafer (layout som programmet använde, zoomfaktor, etc.)</para
+></listitem>
+	<listitem
+><para
+>Integrering i &kate; och &konqueror; (så att en ändring i &kate;s visning av grafen skulle göra en ny layout och inläsning av filen i &kgraphviewer;),</para
+></listitem>
+	<listitem
+><para
+>Meny för att öppna filen i &kate; <emphasis
+>eller</emphasis
+> öppna ett Kate-delprogram inne i &kgraphviewer;s fönster,</para
+></listitem>
+	<listitem
+><para
+>Laddning av stora och mycket stora grafer (för närvarande finns prestandaproblem omkring 1000 noder, och en fix för att ignorera noder över en angiven gräns),</para
+></listitem>
+	<listitem
+><para
+>Stöd för fler och fler egenskaper och värden från &dot; efter hand,</para
+></listitem>
+	<listitem
+><para
+>Layout i bakgrunden (tråd för att inte blockera gränssnittet, med förloppsrad),</para
+></listitem>
+</itemizedlist
+></para>
+
+<note
+><para
+>Observera att programmet innehåller kod från GPL-verktyget &kcachegrind; av Josef Weidendorfer, med hans tillstånd.</para
+></note>
+<note
+><para
+>Observera också att utskriftssystemet kommer från &calligra;sdatabasprogram &kexi;.</para
+></note>
+
+<para
+>Annan programvara som krävs: &kgraphviewer; är ett program som använder &graphviz;-verktyget &dot; för layout av grafer. Dess beroenden är: <itemizedlist>
+	<listitem
+><para
+>&Qt;- och KF5-biblioteken version 5.x,</para
+></listitem>
+	<listitem
+><para
+>&graphviz;-verktygen som externa program (testat med version 2.8),</para
+></listitem>
+	<listitem
+><para
+>&boost;-biblioteket version 1.36.</para
+></listitem>
+</itemizedlist
+></para>
+
+</chapter>
+
+<chapter id="using-kgraphviewer">
+<title
+>Använda &kgraphviewer;</title>
+
+<sect1 id="using-kgraphviewer-mainwin">
+<title
+>Huvudfönstret</title>
+
+<para
+>Huvudfönstret visar inlästa grafer, var och en under sin flik. Om du startar &kgraphviewer; utan väljare är huvudfönstret tomt som visas på skärmbilden nedan. I detta fall innehåller verktygsraden bara ikonerna <guibutton
+>Öppna...</guibutton
+> och (den tomma) <guibutton
+>Öppna senaste</guibutton
+>. Klicka på den första för att visa den vanliga dialogrutan <guilabel
+>Öppna fil</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Det ursprungliga huvudfönstret när &kgraphviewer; startas för första gången</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Det ursprungliga huvudfönstret när &kgraphviewer; startas för första gången</phrase>
+    </textobject>
+    <caption
+><para
+>Det ursprungliga huvudfönstret när &kgraphviewer; startas för första gången</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Efter att ha valt en eller flera &dot;-filer, ser huvudfönstret ut som nästa skärmbild nedan:</para>
+
+<screenshot>
+<screeninfo
+>Huvudfönstret i &kgraphviewer; med flera öppna filer</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Huvudfönstret i &kgraphviewer; med flera öppna filer</phrase>
+    </textobject>
+    <caption
+><para
+>Huvudfönstret i &kgraphviewer; med flera öppna filer</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Som du kan se visas en översiktsvy i ett hörn om grafen är större än tillgänglig yta. Du kan välja om den bästa platsen för översikten ska beräknas automatiskt åt dig, eller om du ska placera den där du vill ha den själv, med den sammanhangsberoende menyn.</para>
+
+<sect2>
+<title
+>Flytta grafen inne i fönstret</title>
+
+<para
+>För att flytta en graf kan du: <itemizedlist>
+	<listitem
+><para
+>Klicka och dra den,</para
+></listitem>
+	<listitem
+><para
+>Använda rullningslisterna,</para
+></listitem>
+	<listitem
+><para
+>Trycka på piltangenterna,</para
+></listitem>
+	<listitem
+><para
+>Klicka någonstans i översiktsvyn,</para
+></listitem>
+	<listitem
+><para
+>Använda mushjulet (uppåt och neråt utan väljartangent, vänster och höger med &Alt;-tangenten nertryckt),</para
+></listitem>
+	<listitem
+><para
+>eller klicka och dra inne i översiktsvyn.</para
+></listitem>
+</itemizedlist
+></para>
+</sect2>
+
+<sect2>
+<title
+>Zoomning</title>
+
+<para
+>För att zooma kan du antingen använda verktygsradens knappar <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> och <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> eller hålla nere &Shift;-tangenten medan du rör mushjulet. Vid inzoomning blir den röda rektangeln i panoreringsvyn, som avbildar området som visas, mindre och mindre. Om den skulle bli mindre än 10 bildpunkter längs den kortaste sidan, ersätts den dock av en enkel röd rektangel för att förbli synlig. Du ser det på skärmbilden nedan.</para>
+
+<screenshot>
+<screeninfo
+>En graf med maximal inzoomningsnivå</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmax.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>En graf med maximal inzoomningsnivå</phrase>
+</textobject>
+<caption
+><para
+>En graf med maximal inzoomningsnivå</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Zoomning är begränsat till en faktor 10 i båda riktningar. Nedan kan du se den maximala zoomfaktorn för en graf.</para>
+
+<screenshot>
+<screeninfo
+>En graf med maximal utzoomningsnivå</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmin.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>En graf med maximal utzoomningsnivå</phrase>
+</textobject>
+<caption
+><para
+>En graf med maximal utzoomningsnivå</para
+></caption>
+</mediaobject>
+</screenshot>
+</sect2>
+
+<sect2>
+<title
+>Hantering av graffiler</title>
+
+<sect3>
+<title
+>Filer ändrade på disk</title>
+
+<para
+>Om en fil som för närvarande är laddad i &kgraphviewer; ändras av ett annat program, visas följande dialogruta:</para>
+
+<screenshot>
+<screeninfo
+>Dialogruta för inläsning av en fil ändrad på disk</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialogruta för inläsning av en fil ändrad på disk</phrase>
+</textobject>
+<caption
+><para
+>Dialogruta för inläsning av en fil ändrad på disk</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Du kan välja att läsa in grafen eller ignorera ändringen. Du kan också få &kgraphviewer; att komma ihåg ditt val och att göra samma sak följande gång. Om du senare vill ändra ditt val, välj menyalternativet <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa &kgraphviewer;...</guimenuitem
+></menuchoice
+>. Se <xref linkend="kgraphviewer-configuration"/>.</para>
+</sect3>
+
+<sect3
+><title
+>Filer och fönster</title>
+<para
+>När en graffil öppnas utanför en instans av &kgraphviewer; som kör, t.ex. i en filhanterare eller på kommandoraden, har du möjlighet att visa ett nytt &kgraphviewer;-fönster eller lägga till grafen under en ny flik i det befintliga fönstret. Det görs med dialogrutan nedan.</para>
+
+<screenshot>
+<screeninfo
+>Dialogrutan för att öppna ett nytt fönster</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialogrutan för att öppna ett nytt fönster</phrase>
+</textobject>
+<caption
+><para
+>Dialogrutan för att öppna ett nytt fönster</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Liksom med det föregående alternativet kan du spara valet som förval och senare ändra det i inställningsdialogrutan.</para>
+
+</sect3>
+
+<sect3>
+<title
+>Sessionshantering</title>
+
+<para
+>Vid start kan du välja att öppna graferna som var öppna föregående gång eller inte. Kom ihåg ditt val och ändra det senare, om du vill.</para>
+
+<screenshot>
+<screeninfo
+>Dialogruta för inläsning av grafer från tidigare session vid start</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialogruta för inläsning av grafer från tidigare session vid start</phrase>
+</textobject>
+<caption
+><para
+>Dialogruta för inläsning av grafer från tidigare session vid start</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect3>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="kgraphviewer-printing">
+<title
+>Utskrift av grafer</title>
+<para
+>Prova med knapparna <guibutton
+>Förhandsgranskning av utskrift</guibutton
+> eller <guibutton
+>Sidinställning</guibutton
+> för att utforska utskriftsalternativen.</para>
+
+<screenshot>
+<screeninfo
+>Dialogrutan för sidinställning</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-psetup1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialogrutan för sidinställning</phrase>
+</textobject>
+<caption
+><para
+>Dialogrutan för sidinställning</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Du kan ställa in utskriftsalternativ för att exakt passa in grafen på en sida, som nedan:</para>
+
+<screenshot>
+<screeninfo
+>Inställning av förhandsgranskning för att få plats på en sida</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Inställning av förhandsgranskning för att få plats på en sida</phrase>
+</textobject>
+<caption
+><para
+>Inställning av förhandsgranskning för att få plats på en sida</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Du kan också välja hur grafen ska delas upp på flera sidor. Antal horisontella och vertikala sidor kan väljas oberoende.</para>
+
+<screenshot>
+<screeninfo
+>Sidinställning gjord för att få plats på flera sidor och fylla dem</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Sidinställning gjord för att få plats på flera sidor och fylla dem</phrase>
+</textobject>
+<caption
+><para
+>Sidinställning gjord för att få plats på flera sidor och fylla dem</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Till sist, när flera sidor används, kan du välja att låta delen av grafen på varje sida att fylla sin sida som ovan, och inte behålla proportionen, eller att behålla den. I det senare fallet fylls inte sidorna.</para>
+
+<para
+>Du kan ändra sidstorlek och marginaler:</para>
+
+<screenshot>
+<screeninfo
+>Dialogrutan för sidstorlek och marginaler</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-pagesmarges.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialogrutan för sidstorlek och marginaler</phrase>
+</textobject>
+<caption
+><para
+>Dialogrutan för sidstorlek och marginaler</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Du kan också ändra teckensnitt, sidhuvud och sidfot:</para>
+
+<screenshot>
+<screeninfo
+>Sidinställning gjord för att få plats på flera sidor utan sidhuvud och med ett annat teckensnitt</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Sidinställning gjord för att få plats på flera sidor utan sidhuvud och med ett annat teckensnitt</phrase>
+</textobject>
+<caption
+><para
+>Sidinställning gjord för att få plats på flera sidor utan sidhuvud och med ett annat teckensnitt</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="kgraphviewer-configuration">
+<title
+>Anpassa &kgraphviewer;</title>
+
+<para
+>Sidan <guilabel
+>Utseende</guilabel
+> gör det möjligt att ändra den vanliga bakgrundsfärgen som används i &kgraphviewer; om en graf inte har sin egen bakgrundsfärg.</para>
+
+<screenshot>
+<screeninfo
+>Sida för att ändra en grafs utseende</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Sida för att ändra en grafs utseende</phrase>
+</textobject>
+<caption
+><para
+>Sida för att ändra en grafs utseende</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Sidan <guilabel
+>Tolkning</guilabel
+> gör det möjligt att välja ett externt kommando eller det interna biblioteket för att tolka &graphviz; &dot;-filer.</para>
+
+<screenshot>
+<screeninfo
+>Sida i inställningsdialogrutan för att ladda om filer ändrade på disk</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Sida i inställningsdialogrutan för att ladda om filer ändrade på disk</phrase>
+</textobject>
+<caption
+><para
+>Sida i inställningsdialogrutan för att ladda om filer ändrade på disk</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Sidan <guilabel
+>Uppdatering</guilabel
+> låter dig ändra beteende hos &kgraphviewer; när en fil ändras på disk. Du kan välja en standardreaktion (automatisk inläsning eller inte) eller att bli tillfrågad varje gång.</para>
+
+<screenshot>
+<screeninfo
+>Sida i inställningsdialogrutan för att ladda om filer ändrade på disk</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Sida i inställningsdialogrutan för att ladda om filer ändrade på disk</phrase>
+</textobject>
+<caption
+><para
+>Sida i inställningsdialogrutan för att ladda om filer ändrade på disk</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Sidan <guilabel
+>Öppna</guilabel
+> låter dig ändra beteende hos &kgraphviewer; när en graffil öppnas utanför den nuvarande sessionen. Du kan välja en standardreaktion (öppna i befintligt fönster eller i ett nytt) eller att bli tillfrågad varje gång.</para>
+
+<screenshot>
+<screeninfo
+>Sida i inställningsdialogrutan för att öppna nya filer i befintligt fönster</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Sida i inställningsdialogrutan för att öppna nya filer i befintligt fönster</phrase>
+</textobject>
+<caption
+><para
+>Sida i inställningsdialogrutan för att öppna nya filer i befintligt fönster</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Sidan <guilabel
+>Sessionshantering</guilabel
+> låter dig ändra beteende hos &kgraphviewer; när det startar. Du kan välja en standardreaktion (öppna filer från föregående session eller inte) eller att bli tillfrågad varje gång.</para>
+
+<screenshot>
+<screeninfo
+>Sida i inställningsdialogrutan för att öppna tidigare öppnade filer igen</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Sida i inställningsdialogrutan för att öppna tidigare öppnade filer igen</phrase>
+</textobject>
+<caption
+><para
+>Sida i inställningsdialogrutan för att öppna tidigare öppnade filer igen</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="using-kgraphviewer-misc">
+<title
+>Diverse funktioner</title>
+
+<para
+>Sammanhangsberoende menyn (som oftast erhålls genom att högerklicka i grafvyn) erbjuder några andra möjligheter: <variablelist>
+<varlistentry>
+<term
+><guisubmenu
+>Layout</guisubmenu
+></term>
+<listitem
+><para
+>Det här låter dig välja mellan diverse &graphviz; layoutalgoritmer eller välja en egen. Alternativen, som de beskrivs på &graphviz; hemsida, är följande: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>&dot;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritmen &dot;. Standardalternativ för riktade grafer. Den ritar <quote
+>hierarkiska</quote
+> bilder med lager av riktade grafer. Layoutalgoritmen riktar bågar åt samma håll (uppifrån och neråt, eller från vänster till höger) och försöker därefter undvika korsande bågar och reducera bågarnas längd.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&neato;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritmen &neato;, standardalternativ för oriktade grafer. Gör en layout enligt <quote
+>fjädermodellen</quote
+>. Den använder Kamada-Kawai algoritmen, vilken är ekvivalent med statistisk flerdimensionell skalning.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&twopi;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritmen &twopi;, för riktade och oriktade grafer. Radiell layout enligt Graham Wills 97.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&fdp;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritmen &fdp;. För oriktade grafer. Gör en layout enligt <quote
+>fjädermodellen</quote
+>. Den implementerar den heuristiska metoden enligt Fruchterman-Reingold, inklusive en flerdimensionell rutnätslösning som hanterar stora grafer och oriktade grafer med anhopningar.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&circo;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritmen &circo;. Den skapar en cirkulär layout, enligt Six och Tollis 99, Kauffman och Wiese 02. Lämplig för vissa diagram med flera cykliska strukturer.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Ange layoutkommando</guimenuitem
+></term>
+	<listitem
+><para
+>Öppnar en dialogruta som låter dig ange ett layoutkommando som körs i ett skal. Kommandot ska förvänta sig en parameter, som är grafens filnamn, och skriva ut layouten på standardutmatningen med språket xdot. På så sätt kan du till exempel ange särskilda väljare för ett av de tidigare kommandona eller använda ett filter som ändrar grafen innan den körs igenom &dot;.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Återställ layoutkommando till normalvärden</guimenuitem
+></term>
+	<listitem
+><para
+>Bestäm återigen grafens typ (riktad eller inte) och använd standardalgoritmen på den, för närvarande &dot; respektive &neato;.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+	</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Exportera graf</guisubmenu
+></term>
+<listitem
+><para>
+	<variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Som bild...</guimenuitem
+></term>
+	<listitem
+><para
+>Möjliggör export av hela grafen till alla bildformat som stöds.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guimenu
+>Aktivera översiktsvy</guimenu
+></term>
+<listitem
+><para
+>Om markerad, visas översiktsvyn om nödvändigt. Annars är den dold, och dess positioneringsmeny är inaktiverad.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Översiktsvy</guisubmenu
+></term>
+<listitem
+><para
+>Anpassa var översiktsvyn ska placeras i grafvyn. Möjliga val är: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Uppe till vänster</guimenuitem
+></term>
+	<listitem
+><para
+>Placerar översiktsvyn i övre vänstra hörnet,</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Uppe till höger</guimenuitem
+></term>
+	<listitem
+><para
+>Placerar översiktsvyn i övre högra hörnet,</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Nere till vänster</guimenuitem
+></term>
+	<listitem
+><para
+>Placerar översiktsvyn i nedre vänstra hörnet,</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Nere till höger</guimenuitem
+></term>
+	<listitem
+><para
+>Placerar översiktsvyn i nedre högra hörnet,</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Automatisk</guimenuitem
+></term>
+	<listitem
+><para
+>Välj automatiskt bästa position för att dölja så litet som möjligt av grafen</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist
+></para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commands">
+<title
+>Kommandoreferens</title>
+
+<sect1 id="kgraphviewer-commands-menus">
+<title
+>Menyerna i &kgraphviewer;</title>
+
+<sect2>
+<title
+>Menyn Arkiv</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+><guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Ny</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Öppnar</action
+> ett nytt &kgraphviewer;-fönster.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Öppna</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Visar</action
+> dialogrutan <guilabel
+>Öppna fil</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Öppna senaste</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Visar</action
+> listan med de tio senast öppnade graffilerna.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guisubmenu
+>Exportera graf</guisubmenu
+> <guimenuitem
+>Som bild...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Möjliggör <action
+>export</action
+> av hela grafen till alla bildformat som stöds.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Skriv ut...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Skriver ut</action
+> nuvarande graf med utskriftsparametrarna som för närvarande är inställda.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>P</keycap
+></keycombo
+></shortcut
+><guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Förhandsgranska utskrift...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Öppnar</action
+> fönstret för förhandsgranskning av utskrift för nuvarande graf.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Sidinställning</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Öppnar</action
+> dialogrutan för sidinställning av utskrift för nuvarande graf.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Avsluta</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Avslutar</action
+> &kgraphviewer;.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Menyn Visa</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Zooma in</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Zooma in</action
+> i nuvarande graf med 10 %.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Zooma ut</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Zooma ut</action
+> i nuvarande graf med 10 %.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa igen</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Laddar om</action
+> nuvarande graf.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Visa</guimenu
+> <guisubmenu
+>Välj layoutalgoritm</guisubmenu
+></menuchoice
+></term>
+	<listitem
+><para
+>Visar en delmeny med diverse layoutalgoritmer från &graphviz; för aktuell graf.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Visa</guimenu
+> <guimenuitem
+>Aktivera översiktsvy</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Om markerad, visas översiktsvyn om nödvändigt. Annars är den dold, och dess positioneringsmeny är inaktiverad.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Översiktsvy</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Anpassa var översiktsvyn ska placeras i grafvyn. Möjliga val är: <variablelist>
+		<varlistentry>
+		<term
+><guimenuitem
+>Uppe till vänster</guimenuitem
+></term>
+		<listitem
+><para
+>Placerar översiktsvyn i övre vänstra hörnet,</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Uppe till höger</guimenuitem
+></term>
+		<listitem
+><para
+>Placerar översiktsvyn i övre högra hörnet,</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Nere till vänster</guimenuitem
+></term>
+		<listitem
+><para
+>Placerar översiktsvyn i nedre vänstra hörnet,</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Nere till höger</guimenuitem
+></term>
+		<listitem
+><para
+>Placerar översiktsvyn i nedre högra hörnet,</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Automatisk</guimenuitem
+></term>
+		<listitem
+><para
+>Välj automatiskt bästa position för att dölja så litet som möjligt av grafen</para
+></listitem>
+		</varlistentry>
+	</variablelist
+></para
+></listitem>
+	</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menyerna Inställningar och Hjälp</title>
+
+<para
+>&kgraphviewer; har de vanliga menyalternativen i &kde;, <guimenu
+>Inställningar</guimenu
+> och <guimenu
+>Hjälp</guimenu
+>. För mer information läs avsnitten om <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menyn Inställningar</ulink
+> och <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menyn Hjälp</ulink
+> i &kde;:s grunder. </para>
+
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-commands-toolbars">
+<title
+>Verktygsraderna i &kgraphviewer;</title>
+
+<sect2>
+<title
+>Huvudverktygsraden</title>
+<!--document-new-->
+<variablelist>
+	<varlistentry
+><!--document-open-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-open.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Visar</action
+> dialogrutan <guilabel
+>Öppna fil</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--document-open-recent-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-prev.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Visar</action
+> listan med senaste öppnade filer</para
+></listitem>
+	</varlistentry>
+<!--document-close-->
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-print.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prints the graph</action
+> using current setup.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-preview.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Visar</action
+> dialogrutan <guilabel
+>Förhandsgranskning av utskrift</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Shows</action
+> the <guilabel
+>Page Setup</guilabel
+> dialog.</para
+></listitem>
+	</varlistentry-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Vyverktygsraden</title>
+
+<variablelist>
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-reload.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Reloads</action
+> the current graph.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-layout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Redigerar</action
+> layoutkommandot eller <action
+>visar</action
+> listan med förinställda layoutalgoritmer.</para
+></listitem>
+	</varlistentry>
+	
+	<varlistentry
+><!--zoom-in-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Zooma in</action
+> i nuvarande graf med 10 %.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--zoom-out-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Zooma ut</action
+> i nuvarande graf med 10 %.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+<!--kgraphviewer-bev "Enable Bird's-eye View"-->
+</sect2>
+
+<sect2>
+<title
+>Hjälpverktygsraden</title>
+
+<variablelist>
+	<varlistentry
+><!--help-contextual-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Visar</action
+> muspekaren <guilabel
+>Vad är det här</guilabel
+>. Klicka med den på ett grafiskt element för att få hjälp med att använda det (om någon sådan hjälp finns tillgänglig).</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+<title
+>Tack till och licens</title>
+
+<sect1 id="kgraphviewer-credits-program">
+<title
+>Program</title>
+
+<sect2>
+<title
+>Huvudsakliga upphovsmän</title>
+<para
+>Program copyright 2005-2006 Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+</sect2>
+
+<sect2>
+<title
+>Bidragsgivare (kommer att kompletteras)</title>
+<itemizedlist>
+	<listitem
+><para
+>Reimar Döffinger <email
+>Reimar.Doeffinger@stud.uni-karlsruhe.de</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-userguide">
+<title
+>Användarguide</title>
+<para
+>Dokumentation copyright 2006 Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+<sect2>
+<title
+>Bidragsgivare</title>
+<itemizedlist>
+  <listitem
+><para
+>Federico Zenith <email
+>federico.zenith@member.fsf.org</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-other">
+<title
+>Övriga erkännanden</title>
+<para
+>Kod från följande fri programvara har återanvänts i detta program:</para>
+<variablelist>
+	<varlistentry>
+	<term
+><ulink url="https://kcachegrind.github.io/html/Home.html"
+>&kcachegrind;</ulink
+></term>
+	<listitem
+><para
+>Ursprunglig grafmodell och visningsklasser,</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><ulink url="http://www.kexi-project.org/"
+>&kexi;</ulink
+></term>
+	<listitem
+><para
+>Utskriftsinställning och förhandsgranskningsklasser.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-licenses"
+><title
+>Licenser</title>
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </sect1>
+
+</chapter>
+
+&documentation.index;
+</book>

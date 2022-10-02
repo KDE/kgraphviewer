@@ -1,0 +1,1320 @@
+# Translation of kgraphviewer into Japanese.
+# This file is distributed under the same license as the kgraphviewer package.
+# Yukiko Bando <ybando@k6.dion.ne.jp>, 2006, 2007, 2008, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kgraphviewer\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:43+0000\n"
+"PO-Revision-Date: 2009-02-25 00:07+0900\n"
+"Last-Translator: Yukiko Bando <ybando@k6.dion.ne.jp>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Yukiko Bando"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "ybando@k6.dion.ne.jp"
+
+#: kgrapheditor.cpp:131 kgraphviewer.cpp:113
+#, fuzzy, kde-format
+#| msgid "Session Management"
+msgid "Session Restore"
+msgstr "セッションの管理"
+
+#: kgrapheditor.cpp:131
+#, fuzzy, kde-format
+#| msgid "Do you want to reload files from previous session ?"
+msgid "Do you want to reload files from previous session?"
+msgstr "前回のセッションのファイルを再読み込みしますか？"
+
+#: kgrapheditor.cpp:147
+#, fuzzy, kde-format
+#| msgid "Unable to start %1."
+msgid "Unable to start"
+msgstr "%1 を開始できません。"
+
+#: kgrapheditor.cpp:147 kgraphviewer.cpp:131
+#, fuzzy, kde-format
+#| msgid "Could not find our part."
+msgid "Could not find the KGraphViewer part."
+msgstr "必要なコンポーネントが見つかりませんでした。"
+
+#: kgrapheditor.cpp:228 kgraphviewer.cpp:211
+#, fuzzy, kde-format
+#| msgid "Closes the current tab"
+msgid "Closes the current file"
+msgstr "現在のタブを閉じます"
+
+#: kgrapheditor.cpp:241
+#, kde-format
+msgid "Create a New Vertex"
+msgstr "新しい頂点を作成"
+
+#: kgrapheditor.cpp:246
+#, kde-format
+msgid "Create a New Edge"
+msgstr "新しいエッジを作成"
+
+#: kgrapheditor.cpp:506
+#, fuzzy, kde-format
+#| msgid "Save current graph to..."
+msgid "Save current graph"
+msgstr "現在のグラフを保存..."
+
+#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
+#, kde-format
+msgid "Parsing"
+msgstr ""
+
+#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
+#, kde-format
+msgid "Reloading"
+msgstr "再読み込み"
+
+#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
+#, kde-format
+msgid "Opening"
+msgstr "開く"
+
+#: kgrapheditorConfigDialog.cpp:64 kgraphviewerConfigDialog.cpp:75
+#, kde-format
+msgid "Session Management"
+msgstr "セッションの管理"
+
+#: KGraphEditorElementTreeWidget.cpp:49 KGraphEditorNodesTreeWidget.cpp:54
+#, kde-format
+msgid "Add a new attribute"
+msgstr "新しい属性を追加"
+
+#: KGraphEditorElementTreeWidget.cpp:55 KGraphEditorNodesTreeWidget.cpp:60
+#, kde-format
+msgid "Remove this attribute"
+msgstr "この属性を削除"
+
+#: kgrapheditormain.cpp:46
+#, kde-format
+msgid "KGraphEditor"
+msgstr "KGraphEditor"
+
+#: kgrapheditormain.cpp:46
+#, fuzzy, kde-format
+#| msgid "A Graphviz dot graph viewer for KDE"
+msgid "A Graphviz DOT graph editor by KDE"
+msgstr "KDE のための Graphviz DOT グラフビューア"
+
+#: kgrapheditormain.cpp:46 main.cpp:51
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2006 Gaël de Chalendar"
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2006 Gaël de Chalendar"
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "Path or URL to scan"
+msgstr ""
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "[url]"
+msgstr ""
+
+#: kgrapheditormain.cpp:83
+#, kde-format
+msgid ""
+"A KGraphEditor window is already open, do you want to open the file in it?"
+msgstr ""
+
+#: kgrapheditormain.cpp:83 main.cpp:94
+#, kde-format
+msgid "Opening in new window confirmation"
+msgstr "確認 - 新しいウィンドウで開く"
+
+#: KGraphEditorNodesTreeWidget.cpp:65
+#, kde-format
+msgid "Remove this node"
+msgstr "このノードを削除"
+
+#. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
+#, kde-format
+msgid "The answer to the question 'File modified, do you want to reload it'"
+msgstr "「ファイルは変更されています。再読み込みしますか？」に対する答え"
+
+#. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
+#, kde-format
+msgid ""
+"To choose whether to parse using an external command (usually dot) or the "
+"graphviz library"
+msgstr ""
+
+#. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
+#, fuzzy, kde-format
+#| msgid ""
+#| "The answer to the question 'If another window already exist when "
+#| "launching kgraphviewer, should we open in it, open a new window or ask ?'"
+msgid ""
+"The answer to the question 'If another window already exist when launching "
+"kgraphviewer, should we open in it, open a new window or ask?'"
+msgstr ""
+"「kgraphviewer を起動したときに既に他のウィンドウが存在する場合、その中に開く"
+"か、新しいウィンドウに開くか、確認するか」に対する答え"
+
+#. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
+#, fuzzy, kde-format
+#| msgid ""
+#| "The answer to the question 'Should the files that were opened in previous "
+#| "sessions be reopened at startup ?'"
+msgid ""
+"The answer to the question 'Should the files that were opened in previous "
+"sessions be reopened at startup?'"
+msgstr ""
+"「起動時に前回のセッションで開かれたファイルを開きますか？」に対する答え"
+
+#. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
+#: part/kgraphviewer_partsettings.kcfg:9
+#, kde-format
+msgid "If true, the bird's eye view will be shown if needed."
+msgstr "真 (true) の場合、必要であれば概観図が表示されます。"
+
+#. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
+#, kde-format
+msgid "The list of files that were opened in past instances of kgraphviewer"
+msgstr "以前の KGraphViewer インスタンスで開かれたファイルのリスト"
+
+#. i18n: ectx: ToolBar (viewToolBar)
+#: kgrapheditorui.rc:23 kgraphviewerui.rc:17
+#, kde-format
+msgid "View Toolbar"
+msgstr "ビューツールバー"
+
+#. i18n: ectx: ToolBar (helpToolBar)
+#: kgrapheditorui.rc:26 kgraphviewerui.rc:20
+#, kde-format
+msgid "Help Toolbar"
+msgstr "ヘルプツールバー"
+
+#. i18n: ectx: ToolBar (editToolBar)
+#: kgrapheditorui.rc:31
+#, kde-format
+msgid "Edit Toolbar"
+msgstr "編集ツールバー"
+
+#: kgraphviewer.cpp:113
+#, fuzzy, kde-format
+#| msgid "Do you want to reload files from previous session ?"
+msgid "Do you want to reload files from the previous session?"
+msgstr "前回のセッションのファイルを再読み込みしますか？"
+
+#: kgraphviewer.cpp:198
+#, fuzzy, kde-format
+#| msgid "Open the print preview window"
+msgid "Opens a new empty KGraphViewer window."
+msgstr "印刷プレビューウィンドウを開きます"
+
+#: kgraphviewer.cpp:201
+#, kde-format
+msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
+msgstr ""
+
+#: kgraphviewer.cpp:205
+#, kde-format
+msgid ""
+"This lists files which you have opened recently, and allows you to easily "
+"open them again."
+msgstr ""
+"ここに最近開いたファイルが表示されます。同じファイルをもう一度開くときに役立"
+"ちます。"
+
+#: kgraphviewer.cpp:215
+#, fuzzy, kde-format
+#| msgid "KGraphViewer"
+msgid "Quits KGraphViewer."
+msgstr "KGraphViewer"
+
+#: kgraphviewer.cpp:218
+#, kde-format
+msgid "Shows or hides the status bar."
+msgstr ""
+
+#: kgraphviewer.cpp:221
+#, kde-format
+msgid "Configure the bindings between keys and actions."
+msgstr ""
+
+#: kgraphviewer.cpp:224
+#, fuzzy, kde-format
+#| msgid "Reload Confirmation"
+msgid "Toolbar configuration."
+msgstr "再読み込みの確認"
+
+#: kgraphviewer.cpp:227
+#, kde-format
+msgid "Main KGraphViewer configuration options."
+msgstr ""
+
+#: kgraphviewerConfigDialog.cpp:71
+#, kde-format
+msgid "Appearance"
+msgstr ""
+
+#. i18n: ectx: label, entry (backgroundColor), group (Appearance)
+#: kgraphviewersettings.kcfg:34
+#, kde-format
+msgid "Background color of the graph view."
+msgstr ""
+
+#: main.cpp:47
+#, kde-format
+msgid "KGraphViewer"
+msgstr "KGraphViewer"
+
+#: main.cpp:49
+#, fuzzy, kde-format
+#| msgid "A Graphviz dot graph viewer for KDE"
+msgid "A Graphviz DOT graph viewer"
+msgstr "KDE のための Graphviz DOT グラフビューア"
+
+#: main.cpp:54
+#, kde-format
+msgid "Gaël de Chalendar"
+msgstr "Gaël de Chalendar"
+
+#: main.cpp:54
+#, kde-format
+msgid "Original Author and current maintainer"
+msgstr ""
+
+#: main.cpp:55
+#, kde-format
+msgid "Reimar Döffinger"
+msgstr ""
+
+#: main.cpp:55 main.cpp:56 main.cpp:57 main.cpp:58
+#, kde-format
+msgid "Contributor"
+msgstr ""
+
+#: main.cpp:56
+#, kde-format
+msgid "Matthias Peinhardt"
+msgstr ""
+
+#: main.cpp:57
+#, kde-format
+msgid "Sandro Andrade"
+msgstr ""
+
+#: main.cpp:58
+#, kde-format
+msgid "Milian Wolff"
+msgstr ""
+
+#: main.cpp:59
+#, kde-format
+msgid "Martin Sandsmark"
+msgstr ""
+
+#: main.cpp:59
+#, kde-format
+msgid "Port to KF5"
+msgstr ""
+
+#: main.cpp:94
+#, kde-format
+msgid ""
+"A KGraphViewer window is already open, where do you want to open this file "
+"in the existing window?"
+msgstr ""
+
+#: part/canvasedge.cpp:74
+#, kde-format
+msgid ""
+"%1 -> %2\n"
+"label='%3'"
+msgstr ""
+"%1 -> %2\n"
+"ラベル=“%3”"
+
+#: part/canvasedge.cpp:78
+#, kde-format
+msgid "Remove selected edge(s)"
+msgstr "選択したエッジを削除"
+
+#: part/canvaselement.cpp:92
+#, kde-format
+msgid "Remove selected element(s)"
+msgstr "選択した要素を削除"
+
+#: part/canvasnode.cpp:64
+#, kde-format
+msgid ""
+"id='%1'\n"
+"label='%2'"
+msgstr ""
+"ID=“%1”\n"
+"ラベル=“%2”"
+
+#: part/dotgraph.cpp:265 part/dotgraph.cpp:268 part/dotgraph.cpp:271
+#: part/dotgraph.cpp:274 part/dotgraph.cpp:277 part/dotgraph.cpp:280
+#, kde-format
+msgid "Layout process failed"
+msgstr "レイアウトプロセスが失敗しました"
+
+#: part/dotgraph.cpp:265
+#, kde-format
+msgid "Unable to start %1."
+msgstr "%1 を開始できません。"
+
+#: part/dotgraph.cpp:268
+#, kde-format
+msgid "%1 crashed."
+msgstr "%1 がクラッシュしました。"
+
+#: part/dotgraph.cpp:271
+#, kde-format
+msgid "%1 timed out."
+msgstr "%1 がタイムアウトしました。"
+
+#: part/dotgraph.cpp:274
+#, kde-format
+msgid "Was not able to write data to the %1 process."
+msgstr "%1 プロセスにデータを書き込めませんでした。"
+
+#: part/dotgraph.cpp:277
+#, kde-format
+msgid "Was not able to read data from the %1 process."
+msgstr "%1 プロセスからデータを読み取れませんでした。"
+
+#: part/dotgraph.cpp:280
+#, kde-format
+msgid "Unknown error running %1."
+msgstr "%1 の実行で未知のエラーが発生しました。"
+
+#: part/dotgraphview.cpp:421
+#, kde-format
+msgid "Select Layout Algo"
+msgstr "レイアウトアルゴリズムを選択"
+
+#: part/dotgraphview.cpp:424
+#, kde-format
+msgid "Dot"
+msgstr "Dot"
+
+#: part/dotgraphview.cpp:425
+#, kde-format
+msgid "Layout the graph using the dot program."
+msgstr "dot プログラムを使ってグラフをレイアウトします。"
+
+#: part/dotgraphview.cpp:429
+#, kde-format
+msgid "Neato"
+msgstr "Neato"
+
+#: part/dotgraphview.cpp:430
+#, kde-format
+msgid "Layout the graph using the neato program."
+msgstr "neato プログラムを使ってグラフをレイアウトします。"
+
+#: part/dotgraphview.cpp:434
+#, kde-format
+msgid "Twopi"
+msgstr "Twopi"
+
+#: part/dotgraphview.cpp:435
+#, kde-format
+msgid "Layout the graph using the twopi program."
+msgstr "twopi プログラムを使ってグラフをレイアウトします。"
+
+#: part/dotgraphview.cpp:439
+#, kde-format
+msgid "Fdp"
+msgstr "Fdp"
+
+#: part/dotgraphview.cpp:440
+#, kde-format
+msgid "Layout the graph using the fdp program."
+msgstr "fdp プログラムを使ってグラフをレイアウトします。"
+
+#: part/dotgraphview.cpp:444
+#, kde-format
+msgid "Circo"
+msgstr "Circo"
+
+#: part/dotgraphview.cpp:445
+#, kde-format
+msgid "Layout the graph using the circo program."
+msgstr "circo プログラムを使ってグラフをレイアウトします。"
+
+#: part/dotgraphview.cpp:457
+#, fuzzy, kde-format
+#| msgid "Choose a GraphViz layout algorithm or edit your own one."
+msgid "Choose a Graphviz layout algorithm or edit your own one."
+msgstr "GraphViz レイアウトアルゴリズムを選択するか独自のものを編集します。"
+
+#: part/dotgraphview.cpp:459
+#, fuzzy, kde-format
+#| msgid ""
+#| "Choose a GraphViz layout algorithm or type in your own command that will "
+#| "generate a graph in the xdot format on its standard output. For example, "
+#| "to manually specify the <tt>G</tt> option to the dot command, type in: "
+#| "<tt>dot -Gname=MyGraphName -Txdot </tt>"
+msgid ""
+"Choose a Graphviz layout algorithm or type in your own command that will "
+"generate a graph in the xdot format on its standard output. For example, to "
+"manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+msgstr ""
+"GraphViz レイアウトアルゴリズムを選択するか、標準出力に xdot フォーマットのグ"
+"ラフを生成するあなた独自のコマンドを入力します。例えば、dot コマンドに手動で "
+"<tt>G</tt> オプションを指定するには次のように入力します: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+
+#: part/dotgraphview.cpp:465
+#, kde-format
+msgid "Layout"
+msgstr "レイアウト"
+
+#: part/dotgraphview.cpp:467
+#, kde-format
+msgid "Specify layout command"
+msgstr "レイアウトコマンドを指定"
+
+#: part/dotgraphview.cpp:468
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"使用するレイアウトコマンドを自分で指定します。DOT ファイルの場合は、標準出力"
+"に xdot ファイルを生成しなければなりません。"
+
+#: part/dotgraphview.cpp:469
+#, kde-format
+msgid "Reset layout command to default"
+msgstr "レイアウトコマンドを標準に戻す"
+
+#: part/dotgraphview.cpp:470
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+"使用するレイアウトコマンドをグラフのタイプ (有向か無向か) の標準に戻します"
+
+#: part/dotgraphview.cpp:472
+#, kde-format
+msgid "Zoom In"
+msgstr ""
+
+#: part/dotgraphview.cpp:473
+#, kde-format
+msgid "Zoom Out"
+msgstr ""
+
+#: part/dotgraphview.cpp:477
+#, kde-format
+msgid "Export Graph"
+msgstr "グラフをエクスポート"
+
+#: part/dotgraphview.cpp:479
+#, fuzzy, kde-format
+#| msgid "Allows to export the graph to another format."
+msgid "Allows the graph to be exported in another format."
+msgstr "グラフを他のフォーマットにエクスポートします。"
+
+#: part/dotgraphview.cpp:481
+#, fuzzy, kde-format
+#| msgid ""
+#| "Use the Export Graph menu to export the graph to another format. There is "
+#| "currently only on export format supported: PNG image."
+msgid ""
+"Use the Export Graph menu to export the graph in another format. There is "
+"currently only one export format supported: as a PNG image."
+msgstr ""
+"グラフを他のフォーマットにエクスポートするには<interface>グラフをエクスポート"
+"</interface>メニューを使います。現在サポートされているのは PNG フォーマットへ"
+"のエクスポートのみです。"
+
+#: part/dotgraphview.cpp:485
+#, fuzzy, kde-format
+#| msgid "As Image ..."
+msgid "As Image..."
+msgstr "画像として..."
+
+#: part/dotgraphview.cpp:486
+#, fuzzy, kde-format
+#| msgid "Export the graph to an image (currently PNG only) file."
+msgid "Export the graph to an image file."
+msgstr "グラフを画像ファイルにエクスポートします。(現在は PNG のみ)"
+
+#: part/dotgraphview.cpp:494
+#, kde-format
+msgid "Enable Bird's-eye View"
+msgstr "概観図を表示する"
+
+#: part/dotgraphview.cpp:497
+#, kde-format
+msgid "Enables or disables the Bird's-eye View"
+msgstr "概観図の表示/非表示を切り替えます"
+
+#: part/dotgraphview.cpp:502
+#, kde-format
+msgid "Birds-eye View"
+msgstr "概観図"
+
+#: part/dotgraphview.cpp:503
+#, fuzzy, kde-format
+#| msgid "Allows to setup the Bird's-eye View."
+msgid "Allows the Bird's-eye View to be setup."
+msgstr "概観図を設定します。"
+
+#: part/dotgraphview.cpp:507
+#, kde-format
+msgid "Top Left"
+msgstr "左上"
+
+#: part/dotgraphview.cpp:508
+#, fuzzy, kde-format
+#| msgid "Puts the Bird's-eye View at the top left corner."
+msgid "Puts the Bird's-eye View in the top-left corner."
+msgstr "概観図を左上隅に配置します。"
+
+#: part/dotgraphview.cpp:512
+#, kde-format
+msgid "Top Right"
+msgstr "右上"
+
+#: part/dotgraphview.cpp:513
+#, fuzzy, kde-format
+#| msgid "Puts the Bird's-eye View at the top right corner."
+msgid "Puts the Bird's-eye View in the top-right corner."
+msgstr "概観図を右上隅に配置します。"
+
+#: part/dotgraphview.cpp:517
+#, kde-format
+msgid "Bottom Left"
+msgstr "左下"
+
+#: part/dotgraphview.cpp:518
+#, fuzzy, kde-format
+#| msgid "Puts the Bird's-eye View at the bottom left corner."
+msgid "Puts the Bird's-eye View in the bottom-left corner."
+msgstr "概観図を左下隅に配置します。"
+
+#: part/dotgraphview.cpp:522
+#, kde-format
+msgid "Bottom Right"
+msgstr "右下"
+
+#: part/dotgraphview.cpp:523
+#, fuzzy, kde-format
+#| msgid "Puts the Bird's-eye View at the bottom right corner."
+msgid "Puts the Bird's-eye View in the bottom-right corner."
+msgstr "概観図を右下隅に配置します。"
+
+#: part/dotgraphview.cpp:527
+#, kde-format
+msgid "Automatic"
+msgstr "自動"
+
+#: part/dotgraphview.cpp:528
+#, fuzzy, kde-format
+#| msgid "Let's KGraphViewer automaticaly choose the Bird's-eye View position."
+msgid ""
+"Let KGraphViewer automatically choose the position of the Bird's-eye View."
+msgstr "KGraphViewer に概観図の位置を自動的に選択させます。"
+
+#: part/dotgraphview.cpp:575
+#, kde-format
+msgid "Select file"
+msgstr ""
+
+#: part/dotgraphview.cpp:589
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer"
+msgstr ""
+
+#: part/dotgraphview.cpp:590
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer."
+msgstr ""
+
+#: part/dotgraphview.cpp:637
+#, fuzzy, kde-format
+#| msgid ""
+#| "<h1>GraphViz dot format graph visualization</h1><p>If the graph is larger "
+#| "than the widget area, an overview panner is shown in one edge. Choose "
+#| "through the context menu if the optimal position of this overview should "
+#| "be automatically computed or put it where you want.</p><h2>How to work "
+#| "with it ?</h2><ul><li>To move the graph, you can:  <ul>    <li>click & "
+#| "drag it</li>    <li>use the elevators</li>    <li>press the arrows keys</"
+#| "li>    <li>click somewhere in the panner view</li>    <li>use the mouse "
+#| "wheel (up and down with no modifier, left and right with the <Alt> key "
+#| "pressed)</li>    <li>or click & drag the panner view</li>  </ul></"
+#| "li><li>To zoom, you can either use the zoom in and zoom out toolbar "
+#| "butons or click on the <Shift> key while rolling your mouse wheel.</"
+#| "li><li>Try the contextual menu (usually by right-clicking) to discover "
+#| "other possibilities.</li><li>Try the <tt>Print preview</tt> or the "
+#| "<tt>Page setup</tt> buttons to explore the printing options.</li></ul>"
+msgid ""
+"<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
+"than the widget area, an overview panner is shown in one edge. Choose "
+"through the context menu if the optimal position of this overview should be "
+"automatically computed or put it where you want.</p><h2>How to work with it?"
+"</h2><ul><li>To move the graph, you can:  <ul>    <li>click & drag it</"
+"li>    <li>use the elevators</li>    <li>press the arrows keys</li>    "
+"<li>click somewhere in the panner view</li>    <li>use the mouse wheel (up "
+"and down with no modifier, left and right with the <Alt> key pressed)</"
+"li>    <li>or click & drag the panner view</li>  </ul></li><li>To zoom, you "
+"can either use the zoom in and zoom out toolbar buttons, or click on the "
+"<Shift> key while rolling your mouse wheel.</li><li>Try the contextual menu "
+"(usually by right-clicking) to discover other possibilities.</li><li>Try the "
+"<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
+"printing options.</li></ul>"
+msgstr ""
+"<h1>GraphViz DOT フォーマットグラフの視覚化</h1><p>グラフがウィジェットの領域"
+"より大きい場合、ウィジェットの隅に概観図が表示されます。概観図の表示位置はコ"
+"ンテキストメニューを使って変更できます。最適な位置を自動的に計算させることも"
+"可能です。</p><h2>使い方</h2><ul><li>グラフは以下の方法で動かせます。<ul><li>"
+"グラフをクリックしてドラッグする</li><li>スクロールバーを使う</li><li>矢印"
+"キーを押す</li><li>概観図のどこかをクリックする</li><li>マウスホイールを使う "
+"(修飾キーなしで上下に、Alt キーを押しながら左右に)</li><li>概観図をクリックし"
+"てドラッグ</li></ul></li><li>グラフを拡大/縮小表示するには、ツールバーの"
+"<interface>拡大/縮小</interface>ボタンを使うか、Shift キーを押しながらマウス"
+"ホイールを動かします。</li><li>コンテキストメニュー (通常は右クリックで開く) "
+"にその他のオプションがあります。</li><li>印刷のオプションについては"
+"<interface>印刷プレビュー</interface>または<interface>ページ設定</interface>"
+"ボタンを押してください。</li></ul>"
+
+#: part/dotgraphview.cpp:790
+#, fuzzy, kde-format
+#| msgid "Dot graph to open"
+msgid "no graph loaded"
+msgstr "開く DOT グラフ"
+
+#: part/dotgraphview.cpp:906 part/dotgraphview.cpp:927
+#: part/dotgraphview.cpp:974
+#, kde-format
+msgid "graph %1 is getting loaded..."
+msgstr ""
+
+#: part/dotgraphview.cpp:914
+#, kde-format
+msgid "error parsing file %1"
+msgstr ""
+
+#: part/dotgraphview.cpp:1615
+#, kde-format
+msgid "Reload Confirmation"
+msgstr "再読み込みの確認"
+
+#: part/dotgraphview.cpp:1615
+#, fuzzy, kde-format
+#| msgid ""
+#| "The file %1 has been modified on disk.\n"
+#| "Do you want to reload it ?"
+msgid ""
+"The file %1 has been modified on disk.\n"
+"Do you want to reload it?"
+msgstr ""
+"ファイル <filename>%1</filename> はディスク上で変更されています。\n"
+"再読み込みしますか？"
+
+#: part/dotgraphview.cpp:1701
+#, kde-format
+msgid "Layout Command"
+msgstr "レイアウトコマンド"
+
+#: part/dotgraphview.cpp:1702
+#, kde-format
+msgid ""
+"Specify here the command that will be used to layout the graph.\n"
+"The command MUST write its results on stdout in xdot format."
+msgstr ""
+"ここにグラフのレイアウトに使用するコマンドを入力します。\n"
+"コマンドはその結果を xdot フォーマットで標準出力に出力しなければなりません。"
+
+#: part/dotgraphview.cpp:2155
+#, kde-format
+msgid "Failed to open %1"
+msgstr ""
+
+#: part/kgraphviewer_part.cpp:102
+#, kde-format
+msgid "Print the graph using current page setup settings"
+msgstr "現在のページ設定を使ってグラフを印刷します"
+
+#: part/kgraphviewer_part.cpp:106
+#, kde-format
+msgid "Open the print preview window"
+msgstr "印刷プレビューウィンドウを開きます"
+
+#: part/kgraphviewer_part.cpp:110
+#, kde-format
+msgid "Page setup"
+msgstr "ページ設定"
+
+#: part/kgraphviewer_part.cpp:111
+#, fuzzy, kde-format
+#| msgid ""
+#| "Opens the Page Setup dialog allowing to setup how the graph will be "
+#| "printed"
+msgid "Opens the Page Setup dialog to allow graph printing to be setup"
+msgstr "ページ設定ダイアログを開いてグラフをどのように印刷するかを設定します"
+
+#: part/kgraphviewer_part.cpp:114
+#, kde-format
+msgid "Reload the current graph from file"
+msgstr "現在のグラフをファイルから再読み込みします"
+
+#: part/kgraphviewer_part.cpp:119
+#, fuzzy, no-c-format, kde-format
+#| msgid "Zoom in by 10% the currently viewed graph"
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "現在表示されているグラフを 10% 拡大します"
+
+#: part/kgraphviewer_part.cpp:124
+#, fuzzy, no-c-format, kde-format
+#| msgid "Zoom out by 10% the currently viewed graph"
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "現在表示されているグラフを 10% 縮小します"
+
+#. i18n: ectx: Menu (file)
+#: part/kgraphviewer_part.rc:4
+#, kde-format
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#. i18n: ectx: Menu (view)
+#: part/kgraphviewer_part.rc:11
+#, kde-format
+msgid "&View"
+msgstr "表示(&V)"
+
+#: part/KgvPageLayout.cpp:68
+#, fuzzy, kde-format
+#| msgid "Screen"
+msgctxt "Page size"
+msgid "Screen"
+msgstr "スクリーン"
+
+#: part/KgvPageLayout.cpp:69
+#, fuzzy, kde-format
+#| msgctxt "Custom size"
+#| msgid "Custom"
+msgctxt "Page size"
+msgid "Custom"
+msgstr "カスタム"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: part/KgvPageLayoutColumnsBase.ui:27
+#, kde-format
+msgid "Columns:"
+msgstr "列:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelSpacing)
+#: part/KgvPageLayoutColumnsBase.ui:37
+#, kde-format
+msgid "Column spacing:"
+msgstr "列の間隔:"
+
+#: part/KgvPageLayoutDia.cpp:62
+#, kde-format
+msgid "Page Preview"
+msgstr "ページのプレビュー"
+
+#: part/KgvPageLayoutDia.cpp:277
+#, fuzzy, kde-format
+#| msgid "Page Size && Margins"
+msgid "Page Size & Margins"
+msgstr "ページサイズと余白"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/KgvPageLayoutHeaderBase.ui:17
+#, kde-format
+msgid "Header"
+msgstr "ヘッダ"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhFirst)
+#: part/KgvPageLayoutHeaderBase.ui:23
+#, kde-format
+msgid "Different header for the first page"
+msgstr "最初のページには異なるヘッダ"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:30
+#, kde-format
+msgid "Different header for even and odd pages"
+msgstr "偶数ページと奇数ページに異なるヘッダ"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: part/KgvPageLayoutHeaderBase.ui:55
+#, kde-format
+msgid "Spacing between header and body:"
+msgstr "ヘッダと本体の間隔:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/KgvPageLayoutHeaderBase.ui:77
+#, kde-format
+msgid "Footer"
+msgstr "フッタ"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfFirst)
+#: part/KgvPageLayoutHeaderBase.ui:83
+#, kde-format
+msgid "Different footer for the first page"
+msgstr "最初のページには異なるフッタ"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:90
+#, kde-format
+msgid "Different footer for even and odd pages"
+msgstr "偶数ページと奇数ページに異なるフッタ"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: part/KgvPageLayoutHeaderBase.ui:115
+#, kde-format
+msgid "Spacing between footer and body:"
+msgstr "フッタと本体の間隔:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/KgvPageLayoutHeaderBase.ui:137
+#, kde-format
+msgid "Footnote/Endnote"
+msgstr "脚注/巻末注"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: part/KgvPageLayoutHeaderBase.ui:159
+#, kde-format
+msgid "Spacing between footnote and body:"
+msgstr "脚注と本体の間隔:"
+
+#: part/KgvPageLayoutSize.cpp:62
+#, kde-format
+msgid "Unit:"
+msgstr "単位:"
+
+#: part/KgvPageLayoutSize.cpp:75
+#, kde-format
+msgid "All values are given in %1."
+msgstr "すべての値は %1 で与えられます。"
+
+#: part/KgvPageLayoutSize.cpp:80
+#, kde-format
+msgid "Page Size"
+msgstr "ページサイズ"
+
+#: part/KgvPageLayoutSize.cpp:89
+#, kde-format
+msgid "&Size:"
+msgstr "サイズ(&S):"
+
+#: part/KgvPageLayoutSize.cpp:110
+#, kde-format
+msgid "&Width:"
+msgstr "幅(&W):"
+
+#: part/KgvPageLayoutSize.cpp:121
+#, kde-format
+msgid "&Height:"
+msgstr "高さ(&H):"
+
+#: part/KgvPageLayoutSize.cpp:135
+#, kde-format
+msgid "Orientation"
+msgstr "方向"
+
+#: part/KgvPageLayoutSize.cpp:139
+#, kde-format
+msgid "&Portrait"
+msgstr "縦長(&P)"
+
+#: part/KgvPageLayoutSize.cpp:143
+#, kde-format
+msgid "La&ndscape"
+msgstr "横長(&N)"
+
+#: part/KgvPageLayoutSize.cpp:151
+#, kde-format
+msgid "Margins"
+msgstr "余白"
+
+#: part/KgvPageLayoutSize.cpp:374 part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "Page Layout Problem"
+msgstr "ページのレイアウトの問題"
+
+#: part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "The page width is smaller than the left and right margins."
+msgstr "ページの幅が左右の余白より小さくなっています。"
+
+#: part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "The page height is smaller than the top and bottom margins."
+msgstr "ページの高さが上下の余白より小さくなっています。"
+
+#: part/KgvUnit.cpp:51
+#, kde-format
+msgid "Millimeters (mm)"
+msgstr "ミリメートル (mm)"
+
+#: part/KgvUnit.cpp:53
+#, kde-format
+msgid "Centimeters (cm)"
+msgstr "センチメートル (cm)"
+
+#: part/KgvUnit.cpp:55
+#, kde-format
+msgid "Decimeters (dm)"
+msgstr "デシメートル (dm)"
+
+#: part/KgvUnit.cpp:57
+#, kde-format
+msgid "Inches (in)"
+msgstr "インチ (in)"
+
+#: part/KgvUnit.cpp:59
+#, kde-format
+msgid "Pica (pi)"
+msgstr "パイカ (pi)"
+
+#: part/KgvUnit.cpp:61
+#, kde-format
+msgid "Didot (dd)"
+msgstr "ディドー (dd)"
+
+#: part/KgvUnit.cpp:63
+#, kde-format
+msgid "Cicero (cc)"
+msgstr "シセロ (cc)"
+
+#: part/KgvUnit.cpp:65
+#, kde-format
+msgid "Points (pt)"
+msgstr "ポイント (pt)"
+
+#: part/KgvUnit.cpp:67
+#, fuzzy, kde-format
+#| msgid "Error!"
+msgid "Error."
+msgstr "エラー!"
+
+#: part/pannerview.cpp:64
+#, fuzzy, kde-format
+#| msgid ""
+#| "View of The complete graph. Click and drag to move this visible part."
+msgid "View of the complete graph. Click and drag to move the visible part."
+msgstr "グラフの概観図です。表示域を移動するにはクリックしてドラッグします。"
+
+#: part/pannerview.cpp:66
+#, fuzzy, kde-format
+#| msgid ""
+#| "<h1>View of The complete graph</h1><p>Single click out of the red square "
+#| "to move the center of his one at the mouse position.</p><p>Click in the "
+#| "red square and drag the mouse and the red square will follow the movement."
+#| "</p>"
+msgid ""
+"<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
+"red square will move the center of the view to where the mouse was clicked.</"
+"p><p>Clicking and dragging within the red square will cause the view to "
+"follow the movement.</p>"
+msgstr ""
+"<h1>グラフの概観図</h1><p>赤枠の外をクリックすると赤枠の中心がマウスの位置に"
+"移動します。</p><p>赤枠の中をクリックしてドラッグすると赤枠がマウスに従って移"
+"動します。</p>"
+
+#: part/simpleprintingcommand.cpp:98
+#, kde-format
+msgid "Print Preview"
+msgstr "印刷プレビュー"
+
+#: part/simpleprintingengine.cpp:200 part/simpleprintpreviewwindow.cpp:219
+#: part/simpleprintpreviewwindow.cpp:237
+#, kde-format
+msgctxt "Page (number) of (total)"
+msgid "Page %1 of %2"
+msgstr "ページ %1 / %2"
+
+#: part/simpleprintingengine.cpp:202
+#, kde-format
+msgid "Page %1"
+msgstr "ページ %1"
+
+#: part/simpleprintingpagesetup.cpp:101
+#, kde-format
+msgid "Print Preview..."
+msgstr "印刷プレビュー..."
+
+#: part/simpleprintingpagesetup.cpp:104
+#, kde-format
+msgid "Font..."
+msgstr ""
+
+#: part/simpleprintingpagesetup.cpp:105
+#, kde-format
+msgid "Changes font for title text."
+msgstr "タイトルのフォントを変更します。"
+
+#: part/simpleprintingpagesetup.cpp:111
+#, kde-format
+msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
+msgstr "<qt><h2>グラフ “%1” を印刷するためのページ設定</h2></qt>"
+
+#: part/simpleprintingpagesetup.cpp:116
+#, kde-format
+msgid "Saves settings for this setup as default."
+msgstr "この設定をデフォルトとして保存します。"
+
+#: part/simpleprintingpagesetup.cpp:119
+#, kde-format
+msgid "Adds date and time to the header."
+msgstr "ヘッダに日付と時刻を追加します。"
+
+#: part/simpleprintingpagesetup.cpp:120
+#, kde-format
+msgid "Adds page numbers to the footer."
+msgstr "フッタにページ番号を追加します。"
+
+#: part/simpleprintingpagesetup.cpp:121
+#, kde-format
+msgid "Adds table borders."
+msgstr "テーブルの枠線を追加します。"
+
+#: part/simpleprintingpagesetup.cpp:129
+#, fuzzy, kde-format
+#| msgid "Changes page size and margins."
+msgid "Change Page Size and Margins..."
+msgstr "ページサイズと余白を変更します。"
+
+#: part/simpleprintingpagesetup.cpp:130
+#, kde-format
+msgid "Changes page size and margins."
+msgstr "ページサイズと余白を変更します。"
+
+#: part/simpleprintingpagesetup.cpp:187
+#, kde-format
+msgid "Chosen font looks like this"
+msgstr "選択されたフォントのプレビューです"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Portrait"
+msgstr "縦長"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Landscape"
+msgstr "横長"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "margins:"
+msgstr "余白:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: part/simpleprintingpagesetupbase.ui:68
+#, fuzzy, kde-format
+#| msgid "Page &font:"
+msgid "Pa&ge font:"
+msgstr "ページのフォント(&F):"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/simpleprintingpagesetupbase.ui:97
+#, kde-format
+msgid "Page Size && Margins"
+msgstr "ページサイズと余白"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:122
+#, kde-format
+msgid "Add &borders"
+msgstr "枠線を追加する(&B)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
+#: part/simpleprintingpagesetupbase.ui:129
+#, kde-format
+msgid "Add date and time"
+msgstr "日付と時刻を追加する"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:152
+#, kde-format
+msgid "Add page numbers"
+msgstr "ページ番号を追加する"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
+#: part/simpleprintingpagesetupbase.ui:163
+#, kde-format
+msgid "Number of pages to fit on"
+msgstr "何ページに印刷するか"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/simpleprintingpagesetupbase.ui:195
+#, fuzzy, kde-format
+#| msgid "Horizontaly"
+msgid "Horizontally"
+msgstr "水平方向"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/simpleprintingpagesetupbase.ui:207
+#, fuzzy, kde-format
+#| msgid "Verticaly"
+msgid "Vertically"
+msgstr "垂直方向"
+
+#. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
+#: part/simpleprintingpagesetupbase.ui:232
+#, fuzzy, kde-format
+#| msgid "Natural size"
+msgid "&Natural size"
+msgstr "本来のサイズ"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
+#: part/simpleprintingpagesetupbase.ui:239
+#, fuzzy, kde-format
+#| msgid "Fit to one page"
+msgid "Fit &to one page"
+msgstr "単一ページに印刷"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
+#: part/simpleprintingpagesetupbase.ui:246
+#, fuzzy, kde-format
+#| msgid "Fit to several pages"
+msgid "F&it to several pages"
+msgstr "複数ページに印刷"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: part/simpleprintingpagesetupbase.ui:262
+#, kde-format
+msgid "Related actions:"
+msgstr "関連するアクション:"
+
+#: part/simpleprintpreviewwindow.cpp:69
+#, kde-format
+msgid "%1 - Print Preview - %2"
+msgstr "%1 - 印刷プレビュー - %2"
+
+#: part/simpleprintpreviewwindow.cpp:84
+#, kde-format
+msgid "&Page setup"
+msgstr "ページ設定(&P)"
+
+#: part/simpleprintpreviewwindow.cpp:123
+#, kde-format
+msgid "Previous Page"
+msgstr "前のページ"
+
+#: part/simpleprintpreviewwindow.cpp:133
+#, kde-format
+msgid "Next Page"
+msgstr "次のページ"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: preferencesAppearance.ui:19
+#, kde-format
+msgid "Default background color:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, note)
+#: preferencesAppearance.ui:51
+#, kde-format
+msgid "Note: this will be overridden if the graph has its own background color"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
+#: preferencesOpenInExistingWindow.ui:17
+#, kde-format
+msgid "Open in existing window"
+msgstr "既存のウィンドウで開く"
+
+#. i18n: ectx: property (text), widget (QRadioButton, yes)
+#: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
+#: preferencesReopenPreviouslyOpenedFiles.ui:29
+#, kde-format
+msgid "&Yes"
+msgstr "はい(&Y)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, no)
+#: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
+#: preferencesReopenPreviouslyOpenedFiles.ui:36
+#, fuzzy, kde-format
+#| msgid "No"
+msgid "&No"
+msgstr "いいえ"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesOpenInExistingWindow.ui:37
+#: preferencesReopenPreviouslyOpenedFiles.ui:43
+#, kde-format
+msgid "As&k"
+msgstr "確認する(&K)"
+
+#. i18n: ectx: property (title), widget (QGroupBox, parsingMode)
+#: preferencesParsing.ui:17
+#, kde-format
+msgid "Parse using:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, external)
+#: preferencesParsing.ui:26
+#, kde-format
+msgid "E&xternal command"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, internal)
+#: preferencesParsing.ui:33
+#, kde-format
+msgid "Internal &library"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
+#: preferencesReload.ui:17
+#, kde-format
+msgid "Reload files modified on disk"
+msgstr "ディスク上で変更されたファイルを再読み込みする"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesReload.ui:40
+#, kde-format
+msgid "&Ask"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
+#: preferencesReopenPreviouslyOpenedFiles.ui:17
+#, kde-format
+msgid "Reopen previously opened files"
+msgstr "前回開いたファイルを開く"
+
+#, fuzzy
+#~| msgid "KGraphViewer"
+#~ msgid "KGraphViewerPart"
+#~ msgstr "KGraphViewer"
+
+#, fuzzy
+#~| msgid "GraphViz dot files viewer"
+#~ msgid "Graphviz DOT files viewer"
+#~ msgstr "GraphViz DOT ファイルビューア"
+
+#, fuzzy
+#~| msgid "(c) 2005-2006, Gael de Chalendar &lt;kleag@free.fr&gt;"
+#~ msgid "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"
+#~ msgstr "(c) 2005-2006, Gael de Chalendar &lt;kleag@free.fr&gt;"

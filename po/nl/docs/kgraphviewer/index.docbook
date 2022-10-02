@@ -1,0 +1,1642 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY graphviz "<application
+><ulink url=&#034;https://www.graphviz.org&#034;
+>Graphviz</ulink
+></application
+>">
+  <!ENTITY boost "<ulink url=&#034;https://www.boost.org&#034;
+>Boost</ulink
+>">
+  <!ENTITY qanava "<application
+>Qanava</application
+>">
+  <!ENTITY kcachegrind "<application
+>KCacheGrind</application
+>"
+> <!--not in kdoctools 5.16-->
+  <!ENTITY dot "<application
+>DOT</application
+>">
+  <!ENTITY neato "<application
+>NEATO</application
+>">
+  <!ENTITY twopi "<application
+>TWOPI</application
+>">
+  <!ENTITY fdp "<application
+>FDP</application
+>">
+  <!ENTITY circo "<application
+>CIRCO</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE"
+><!-- change language only here -->
+]>
+
+
+<book id="kgraphviewer" lang="&language;">
+
+<bookinfo>
+<title
+>Het handboek van &kgraphviewer;</title>
+
+<authorgroup>
+<author
+><firstname
+>Gaël</firstname
+> <othername
+></othername
+> <surname
+>de Chalendar</surname
+> <affiliation
+> <address
+><email
+>kleag@free.fr</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Federico</firstname
+> <othername
+></othername
+> <surname
+>Zenith</surname
+> <affiliation
+> <address
+><email
+>federico.zenith@member.fsf.org</email
+></address>
+</affiliation>
+</author>
+&Freek.de.Kruijf;&Ronald.Stroethoff; 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Gaël de Chalendar</holder>
+</copyright>
+<!-- Translators: put here the copyright notice of the translation -->
+<!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
+     and in the FDL itself on how to use it. -->
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2020-12-14</date>
+<releaseinfo
+>&kgraphviewer; 2.4.3</releaseinfo>
+
+<abstract>
+<para
+>&kgraphviewer; is een &graphviz; &dot; grafiek viewer. Het is ontwikkeld in de &kde; gemeenschap. De &graphviz; programma´s zijn vrije-software programma´s voor de opmaak van grafieken. Deze grafieken worden het meest in de wetenschappelijke omgeving (en met name bij de computer-wetenschap) toegepast. </para>
+<para
+>&kgraphviewer; toont grafieken in een moderne, gebruikersvriendelijke &GUI;. </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kgraphviewer</keyword>
+<keyword
+>graphviz</keyword>
+<keyword
+>dot</keyword>
+<keyword
+>neato</keyword>
+<keyword
+>viewer</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inleiding</title>
+
+<para
+>&kgraphviewer; is een &graphviz; &dot; graph viewer. De &graphviz; programma's is vrije-software voor opmaak-engines voor grafieken. &kgraphviewer; toont de grafieken met behulp van een modern gebruikersvriendelijke &GUI; Het heeft de volgende mogelijkheden: <screenshot>
+<screeninfo
+>Hier is een schermafdruk van &kgraphviewer;</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Het hoofdvenster van &kgraphviewer; die een van de voorbeelden van &graphviz; toont</phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+<itemizedlist>
+  <listitem
+><para
+>Zoomen;</para
+></listitem>
+  <listitem
+><para
+>Laden van verschillende grafen in tabbladen op dezelfde tijd;</para
+></listitem>
+  <listitem
+><para
+>Opslag van een lijst met recente bestanden;</para
+></listitem>
+  <listitem
+><para
+>Een vogelvlucht weergave van een graaf;</para
+></listitem>
+  <listitem
+><para
+>Wandelen door grafieken door verslepen met de muis:</para
+></listitem>
+  <listitem
+><para
+>Volledige ondersteuning van afdrukken;</para
+></listitem>
+  <listitem
+><para
+>Perfecte weergave van alle &graphviz;-voorbeelden;</para
+></listitem>
+  <listitem
+><para
+>De ondersteuning van alle node-vormen en gekleurde nodes en lijnen </para
+></listitem>
+  <listitem
+><para
+>Automatische keus van &dot; voor evenwijdige schema´s en &neato; voor diegene die niet evenwijdig lopen.</para
+></listitem>
+  <listitem
+><para
+>Handmatig of automatisch herladen (na bevestiging van de gebruiker) van extern gewijzigde bestanden (instelbaar);</para
+></listitem>
+  <listitem
+><para
+>Openen van nieuwe programma-instanties als nieuwe tabs in een bestaande instantie (instelbaar);</para
+></listitem>
+  <listitem
+><para
+>Help systeem;</para
+></listitem>
+  <listitem
+><para
+>Internationalisatie</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Mogelijke toekomstige toevoegingen: <itemizedlist>
+	<listitem
+><para
+>Eventueel het gebruik van de bibliotheek &qanava; voor de ondersteuning van van interne grafische voorstellingen;</para
+></listitem>
+	<listitem
+><para
+>Het opslaan van sessiebeheer (grafische indeling, gebruikte zoomfactor. &etc;)</para
+></listitem>
+	<listitem
+><para
+>Integratie in &kate; en &konqueror; (zodat een wijziging van de weergave in &kate; van het schema zal resulteren in het opnieuw laden van het bestand in de &kgraphviewer;);</para
+></listitem>
+	<listitem
+><para
+>Menu voor het openen van het bestand in &kate; <emphasis
+>of</emphasis
+> voor het openen van een katepart in het &kgraphviewer;-venster;</para
+></listitem>
+	<listitem
+><para
+>Laden van grote en enorme grafieken (op dit moment treden er problemen op met de performance bij ongeveer 1000 nodes, en een hack voor het negeren van nodes boven een opgegeven limiet);</para
+></listitem>
+	<listitem
+><para
+>Verdergaande ondersteuning van meer en meer &dot; attributen en waarden;</para
+></listitem>
+	<listitem
+><para
+>Berekening van de opmaak in achtergrond (met threading om de gebruikersinterface niet te blokkeren, met voortgang-indicatie).</para
+></listitem>
+</itemizedlist
+></para>
+
+<note
+><para
+>Merk op dat dit programma met toestemming code heeft overgenomen van het GPL programma &kcachegrind; geschreven door Josef Weidendorfer.</para
+></note>
+<note
+><para
+>Merk ook op dat het printsysteem afkomstig is uit het &kexi; database programma in &calligra;.</para
+></note>
+
+<para
+>Andere benodigde software: &kgraphviewer; is een programma dat gebruik maakt van het &graphviz; hulpmiddel &dot; voor de grafische opmaak. Zijn afhankelijkheden van: <itemizedlist>
+	<listitem
+><para
+>De &Qt; en &kf5; bibliotheken met versie 5.x;</para
+></listitem>
+	<listitem
+><para
+>Het &graphviz; hulpmiddel als extern programma (getest met versie 2.8);</para
+></listitem>
+	<listitem
+><para
+>De &boost; bibliotheek versie 1.36.</para
+></listitem>
+</itemizedlist
+></para>
+
+</chapter>
+
+<chapter id="using-kgraphviewer">
+<title
+>&kgraphviewer; gebruiken</title>
+
+<sect1 id="using-kgraphviewer-mainwin">
+<title
+>Het hoofdvenster</title>
+
+<para
+>Het hoofdvenster toont de geladen grafieken, elk in zijn eigen tab. In het begin, als u &kgraphviewer; zonder argumenten start, dan is het hoofdvenster leeg zoals in het schermafdruk hieronder is te zien. In dat geval heeft de werkbalk alleen de items <guibutton
+>Openen... </guibutton
+> en de (lege) <guibutton
+>Recent geopend</guibutton
+>. Klik op de eerste om de standaard dialoog <guilabel
+>Open Bestand</guilabel
+> te openen.</para>
+
+<screenshot>
+<screeninfo
+>Het hoofdvenster bij het de eerste keer openen van &kgraphviewer;</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Het hoofdvenster bij het de eerste keer openen van &kgraphviewer;</phrase>
+    </textobject>
+    <caption
+><para
+>Het hoofdvenster bij het de eerste keer openen van &kgraphviewer;</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Na het selecteren van een of meerdere &dot;-bestanden, ziet het hoofdvenster eruit zoals in het schermafbeelding hieronder:</para>
+
+<screenshot>
+<screeninfo
+>Het hoofdvenster van &kgraphviewer; met verschillende geopende bestanden</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Het hoofdvenster van &kgraphviewer; met verschillende geopende bestanden</phrase>
+    </textobject>
+    <caption
+><para
+>Het hoofdvenster van &kgraphviewer; met verschillende geopende bestanden</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Zoals u ziet, is het in vogelvlucht in een venster in de hoek te zien als de grafiek groter is dan het beschikbare ruimte. U kunt met het contextmenu instellen of de optimale positie van dit overzicht automatisch berekent wordt of dat u het zelf plaatst.</para>
+
+<sect2>
+<title
+>Het grafiek in het venster verplaatsen</title>
+
+<para
+>Om de grafiek te verplaatsen, kunt u: <itemizedlist>
+	<listitem
+><para
+>Klikken en verslepen;</para
+></listitem>
+	<listitem
+><para
+>De schuifbalken gebruiken;</para
+></listitem>
+	<listitem
+><para
+>Op de navigatietoetsen drukken;</para
+></listitem>
+	<listitem
+><para
+>Ergens in het vogelvlucht-overzicht klikken;</para
+></listitem>
+	<listitem
+><para
+>Het muiswiel gebruiken (zonder modifier omhoog en omlaag, met de &Alt;-toets ingedrukt naar links en rechts);</para
+></listitem>
+	<listitem
+><para
+>of Klikken en verslepen in het vogelvlucht-overzicht.</para
+></listitem>
+</itemizedlist
+></para>
+</sect2>
+
+<sect2>
+<title
+>Zoomen</title>
+
+<para
+>Om in of uit te zoomen, kunt u naar keuze de knoppen <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> of <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> uit de werkbalk gebruiken om IN en UIT te zoomen, of u houd de &Shift;-toets ingedrukt terwijl u met uw muiswiel rolt. Tijdens het inzoomen zal in het vogelvlucht-overzicht het rode rechthoek dat het getoonde vlak voorstelt, kleiner en kleiner worden. Als het aan de korte kant kleiner wordt dan 10 pixels, dan is het als gevuld rood rechthoekje zodat het beter zichtbaar blijft. U kunt dat op het schermafbeelding hieronder zien.</para>
+
+<screenshot>
+<screeninfo
+>Een grafiek maximaal ingezoomd</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmax.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Een grafiek maximaal ingezoomd</phrase>
+</textobject>
+<caption
+><para
+>Een grafiek maximaal ingezoomd</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Zooming is gelimiteerd in beide richtingen met een factor 10. U kunt hieronder een grafiek zien met de maximale uitzoom-factor.</para>
+
+<screenshot>
+<screeninfo
+>Een grafiek maximaal uitgezoomd</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmin.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Een grafiek maximaal uitgezoomd</phrase>
+</textobject>
+<caption
+><para
+>Een grafiek maximaal uitgezoomd</para
+></caption>
+</mediaobject>
+</screenshot>
+</sect2>
+
+<sect2>
+<title
+>Het hanteren van grafiek-bestanden</title>
+
+<sect3>
+<title
+>Op de harde schijf gewijzigde bestanden</title>
+
+<para
+>Als een op dit moment in &kgraphviewer; geladen bestand is gewijzigd door een ander programma dan krijgt u het volgende dialoog te zien:</para>
+
+<screenshot>
+<screeninfo
+>Dialoog voor het opnieuw laden van een op de harde schijf gewijzigd bestand</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialoog voor het opnieuw laden van een op de harde schijf gewijzigd bestand</phrase>
+</textobject>
+<caption
+><para
+>Dialoog voor het opnieuw laden van een op de harde schijf gewijzigd bestand</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>U kunt de keuze maken om de grafiek opnieuw te laden of om de wijziging te negeren. U kunt ook &kgraphviewer; uw keuze laten onthouden, zodat het de volgende keer hetzelfde uitvoert. Als u later uw keuze wilt wijzigen, open dan het menu-item <menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+>&kgraphviewer; configureren...</guimenuitem
+></menuchoice
+>. Lees <xref linkend="kgraphviewer-configuration"/> voor meer informatie.</para>
+</sect3>
+
+<sect3
+><title
+>Bestanden en Vensters</title>
+<para
+>Als u een grafiek-bestand wilt openen van buiten een gestarte &kgraphviewer;-sessie, &eg; vanuit een bestandsverkenner of van de commandoregel, dan heeft u de keuze om een nieuw &kgraphviewer; venster te openen of om de grafiek in een nieuwe tab in het bestaande venster te openen. Dit kunt u doen in het dialoog hieronder.</para>
+
+<screenshot>
+<screeninfo
+>Dialoog voor het openen van een nieuw venster</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialoog voor het openen van een nieuw venster</phrase>
+</textobject>
+<caption
+><para
+>Dialoog voor het openen van een nieuw venster</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Zoals voor de vorige keuzemogelijkheid, kunt u uw keuze als standaard opslaan en later weer wijzigen in het configuratievenster.</para>
+
+</sect3>
+
+<sect3>
+<title
+>Sessie beheer</title>
+
+<para
+>Bij het opstarten kunt u kiezen om de grafieken die in de laatste sessie geopend waren opnieuw te openen. Ook hier kunt u uw keuze opslaan en later weer wijzigen.</para>
+
+<screenshot>
+<screeninfo
+>Dialoog voor het bij het starten opnieuw laden van de grafiek die in de laatste sessie geopend was</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialoog voor het bij het starten opnieuw laden van de grafiek die in de laatste sessie geopend was</phrase>
+</textobject>
+<caption
+><para
+>Dialoog voor het bij het starten opnieuw laden van de grafiek die in de laatste sessie geopend was</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect3>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="kgraphviewer-printing">
+<title
+>Grafieken afdrukken</title>
+<para
+>Probeer de knoppen <guibutton
+>Afdrukvoorbeeld</guibutton
+> of de <guibutton
+>Pagina instellingen</guibutton
+> uit om de print-mogelijkheden te verkennen.</para>
+
+<screenshot>
+<screeninfo
+>Dialoog voor afdruk instellingen</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-psetup1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialoog voor afdruk instellingen</phrase>
+</textobject>
+<caption
+><para
+>Dialoog voor afdruk instellingen</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>U kunt de afdruk-mogelijkheden zodanig instellen dat de grafiek precies op een pagina past, zoals u hieronder kun zien.</para>
+
+<screenshot>
+<screeninfo
+>Afdrukvoorbeeld zodanig ingesteld dat het op een pagina past</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Afdrukvoorbeeld zodanig ingesteld dat het op een pagina past</phrase>
+</textobject>
+<caption
+><para
+>Afdrukvoorbeeld zodanig ingesteld dat het op een pagina past</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>U kunt ook beslissen om de grafiek over meerdere pagina´s te verdelen. Horizontaal en verticaal is het aantal pagina´s onafhankelijk in te stellen.</para>
+
+<screenshot>
+<screeninfo
+>Afdrukvoorbeeld zodanig ingesteld dat het meerdere pagina´s vult</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Afdrukvoorbeeld zodanig ingesteld dat het meerdere pagina´s vult</phrase>
+</textobject>
+<caption
+><para
+>Afdrukvoorbeeld zodanig ingesteld dat het meerdere pagina´s vult</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Tenslotte, bij het gebruik van meerdere pagina´s, kunt u ervoor kiezen dat het gedeelte van de grafiek op elke pagina de pagina geheel vult zoals hierboven, waarbij de beeldverhoudingen wordt genegeerd, of waarbij het wel wordt in acht genomen. In het laatste geval, kunnen pagina´s niet geheel gevuld zijn.</para>
+
+<para
+>U kunt de paginagrootte en de marges wijzigen:</para>
+
+<screenshot>
+<screeninfo
+>Dialoog voor de pagina-instellingen en de marges</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-pagesmarges.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialoog voor de pagina-instellingen en de marges</phrase>
+</textobject>
+<caption
+><para
+>Dialoog voor de pagina-instellingen en de marges</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>U kunt ook het lettertype, koptekst en voettekst wijzigen:</para>
+
+<screenshot>
+<screeninfo
+>Afdrukvoorbeeld zodanig ingesteld dat het op meerdere pagina´s past zonder koptekst en met een ander lettertype</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Afdrukvoorbeeld zodanig ingesteld dat het op meerdere pagina´s past zonder koptekst en met een ander lettertype</phrase>
+</textobject>
+<caption
+><para
+>Afdrukvoorbeeld zodanig ingesteld dat het op meerdere pagina´s past zonder koptekst en met een ander lettertype</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="kgraphviewer-configuration">
+<title
+>&kgraphviewer; instellen</title>
+
+<para
+>De pagina <guilabel
+>Uiterlijk</guilabel
+> stelt u in staat om de standaard achtergrondkleur gebruikt in &kgraphviewer; te wijzigen als een grafiek zelf geen eigen achtergrondkleur heeft.</para>
+
+<screenshot>
+<screeninfo
+>Pagina om het uiterlijk van een grafiek te wijzigen</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pagina om het uiterlijk van een grafiek te wijzigen</phrase>
+</textobject>
+<caption
+><para
+>Pagina om het uiterlijk van een grafiek te wijzigen</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>De pagina <guilabel
+>Ontleden</guilabel
+> stelt u in staat om een extern commando of de interne bibliotheek voor het ontleden van &graphviz; &dot; bestanden te selecteren.</para>
+
+<screenshot>
+<screeninfo
+>Pagina in het configuratie dialoogvenster voor het herladen van op de harde schijf gewijzigde bestanden</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pagina in het configuratie dialoogvenster voor het herladen van op de harde schijf gewijzigde bestanden</phrase>
+</textobject>
+<caption
+><para
+>Pagina in het configuratie dialoogvenster voor het herladen van op de harde schijf gewijzigde bestanden</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Op de pagina <guilabel
+>Opnieuw inlezen</guilabel
+> kunt u het gedrag aanpassen van &kgraphviewer; bij het wijzigen van een bestand op de harde schijf door een ander programma. U kunt een standaard reactie instellen (automatisch herladen of wijzigingen negeren), of iedere keer vragen.</para>
+
+<screenshot>
+<screeninfo
+>Pagina in het configuratie dialoogvenster voor het herladen van op de harde schijf gewijzigde bestanden</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pagina in het configuratie dialoogvenster voor het herladen van op de harde schijf gewijzigde bestanden</phrase>
+</textobject>
+<caption
+><para
+>Pagina in het configuratie dialoogvenster voor het herladen van op de harde schijf gewijzigde bestanden</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Op de pagina <guilabel
+>Openen</guilabel
+> kunt u het gedrag aanpassen van &kgraphviewer; als u een grafiek-bestand opent buiten de huidige sessie. U kunt een standaard reactie instellen (het openen in het bestaande venster of in een nieuw venster), of iedere keer vragen.</para>
+
+<screenshot>
+<screeninfo
+>Pagina in het configuratie dialoogvenster met instellingen voor het openen van nieuwe bestanden in het bestaande venster</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pagina in het configuratie dialoogvenster met instellingen voor het openen van nieuwe bestanden in het bestaande venster</phrase>
+</textobject>
+<caption
+><para
+>Pagina in het configuratie dialoogvenster met instellingen voor het openen van nieuwe bestanden in het bestaande venster</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Op de pagina <guilabel
+>Sessiebeheer</guilabel
+> kunt u het opstartgedrag van &kgraphviewer; aanpassen. U kunt een standaard reactie instellen (het wel of niet opnieuw openen van de bestanden die in de laatste sessie geopend waren), of iedere keer vragen.</para>
+
+<screenshot>
+<screeninfo
+>Pagina in het configuratie dialoogvenster met instellingen voor het opnieuw laden van de in de laatste sessie geopende bestanden</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pagina in het configuratie dialoogvenster met instellingen voor het opnieuw laden van de in de laatste sessie geopende bestanden</phrase>
+</textobject>
+<caption
+><para
+>Pagina in het configuratie dialoogvenster met instellingen voor het opnieuw laden van de in de laatste sessie geopende bestanden</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="using-kgraphviewer-misc">
+<title
+>Diverse onderdelen</title>
+
+<para
+>Het contextmenu, dat u meestal opent door met de &RMB; in het grafische venster te klikken, geeft nog enkele andere mogelijkheden: <variablelist>
+<varlistentry>
+<term
+><guisubmenu
+>Opmaak</guisubmenu
+></term>
+<listitem
+><para
+>Hier kunt u een kiezen tussen verschillende &graphviz; opmaak algoritmes maar u kunt ook uw eigen opmaak selecteren. De items, waarvan u de beschrijving kunt vinden op de &graphviz; homepage, zijn de volgende: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>&dot;</guimenuitem
+></term>
+	<listitem
+><para
+>&dot; algoritme, standaard voor directe schema´s. het produceert <quote
+>hiërarchische</quote
+> of gelaagde schema´s. Het opmaak algoritme laat de lijnen evenwijdig lopen (van boven naar beneden en van links naar rechts), en probeert vervolgens kruisende lijnen te vermijden en de lijnen zo kort mogelijk te houden.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&neato;</guimenuitem
+></term>
+	<listitem
+><para
+>&neato; algoritme, standaard voor schema´s die niet evenwijdig lopen. Het produceert <quote
+>springveer model</quote
+> indelingen. Het gebruikt het Kamada-Kawai algoritme, welke overeenkomt met statische multi-dimensionale verschalingen.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&twopi;</guimenuitem
+></term>
+	<listitem
+><para
+>&twopi; algoritme, voor evenwijdige en niet evenwijdige schema´s. Radiale opmaak, naar Graham Wills 1997.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&fdp;</guimenuitem
+></term>
+	<listitem
+><para
+>&fdp; algoritme, voor niet evenwijdige grafieken. het produceert een <quote
+>springveer</quote
+> opmaak. Het gebruikt het Fruchterman-Reingold heuristic dat een multidimensionale solver gebruikt die grotere grafieken kan hanteren en niet evenwijdige grafieken clustert.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&circo;</guimenuitem
+></term>
+	<listitem
+><para
+>&circo; algoritme. Het produceert een circulaire opmaak, naar Six en Tollis 1999, Kauffman en Wiese 2002. Geschikt voor bepaalde diagrammen van meerdere cyclische structuren.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Indelingscommando opgeven</guimenuitem
+></term>
+	<listitem
+><para
+>Opent een dialoog waarin u een opmaak commando kunt opgeven dat vervolgens door de shell wordt uitgevoerd. Dit commando kan maar een parameter accepteren, Het grafiek-bestandsnaam, waarna het de opmaak via stout in de xdot-taal produceert. Op deze manier kunt u specifieke optie´s meegeven aan een van de vorige commando´s, of een filter toepassen dat uw grafiek aanpast voordat &dot; het gaat bewerken.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Indelingscommando terugzetten naar standaardwaarde</guimenuitem
+></term>
+	<listitem
+><para
+>Bepaal het soort grafiek (wel of niet evenwijdig) en pas de standaard algoritme er op toe, op dit moment respectievelijk &dot; en &neato;.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+	</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Grafiek exporteren</guisubmenu
+></term>
+<listitem
+><para>
+	<variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Als afbeelding...</guimenuitem
+></term>
+	<listitem
+><para
+>Stelt in staat om de volledige grafiek naar alle ondersteunde afbeeldingsformaten te exporteren.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guimenu
+>Vogelvlucht activeren</guimenu
+></term>
+<listitem
+><para
+>Indien ingeschakeld, zal indien nodig het overzicht worden getoond. Anders blijft het verborgen en is zijn locatie-menu uitgeschakeld.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Vogelvlucht-overzicht</guisubmenu
+></term>
+<listitem
+><para
+>Configureert waar het overzicht in de grafische weergave wordt geplaatst. De keuzemogelijkheden zijn: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Linksboven</guimenuitem
+></term>
+	<listitem
+><para
+>Plaatst het overzicht in de linkerbovenhoek;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Rechtsboven</guimenuitem
+></term>
+	<listitem
+><para
+>Plaatst het overzicht in de rechterbovenhoek;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Linksonder</guimenuitem
+></term>
+	<listitem
+><para
+>Plaatst het overzicht in de linkeronderhoek;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Rechtsonder</guimenuitem
+></term>
+	<listitem
+><para
+>Plaatst het overzicht in de rechteronderhoek;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Automatisch</guimenuitem
+></term>
+	<listitem
+><para
+>Automatisch kiest de beste positie om zo weinig mogelijk van de grafiek te bedekken.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist
+></para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commands">
+<title
+>Overzicht van de opdrachten</title>
+
+<sect1 id="kgraphviewer-commands-menus">
+<title
+>De menu´s van &kgraphviewer;</title>
+
+<sect2>
+<title
+>Het menu Bestand</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Nieuw</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Opent</action
+> een nieuw &kgraphviewer;-venster.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Openen</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Toont</action
+> het dialoog <guilabel
+>Bestand openen</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Recent geopend</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Toont</action
+> de lijst met tien laatst geopende bestanden.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Bestand</guimenu
+><guisubmenu
+>Grafiek exporteren</guisubmenu
+><guimenuitem
+>Als Afbeelding...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Stelt in staat om de volledige grafiek naar alle ondersteunde afbeeldingsformaten te <action
+>exporteren</action
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+></shortcut
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Afdrukken...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Drukt </action
+> de geselecteerde grafiek af met de huidige print-instellingen.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>P</keycap
+></keycombo
+></shortcut
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Voorbeeld afdrukken</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Opent</action
+> het <guilabel
+>afdrukvoorbeeld</guilabel
+> venster met de geselecteerde grafiek.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Pagina instellen</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Opent</action
+> het dialoog <guilabel
+>Pagina indeling</guilabel
+> voor de geselecteerde grafiek.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Afsluiten</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Beëindigen</action
+> van &kgraphviewer;.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Het menu Beeld</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Inzoomen</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Zoomt in</action
+> op de huidige grafiek met 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Uitzoomen</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Zoomt uit</action
+> op de huidige grafiek met 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Herladen</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Haalt</action
+> de huidige grafiek opnieuw uit het bestand.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Beeld</guimenu
+><guisubmenu
+>Indelingsalgoritme selecteren</guisubmenu
+></menuchoice
+></term>
+	<listitem
+><para
+>Opent een submenu met verschillende &graphviz; indelingsalgorithmen voor de huidige grafiek.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+></shortcut
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Vogelvlucht activeren</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Indien ingeschakeld, zal indien nodig het overzicht worden getoond. Anders blijft het verborgen en is zijn locatie-menu uitgeschakeld.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Vogelvlucht activeren</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Configureert waar het overzicht in de grafische weergave wordt geplaatst. De keuzemogelijkheden zijn: <variablelist>
+		<varlistentry>
+		<term
+><guimenuitem
+>Linksboven</guimenuitem
+></term>
+		<listitem
+><para
+>Plaatst het overzicht in de linkerbovenhoek;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Rechtsboven</guimenuitem
+></term>
+		<listitem
+><para
+>Plaatst het overzicht in de rechterbovenhoek;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Linksonder</guimenuitem
+></term>
+		<listitem
+><para
+>Plaatst het overzicht in de linkeronderhoek;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Rechtsonder</guimenuitem
+></term>
+		<listitem
+><para
+>Plaatst het overzicht in de rechteronderhoek;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Automatisch</guimenuitem
+></term>
+		<listitem
+><para
+>Automatisch kiest de beste positie om zo weinig mogelijk van de grafiek te bedekken.</para
+></listitem>
+		</varlistentry>
+	</variablelist
+></para
+></listitem>
+	</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>De menu's Instellingen en Help</title>
+
+<para
+>&kgraphviewer; heeft de standaard &kde;-menuitems <guimenu
+>Instellingen</guimenu
+> en <guimenu
+>Help</guimenu
+>, lees voor meer informatie de secties over het <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu Instellingen</ulink
+> en <ulink url="help:/fundamentals/menus.html#menus-help"
+>Help Menu</ulink
+> van de &kde; Fundamentals. </para>
+
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-commands-toolbars">
+<title
+>De werkbalken van &kgraphviewer;</title>
+
+<sect2>
+<title
+>De hoofdwerkbalk</title>
+<!--document-new-->
+<variablelist>
+	<varlistentry
+><!--document-open-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-open.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>toont</action
+> het dialoog <guilabel
+>Bestand openen</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--document-open-recent-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-prev.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Toont</action
+> de lijst met recent geopende bestanden.</para
+></listitem>
+	</varlistentry>
+<!--document-close-->
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-print.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prints the graph</action
+> using current setup.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-preview.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Toont</action
+> het dialoog <guilabel
+>Afdrukvoorbeeld</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Shows</action
+> the <guilabel
+>Page Setup</guilabel
+> dialog.</para
+></listitem>
+	</varlistentry-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Beeldwerkbalk</title>
+
+<variablelist>
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-reload.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Reloads</action
+> the current graph.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-layout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+>U kunt het opmaak commando hier <action
+>Bewerken</action
+> en <action
+>toont</action
+> de lijst met vooringestelde opmaak algoritmen.</para
+></listitem>
+	</varlistentry>
+	
+	<varlistentry
+><!--zoom-in-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Zoomt in</action
+> op de huidige grafiek met 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--zoom-out-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Zoomt uit</action
+> op de huidige grafiek met 10%.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+<!--kgraphviewer-bev "Enable Bird's-eye View"-->
+</sect2>
+
+<sect2>
+<title
+>Helpwerkbalk</title>
+
+<variablelist>
+	<varlistentry
+><!--help-contextual-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Toont</action
+> the <guilabel
+>What's This</guilabel
+> mouse pointer. Klik ermee op een &GUI;-onderdeel voor het verkrijgen van uitleg over het gebruik ervan (als de uitleg aanwezig is).</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+<title
+>Dankbetuiging en licentie</title>
+
+<sect1 id="kgraphviewer-credits-program">
+<title
+>Programma</title>
+
+<sect2>
+<title
+>Belangrijkste auteurs</title>
+<para
+>Auteursrecht programma 2005-2006 Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+</sect2>
+
+<sect2>
+<title
+>Met dank aan (nog niet volledig)</title>
+<itemizedlist>
+	<listitem
+><para
+>Reimar Döffinger <email
+>Reimar.Doeffinger@stud.uni-karlsruhe.de</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-userguide">
+<title
+>Gebruikersgids</title>
+<para
+>Auteursrecht documentatie 2006 Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+<sect2>
+<title
+>Met dank aan</title>
+<itemizedlist>
+  <listitem
+><para
+>Federico Zenith <email
+>federico.zenith@member.fsf.org</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-other">
+<title
+>Andere dankbetuigingen</title>
+<para
+>Dit programma bevat hergebruikte code uit de volgende Vrije Software projecten:</para>
+<variablelist>
+	<varlistentry>
+	<term
+><ulink url="https://kcachegrind.github.io/html/Home.html"
+>&kcachegrind;</ulink
+></term>
+	<listitem
+><para
+>Startpunt grafisch model en weergave klasses; </para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><ulink url="http://www.kexi-project.org/"
+>&kexi;</ulink
+></term>
+	<listitem
+><para
+>Printer instellingenvenster en voorbeeldweergave.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-licenses"
+><title
+>Licenties</title>
+&meld.fouten;&vertaling.freek;&vertaling.ronald; &underFDL; &underGPL; </sect1>
+
+</chapter>
+
+&documentation.index;
+</book>

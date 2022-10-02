@@ -1,0 +1,1483 @@
+# translation of kgraphviewer.po to Low Saxon
+# Translation of kgraphviewer.po to Low Saxon
+#
+# Sönke Dibbern <s_dibbern@web.de>, 2007, 2009, 2014.
+# Manfred Wiese <m.j.wiese@web.de>, 2009, 2010, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: kgraphviewer\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-02 00:43+0000\n"
+"PO-Revision-Date: 2014-06-05 16:39+0200\n"
+"Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
+"Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
+"Language: nds\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Sönke Dibbern, Manfred Wiese"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "s_dibbern@web.de, m.j.wiese@web.de"
+
+#: kgrapheditor.cpp:131 kgraphviewer.cpp:113
+#, kde-format
+msgid "Session Restore"
+msgstr "Törns wedderherstellen"
+
+#: kgrapheditor.cpp:131
+#, kde-format
+msgid "Do you want to reload files from previous session?"
+msgstr "Wullt Du Dateien ut den verleden Törn nieg laden?"
+
+#: kgrapheditor.cpp:147
+#, fuzzy, kde-format
+#| msgid "Unable to start %1."
+msgid "Unable to start"
+msgstr "%1 lett sik nich starten."
+
+#: kgrapheditor.cpp:147 kgraphviewer.cpp:131
+#, kde-format
+msgid "Could not find the KGraphViewer part."
+msgstr "De KGraphViewer-Komponent lett sik nich finnen."
+
+#: kgrapheditor.cpp:228 kgraphviewer.cpp:211
+#, fuzzy, kde-format
+#| msgid "Closes the current tab"
+msgid "Closes the current file"
+msgstr "Maakt dat aktuelle Paneel to."
+
+#: kgrapheditor.cpp:241
+#, kde-format
+msgid "Create a New Vertex"
+msgstr "Nieg Höörn opstellen"
+
+#: kgrapheditor.cpp:246
+#, kde-format
+msgid "Create a New Edge"
+msgstr "Nieg Kant opstellen"
+
+#: kgrapheditor.cpp:506
+#, fuzzy, kde-format
+#| msgid "Save current graph to..."
+msgid "Save current graph"
+msgstr "Dat aktuelle Diagramm sekern as..."
+
+#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
+#, kde-format
+msgid "Parsing"
+msgstr "Inlesen"
+
+#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
+#, kde-format
+msgid "Reloading"
+msgstr "Nieg laden"
+
+#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
+#, kde-format
+msgid "Opening"
+msgstr "Opmaken"
+
+#: kgrapheditorConfigDialog.cpp:64 kgraphviewerConfigDialog.cpp:75
+#, kde-format
+msgid "Session Management"
+msgstr "Törns plegen"
+
+#: KGraphEditorElementTreeWidget.cpp:49 KGraphEditorNodesTreeWidget.cpp:54
+#, kde-format
+msgid "Add a new attribute"
+msgstr "Nieg Attribut tofögen"
+
+#: KGraphEditorElementTreeWidget.cpp:55 KGraphEditorNodesTreeWidget.cpp:60
+#, kde-format
+msgid "Remove this attribute"
+msgstr "Dit Attribut wegmaken"
+
+#: kgrapheditormain.cpp:46
+#, kde-format
+msgid "KGraphEditor"
+msgstr "KGraphEditor"
+
+#: kgrapheditormain.cpp:46
+#, fuzzy, kde-format
+#| msgid "A Graphviz dot graph viewer for KDE"
+msgid "A Graphviz DOT graph editor by KDE"
+msgstr "En Kieker för GraphViz-Dot-Diagrammen för KDE"
+
+#: kgrapheditormain.cpp:46 main.cpp:51
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© 2005-2010: Gaël de Chalendar"
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "Path or URL to scan"
+msgstr ""
+
+#: kgrapheditormain.cpp:58 main.cpp:69
+#, kde-format
+msgid "[url]"
+msgstr ""
+
+#: kgrapheditormain.cpp:83
+#, fuzzy, kde-format
+#| msgid ""
+#| "A KGraphEditor window is already open, where do you want to open this "
+#| "file?"
+msgid ""
+"A KGraphEditor window is already open, do you want to open the file in it?"
+msgstr ""
+"Dor is al en KGraphEditor-Finster apen. Woneem wullt Du de Datei opmaken?"
+
+#: kgrapheditormain.cpp:83 main.cpp:94
+#, kde-format
+msgid "Opening in new window confirmation"
+msgstr "Opmaken in en nieg Finster beglöven"
+
+#: KGraphEditorNodesTreeWidget.cpp:65
+#, kde-format
+msgid "Remove this node"
+msgstr "Dissen Knütt wegmaken"
+
+#. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
+#, kde-format
+msgid "The answer to the question 'File modified, do you want to reload it'"
+msgstr "De Antwoort op de Fraag \"Datei ännert, wullt Du ehr nieg laden\""
+
+#. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
+#, kde-format
+msgid ""
+"To choose whether to parse using an external command (usually dot) or the "
+"graphviz library"
+msgstr ""
+"Utsöken, wat för't Inlesen en extern Befehl (normalerwies »dot«), oder de "
+"Graphviz-Bibliotheek bruukt warrt."
+
+#. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
+#, kde-format
+msgid ""
+"The answer to the question 'If another window already exist when launching "
+"kgraphviewer, should we open in it, open a new window or ask?'"
+msgstr ""
+"De Antwoort op de Fraag \"Wenn bi't Starten vun kgraphviewer al en anner "
+"Finster gifft, wullt Du dat dor binnen opmaken, en nieg Finster opmaken oder "
+"fraagt warrn?\""
+
+#. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
+#, kde-format
+msgid ""
+"The answer to the question 'Should the files that were opened in previous "
+"sessions be reopened at startup?'"
+msgstr ""
+"De Antwoort op de Fraag \"Wullt Du opmaakt Dateien ut verleden Törns bi't "
+"Starten wedder opmaken?\""
+
+#. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
+#: part/kgraphviewer_partsettings.kcfg:9
+#, kde-format
+msgid "If true, the bird's eye view will be shown if needed."
+msgstr "Wenn wohr, warrt de Översicht wiest, wenn't noot deit."
+
+#. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
+#, kde-format
+msgid "The list of files that were opened in past instances of kgraphviewer"
+msgstr ""
+"De List vun Dateien, de in verleden Utgaven vun kgraphviewer opmaakt weern"
+
+#. i18n: ectx: ToolBar (viewToolBar)
+#: kgrapheditorui.rc:23 kgraphviewerui.rc:17
+#, kde-format
+msgid "View Toolbar"
+msgstr "Ansicht-Warktüüchbalken"
+
+#. i18n: ectx: ToolBar (helpToolBar)
+#: kgrapheditorui.rc:26 kgraphviewerui.rc:20
+#, kde-format
+msgid "Help Toolbar"
+msgstr "Hülp-Warktüüchbalken"
+
+#. i18n: ectx: ToolBar (editToolBar)
+#: kgrapheditorui.rc:31
+#, kde-format
+msgid "Edit Toolbar"
+msgstr "Bewerk-Warktüüchbalken"
+
+#: kgraphviewer.cpp:113
+#, kde-format
+msgid "Do you want to reload files from the previous session?"
+msgstr "Wullt Du Dateien ut den verleden Törn nieg laden?"
+
+#: kgraphviewer.cpp:198
+#, kde-format
+msgid "Opens a new empty KGraphViewer window."
+msgstr "Maakt en nieg leddig KGraphViewer-Finster op."
+
+#: kgraphviewer.cpp:201
+#, fuzzy, kde-format
+#| msgid "Shows the file open dialog to choose a GraphViz dot file to open."
+msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
+msgstr "Wiest den Dialoog för't Opmaken vun en GraphViz-Dot-Datei."
+
+#: kgraphviewer.cpp:205
+#, kde-format
+msgid ""
+"This lists files which you have opened recently, and allows you to easily "
+"open them again."
+msgstr ""
+"List de tolest opmaakten Dateien op, Du kannst se denn eenfach wedder "
+"opmaken."
+
+#: kgraphviewer.cpp:215
+#, kde-format
+msgid "Quits KGraphViewer."
+msgstr "Maakt KGraphViewer ut."
+
+#: kgraphviewer.cpp:218
+#, kde-format
+msgid "Shows or hides the status bar."
+msgstr "Wiest oder verstickt den Statusbalken."
+
+#: kgraphviewer.cpp:221
+#, kde-format
+msgid "Configure the bindings between keys and actions."
+msgstr "Tastkombinatschonen un Akschonen instellen."
+
+#: kgraphviewer.cpp:224
+#, kde-format
+msgid "Toolbar configuration."
+msgstr "Warktüüchbalken instellen"
+
+#: kgraphviewer.cpp:227
+#, kde-format
+msgid "Main KGraphViewer configuration options."
+msgstr "Hööft-Instelloptschonen för KGraphViewer"
+
+#: kgraphviewerConfigDialog.cpp:71
+#, kde-format
+msgid "Appearance"
+msgstr "Utsehn"
+
+#. i18n: ectx: label, entry (backgroundColor), group (Appearance)
+#: kgraphviewersettings.kcfg:34
+#, kde-format
+msgid "Background color of the graph view."
+msgstr "De Achtergrundklöör för de Diagrammansicht"
+
+#: main.cpp:47
+#, kde-format
+msgid "KGraphViewer"
+msgstr "KGraphViewer"
+
+#: main.cpp:49
+#, fuzzy, kde-format
+#| msgid "A Graphviz dot graph viewer for KDE"
+msgid "A Graphviz DOT graph viewer"
+msgstr "En Kieker för GraphViz-Dot-Diagrammen för KDE"
+
+#: main.cpp:54
+#, kde-format
+msgid "Gaël de Chalendar"
+msgstr "Gaël de Chalendar"
+
+#: main.cpp:54
+#, kde-format
+msgid "Original Author and current maintainer"
+msgstr "Orginaalschriever un Pleger opstunns"
+
+#: main.cpp:55
+#, kde-format
+msgid "Reimar Döffinger"
+msgstr "Reimar Döffinger"
+
+#: main.cpp:55 main.cpp:56 main.cpp:57 main.cpp:58
+#, kde-format
+msgid "Contributor"
+msgstr "Bidreger"
+
+#: main.cpp:56
+#, kde-format
+msgid "Matthias Peinhardt"
+msgstr "Matthias Peinhardt"
+
+#: main.cpp:57
+#, kde-format
+msgid "Sandro Andrade"
+msgstr "Sandro Andrade"
+
+#: main.cpp:58
+#, kde-format
+msgid "Milian Wolff"
+msgstr "Milian Wolff"
+
+#: main.cpp:59
+#, kde-format
+msgid "Martin Sandsmark"
+msgstr ""
+
+#: main.cpp:59
+#, kde-format
+msgid "Port to KF5"
+msgstr ""
+
+#: main.cpp:94
+#, fuzzy, kde-format
+#| msgid ""
+#| "A KGraphViewer window is already open, where do you want to open this "
+#| "file?"
+msgid ""
+"A KGraphViewer window is already open, where do you want to open this file "
+"in the existing window?"
+msgstr ""
+"Dor is al en KGraphViewer-Finster apen. Woneem wullt Du de Datei opmaken?"
+
+#: part/canvasedge.cpp:74
+#, kde-format
+msgid ""
+"%1 -> %2\n"
+"label='%3'"
+msgstr ""
+"%1 -> %2\n"
+"Beteker='%3'"
+
+#: part/canvasedge.cpp:78
+#, kde-format
+msgid "Remove selected edge(s)"
+msgstr "Utsöcht Kanten wegmaken"
+
+#: part/canvaselement.cpp:92
+#, kde-format
+msgid "Remove selected element(s)"
+msgstr "Utsöcht Elementen wegmaken"
+
+#: part/canvasnode.cpp:64
+#, kde-format
+msgid ""
+"id='%1'\n"
+"label='%2'"
+msgstr ""
+"ID='%1'\n"
+"Beteker='%2'"
+
+#: part/dotgraph.cpp:265 part/dotgraph.cpp:268 part/dotgraph.cpp:271
+#: part/dotgraph.cpp:274 part/dotgraph.cpp:277 part/dotgraph.cpp:280
+#, kde-format
+msgid "Layout process failed"
+msgstr "Dorstellperzess fehlslaan"
+
+#: part/dotgraph.cpp:265
+#, kde-format
+msgid "Unable to start %1."
+msgstr "%1 lett sik nich starten."
+
+#: part/dotgraph.cpp:268
+#, kde-format
+msgid "%1 crashed."
+msgstr "%1 afstört"
+
+#: part/dotgraph.cpp:271
+#, kde-format
+msgid "%1 timed out."
+msgstr "Tiet för \"%1\" is aflopen."
+
+#: part/dotgraph.cpp:274
+#, kde-format
+msgid "Was not able to write data to the %1 process."
+msgstr "Daten laat sik nich na den Perzess \"%1\" schrieven."
+
+#: part/dotgraph.cpp:277
+#, kde-format
+msgid "Was not able to read data from the %1 process."
+msgstr "Daten laat sik nich ut den Perzess \"%1\" lesen."
+
+#: part/dotgraph.cpp:280
+#, kde-format
+msgid "Unknown error running %1."
+msgstr "Nich begäng Fehler bi't Utföhren vun %1."
+
+#: part/dotgraphview.cpp:421
+#, kde-format
+msgid "Select Layout Algo"
+msgstr "Anorn-Algoritmus utsöken"
+
+#: part/dotgraphview.cpp:424
+#, kde-format
+msgid "Dot"
+msgstr "Dot"
+
+#: part/dotgraphview.cpp:425
+#, kde-format
+msgid "Layout the graph using the dot program."
+msgstr "Dat Diagramm mit dat Programm \"dot\" dorstellen"
+
+#: part/dotgraphview.cpp:429
+#, kde-format
+msgid "Neato"
+msgstr "Neato"
+
+#: part/dotgraphview.cpp:430
+#, kde-format
+msgid "Layout the graph using the neato program."
+msgstr "Dat Diagramm mit dat Programm \"neato\" dorstellen"
+
+#: part/dotgraphview.cpp:434
+#, kde-format
+msgid "Twopi"
+msgstr "Twopi"
+
+#: part/dotgraphview.cpp:435
+#, kde-format
+msgid "Layout the graph using the twopi program."
+msgstr "Dat Diagramm mit dat Programm \"twopi\" dorstellen"
+
+#: part/dotgraphview.cpp:439
+#, kde-format
+msgid "Fdp"
+msgstr "Fdp"
+
+#: part/dotgraphview.cpp:440
+#, kde-format
+msgid "Layout the graph using the fdp program."
+msgstr "Dat Diagramm mit dat Programm \"fdp\" dorstellen"
+
+#: part/dotgraphview.cpp:444
+#, kde-format
+msgid "Circo"
+msgstr "Circo"
+
+#: part/dotgraphview.cpp:445
+#, kde-format
+msgid "Layout the graph using the circo program."
+msgstr "Dat Diagramm mit dat Programm \"circo\" dorstellen"
+
+#: part/dotgraphview.cpp:457
+#, fuzzy, kde-format
+#| msgid "Choose a GraphViz layout algorithm or edit your own one."
+msgid "Choose a Graphviz layout algorithm or edit your own one."
+msgstr "En GraphViz-Dorstellalgoritmus utsöken oder sülven en angeven"
+
+#: part/dotgraphview.cpp:459
+#, fuzzy, kde-format
+#| msgid ""
+#| "Choose a GraphViz layout algorithm or type in your own command that will "
+#| "generate a graph in the xdot format on its standard output. For example, "
+#| "to manually specify the <tt>G</tt> option to the dot command, type in: "
+#| "<tt>dot -Gname=MyGraphName -Txdot </tt>"
+msgid ""
+"Choose a Graphviz layout algorithm or type in your own command that will "
+"generate a graph in the xdot format on its standard output. For example, to "
+"manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+msgstr ""
+"Söök en Graph-Viz-Dorstellalgoritmus ut oder giff sülven en Befehl an, de op "
+"sien Standardutgaav en Diagramm in't XDOT-Formaat utgifft. Wenn Du a.B. de "
+"Optschoon <tt>G</tt> vun Hand na \"dot\" övergeven wullt, giff <tt>dot -"
+"Gname=MienDiagramm -Txdot </tt> in."
+
+#: part/dotgraphview.cpp:465
+#, kde-format
+msgid "Layout"
+msgstr "Dorstellen"
+
+#: part/dotgraphview.cpp:467
+#, kde-format
+msgid "Specify layout command"
+msgstr "Dorstellbefehl angeven"
+
+#: part/dotgraphview.cpp:468
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"Hier kannst Du den Dorstellbefehl angeven, den Du bruken wullt. Ut en DOT-"
+"Datei schull he op de Standardutgaav en XDOT-Datei maken."
+
+#: part/dotgraphview.cpp:469
+#, kde-format
+msgid "Reset layout command to default"
+msgstr "Dorstellbefehl op Standardweert torüchsetten"
+
+#: part/dotgraphview.cpp:470
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+"Den Dorstellbefehl op den Standardweert torüchsetten. Hangt vun dat Diagramm "
+"sien Typ af (richt oder nich)."
+
+#: part/dotgraphview.cpp:472
+#, kde-format
+msgid "Zoom In"
+msgstr "Grötter"
+
+#: part/dotgraphview.cpp:473
+#, kde-format
+msgid "Zoom Out"
+msgstr "Lütter"
+
+#: part/dotgraphview.cpp:477
+#, kde-format
+msgid "Export Graph"
+msgstr "Diagramm exporteren"
+
+#: part/dotgraphview.cpp:479
+#, kde-format
+msgid "Allows the graph to be exported in another format."
+msgstr "Dor laat sik dat Diagramm mit na en anner Formaat exporteren."
+
+#: part/dotgraphview.cpp:481
+#, kde-format
+msgid ""
+"Use the Export Graph menu to export the graph in another format. There is "
+"currently only one export format supported: as a PNG image."
+msgstr ""
+"Mit dat Menü \"Diagramm exporteren\" kannst Du dat Diagramm na en anner "
+"Formaat exporteren. Opstunns warrt bloots een Formaat ünnerstütt: PNG."
+
+#: part/dotgraphview.cpp:485
+#, kde-format
+msgid "As Image..."
+msgstr "As Bild..."
+
+#: part/dotgraphview.cpp:486
+#, kde-format
+msgid "Export the graph to an image file."
+msgstr "Diagramm as Bilddatei exporteren"
+
+#: part/dotgraphview.cpp:494
+#, kde-format
+msgid "Enable Bird's-eye View"
+msgstr "Översicht anmaken"
+
+#: part/dotgraphview.cpp:497
+#, kde-format
+msgid "Enables or disables the Bird's-eye View"
+msgstr "Maakt de Översicht an oder ut."
+
+#: part/dotgraphview.cpp:502
+#, kde-format
+msgid "Birds-eye View"
+msgstr "Översicht"
+
+#: part/dotgraphview.cpp:503
+#, kde-format
+msgid "Allows the Bird's-eye View to be setup."
+msgstr "De Översicht inrichten"
+
+#: part/dotgraphview.cpp:507
+#, kde-format
+msgid "Top Left"
+msgstr "Baven links"
+
+#: part/dotgraphview.cpp:508
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-left corner."
+msgstr "Sett de Översicht na't Huuk baven links."
+
+#: part/dotgraphview.cpp:512
+#, kde-format
+msgid "Top Right"
+msgstr "Baven rechts"
+
+#: part/dotgraphview.cpp:513
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-right corner."
+msgstr "Sett de Översicht na't Huuk baven rechts."
+
+#: part/dotgraphview.cpp:517
+#, kde-format
+msgid "Bottom Left"
+msgstr "Nerrn links"
+
+#: part/dotgraphview.cpp:518
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-left corner."
+msgstr "Sett de Översicht na't Huuk nerrn links."
+
+#: part/dotgraphview.cpp:522
+#, kde-format
+msgid "Bottom Right"
+msgstr "Nerrn rechts"
+
+#: part/dotgraphview.cpp:523
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-right corner."
+msgstr "Sett de Översicht na't Huuk nerrn rechts."
+
+#: part/dotgraphview.cpp:527
+#, kde-format
+msgid "Automatic"
+msgstr "Automaatsch"
+
+#: part/dotgraphview.cpp:528
+#, kde-format
+msgid ""
+"Let KGraphViewer automatically choose the position of the Bird's-eye View."
+msgstr "KGraphViewer de Steed vun de Översicht automaatsch utsöken laten"
+
+#: part/dotgraphview.cpp:575
+#, kde-format
+msgid "Select file"
+msgstr ""
+
+#: part/dotgraphview.cpp:589
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer"
+msgstr "Diagramm-SVG vun KGraphViewer opstellt"
+
+#: part/dotgraphview.cpp:590
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer."
+msgstr "Diagramm-SVG vun KGraphViewer opstellt"
+
+#: part/dotgraphview.cpp:637
+#, fuzzy, kde-format
+#| msgid ""
+#| "<h1>GraphViz dot format graph visualization</h1><p>If the graph is larger "
+#| "than the widget area, an overview panner is shown in one edge. Choose "
+#| "through the context menu if the optimal position of this overview should "
+#| "be automatically computed or put it where you want.</p><h2>How to work "
+#| "with it?</h2><ul><li>To move the graph, you can:  <ul>    <li>click & "
+#| "drag it</li>    <li>use the elevators</li>    <li>press the arrows keys</"
+#| "li>    <li>click somewhere in the panner view</li>    <li>use the mouse "
+#| "wheel (up and down with no modifier, left and right with the <Alt> key "
+#| "pressed)</li>    <li>or click & drag the panner view</li>  </ul></"
+#| "li><li>To zoom, you can either use the zoom in and zoom out toolbar "
+#| "buttons, or click on the <Shift> key while rolling your mouse wheel.</"
+#| "li><li>Try the contextual menu (usually by right-clicking) to discover "
+#| "other possibilities.</li><li>Try the <tt>Print preview</tt> or the "
+#| "<tt>Page setup</tt> buttons to explore the printing options.</li></ul>"
+msgid ""
+"<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
+"than the widget area, an overview panner is shown in one edge. Choose "
+"through the context menu if the optimal position of this overview should be "
+"automatically computed or put it where you want.</p><h2>How to work with it?"
+"</h2><ul><li>To move the graph, you can:  <ul>    <li>click & drag it</"
+"li>    <li>use the elevators</li>    <li>press the arrows keys</li>    "
+"<li>click somewhere in the panner view</li>    <li>use the mouse wheel (up "
+"and down with no modifier, left and right with the <Alt> key pressed)</"
+"li>    <li>or click & drag the panner view</li>  </ul></li><li>To zoom, you "
+"can either use the zoom in and zoom out toolbar buttons, or click on the "
+"<Shift> key while rolling your mouse wheel.</li><li>Try the contextual menu "
+"(usually by right-clicking) to discover other possibilities.</li><li>Try the "
+"<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
+"printing options.</li></ul>"
+msgstr ""
+"<h1>GraphViz - Dot-Formaat-Diagrammen dorstellen</h1><p>Is dat Diagramm "
+"grötter as dat Finster, warrt en Översicht-Schuver binnen en Huuk wiest. "
+"In't Rechtsklickmenü kannst Du fastleggen, wat de beste Steed dorför "
+"automaatsch utreekt oder vun Di fastleggt warrt.</p><h2>Wodennig "
+"funkscheneert dat?</h2><ul><li>Du kannst dat Diagramm verschuven, wenn "
+"Du<ul>    <li>dor op klickst un dat treckst</li>    <li>de Rullbalkens un de "
+"Pielen bruukst</li>    <li>de Pieltasten bruukst</li>    <li>op en Steed "
+"binnen de Översicht klickst</li>    <li>dat Muusrad bruukst (rop un daal so, "
+"na rechts un links mit daalhollen Alt-Tast</li>    <li>oder den Översicht-"
+"Ansicht anklickst un treckst.</li>  </ul></li><li>De Ansichtgrött lett sik "
+"mit de Knööp op den Warktüüchbalken ännern, oder wenn Du bi daalhollen "
+"Ümschalt-Tast dat Muusrad bruukst.</li><li>Binnen dat Rechtsklickmenü gifft "
+"dat noch anner Mööglichkeiten.</li><li>Druckoptschonen gifft dat, wenn Du de "
+"Knööp <tt>Druckvöransicht</tt> oder <tt>Siet inrichten</tt> bruukst.</li></"
+"ul>"
+
+#: part/dotgraphview.cpp:790
+#, kde-format
+msgid "no graph loaded"
+msgstr "Keen Diagramm laadt"
+
+#: part/dotgraphview.cpp:906 part/dotgraphview.cpp:927
+#: part/dotgraphview.cpp:974
+#, kde-format
+msgid "graph %1 is getting loaded..."
+msgstr "Diagramm %1 warrt laadt..."
+
+#: part/dotgraphview.cpp:914
+#, kde-format
+msgid "error parsing file %1"
+msgstr "Fehler bi't Inlesen vun Datei \"%1\""
+
+#: part/dotgraphview.cpp:1615
+#, kde-format
+msgid "Reload Confirmation"
+msgstr "Nieg Laden beglöven"
+
+#: part/dotgraphview.cpp:1615
+#, kde-format
+msgid ""
+"The file %1 has been modified on disk.\n"
+"Do you want to reload it?"
+msgstr ""
+"De Datei \"%1\" wöör op de Fastplaat ännert.\n"
+"Wullt Du ehr nieg laden?"
+
+#: part/dotgraphview.cpp:1701
+#, kde-format
+msgid "Layout Command"
+msgstr "Anornbefehl"
+
+#: part/dotgraphview.cpp:1702
+#, kde-format
+msgid ""
+"Specify here the command that will be used to layout the graph.\n"
+"The command MUST write its results on stdout in xdot format."
+msgstr ""
+"Hier kannst Du den Befehl ingeven, mit den dat Diagramm anornt warrt.\n"
+"De Befehl mutt sien Resultaten in't \"xdot\"-Formaat na stdout utgeven."
+
+#: part/dotgraphview.cpp:2155
+#, kde-format
+msgid "Failed to open %1"
+msgstr "„%1“ lett sik nich opmaken"
+
+#: part/kgraphviewer_part.cpp:102
+#, kde-format
+msgid "Print the graph using current page setup settings"
+msgstr "Dat Diagramm mit de aktuellen Sietinstellen drucken"
+
+#: part/kgraphviewer_part.cpp:106
+#, kde-format
+msgid "Open the print preview window"
+msgstr "Dat Druckvöransicht-Finster opmaken"
+
+#: part/kgraphviewer_part.cpp:110
+#, kde-format
+msgid "Page setup"
+msgstr "Siet inrichten"
+
+#: part/kgraphviewer_part.cpp:111
+#, kde-format
+msgid "Opens the Page Setup dialog to allow graph printing to be setup"
+msgstr ""
+"Maakt den Dialoog \"Siet inrichten\" op, dor lett sik mit fastleggen, "
+"wodennig dat Diagramm utdruckt warrt"
+
+#: part/kgraphviewer_part.cpp:114
+#, kde-format
+msgid "Reload the current graph from file"
+msgstr "Dat aktuelle Diagramm ut Datei nieg laden"
+
+#: part/kgraphviewer_part.cpp:119
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "Dat opstunns wieste Diagramm 10% grötter maken"
+
+#: part/kgraphviewer_part.cpp:124
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "Dat opstunns wieste Diagramm 10% lütter maken"
+
+#. i18n: ectx: Menu (file)
+#: part/kgraphviewer_part.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Datei"
+
+#. i18n: ectx: Menu (view)
+#: part/kgraphviewer_part.rc:11
+#, kde-format
+msgid "&View"
+msgstr "&Ansicht"
+
+#: part/KgvPageLayout.cpp:68
+#, kde-format
+msgctxt "Page size"
+msgid "Screen"
+msgstr "Schirm"
+
+#: part/KgvPageLayout.cpp:69
+#, kde-format
+msgctxt "Page size"
+msgid "Custom"
+msgstr "Egen"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: part/KgvPageLayoutColumnsBase.ui:27
+#, kde-format
+msgid "Columns:"
+msgstr "Striepen:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelSpacing)
+#: part/KgvPageLayoutColumnsBase.ui:37
+#, kde-format
+msgid "Column spacing:"
+msgstr "Striepafstand:"
+
+#: part/KgvPageLayoutDia.cpp:62
+#, kde-format
+msgid "Page Preview"
+msgstr "Siet-Vöransicht"
+
+#: part/KgvPageLayoutDia.cpp:277
+#, kde-format
+msgid "Page Size & Margins"
+msgstr "Siedengrött un Ränners"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/KgvPageLayoutHeaderBase.ui:17
+#, kde-format
+msgid "Header"
+msgstr "Kopp"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhFirst)
+#: part/KgvPageLayoutHeaderBase.ui:23
+#, kde-format
+msgid "Different header for the first page"
+msgstr "Op eerst Siet anner Kopp"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:30
+#, kde-format
+msgid "Different header for even and odd pages"
+msgstr "Op even un uneven Sieden verscheden Köpp"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: part/KgvPageLayoutHeaderBase.ui:55
+#, kde-format
+msgid "Spacing between header and body:"
+msgstr "Afstand twischen Kopp un Hööftdeel:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/KgvPageLayoutHeaderBase.ui:77
+#, kde-format
+msgid "Footer"
+msgstr "Footreeg"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfFirst)
+#: part/KgvPageLayoutHeaderBase.ui:83
+#, kde-format
+msgid "Different footer for the first page"
+msgstr "Op eerst Siet anner Footreeg"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:90
+#, kde-format
+msgid "Different footer for even and odd pages"
+msgstr "Op even un uneven Sieden verscheden Footregen"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: part/KgvPageLayoutHeaderBase.ui:115
+#, kde-format
+msgid "Spacing between footer and body:"
+msgstr "Afstand twischen Hööftdeel un Footreeg:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/KgvPageLayoutHeaderBase.ui:137
+#, kde-format
+msgid "Footnote/Endnote"
+msgstr "Footnotiz/Ennnotiz"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: part/KgvPageLayoutHeaderBase.ui:159
+#, kde-format
+msgid "Spacing between footnote and body:"
+msgstr "Afstand twischen Footnotiz un Hööftdeel:"
+
+#: part/KgvPageLayoutSize.cpp:62
+#, kde-format
+msgid "Unit:"
+msgstr "Eenheit:"
+
+#: part/KgvPageLayoutSize.cpp:75
+#, kde-format
+msgid "All values are given in %1."
+msgstr "All Weerten sünd in %1 angeven."
+
+#: part/KgvPageLayoutSize.cpp:80
+#, kde-format
+msgid "Page Size"
+msgstr "Papeergrött"
+
+#: part/KgvPageLayoutSize.cpp:89
+#, kde-format
+msgid "&Size:"
+msgstr "&Grött:"
+
+#: part/KgvPageLayoutSize.cpp:110
+#, kde-format
+msgid "&Width:"
+msgstr "&Breed:"
+
+#: part/KgvPageLayoutSize.cpp:121
+#, kde-format
+msgid "&Height:"
+msgstr "&Hööchde:"
+
+#: part/KgvPageLayoutSize.cpp:135
+#, kde-format
+msgid "Orientation"
+msgstr "Utrichten"
+
+#: part/KgvPageLayoutSize.cpp:139
+#, kde-format
+msgid "&Portrait"
+msgstr "&Hoochkant"
+
+#: part/KgvPageLayoutSize.cpp:143
+#, kde-format
+msgid "La&ndscape"
+msgstr "&Dwars"
+
+#: part/KgvPageLayoutSize.cpp:151
+#, kde-format
+msgid "Margins"
+msgstr "Ränners"
+
+#: part/KgvPageLayoutSize.cpp:374 part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "Page Layout Problem"
+msgstr "Anorn-Problem op de Siet"
+
+#: part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "The page width is smaller than the left and right margins."
+msgstr "De Breed vun de Siet is lütter as de Ränners links un rechts."
+
+#: part/KgvPageLayoutSize.cpp:378
+#, kde-format
+msgid "The page height is smaller than the top and bottom margins."
+msgstr "De Hööchde vun de Siet is lütter as de Ränners baven un nerrn."
+
+#: part/KgvUnit.cpp:51
+#, kde-format
+msgid "Millimeters (mm)"
+msgstr "Millimeters (mm)"
+
+#: part/KgvUnit.cpp:53
+#, kde-format
+msgid "Centimeters (cm)"
+msgstr "Zentimeters (cm)"
+
+#: part/KgvUnit.cpp:55
+#, kde-format
+msgid "Decimeters (dm)"
+msgstr "Dezimeters (dm)"
+
+#: part/KgvUnit.cpp:57
+#, kde-format
+msgid "Inches (in)"
+msgstr "Toll (in)"
+
+#: part/KgvUnit.cpp:59
+#, kde-format
+msgid "Pica (pi)"
+msgstr "Pica (pi)"
+
+#: part/KgvUnit.cpp:61
+#, kde-format
+msgid "Didot (dd)"
+msgstr "Didot (dd)"
+
+#: part/KgvUnit.cpp:63
+#, kde-format
+msgid "Cicero (cc)"
+msgstr "Cicero (cc)"
+
+#: part/KgvUnit.cpp:65
+#, kde-format
+msgid "Points (pt)"
+msgstr "Pünkt (pt)"
+
+#: part/KgvUnit.cpp:67
+#, kde-format
+msgid "Error."
+msgstr "Fehler."
+
+#: part/pannerview.cpp:64
+#, kde-format
+msgid "View of the complete graph. Click and drag to move the visible part."
+msgstr ""
+"Dat hele Diagramm ankieken. Du kannst klicken un trecken, wenn Du dat "
+"sichtbore Rebeet verschuven wullt."
+
+#: part/pannerview.cpp:66
+#, kde-format
+msgid ""
+"<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
+"red square will move the center of the view to where the mouse was clicked.</"
+"p><p>Clicking and dragging within the red square will cause the view to "
+"follow the movement.</p>"
+msgstr ""
+"<h1>Dat hele Diagramm ankieken</h1><p>Klick op en Steed buten den roden "
+"Kasten, de Merrn vun de Ansicht jumpt dor denn hen.</p><p>Klick op en Steed "
+"binnen den Kasten un treck em, wenn Du de Ansicht verschuven wullt.</p>"
+
+#: part/simpleprintingcommand.cpp:98
+#, kde-format
+msgid "Print Preview"
+msgstr "Druckvöransicht"
+
+#: part/simpleprintingengine.cpp:200 part/simpleprintpreviewwindow.cpp:219
+#: part/simpleprintpreviewwindow.cpp:237
+#, kde-format
+msgctxt "Page (number) of (total)"
+msgid "Page %1 of %2"
+msgstr "Siet %1 vun %2"
+
+#: part/simpleprintingengine.cpp:202
+#, kde-format
+msgid "Page %1"
+msgstr "Siet %1"
+
+#: part/simpleprintingpagesetup.cpp:101
+#, kde-format
+msgid "Print Preview..."
+msgstr "Druckvöransicht..."
+
+#: part/simpleprintingpagesetup.cpp:104
+#, kde-format
+msgid "Font..."
+msgstr ""
+
+#: part/simpleprintingpagesetup.cpp:105
+#, kde-format
+msgid "Changes font for title text."
+msgstr "Ännert de Schriftoort för den Titeltext."
+
+#: part/simpleprintingpagesetup.cpp:111
+#, kde-format
+msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
+msgstr "<qt><h2>Siet för't Drucken vun Diagrammen \"%1\" inrichten</h2></qt>"
+
+#: part/simpleprintingpagesetup.cpp:116
+#, kde-format
+msgid "Saves settings for this setup as default."
+msgstr "Sekert disse Instellen as Standard."
+
+#: part/simpleprintingpagesetup.cpp:119
+#, kde-format
+msgid "Adds date and time to the header."
+msgstr "Föögt Datum un Tiet na den Kopp to."
+
+#: part/simpleprintingpagesetup.cpp:120
+#, kde-format
+msgid "Adds page numbers to the footer."
+msgstr "Föögt Siedentallen na den Foot to."
+
+#: part/simpleprintingpagesetup.cpp:121
+#, kde-format
+msgid "Adds table borders."
+msgstr "Föögt Tabellengrenzen to."
+
+#: part/simpleprintingpagesetup.cpp:129
+#, fuzzy, kde-format
+#| msgid "Changes page size and margins."
+msgid "Change Page Size and Margins..."
+msgstr "Ännert Siedengrött un Ränners."
+
+#: part/simpleprintingpagesetup.cpp:130
+#, kde-format
+msgid "Changes page size and margins."
+msgstr "Ännert Siedengrött un Ränners."
+
+#: part/simpleprintingpagesetup.cpp:187
+#, kde-format
+msgid "Chosen font looks like this"
+msgstr "Utsöcht Schriftoort lett as dit"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Portrait"
+msgstr "Hoochkant"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "Landscape"
+msgstr "Dwars"
+
+#: part/simpleprintingpagesetup.cpp:203
+#, kde-format
+msgid "margins:"
+msgstr "Ränners:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: part/simpleprintingpagesetupbase.ui:68
+#, fuzzy, kde-format
+#| msgid "Page &font:"
+msgid "Pa&ge font:"
+msgstr "&Siet-Schriftoort:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/simpleprintingpagesetupbase.ui:97
+#, kde-format
+msgid "Page Size && Margins"
+msgstr "Sietgrött un Ränners"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:122
+#, kde-format
+msgid "Add &borders"
+msgstr "&Ränners tofögen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
+#: part/simpleprintingpagesetupbase.ui:129
+#, kde-format
+msgid "Add date and time"
+msgstr "Datum un Tiet tofögen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:152
+#, kde-format
+msgid "Add page numbers"
+msgstr "Siedentallen tofögen"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
+#: part/simpleprintingpagesetupbase.ui:163
+#, kde-format
+msgid "Number of pages to fit on"
+msgstr "Tall vun Sieden, op de topasst warrn schall"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/simpleprintingpagesetupbase.ui:195
+#, kde-format
+msgid "Horizontally"
+msgstr "Kimmrecht"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/simpleprintingpagesetupbase.ui:207
+#, kde-format
+msgid "Vertically"
+msgstr "Pielrecht"
+
+#. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
+#: part/simpleprintingpagesetupbase.ui:232
+#, fuzzy, kde-format
+#| msgid "Natural size"
+msgid "&Natural size"
+msgstr "Orginaalgrött"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
+#: part/simpleprintingpagesetupbase.ui:239
+#, fuzzy, kde-format
+#| msgid "Fit to one page"
+msgid "Fit &to one page"
+msgstr "Op een Siet topassen"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
+#: part/simpleprintingpagesetupbase.ui:246
+#, fuzzy, kde-format
+#| msgid "Fit to several pages"
+msgid "F&it to several pages"
+msgstr "Op mehr Sieden topassen"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: part/simpleprintingpagesetupbase.ui:262
+#, kde-format
+msgid "Related actions:"
+msgstr "Tohören Akschonen:"
+
+#: part/simpleprintpreviewwindow.cpp:69
+#, kde-format
+msgid "%1 - Print Preview - %2"
+msgstr "%1 - Druckvöransicht - %2"
+
+#: part/simpleprintpreviewwindow.cpp:84
+#, kde-format
+msgid "&Page setup"
+msgstr "Siet &inrichten"
+
+#: part/simpleprintpreviewwindow.cpp:123
+#, kde-format
+msgid "Previous Page"
+msgstr "Verleden Siet"
+
+#: part/simpleprintpreviewwindow.cpp:133
+#, kde-format
+msgid "Next Page"
+msgstr "Nakamen Siet"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: preferencesAppearance.ui:19
+#, kde-format
+msgid "Default background color:"
+msgstr "Standard-Achtergrundklöör:"
+
+#. i18n: ectx: property (text), widget (QLabel, note)
+#: preferencesAppearance.ui:51
+#, kde-format
+msgid "Note: this will be overridden if the graph has its own background color"
+msgstr ""
+"Beacht: Warrt övergahn, wenn dat Diagramm sien egen Achtergrundklöör hett"
+
+#. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
+#: preferencesOpenInExistingWindow.ui:17
+#, kde-format
+msgid "Open in existing window"
+msgstr "In vörhannen Finster opmaken"
+
+#. i18n: ectx: property (text), widget (QRadioButton, yes)
+#: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
+#: preferencesReopenPreviouslyOpenedFiles.ui:29
+#, kde-format
+msgid "&Yes"
+msgstr "&Jo"
+
+#. i18n: ectx: property (text), widget (QRadioButton, no)
+#: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
+#: preferencesReopenPreviouslyOpenedFiles.ui:36
+#, fuzzy, kde-format
+#| msgid "No"
+msgid "&No"
+msgstr "Nee"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesOpenInExistingWindow.ui:37
+#: preferencesReopenPreviouslyOpenedFiles.ui:43
+#, kde-format
+msgid "As&k"
+msgstr "&Fragen"
+
+#. i18n: ectx: property (title), widget (QGroupBox, parsingMode)
+#: preferencesParsing.ui:17
+#, kde-format
+msgid "Parse using:"
+msgstr "Inlesen mit:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, external)
+#: preferencesParsing.ui:26
+#, fuzzy, kde-format
+#| msgid "&External command"
+msgid "E&xternal command"
+msgstr "&Extern Befehl"
+
+#. i18n: ectx: property (text), widget (QRadioButton, internal)
+#: preferencesParsing.ui:33
+#, fuzzy, kde-format
+#| msgid "Internal library"
+msgid "Internal &library"
+msgstr "Intern Bibliotheek"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
+#: preferencesReload.ui:17
+#, kde-format
+msgid "Reload files modified on disk"
+msgstr "Op de Fastplaat ännerte Dateien nieg laden"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesReload.ui:40
+#, kde-format
+msgid "&Ask"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
+#: preferencesReopenPreviouslyOpenedFiles.ui:17
+#, kde-format
+msgid "Reopen previously opened files"
+msgstr "Vördem opmaakte Dateien wedder opmaken"
+
+#~ msgid "KGraphViewerPart"
+#~ msgstr "KGraphViewer-Komponent"
+
+#, fuzzy
+#~| msgid "GraphViz dot files viewer"
+#~ msgid "Graphviz DOT files viewer"
+#~ msgstr "Kieker för GraphViz-Dot-Dateien"
+
+#~ msgid "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"
+#~ msgstr "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A3"
+#~ msgstr "DIN A3"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A4"
+#~ msgstr "DIN A4"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A5"
+#~ msgstr "DIN A5"
+
+#~ msgctxt "Page size"
+#~ msgid "US Letter"
+#~ msgstr "US-Letter"
+
+#~ msgctxt "Page size"
+#~ msgid "US Legal"
+#~ msgstr "US-Legal"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO B5"
+#~ msgstr "DIN B5"
+
+#~ msgctxt "Page size"
+#~ msgid "US Executive"
+#~ msgstr "US-Executive"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A0"
+#~ msgstr "DIN A0"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A1"
+#~ msgstr "DIN A1"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A2"
+#~ msgstr "DIN A2"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A6"
+#~ msgstr "DIN A6"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A7"
+#~ msgstr "DIN A7"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A8"
+#~ msgstr "DIN A8"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO A9"
+#~ msgstr "DIN A9"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO B0"
+#~ msgstr "DIN B0"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO B1"
+#~ msgstr "DIN B1"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO B10"
+#~ msgstr "DIN B10"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO B2"
+#~ msgstr "DIN B2"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO B3"
+#~ msgstr "DIN B3"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO B4"
+#~ msgstr "DIN B4"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO B6"
+#~ msgstr "DIN B6"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO C5"
+#~ msgstr "DIN C5"
+
+#~ msgctxt "Page size"
+#~ msgid "US Common 10"
+#~ msgstr "US-Common 10"
+
+#~ msgctxt "Page size"
+#~ msgid "ISO DL"
+#~ msgstr "DIN DL"
+
+#~ msgctxt "Page size"
+#~ msgid "US Folio"
+#~ msgstr "US-Folio"
+
+#~ msgctxt "Page size"
+#~ msgid "US Ledger"
+#~ msgstr "US-Ledger"
+
+#~ msgctxt "Page size"
+#~ msgid "US Tabloid"
+#~ msgstr "US-Tabloid"
+
+#~ msgid "."
+#~ msgstr "."
+
+#~ msgid "Ask"
+#~ msgstr "Nafragen"
+
+#~ msgid "Close"
+#~ msgstr "Tomaken"
+
+#~ msgid "Dot graph to open"
+#~ msgstr "Dot-Diagramm, dat Du opmaken wullt"
+
+#~ msgctxt "Where to open a file"
+#~ msgid "Existing window"
+#~ msgstr "Vörhannen Finster"
+
+#~ msgctxt "Where to open a file"
+#~ msgid "New window"
+#~ msgstr "Nieg Finster"
+
+#~ msgid "&Edit"
+#~ msgstr "&Bewerken"
+
+#~ msgid "&Settings"
+#~ msgstr "&Instellen"
+
+#~ msgid "Main Toolbar"
+#~ msgstr "Hööft-Warktüüchbalken"
+
+#~ msgid "Type in a layout command for the current graph:"
+#~ msgstr "Anornbefehl för dat aktuelle Diagramm:"
+
+#~ msgid " "
+#~ msgstr " "
+
+#~ msgid ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+#~ "weight:600;\">Note:</span> this will be overriden if the graph has its "
+#~ "own background color</p></body></html>"
+#~ msgstr ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+#~ "weight:600;\">Henwies:</span> Dit warrt överschreven, wenn dat Diagramm "
+#~ "en egen Achtergrundklöör hett.</p></body></html>"
+
+#~ msgid ""
+#~ "The answer to the question 'Should the files that where opened in "
+#~ "previous sessions be reopened at startup ?'"
+#~ msgstr ""
+#~ "De Antwoort op de Fraag \"Wullt Du opmaakt Dateien ut verleden Törns bi't "
+#~ "Starten wedder opmaken?\""
+
+#~ msgid "Page Size && &Margins"
+#~ msgstr "Sietgrött un &Ränners"
+
+#~ msgid "kgraphviewerPart"
+#~ msgstr "KGraphViewer-Komponent"
+
+#~ msgid "(C) 2005-2006 Gael de Chalendar"
+#~ msgstr "(C) 2005-2006 Gael de Chalendar"
+
+#~ msgid "Gael de Chalendar"
+#~ msgstr "Gael de Chalendar"
+
+#~ msgid "There is already a KGraphEditor window opened. What's your choice ?"
+#~ msgstr "Dor is al en KGraphViewer-Finster apen. Wat wullt Du doon?"
+
+#~ msgid "There is already a KGraphViewer window opened. What's your choice ?"
+#~ msgstr "Dor is al en KGraphViewer-Finster apen. Wat wullt Du doon?"

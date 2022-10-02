@@ -1,0 +1,1677 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kgraphviewer "<application
+>KGraphViewer</application
+>">
+  <!ENTITY graphviz "<application
+><ulink url=&#034;http://www.graphviz.org&#034;
+>GraphViz</ulink
+></application
+>">
+  <!ENTITY boost "<ulink url=&#034;http://www.boost.org&#034;
+>Boost</ulink
+>">
+  <!ENTITY GUI "<acronym
+>GUI</acronym
+>">
+  <!ENTITY tcltk "<application
+>Tcl/Tk</application
+>">
+  <!ENTITY X11 "<application
+>X11</application
+>">
+  <!ENTITY qanava "<application
+>Qanava</application
+>">
+  <!ENTITY kcachegrind "<application
+>KCacheGrind</application
+>">
+  <!ENTITY spirit "<application
+>Spirit</application
+>">
+  <!ENTITY kexi "<application
+>Kexi</application
+>">
+  <!ENTITY qt "<application
+>Qt</application
+>">
+  <!ENTITY png "<acronym
+>png</acronym
+>">
+  <!ENTITY dot "<application
+>DOT</application
+>">
+  <!ENTITY neato "<application
+>NEATO</application
+>">
+  <!ENTITY twopi "<application
+>TWOPI</application
+>">
+  <!ENTITY fdp "<application
+>FDP</application
+>">
+  <!ENTITY circo "<application
+>CIRCO</application
+>">
+  <!ENTITY kappname "&kgraphviewer;"
+><!-- Do *not* replace kappname-->
+  <!ENTITY package "extragear-graphics"
+><!-- kdebase, kdeadmin, etc -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Estonian  "INCLUDE"
+><!-- change language only here -->
+]>
+
+
+<book id="kgraphviewer" lang="&language;">
+
+<bookinfo>
+<title
+>&kgraphviewer;i käsiraamat</title>
+
+<authorgroup>
+<author
+><firstname
+>Gaël</firstname
+> <othername
+></othername
+> <surname
+>de Chalendar</surname
+> <affiliation
+> <address
+><email
+>kleag@free.fr</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Federico</firstname
+> <othername
+></othername
+> <surname
+>Zenith</surname
+> <affiliation
+> <address
+><email
+>federico.zenith@member.fsf.org</email
+></address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Marek</firstname
+><surname
+>Laane</surname
+><affiliation
+><address
+><email
+>bald@starman.ee</email
+></address
+></affiliation
+><contrib
+>Tõlge eesti keelde</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Gaël de Chalendar</holder>
+</copyright>
+<!-- Translators: put here the copyright notice of the translation -->
+<!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
+     and in the FDL itself on how to use it. -->
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2006-10-22</date>
+<releaseinfo
+>1.0.3</releaseinfo>
+
+<abstract>
+<para
+>&kgraphviewer; on &kde; &graphviz; &dot; graafide näitaja. &graphviz; programmid on graafide vabatarkvaralised esitusmootorid. Graafe kasutatakse laialdaselt teaduses, eriti arvutiteaduses. Seniajani on aga puudunud korralik kaasaegne &GUI; nende näitamiseks. Programmid, mis &graphviz;iga kaasnevad, on minu arvates iganenud ja üsna nappide võimalustega &X11; või &tcltk; rakendused. </para>
+<para
+>&kgraphviewer; püüab sellised tööriistad asendada moodsa, kasutajasõbraliku &GUI;-ga, mis pakub kõiki võimalusi, mida ühel &kde; rakendusel on pakkuda. </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kgraphviewer</keyword>
+<keyword
+>graphviz</keyword>
+<keyword
+>dot</keyword>
+<keyword
+>neato</keyword>
+<keyword
+>näitaja</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Sissejuhatus</title>
+
+<para
+>&kgraphviewer; on &kde; &graphviz; &dot; graafide näitaja. &graphviz; programmid on graafide vabatarkvaralised esitusmootorid. &kgraphviewer; näitab graafe moodsa, kasutajasõbraliku &GUI; vahendusel, mis pakub kõiki võimalusi, mida ühel &kde; rakendusel on pakkuda. Rakenduse omadused on järgmised: <screenshot>
+<screeninfo
+>&kgraphviewer;i pilt</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.eps" format="EPS"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&kgraphviewer;i peaaken ühe &graphviz; näidisgraafiga</phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+<itemizedlist>
+  <listitem
+><para
+>Suurendamine</para
+></listitem>
+  <listitem
+><para
+>Mitme graafi laadimine ühel ajal erinevatel kaartidel</para
+></listitem>
+  <listitem
+><para
+>Viimati kasutatud failide meelespidamine</para
+></listitem>
+  <listitem
+><para
+>Graafide ülevaaterežiim</para
+></listitem>
+  <listitem
+><para
+>Graafi liigutamine hiirega</para
+></listitem>
+  <listitem
+><para
+>Täielik trükkimise toetus</para
+></listitem>
+  <listitem
+><para
+>Kõigi &graphviz; näidisgraafide täiuslik esitamine</para
+></listitem>
+  <listitem
+><para
+>Sõlme- ja servavärvide ja kõigi sõlmekujude toetus</para
+></listitem>
+  <listitem
+><para
+>Automaatne &dot; valimine orienteeritud ja &neato; valimine orienteerimata skeemide jaoks </para
+></listitem>
+  <listitem
+><para
+>Muudetud failide käsitsi või automaatne taaslaadimine kasutaja kinnitust küsides (see on seadistatav)</para
+></listitem>
+  <listitem
+><para
+>Rakenduse uute protsesside avamine olemasoleva protsessi raames uutel kaartidel (see on seadistatav)</para
+></listitem>
+  <listitem
+><para
+>Abisüsteem</para
+></listitem>
+  <listitem
+><para
+>Internatsionaliseerimine</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Planeeritavad omadused: <itemizedlist>
+	<listitem
+><para
+>Port &kde; 4</para
+></listitem>
+	<listitem
+><para
+>&qanava; teegi kasutamine graafide sisemise esituse toetamiseks</para
+></listitem>
+	<listitem
+><para
+>Graafide seansi andmete salvestamine (kasutatud esitusprogramm, suurendustegur &etc;)</para
+></listitem>
+	<listitem
+><para
+>Lõimimine &kate; ja &konqueror;iga (et näiteks muudatus &kate; graafivaates muudaks esitust ja laadiks faili uuesti ka &kgraphviewer;is)</para
+></listitem>
+	<listitem
+><para
+>Menüükäsk faili avamiseks &kate;s <emphasis
+>või</emphasis
+> Kate komponendiga &kgraphviewer;i aknas</para
+></listitem>
+	<listitem
+><para
+>Suurte ja hiigelsuurte graafide laadimine (praegu tekivad jõudlusprobleemid umbes 1000 sõlme puhul, mistõttu rakendus eirab üle määratud limiidi olevaid sõlmi)</para
+></listitem>
+	<listitem
+><para
+>Üha põhjalikum &dot; atribuutide ja väärtuste toetus</para
+></listitem>
+	<listitem
+><para
+>Esitamine taustal (eraldi lõim, mis ei blokeeri liidest ennast, edenemisriba).</para
+></listitem>
+</itemizedlist
+></para>
+
+<note
+><para
+>Pane tähele, et programm sisaldab GPL-i all oleva tööriista &kcachegrind; koodi, mida on lubanud selle autor Josef Weidendorfer.</para
+></note>
+<note
+><para
+>Pane tähele ka seda, et trükkimissüsteem on üle võetud &koffice;'i andmebaasirakendusest &kexi;.</para
+></note>
+
+<para
+>Muu vajalik tarkvara: &kgraphviewer; on &kde; rakendus, mis kasutab graafide esitamiseks &graphviz; tööriista &dot;. Sõltuvused on järgmised: <itemizedlist>
+	<listitem
+><para
+>&qt; teek 3.x (joonistamisvea vältimiseks oleks vajalik 3.3.6 või uuem)</para
+></listitem>
+	<listitem
+><para
+>&kde; teegid (pakett kdelibs); programm on arendatud ja testitud versiooniga 3.5.2</para
+></listitem>
+	<listitem
+><para
+>&graphviz; tööriistad väliste programmidena (testitud versiooniga 2.8)</para
+></listitem>
+	<listitem
+><para
+>&boost; &spirit; teek (testitud versiooniga 0.32)</para
+></listitem>
+</itemizedlist
+></para>
+
+</chapter>
+
+<chapter id="using-kgraphviewer">
+<title
+>&kgraphviewer;i kasutamine</title>
+
+<sect1 id="using-kgraphviewer-mainwin">
+<title
+>Peaaken</title>
+
+<para
+>Peaaken näitab igal kaardil laaditud graafi. Kui käivitada &kgraphviewer; ilma argumentideta, on aken esialgu tühi, nagu näha allpool oleval pildil. Sel juhul sisaldab tööriistariba ainult ikoone <guimenuitem
+>Ava fail</guimenuitem
+> ja (tühja) <guimenuitem
+>Viimati kasutatud failid</guimenuitem
+>. Esimesel klõpsates avatakse tavapärane <guilabel
+>faili avamise</guilabel
+> dialoog.</para>
+
+<screenshot>
+<screeninfo
+>&kgraphviewer;i peaaken rakenduse esmakordsel avamisel</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
+    </imageobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-init.eps" format="EPS"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&kgraphviewer;i peaaken rakenduse esmakordsel avamisel</phrase>
+    </textobject>
+    <caption
+><para
+>&kgraphviewer;i peaaken rakenduse esmakordsel avamisel</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Pärast ühe või ka mitme &dot; faili valimist näeb peaaken välja nii:</para>
+
+<screenshot>
+<screeninfo
+>&kgraphviewer;i peaaken mitme avatud failiga</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.eps" format="EPS"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&kgraphviewer;i peaaken mitme avatud failiga</phrase>
+    </textobject>
+    <caption
+><para
+>&kgraphviewer;i peaaken mitme avatud failiga</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Nagu näha, ilmub juhul, kui graaf on saadaolevast ruumist suurem, ühte nurka ülevaade. Kontekstimenüüst saab valida, kas selle parim asukoht määratakse automaatselt või asetatakse see mõnda sinu valitud asukohta.</para>
+
+<sect2>
+<title
+>Graafi liigutamine aknas</title>
+
+<para
+>Graafi saab liigutada mitmel viisil: <itemizedlist>
+	<listitem
+><para
+>Klõpsates ja lohistades</para
+></listitem>
+	<listitem
+><para
+>Kerimisribadega</para
+></listitem>
+	<listitem
+><para
+>Nooleklahvidega</para
+></listitem>
+	<listitem
+><para
+>Klõpsates ülevaates</para
+></listitem>
+	<listitem
+><para
+>Hiirerattaga (üles ja alla ilma muuteklahvita, vasakule ja paremale klahviga &Alt;)</para
+></listitem>
+	<listitem
+><para
+>Klõpsates ja lohistades ülevaates</para
+></listitem>
+</itemizedlist
+></para>
+</sect2>
+
+<sect2>
+<title
+>Suurendamine</title>
+
+<para
+>Suurendamiseks ja vähendamiseks võib kasutada tööriistariba nuppe <guibutton
+> <inlinemediaobject
+> <imageobject
+><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> ja <guibutton
+> <inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> või hoida hiirerattaga kerimisel all klahvi &Shift;. Suurendamise ajal muutub punane ristkülik ülevaates, mis näitab näidatavat ala, aina väiksemaks. Kui selle lühim külg on väiksem kui 10 pikslit, asendatakse ristkülik täidetud punase ristkülikuga, nagu näitab allpool toodud pilt.</para>
+
+<screenshot>
+<screeninfo
+>Graaf maksimaalse suurendusega</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmax.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Graaf maksimaalse suurendusega</phrase>
+</textobject>
+<caption
+><para
+>Graaf maksimaalse suurendusega</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Nii suurendamine kui ka vähendamine võib olla maksimaalselt kümnekordne. Maksimaalset vähendust näeb alloleval pildil.</para>
+
+<screenshot>
+<screeninfo
+>Graaf maksimaalse vähendusega</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmin.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Graaf maksimaalse vähendusega</phrase>
+</textobject>
+<caption
+><para
+>Graaf maksimaalse vähendusega</para
+></caption>
+</mediaobject>
+</screenshot>
+</sect2>
+
+<sect2>
+<title
+>Graafifailide käitlemine</title>
+
+<sect3>
+<title
+>Kettal muudetud failid</title>
+
+<para
+>Kui mõni muu programm muudab &kgraphviewer;is avatud faili, näidatakse järgmist hoiatusdialoogi:</para>
+
+<screenshot>
+<screeninfo
+>Kettal muudetud faili taaslaadimise dialoog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Kettal muudetud faili taaslaadimise dialoog</phrase>
+</textobject>
+<caption
+><para
+>Kettal muudetud faili taaslaadimise dialoog</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Dialoogis võib lasta graafi uuesti laadida või muudatusi eirata. Samuti võib lasta &kgraphviewer;il langetatud valiku meelde jätta, et samasuguse juhtumi korral langetataks uuesti samasugune valik. Kui soovid hiljem oma valikut muuta, vali <menuchoice
+><guimenu
+>Seadistused</guimenu
+><guimenuitem
+>&kgraphviewer;i seadistamine</guimenuitem
+></menuchoice
+>. Täpsemalt kõnelb sellest <xref linkend="kgraphviewer-configuration"/>.</para>
+</sect3>
+
+<sect3
+><title
+>Failid ja aknad</title>
+<para
+>Graafifaili avamisel väljaspool töötavat &kgraphviewer;i protsessi, &eg; failisirvijas või käsureal, on võimalik lasta avada uus &kgraphviewer;i aken või avada uus kaart olemasolevas aknas. Seda saab teha allpool näidatud dialoogiga.</para>
+
+<screenshot>
+<screeninfo
+>Uue akna avamise dialoog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Uue akna avamise dialoog</phrase>
+</textobject>
+<caption
+><para
+>Uue akna avamise dialoog</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Nagu eelmise dialoogi puhul, saab ka siin langetatud valiku vaikimisi valikuks muuta ning seda soovi korral hiljem seadistustedialoogis muuta.</para>
+
+</sect3>
+
+<sect3>
+<title
+>Seansside käitlemine</title>
+
+<para
+>Käivitamisel on võimalik avada uuesti graafid, mida vaatasid eelmisel korral. Ka siin on võimalik langetatud valik salvestada ja seda hiljem muuta.</para>
+
+<screenshot>
+<screeninfo
+>Dialoog eelmise seansi graafi laadimiseks käivitamisel</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Dialoog eelmise seansi graafi laadimiseks käivitamisel</phrase>
+</textobject>
+<caption
+><para
+>Dialoog eelmise seansi graafi laadimiseks käivitamisel</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect3>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="kgraphviewer-printing">
+<title
+>Graafi trükkimine</title>
+<para
+>Trükkimisvõimalustega saab tutvuda dialoogide <guilabel
+>Trükkimise eelvaatlus</guilabel
+> ja <guilabel
+>Lehekülje seadistamine</guilabel
+> vahendusel.</para>
+
+<screenshot>
+<screeninfo
+>Lehekülje seadistamise dialoog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-psetup1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Lehekülje seadistamise dialoog</phrase>
+</textobject>
+<caption
+><para
+>Lehekülje seadistamise dialoog</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Trükkimisvalikutega saab lasta graafi sobitada täpselt ühele lehele, nagu näitab allpool toodud pilt:</para>
+
+<screenshot>
+<screeninfo
+>Lehekülje eelvaatlus ühele lehele trükitava graafiga</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Lehekülje eelvaatlus ühele lehele trükitava graafiga</phrase>
+</textobject>
+<caption
+><para
+>Lehekülje eelvaatlus ühele lehele trükitava graafiga</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Samuti saab valida, kuidas graaf mitmele lehele jagada. Püstsuunas ja rõhtsuunas trükitavate lehekülgede arvu saab määrata teineteisest sõltumatult.</para>
+
+<screenshot>
+<screeninfo
+>Lehekülje eelvaatlus mitmele lehele trükitava graafiga</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Lehekülje eelvaatlus mitmele lehele trükitava graafiga</phrase>
+</textobject>
+<caption
+><para
+>Lehekülje eelvaatlus mitmele lehele trükitava graafiga</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Mitme lehekülje korral saab valida ka seda, kas graafi osa sobitatakse igale lehele (nagu ülal), määrates kindlaks, kas proportsioonidest peetakse kinni või mitte. Esimesel juhul ei üritata lehte võimalikult täielikult ära kasutada.</para>
+
+<para
+>Võimalik on muuta lehtede suurust ja veeriseid:</para>
+
+<screenshot>
+<screeninfo
+>Lehe suuruse ja veeriste dialoog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-pagesmarges.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Lehe suuruse ja veeriste dialoog</phrase>
+</textobject>
+<caption
+><para
+>Lehe suuruse ja veeriste dialoog</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Samuti saab muuta fonti, päiseid ja jaluseid:</para>
+
+<screenshot>
+<screeninfo
+>Lehekülje eelvaatlus mitmele lehele trükitava graafiga ilma päiseta ja teistsuguse fondiga</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Lehekülje eelvaatlus mitmele lehele trükitava graafiga ilma päiseta ja teistsuguse fondiga</phrase>
+</textobject>
+<caption
+><para
+>Lehekülje eelvaatlus mitmele lehele trükitava graafiga ilma päiseta ja teistsuguse fondiga</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="kgraphviewer-configuration">
+<title
+>&kgraphviewer;i seadistamine</title>
+
+<para
+>Kaardil <guilabel
+>Taaslaadimine</guilabel
+> saab muuta &kgraphviewer;i käitumist juhul, kui faili on kettal muutnud mõni teine rakendus. Valida võib kas vaikimisi toimingu (automaatne taaslaadimine või muudatuste eiramine) või lasta iga kord küsida.</para>
+
+<screenshot>
+<screeninfo
+>Seadistustedialoogi kaart kettal muudetud failide taaslaadimise seadistamiseks</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Seadistustedialoogi kaart kettal muudetud failide taaslaadimise seadistamiseks</phrase>
+</textobject>
+<caption
+><para
+>Seadistustedialoogi kaart kettal muudetud failide taaslaadimise seadistamiseks</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Kaardil <guilabel
+>Avamine</guilabel
+> saab muuta &kgraphviewer;i käitumist juhul, kui graafifail avatakse väljaspool aktiivset seanssi. Valida võib kas vaikimisi toimingu (avamine olemasolevas või uues aknas) või lasta iga kord küsida.</para>
+
+<screenshot>
+<screeninfo
+>Seadistustedialoogi kaart uute failide avamiseks olemasolevas aknas</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Seadistustedialoogi kaart uute failide avamiseks olemasolevas aknas</phrase>
+</textobject>
+<caption
+><para
+>Seadistustedialoogi kaart uute failide avamiseks olemasolevas aknas</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Kaardil <guilabel
+>Seansihaldus</guilabel
+> saab muuta &kgraphviewer;i käitumist käivitumisel. Valida võib kas vaikimisi toimingu (eelmise seansi failide taasavamine või avamata jätmine) või lasta iga kord küsida.</para>
+
+<screenshot>
+<screeninfo
+>Seadistustedialoogi kaart eelmise seansi failide taasavamiseks</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Seadistustedialoogi kaart eelmise seansi failide taasavamiseks</phrase>
+</textobject>
+<caption
+><para
+>Seadistustedialoogi kaart eelmise seansi failide taasavamiseks</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="using-kgraphviewer-misc">
+<title
+>Muud funktsioonid</title>
+
+<para
+>Kontekstimenüü, mille saab avada &HPNga; graafivaates klõpsates, on veel mõned valikud: <variablelist>
+<varlistentry>
+<term
+><guimenu
+>Esitus</guimenu
+></term>
+<listitem
+><para
+>Siin saab valida erinevate &graphviz; esitusalgoritmide vahel või luua enda oma. Kirjed, nagu neid kirjeldab &graphviz; kodulehekülg, on järgmised: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>&dot;</guimenuitem
+></term>
+	<listitem
+><para
+>Orienteeritud graafide puhul vaikimisi kasutatav &dot; algoritm. See loob orienteeritud graafi <quote
+>hierarhilise</quote
+> ehk kihilise kujutise. Esitusalgoritm seab servad samas suunas (ülalt alla või vasakult paremale) ning püüab sealjuures vältida servade kattumist ning vähendada servade pikkust.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&neato;</guimenuitem
+></term>
+	<listitem
+><para
+>Oreienteerimata graafie puhul vaikimisi kasutatav &neato; algoritm. See loob <quote
+>vedrumudeli</quote
+>. See kasutab Kamada-Kawai algoritmi, mis on samane statistilise mitmemõõtmelise skaleerimisega.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&twopi;</guimenuitem
+></term>
+	<listitem
+><para
+>&twopi; algoritm nii orienteeritud kui ka orienteerimata graafidele. Radiaalne esitus, autor: Graham Wills, 1997.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&fdp;</guimenuitem
+></term>
+	<listitem
+><para
+>&fdp; algoritm orienteerimata graafidele. See loob <quote
+>vedrumudeli</quote
+>. See kasutab Fruchtermani-Reingoldi heuristikat, kaasa arvatud multivõrklahendaja, mis suudab käitleda suuremaid graafe ja orienteerimata graafide kobaraid.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&circo;</guimenuitem
+></term>
+	<listitem
+><para
+>&circo; algoritm. See loob ringikujulise esitus. Autorid: Six ja Tollis 1999, Kauffman ja Wiese 2002. Sobib paljude tsükliliste struktuuride skeemidele.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Määra esituskäsk</guimenuitem
+></term>
+	<listitem
+><para
+>Aavb dialoogi, kus saab määrata shellis käivitatava esituskäsu. Käsk vajab üht parameetrit, nimelt graafifaili nime, ja kirjutab selle esituse standardväljundisse xdot-keeles. Sel moel võib anda mõnele varasemale käsule lisavõtmeid või rakendada graafi muutmiseks mingied filtreid, enne kui sellel &dot; käivitada.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Lähtesta esituskäsk</guimenuitem
+></term>
+	<listitem
+><para
+>Määrab kindlaks graafi tüübi (orienteeritud või orienteerimata) ja rakendab sellele vaikimisi algoritmi (praegu vastavalt &dot; ja &neato;).</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+	</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guimenu
+>Graafiku eksport</guimenu
+></term>
+<listitem
+><para>
+	<variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Pildina...</guimenuitem
+></term>
+	<listitem
+><para
+>Võimaldab eksportida terve graafi &png;-pildina.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guimenu
+>Ülevaate lubamine</guimenu
+></term>
+<listitem
+><para
+>Märkimise korral näidatakse ülevaade, kui selle järele on vajadus. Kui see on märkimata, on ülevaade peidetud ning selle paigutamise menüü kasutamatu.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guimenu
+>Ülevaade</guimenu
+></term>
+<listitem
+><para
+>Võimaldab määrata, kus peab asuma graafivaates ülevaade. Valikud on järgmised: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Ülal vasakul</guimenuitem
+></term>
+	<listitem
+><para
+>Ülevaade paikneb ülemises vasakpoolses nurgas</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Ülal paremal</guimenuitem
+></term>
+	<listitem
+><para
+>Ülevaade paikneb ülemises parempoolses nurgas</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>All vasakul</guimenuitem
+></term>
+	<listitem
+><para
+>Ülevaade paikneb alumises vasakpoolses nurgas</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>All paremal</guimenuitem
+></term>
+	<listitem
+><para
+>Ülevaade paikneb alumises parempoolses nurgas</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Automaatne</guimenuitem
+></term>
+	<listitem
+><para
+>Ülevaatele valitakse automaatselt parim positsioon, kus ta varjab graafi minimaalselt.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist
+></para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commands">
+<title
+>Käskude seletused</title>
+
+<sect1 id="kgraphviewer-commands-menus">
+<title
+>&kgraphviewer;i menüüd</title>
+
+<sect2>
+<title
+>Menüü Fail</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></shortcut
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Ava</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Avab</action
+> <guilabel
+>faili avamise</guilabel
+> dialoogi.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Fail</guimenu
+> <guimenuitem
+>Ava viimati kasutatud</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Näitab</action
+> kümne viimati avatud graafifaili nimekirja.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Fail</guimenu
+><guisubmenu
+>Graafi eksport</guisubmenu
+><guimenuitem
+> Pildina...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Võimaldab <action
+>eksportida</action
+> terve graafi &png;-pildina.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+></shortcut
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Trüki...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Trükib</action
+> aktiivse graafi kehtivate trükkimisseadistustega.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Trükkimise eelvaatlus...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Avab</action
+> aktiivse graafi <guilabel
+>trükkimise eelvaatluse</guilabel
+> akna.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Lehekülje paigutus</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Avab</action
+> aktiivse graafi <guilabel
+>lehekülje paigutuse</guilabel
+> dialoogi.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Välju</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+> Väljub</action
+> &kgraphviewer;ist.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Menüü Vaade</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Laadi uuesti</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Laadib</action
+> aktiivse graafi uuesti.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Suurenda</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Suurendab</action
+> aktiivset graafi 10% võrra.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Vähenda</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Vähendab</action
+> aktiivset graafi 10% võrra.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+></shortcut
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Ülevaate lubamine</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Märkimise korral näidatakse ülevaade, kui selle järele on vajadus. Kui see on märkimata, on ülevaade peidetud ning selle paigutamise menüü kasutamatu.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Ülevaade</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Võimaldab määrata, kus peab graafivaates asuma ülevaade. Valikud on järgmised: <variablelist>
+		<varlistentry>
+		<term
+><guimenuitem
+>Ülal vasakul</guimenuitem
+></term>
+		<listitem
+><para
+>Ülevaade paikneb ülemises vasakpoolses nurgas</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Ülal paremal</guimenuitem
+></term>
+		<listitem
+><para
+>Ülevaade paikneb ülemises parempoolses nurgas</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>All vasakul</guimenuitem
+></term>
+		<listitem
+><para
+>Ülevaade paikneb alumises vasakpoolses nurgas</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>All paremal</guimenuitem
+></term>
+		<listitem
+><para
+>Ülevaade paikneb alumises parempoolses nurgas</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Automaatne</guimenuitem
+></term>
+		<listitem
+><para
+>Ülevaatele valitakse automaatselt parim positsioon, kus ta varjab graafi minimaalselt.</para
+></listitem>
+		</varlistentry>
+	</variablelist
+></para
+></listitem>
+	</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Menüü <guimenu
+>Abi</guimenu
+></title>
+&help.menu.documentation; </sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-commands-toolbars">
+<title
+>&kgraphviewer;i tööriistaribad</title>
+
+<sect2>
+<title
+>Peamine tööriistariba</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-open.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Avab</action
+> <guilabel
+>faili avamise</guilabel
+> dialoog.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-prev.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Näitab</action
+> viimati avatud failide nimekirja.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-print.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Trükib graafi</action
+> kehtivate seadistustega.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-preview.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Avab</action
+> <guilabel
+>trükkimise eelvaatluse</guilabel
+> dialoog.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Avab</action
+> <guilabel
+>lehekülje paigutuse</guilabel
+> dialoogi.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Vaateriba</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-reload.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Laadib</action
+> aktiivse graafi uuesti.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-layout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Muudab</action
+> esituskäsku või <action
+>näitab</action
+> olemasolevate esitusalgoritmide nimekirja.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Suurendab</action
+> aktiivset graafi 10% võrra.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Vähendab</action
+> aktiivset graafi 10% võrra.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Abiriba</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Lülitab sisse</action
+> <guilabel
+>Mis see on?</guilabel
+> hiirekursori. Sellega &GUI;-s klõpsates näidatakse vastava elemendi abiinfot (kui see on olemas).</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+<title
+>Autorid ja litsents</title>
+
+<sect1 id="kgraphviewer-credits-program">
+<title
+>Rakendus</title>
+
+<sect2>
+<title
+>Põhiautorid</title>
+<para
+>Rakenduse autoriõigus 2005-2006: Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+</sect2>
+
+<sect2>
+<title
+>Kaasautorid (pole täielik)</title>
+<itemizedlist>
+	<listitem
+><para
+>Reimar Döffinger <email
+>Reimar.Doeffinger@stud.uni-karlsruhe.de</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-userguide">
+<title
+>Kasutaja käsiraamat</title>
+<para
+>Dokumentatsiooni autoriõigus 2006: Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+<sect2>
+<title
+>Kaasautorid</title>
+<itemizedlist>
+  <listitem
+><para
+>Federico Zenith <email
+>federico.zenith@member.fsf.org</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-other">
+<title
+>Muu tunnustus</title>
+<para
+>Käesolev rakendus sisaldab järgmiste vaba tarkvara projektide koodi:</para>
+<variablelist>
+	<varlistentry>
+	<term
+><ulink url="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi"
+>&kcachegrind;</ulink
+></term>
+	<listitem
+><para
+>Esialgne graafimudel ja vaateklassid</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><ulink url="http://www.kexi-project.org/"
+>&kexi;</ulink
+></term>
+	<listitem
+><para
+>Trükkimise seadistamine ja eelvaatlus.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-licenses"
+><title
+>Litsentsid</title>
+<para
+>Tõlge eesti keelde: Marek Laane <email
+>bald@starman.ee</email
+></para
+> 
+&underFDL; &underGPL; </sect1>
+
+</chapter>
+
+<appendix id="installation">
+<title
+>Paigaldamine</title>
+
+<sect1 id="getting-kgraphviewer">
+<title
+>&kgraphviewer;i hankimine</title>
+
+<para
+><ulink url="http://extragear.kde.org/apps/kgraphviewer/"
+>&kgraphviewer;</ulink
+> kuulub <ulink url="http://www.kde.org"
+>&kde;</ulink
+> paketti <ulink url="http://extragear.kde.org/"
+>extragear</ulink
+>. Selle Subversioni hoidla leiab aadressil <ulink url="http://websvn.kde.org/trunk/extragear/graphics/kgraphviewer/"
+> websvn.kde.org</ulink
+>.</para>
+
+<para
+>&kgraphviewer;i sõltumatuid väljalaskeid leiab <ulink url="https://gna.org/projects/kgraphviewer"
+>&kgraphviewer;i koduleheküljelt</ulink
+>.</para>
+
+<para
+>Muudatuste nimekirja leiab <ulink url="http://kde-apps.org/content/show.php?content=23999"
+>siit</ulink
+> ja failist <filename
+>ChangeLog</filename
+> tarkvarapaketis.</para>
+
+</sect1>
+
+<sect1 id="requirements">
+<title
+>Sõltuvused</title>
+
+<para
+>&kgraphviewer; on &kde; rakendus, mis kasutab graafide esitamiseks &graphviz; tööriistu. Paigaldatud peavad olema järgmised programmid: <itemizedlist>
+	<listitem
+><para
+>&qt; teegid 3.x (joonistamisvea vältimiseks 3.3.6 või uuem)</para
+></listitem>
+	<listitem
+><para
+>&kde; teegid (arendatud ja testitud versiooniga 3.5.x)</para
+></listitem>
+	<listitem
+><para
+>&graphviz; tööriistad (testitud versioonidega kuni 2.8)</para
+></listitem>
+	<listitem
+><para
+>&boost; &spirit; teek (testitud versiooniga 0.32)</para
+></listitem>
+</itemizedlist>
+</para>
+
+</sect1>
+
+<sect1 id="compilation">
+<title
+>Kompileerimine ja paigaldamine</title>
+&install.compile.documentation; </sect1>
+
+<sect1 id="configuration">
+<title
+>Seadistamine</title>
+
+<para
+>&kgraphviewer; ei vaja erilisi seadistusi. Mõningate valikute kohta vaata menüüd <guimenu
+>Seadistused</guimenu
+>.</para>
+
+</sect1>
+
+</appendix>
+
+&documentation.index;
+</book>

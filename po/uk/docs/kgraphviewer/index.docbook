@@ -1,0 +1,1661 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY graphviz "<application
+><ulink url=&#034;https://www.graphviz.org&#034;
+>Graphviz</ulink
+></application
+>">
+  <!ENTITY boost "<ulink url=&#034;https://www.boost.org&#034;
+>Boost</ulink
+>">
+  <!ENTITY qanava "<application
+>Qanava</application
+>">
+  <!ENTITY kcachegrind "<application
+>KCacheGrind</application
+>"
+> <!--not in kdoctools 5.16-->
+  <!ENTITY dot "<application
+>DOT</application
+>">
+  <!ENTITY neato "<application
+>NEATO</application
+>">
+  <!ENTITY twopi "<application
+>TWOPI</application
+>">
+  <!ENTITY fdp "<application
+>FDP</application
+>">
+  <!ENTITY circo "<application
+>CIRCO</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE"
+><!-- change language only here -->
+]>
+
+
+<book id="kgraphviewer" lang="&language;">
+
+<bookinfo>
+<title
+>Підручник з &kgraphviewer;</title>
+
+<authorgroup>
+<author
+><firstname
+>Gaël</firstname
+> <othername
+></othername
+> <surname
+>de Chalendar</surname
+> <affiliation
+> <address
+><email
+>kleag@free.fr</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Federico</firstname
+> <othername
+></othername
+> <surname
+>Zenith</surname
+> <affiliation
+> <address
+><email
+>federico.zenith@member.fsf.org</email
+></address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Gaël de Chalendar</holder>
+</copyright>
+<!-- Translators: put here the copyright notice of the translation -->
+<!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
+     and in the FDL itself on how to use it. -->
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>14 грудня 2020 року</date>
+<releaseinfo
+>&kgraphviewer; 2.4.3</releaseinfo>
+
+<abstract>
+<para
+>&kgraphviewer; — це програма для перегляду точкових графів &dot; &graphviz;. Програми &graphviz; — це вільні програмні рушії компонування графів. Графи часто використовуються у наукових працях, зокрема у комп’ютерних науках. </para>
+<para
+>Метою створення &kgraphviewer; є показ графів у сучасний, дружній до користувача спосіб. </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kgraphviewer</keyword>
+<keyword
+>graphviz</keyword>
+<keyword
+>dot</keyword>
+<keyword
+>neato</keyword>
+<keyword
+>переглядач</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Вступ</title>
+
+<para
+>&kgraphviewer; — це програма для перегляду точкових графів &dot; &graphviz;. Програми &graphviz; — це вільні програмні рушії компонування графів. &kgraphviewer; надає вам змогу переглядати графи за допомогою сучасного графічного інтерфейсу користувача. Програма має такі можливості: <screenshot>
+<screeninfo
+>Ось знімок вікна &kgraphviewer;</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Головне вікно &kgraphviewer; з показаним одним з прикладів &graphviz;</phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+<itemizedlist>
+  <listitem
+><para
+>Зміна масштабу;</para
+></listitem>
+  <listitem
+><para
+>Завантаження одразу декількох графів у вкладки;</para
+></listitem>
+  <listitem
+><para
+>Зберігання списку недавніх файлів;</para
+></listitem>
+  <listitem
+><para
+>Огляд загальної картини графу;</para
+></listitem>
+  <listitem
+><para
+>Панорамування графу за допомогою миші;</para
+></listitem>
+  <listitem
+><para
+>Повноцінна можливість друку;</para
+></listitem>
+  <listitem
+><para
+>Ідеальне креслення всіх прикладів графів &graphviz;;</para
+></listitem>
+  <listitem
+><para
+>Підтримка розфарбування вузлів і країв, а також всіх форм вузлів;</para
+></listitem>
+  <listitem
+><para
+>Автоматичний вибір &dot; для орграфів і &neato; для неорієнтованих графів;</para
+></listitem>
+  <listitem
+><para
+>Ручне або автоматичне перезавантаження змінених (зовні) файлів з підтвердженням користувачем (можна налаштувати);</para
+></listitem>
+  <listitem
+><para
+>Відкриття нових екземплярів програми як нових вкладок у існуючому екземплярі (можна налаштувати);</para
+></listitem>
+  <listitem
+><para
+>Довідкова система;</para
+></listitem>
+  <listitem
+><para
+>Переклад інтерфейсу програми.</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Заплановано реалізацію таких можливостей: <itemizedlist>
+	<listitem
+><para
+>Остаточне використання бібліотеки &qanava; для підтримки внутрішнього представлення графів;</para
+></listitem>
+	<listitem
+><para
+>Збереження даних сеансу щодо графів (використана програма компонування, масштаб тощо)</para
+></listitem>
+	<listitem
+><para
+>Інтеграція до &kate; і &konqueror; (так, щоб зміни у перегляді графу у &kate; автоматично призводили до перекомпонування і перезавантаження файла у &kgraphviewer;);</para
+></listitem>
+	<listitem
+><para
+>Меню для відкриття файла у &kate; <emphasis
+>або</emphasis
+> відкриття katepart у межах вікна &kgraphviewer;;</para
+></listitem>
+	<listitem
+><para
+>Завантаження великих і величезних графів (у поточній версії існують проблеми з швидкодією для графів з 1000 вузлів, щоб уникнути цього, у програму додано алгоритм для усування «зайвих» вузлів);</para
+></listitem>
+	<listitem
+><para
+>Поступова підтримка більшої і більшої кількості атрибутів і значень &dot;;</para
+></listitem>
+	<listitem
+><para
+>Компонування у тлі (з відокремленням потоків, щоб не блокувати інтерфейс, з панеллю поступу).</para
+></listitem>
+</itemizedlist
+></para>
+
+<note
+><para
+>Зауважте, що у цій програмі використано код GPL-програми &kcachegrind; з люб’язного дозволу її автора — Josef Weidendorfer.</para
+></note>
+<note
+><para
+>Зауважте також, що систему друку було запозичено з програми &calligra; для роботи з базами даних &kexi;.</para
+></note>
+
+<para
+>Інші потрібні програми: &kgraphviewer; — програма, яка використовує інструмент &graphviz; — &dot; — для компонування графів. Програма залежить від наявності таких компонентів: <itemizedlist>
+	<listitem
+><para
+>Бібліотека &Qt; та бібліотеки &kf5; версії 5.x;</para
+></listitem>
+	<listitem
+><para
+>Інструменти &graphviz;, як зовнішні програми (перевіреною версією є 2.8);</para
+></listitem>
+	<listitem
+><para
+>Бібліотека &boost; версії 1.36.</para
+></listitem>
+</itemizedlist
+></para>
+
+</chapter>
+
+<chapter id="using-kgraphviewer">
+<title
+>Користування &kgraphviewer;</title>
+
+<sect1 id="using-kgraphviewer-mainwin">
+<title
+>Головне вікно</title>
+
+<para
+>У головному вікні програми буде показано завантажені графи, кожен у окремій вкладці. Після першого запуску, якщо його було виконано без параметрів, переданих &kgraphviewer;, головне вікно буде порожнім, як це показано на знімку вікна, розташованому нижче. У цьому випадку на панелі інструментів будуть лише кнопки <guibutton
+>Відкрити…</guibutton
+> і (порожній) список <guibutton
+>Відкрити нещодавні</guibutton
+>. Натисніть першу з цих кнопок для того, щоб відкрити стандартне діалогове вікно <guilabel
+>Відкрити файл</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Початковий вигляд головного вікна &kgraphviewer; після першого запуску</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Початковий вигляд головного вікна &kgraphviewer; після першого запуску</phrase>
+    </textobject>
+    <caption
+><para
+>Початковий вигляд головного вікна &kgraphviewer; після першого запуску</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Після відкриття одного або декількох файлів &dot;, головне вікно програми виглядатиме так, як на знімку, наведеному нижче:</para>
+
+<screenshot>
+<screeninfo
+>Головне вікно &kgraphviewer; після відкриття декількох файлів</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Головне вікно &kgraphviewer; після відкриття декількох файлів</phrase>
+    </textobject>
+    <caption
+><para
+>Головне вікно &kgraphviewer; після відкриття декількох файлів</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Як ви можете бачити, розмір графу більший за доступний розмір вікна, у одному з кутів вікна показано загальний перегляд. За допомогою контекстного меню ви зможете вказати програмі, щоб та автоматично обчислювала оптимальну позицію цього перегляду, або вибрати розташування перегляду власноруч.</para>
+
+<sect2>
+<title
+>Пересування графу у вікні</title>
+
+<para
+>Щоб пересунути граф, ви можете виконати такі дії: <itemizedlist>
+	<listitem
+><para
+>Навести на нього вказівник миші, натиснути ліву кнопку миші і перетягти граф;</para
+></listitem>
+	<listitem
+><para
+>Скористатися панелями гортання;</para
+></listitem>
+	<listitem
+><para
+>Понатискати клавіші зі стрілками;</para
+></listitem>
+	<listitem
+><para
+>Навести вказівник миші на потрібне місце у загальному перегляді і клацнути лівою кнопкою миші;</para
+></listitem>
+	<listitem
+><para
+>Скористатися коліщатком миші (просте прокручування — вгору-вниз, з натиснутою клавішею &Alt; — ліворуч-праворуч);</para
+></listitem>
+	<listitem
+><para
+>або навести вказівник на поле загального перегляду, натиснути ліву кнопку миші і перетягти вказівник.</para
+></listitem>
+</itemizedlist
+></para>
+</sect2>
+
+<sect2>
+<title
+>Зміна масштабу</title>
+
+<para
+>Щоб змінити масштаб графу, ви можете скористатися кнопками <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> і <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> панелі інструментів. Ці кнопки збільшать або зменшать перегляд, ті самі дії можна виконати за допомогою натискання клавіші &Shift; з одночасним прокручуванням коліщатка миші. Під час збільшення червоний прямокутничок на загальному перегляді ставатиме меншим і меншим. Якщо менша сторона прямокутника стане коротшою за 10 пікселів, прямокутник виглядатиме повністю червоним, щоб його можна було бачити на загальному перегляді. Це ви можете бачити на знімку вікна, показаному нижче.</para>
+
+<screenshot>
+<screeninfo
+>Граф за максимального збільшення</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmax.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Граф за максимального збільшення</phrase>
+</textobject>
+<caption
+><para
+>Граф за максимального збільшення</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Зміна масштабу обмежена у обох напрямках коефіцієнтом 10. Нижче ви можете бачити граф за максимального коефіцієнта зменшення.</para>
+
+<screenshot>
+<screeninfo
+>Граф за максимального зменшення</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmin.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Граф за максимального зменшення</phrase>
+</textobject>
+<caption
+><para
+>Граф за максимального зменшення</para
+></caption>
+</mediaobject>
+</screenshot>
+</sect2>
+
+<sect2>
+<title
+>Робота з файлами графів</title>
+
+<sect3>
+<title
+>Файли, які було змінено</title>
+
+<para
+>Якщо файл, який було завантажено до &kgraphviewer;, буде змінено сторонньою програмою, буде відкрито таке діалогове вікно:</para>
+
+<screenshot>
+<screeninfo
+>Діалогове вікно перезавантаження файла, який було змінено на диску</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Діалогове вікно перезавантаження файла, який було змінено на диску</phrase>
+</textobject>
+<caption
+><para
+>Діалогове вікно перезавантаження файла, який було змінено на диску</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Ви можете обрати між перезавантаженням графу і ігноруванням змін. Ви також можете наказати &kgraphviewer; запам’ятати вибраний варіант і обрати його наступного разу, коли виникне потреба у виборі. Якщо пізніше вам потрібно буде змінити ваш вибір, скористайтеся пунктом меню <menuchoice
+><guimenu
+>Параметри</guimenu
+><guimenuitem
+>Налаштувати &kgraphviewer;</guimenuitem
+></menuchoice
+>. Див. <xref linkend="kgraphviewer-configuration"/>.</para>
+</sect3>
+
+<sect3
+><title
+>Файли і вікна</title>
+<para
+>Якщо ви відкриваєте файл графу поза запущеним екземпляром &kgraphviewer;, наприклад, за допомогою переглядача файлів або командного рядка, ви зможете вибрати між відкриттям нового вікна &kgraphviewer;, відкриттям графу на новій вкладці у існуючому вікні. Вибір можна зробити за допомогою діалогового вікна, показаного нижче.</para>
+
+<screenshot>
+<screeninfo
+>Діалогове вікно відкриття нового вікна</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Діалогове вікно відкриття нового вікна</phrase>
+</textobject>
+<caption
+><para
+>Діалогове вікно відкриття нового вікна</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Так само, як і у попередньому випадку, ви можете зберегти ваш вибір як типовий, а пізніше змінити його за допомогою діалогового вікна налаштування.</para>
+
+</sect3>
+
+<sect3>
+<title
+>Робота з сеансами</title>
+
+<para
+>Під час запуску програми ви зможете вказати програмі, що слід відкрити знову всі графи, які було відкрито попереднього разу. Знову ж таки, ви можете зберегти свій вибір, а пізніше його змінити.</para>
+
+<screenshot>
+<screeninfo
+>Початкове діалогове вікно для перезавантаження графів з попереднього сеансу</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Початкове діалогове вікно для перезавантаження графів з попереднього сеансу</phrase>
+</textobject>
+<caption
+><para
+>Початкове діалогове вікно для перезавантаження графів з попереднього сеансу</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect3>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="kgraphviewer-printing">
+<title
+>Друк графів</title>
+<para
+>Для того, щоб переглянути і змінити параметри друку, натисніть кнопки <guibutton
+>Попередній перегляд</guibutton
+> і <guibutton
+>Налаштування сторінки</guibutton
+>.</para>
+
+<screenshot>
+<screeninfo
+>Діалогове вікно налаштування сторінки</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-psetup1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Діалогове вікно налаштування сторінки</phrase>
+</textobject>
+<caption
+><para
+>Діалогове вікно налаштування сторінки</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Ви можете налаштувати параметри друку так, щоб граф було розташовано точно на одній сторінці, у показаний нижче спосіб:</para>
+
+<screenshot>
+<screeninfo
+>Налаштування, які даватимуть змогу надрукувати все на одній сторінці</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Налаштування, які даватимуть змогу надрукувати все на одній сторінці</phrase>
+</textobject>
+<caption
+><para
+>Налаштування, які даватимуть змогу надрукувати все на одній сторінці</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Ви також можете розділити граф на декілька сторінок. Кількість сторінок по горизонталі і вертикалі можна обирати окремо.</para>
+
+<screenshot>
+<screeninfo
+>Налаштування перегляду друку для друку на декількох сторінках і заповнення цих сторінок графом</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Налаштування перегляду друку для друку на декількох сторінках і заповнення цих сторінок графом</phrase>
+</textobject>
+<caption
+><para
+>Налаштування перегляду друку для друку на декількох сторінках і заповнення цих сторінок графом</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Нарешті, якщо для друку використовуються декілька сторінок, ви можете зробити так, щоб частина графу, яку буде надруковано на кожній зі сторінок повністю заповнювала сторінку, як це показано на наведеному вище знімку, без збереження співвідношення сторін або зі збереженням співвідношення. У останньому випадку сторінки не буде повністю заповнено.</para>
+
+<para
+>Ви можете змінити розмір сторінок і полів сторінок:</para>
+
+<screenshot>
+<screeninfo
+>Діалогове вікно розміру сторінок і полів сторінок</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-pagesmarges.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Діалогове вікно розміру сторінок і полів сторінок</phrase>
+</textobject>
+<caption
+><para
+>Діалогове вікно розміру сторінок і полів сторінок</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Ви також можете змінити шрифт, верхні і нижні колонтитули:</para>
+
+<screenshot>
+<screeninfo
+>Налаштування друку на декількох сторінка без заголовка різним шрифтом</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Налаштування друку на декількох сторінка без заголовка різним шрифтом</phrase>
+</textobject>
+<caption
+><para
+>Налаштування друку на декількох сторінка без заголовка різним шрифтом</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="kgraphviewer-configuration">
+<title
+>Налаштування &kgraphviewer;</title>
+
+<para
+>За допомогою сторінки <guilabel
+>Вигляд</guilabel
+> ви можете змінити типовий колір тла, який використовуватиметься у &kgraphviewer;, якщо для графу не визначено власного кольору тла.</para>
+
+<screenshot>
+<screeninfo
+>Сторінка для зміни вигляду графу</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Сторінка для зміни вигляду графу</phrase>
+</textobject>
+<caption
+><para
+>Сторінка для зміни вигляду графу</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>За допомогою сторінки <guilabel
+>Обробка</guilabel
+> ви можете вибрати зовнішню програму або вбудовану бібліотеку для обробки файлів &dot; &graphviz;.</para>
+
+<screenshot>
+<screeninfo
+>Сторінка перезавантаження файлів у діалоговому вікні налаштування програми</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Сторінка перезавантаження файлів у діалоговому вікні налаштування програми</phrase>
+</textobject>
+<caption
+><para
+>Сторінка перезавантаження файлів у діалоговому вікні налаштування програми</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>За допомогою сторінки <guilabel
+>Перезавантаження</guilabel
+> ви можете змінити поведінку програми &kgraphviewer;, якщо файл буде змінено на диску іншою програмою. Ви можете вибрати типову дію (автоматичне перезавантаження або ігнорування змін), або вказати, що програмі слід питати вас про належну дію кожного разу.</para>
+
+<screenshot>
+<screeninfo
+>Сторінка перезавантаження файлів у діалоговому вікні налаштування програми</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Сторінка перезавантаження файлів у діалоговому вікні налаштування програми</phrase>
+</textobject>
+<caption
+><para
+>Сторінка перезавантаження файлів у діалоговому вікні налаштування програми</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>На сторінці <guilabel
+>Відкриття</guilabel
+> ви можете змінити поведінку програми &kgraphviewer;, якщо файл графу буде відкрито поза межами поточного сеансу роботи з програмою. Ви можете вибрати типову дію (відкриття у існуючому вікні або у новому вікні) або вказати програмі, що слід питати вас про належну дію кожного разу.</para>
+
+<screenshot>
+<screeninfo
+>Сторінка діалогового вікна налаштування для відкриття нових файлів у існуючому вікні</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Сторінка діалогового вікна налаштування для відкриття нових файлів у існуючому вікні</phrase>
+</textobject>
+<caption
+><para
+>Сторінка діалогового вікна налаштування для відкриття нових файлів у існуючому вікні</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>За допомогою сторінки <guilabel
+>Керування сеансами</guilabel
+> можна змінити поведінку  &kgraphviewer; під час запуску програми. Ви можете вибрати типову дію (відкриття файлів з попереднього сеансу або запуск без відкритих файлів) або вказати програмі, що слід питати вас про належну дію кожного разу.</para>
+
+<screenshot>
+<screeninfo
+>Сторінка діалогового вікна налаштування програми, на якій можна вказати, що слід відкривати файли з попереднього сеансу</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Сторінка діалогового вікна налаштування програми, на якій можна вказати, що слід відкривати файли з попереднього сеансу</phrase>
+</textobject>
+<caption
+><para
+>Сторінка діалогового вікна налаштування програми, на якій можна вказати, що слід відкривати файли з попереднього сеансу</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="using-kgraphviewer-misc">
+<title
+>Різноманітні функції</title>
+
+<para
+>У контекстного меню, яке відкривається після клацання лівою кнопкою миші, коли вказівник миші знаходиться у області перегляду графу, вам буде запропоновано деякі інші можливі параметри графу: <variablelist>
+<varlistentry>
+<term
+><guisubmenu
+>Розкладка</guisubmenu
+></term>
+<listitem
+><para
+>За допомогою цього пункту ви можете вибрати один з декількох алгоритмів компонування &graphviz; або вказати свій власний. Серед пунктів меню, які описано на домашній сторінці &graphviz;, ви побачите: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>&dot;</guimenuitem
+></term>
+	<listitem
+><para
+>Алгоритм &dot;, типовий для орграфів. За його допомогою можна отримати <quote
+>ієрархічні</quote
+> або багатошарові креслення орграфів. За цього алгоритму компонування спочатку буде вирівняно у одному напрямку зв’язки (згори до низу або зліва праворуч), а потім зроблено спробу уникнення перетинів зв’язків і зменшення їх довжини.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&neato;</guimenuitem
+></term>
+	<listitem
+><para
+>Алгоритм &neato;, типовий для неорієнтованих графів. За його використання буде створено компонування у вигляді <quote
+>пружинної моделі</quote
+>. Цей алгоритм використовує алгоритм Камади-Каваї, який еквівалентний до статистичного багатовимірного масштабування.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&twopi;</guimenuitem
+></term>
+	<listitem
+><para
+>Алгоритм &twopi;, який можна використовувати для орієнтованих і неорієнтованих графів. Радіальне компонування, відповідно до роботи Грехема Вілса, 1997.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&fdp;</guimenuitem
+></term>
+	<listitem
+><para
+>Алгоритм &fdp; для неорієнтованих графів. Створює компонування у вигляді <quote
+>пружинної моделі</quote
+>. Є реалізацією евристики Фрухтермана-Рейнгольда, зокрема багатосіткового розв’язувача, який добре обробляє великі графи і кластеризовані неорієнтовані графи.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&circo;</guimenuitem
+></term>
+	<listitem
+><para
+>Алгоритм &circo;. Створює кільцеве компонування, створено на основі робіт Сикса і Толліса, 1999, та Кауфмана і Візе, 2002. Добре працює для деяких діаграм, що складаються з декількох циклічних структур.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Вказати команду компонування</guimenuitem
+></term>
+	<listitem
+><para
+>Відкриває діалогове вікно, за допомогою якого ви можете вказати команду компонування, яку буде виконано командною оболонкою. Цій команді має бути передано один параметр, назву файла графу, команда має вивести компонування до stdout мовою xdot. У цей спосіб ви можете передати специфічні параметри до однієї з попередніх команд або застосувати фільтрування, яке змінюватиме ваш граф до його обробки за допомогою &dot;.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Відновити типову команду компонування</guimenuitem
+></term>
+	<listitem
+><para
+>Визначити тип графу (орієнтований чи ні) і застосувати до нього типовий алгоритм, у поточний версії &dot; і &neato; відповідно.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+	</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Експортувати граф</guisubmenu
+></term>
+<listitem
+><para>
+	<variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Як зображення...</guimenuitem
+></term>
+	<listitem
+><para
+>Надає змогу експортувати весь граф до усіх підтримуваних форматів.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guimenu
+>Увімкнути загальний перегляд</guimenu
+></term>
+<listitem
+><para
+>Якщо позначити цей пункт, за потреби буде показано загальний перегляд графу. Якщо потреби у загальному перегляді немає, меню розташування загального перегляду буде вимкнено.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Загальний перегляд</guisubmenu
+></term>
+<listitem
+><para
+>Тут можна вказати місце, де буде розташовано загальний перегляд у вікні перегляду графу. Серед можливих варіантів: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Верхній лівий</guimenuitem
+></term>
+	<listitem
+><para
+>Розташувати загальний перегляд у верхньому лівому куті;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Верхній правий</guimenuitem
+></term>
+	<listitem
+><para
+>Розташувати загальний перегляд у верхньому правому куті;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Нижній лівий</guimenuitem
+></term>
+	<listitem
+><para
+>Розташувати загальний перегляд у нижньому лівому куті;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Нижній правий</guimenuitem
+></term>
+	<listitem
+><para
+>Розташувати загальний перегляд у нижньому правому куті;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Автоматично</guimenuitem
+></term>
+	<listitem
+><para
+>Автоматично вибрати найкраще розташування так, щоб загальний перегляд затуляв якомога меншу частину графу.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist
+></para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commands">
+<title
+>Довідка щодо команд</title>
+
+<sect1 id="kgraphviewer-commands-menus">
+<title
+>Меню &kgraphviewer;</title>
+
+<sect2>
+<title
+>Меню «Файл»</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Створити</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Відкриває</action
+> нове вікно &kgraphviewer;.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></shortcut
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Відкрити</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Відкриває</action
+> діалогове вікно <guilabel
+>Відкрити файл</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Відкрити недавні</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Показує</action
+> поточний список десяти файлів графів, які відкривалися найчастіше.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guisubmenu
+>Експортувати граф</guisubmenu
+> <guimenuitem
+>Як зображення...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Надає вам змогу <action
+>експортувати</action
+> весь граф до усіх підтримуваних форматів зображень.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+></shortcut
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Друкувати...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Друкує</action
+> поточний граф на основі поточного набору параметрів друку.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>P</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Перегляд друку</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Відкриває</action
+> діалогове вікно <guilabel
+>Попереднього перегляду</guilabel
+> результатів друку поточного графу.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Налаштувати сторінку</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Відкриває</action
+> діалогове вікно <guilabel
+>Налаштування сторінки</guilabel
+> для поточного графу.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Вийти</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Завершує роботу</action
+> &kgraphviewer;.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Меню «Перегляд»</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Збільшити</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Збільшує масштаб</action
+> поточного графу на 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Зменшити</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Зменшує масштаб</action
+> поточного графу на 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Перезавантажити</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Перезавантажує</action
+> поточний граф.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guisubmenu
+>Вибрати алгоритм компонування</guisubmenu
+></menuchoice
+></term>
+	<listitem
+><para
+>Відкриває підменю із різноманітними алгоритмами компонування &graphviz; для поточного графу.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+></shortcut
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Увімкнути загальний перегляд</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Якщо позначити цей пункт, за потреби буде показано загальний перегляд графу. Якщо потреби у загальному перегляді немає, меню розташування загального перегляду буде вимкнено.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Загальний перегляд</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Тут можна налаштувати місце, де буде показано віконечко загального перегляду. Серед варіантів: <variablelist>
+		<varlistentry>
+		<term
+><guimenuitem
+>Верхній лівий</guimenuitem
+></term>
+		<listitem
+><para
+>Розташувати загальний перегляд у верхньому лівому куті;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Верхній правий</guimenuitem
+></term>
+		<listitem
+><para
+>Розташувати загальний перегляд у верхньому правому куті;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Нижній лівий</guimenuitem
+></term>
+		<listitem
+><para
+>Розташувати загальний перегляд у нижньому лівому куті;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Нижній правий</guimenuitem
+></term>
+		<listitem
+><para
+>Розташувати загальний перегляд у нижньому правому куті;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Автоматично</guimenuitem
+></term>
+		<listitem
+><para
+>Автоматично вибрати найкраще розташування так, щоб загальний перегляд затуляв якомога меншу частину графу.</para
+></listitem>
+		</varlistentry>
+	</variablelist
+></para
+></listitem>
+	</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Меню «Параметри» і «Довідка»</title>
+
+<para
+>У &kgraphviewer; передбачено типові для &kde; пункти меню <guimenu
+>Параметри</guimenu
+> і <guimenu
+>Довідка</guimenu
+>. Щоб дізнатися більше, ознайомтеся з розділами щодо <ulink url="help:/fundamentals/menus.html#menus-settings"
+>меню «Параметри»</ulink
+> та <ulink url="help:/fundamentals/menus.html#menus-help"
+>меню «Довідка»</ulink
+> підручника з основ роботи у &kde;. </para>
+
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-commands-toolbars">
+<title
+>Панелі інструментів &kgraphviewer;</title>
+
+<sect2>
+<title
+>Головна панель інструментів</title>
+<!--document-new-->
+<variablelist>
+	<varlistentry
+><!--document-open-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-open.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Відкриває</action
+> діалогове вікно <guilabel
+>Відкриття файла</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--document-open-recent-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-prev.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Показує</action
+> список нещодавно відкритих файлів.</para
+></listitem>
+	</varlistentry>
+<!--document-close-->
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-print.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prints the graph</action
+> using current setup.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-preview.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Відкриває</action
+> діалогове вікно <guilabel
+>Попереднього перегляду</guilabel
+> результатів друку.</para
+></listitem>
+	</varlistentry>
+
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Shows</action
+> the <guilabel
+>Page Setup</guilabel
+> dialog.</para
+></listitem>
+	</varlistentry-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Панель інструментів перегляду</title>
+
+<variablelist>
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-reload.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Reloads</action
+> the current graph.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-layout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Відриває вікно зміни</action
+> команди компонування або <action
+>відкриває</action
+> вікно зі списком попередньо визначених алгоритмів компонування.</para
+></listitem>
+	</varlistentry>
+	
+	<varlistentry
+><!--zoom-in-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Збільшує масштаб</action
+> поточного графу на 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--zoom-out-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Зменшує масштаб</action
+> поточного графу на 10%.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+<!--kgraphviewer-bev "Enable Bird's-eye View"-->
+</sect2>
+
+<sect2>
+<title
+>Панель інструментів довідки</title>
+
+<variablelist>
+	<varlistentry
+><!--help-contextual-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Замінює</action
+> вказівник миші на вказівник <guilabel
+>Що це?</guilabel
+> Наведення такого вказівника на елемент графічного інтерфейсу користувача з наступним клацанням лівою кнопкою миші відкриє контекстне вікно довідки щодо його використання (якщо така довідка доступна).</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+<title
+>Подяки і ліцензія</title>
+
+<sect1 id="kgraphviewer-credits-program">
+<title
+>Програма</title>
+
+<sect2>
+<title
+>Основні автори</title>
+<para
+>Авторські права на програму належать Gaël de Chalendar <email
+>kleag@free.fr</email
+>, ©2005–2006.</para>
+</sect2>
+
+<sect2>
+<title
+>Учасники розробки (список буде поповнюватися)</title>
+<itemizedlist>
+	<listitem
+><para
+>Reimar Döffinger <email
+>Reimar.Doeffinger@stud.uni-karlsruhe.de</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-userguide">
+<title
+>Інструкція користувача</title>
+<para
+>Авторські права на документацію належать Gaël de Chalendar <email
+>kleag@free.fr</email
+>, ©2006.</para>
+<sect2>
+<title
+>Учасники розробки</title>
+<itemizedlist>
+  <listitem
+><para
+>Federico Zenith <email
+>federico.zenith@member.fsf.org</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-other">
+<title
+>Інші подяки</title>
+<para
+>У цій програмі міститься код, запозичений з інших проєктів вільного програмного забезпечення:</para>
+<variablelist>
+	<varlistentry>
+	<term
+><ulink url="https://kcachegrind.github.io/html/Home.html"
+>&kcachegrind;</ulink
+></term>
+	<listitem
+><para
+>Початкова модель графів і класи перегляду;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><ulink url="http://www.kexi-project.org/"
+>&kexi;</ulink
+></term>
+	<listitem
+><para
+>Налаштування друку і класи попереднього перегляду.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-licenses"
+><title
+>Ліцензування</title>
+<para
+>Переклад українською: Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+> 
+&underFDL; &underGPL; </sect1>
+
+</chapter>
+
+&documentation.index;
+</book>
