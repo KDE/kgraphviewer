@@ -717,7 +717,7 @@ msgid ""
 "The command MUST write its results on stdout in xdot format."
 msgstr ""
 "Especifiqueu ací l'ordre que s'utilitzarà per a dissenyar la gràfica.\n"
-"L'ordre HA d'escriure els seus resultats a la stdout en format xdot."
+"L'ordre HA d'escriure els seus resultats en la stdout en format xdot."
 
 #: part/dotgraphview.cpp:2155
 #, kde-format
