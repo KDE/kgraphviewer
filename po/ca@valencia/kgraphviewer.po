@@ -765,13 +765,13 @@ msgstr "Allunya un 10% la gràfica visualitzada actualment"
 #: part/kgraphviewer_part.rc:4
 #, kde-format
 msgid "&File"
-msgstr "&Fitxer"
+msgstr "Fi&txer"
 
 #. i18n: ectx: Menu (view)
 #: part/kgraphviewer_part.rc:11
 #, kde-format
 msgid "&View"
-msgstr "&Visualitza"
+msgstr "Vi&sualitza"
 
 #: part/KgvPageLayout.cpp:68
 #, kde-format
@@ -890,7 +890,7 @@ msgstr "&Mida:"
 #: part/KgvPageLayoutSize.cpp:110
 #, kde-format
 msgid "&Width:"
-msgstr "&Amplària:"
+msgstr "A&mplària:"
 
 #: part/KgvPageLayoutSize.cpp:121
 #, kde-format
