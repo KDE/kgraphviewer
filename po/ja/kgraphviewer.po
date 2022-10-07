@@ -1303,18 +1303,3 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "前回開いたファイルを開く"
-
-#, fuzzy
-#~| msgid "KGraphViewer"
-#~ msgid "KGraphViewerPart"
-#~ msgstr "KGraphViewer"
-
-#, fuzzy
-#~| msgid "GraphViz dot files viewer"
-#~ msgid "Graphviz DOT files viewer"
-#~ msgstr "GraphViz DOT ファイルビューア"
-
-#, fuzzy
-#~| msgid "(c) 2005-2006, Gael de Chalendar &lt;kleag@free.fr&gt;"
-#~ msgid "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"
-#~ msgstr "(c) 2005-2006, Gael de Chalendar &lt;kleag@free.fr&gt;"
