@@ -20,6 +20,7 @@
   <name xml:lang="hu">KGraphViewer könyvtár</name>
   <name xml:lang="id">Pustaka KGraphViewer</name>
   <name xml:lang="it">Libreria KGraphViewer</name>
+  <name xml:lang="ka">ბიბლიოთეკა KGraphViewer</name>
   <name xml:lang="ko">KGraphViewer 라이브러리</name>
   <name xml:lang="nds">KGraphViewer-Bibliotheek</name>
   <name xml:lang="nl">KGraphViewer-bibliotheek</name>
@@ -50,6 +51,7 @@
   <summary xml:lang="gl">Un visor de gráficos de Graphviz DOT (biblioteca compartida)</summary>
   <summary xml:lang="id">Sebuah penampil grafik Graphviz DOT (pustaka berbagi)</summary>
   <summary xml:lang="it">Un visore di grafi DOT di Graphviz (libreria condivisa)</summary>
+  <summary xml:lang="ka">Graphviz-ის DOT გრაფიკის დათვალიერება (გაზიარებული ბიბლიოთეკა)</summary>
   <summary xml:lang="ko">Graphviz DOT 그래프 뷰어(공유 라이브러리)</summary>
   <summary xml:lang="nl">Een viewer voor Graphviz DOT-bestanden (gedeelde bibliotheek)</summary>
   <summary xml:lang="nn">Graphviz DOT-grafvisar (delt bibliotek)</summary>

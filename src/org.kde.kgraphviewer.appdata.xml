@@ -20,6 +20,7 @@
   <name xml:lang="hu">KGraphViewer</name>
   <name xml:lang="id">KGraphViewer</name>
   <name xml:lang="it">KGraphViewer</name>
+  <name xml:lang="ka">KGraphViewer</name>
   <name xml:lang="ko">KGraphViewer</name>
   <name xml:lang="nl">KGraphViewer</name>
   <name xml:lang="pl">KGraphViewer</name>
@@ -49,6 +50,7 @@
   <summary xml:lang="gl">Un visor de gráficos de Graphviz DOT</summary>
   <summary xml:lang="id">Sebuah penampil grafik Graphviz DOT</summary>
   <summary xml:lang="it">Un visore di grafi DOT di Graphviz</summary>
+  <summary xml:lang="ka">Graphviz-ის DOT გრაფიკის დათვალიერება</summary>
   <summary xml:lang="ko">Graphviz DOT 그래프 뷰어</summary>
   <summary xml:lang="nl">Een Graphviz DOT-grafiek-viewer</summary>
   <summary xml:lang="pl">Przeglądarka grafów Graphviz DOT</summary>
@@ -107,6 +109,7 @@
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Caratteristiche:</p>
+    <p xml:lang="ka">თვისებები:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="pl">Cechy:</p>
@@ -140,6 +143,7 @@
       <li xml:lang="hu">Nagyítás</li>
       <li xml:lang="id">Pengezooman</li>
       <li xml:lang="it">Ingrandimento</li>
+      <li xml:lang="ka">გადიდება</li>
       <li xml:lang="ko">확대 및 축소</li>
       <li xml:lang="nl">Zoomen</li>
       <li xml:lang="pl">Powiększanie</li>
