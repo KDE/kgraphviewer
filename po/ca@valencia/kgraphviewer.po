@@ -229,7 +229,7 @@ msgstr "Obri una finestra nova de KGraphViewer buida."
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 "Mostra el diàleg d'obertura de fitxers per a triar un fitxer DOT de Graphviz "
-"a obrir."
+"que s'obrirà."
 
 #: kgraphviewer.cpp:205
 #, kde-format
