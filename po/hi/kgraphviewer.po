@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-02 00:43+0000\n"
+"POT-Creation-Date: 2022-10-19 00:44+0000\n"
 "PO-Revision-Date: 2008-03-28 09:12+0530\n"
 "Last-Translator: Ravishankar Shrivastava <aviratlami@aol.in>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -30,7 +30,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "raviratlami@aol.in"
 
-#: kgrapheditor.cpp:131 kgraphviewer.cpp:113
+#: kgrapheditor.cpp:131 kgraphviewer.cpp:120
 #, fuzzy, kde-format
 #| msgid "Session Management"
 msgid "Session Restore"
@@ -47,13 +47,13 @@ msgstr "क्या आप फ़ाइलों को पिछले सत�
 msgid "Unable to start"
 msgstr ""
 
-#: kgrapheditor.cpp:147 kgraphviewer.cpp:131
+#: kgrapheditor.cpp:147 kgraphviewer.cpp:146
 #, fuzzy, kde-format
 #| msgid "Could not find our part."
 msgid "Could not find the KGraphViewer part."
 msgstr "अपना पार्ट ढूंढ नहीं सका."
 
-#: kgrapheditor.cpp:228 kgraphviewer.cpp:211
+#: kgrapheditor.cpp:228 kgraphviewer.cpp:226
 #, fuzzy, kde-format
 #| msgid "Save current graph to..."
 msgid "Closes the current file"
@@ -210,24 +210,37 @@ msgstr "मदद औज़ार-पट्टी"
 msgid "Edit Toolbar"
 msgstr "औज़ार-पट्टी संपादित करें"
 
-#: kgraphviewer.cpp:113
+#: kgraphviewer.cpp:119
 #, fuzzy, kde-format
 #| msgid "Do you want to reload files from previous session ?"
 msgid "Do you want to reload files from the previous session?"
 msgstr "क्या आप फ़ाइलों को पिछले सत्र से फिर से लोड करना चाहते हैं?"
 
-#: kgraphviewer.cpp:198
+#: kgraphviewer.cpp:121
+#, fuzzy, kde-format
+#| msgid "Reloading"
+msgctxt "@action:button"
+msgid "Reload"
+msgstr "फिर से लोड किया जा रहा है"
+
+#: kgraphviewer.cpp:122
+#, kde-format
+msgctxt "@action:button"
+msgid "Do Not Reload"
+msgstr ""
+
+#: kgraphviewer.cpp:213
 #, fuzzy, kde-format
 #| msgid "Open in existing window"
 msgid "Opens a new empty KGraphViewer window."
 msgstr "वर्तमान विंडो में खोलें"
 
-#: kgraphviewer.cpp:201
+#: kgraphviewer.cpp:216
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 
-#: kgraphviewer.cpp:205
+#: kgraphviewer.cpp:220
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -236,29 +249,29 @@ msgstr ""
 "आपने जो हालिया फ़ाइलें खोली हैं उनकी सूची बताता है, तथा आपको इन्हें आसानी से फिर से खोलने "
 "देता है"
 
-#: kgraphviewer.cpp:215
+#: kgraphviewer.cpp:230
 #, fuzzy, kde-format
 #| msgid "KGraphViewer"
 msgid "Quits KGraphViewer."
 msgstr "केग्राफव्यूअर"
 
-#: kgraphviewer.cpp:218
+#: kgraphviewer.cpp:233
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr ""
 
-#: kgraphviewer.cpp:221
+#: kgraphviewer.cpp:236
 #, kde-format
 msgid "Configure the bindings between keys and actions."
 msgstr ""
 
-#: kgraphviewer.cpp:224
+#: kgraphviewer.cpp:239
 #, fuzzy, kde-format
 #| msgid "Reload Confirmation"
 msgid "Toolbar configuration."
 msgstr "पुष्टिकरण फिर से लोड करें"
 
-#: kgraphviewer.cpp:227
+#: kgraphviewer.cpp:242
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr ""
