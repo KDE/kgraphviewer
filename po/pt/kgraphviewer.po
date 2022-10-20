@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-19 00:44+0000\n"
-"PO-Revision-Date: 2018-07-08 11:46+0100\n"
+"PO-Revision-Date: 2022-10-19 09:23+0100\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: pt <kde-i18n-doc@kde.org>\n"
 "Language: pt\n"
@@ -220,17 +220,16 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "Deseja carregar de novo os ficheiros da sessão anterior?"
 
 #: kgraphviewer.cpp:121
-#, fuzzy, kde-format
-#| msgid "Reloading"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "A carregar de novo"
+msgstr "Recarregar"
 
 #: kgraphviewer.cpp:122
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
-msgstr ""
+msgstr "Não Recarregar"
 
 #: kgraphviewer.cpp:213
 #, kde-format
@@ -1259,12 +1258,3 @@ msgstr "&Perguntar"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Abrir de novo os ficheiros abertos previamente"
-
-#~ msgid "KGraphViewerPart"
-#~ msgstr "KGraphViewerPart"
-
-#~ msgid "Graphviz DOT files viewer"
-#~ msgstr "Visualizador de ficheiros DOT do Graphviz"
-
-#~ msgid "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"
-#~ msgstr "(C) 2005-2006, Gael de Chalendar <kleag@free.fr>"

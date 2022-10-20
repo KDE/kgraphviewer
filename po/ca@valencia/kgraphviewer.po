@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-19 00:44+0000\n"
-"PO-Revision-Date: 2022-09-07 20:06+0200\n"
+"PO-Revision-Date: 2022-10-19 09:52+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -220,17 +220,16 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "Voleu tornar a carregar els fitxers de la sessió anterior?"
 
 #: kgraphviewer.cpp:121
-#, fuzzy, kde-format
-#| msgid "Reloading"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "En tornar a carregar"
+msgstr "Torna a carregar"
 
 #: kgraphviewer.cpp:122
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
-msgstr ""
+msgstr "No tornes a carregar"
 
 #: kgraphviewer.cpp:213
 #, kde-format
@@ -508,8 +507,8 @@ msgid ""
 "Specify yourself the layout command to use. Given a dot file, it should "
 "produce an xdot file on its standard output."
 msgstr ""
-"Especifiqueu vós mateix l'ordre de disseny a utilitzar. Proporcionant un "
-"fitxer DOT, ha de presentar un fitxer xdot en la seua eixida estàndard."
+"Especifiqueu vós mateix l'ordre de disseny que s'utilitzarà. Proporcionant "
+"un fitxer DOT, ha de presentar un fitxer xdot en la seua eixida estàndard."
 
 #: part/dotgraphview.cpp:469
 #, kde-format
@@ -522,8 +521,8 @@ msgid ""
 "Resets the layout command to use to the default depending on the graph type "
 "(directed or not)."
 msgstr ""
-"Reinicialitza l'ordre de disseny a utilitzar a la predeterminada depenent "
-"del tipus de gràfica (dirigida o no)."
+"Reinicialitza l'ordre de disseny que s'utilitzarà a la predeterminada "
+"depenent del tipus de gràfica (dirigida o no)."
 
 #: part/dotgraphview.cpp:472
 #, kde-format
