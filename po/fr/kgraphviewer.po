@@ -7,7 +7,7 @@
 # Sébastien Renard <Sebastien.Renard@digitalfox.org>, 2008.
 # Joëlle Cornavin <jcorn@free.fr>, 2010, 2011.
 # Thomas Vergnaud <thomas.vergnaud@gmx.fr>, 2014, 2015, 2022.
-# Xavier Besnard <xavier.besnard@neuf.fr>, 2020, 2021.
+# Xavier Besnard <xavier.besnard@neuf.fr>, 2020, 2021, 2022.
 #
 # Automatically generated, 2008.
 msgid ""
@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-19 00:44+0000\n"
-"PO-Revision-Date: 2022-10-09 17:36+0200\n"
-"Last-Translator: Thomas Vergnaud <thomas.vergnaud@mailo.eu>\n"
+"PO-Revision-Date: 2022-10-19 18:45+0200\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -229,17 +229,16 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "Voulez-vous recharger les fichiers de la session précédente ?"
 
 #: kgraphviewer.cpp:121
-#, fuzzy, kde-format
-#| msgid "Reloading"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "Rechargement"
+msgstr "Recharger"
 
 #: kgraphviewer.cpp:122
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
-msgstr ""
+msgstr "Ne pas recharger"
 
 #: kgraphviewer.cpp:213
 #, kde-format
