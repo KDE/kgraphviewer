@@ -127,7 +127,6 @@ private Q_SLOTS:
     void slotURLSelected(const QUrl &);
     void optionsShowToolbar();
     void optionsShowStatusbar();
-    void optionsConfigureKeys();
     void optionsConfigureToolbars();
     void optionsConfigure();
     void newTabSelectedSlot(int index);

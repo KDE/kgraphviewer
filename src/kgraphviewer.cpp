@@ -48,7 +48,6 @@
 #include <kmessagebox.h>
 #include <kparts/partmanager.h>
 #include <krecentfilesaction.h>
-#include <kshortcutsdialog.h>
 #include <kstandardaction.h>
 #include <ktoggleaction.h>
 #include <ktoolbar.h>
@@ -232,9 +231,6 @@ void KGraphViewerWindow::setupActions()
     m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
     m_statusbarAction->setWhatsThis(i18n("Shows or hides the status bar."));
 
-    QAction *kbAction = actionCollection()->addAction(KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT(optionsConfigureKeys()));
-    kbAction->setWhatsThis(i18n("Configure the bindings between keys and actions."));
-
     QAction *ctAction = actionCollection()->addAction(KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT(optionsConfigureToolbars()));
     ctAction->setWhatsThis(i18n("Toolbar configuration."));
 
@@ -276,11 +272,6 @@ void KGraphViewerWindow::optionsShowStatusbar()
         statusBar()->show();
     else
         statusBar()->hide();
-}
-
-void KGraphViewerWindow::optionsConfigureKeys()
-{
-    KShortcutsDialog::configure(actionCollection());
 }
 
 void KGraphViewerWindow::optionsConfigureToolbars()

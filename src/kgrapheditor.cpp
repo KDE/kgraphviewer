@@ -46,7 +46,6 @@
 #include <klocalizedstring.h>
 #include <kparts/partmanager.h>
 #include <krecentfilesaction.h>
-#include <kshortcutsdialog.h>
 #include <kstandardaction.h>
 #include <ktoggleaction.h>
 #include <ktoolbar.h>
@@ -232,8 +231,6 @@ void KGraphEditor::setupActions()
 
     m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
 
-    actionCollection()->addAction(KStandardAction::KeyBindings, "options_configure_keybinding", this, SLOT(optionsConfigureKeys()));
-    //   KStandardAction::keyBindings(this, SLOT(optionsConfigureKeys()), this);
     actionCollection()->addAction(KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT(optionsConfigureToolbars()));
     actionCollection()->addAction(KStandardAction::Preferences, "options_configure", this, SLOT(optionsConfigure()));
 
@@ -284,11 +281,6 @@ void KGraphEditor::optionsShowStatusbar()
         statusBar()->show();
     else
         statusBar()->hide();
-}
-
-void KGraphEditor::optionsConfigureKeys()
-{
-    KShortcutsDialog::configure(actionCollection());
 }
 
 void KGraphEditor::optionsConfigureToolbars()
