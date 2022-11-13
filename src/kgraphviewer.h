@@ -27,8 +27,6 @@
 #include <QDir>
 #include <QTabWidget>
 
-#include <graphviz/gvc.h>
-
 class KToggleAction;
 
 /**

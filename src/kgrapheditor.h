@@ -25,8 +25,6 @@
 #include <QDir>
 #include <QTabWidget>
 
-#include <graphviz/gvc.h>
-
 class QTreeWidget;
 class QTreeWidgetItem;
 
