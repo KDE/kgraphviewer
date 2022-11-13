@@ -58,6 +58,11 @@ add_definitions(
 add_subdirectory(src)
 add_subdirectory(doc)
 
+ki18n_install(po)
+if(KF5DocTools_FOUND)
+    kdoctools_install(po)
+endif()
+
 ecm_qt_install_logging_categories(
     EXPORT KGRAPHVIEWER
     FILE kgraphviewer.categories
