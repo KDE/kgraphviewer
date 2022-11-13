@@ -60,7 +60,7 @@ protected:
 private:
     QSemaphore sem;
     QString m_dotFileName;
-    graph_t *m_g;
+    graph_t *m_g = nullptr;
 };
 
 #endif // LOADAGRAPHTHREAD_H

@@ -58,8 +58,8 @@ protected:
 private:
     QSemaphore sem;
     QString m_layoutCommand;
-    graph_t *m_g;
-    GVC_t *m_gvc;
+    graph_t *m_g = nullptr;
+    GVC_t *m_gvc = nullptr;
 };
 
 #endif // LAYOUTAGRAPHTHREAD_H
