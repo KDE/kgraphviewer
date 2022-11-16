@@ -1,13 +1,13 @@
 # translation of kgraphviewer.po to Italian
 #
 # Federico Zenith <federico.zenith@member.fsf.org>, 2006, 2007, 2008, 2009, 2010, 2011, 2014.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2017, 2018.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2017, 2018, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-19 00:44+0000\n"
-"PO-Revision-Date: 2018-07-20 23:48+0100\n"
+"PO-Revision-Date: 2022-11-13 00:11+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 23.03.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -214,17 +214,16 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "Vuoi ricaricare i file della sessione precedente?"
 
 #: kgraphviewer.cpp:121
-#, fuzzy, kde-format
-#| msgid "Reloading"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "Ricaricamento"
+msgstr "Ricarica"
 
 #: kgraphviewer.cpp:122
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
-msgstr ""
+msgstr "Non ricaricare"
 
 #: kgraphviewer.cpp:213
 #, kde-format
