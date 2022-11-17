@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-19 00:44+0000\n"
+"POT-Creation-Date: 2022-11-17 00:43+0000\n"
 "PO-Revision-Date: 2022-10-20 07:18+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -28,42 +28,42 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "matjaz.jeran@amis.net"
 
-#: kgrapheditor.cpp:131 kgraphviewer.cpp:120
+#: kgrapheditor.cpp:130 kgraphviewer.cpp:119
 #, kde-format
 msgid "Session Restore"
 msgstr "Obnovi sejo"
 
-#: kgrapheditor.cpp:131
+#: kgrapheditor.cpp:130
 #, kde-format
 msgid "Do you want to reload files from previous session?"
 msgstr "Ali želite znova naložiti datoteke iz prejšnje seje?"
 
-#: kgrapheditor.cpp:147
+#: kgrapheditor.cpp:146
 #, kde-format
 msgid "Unable to start"
 msgstr "Ne morem zagnati"
 
-#: kgrapheditor.cpp:147 kgraphviewer.cpp:146
+#: kgrapheditor.cpp:146 kgraphviewer.cpp:145
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "Ni bilo mogoče najti KGraphViewer part."
 
-#: kgrapheditor.cpp:228 kgraphviewer.cpp:226
+#: kgrapheditor.cpp:227 kgraphviewer.cpp:225
 #, kde-format
 msgid "Closes the current file"
 msgstr "Zapre trenutno datoteko"
 
-#: kgrapheditor.cpp:241
+#: kgrapheditor.cpp:238
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "Ustvari nov vozel"
 
-#: kgrapheditor.cpp:246
+#: kgrapheditor.cpp:243
 #, kde-format
 msgid "Create a New Edge"
 msgstr "Ustvari novo povezavo"
 
-#: kgrapheditor.cpp:506
+#: kgrapheditor.cpp:498
 #, kde-format
 msgid "Save current graph"
 msgstr "Shrani trenutni graf"
@@ -208,36 +208,36 @@ msgstr "Vrstica pomoči"
 msgid "Edit Toolbar"
 msgstr "Vrstica urejanja"
 
-#: kgraphviewer.cpp:119
+#: kgraphviewer.cpp:118
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
 msgstr "Ali želite znova naložiti datoteke iz prejšnje seje?"
 
-#: kgraphviewer.cpp:121
+#: kgraphviewer.cpp:120
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "Ponovno naloži"
 
-#: kgraphviewer.cpp:122
+#: kgraphviewer.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr "Ne naloži ponovno"
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:212
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "Odpre novo prazno okno KGraphViewer."
 
-#: kgraphviewer.cpp:216
+#: kgraphviewer.cpp:215
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 "Prikaže pogovorno okno za odpiranje datoteke, da izbere datoteko Graphviz "
 "DOT, ki jo želite odpreti."
 
-#: kgraphviewer.cpp:220
+#: kgraphviewer.cpp:219
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -246,27 +246,22 @@ msgstr ""
 "Tu so navedene datoteke, ki ste jih nedavno odprli, in omogoča jih lahko "
 "enostavno ponovno odprete."
 
-#: kgraphviewer.cpp:230
+#: kgraphviewer.cpp:229
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "Zapusti KGraphViewer."
 
-#: kgraphviewer.cpp:233
+#: kgraphviewer.cpp:232
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "Prikaže ali skrije vrstico stanja."
 
-#: kgraphviewer.cpp:236
-#, kde-format
-msgid "Configure the bindings between keys and actions."
-msgstr "Nastavite povezave med tipkami in dejanji."
-
-#: kgraphviewer.cpp:239
+#: kgraphviewer.cpp:235
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "Nastavitev vrstice."
 
-#: kgraphviewer.cpp:242
+#: kgraphviewer.cpp:238
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "Glavne možnosti nastavitev programa KGraphViewer."
@@ -1246,6 +1241,9 @@ msgstr "Vprašaj"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Ponovno odpri že prej odprte datoteke"
+
+#~ msgid "Configure the bindings between keys and actions."
+#~ msgstr "Nastavite povezave med tipkami in dejanji."
 
 #~ msgid "KGraphViewerPart"
 #~ msgstr "KGraphViewerPart"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-19 00:44+0000\n"
+"POT-Creation-Date: 2022-11-17 00:43+0000\n"
 "PO-Revision-Date: 2014-06-05 16:39+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -28,44 +28,44 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "s_dibbern@web.de, m.j.wiese@web.de"
 
-#: kgrapheditor.cpp:131 kgraphviewer.cpp:120
+#: kgrapheditor.cpp:130 kgraphviewer.cpp:119
 #, kde-format
 msgid "Session Restore"
 msgstr "Törns wedderherstellen"
 
-#: kgrapheditor.cpp:131
+#: kgrapheditor.cpp:130
 #, kde-format
 msgid "Do you want to reload files from previous session?"
 msgstr "Wullt Du Dateien ut den verleden Törn nieg laden?"
 
-#: kgrapheditor.cpp:147
+#: kgrapheditor.cpp:146
 #, fuzzy, kde-format
 #| msgid "Unable to start %1."
 msgid "Unable to start"
 msgstr "%1 lett sik nich starten."
 
-#: kgrapheditor.cpp:147 kgraphviewer.cpp:146
+#: kgrapheditor.cpp:146 kgraphviewer.cpp:145
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "De KGraphViewer-Komponent lett sik nich finnen."
 
-#: kgrapheditor.cpp:228 kgraphviewer.cpp:226
+#: kgrapheditor.cpp:227 kgraphviewer.cpp:225
 #, fuzzy, kde-format
 #| msgid "Closes the current tab"
 msgid "Closes the current file"
 msgstr "Maakt dat aktuelle Paneel to."
 
-#: kgrapheditor.cpp:241
+#: kgrapheditor.cpp:238
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "Nieg Höörn opstellen"
 
-#: kgrapheditor.cpp:246
+#: kgrapheditor.cpp:243
 #, kde-format
 msgid "Create a New Edge"
 msgstr "Nieg Kant opstellen"
 
-#: kgrapheditor.cpp:506
+#: kgrapheditor.cpp:498
 #, fuzzy, kde-format
 #| msgid "Save current graph to..."
 msgid "Save current graph"
@@ -216,36 +216,36 @@ msgstr "Hülp-Warktüüchbalken"
 msgid "Edit Toolbar"
 msgstr "Bewerk-Warktüüchbalken"
 
-#: kgraphviewer.cpp:119
+#: kgraphviewer.cpp:118
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
 msgstr "Wullt Du Dateien ut den verleden Törn nieg laden?"
 
-#: kgraphviewer.cpp:121
+#: kgraphviewer.cpp:120
 #, fuzzy, kde-format
 #| msgid "Reloading"
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "Nieg laden"
 
-#: kgraphviewer.cpp:122
+#: kgraphviewer.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr ""
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:212
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "Maakt en nieg leddig KGraphViewer-Finster op."
 
-#: kgraphviewer.cpp:216
+#: kgraphviewer.cpp:215
 #, fuzzy, kde-format
 #| msgid "Shows the file open dialog to choose a GraphViz dot file to open."
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr "Wiest den Dialoog för't Opmaken vun en GraphViz-Dot-Datei."
 
-#: kgraphviewer.cpp:220
+#: kgraphviewer.cpp:219
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -254,27 +254,22 @@ msgstr ""
 "List de tolest opmaakten Dateien op, Du kannst se denn eenfach wedder "
 "opmaken."
 
-#: kgraphviewer.cpp:230
+#: kgraphviewer.cpp:229
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "Maakt KGraphViewer ut."
 
-#: kgraphviewer.cpp:233
+#: kgraphviewer.cpp:232
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "Wiest oder verstickt den Statusbalken."
 
-#: kgraphviewer.cpp:236
-#, kde-format
-msgid "Configure the bindings between keys and actions."
-msgstr "Tastkombinatschonen un Akschonen instellen."
-
-#: kgraphviewer.cpp:239
+#: kgraphviewer.cpp:235
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "Warktüüchbalken instellen"
 
-#: kgraphviewer.cpp:242
+#: kgraphviewer.cpp:238
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "Hööft-Instelloptschonen för KGraphViewer"
@@ -1290,6 +1285,9 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Vördem opmaakte Dateien wedder opmaken"
+
+#~ msgid "Configure the bindings between keys and actions."
+#~ msgstr "Tastkombinatschonen un Akschonen instellen."
 
 #~ msgid "KGraphViewerPart"
 #~ msgstr "KGraphViewer-Komponent"

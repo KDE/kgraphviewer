@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-19 00:44+0000\n"
+"POT-Creation-Date: 2022-11-17 00:43+0000\n"
 "PO-Revision-Date: 2022-10-19 18:45+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -40,42 +40,42 @@ msgstr ""
 "jcorn@free.fr, roussel.cedric@gmail.com, thomas.vergnaud@mailo.eu, xavier."
 "besnard@neuf.fr"
 
-#: kgrapheditor.cpp:131 kgraphviewer.cpp:120
+#: kgrapheditor.cpp:130 kgraphviewer.cpp:119
 #, kde-format
 msgid "Session Restore"
 msgstr "Restauration de la session"
 
-#: kgrapheditor.cpp:131
+#: kgrapheditor.cpp:130
 #, kde-format
 msgid "Do you want to reload files from previous session?"
 msgstr "Voulez-vous recharger les fichiers de la session précédente ?"
 
-#: kgrapheditor.cpp:147
+#: kgrapheditor.cpp:146
 #, kde-format
 msgid "Unable to start"
 msgstr "Impossible de lancer"
 
-#: kgrapheditor.cpp:147 kgraphviewer.cpp:146
+#: kgrapheditor.cpp:146 kgraphviewer.cpp:145
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "Impossible de trouver le composant KGraphViewer."
 
-#: kgrapheditor.cpp:228 kgraphviewer.cpp:226
+#: kgrapheditor.cpp:227 kgraphviewer.cpp:225
 #, kde-format
 msgid "Closes the current file"
 msgstr "Ferme le fichier actuel"
 
-#: kgrapheditor.cpp:241
+#: kgrapheditor.cpp:238
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "Créer un nouveau sommet"
 
-#: kgrapheditor.cpp:246
+#: kgrapheditor.cpp:243
 #, kde-format
 msgid "Create a New Edge"
 msgstr "Créer une nouvelle arête"
 
-#: kgrapheditor.cpp:506
+#: kgrapheditor.cpp:498
 #, kde-format
 msgid "Save current graph"
 msgstr "Enregistrer le graphe actuel"
@@ -223,36 +223,36 @@ msgstr "Barre d'aide"
 msgid "Edit Toolbar"
 msgstr "Barre d'édition"
 
-#: kgraphviewer.cpp:119
+#: kgraphviewer.cpp:118
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
 msgstr "Voulez-vous recharger les fichiers de la session précédente ?"
 
-#: kgraphviewer.cpp:121
+#: kgraphviewer.cpp:120
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "Recharger"
 
-#: kgraphviewer.cpp:122
+#: kgraphviewer.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr "Ne pas recharger"
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:212
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "Ouvre une nouvelle fenêtre KGraphViewer vide."
 
-#: kgraphviewer.cpp:216
+#: kgraphviewer.cpp:215
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 "Affiche la boîte de dialogue « Ouvrir un fichier » pour choisir un fichier "
 "DOT au format « GraphViz » à ouvrir."
 
-#: kgraphviewer.cpp:220
+#: kgraphviewer.cpp:219
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -261,27 +261,22 @@ msgstr ""
 "Cette fonction liste les fichiers récemment ouverts et permet de les ouvrir "
 "à nouveau plus facilement."
 
-#: kgraphviewer.cpp:230
+#: kgraphviewer.cpp:229
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "Quitte KGraphViewer."
 
-#: kgraphviewer.cpp:233
+#: kgraphviewer.cpp:232
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "Affiche ou cache la barre d'état."
 
-#: kgraphviewer.cpp:236
-#, kde-format
-msgid "Configure the bindings between keys and actions."
-msgstr "Configurez les associations entre touches et actions."
-
-#: kgraphviewer.cpp:239
+#: kgraphviewer.cpp:235
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "Confirmation de la barre d'outils."
 
-#: kgraphviewer.cpp:242
+#: kgraphviewer.cpp:238
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "Options de configuration principales de KGraphViewer."
@@ -1281,6 +1276,9 @@ msgstr "Dem&ander"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Ouvrir à nouveau les fichiers précédemment ouverts"
+
+#~ msgid "Configure the bindings between keys and actions."
+#~ msgstr "Configurez les associations entre touches et actions."
 
 #~ msgid "KGraphViewerPart"
 #~ msgstr "KGraphViewerPart"

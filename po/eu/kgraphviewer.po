@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-19 00:44+0000\n"
+"POT-Creation-Date: 2022-11-17 00:43+0000\n"
 "PO-Revision-Date: 2010-06-26 15:31+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
@@ -31,45 +31,45 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "dooteo@euskalgnu.org"
 
-#: kgrapheditor.cpp:131 kgraphviewer.cpp:120
+#: kgrapheditor.cpp:130 kgraphviewer.cpp:119
 #, fuzzy, kde-format
 #| msgid "Session Management"
 msgid "Session Restore"
 msgstr "Saio-kudeaketa"
 
-#: kgrapheditor.cpp:131
+#: kgrapheditor.cpp:130
 #, kde-format
 msgid "Do you want to reload files from previous session?"
 msgstr "Nahi duzu aurreko saioko fitxategiak berriro kargatzea?"
 
-#: kgrapheditor.cpp:147
+#: kgrapheditor.cpp:146
 #, fuzzy, kde-format
 #| msgid "Unable to start %1."
 msgid "Unable to start"
 msgstr "Ezin da %1 abiarazi."
 
-#: kgrapheditor.cpp:147 kgraphviewer.cpp:146
+#: kgrapheditor.cpp:146 kgraphviewer.cpp:145
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "Ezin izan da KGraphViewer zatia aurkitu."
 
-#: kgrapheditor.cpp:228 kgraphviewer.cpp:226
+#: kgrapheditor.cpp:227 kgraphviewer.cpp:225
 #, fuzzy, kde-format
 #| msgid "Closes the current tab"
 msgid "Closes the current file"
 msgstr "Uneko fitxa ixten du"
 
-#: kgrapheditor.cpp:241
+#: kgrapheditor.cpp:238
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "Sortu erpin berria"
 
-#: kgrapheditor.cpp:246
+#: kgrapheditor.cpp:243
 #, kde-format
 msgid "Create a New Edge"
 msgstr "Sortu ertz berria"
 
-#: kgrapheditor.cpp:506
+#: kgrapheditor.cpp:498
 #, fuzzy, kde-format
 #| msgid "Save current graph to..."
 msgid "Save current graph"
@@ -226,37 +226,37 @@ msgstr "Laguntza tresna-barra"
 msgid "Edit Toolbar"
 msgstr "Editatu tresna-barra"
 
-#: kgraphviewer.cpp:119
+#: kgraphviewer.cpp:118
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
 msgstr "Nahi duzu aurreko saioko fitxategiak berriro kargatzea?"
 
-#: kgraphviewer.cpp:121
+#: kgraphviewer.cpp:120
 #, fuzzy, kde-format
 #| msgid "Reloading"
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "Birkargatzen"
 
-#: kgraphviewer.cpp:122
+#: kgraphviewer.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr ""
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:212
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "KGraphViewer leiho huts berri bat irekitzen du."
 
-#: kgraphviewer.cpp:216
+#: kgraphviewer.cpp:215
 #, fuzzy, kde-format
 #| msgid "Shows the file open dialog to choose a GraphViz dot file to open."
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 "GraphViz-en DOT fitxategia aukeratzeko elkarrizketa-koadroa erakusten du."
 
-#: kgraphviewer.cpp:220
+#: kgraphviewer.cpp:219
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -265,27 +265,22 @@ msgstr ""
 "Azken aldian ireki dituzun fitxategien zerrenda du, eta modu errazean hauek "
 "berriro irekitzeko."
 
-#: kgraphviewer.cpp:230
+#: kgraphviewer.cpp:229
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "KGraphViewer-etik irtetzen da."
 
-#: kgraphviewer.cpp:233
+#: kgraphviewer.cpp:232
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "Egoera-barra erakutsi edo ezkutatzen du."
 
-#: kgraphviewer.cpp:236
-#, kde-format
-msgid "Configure the bindings between keys and actions."
-msgstr "Konfiguratu teklen eta ekintzen arteko lasterbideak"
-
-#: kgraphviewer.cpp:239
+#: kgraphviewer.cpp:235
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "Tresna-barraren konfigurazioa."
 
-#: kgraphviewer.cpp:242
+#: kgraphviewer.cpp:238
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "KGraphViewer-eko konfigurazioko aukera nagusiak."
@@ -1309,6 +1304,9 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Birkargatu aurrez irekitako fitxategiak"
+
+#~ msgid "Configure the bindings between keys and actions."
+#~ msgstr "Konfiguratu teklen eta ekintzen arteko lasterbideak"
 
 #~ msgid "KGraphViewerPart"
 #~ msgstr "KGraphViewerPart"

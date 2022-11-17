@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-19 00:44+0000\n"
+"POT-Creation-Date: 2022-11-17 00:43+0000\n"
 "PO-Revision-Date: 2009-01-24 21:08+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -28,46 +28,46 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "donga.nb@gmail.com"
 
-#: kgrapheditor.cpp:131 kgraphviewer.cpp:120
+#: kgrapheditor.cpp:130 kgraphviewer.cpp:119
 #, fuzzy, kde-format
 #| msgid "Session Management"
 msgid "Session Restore"
 msgstr "จัดการวาระ"
 
-#: kgrapheditor.cpp:131
+#: kgrapheditor.cpp:130
 #, fuzzy, kde-format
 #| msgid "Do you want to reload files from previous session ?"
 msgid "Do you want to reload files from previous session?"
 msgstr "คุณต้องการจะเรียกแฟ้มใหม่อีกครั้งจากวาระก่อนหรือไม่ ?"
 
-#: kgrapheditor.cpp:147
+#: kgrapheditor.cpp:146
 #, kde-format
 msgid "Unable to start"
 msgstr ""
 
-#: kgrapheditor.cpp:147 kgraphviewer.cpp:146
+#: kgrapheditor.cpp:146 kgraphviewer.cpp:145
 #, fuzzy, kde-format
 #| msgid "Could not find our part."
 msgid "Could not find the KGraphViewer part."
 msgstr "ไม่สามารถค้นพบส่วนของเราได้"
 
-#: kgrapheditor.cpp:228 kgraphviewer.cpp:226
+#: kgrapheditor.cpp:227 kgraphviewer.cpp:225
 #, fuzzy, kde-format
 #| msgid "Save current graph to..."
 msgid "Closes the current file"
 msgstr "บันทึกกราฟปัจจุบันเป็น..."
 
-#: kgrapheditor.cpp:241
+#: kgrapheditor.cpp:238
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "สร้างเวอร์เท็กซ์ใหม่"
 
-#: kgrapheditor.cpp:246
+#: kgrapheditor.cpp:243
 #, kde-format
 msgid "Create a New Edge"
 msgstr "สร้างขอบใหม่"
 
-#: kgrapheditor.cpp:506
+#: kgrapheditor.cpp:498
 #, fuzzy, kde-format
 #| msgid "Save current graph to..."
 msgid "Save current graph"
@@ -216,37 +216,37 @@ msgstr "แถบช่วยเหลือ"
 msgid "Edit Toolbar"
 msgstr "แก้ไขแถบเครื่องมือ"
 
-#: kgraphviewer.cpp:119
+#: kgraphviewer.cpp:118
 #, fuzzy, kde-format
 #| msgid "Do you want to reload files from previous session ?"
 msgid "Do you want to reload files from the previous session?"
 msgstr "คุณต้องการจะเรียกแฟ้มใหม่อีกครั้งจากวาระก่อนหรือไม่ ?"
 
-#: kgraphviewer.cpp:121
+#: kgraphviewer.cpp:120
 #, fuzzy, kde-format
 #| msgid "Reloading"
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "การเรียกใหม่"
 
-#: kgraphviewer.cpp:122
+#: kgraphviewer.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr ""
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:212
 #, fuzzy, kde-format
 #| msgid "Open in existing window"
 msgid "Opens a new empty KGraphViewer window."
 msgstr "เปิดในหน้าต่างที่เปิดอยู่แล้ว"
 
-#: kgraphviewer.cpp:216
+#: kgraphviewer.cpp:215
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 
-#: kgraphviewer.cpp:220
+#: kgraphviewer.cpp:219
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -254,29 +254,24 @@ msgid ""
 msgstr ""
 "รายการแฟ้มนี้คือรายการแฟ้มที่คุณเคยเปิดใช้มาก่อน และอนุญาตให้คุณได้เปิดมันอีกครั้งอย่างง่ายดาย"
 
-#: kgraphviewer.cpp:230
+#: kgraphviewer.cpp:229
 #, fuzzy, kde-format
 #| msgid "KGraphViewer"
 msgid "Quits KGraphViewer."
 msgstr "แสดงกราฟ K"
 
-#: kgraphviewer.cpp:233
+#: kgraphviewer.cpp:232
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr ""
 
-#: kgraphviewer.cpp:236
-#, kde-format
-msgid "Configure the bindings between keys and actions."
-msgstr ""
-
-#: kgraphviewer.cpp:239
+#: kgraphviewer.cpp:235
 #, fuzzy, kde-format
 #| msgid "Reload Confirmation"
 msgid "Toolbar configuration."
 msgstr "ยืนยันการเรียกใหม่"
 
-#: kgraphviewer.cpp:242
+#: kgraphviewer.cpp:238
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr ""

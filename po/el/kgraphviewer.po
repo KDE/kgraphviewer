@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-19 00:44+0000\n"
+"POT-Creation-Date: 2022-11-17 00:43+0000\n"
 "PO-Revision-Date: 2020-08-20 17:22+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -30,42 +30,42 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "sng@hellug.gr"
 
-#: kgrapheditor.cpp:131 kgraphviewer.cpp:120
+#: kgrapheditor.cpp:130 kgraphviewer.cpp:119
 #, kde-format
 msgid "Session Restore"
 msgstr "Αποκατάσταση συνεδρίας"
 
-#: kgrapheditor.cpp:131
+#: kgrapheditor.cpp:130
 #, kde-format
 msgid "Do you want to reload files from previous session?"
 msgstr "Επιθυμείτε τη φόρτωση των αρχείων της προηγούμενης συνεδρίας;"
 
-#: kgrapheditor.cpp:147
+#: kgrapheditor.cpp:146
 #, kde-format
 msgid "Unable to start"
 msgstr "Αδυναμία εκκίνησης"
 
-#: kgrapheditor.cpp:147 kgraphviewer.cpp:146
+#: kgrapheditor.cpp:146 kgraphviewer.cpp:145
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "Δε βρέθηκε το τμήμα KGraphViewer."
 
-#: kgrapheditor.cpp:228 kgraphviewer.cpp:226
+#: kgrapheditor.cpp:227 kgraphviewer.cpp:225
 #, kde-format
 msgid "Closes the current file"
 msgstr "Κλείνει το τρέχον αρχείο"
 
-#: kgrapheditor.cpp:241
+#: kgrapheditor.cpp:238
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "Δημιουργία νέας κορυφής"
 
-#: kgrapheditor.cpp:246
+#: kgrapheditor.cpp:243
 #, kde-format
 msgid "Create a New Edge"
 msgstr "Δημιουργία νέας ακμής"
 
-#: kgrapheditor.cpp:506
+#: kgrapheditor.cpp:498
 #, kde-format
 msgid "Save current graph"
 msgstr "Αποθήκευση τρέχοντος γράφου"
@@ -214,37 +214,37 @@ msgstr "Γραμμή βοήθειας"
 msgid "Edit Toolbar"
 msgstr "Επεξεργασία γραμμής εργαλείων"
 
-#: kgraphviewer.cpp:119
+#: kgraphviewer.cpp:118
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
 msgstr "Επιθυμείτε τη φόρτωση των αρχείων της προηγούμενης συνεδρίας;"
 
-#: kgraphviewer.cpp:121
+#: kgraphviewer.cpp:120
 #, fuzzy, kde-format
 #| msgid "Reloading"
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "Επαναφόρτωση"
 
-#: kgraphviewer.cpp:122
+#: kgraphviewer.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr ""
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:212
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "Ανοίγει ένα νέο παράθυρο KGraphViewer"
 
-#: kgraphviewer.cpp:216
+#: kgraphviewer.cpp:215
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 "Εμφανίζει το παράθυρο διαλόγου αρχείων για επιλογή ενός Graphviz DOT αρχείου "
 "για άνοιγμα."
 
-#: kgraphviewer.cpp:220
+#: kgraphviewer.cpp:219
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -253,27 +253,22 @@ msgstr ""
 "Αυτό εμφανίζει τα αρχεία που ανοίχτηκαν πρόσφατα και επιτρέπει το εύκολο "
 "άνοιγμά τους ξανά."
 
-#: kgraphviewer.cpp:230
+#: kgraphviewer.cpp:229
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "Εγκαταλείπει το KGraphViewer."
 
-#: kgraphviewer.cpp:233
+#: kgraphviewer.cpp:232
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "Εμφανίζει ή αποκρύπτει τη γραμμή κατάστασης."
 
-#: kgraphviewer.cpp:236
-#, kde-format
-msgid "Configure the bindings between keys and actions."
-msgstr "Διαμόρφωση των δεσμεύσεων ανάμεσα σε πλήκτρα και ενέργειες."
-
-#: kgraphviewer.cpp:239
+#: kgraphviewer.cpp:235
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "Διαμόρφωση γραμμής εργαλείων."
 
-#: kgraphviewer.cpp:242
+#: kgraphviewer.cpp:238
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "Κύριες επιλογές διαμόρφωσης KGraphViewer."
@@ -1259,6 +1254,9 @@ msgstr "&Ερώτηση"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Άνοιγμα προηγούμενων ανοιχτών αρχείων"
+
+#~ msgid "Configure the bindings between keys and actions."
+#~ msgstr "Διαμόρφωση των δεσμεύσεων ανάμεσα σε πλήκτρα και ενέργειες."
 
 #~ msgid "KGraphViewerPart"
 #~ msgstr "KGraphViewerPart"
