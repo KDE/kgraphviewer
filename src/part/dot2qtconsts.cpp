@@ -899,7 +899,6 @@ QFont Dot2QtConsts::qtFont(const QString &dotFont) const
     if (m_psFonts.find(dotFont) != m_psFonts.end())
         return (*(m_psFonts.find(dotFont)));
     else {
-        qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown DOT font '" << dotFont << "'. returning Qt default.";
         return QFont(QFont::substitute(dotFont));
     }
 }
