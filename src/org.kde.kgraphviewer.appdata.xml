@@ -466,6 +466,7 @@
       <li xml:lang="zh-CN">以新标签打开新实例(可配置)</li>
     </ul>
   </description>
+  <content_rating type="oars-1.1" />
   <url type="homepage">https://www.kde.org/applications/graphics/kgraphviewer/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kgraphviewer</url>
   <url type="help">https://docs.kde.org/?application=kgraphviewer</url>
