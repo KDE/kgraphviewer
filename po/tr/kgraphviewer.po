@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-17 00:43+0000\n"
-"PO-Revision-Date: 2022-11-14 14:19+0300\n"
+"PO-Revision-Date: 2022-12-10 18:36+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -278,7 +278,7 @@ msgstr "Görünüş"
 #: kgraphviewersettings.kcfg:34
 #, kde-format
 msgid "Background color of the graph view."
-msgstr "Graf görünümünün arkaplan rengi."
+msgstr "Grafik görünümünün arka plan rengi."
 
 #: main.cpp:47
 #, kde-format
@@ -1178,13 +1178,13 @@ msgstr "Sonraki Sayfa"
 #: preferencesAppearance.ui:19
 #, kde-format
 msgid "Default background color:"
-msgstr "Öntanımlı arkaplan rengi:"
+msgstr "Öntanımlı arka plan rengi:"
 
 #. i18n: ectx: property (text), widget (QLabel, note)
 #: preferencesAppearance.ui:51
 #, kde-format
 msgid "Note: this will be overridden if the graph has its own background color"
-msgstr "Not: eğer grafın kendi arkaplan rengi varsa bunun üstüne yazılacaktır"
+msgstr "Not: Grafiğin kendi arka plan rengi varsa bunun üstüne yazılacaktır"
 
 #. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
 #: preferencesOpenInExistingWindow.ui:17
