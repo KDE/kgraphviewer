@@ -476,6 +476,13 @@
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
+  <releases>
+    <release version="2.4.3" date="2018-09-17" />
+    <release version="2.4.2" date="2017-09-27" />
+    <release version="2.4.1" date="2017-09-27" />
+    <release version="2.4.0" date="2017-09-12" />
+    <release version="2.2.0" date="2014-11-16" />
+  </releases>  
   <provides>
     <binary>kgraphviewer</binary>
   </provides>
