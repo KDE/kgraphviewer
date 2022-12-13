@@ -466,7 +466,7 @@
       <li xml:lang="zh-CN">以新标签打开新实例(可配置)</li>
     </ul>
   </description>
-  <content_rating type="oars-1.1" />
+  <content_rating type="oars-1.1"/>
   <url type="homepage">https://www.kde.org/applications/graphics/kgraphviewer/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kgraphviewer</url>
   <url type="help">https://docs.kde.org/?application=kgraphviewer</url>
@@ -477,12 +477,12 @@
   </screenshots>
   <project_group>KDE</project_group>
   <releases>
-    <release version="2.4.3" date="2018-09-17" />
-    <release version="2.4.2" date="2017-09-27" />
-    <release version="2.4.1" date="2017-09-27" />
-    <release version="2.4.0" date="2017-09-12" />
-    <release version="2.2.0" date="2014-11-16" />
-  </releases>  
+    <release version="2.4.3" date="2018-09-17"/>
+    <release version="2.4.2" date="2017-09-27"/>
+    <release version="2.4.1" date="2017-09-27"/>
+    <release version="2.4.0" date="2017-09-12"/>
+    <release version="2.2.0" date="2014-11-16"/>
+  </releases>
   <provides>
     <binary>kgraphviewer</binary>
   </provides>
