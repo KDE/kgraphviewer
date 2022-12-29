@@ -73,7 +73,10 @@ namespace KGraphViewer
 class KGraphViewerInterface
 {
 public:
+    enum ReloadOnChangeMode { AskBeforeReloadOnChange, AutoReloadOnChange, NoReloadOnChange };
     enum LayoutMethod { ExternalProgram, InternalLibrary };
+
+    virtual void setReloadOnChangeMode(ReloadOnChangeMode mode) = 0;
 
     virtual void setLayoutMethod(LayoutMethod method) = 0;
     virtual void zoomIn() = 0;

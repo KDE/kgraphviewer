@@ -48,6 +48,7 @@ class KGraphViewerPart : public KParts::ReadOnlyPart, public KGraphViewerInterfa
 
     // BEGIN: KGraphViewerInterface
 public:
+    void setReloadOnChangeMode(ReloadOnChangeMode mode) override;
     void setLayoutMethod(LayoutMethod method) override;
     void centerOnNode(const QString &nodeId) override;
     void selectNode(const QString &nodeId) override;

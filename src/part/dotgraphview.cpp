@@ -97,6 +97,7 @@ public:
         , m_popup(nullptr)
         , m_zoom(1)
         , m_isMoving(false)
+        , m_reloadOnChangeMode(KGraphViewerInterface::AskBeforeReloadOnChange)
         , m_exporter()
         , m_zoomPosition(DEFAULT_ZOOMPOS)
         , m_lastAutoPosition(KGraphViewerInterface::TopLeft)
@@ -153,6 +154,8 @@ public:
     double m_zoom;
     bool m_isMoving;
     QPoint m_lastPos;
+
+    KGraphViewerInterface::ReloadOnChangeMode m_reloadOnChangeMode;
 
     GraphExporter m_exporter;
 
@@ -1489,6 +1492,12 @@ void DotGraphView::slotElementHoverLeave(CanvasEdge *element)
     emit(hoverLeave(element->edge()->id()));
 }
 
+void DotGraphView::setReloadOnChangeMode(KGraphViewerInterface::ReloadOnChangeMode mode)
+{
+    Q_D(DotGraphView);
+    d->m_reloadOnChangeMode = mode;
+}
+
 void DotGraphView::setLayoutCommand(const QString &command)
 {
     Q_D(DotGraphView);
@@ -1612,7 +1621,14 @@ void DotGraphView::dirty(const QString &dotFileName)
     Q_D(DotGraphView);
     //   std::cerr << "SLOT dirty for " << dotFileName << std::endl;
     if (dotFileName == d->m_graph->dotFileName()) {
-        if (QMessageBox::question(this, i18n("Reload Confirmation"), i18n("The file %1 has been modified on disk.\nDo you want to reload it?", dotFileName)) == QMessageBox::Yes) {
+        bool reload = false;
+        if (d->m_reloadOnChangeMode == KGraphViewerInterface::AutoReloadOnChange) {
+            reload = true;
+        } else if (d->m_reloadOnChangeMode == KGraphViewerInterface::AskBeforeReloadOnChange
+            && QMessageBox::question(this, i18n("Reload Confirmation"), i18n("The file %1 has been modified on disk.\nDo you want to reload it?", dotFileName)) == QMessageBox::Yes) {
+            reload = true;
+        }
+        if (reload) {
             if (d->m_graph->useLibrary())
                 loadLibrary(dotFileName);
             else

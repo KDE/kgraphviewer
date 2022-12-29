@@ -20,7 +20,6 @@
 #include "kgraphviewerConfigDialog.h"
 #include "kgraphviewer_debug.h"
 #include "kgraphviewersettings.h"
-#include "part/kgraphviewer_interface.h"
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesParsing.h"
 #include "ui_preferencesReload.h"
@@ -157,6 +156,11 @@ void KGraphViewerWindow::openUrl(const QUrl &url)
     }
     kgv->setBackgroundColor(KGraphViewerSettings::backgroundColor());
     (KGraphViewerSettings::parsingMode() == "external") ? kgv->setLayoutMethod(KGraphViewer::KGraphViewerInterface::ExternalProgram) : kgv->setLayoutMethod(KGraphViewer::KGraphViewerInterface::InternalLibrary);
+    if (KGraphViewerSettings::reloadOnChangeMode() == "true") {
+        kgv->setReloadOnChangeMode(KGraphViewer::KGraphViewerInterface::AutoReloadOnChange);
+    } else if (KGraphViewerSettings::reloadOnChangeMode() == "false") {
+        kgv->setReloadOnChangeMode(KGraphViewer::KGraphViewerInterface::NoReloadOnChange);
+    } // AskBeforeReloadOnChange by default
 
     if (part) {
         QString fileName = url.url();
@@ -177,6 +181,11 @@ void KGraphViewerWindow::openUrl(const QUrl &url)
 
         connect(part, SIGNAL(hoverEnter(QString)), this, SLOT(slotHoverEnter(QString)));
         connect(part, SIGNAL(hoverLeave(QString)), this, SLOT(slotHoverLeave(QString)));
+
+        connect(this, &KGraphViewerWindow::reloadOnChangeModeChanged,
+                [=](KGraphViewer::KGraphViewerInterface::ReloadOnChangeMode mode) {
+                    kgv->setReloadOnChangeMode(mode);
+                });
 
         m_manager->addPart(part, true);
         const QString label = fileName.section('/', -1, -1);
@@ -363,6 +372,7 @@ void KGraphViewerWindow::slotReloadOnChangeModeYesToggled(bool value)
     if (value) {
         KGraphViewerSettings::setReloadOnChangeMode("true");
     }
+    emit reloadOnChangeModeChanged(KGraphViewer::KGraphViewerInterface::AutoReloadOnChange);
     //   qCDebug(KGRAPHVIEWER_LOG) << "emitting";
     //   emit(settingsChanged());
     KGraphViewerSettings::self()->save();
@@ -374,6 +384,7 @@ void KGraphViewerWindow::slotReloadOnChangeModeNoToggled(bool value)
     if (value) {
         KGraphViewerSettings::setReloadOnChangeMode("false");
     }
+    emit reloadOnChangeModeChanged(KGraphViewer::KGraphViewerInterface::NoReloadOnChange);
     //   qCDebug(KGRAPHVIEWER_LOG) << "emitting";
     //   emit(settingsChanged());
     KGraphViewerSettings::self()->save();
@@ -385,6 +396,7 @@ void KGraphViewerWindow::slotReloadOnChangeModeAskToggled(bool value)
     if (value) {
         KGraphViewerSettings::setReloadOnChangeMode("ask");
     }
+    emit reloadOnChangeModeChanged(KGraphViewer::KGraphViewerInterface::AskBeforeReloadOnChange);
     //   qCDebug(KGRAPHVIEWER_LOG) << "emitting";
     //   emit(settingsChanged());
     KGraphViewerSettings::self()->save();

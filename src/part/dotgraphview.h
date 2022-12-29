@@ -104,6 +104,8 @@ public:
     /// sets zoom factor to @p factor
     void setZoomFactor(double factor);
 
+    void setReloadOnChangeMode(KGraphViewerInterface::ReloadOnChangeMode);
+
     void setLayoutCommand(const QString &command);
 
     const QString &dotFileName();

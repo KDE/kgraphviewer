@@ -20,6 +20,7 @@
 #define _KGRAPHVIEWER_H_
 
 //#include <config-kgraphviewer.h>
+#include "part/kgraphviewer_interface.h"
 
 #include <KParts/MainWindow>
 #include <KRecentFilesAction>
@@ -62,6 +63,7 @@ protected:
 
 Q_SIGNALS:
     void hide(KParts::Part *part);
+    void reloadOnChangeModeChanged(KGraphViewer::KGraphViewerInterface::ReloadOnChangeMode);
 
 public Q_SLOTS:
     /**

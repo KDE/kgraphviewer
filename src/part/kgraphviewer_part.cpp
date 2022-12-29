@@ -338,6 +338,11 @@ void KGraphViewerPart::slotUnsetCursor()
     d->m_widget->unsetCursor();
 }
 
+void KGraphViewerPart::setReloadOnChangeMode(KGraphViewerInterface::ReloadOnChangeMode mode)
+{
+    d->m_widget->setReloadOnChangeMode(mode);
+}
+
 void KGraphViewerPart::slotSetLayoutMethod(LayoutMethod method)
 {
     setLayoutMethod(method);
