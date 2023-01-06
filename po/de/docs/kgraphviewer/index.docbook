@@ -1,513 +1,292 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY graphviz "<application
-><ulink url=&#034;https://www.graphviz.org&#034;
->Graphviz</ulink
-></application
->">
-  <!ENTITY boost "<ulink url=&#034;https://www.boost.org&#034;
->Boost</ulink
->">
-  <!ENTITY qanava "<application
->Qanava</application
->">
-  <!ENTITY kcachegrind "<application
->KCacheGrind</application
->"
-> <!--not in kdoctools 5.16-->
-  <!ENTITY dot "<application
->DOT</application
->">
-  <!ENTITY neato "<application
->NEATO</application
->">
-  <!ENTITY twopi "<application
->TWOPI</application
->">
-  <!ENTITY fdp "<application
->FDP</application
->">
-  <!ENTITY circo "<application
->CIRCO</application
->">
+  <!ENTITY graphviz "<application><ulink url=&#034;https://www.graphviz.org&#034;>Graphviz</ulink></application>">
+  <!ENTITY boost "<ulink url=&#034;https://www.boost.org&#034;>Boost</ulink>">
+  <!ENTITY qanava "<application>Qanava</application>">
+  <!ENTITY kcachegrind "<application>KCacheGrind</application>"> <!--not in kdoctools 5.16-->
+  <!ENTITY dot "<application>DOT</application>">
+  <!ENTITY neato "<application>NEATO</application>">
+  <!ENTITY twopi "<application>TWOPI</application>">
+  <!ENTITY fdp "<application>FDP</application>">
+  <!ENTITY circo "<application>CIRCO</application>">
   <!ENTITY % addindex "IGNORE">
-  <!ENTITY % German "INCLUDE"
-><!-- change language only here -->
+  <!ENTITY % English "INCLUDE"><!-- change language only here -->
 ]>
 
 
 <book id="kgraphviewer" lang="&language;">
 
 <bookinfo>
-<title
->Das Handbuch zu &kgraphviewer;</title>
+<title>The &kgraphviewer; Handbook</title>
 
 <authorgroup>
-<author
-><firstname
->Gaël</firstname
-> <othername
-></othername
-> <surname
->de Chalendar</surname
-> <affiliation
-> <address
-><email
->kleag@free.fr</email
-></address>
+<author>
+<firstname>Gaël</firstname>
+<othername></othername>
+<surname>de Chalendar</surname>
+<affiliation>
+<address><email>kleag@free.fr</email></address>
 </affiliation>
 </author>
-<author
-><firstname
->Federico</firstname
-> <othername
-></othername
-> <surname
->Zenith</surname
-> <affiliation
-> <address
-><email
->federico.zenith@member.fsf.org</email
-></address>
+<author>
+<firstname>Federico</firstname>
+<othername></othername>
+<surname>Zenith</surname>
+<affiliation>
+<address><email>federico.zenith@member.fsf.org</email></address>
 </affiliation>
 </author>
-<othercredit role="translator"
-><firstname
->Matthias</firstname
-><surname
->Peinhardt</surname
-><affiliation
-><address
-><email
->matthias.peinhardt@googlemail.com</email
-></address
-></affiliation
-><contrib
->Deutsche Übersetzung</contrib
-></othercredit
-> 
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
 <copyright>
-<year
->2006</year>
-<holder
->Gaël de Chalendar</holder>
+<year>2006</year>
+<holder>Gaël de Chalendar</holder>
 </copyright>
 <!-- Translators: put here the copyright notice of the translation -->
 <!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
      and in the FDL itself on how to use it. -->
-<legalnotice
->&FDLNotice;</legalnotice>
+<legalnotice>&FDLNotice;</legalnotice>
 
-<date
->2020-12-14</date>
-<releaseinfo
->&kgraphviewer; 2.4.3</releaseinfo>
+<date>2020-12-14</date>
+<releaseinfo>&kgraphviewer; 2.4.3</releaseinfo>
 
 <abstract>
-<para
->&kgraphviewer; ist ein Programm zum Anzeigen von &graphviz;-&dot;-Graphen, entwickelt von der &kde;-Gemeinschaft. Die &graphviz;-Programme sind freie Layout-Programme. Graphen werden in der Wissenschaft, insbesondere in der Informatik, verwendet. </para>
-<para
->&kgraphviewer; zeigt Graphen in einer modernen und benutzerfreundlichen &GUI; an. </para>
+<para>
+&kgraphviewer; is a &graphviz; &dot; graph viewer. It is developed in the &kde; community. The &graphviz; programs are free-software layout engines for graphs. Graphs are commonly used in scientific domains and particularly in computer science.
+</para>
+<para>
+&kgraphviewer; displays the graphs in a modern, user-friendly &GUI;.
+</para>
 </abstract>
 
 <keywordset>
-<keyword
->KDE</keyword>
-<keyword
->kgraphviewer</keyword>
-<keyword
->graphviz</keyword>
-<keyword
->dot</keyword>
-<keyword
->neato</keyword>
-<keyword
->Anzeige</keyword>
+<keyword>KDE</keyword>
+<keyword>kgraphviewer</keyword>
+<keyword>graphviz</keyword>
+<keyword>dot</keyword>
+<keyword>neato</keyword>
+<keyword>viewer</keyword>
 </keywordset>
 
 </bookinfo>
 
 <chapter id="introduction">
-<title
->Einführung</title>
+<title>Introduction</title>
 
-<para
->&kgraphviewer; ist ein Programm zum Anzeigen von &graphviz;-&dot;-Graphen. Die &graphviz;-Programme sind freie Layout-Programme. &kgraphviewer; zeigt Graphen in einer modernen und benutzerfreundlichen &GUI; an. Es hat folgende Funktionen: <screenshot>
-<screeninfo
->Hier ist ein Bildschirmfoto von &kgraphviewer;</screeninfo>
+<para>
+&kgraphviewer; is a &graphviz; &dot; graph viewer. The &graphviz; programs are free-software layout engines for graphs. &kgraphviewer; displays the graphs in a modern, user-friendly &GUI;. It has the following features:
+<screenshot>
+<screeninfo>Here is a screenshot of &kgraphviewer;</screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase
->Das Hauptfenster von &kgraphviewer; mit einem der &graphviz;-Beispiele.</phrase>
+      <phrase>The main &kgraphviewer; window displaying one of the &graphviz; examples</phrase>
     </textobject>
   </mediaobject>
 </screenshot>
 <itemizedlist>
-  <listitem
-><para
->Zoomen</para
-></listitem>
-  <listitem
-><para
->Gleichzeitiges Laden mehrerer Graphen in Unterfenstern</para
-></listitem>
-  <listitem
-><para
->Speichern einer Liste der zuletzt geladenen Graphen</para
-></listitem>
-  <listitem
-><para
->Ein Übersichtsfenster des Graphen</para
-></listitem>
-  <listitem
-><para
->Graphen verschieben durch Ziehen mit der Maus</para
-></listitem>
-  <listitem
-><para
->Drucken mit vielen Optionen</para
-></listitem>
-  <listitem
-><para
->Perfekte Darstellung aller &graphviz;-Beispiele</para
-></listitem>
-  <listitem
-><para
->Knoten- und Kantenfarben und alle Knotenformen werden unterstützt</para
-></listitem>
-  <listitem
-><para
->Automatische Wahl von &dot; für gerichtete und &neato; für ungerichtete Graphen</para
-></listitem>
-  <listitem
-><para
->Erneutes Laden von (extern) geänderten Dateien - manuell oder automatisch (einstellbar)</para
-></listitem>
-  <listitem
-><para
->Öffnen neuer Instanzen als Unterfenster in der laufenden Anwendung (einstellbar)</para
-></listitem>
-  <listitem
-><para
->Hilfe</para
-></listitem>
-  <listitem
-><para
->Übersetzung</para
-></listitem>
+  <listitem><para>Zooming;</para></listitem>
+  <listitem><para>Loading of several graphs in tabs at the same time;</para></listitem>
+  <listitem><para>Storage of a list of recent files;</para></listitem>
+  <listitem><para>A bird's eye view of the graph;</para></listitem>
+  <listitem><para>Graph panning by mouse dragging;</para></listitem>
+  <listitem><para>Full-featured printing;</para></listitem>
+  <listitem><para>Perfect drawing of all &graphviz; example graphs;</para></listitem>
+  <listitem><para>Node and edge colors and all node shapes are supported;</para></listitem>
+  <listitem><para>Automatic choice of &dot; for directed graphs and &neato; for undirected ones;</para></listitem>
+  <listitem><para>Manual or automatic reloading with user confirmation of (externally) modified files (configurable);</para></listitem>
+  <listitem><para>Opening of new program instances as new tabs in an existing instance (configurable);</para></listitem>
+  <listitem><para>Help system;</para></listitem>
+  <listitem><para>Internationalization.</para></listitem>
 </itemizedlist>
 </para>
 
-<para
->Geplante Funktionen: <itemizedlist>
-	<listitem
-><para
->Benutzung der &qanava;-Bibliothek für die interne Graphendarstellung</para
-></listitem>
-	<listitem
-><para
->Speichern der letzten Einstellungen (benutztes Layoutprogramm, Zoomfaktor, &etc;)</para
-></listitem>
-	<listitem
-><para
->Integration in &kate; und &konqueror; (sodass eine Änderung des Graphen in &kate; den Graphen neu errechnet und in &kgraphviewer; darstellt)</para
-></listitem>
-	<listitem
-><para
->Menü, um den Graphen in &kate; zu öffnen <emphasis
->oder</emphasis
-> den Graphen in &kgraphviewer; in einer &kate;-Komponente zu öffnen</para
-></listitem>
-	<listitem
-><para
->Laden von großen Graphen (derzeit gibt es Probleme ab etwa 1000 Knoten und einen Hack, um mehr als diese Knoten darzustellen)</para
-></listitem>
-	<listitem
-><para
->Erweiterte Unterstützung von &dot;-Attributen</para
-></listitem>
-	<listitem
-><para
->Darstellung der Graphen im Hintergrund (mit einem Fortschrittsbalken, um die Benutzeroberfläche nicht zu blockieren)</para
-></listitem>
-</itemizedlist
-></para>
+<para>Planned features are:
+<itemizedlist>
+	<listitem><para>Eventual use of the &qanava; library to support internal graphs representation;</para></listitem>
+	<listitem><para>Save session data about graphs (layout program used, zoom factor, &etc;)</para></listitem>
+	<listitem><para>Integration in &kate; and &konqueror; (so that a change in &kate;'s view of the graph would re-layout and reload the file in &kgraphviewer;);</para></listitem>
+	<listitem><para>Menu to open the file in &kate; <emphasis>or</emphasis> to open a katepart inside the &kgraphviewer; window;</para></listitem>
+	<listitem><para>Loading of large and huge graphs (currently, there are performance problems at around 1000 nodes, and a hack to ignore nodes above a specified limit);</para></listitem>
+	<listitem><para>Progressive support of more and more &dot; attributes and values;</para></listitem>
+	<listitem><para>Layout in background (with threading in order not to block the interface, with a progress bar).</para></listitem>
+</itemizedlist></para>
 
-<note
-><para
->Dieses Programm beinhaltet Programmcode des GPL-Programms &kcachegrind; von Josef Weidendorfer, mit seiner Genehmigung.</para
-></note>
-<note
-><para
->Des Weiteren ist das Drucksystem von &kexi; aus der &calligra;-Suite entliehen.</para
-></note>
+<note><para>Note that this program includes code from the GPL tool &kcachegrind; by Josef Weidendorfer, with his authorization.</para></note>
+<note><para>Note also that the printing system is from the &calligra;'s &kexi; database application.</para></note>
 
-<para
->Weitere benötigte Software: &kgraphviewer; ist ein Programm, welches das &graphviz;-Werkzeug &dot; für die Darstellung der Graphen voraussetzt. Benötigt werden im Einzelnen: <itemizedlist>
-	<listitem
-><para
->die &Qt; und &kf5;-Bibliothek Version 5.x</para
-></listitem>
-	<listitem
-><para
->Die &graphviz;-Werkzeuge als externe Programme (mit Version 2.8 getestet)</para
-></listitem>
-	<listitem
-><para
->die &boost;-Bibliothek Version 1.36</para
-></listitem>
-</itemizedlist
-></para>
+<para>Other required software: &kgraphviewer; is a program that uses the &graphviz; tool &dot; for graph layout. Its dependencies are:
+<itemizedlist>
+	<listitem><para>The &Qt; and &kf5; libraries version 5.x;</para></listitem>
+	<listitem><para>The &graphviz; tools as externals programs (tested with version 2.8);</para></listitem>
+	<listitem><para>The &boost; library version 1.36.</para></listitem>
+</itemizedlist></para>
 
 </chapter>
 
 <chapter id="using-kgraphviewer">
-<title
->Benutzung von &kgraphviewer;</title>
+<title>Using &kgraphviewer;</title>
 
 <sect1 id="using-kgraphviewer-mainwin">
-<title
->Das Hauptfenster</title>
+<title>The Main Window</title>
 
-<para
->Das Hauptfenster zeigt die geöffneten Graphen, jeden in einem eigenen Unterfenster. Anfangs, wenn Sie &kgraphviewer; ohne ein Argument starten, ist das Hauptfenster leer wie im unteren Bildschirmfoto. In diesem Fall enthält die Werkzeugleiste nur das Symbol <guibutton
->Datei öffnen</guibutton
-> und die (leere) Liste <guibutton
->Zuletzt geöffnete Dateien</guibutton
->. Klicken Sie auf das erste Symbol, um den Dialog <guilabel
->Datei öffnen</guilabel
-> anzuzeigen.</para>
+<para>The main window displays the loaded graphs, each in its own tab. Initially, if you start &kgraphviewer; without arguments, its main window will be empty as in the screenshot below. In this case, the toolbar contains only the <guibutton>Open...</guibutton> and the (empty) <guibutton>Open Recent</guibutton> buttons. Click on the first one to open the standard <guilabel>Open File</guilabel> dialog.</para>
 
 <screenshot>
-<screeninfo
->Das Hauptfenster von &kgraphviewer; nach dem ersten Öffnen</screeninfo>
+<screeninfo>The initial main window when opening &kgraphviewer; for the first time</screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase
->Das Hauptfenster von &kgraphviewer; nach dem ersten Öffnen</phrase>
+      <phrase>The initial main window when opening &kgraphviewer; for the first time</phrase>
     </textobject>
-    <caption
-><para
->Das Hauptfenster von &kgraphviewer; nach dem ersten Öffnen</para
-></caption>
+    <caption><para>The initial main window when opening &kgraphviewer; for the first time</para></caption>
   </mediaobject>
 </screenshot>
 
-<para
->Nachdem Sie eine oder mehrere &dot;-Dateien ausgewählt haben, sieht das Hauptfenster aus wie im unteren Bildschirmfoto:</para>
+<para>After selecting one or several &dot; files, the main window looks like the next screenshot below:</para>
 
 <screenshot>
-<screeninfo
->Das Hauptfenster von &kgraphviewer; mit mehreren geöffneten Dateien</screeninfo>
+<screeninfo>The main window of &kgraphviewer; with several files opened</screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase
->Das Hauptfenster von &kgraphviewer; mit mehreren geöffneten Dateien</phrase>
+      <phrase>The main window of &kgraphviewer; with several files opened</phrase>
     </textobject>
-    <caption
-><para
->Das Hauptfenster von &kgraphviewer; mit mehreren geöffneten Dateien</para
-></caption>
+    <caption><para>The main window of &kgraphviewer; with several files opened</para></caption>
   </mediaobject>
 </screenshot>
 
-<para
->Wie Sie sehen können, wird eine Übersicht in der Ecke angezeigt, wenn der Graph größer als die Zeichenfläche ist. Sie können mit dem Kontextmenü eine feste Position dieser Übersicht auswählen oder diese Position automatisch auswählen lassen.</para>
+<para>As you can see, if the graph is larger than the available area, a bird's-eye view is shown in one corner. You can choose with the context menu whether the optimal position of this overview should be automatically computed for you, or place it where you want yourself.</para>
 
 <sect2>
-<title
->Bewegen des Graphen innerhalb des Fensters</title>
+<title>Moving the Graph inside the Window</title>
 
-<para
->Um den Graphen zu bewegen können Sie: <itemizedlist>
-	<listitem
-><para
->klicken und ziehen;</para
-></listitem>
-	<listitem
-><para
->die Bildlaufleisten benutzen;</para
-></listitem>
-	<listitem
-><para
->die Pfeiltasten drücken;</para
-></listitem>
-	<listitem
-><para
->in die Übersicht klicken;</para
-></listitem>
-	<listitem
-><para
->das Mausrad benutzen (hoch und runter ohne Sondertasten, links und rechts bei gedrückter &Alt;-Taste);</para
-></listitem>
-	<listitem
-><para
->oder klicken und ziehen Sie in der Übersicht.</para
-></listitem>
-</itemizedlist
-></para>
+<para>To move the graph, you can:
+<itemizedlist>
+	<listitem><para>Click and drag it;</para></listitem>
+	<listitem><para>Use the scroll bars;</para></listitem>
+	<listitem><para>Press the arrows keys;</para></listitem>
+	<listitem><para>Click somewhere in the bird's-eye view;</para></listitem>
+	<listitem><para>Use the mouse wheel (up and down with no modifier, left and right with the &Alt; key pressed);</para></listitem>
+	<listitem><para>or click and drag in the bird's-eye view.</para></listitem>
+</itemizedlist></para>
 </sect2>
 
 <sect2>
-<title
->Zoomen</title>
+<title>Zooming</title>
 
-<para
->Zum Zoomen können Sie die Knöpfe <guibutton
-><inlinemediaobject
-> <imageobject
-> <imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/> </imageobject
-> </inlinemediaobject
-> </guibutton
-> und <guibutton
-><inlinemediaobject
-> <imageobject
-> <imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/> </imageobject
-></inlinemediaobject
-> </guibutton
-> in der Werkzeugleiste oder mit gedrückter &Shift;-Taste das Mausrad benutzen. Beim Vergrößern wird das rote Rechteck in der Übersicht kleiner, um zu veranschaulichen, dass der im Hauptfenster dargestellte Bereich immer kleiner wird. Wenn das rote Rechteck sehr klein wird, wird es rot ausgefüllt, um noch sichtbar zu bleiben.</para>
+<para>To zoom, you can either use the 
+<guibutton><inlinemediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG" />
+</imageobject>
+</inlinemediaobject>
+</guibutton>
+and 
+<guibutton><inlinemediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG" />
+</imageobject>
+</inlinemediaobject>
+</guibutton>
+toolbar buttons to zoom in and out, or hold down the &Shift; key while rolling your mouse wheel. While zooming in, the red rectangle in the bird's-eye view that indicates the displayed zone gets smaller and smaller. If it were to get smaller than 10 pixels in its shorter side, it will be replaced by a filled red rectangle in order to stay visible. You can see that on the screenshot below.</para>
 
 <screenshot>
-<screeninfo
->Ein Graph bei maximaler Vergrößerung</screeninfo>
+<screeninfo>A graph at the maximal zoom in level</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-zmax.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-zmax.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Ein Graph bei maximaler Vergrößerung</phrase>
+<phrase>A graph at the maximal zoom in level</phrase>
 </textobject>
-<caption
-><para
->Ein Graph bei maximaler Vergrößerung</para
-></caption>
+<caption><para>A graph at the maximal zoom in level</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Das Zoomen ist in beiden Richtungen durch den Faktor 10 beschränkt. Unten sehen Sie die maximale Verkleinerung eines Graphen.</para>
+<para>Zooming is limited in both directions by a factor of 10. You can see below the maximum zoom-out factor on a graph.</para>
 
 <screenshot>
-<screeninfo
->Ein Graph bei maximaler Verkleinerung</screeninfo>
+<screeninfo>A graph at the maximum zoom-out level</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-zmin.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-zmin.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Ein Graph bei maximaler Verkleinerung</phrase>
+<phrase>A graph at the maximum zoom-out level</phrase>
 </textobject>
-<caption
-><para
->Ein Graph bei maximaler Verkleinerung</para
-></caption>
+<caption><para>A graph at the maximum zoom-out level</para></caption>
 </mediaobject>
 </screenshot>
 </sect2>
 
 <sect2>
-<title
->Der Umgang mit Graphendateien</title>
+<title>Graph Files Handling</title>
 
 <sect3>
-<title
->Dateien, die auf der Festplatte verändert wurden</title>
+<title>Files Modified on Disk</title>
 
-<para
->Wenn die gerade in &kgraphviewer; geladene Datei von einem anderen Programm verändert wurde, wird das folgende Fenster angezeigt:</para>
+<para>If a file currently loaded in &kgraphviewer; is modified by another program, the following dialog is
+shown:</para>
 
 <screenshot>
-<screeninfo
->Dialog zum erneuten Laden von veränderten Dateien</screeninfo>
+<screeninfo>Dialog to reload a file modified on disk</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-ask1.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-ask1.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Dialog zum erneuten Laden von veränderten Dateien</phrase>
+<phrase>Dialog to reload a file modified on disk</phrase>
 </textobject>
-<caption
-><para
->Dialog zum erneuten Laden von veränderten Dateien</para
-></caption>
+<caption><para>Dialog to reload a file modified on disk</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Sie können wählen, ob der Graph neu geladen werden soll oder ob Sie die Veränderung ignorieren wollen. &kgraphviewer; kann sich Ihre Entscheidung auch merken, sodass später ebenso verfahren wird. Sollten Sie Ihre Entscheidung später ändern wollen, können Sie den Menüpunkt <menuchoice
-><guimenu
->Einstellungen</guimenu
-><guimenuitem
->&kgraphviewer; einrichten ...</guimenuitem
-></menuchoice
-> benutzen, siehe auch <xref linkend="kgraphviewer-configuration"/>. </para>
+<para>You can choose to reload the graph or to ignore the change. You can also get &kgraphviewer; to remember your choice, so it will do the same thing the next time. If you later want to modify your choice, choose the <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure &kgraphviewer;...</guimenuitem></menuchoice> menu item. See <xref linkend="kgraphviewer-configuration"/>.</para>
 </sect3>
 
-<sect3
-><title
->Dateien und Fenster</title>
-<para
->Wenn Sie eine Graphendatei außerhalb einer laufenden &kgraphviewer;-Instanz öffnen, &eg; im Dateibrowser oder an der Befehlszeile, haben Sie die Wahl, ob Sie eine neue &kgraphviewer;-Instanz öffnen wollen oder den zu ladenden Graphen in einem Unterfenster der bereits laufenden Instanz darstellen wollen.</para>
+<sect3><title>Files and Windows</title>
+<para>When you open a graph file from outside a running &kgraphviewer; instance, &eg; from a file browser or the command line, you have the choice to open a new &kgraphviewer; window or to open the graph in a new tab in the existing window. This is done with the dialog below.</para>
 
 <screenshot>
-<screeninfo
->Dialog für das Öffnen eines neuen Fensters</screeninfo>
+<screeninfo>Dialog to open a new window</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-ask2.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-ask2.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Dialog für das Öffnen eines neuen Fensters</phrase>
+<phrase>Dialog to open a new window</phrase>
 </textobject>
-<caption
-><para
->Dialog für das Öffnen eines neuen Fensters</para
-></caption>
+<caption><para>Dialog to open a new window</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Wie bei der letzten Option können Sie Ihre Auswahl als Vorgabe speichern, aber diese auch mit dem Einrichtungsdialog nachträglich ändern.</para>
+<para>As for the previous option, you can save your choice as the default and modify it later in the configuration dialog.</para>
 
 </sect3>
 
 <sect3>
-<title
->Sitzungsverwaltung</title>
+<title>Session Handling</title>
 
-<para
->Beim Programmstart können Sie alle Graphen Ihrer letzten Sitzung wieder öffnen lassen. Wieder können Sie Ihre Wahl sowohl speichern als auch später ändern.</para>
+<para>At start-up, you can choose to reopen the graphs that you had opened the previous time. Again, you can save your choice and change it later.</para>
 
 <screenshot>
-<screeninfo
->Dialog zum erneuten Öffnen der Graphen der letzten Sitzung beim Programmstart</screeninfo>
+<screeninfo>Dialog to reload the graph of the previous session at start-up</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-ask3.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-ask3.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Dialog zum erneuten Öffnen der Graphen der letzten Sitzung beim Programmstart</phrase>
+<phrase>Dialog to reload the graph of the previous session at start-up</phrase>
 </textobject>
-<caption
-><para
->Dialog zum erneuten Öffnen der Graphen der letzten Sitzung beim Programmstart</para
-></caption>
+<caption><para>Dialog to reload the graph of the previous session at start-up</para></caption>
 </mediaobject>
 </screenshot>
 
@@ -518,1044 +297,466 @@
 </sect1>
 
 <sect1 id="kgraphviewer-printing">
-<title
->Drucken von Graphen</title>
-<para
->Benutzen Sie die Knöpfe <guibutton
->Druckvorschau</guibutton
-> und <guibutton
->Seiteneinstellungen</guibutton
->, um die Druckmöglichkeiten zu erkunden.</para>
+<title>Graph Printing</title>
+<para>Try the <guibutton>Print preview</guibutton> or <guibutton>Page setup</guibutton> buttons to explore the printing options.</para>
 
 <screenshot>
-<screeninfo
->Dialog für die Seiteneinstellungen</screeninfo>
+<screeninfo>Page setup dialog</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-psetup1.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-psetup1.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Dialog für die Seiteneinstellungen</phrase>
+<phrase>Page setup dialog</phrase>
 </textobject>
-<caption
-><para
->Dialog für die Seiteneinstellungen</para
-></caption>
+<caption><para>Page setup dialog</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Sie können in den Druckeinstellungen einstellen, den Graphen auf genau einer Seite einzupassen.</para>
+<para>You can setup the printing options to fit the graph on exactly one page, as below:</para>
 
 <screenshot>
-<screeninfo
->Seitenvorschau für das Einpassen auf einer Seite</screeninfo>
+<screeninfo>Page preview setup to fit on one page</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-ppview1.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-ppview1.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Seitenvorschau für das Einpassen auf einer Seite</phrase>
+<phrase>Page preview setup to fit on one page</phrase>
 </textobject>
-<caption
-><para
->Seitenvorschau für das Einpassen auf einer Seite</para
-></caption>
+<caption><para>Page preview setup to fit on one page</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Sie können auch festlegen, wie der Graph auf mehrere Seiten aufgeteilt werden soll. Die Zahl der horizontalen und vertikalen Seiten kann frei gewählt werden.</para>
+<para>You can also choose how to divide the graph on multiple pages. The number of horizontal and vertical pages can be chosen independently.</para>
 
 <screenshot>
-<screeninfo
->Seitenvorschau zum Einpassen auf mehrere Seiten</screeninfo>
+<screeninfo>Page preview set up to fit on multiple pages and to fill them</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-ppview2.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-ppview2.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Seitenvorschau zum Einpassen auf mehrere Seiten</phrase>
+<phrase>Page preview set up to fit on multiple pages and to fill them</phrase>
 </textobject>
-<caption
-><para
->Seitenvorschau zum Einpassen auf mehrere Seiten</para
-></caption>
+<caption><para>Page preview set up to fit on multiple pages and to fill them</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Wenn Sie mehrere Seiten benutzen, können Sie wählen, ob die Teile des Graphen, die auf eine Seite kommen, auf diese Seite eingepasst werden sollen. Dabei wird das Seitenverhältnis ignoriert. Wenn Sie das Seitenverhältnis beibehalten, werden die Seiten möglicherweise nicht von den jeweiligen Teilen des Graphen ausgefüllt.</para>
+<para>Finally, when using multiple pages, you can choose to make the part of the graph on each page to fit its page like above, not keeping the aspect ratio, or to keep it. In the latter case, the pages will not be filled.</para>
 
-<para
->Sie können die Seitengröße und die Ränder ändern:</para>
+<para>You can change the size of pages and the margins:</para>
 
 <screenshot>
-<screeninfo
->Dialog für die Seitengröße und Ränder</screeninfo>
+<screeninfo>Page size and margins dialog</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-pagesmarges.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-pagesmarges.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Dialog für die Seitengröße und Ränder</phrase>
+<phrase>Page size and margins dialog</phrase>
 </textobject>
-<caption
-><para
->Dialog für die Seitengröße und Ränder</para
-></caption>
+<caption><para>Page size and margins dialog</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Sie können ebenso die Schriftart und die Kopf- und Fußzeile ändern:</para>
+<para>You can also change the font, headers and footers:</para>
 
 <screenshot>
-<screeninfo
->Seitenvorschau mit einem auf mehrere Seiten verteilten Graphen ohne Kopfzeile und mit einer anderen Schriftart</screeninfo>
+<screeninfo>Page preview setup to fit on multiple pages without header and with a different font</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Seitenvorschau mit einem auf mehrere Seiten verteilten Graphen ohne Kopfzeile und mit einer anderen Schriftart</phrase>
+<phrase>Page preview setup to fit on multiple pages without header and a different font</phrase>
 </textobject>
-<caption
-><para
->Seitenvorschau mit einem auf mehrere Seiten verteilten Graphen ohne Kopfzeile und mit einer anderen Schriftart</para
-></caption>
+<caption><para>Page preview setup to fit on multiple pages without header and a different font</para></caption>
 </mediaobject>
 </screenshot>
 
 </sect1>
 
 <sect1 id="kgraphviewer-configuration">
-<title
->&kgraphviewer; einrichten</title>
+<title>Configuring &kgraphviewer;</title>
 
-<para
->Auf der Seite <guilabel
->Erscheinungsbild</guilabel
-> können Sie die Standard-Hintergrundfarbe ändern, die dann verwendet wird, wenn im Graphen keine Hintergrundfarbe festgelegt ist.</para>
+<para>The <guilabel>Appearance</guilabel> page allows to change the default background
+color used in &kgraphviewer; if a graph does not have its own background color.</para>
 
 <screenshot>
-<screeninfo
->Seite zum Ändern des Erscheinungsbilds eines Graphen</screeninfo>
+<screeninfo>Page to change the appearance of a graph</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Seite zum Ändern des Erscheinungsbilds eines Graphen</phrase>
+<phrase>Page to change the appearance of a graph</phrase>
 </textobject>
-<caption
-><para
->Seite zum Ändern des Erscheinungsbilds eines Graphen</para
-></caption>
+<caption><para>Page to change the appearance of a graph</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Auf der Seite <guilabel
->Einlesen</guilabel
-> können Sie einen externen Befehl oder die interne Bibliothek für das Einlesen von &graphviz;-&dot;-Dateien wählen.</para>
+<para>The <guilabel>Parsing</guilabel> page allows to select an external command
+or the internal library for parsing &graphviz; &dot; files.</para>
 
 <screenshot>
-<screeninfo
->Seite zum erneuten Laden veränderter Dateien im Einstellungsdialog</screeninfo>
+<screeninfo>Page to reload files modified on disk in the configuration dialog</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Seite zum erneuten Laden veränderter Dateien im Einstellungsdialog</phrase>
+<phrase>Page to reload files modified on disk in the configuration dialog</phrase>
 </textobject>
-<caption
-><para
->Seite zum erneuten Laden veränderter Dateien im Einstellungsdialog</para
-></caption>
+<caption><para>Page to reload files modified on disk in the configuration dialog</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Die Seite <guilabel
->Erneut Laden</guilabel
-> gibt die Möglichkeit, das Verhalten festzulegen, wenn eine Datei auf der Festplatte verändert wurde, &eg; von einem anderen Programm. Sie können ein Standardverhalten festlegen (automatisch neu laden oder die Änderungen ignorieren) oder das Programm jedes Mal nachfragen lassen.</para>
+<para>The <guilabel>Reload</guilabel> page allows to change the behavior of &kgraphviewer; when a file is changed on disk by another application. You can choose a default action (reload automatically or ignore changes), or to be asked each time.</para>
 
 <screenshot>
-<screeninfo
->Seite zum erneuten Laden veränderter Dateien im Einstellungsdialog</screeninfo>
+<screeninfo>Page to reload files modified on disk in the configuration dialog</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-config1.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-config1.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Seite zum erneuten Laden veränderter Dateien im Einstellungsdialog</phrase>
+<phrase>Page to reload files modified on disk in the configuration dialog</phrase>
 </textobject>
-<caption
-><para
->Seite zum erneuten Laden veränderter Dateien im Einstellungsdialog</para
-></caption>
+<caption><para>Page to reload files modified on disk in the configuration dialog</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Die Seite <guilabel
->Öffnen</guilabel
-> gibt die Möglichkeit, das Verhalten von &kgraphviewer; festzulegen, wenn ein Graph außerhalb einer laufenden Sitzung geöffnet wird. Sie können ein Standardverhalten für diesen Fall festlegen (den Graphen in einem neuen Fenster öffnen oder in einem Unterfenster der bereits laufenden Sitzung) oder bestimmen, dass jedes Mal nachgefragt wird.</para>
+<para>The <guilabel>Opening</guilabel> page allows to change the behavior of &kgraphviewer; when a graph file is opened from outside the current session. You can choose a default action (open in an existing window or in a new one), or to be asked each time.</para>
 
 <screenshot>
-<screeninfo
->Seite für das Öffnen neuer Dateien in einer laufenden Sitzung</screeninfo>
+<screeninfo>Page to open new files in an existing window in the configuration dialog</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-config2.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-config2.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Seite für das Öffnen neuer Dateien in einer laufenden Sitzung</phrase>
+<phrase>Page to open new files in an existing window in the configuration dialog</phrase>
 </textobject>
-<caption
-><para
->Seite für das Öffnen neuer Dateien in einer laufenden Sitzung</para
-></caption>
+<caption><para>Page to open new files in an existing window in the configuration dialog</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Die Seite <guilabel
->Sitzungsverwaltung</guilabel
-> gibt die Möglichkeit, das Startverhalten von &kgraphviewer; festzulegen. Sie können ein Standardverhalten festlegen (die Dateien der letzten Sitzung öffnen oder nicht) oder bestimmen, bei jedem Start danach gefragt zu werden.</para>
+<para>The <guilabel>Session Management</guilabel> page allows to change the &kgraphviewer;'s start-up behavior. You can choose a default action (reopen files of the previous session or not), or to be asked each time.</para>
 
 <screenshot>
-<screeninfo
->Seite zum Laden der in der letzten Sitzung geöffneten Dateien beim Programmstart</screeninfo>
+<screeninfo>Page to reopen files of the previous session in the configuration dialog</screeninfo>
 <mediaobject>
 <imageobject>
-<imagedata fileref="kgraphviewer-snap-config3.png" format="PNG"/>
+<imagedata fileref="kgraphviewer-snap-config3.png" format="PNG" />
 </imageobject>
 <textobject>
-<phrase
->Seite zum Laden der in der letzten Sitzung geöffneten Dateien beim Programmstart</phrase>
+<phrase>Page to reopen files of the previous session in the configuration dialog</phrase>
 </textobject>
-<caption
-><para
->Seite zum Laden der in der letzten Sitzung geöffneten Dateien beim Programmstart</para
-></caption>
+<caption><para>Page to reopen files of the previous session in the configuration dialog</para></caption>
 </mediaobject>
 </screenshot>
 
 </sect1>
 
 <sect1 id="using-kgraphviewer-misc">
-<title
->Verschiedene Einstellungen</title>
+<title>Miscellaneous Functions</title>
 
-<para
->Das Kontextmenü, das normalerweise bei einem Klick im Hauptfenster mit der &RMBn; erscheint, eröffnet weitere Möglichkeiten: <variablelist>
+<para>The context menu, usually obtained  by clicking the &RMB; in the graph view, offers some other possibilities:
+<variablelist>
 <varlistentry>
-<term
-><guisubmenu
->Layout</guisubmenu
-></term>
-<listitem
-><para
->Hier können Sie unter verschiedenen &graphviz;-Layout-Algorithmen wählen. Die Einträge, wie sie auf der Webseite von &graphviz; beschrieben werden, sind: <variablelist>
-	<varlistentry>
-	<term
-><guimenuitem
->&dot;</guimenuitem
-></term>
-	<listitem
-><para
->&dot;-Algorithmus, der Standard für gerichtete Graphen. Er produziert <quote
->hierarchische</quote
-> oder geschichtete Darstellungen von gerichteten Graphen. Der Algorithmus legt die Kanten in dieselbe Richtung (von oben nach unten oder von links nach rechts) und versucht dann, möglichst kurze Kanten und möglichst wenige Kantenüberschneidungen zu produzieren.</para
-></listitem>
-	</varlistentry>
+<term><guisubmenu>Layout</guisubmenu></term>
+<listitem><para>This allows to choose between various &graphviz; layout algorithms or to choose your own one. The entries, as described on the &graphviz; homepage, are the following:
 
-	<varlistentry>
-	<term
-><guimenuitem
->&neato;</guimenuitem
-></term>
-	<listitem
-><para
->Der &neato;-Algorithmus ist der Standard für ungerichtete Graphen. Er produziert Darstellungen gemäß des <quote
->Sprungfedermodells</quote
->. Dabei wird der Kamada-Kawai-Algorithmus benutzt, der gleichbedeutend ist mit statistischer mehrdimensionaler Skalierung.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><guimenuitem
->&twopi;</guimenuitem
-></term>
-	<listitem
-><para
->Der &twopi;-Algorithmus für gerichtete und ungerichtete Graphen erzeugt eine Darstellung, bei der die Knoten radial angeordnet werden. Dies geschieht gemäß der Beschreibung von Graham Wills, 1997.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><guimenuitem
->&fdp;</guimenuitem
-></term>
-	<listitem
-><para
->Der &fdp;-Algorithmus erzeugt für ungerichtete Graphen ein <quote
->Sprungfedermodell</quote
->-Layout. Er verwendet die Fruchterman-Reingold-Heuristik, und beinhaltet einen Mehrgitterlöser zur Behandlung von großen und geclusterten Graphen.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><guimenuitem
->&circo;</guimenuitem
-></term>
-	<listitem
-><para
->Der &circo;-Algorithmus ordnet die Knoten kreisförmig an gemäß der Beschreibung von Six und Tollis, 1999, und Kauffman und Wiese, 2002. Er ist nützlich für bestimmte Diagramme von mehrfach zyklischen Strukturen.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><guimenuitem
->Geben Sie den Layoutbefehl an</guimenuitem
-></term>
-	<listitem
-><para
->Öffnet einen Dialog, in dem Sie einen Layoutbefehl angeben können, der dann von einer Shell ausgeführt wird. Der Befehl sollte die Graphendatei als Parameter akzeptieren, und das berechnete Layout des Graphen nach stdout im xdot-Format ausgeben. Mit einem solchen Layoutbefehl können Sie &eg; den &graphviz;-Algorithmen spezielle Optionen geben, oder auch den Graphen mit einem Filter verändern, bevor er gezeichnet wird.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><guimenuitem
->Layoutbefehl auf Voreinstellung zurücksetzen</guimenuitem
-></term>
-	<listitem
-><para
->Bestimmt den Typ des Graphen (gerichtet oder ungerichtet) und wendet den Standardalgorithmus für den jeweiligen Typ an (&dot; für gerichtete, &neato; für ungerichtete Graphen).</para
-></listitem>
-	</varlistentry>
-	</variablelist>
-	</para
-></listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guisubmenu
->Graph exportieren</guisubmenu
-></term>
-<listitem
-><para>
 	<variablelist>
 	<varlistentry>
-	<term
-><guimenuitem
->Als Bild ...</guimenuitem
-></term>
-	<listitem
-><para
->Ermöglicht es, den gesamten Graphen in allen unterstützten Bildformaten zu exportieren.</para
-></listitem>
+	<term><guimenuitem>&dot;</guimenuitem></term>
+	<listitem><para>&dot; algorithm, default for directed graphs. It produces <quote>hierarchical</quote> or layered drawings of directed graphs. The layout algorithm lays edges in the same direction (top to bottom, or left to right), and then attempts to avoid edge crossings and to reduce edge length.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>&neato;</guimenuitem></term>
+	<listitem><para>&neato; algorithm, default for undirected graphs. It produces <quote>spring model</quote> layouts. It uses the Kamada-Kawai algorithm, which is equivalent to statistical multi-dimensional scaling.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>&twopi;</guimenuitem></term>
+	<listitem><para>&twopi; algorithm, for directed and undirected graphs. Radial layout, after Graham Wills 1997.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>&fdp;</guimenuitem></term>
+	<listitem><para>&fdp; algorithm, for undirected graphs. It produces <quote>spring model</quote> layouts. It implements the Fruchterman-Reingold heuristic including a multigrid solver that handles larger graphs and clustered undirected graphs.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>&circo;</guimenuitem></term>
+	<listitem><para>&circo; algorithm. It produces a circular layout, after Six and Tollis 1999, Kauffman and Wiese 2002. Suitable for certain diagrams of multiple cyclic structures.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>Specify layout command</guimenuitem></term>
+	<listitem><para>Opens a dialog allowing you to specify a layout command executed by the shell. This command should accept one parameter, the graph file name, and write its layout on stdout in the xdot language. This way, you can give specific options to one of the previous commands, or apply a filter modifying your graph before running it through &dot;.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>Reset layout command to default</guimenuitem></term>
+	<listitem><para>Determine the graph type (directed or not) and apply the default algorithm to it, currently &dot; and &neato; respectively.</para></listitem>
 	</varlistentry>
 	</variablelist>
-</para
-></listitem>
+	</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><guimenu
->Übersicht aktivieren</guimenu
-></term>
-<listitem
-><para
->Ist diese Einstellung aktiviert, wird die Übersicht angezeigt, sofern dies nötig ist. Sonst wird sie nicht angezeigt und das Positionierungsmenü ist inaktiv.</para
-></listitem>
+<term><guisubmenu>Export Graph</guisubmenu></term>
+<listitem><para>
+	<variablelist>
+	<varlistentry>
+	<term><guimenuitem>As Image...</guimenuitem></term>
+	<listitem><para>Allows to export the full graph to all supported image formats.</para></listitem>
+	</varlistentry>
+	</variablelist>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term
-><guisubmenu
->Übersicht</guisubmenu
-></term>
-<listitem
-><para
->Legt die Position der Übersicht fest. Die möglichen Einstellungen sind: <variablelist>
-	<varlistentry>
-	<term
-><guimenuitem
->Oben links</guimenuitem
-></term>
-	<listitem
-><para
->Platziert die Übersicht in der linken oberen Ecke.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><guimenuitem
->Oben rechts</guimenuitem
-></term>
-	<listitem
-><para
->Platziert die Übersicht in der rechten oberen Ecke.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><guimenuitem
->Unten links</guimenuitem
-></term>
-	<listitem
-><para
->Platziert die Übersicht in der linken unteren Ecke.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><guimenuitem
->Unten rechts</guimenuitem
-></term>
-	<listitem
-><para
->Platziert die Übersicht in der rechten unteren Ecke.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><guimenuitem
->Automatisch</guimenuitem
-></term>
-	<listitem
-><para
->Platziert die Übersicht so gut wie möglich in einer der vier Ecken, sodass möglichst wenig vom Graphen verdeckt wird.</para
-></listitem>
-	</varlistentry>
-	</variablelist>
-</para
-></listitem>
+<term><guimenu>Enable Bird's-eye View</guimenu></term>
+<listitem><para>When checked, the Bird's-eye view is displayed when necessary. Otherwise, it is hidden and its positioning menu is disabled.</para></listitem>
 </varlistentry>
 
-</variablelist
-></para>
+<varlistentry>
+<term><guisubmenu>Bird's-eye View</guisubmenu></term>
+<listitem><para>Configure where to place the bird's-eye view in the graph view. The possible choices are:
+	<variablelist>
+	<varlistentry>
+	<term><guimenuitem>Top Left</guimenuitem></term>
+	<listitem><para>Places the bird's-eye view at the top left corner;</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>Top Right</guimenuitem></term>
+	<listitem><para>Places the bird's-eye view at the top right corner;</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>Bottom Left</guimenuitem></term>
+	<listitem><para>Places the bird's-eye view at the bottom left corner;</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>Bottom Right</guimenuitem></term>
+	<listitem><para>Places the bird's-eye view at the bottom right corner;</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term><guimenuitem>Automatic</guimenuitem></term>
+	<listitem><para>Automatically choose the best position to hide as little of the graph as possible.</para></listitem>
+	</varlistentry>
+	</variablelist>
+</para></listitem>
+</varlistentry>
+
+</variablelist></para>
 
 </sect1>
 
 </chapter>
 
 <chapter id="commands">
-<title
->Befehlsreferenz</title>
+<title>Command Reference</title>
 
 <sect1 id="kgraphviewer-commands-menus">
-<title
->Die &kgraphviewer;-Menüs</title>
+<title>The &kgraphviewer; Menus</title>
 
 <sect2>
-<title
->Das Menü Datei</title>
+<title>The File Menu</title>
 
 <variablelist>
 	<varlistentry>
-	<term
-><menuchoice
-><shortcut
-> <keycombo action="simul"
->&Ctrl;<keycap
->N</keycap
-></keycombo
-> </shortcut
-> <guimenu
->Datei</guimenu
-> <guimenuitem
->Neu</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Öffnet</action
-> ein neues &kgraphviewer;-Fenster.</para
-></listitem>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut><guimenu>File</guimenu><guimenuitem>New</guimenuitem></menuchoice></term>
+	<listitem><para><action>Opens</action> a new &kgraphviewer; window.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;<keycap
->O</keycap
-></keycombo
-></shortcut
-><guimenu
->Datei</guimenu
-><guimenuitem
->Öffnen</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Zeigt</action
-> den Dialog <guilabel
->Datei öffnen</guilabel
-> an.</para
-></listitem>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice></term>
+	<listitem><para><action>Displays</action> the <guilabel>Open File</guilabel> dialog.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><guimenu
->Datei</guimenu
-><guimenuitem
->Zuletzt geöffnete Dateien</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Zeigt</action
-> die Liste der zehn zuletzt geöffneten Dateien an.</para
-></listitem>
+	<term><menuchoice><guimenu>File</guimenu><guimenuitem>Open Recent</guimenuitem></menuchoice></term>
+	<listitem><para><action>Displays</action> the list of the ten most recently opened graph files.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><guimenu
->Datei</guimenu
-><guisubmenu
->Graph exportieren</guisubmenu
-><guimenuitem
->Als Bild ...</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
->Ermöglicht es, den gesamten Graphen in allen unterstützten Bildformaten zu <action
->exportieren</action
->.</para
-></listitem>
+	<term><menuchoice><guimenu>File</guimenu><guisubmenu>Export Graph</guisubmenu><guimenuitem>As Image...</guimenuitem></menuchoice></term>
+	<listitem><para>Allows to <action>export</action> the full graph to all supported image formats.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;<keycap
->P</keycap
-></keycombo
-></shortcut
-><guimenu
->Datei</guimenu
-><guimenuitem
->Drucken ...</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Druckt</action
-> den Graphen unter Berücksichtigung der aktuellen Druckeinstellungen.</para
-></listitem>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>P</keycap></keycombo></shortcut><guimenu>File</guimenu><guimenuitem>Print...</guimenuitem></menuchoice></term>
+	<listitem><para><action>Prints</action> the current graph using the currently set print parameters.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;&Shift;<keycap
->P</keycap
-></keycombo
-></shortcut
-><guimenu
->Datei</guimenu
-><guimenuitem
->Druckvorschau ...</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Öffnet</action
-> das Fenster <guilabel
->Druckvorschau</guilabel
-> für den aktuellen Graphen.</para
-></listitem>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>P</keycap></keycombo></shortcut><guimenu>File</guimenu><guimenuitem>Print Preview...</guimenuitem></menuchoice></term>
+	<listitem><para><action>Opens</action> the <guilabel>Print Preview</guilabel> window for the current graph.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><guimenu
->Datei</guimenu
-><guimenuitem
->Seiteneinstellungen</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Öffnet</action
-> den Dialog <guilabel
->Seiteneinstellungen</guilabel
-> für den aktuellen Graphen.</para
-></listitem>
+	<term><menuchoice><guimenu>File</guimenu><guimenuitem>Page Setup</guimenuitem></menuchoice></term>
+	<listitem><para><action>Opens</action> the <guilabel>Page Setup</guilabel> dialog for the current graph.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;<keycap
->Q</keycap
-></keycombo
-></shortcut
-><guimenu
->Datei</guimenu
-><guimenuitem
->Beenden</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Beendet</action
-> &kgraphviewer;.</para
-></listitem>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut><guimenu>File</guimenu><guimenuitem>Quit</guimenuitem></menuchoice></term>
+	<listitem><para><action>Quits</action> &kgraphviewer;.</para></listitem>
 	</varlistentry>
 </variablelist>
 </sect2>
 
 <sect2>
-<title
->Das Menü Ansicht</title>
+<title>The View Menu</title>
 
 <variablelist>
 	<varlistentry>
-	<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;<keycap
->+</keycap
-></keycombo
-></shortcut
-><guimenu
->Ansicht</guimenu
-><guimenuitem
->Vergrößern</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Vergrößert</action
-> den aktuellen Graphen um 10%.</para
-></listitem>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo></shortcut><guimenu>View</guimenu><guimenuitem>Zoom In</guimenuitem></menuchoice></term>
+	<listitem><para><action>Zoom in</action> the current graph by 10%.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;<keycap
->-</keycap
-></keycombo
-></shortcut
-><guimenu
->Ansicht</guimenu
-><guimenuitem
->Verkleinern</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Verkleinert</action
-> den aktuellen Graphen um 10%.</para
-></listitem>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut><guimenu>View</guimenu><guimenuitem>Zoom Out</guimenuitem></menuchoice></term>
+	<listitem><para><action>Zoom out</action> the current graph by 10%.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><guimenu
->Ansicht</guimenu
-><guimenuitem
->Anzeige auffrischen</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Frischt</action
-> die Darstellung des aktuellen Graphen auf.</para
-></listitem>
+	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Redisplay</guimenuitem></menuchoice></term>
+	<listitem><para><action>Reloads</action> the current graph.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><guimenu
->Ansicht</guimenu
-><guisubmenu
->Layout-Algorithmus auswählen</guisubmenu
-></menuchoice
-></term>
-	<listitem
-><para
->Öffnet ein Untermenü zur Auswahl der verschiedenen Layout-Algorithmen für den aktuellen Graph.</para
-></listitem>
+	<term><menuchoice><guimenu>View</guimenu><guisubmenu>Select Layout Algo</guisubmenu></menuchoice></term>
+	<listitem><para>Opens a submenu with various &graphviz; layout algorithms for the current graph.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;<keycap
->B</keycap
-></keycombo
-></shortcut
-><guimenu
->Ansicht</guimenu
-><guimenuitem
->Übersicht aktivieren</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
->Ist diese Einstellung aktiviert, wird die Übersicht angezeigt, sofern dies nötig ist. Sonst wird sie nicht angezeigt und das Positionierungsmenü ist inaktiv.</para
-></listitem>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>B</keycap></keycombo></shortcut><guimenu>View</guimenu><guimenuitem>Enable Bird's-eye View</guimenuitem></menuchoice></term>
+	<listitem><para>When checked, the Bird's-eye view is displayed when necessary. Otherwise, it is hidden and its positioning menu is disabled.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><menuchoice
-><guimenu
->Ansicht</guimenu
-><guimenuitem
->Übersicht</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
->Legt die Position der Übersicht fest. Die Auswahlmöglichkeiten sind: <variablelist>
+	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Birds-eye View</guimenuitem></menuchoice></term>
+	<listitem><para>Configure where to place the bird-eye view in the graph view. Choices are:
+	<variablelist>
 		<varlistentry>
-		<term
-><guimenuitem
->Oben links</guimenuitem
-></term>
-		<listitem
-><para
->Platziert die Übersicht in der linken oberen Ecke.</para
-></listitem>
+		<term><guimenuitem>Top Left</guimenuitem></term>
+		<listitem><para>Places the bird's-eye view at the top left corner;</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term
-><guimenuitem
->Oben rechts</guimenuitem
-></term>
-		<listitem
-><para
->Platziert die Übersicht in der rechten oberen Ecke.</para
-></listitem>
+		<term><guimenuitem>Top Right</guimenuitem></term>
+		<listitem><para>Places the bird's-eye view at the top right corner;</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term
-><guimenuitem
->Unten links</guimenuitem
-></term>
-		<listitem
-><para
->Platziert die Übersicht in der linken unteren Ecke.</para
-></listitem>
+		<term><guimenuitem>Bottom Left</guimenuitem></term>
+		<listitem><para>Places the bird's-eye view at the bottom left corner;</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term
-><guimenuitem
->Unten rechts</guimenuitem
-></term>
-		<listitem
-><para
->Platziert die Übersicht in der rechten unteren Ecke.</para
-></listitem>
+		<term><guimenuitem>Bottom Right</guimenuitem></term>
+		<listitem><para>Places the bird's-eye view at the bottom right corner;</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term
-><guimenuitem
->Automatisch</guimenuitem
-></term>
-		<listitem
-><para
->Platziert die Übersicht so gut wie möglich in einer der vier Ecken, sodass möglichst wenig vom Graphen verdeckt wird.</para
-></listitem>
+		<term><guimenuitem>Automatic</guimenuitem></term>
+		<listitem><para>Automatically choose the best position to hide as little of the graph as possible.</para></listitem>
 		</varlistentry>
-	</variablelist
-></para
-></listitem>
+	</variablelist></para></listitem>
 	</varlistentry>
 </variablelist>
 
 </sect2>
 
 <sect2>
-<title
->Die Menüs Einstellungen und Hilfe</title>
+<title>The Settings and Help Menu</title>
 
-<para
->&kgraphviewer; benutzt die bekannten &kde;-Menüeinträge <guimenu
->Einstellungen</guimenu
-> und <guimenu
->Hilfe</guimenu
->. Mehr dazu erfahren Sie in den Abschnitten zu den Menüs <ulink url="help:/fundamentals/menus.html#menus-settings"
->Einstellungen</ulink
-> und <ulink url="help:/fundamentals/menus.html#menus-help"
->Hilfe</ulink
-> in den &kde;-Grundlagen. </para>
+<para>&kgraphviewer; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
+menu items, for more information read the sections about the <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Settings Menu</ulink> and <ulink url="help:/fundamentals/menus.html#menus-help">Help Menu</ulink>
+of the &kde; Fundamentals.
+</para>
 
 </sect2>
 </sect1>
 
 <sect1 id="kgraphviewer-commands-toolbars">
-<title
->Die Werkzeugleisten von &kgraphviewer;</title>
+<title>The &kgraphviewer; Toolbars</title>
 
 <sect2>
-<title
->Die Hauptwerkzeugleiste</title>
+<title>The Main Toolbar</title>
 <!--document-new-->
 <variablelist>
-	<varlistentry
-><!--document-open-->
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-open.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Zeigt</action
-> den Dialog <guilabel
->Datei öffnen</guilabel
-> an.</para
-></listitem>
+	<varlistentry><!--document-open-->
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-open.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Shows</action> the <guilabel>Open File</guilabel> dialog.</para></listitem>
 	</varlistentry>
 
-	<varlistentry
-><!--document-open-recent-->
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-prev.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Zeigt</action
-> die Liste der zuletzt geöffneten Dateien.</para
-></listitem>
+	<varlistentry><!--document-open-recent-->
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-prev.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Shows</action> the list of recently opened files.</para></listitem>
 	</varlistentry>
 <!--document-close-->
 	<!--varlistentry>
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-print.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Prints the graph</action
-> using current setup.</para
-></listitem>
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-print.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Prints the graph</action> using current setup.</para></listitem>
 	</varlistentry-->
 
 	<varlistentry>
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-preview.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Zeigt</action
-> den Dialog <guilabel
->Druckvorschau</guilabel
-> an.</para
-></listitem>
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-preview.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Shows</action> the <guilabel>Print Preview</guilabel> dialog.</para></listitem>
 	</varlistentry>
 
 	<!--varlistentry>
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Shows</action
-> the <guilabel
->Page Setup</guilabel
-> dialog.</para
-></listitem>
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Shows</action> the <guilabel>Page Setup</guilabel> dialog.</para></listitem>
 	</varlistentry-->
 </variablelist>
 </sect2>
 
 <sect2>
-<title
->Die Ansicht-Werkzeugleiste</title>
+<title>The View Toolbar</title>
 
 <variablelist>
 	<!--varlistentry>
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-reload.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Reloads</action
-> the current graph.</para
-></listitem>
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-reload.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Reloads</action> the current graph.</para></listitem>
 	</varlistentry-->
 
 	<varlistentry>
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-layout.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Bestimmt</action
-> den Layoutbefehl oder <action
->zeigt</action
-> die Liste der voreingestellten Layoutbefehle.</para
-></listitem>
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-layout.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Edits</action> the layout command or <action>shows</action> the list of preset layout algorithms.</para></listitem>
 	</varlistentry>
 	
-	<varlistentry
-><!--zoom-in-->
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Vergrößert</action
-> den aktuellen Graphen um 10%.</para
-></listitem>
+	<varlistentry><!--zoom-in-->
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Zoom in</action> the current graph by 10%.</para></listitem>
 	</varlistentry>
 
-	<varlistentry
-><!--zoom-out-->
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Verkleinert</action
-> den aktuellen Graphen um 10%.</para
-></listitem>
+	<varlistentry><!--zoom-out-->
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Zoom out</action> the current graph by 10%.</para></listitem>
 	</varlistentry>
 </variablelist>
 <!--kgraphviewer-bev "Enable Bird's-eye View"-->
 </sect2>
 
 <sect2>
-<title
->Die Hilfe-Werkzeugleiste</title>
+<title>The Help Toolbar</title>
 
 <variablelist>
-	<varlistentry
-><!--help-contextual-->
-	<term
-><guibutton
-><inlinemediaobject
-><imageobject
-><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG"/></imageobject
-></inlinemediaobject
-></guibutton
-></term>
-	<listitem
-><para
-><action
->Zeigt</action
-> den <guilabel
->Was ist das</guilabel
->-Mauszeiger an. Klicken Sie mit diesem Mauszeiger auf ein &GUI;-Element, um weitere Hilfe zu diesem Element zu erhalten (sofern vorhanden).</para
-></listitem>
+	<varlistentry><!--help-contextual-->
+	<term><guibutton><inlinemediaobject><imageobject><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG" /></imageobject></inlinemediaobject></guibutton></term>
+	<listitem><para><action>Displays</action> the <guilabel>What's This</guilabel> mouse pointer. Click with it on a &GUI; element to obtain help using it (if there is such help available).</para></listitem>
 	</varlistentry>
 </variablelist>
 </sect2>
@@ -1564,95 +765,56 @@
 </chapter>
 
 <chapter id="credits">
-<title
->Danksagungen und Lizenz</title>
+<title>Credits and License</title>
 
 <sect1 id="kgraphviewer-credits-program">
-<title
->Programm</title>
+<title>Program</title>
 
 <sect2>
-<title
->Hauptentwickler</title>
-<para
->Copyright für das Programm 2005-2006 Gaël de Chalendar <email
->kleag@free.fr</email
-></para>
+<title>Main Authors</title>
+<para>Program copyright 2005-2006 Gaël de Chalendar <email>kleag@free.fr</email></para>
 </sect2>
 
 <sect2>
-<title
->Mitwirkende (unvollständige Liste)</title>
+<title>Contributors (to be completed)</title>
 <itemizedlist>
-	<listitem
-><para
->Reimar Döffinger <email
->Reimar.Doeffinger@stud.uni-karlsruhe.de</email
-></para
-></listitem>
+	<listitem><para>Reimar Döffinger <email>Reimar.Doeffinger@stud.uni-karlsruhe.de</email></para></listitem>
 </itemizedlist>
 </sect2>
 </sect1>
 
 <sect1 id="kgraphviewer-credits-userguide">
-<title
->Benutzerhandbuch</title>
-<para
->Copyright für die Dokumentation 2006 Gaël de Chalendar <email
->kleag@free.fr</email
-></para>
+<title>User Guide</title>
+<para>Documentation copyright 2006 Gaël de Chalendar <email>kleag@free.fr</email></para>
 <sect2>
-<title
->Mitwirkende</title>
+<title>Contributors</title>
 <itemizedlist>
-  <listitem
-><para
->Federico Zenith <email
->federico.zenith@member.fsf.org</email
-></para
-></listitem>
+  <listitem><para>Federico Zenith <email>federico.zenith@member.fsf.org</email></para></listitem>
 </itemizedlist>
 </sect2>
 </sect1>
 
 <sect1 id="kgraphviewer-credits-other">
-<title
->Weitere Mitwirkende</title>
-<para
->Das Programm enthält Code der folgenden freien Software-Projekte:</para>
+<title>Other Credits</title>
+<para>This program contains reused code from the following Free Software projects:</para>
 <variablelist>
 	<varlistentry>
-	<term
-><ulink url="https://kcachegrind.github.io/html/Home.html"
->&kcachegrind;</ulink
-></term>
-	<listitem
-><para
->Ursprüngliches Graphenmodell und Darstellungsklassen;</para
-></listitem>
+	<term><ulink url="https://kcachegrind.github.io/html/Home.html">&kcachegrind;</ulink></term>
+	<listitem><para>Initial graph model and view classes;</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term
-><ulink url="http://www.kexi-project.org/"
->&kexi;</ulink
-></term>
-	<listitem
-><para
->Druckeinstellungen und Vorschauklassen.</para
-></listitem>
+	<term><ulink url="http://www.kexi-project.org/">&kexi;</ulink></term>
+	<listitem><para>Print setup and preview classes.</para></listitem>
 	</varlistentry>
 </variablelist>
 </sect1>
 
-<sect1 id="kgraphviewer-credits-licenses"
-><title
->Lizenzen</title>
-<para
->Übersetzung Matthias Peinhardt<email
->matthias.peinhardt@googlemail.com</email
-></para
->  &underFDL; &underGPL; </sect1>
+<sect1 id="kgraphviewer-credits-licenses"><title>Licenses</title>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+&underFDL;               <!-- FDL: do not remove -->
+&underGPL;           <!-- GPL License -->
+</sect1>
 
 </chapter>
 
