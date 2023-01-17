@@ -265,7 +265,7 @@ msgstr "Mostra o oculta la barra d'estat."
 #: kgraphviewer.cpp:235
 #, kde-format
 msgid "Toolbar configuration."
-msgstr "Configuració de la barra d'eines."
+msgstr "Configureu la barra d'eines."
 
 #: kgraphviewer.cpp:238
 #, kde-format
@@ -635,7 +635,7 @@ msgstr ""
 #: part/dotgraphview.cpp:575
 #, kde-format
 msgid "Select file"
-msgstr "Seleccioneu el fitxer"
+msgstr "Seleccioneu un fitxer"
 
 #: part/dotgraphview.cpp:589
 #, kde-format
@@ -679,7 +679,7 @@ msgstr ""
 "allunya de la barra d'eines, o prémer la tecla <Maj> mentre feu gireu la "
 "roda del ratolí.</li><li>Proveu el menú contextual (normalment fent clic "
 "dret) per a descobrir altres possibilitats.</li><li>Proveu els botons "
-"<tt>Vista prèvia d'impressió</tt> o <tt>Configuració de la pàgina</tt> per a "
+"<tt>Vista prèvia d'impressió</tt> o <tt>Configureu la pàgina</tt> per a "
 "explorar les opcions d'impressió.</li></ul>"
 
 #: part/dotgraphview.cpp:790
@@ -744,14 +744,14 @@ msgstr "Obri la finestra de vista prèvia d'impressió"
 #: part/kgraphviewer_part.cpp:110
 #, kde-format
 msgid "Page setup"
-msgstr "Configuració de la pàgina"
+msgstr "Configureu la pàgina"
 
 #: part/kgraphviewer_part.cpp:111
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr ""
-"Obri el diàleg Configuració de la pàgina per a permetre establir la "
-"impressió de la gràfica"
+"Obri el diàleg Configureu la pàgina per a permetre establir la impressió de "
+"la gràfica"
 
 #: part/kgraphviewer_part.cpp:114
 #, kde-format
@@ -1041,8 +1041,7 @@ msgstr "Canvia el tipus de lletra del text del títol."
 #: part/simpleprintingpagesetup.cpp:111
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
-msgstr ""
-"<qt><h2>Configuració de la pàgina per a imprimir la gràfica «%1»</h2></qt>"
+msgstr "<qt><h2>Configureu la pàgina per a imprimir la gràfica «%1»</h2></qt>"
 
 #: part/simpleprintingpagesetup.cpp:116
 #, kde-format
@@ -1174,7 +1173,7 @@ msgstr "%1 - Imprimix la vista prèvia - %2"
 #: part/simpleprintpreviewwindow.cpp:84
 #, kde-format
 msgid "&Page setup"
-msgstr "Configuració de la &pàgina"
+msgstr "Configureu la &pàgina"
 
 #: part/simpleprintpreviewwindow.cpp:123
 #, kde-format
@@ -1261,6 +1260,3 @@ msgstr "Pregunt&a"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Torne a obrir els fitxers prèviament oberts"
-
-#~ msgid "Configure the bindings between keys and actions."
-#~ msgstr "Configura les vinculacions entre tecles i accions."
