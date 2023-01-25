@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-17 00:43+0000\n"
-"PO-Revision-Date: 2022-12-28 06:22+0100\n"
+"PO-Revision-Date: 2023-01-24 07:02+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -143,7 +143,7 @@ msgstr "კვანძის წაშლა"
 #: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
 #, kde-format
 msgid "The answer to the question 'File modified, do you want to reload it'"
-msgstr ""
+msgstr "პასუხი კითხვაზე 'ფაილი შეცვლილია, გნებავთ, თავიდან ჩატვირთოთ ის?'"
 
 #. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
@@ -640,7 +640,7 @@ msgstr "გრაფიკი არ ჩატვირთულა"
 #: part/dotgraphview.cpp:974
 #, kde-format
 msgid "graph %1 is getting loaded..."
-msgstr ""
+msgstr "მიმდინარეობს გრაფის (%1) ჩატვირთვა..."
 
 #: part/dotgraphview.cpp:914
 #, kde-format
@@ -779,7 +779,7 @@ msgstr ""
 #: part/KgvPageLayoutHeaderBase.ui:55
 #, kde-format
 msgid "Spacing between header and body:"
-msgstr ""
+msgstr "დაშორება თავსართსა და სხეულს შორის:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
 #: part/KgvPageLayoutHeaderBase.ui:77
@@ -791,19 +791,19 @@ msgstr "ქვესართი"
 #: part/KgvPageLayoutHeaderBase.ui:83
 #, kde-format
 msgid "Different footer for the first page"
-msgstr ""
+msgstr "პირველი გვერდის განსხვავებული ბოლოსართი"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
 #: part/KgvPageLayoutHeaderBase.ui:90
 #, kde-format
 msgid "Different footer for even and odd pages"
-msgstr ""
+msgstr "განსხვავებული ბოლოსართი კენტი და ლუწი გვერდებისთვის"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: part/KgvPageLayoutHeaderBase.ui:115
 #, kde-format
 msgid "Spacing between footer and body:"
-msgstr ""
+msgstr "დაშორება ქვესართსა და სხეულს შორის:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
 #: part/KgvPageLayoutHeaderBase.ui:137
@@ -971,27 +971,27 @@ msgstr "ფონტი..."
 #: part/simpleprintingpagesetup.cpp:105
 #, kde-format
 msgid "Changes font for title text."
-msgstr ""
+msgstr "ცვლის სათაურის ტექსტის ფონტს."
 
 #: part/simpleprintingpagesetup.cpp:111
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
-msgstr ""
+msgstr "<qt><h2>გვერდის მორგება გრაფის \"%1\" დასაბეჭდად</h2></qt>"
 
 #: part/simpleprintingpagesetup.cpp:116
 #, kde-format
 msgid "Saves settings for this setup as default."
-msgstr ""
+msgstr "ამ პარამეტრების ნაგულისხმებად შენახვა."
 
 #: part/simpleprintingpagesetup.cpp:119
 #, kde-format
 msgid "Adds date and time to the header."
-msgstr ""
+msgstr "თავსართისთვის დროისა და თარიღის მიმატება."
 
 #: part/simpleprintingpagesetup.cpp:120
 #, kde-format
 msgid "Adds page numbers to the footer."
-msgstr ""
+msgstr "ქვესართისთვის გვერდის ნომრის დამატება."
 
 #: part/simpleprintingpagesetup.cpp:121
 #, kde-format
@@ -1181,7 +1181,7 @@ msgstr "შიდა &ბიბლიოთეკა"
 #: preferencesReload.ui:17
 #, kde-format
 msgid "Reload files modified on disk"
-msgstr ""
+msgstr "დისკზე შეცვლილი ფაილის თავიდან ჩატვირთვა"
 
 #. i18n: ectx: property (text), widget (QRadioButton, ask)
 #: preferencesReload.ui:40
@@ -1193,4 +1193,4 @@ msgstr "&მკითხე"
 #: preferencesReopenPreviouslyOpenedFiles.ui:17
 #, kde-format
 msgid "Reopen previously opened files"
-msgstr ""
+msgstr "უკვე გახსნილი ფაილის თავიდან გახსნა"
