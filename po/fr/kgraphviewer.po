@@ -10,14 +10,15 @@
 # Xavier Besnard <xavier.besnard@neuf.fr>, 2020, 2021, 2022.
 #
 # Automatically generated, 2008.
+# Xavier BESNARD <xavier.besnard]neuf.fr>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-17 00:43+0000\n"
-"PO-Revision-Date: 2022-10-19 18:45+0200\n"
-"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
-"Language-Team: French <kde-francophone@kde.org>\n"
+"PO-Revision-Date: 2023-02-05 16:49+0100\n"
+"Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
+"Language-Team: fr\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr ""
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 22.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -178,7 +179,7 @@ msgid ""
 "kgraphviewer, should we open in it, open a new window or ask?'"
 msgstr ""
 "La réponse à la question « Si une autre fenêtre existe déjà lors du "
-"lancement de kgraphviewer, faut-il l'ouvrir dans celle-ci, ouvrir une "
+"lancement de KGraphViewer, faut-il l'ouvrir dans celle-ci, ouvrir une "
 "nouvelle fenêtre ou demander ? »"
 
 #. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
@@ -512,7 +513,8 @@ msgid ""
 "produce an xdot file on its standard output."
 msgstr ""
 "Précisez vous-même la commande de représentation à utiliser. Étant donné un "
-"fichier Dot, il devra produire un fichier xdot sur sa sortie standard."
+"fichier « dot », il devra produire un fichier « xdot » sur sa sortie "
+"standard."
 
 #: part/dotgraphview.cpp:469
 #, kde-format
