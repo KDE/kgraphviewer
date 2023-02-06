@@ -367,7 +367,7 @@
       <li xml:lang="es">Selección automática de «dot» para los grafos dirigidos y de «neato» para los no dirigidos</li>
       <li xml:lang="et">Automaatne doti valimine orienteeritud ja neato valimine orienteerimata graafide jaoks </li>
       <li xml:lang="fi">Valitse dot automaattisesti suunnatuille graafeille ja neato suuntaamattomille</li>
-      <li xml:lang="fr">Choisir automatiquement dot pour les graphes orientés et neato pour les graphes non-orientés</li>
+      <li xml:lang="fr">Choisir automatiquement le format « dot » pour les graphes orientés et le format « neato » pour les graphes non-orientés</li>
       <li xml:lang="gl">Escolle automaticamente dot para os gráficos dirixidos e neato para os gráficos non dirixidos.</li>
       <li xml:lang="id">Memilih secara otomatis titik untuk grafik yang dilangsungkan dan neato untuk yang takdilangsungkan</li>
       <li xml:lang="it">Scelta automatica di dot per i grafi orientati e neato per i non orientati</li>
