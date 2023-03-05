@@ -105,7 +105,7 @@ msgstr ""
 #: kgrapheditormain.cpp:46
 #, fuzzy, kde-format
 msgid "A Graphviz DOT graph editor by KDE"
-msgstr "A نقطة مبيان مُظهر لـ كدي"
+msgstr "A نقطة مبيان مُظهر لـ كِيدِي"
 
 #: kgrapheditormain.cpp:46 main.cpp:51
 #, fuzzy, kde-format
@@ -273,7 +273,7 @@ msgstr ""
 #: main.cpp:49
 #, fuzzy, kde-format
 msgid "A Graphviz DOT graph viewer"
-msgstr "A نقطة مبيان مُظهر لـ كدي"
+msgstr "A نقطة مبيان مُظهر لـ كِيدِي"
 
 #: main.cpp:54
 #, kde-format
@@ -1199,7 +1199,7 @@ msgstr "إفتح الملفات المفتوحة سابقاً عن جديد"
 
 #, fuzzy
 #~ msgid "Graphviz DOT files viewer"
-#~ msgstr "A نقطة مبيان مُظهر لـ كدي"
+#~ msgstr "A نقطة مبيان مُظهر لـ كِيدِي"
 
 #, fuzzy
 #~ msgid "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"
