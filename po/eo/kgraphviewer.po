@@ -1,4 +1,5 @@
 # Translation of kgraphviewer into esperanto.
+# Copyright (C) 2009 Free Software Foundation, Inc.
 # Axel Rousseau <axel@esperanto-jeunes.org>, 2009.
 #
 msgid ""
@@ -6,8 +7,8 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-17 00:43+0000\n"
-"PO-Revision-Date: 2009-11-15 12:06+0100\n"
-"Last-Translator: Axel Rousseau <axel@esperanto-jeunes.org>\n"
+"PO-Revision-Date: 2023-03-20 22:43+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -27,10 +28,9 @@ msgid "Your emails"
 msgstr "axel@esperanto-jeunes.org"
 
 #: kgrapheditor.cpp:130 kgraphviewer.cpp:119
-#, fuzzy, kde-format
-#| msgid "Session Management"
+#, kde-format
 msgid "Session Restore"
-msgstr "Seanca Mastrumado"
+msgstr ""
 
 #: kgrapheditor.cpp:130
 #, kde-format
@@ -108,10 +108,9 @@ msgid "A Graphviz DOT graph editor by KDE"
 msgstr ""
 
 #: kgrapheditormain.cpp:46 main.cpp:51
-#, fuzzy, kde-format
-#| msgid "Gaël de Chalendar"
+#, kde-format
 msgid "(C) 2005-2010 Gaël de Chalendar"
-msgstr "Gaël de Chalendar"
+msgstr ""
 
 #: kgrapheditormain.cpp:58 main.cpp:69
 #, kde-format
@@ -184,24 +183,21 @@ msgstr ""
 
 #. i18n: ectx: ToolBar (viewToolBar)
 #: kgrapheditorui.rc:23 kgraphviewerui.rc:17
-#, fuzzy, kde-format
-#| msgid "Main Toolbar"
+#, kde-format
 msgid "View Toolbar"
-msgstr "Ĉefa ilobreto"
+msgstr ""
 
 #. i18n: ectx: ToolBar (helpToolBar)
 #: kgrapheditorui.rc:26 kgraphviewerui.rc:20
-#, fuzzy, kde-format
-#| msgid "Main Toolbar"
+#, kde-format
 msgid "Help Toolbar"
-msgstr "Ĉefa ilobreto"
+msgstr ""
 
 #. i18n: ectx: ToolBar (editToolBar)
 #: kgrapheditorui.rc:31
-#, fuzzy, kde-format
-#| msgid "Main Toolbar"
+#, kde-format
 msgid "Edit Toolbar"
-msgstr "Ĉefa ilobreto"
+msgstr ""
 
 #: kgraphviewer.cpp:118
 #, kde-format
@@ -548,10 +544,9 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr ""
 
 #: part/dotgraphview.cpp:507
-#, fuzzy, kde-format
-#| msgid "Top-left"
+#, kde-format
 msgid "Top Left"
-msgstr "Supre-maldekstra"
+msgstr ""
 
 #: part/dotgraphview.cpp:508
 #, kde-format
@@ -559,10 +554,9 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:512
-#, fuzzy, kde-format
-#| msgid "Top-right"
+#, kde-format
 msgid "Top Right"
-msgstr "Supre-dekstra"
+msgstr ""
 
 #: part/dotgraphview.cpp:513
 #, kde-format
@@ -570,10 +564,9 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:517
-#, fuzzy, kde-format
-#| msgid "Bottom-left"
+#, kde-format
 msgid "Bottom Left"
-msgstr "Malsupre-maldekstra"
+msgstr ""
 
 #: part/dotgraphview.cpp:518
 #, kde-format
@@ -581,10 +574,9 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:522
-#, fuzzy, kde-format
-#| msgid "Bottom-right"
+#, kde-format
 msgid "Bottom Right"
-msgstr "Malsupre-dekstra"
+msgstr ""
 
 #: part/dotgraphview.cpp:523
 #, kde-format
@@ -758,10 +750,9 @@ msgid "Page Preview"
 msgstr "Antaŭrigardo"
 
 #: part/KgvPageLayoutDia.cpp:277
-#, fuzzy, kde-format
-#| msgid "Page Size && &Margins"
+#, kde-format
 msgid "Page Size & Margins"
-msgstr "Paĝograndeco && Marĝenoj"
+msgstr "Paĝograndeco & Marĝenoj"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/KgvPageLayoutHeaderBase.ui:17
@@ -1005,10 +996,9 @@ msgid "Adds table borders."
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:129
-#, fuzzy, kde-format
-#| msgid "Page Size && &Margins"
+#, kde-format
 msgid "Change Page Size and Margins..."
-msgstr "Paĝograndeco && Marĝenoj"
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:130
 #, kde-format
@@ -1043,8 +1033,7 @@ msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/simpleprintingpagesetupbase.ui:97
-#, fuzzy, kde-format
-#| msgid "Page Size && &Margins"
+#, kde-format
 msgid "Page Size && Margins"
 msgstr "Paĝograndeco && Marĝenoj"
 
@@ -1156,10 +1145,9 @@ msgstr "&Jes"
 #. i18n: ectx: property (text), widget (QRadioButton, no)
 #: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
 #: preferencesReopenPreviouslyOpenedFiles.ui:36
-#, fuzzy, kde-format
-#| msgid "No"
+#, kde-format
 msgid "&No"
-msgstr "Ne"
+msgstr "&Ne"
 
 #. i18n: ectx: property (text), widget (QRadioButton, ask)
 #: preferencesOpenInExistingWindow.ui:37
@@ -1172,156 +1160,34 @@ msgstr "Dema&ndi"
 #: preferencesParsing.ui:17
 #, kde-format
 msgid "Parse using:"
-msgstr ""
+msgstr "Analizi uzante:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, external)
 #: preferencesParsing.ui:26
 #, kde-format
 msgid "E&xternal command"
-msgstr ""
+msgstr "E&kstera komando"
 
 #. i18n: ectx: property (text), widget (QRadioButton, internal)
 #: preferencesParsing.ui:33
 #, kde-format
 msgid "Internal &library"
-msgstr ""
+msgstr "Interna bib&lioteko"
 
 #. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
 #: preferencesReload.ui:17
 #, kde-format
 msgid "Reload files modified on disk"
-msgstr ""
+msgstr "Reŝargi dosierojn modifitajn surdiske"
 
 #. i18n: ectx: property (text), widget (QRadioButton, ask)
 #: preferencesReload.ui:40
 #, kde-format
 msgid "&Ask"
-msgstr ""
+msgstr "Dem&andi"
 
 #. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
 #: preferencesReopenPreviouslyOpenedFiles.ui:17
 #, kde-format
 msgid "Reopen previously opened files"
-msgstr ""
-
-#, fuzzy
-#~| msgid "Gaël de Chalendar"
-#~ msgid "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"
-#~ msgstr "Gaël de Chalendar"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A3"
-#~ msgstr "ISO A3"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A4"
-#~ msgstr "ISO A4"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A5"
-#~ msgstr "ISO A5"
-
-#~ msgctxt "Page size"
-#~ msgid "US Letter"
-#~ msgstr "US Letter"
-
-#~ msgctxt "Page size"
-#~ msgid "US Legal"
-#~ msgstr "US Legal"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B5"
-#~ msgstr "ISO B5"
-
-#~ msgctxt "Page size"
-#~ msgid "US Executive"
-#~ msgstr "US Executive"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A0"
-#~ msgstr "ISO A0"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A1"
-#~ msgstr "ISO A1"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A2"
-#~ msgstr "ISO A2"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A6"
-#~ msgstr "ISO A6"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A7"
-#~ msgstr "ISO A7"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A8"
-#~ msgstr "ISO A8"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A9"
-#~ msgstr "ISO A9"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B0"
-#~ msgstr "ISO B0"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B1"
-#~ msgstr "ISO B1"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B10"
-#~ msgstr "ISO B10"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B2"
-#~ msgstr "ISO B2"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B3"
-#~ msgstr "ISO B3"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B4"
-#~ msgstr "ISO B4"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B6"
-#~ msgstr "ISO B6"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO C5"
-#~ msgstr "ISO C5"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO DL"
-#~ msgstr "ISO DL"
-
-#~ msgctxt "Page size"
-#~ msgid "US Ledger"
-#~ msgstr "US Ledger"
-
-#~ msgid "."
-#~ msgstr "."
-
-#~ msgid "Ask"
-#~ msgstr "Demandi"
-
-#~ msgid "Close"
-#~ msgstr "Fermi"
-
-#~ msgid "&Edit"
-#~ msgstr "&Redakti"
-
-#~ msgid "&Settings"
-#~ msgstr "A&gordo"
-
-#~ msgid "Main Toolbar"
-#~ msgstr "Ĉefa ilobreto"
-
-#~ msgid " "
-#~ msgstr " "
+msgstr "Remalfermi antaŭe malfermitajn dosierojn"
