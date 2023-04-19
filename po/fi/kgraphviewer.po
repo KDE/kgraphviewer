@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-17 00:43+0000\n"
-"PO-Revision-Date: 2023-03-12 10:54+0200\n"
+"PO-Revision-Date: 2023-04-17 19:58+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -231,8 +231,7 @@ msgid "Opens a new empty KGraphViewer window."
 msgstr "Avaa uuden tyhjän KGraphViewer-ikkunan."
 
 #: kgraphviewer.cpp:215
-#, fuzzy, kde-format
-#| msgid "Shows the file open dialog to choose a GraphViz dot file to open."
+#, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 "Näyttää tiedostonavausikkunan avattavan GraphViz-tiedoston valitsemiseksi."
@@ -283,10 +282,9 @@ msgid "KGraphViewer"
 msgstr "KGraphViewer"
 
 #: main.cpp:49
-#, fuzzy, kde-format
-#| msgid "A Graphviz dot graph viewer for KDE"
+#, kde-format
 msgid "A Graphviz DOT graph viewer"
-msgstr "Graphviz dot -graafikatselin KDE:lle"
+msgstr "Graphviz-DOT-graafikatselin"
 
 #: main.cpp:54
 #, kde-format
@@ -334,14 +332,12 @@ msgid "Port to KF5"
 msgstr "Siirros KF5:een"
 
 #: main.cpp:94
-#, fuzzy, kde-format
-#| msgid ""
-#| "A KGraphViewer window is already open, where do you want to open this "
-#| "file?"
+#, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
 "in the existing window?"
-msgstr "KGraphViewer-ikkuna on jo auki: mihin haluat avata tämän tiedoston?"
+msgstr ""
+"KGraphViewer-ikkuna on jo auki: mihin niistä haluat avata tämän tiedoston?"
 
 #: part/canvasedge.cpp:74
 #, kde-format
@@ -463,27 +459,21 @@ msgid "Layout the graph using the circo program."
 msgstr "Asettele graafi circo-ohjelmalla."
 
 #: part/dotgraphview.cpp:457
-#, fuzzy, kde-format
-#| msgid "Choose a GraphViz layout algorithm or edit your own one."
+#, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
-msgstr "Valitse GraphVizin asettelualgoritmi tai muokkaa omaasi."
+msgstr "Valitse GraphVizin asettelualgoritmi tai muokkaa omaa"
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose a GraphViz layout algorithm or type in your own command that will "
-#| "generate a graph in the xdot format on its standard output. For example, "
-#| "to manually specify the <tt>G</tt> option to the dot command, type in: "
-#| "<tt>dot -Gname=MyGraphName -Txdot </tt>"
+#, kde-format
 msgid ""
 "Choose a Graphviz layout algorithm or type in your own command that will "
 "generate a graph in the xdot format on its standard output. For example, to "
 "manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
 "Gname=MyGraphName -Txdot </tt>"
 msgstr ""
-"Valitse GraphVizin asettelualgoritmi tai kirjoita oma komentosi, joka luo "
-"graafin xdot-muodossa vakiotulosvirtaansa. Asettaaksesi esim. <tt>G</tt>-"
-"valitsimen dot-komennolle, kirjoita: <tt>dot -Gname=GraafiniNimi -Txdot</tt>"
+"Valitse GraphVizin asettelualgoritmi tai syötä oma komento, joka luo graafin "
+"xdot-muodossa vakiotulosvirtaan. Asettaaksesi esim. <tt>G</tt>-valitsimen "
+"dot-komennolle, kirjoita: <tt>dot -Gname=GraafinNimi -Txdot</tt>"
 
 #: part/dotgraphview.cpp:465
 #, kde-format
@@ -515,6 +505,8 @@ msgid ""
 "Resets the layout command to use to the default depending on the graph type "
 "(directed or not)."
 msgstr ""
+"Palauttaa asettelukomennon käyttämään graafin mukaista oletusta (suuntainen "
+"tai ei)."
 
 #: part/dotgraphview.cpp:472
 #, kde-format
@@ -659,6 +651,20 @@ msgid ""
 "<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
 "printing options.</li></ul>"
 msgstr ""
+"<h1>Graphviz, DOT-muotoisten graafien visualisointi</h1><p>Jos graafi on "
+"käyttöliittymäalkiota suurempi, yhdellä reunalla näytetään yleiskuva. "
+"Valitse kontekstivalikosta, tulisi yleiskuvan optimaalinen sijainti laskea "
+"automaattisesti vai asettaa mihin sen haluat.</p><h2>Miten sitä käytetään?</"
+"h2><ul><li>Graafin siirtämiseksi voit:<ul><li>napsauttaa ja vetää sitä</"
+"li>    <li>käyttää vierityspalkkeja</li>    <li>painaa nuolinäppäimiä</"
+"li>    <li>napsauttaa jonnekin yleiskuvanäkymässä</li>    <li>käyttää hiiren "
+"rullaa (ylös tai alas muuntonäppäimittä, vasempaan ja oikeaan <Alt>-"
+"näppäintä painaen) tai</li>    <li>napsauttaa ja vetää yleiskuvanäkymää.</"
+"li>  </ul></li><li>Lähentää ja loitontaa voi joko työkalurivin painikkein "
+"tai hiiren rullalla <Vaihto>-näppäintä painaen.</li><li>Kontekstivalikosta "
+"(yleensä hiiren oikealla painikkeella) löytää lisävaihtoehtoja.</"
+"li><li>Tulostusmahdollisuuksista saa tietoa <tt>Tulostusesikatselu</tt>- tai "
+"<tt>Sivun asettelu</tt> -painikkeilla.</li></ul>"
 
 #: part/dotgraphview.cpp:790
 #, kde-format
@@ -1036,10 +1042,9 @@ msgid "Adds table borders."
 msgstr "Lisää taulukon reunaviivat."
 
 #: part/simpleprintingpagesetup.cpp:129
-#, fuzzy, kde-format
-#| msgid "Changes page size and margins."
+#, kde-format
 msgid "Change Page Size and Margins..."
-msgstr "Muuttaa sivun kokoa ja reunuksia."
+msgstr "Muuta sivun kokoa ja reunuksia…"
 
 #: part/simpleprintingpagesetup.cpp:130
 #, kde-format
@@ -1136,7 +1141,7 @@ msgstr "Sovita &monelle sivulle"
 #: part/simpleprintingpagesetupbase.ui:262
 #, kde-format
 msgid "Related actions:"
-msgstr ""
+msgstr "Asiaan liittyviä toimintoja:"
 
 #: part/simpleprintpreviewwindow.cpp:69
 #, kde-format
