@@ -1,7 +1,6 @@
 # translation of kgraphviewer.po to galician
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # mvillarino <mvillarino@users.sourceforge.net>, 2007, 2008, 2009.
 # Marce Villarino <mvillarino@kde-espana.es>, 2009.
 # marce villarino <mvillarino@users.sourceforge.net>, 2009.
@@ -9,20 +8,22 @@
 # Xosé <xosecalvo@gmail.com>, 2009, 2012.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-17 00:43+0000\n"
-"PO-Revision-Date: 2019-02-17 11:39+0100\n"
+"PO-Revision-Date: 2023-04-24 07:53+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
-"Language-Team: Galician <kde-i18n-doc@kde.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -222,17 +223,16 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "Quere cargar de novo os ficheiros da sesión anterior?"
 
 #: kgraphviewer.cpp:120
-#, fuzzy, kde-format
-#| msgid "Reloading"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "Cargando de novo"
+msgstr "Cargar de novo"
 
 #: kgraphviewer.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
-msgstr ""
+msgstr "Non cargar de novo"
 
 #: kgraphviewer.cpp:212
 #, kde-format
@@ -474,6 +474,7 @@ msgstr "Dispón o gráfico empregando o programa circo."
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr "Escolla un algoritmo de disposición de GraphViz ou edite un propio."
 
+# well-spelled: UnNome
 #: part/dotgraphview.cpp:459
 #, kde-format
 msgid ""
@@ -482,7 +483,7 @@ msgid ""
 "manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
 "Gname=MyGraphName -Txdot </tt>"
 msgstr ""
-"Escolla un algoritmo de disposición de GraphViz ou indique unha orde "
+"Escolla un algoritmo de disposición de Graphviz ou indique unha orde "
 "personalizada que xere un gráfico no formato xdot pola saída estándar. Por "
 "exemplo, para indicar manualmente a opción <tt>G</tt> da orde dot, escriba: "
 "<tt>dot -Gname=UnNome -Txdot</tt>"
@@ -801,7 +802,7 @@ msgstr "Columnas:"
 #: part/KgvPageLayoutColumnsBase.ui:37
 #, kde-format
 msgid "Column spacing:"
-msgstr "Espazamento das columnas:"
+msgstr "Espazo das columnas:"
 
 #: part/KgvPageLayoutDia.cpp:62
 #, kde-format
@@ -835,7 +836,7 @@ msgstr "Cabeceira distinta nas páxinas pares e impares"
 #: part/KgvPageLayoutHeaderBase.ui:55
 #, kde-format
 msgid "Spacing between header and body:"
-msgstr "Espazamento entre a cabeceira e o corpo:"
+msgstr "Espazo entre a cabeceira e o corpo:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
 #: part/KgvPageLayoutHeaderBase.ui:77
@@ -966,7 +967,7 @@ msgstr "Picas (pi)"
 #: part/KgvUnit.cpp:61
 #, kde-format
 msgid "Didot (dd)"
-msgstr "Didots (dd)"
+msgstr "Didot (dd)"
 
 #: part/KgvUnit.cpp:63
 #, kde-format
