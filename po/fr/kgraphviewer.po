@@ -8,9 +8,9 @@
 # Joëlle Cornavin <jcorn@free.fr>, 2010, 2011.
 # Thomas Vergnaud <thomas.vergnaud@gmx.fr>, 2014, 2015, 2022.
 # Xavier Besnard <xavier.besnard@neuf.fr>, 2020, 2021, 2022.
+# Xavier BESNARD <xavier.besnard@neuf.fr>, 2023.
 #
 # Automatically generated, 2008.
-# Xavier BESNARD <xavier.besnard]neuf.fr>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
