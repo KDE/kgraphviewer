@@ -120,7 +120,7 @@
 
 <para>Other required software: &kgraphviewer; is a program that uses the &graphviz; tool &dot; for graph layout. Its dependencies are:
 <itemizedlist>
-	<listitem><para>The &Qt; and &kf5; libraries version 5.x;</para></listitem>
+	<listitem><para>The &Qt; and &kde-frameworks; libraries version 5.x;</para></listitem>
 	<listitem><para>The &graphviz; tools as externals programs (tested with version 2.8);</para></listitem>
 	<listitem><para>The &boost; library version 1.36.</para></listitem>
 </itemizedlist></para>
