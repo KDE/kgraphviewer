@@ -31,7 +31,7 @@
   <name xml:lang="sk">KGraphViewer</name>
   <name xml:lang="sl">KGraphViewer</name>
   <name xml:lang="sv">Kgraphviewer</name>
-  <name xml:lang="tr">KGraphViewer</name>
+  <name xml:lang="tr">K Grafik Görüntüleyicisi</name>
   <name xml:lang="uk">KGraphViewer</name>
   <name xml:lang="x-test">xxKGraphViewerxx</name>
   <name xml:lang="zh-CN">KGraphViewer</name>
@@ -88,7 +88,7 @@
     <p xml:lang="pt-BR">KGraphViewer é um visualizador de arquivos de grafos DOT do Graphviz, com objetivo de substituir as outras ferramentas desatualizadas do Graphviz. Os grafos são normalmente usados em domínios científicos e, em particular, na ciência da computação.</p>
     <p xml:lang="sl">KGraphViewer je pregledovalnik datotek Graphviz DOT, namenjen kot nadomestek drugih zastarelih orodij Graphviz. Graf se pogosto uporabljajo pri znanstvenih področjih in zlasti v računalništvu.</p>
     <p xml:lang="sv">Kgraphviewer är ett visningsprogram av Graphviz dot-grafer, med målet att ersätta övriga föråldrade Graphviz-verktyg. Användning av grafer är vanligt i vetenskapliga områden, i synnerhet inom datavetenskap.</p>
-    <p xml:lang="tr">KGraphViewer bir Graphiz DOT graf dosyası görüntüleyicisidir. Zamanı dolmuş diğer GraphViz araçlarının yerini alması amaçlanmıştır. Grafikler genel olarak bilimsel alanda ve bilgisayar bilişmlerinde kullanılmaktadır.</p>
+    <p xml:lang="tr">K Grafik Görüntüleyicisi bir Graphiz DOT graf dosyası görüntüleyicisidir. Zamanı dolmuş diğer GraphViz araçlarının yerini alması amaçlanmıştır. Grafikler genel olarak bilimsel alanda ve bilgisayar bilişmlerinde kullanılmaktadır.</p>
     <p xml:lang="uk">KGraphViewer — програма для перегляду графів у форматі DOT Graphviz. Її створено як заміну застарілим інструментам для роботи з Graphviz. Графи широко використовуються у наукових дослідженнях, зокрема у комп’ютерних науках.</p>
     <p xml:lang="x-test">xxKGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools. Graphs are commonly used in scientific domains and particularly in computer science.xx</p>
     <p xml:lang="zh-CN">KGraphViewer 是 Graphviz DOT 图形文件查看器，旨在替换其他过时的 Graphviz 工具。Graphs 通常用于科学领域，特别是计算机科学。</p>
