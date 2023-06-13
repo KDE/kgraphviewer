@@ -237,7 +237,7 @@
 >Andere benodigde software: &kgraphviewer; is een programma dat gebruik maakt van het &graphviz; hulpmiddel &dot; voor de grafische opmaak. Zijn afhankelijkheden van: <itemizedlist>
 	<listitem
 ><para
->De &Qt; en &kf5; bibliotheken met versie 5.x;</para
+>De &Qt; en &kde-frameworks; bibliotheken met versie 5.x;</para
 ></listitem>
 	<listitem
 ><para

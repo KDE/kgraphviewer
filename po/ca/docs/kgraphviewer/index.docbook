@@ -237,7 +237,7 @@
 >Un altre programari necessari: el &kgraphviewer; és un programa que utilitza l'eina &graphviz; de &dot; per al disseny de les gràfiques. Les seves dependències són: <itemizedlist>
 	<listitem
 ><para
->Les biblioteques &Qt; i &kf5; versió 5.x.</para
+>Les biblioteques &Qt; i &kde-frameworks; versió 5.x.</para
 ></listitem>
 	<listitem
 ><para

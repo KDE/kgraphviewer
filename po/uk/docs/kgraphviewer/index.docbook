@@ -251,7 +251,7 @@
 >Інші потрібні програми: &kgraphviewer; — програма, яка використовує інструмент &graphviz; — &dot; — для компонування графів. Програма залежить від наявності таких компонентів: <itemizedlist>
 	<listitem
 ><para
->Бібліотека &Qt; та бібліотеки &kf5; версії 5.x;</para
+>Бібліотека &Qt; та бібліотеки &kde-frameworks; версії 5.x;</para
 ></listitem>
 	<listitem
 ><para
@@ -1652,8 +1652,7 @@
 >Переклад українською: Юрій Чорноіван <email
 >yurchor@ukr.net</email
 ></para
-> 
-&underFDL; &underGPL; </sect1>
+> &underFDL; &underGPL; </sect1>
 
 </chapter>
 
