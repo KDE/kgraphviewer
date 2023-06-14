@@ -251,7 +251,7 @@
 >Altro software richiesto: &kgraphviewer; è un programma che usa lo strumento &dot; di &graphviz; per la struttura dei grafi. Le sue dipendenze sono: <itemizedlist>
 	<listitem
 ><para
->Le librerie &Qt; e &kf5; versione 5.x;</para
+>Le librerie &Qt; e &kde-frameworks; versione 5.x;</para
 ></listitem>
 	<listitem
 ><para
