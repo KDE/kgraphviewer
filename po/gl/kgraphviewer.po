@@ -427,7 +427,7 @@ msgstr "Dot"
 #: part/dotgraphview.cpp:425
 #, kde-format
 msgid "Layout the graph using the dot program."
-msgstr "Dispón o gráfico empregando o programa dot."
+msgstr "Dispón o gráfico usando o programa dot."
 
 #: part/dotgraphview.cpp:429
 #, kde-format
@@ -437,7 +437,7 @@ msgstr "Neato"
 #: part/dotgraphview.cpp:430
 #, kde-format
 msgid "Layout the graph using the neato program."
-msgstr "Dispón o gráfico empregando o programa neato."
+msgstr "Dispón o gráfico usando o programa neato."
 
 #: part/dotgraphview.cpp:434
 #, kde-format
@@ -447,7 +447,7 @@ msgstr "Twopi"
 #: part/dotgraphview.cpp:435
 #, kde-format
 msgid "Layout the graph using the twopi program."
-msgstr "Dispón o gráfico empregando o programa twopi."
+msgstr "Dispón o gráfico usando o programa twopi."
 
 #: part/dotgraphview.cpp:439
 #, kde-format
@@ -457,7 +457,7 @@ msgstr "Fdp"
 #: part/dotgraphview.cpp:440
 #, kde-format
 msgid "Layout the graph using the fdp program."
-msgstr "Dispón o gráfico empregando o programa fdp."
+msgstr "Dispón o gráfico usando o programa fdp."
 
 #: part/dotgraphview.cpp:444
 #, kde-format
@@ -467,7 +467,7 @@ msgstr "Circo"
 #: part/dotgraphview.cpp:445
 #, kde-format
 msgid "Layout the graph using the circo program."
-msgstr "Dispón o gráfico empregando o programa circo."
+msgstr "Dispón o gráfico usando o programa circo."
 
 #: part/dotgraphview.cpp:457
 #, kde-format
@@ -504,8 +504,8 @@ msgid ""
 "Specify yourself the layout command to use. Given a dot file, it should "
 "produce an xdot file on its standard output."
 msgstr ""
-"Especifique por si mesmo a orde a empregar para dispor. Dado un ficheiro "
-"dot, debe producir un ficheiro xdot na saída estándar."
+"Especifique por si mesmo a orde a usar para dispor. Dado un ficheiro dot, "
+"debe producir un ficheiro xdot na saída estándar."
 
 #: part/dotgraphview.cpp:469
 #, kde-format
@@ -547,8 +547,8 @@ msgid ""
 "Use the Export Graph menu to export the graph in another format. There is "
 "currently only one export format supported: as a PNG image."
 msgstr ""
-"Empregue o menú Exportar o gráfico para exportar o gráfico a outro formato. "
-"Na actualidade só se permite exportar a un formato: como imaxe PNG."
+"Use o menú Exportar o gráfico para exportar o gráfico a outro formato. Na "
+"actualidade só se permite exportar a un formato: como imaxe PNG."
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -671,16 +671,16 @@ msgstr ""
 "esquina. Escolla no menú de contexto se a posición óptima deste resumo debe "
 "calcularse automaticamente ou posta onde vostede queira.</p><h2>Como "
 "traballar con el?</h2><ul><li>Para mover o gráfico pode:  <ul>    <li>premer "
-"e arrastralo</li>    <li>empregar as barras de posicionamento</li>    "
-"<li>premer as teclas de frecha</li>    <li>premer algures da vista completa  "
-"</li>    <li>empregar a roda do rato (arriba e abaixo sen modificadores, "
-"esquerda e dereita coa tecla <Alt> premida)</li>    <li>ou premer e "
-"arrastrar na vista completa</li>  </ul></li><li>Para ampliar, pode, ou "
-"empregar os botón de ampliar e reducir na barra de ferramentas, ou premer a "
-"tecla <Maiús> mentres move a roda do rato.</li><li>Probe o menú de contexto "
-"(normalmente co botón secundario do rato) para descubrir outras "
-"posibilidades.</li> <li>Probe cos botóns <tt>Previsualizar o impreso</tt> ou "
-"<tt>Configurar a páxina</tt> para explorar as opcións de impresión.</li></ul>"
+"e arrastralo</li>    <li>usar as barras de posicionamento</li>    <li>premer "
+"as teclas de frecha</li>    <li>premer algures da vista completa  </li>    "
+"<li>usar a roda do rato (arriba e abaixo sen modificadores, esquerda e "
+"dereita coa tecla <Alt> premida)</li>    <li>ou premer e arrastrar na vista "
+"completa</li>  </ul></li><li>Para ampliar, pode, ou usar os botón de ampliar "
+"e reducir na barra de ferramentas, ou premer a tecla <Maiús> mentres move a "
+"roda do rato.</li><li>Probe o menú de contexto (normalmente co botón "
+"secundario do rato) para descubrir outras posibilidades.</li> <li>Probe cos "
+"botóns <tt>Previsualizar o impreso</tt> ou <tt>Configurar a páxina</tt> para "
+"explorar as opcións de impresión.</li></ul>"
 
 #: part/dotgraphview.cpp:790
 #, kde-format
@@ -723,7 +723,7 @@ msgid ""
 "Specify here the command that will be used to layout the graph.\n"
 "The command MUST write its results on stdout in xdot format."
 msgstr ""
-"Indique aquí a orde que se ha empregar para dispor o gráfico.\n"
+"Indique aquí a orde que se ha usar para dispor o gráfico.\n"
 "A orde DEBE sacar o resultado pola saída estándar no formato xdot."
 
 #: part/dotgraphview.cpp:2155
@@ -734,7 +734,7 @@ msgstr "Non se puido abrir %1."
 #: part/kgraphviewer_part.cpp:102
 #, kde-format
 msgid "Print the graph using current page setup settings"
-msgstr "Imprimir o gráfico empregando a configuración actual da páxina"
+msgstr "Imprimir o gráfico usando a configuración actual da páxina"
 
 #: part/kgraphviewer_part.cpp:106
 #, kde-format
