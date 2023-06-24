@@ -243,7 +243,7 @@ msgstr "Abre unha xanela nova baleira de KGraphViewer."
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
-"Mostra o diálogo para abrir ficheiros para escoller un ficheiro de DOT de "
+"Amosa o diálogo para abrir ficheiros para escoller un ficheiro de DOT de "
 "GraphViz para abrir."
 
 #: kgraphviewer.cpp:219
@@ -263,7 +263,7 @@ msgstr "Sae do KGraphViewer."
 #: kgraphviewer.cpp:232
 #, kde-format
 msgid "Shows or hides the status bar."
-msgstr "Mostra ou agocha a barra de estado."
+msgstr "Amosa ou agocha a barra de estado."
 
 #: kgraphviewer.cpp:235
 #, kde-format
