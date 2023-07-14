@@ -525,3 +525,5 @@ void CanvasElement::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 }
 
 }
+
+#include "moc_canvaselement.cpp"

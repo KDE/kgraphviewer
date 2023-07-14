@@ -401,3 +401,5 @@ void KGraphViewerPart::slotRenameNode(const QString &oldNodeName, const QString 
 }
 
 #include "kgraphviewer_part.moc"
+
+#include "moc_kgraphviewer_part.cpp"

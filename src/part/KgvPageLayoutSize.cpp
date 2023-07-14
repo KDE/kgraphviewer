@@ -385,3 +385,5 @@ void KgvPageLayoutSize::setColumns(KgvColumns &columns)
 {
     pgPreview->setPageColumns(columns);
 }
+
+#include "moc_KgvPageLayoutSize.cpp"

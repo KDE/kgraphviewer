@@ -175,3 +175,5 @@ void PannerView::contextMenuEvent(QContextMenuEvent *event)
 }
 
 }
+
+#include "moc_pannerview.cpp"

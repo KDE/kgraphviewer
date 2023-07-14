@@ -883,3 +883,5 @@ QString DotGraph::backColor() const
 }
 
 }
+
+#include "moc_dotgraph.cpp"

@@ -110,3 +110,5 @@ QTextStream &operator<<(QTextStream &s, const GraphNode &n)
 }
 
 }
+
+#include "moc_graphnode.cpp"

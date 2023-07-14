@@ -2190,3 +2190,5 @@ void DotGraphView::centerOnNode(const QString &nodeId)
 }
 
 }
+
+#include "moc_dotgraphview.cpp"

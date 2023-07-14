@@ -357,3 +357,5 @@ uint KGVSimplePrintingEngine::maxVertFit() const
 }
 
 }
+
+#include "moc_simpleprintingengine.cpp"

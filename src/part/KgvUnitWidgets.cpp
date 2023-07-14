@@ -455,3 +455,5 @@ double KgvUnitDoubleSpinComboBox::value() const
 {
     return m_combo->value();
 }
+
+#include "moc_KgvUnitWidgets.cpp"

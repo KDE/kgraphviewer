@@ -82,3 +82,5 @@ void KgvPageLayoutColumns::setLayout(KgvPageLayout &layout)
 {
     m_preview->setPageLayout(layout);
 }
+
+#include "moc_KgvPageLayoutColumns.cpp"

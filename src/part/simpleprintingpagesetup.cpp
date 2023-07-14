@@ -349,3 +349,5 @@ void KGVSimplePrintingPageSetup::slotVertFitChanged(int newValue)
 }
 
 }
+
+#include "moc_simpleprintingpagesetup.cpp"

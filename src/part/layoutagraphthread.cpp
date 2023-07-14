@@ -69,3 +69,5 @@ void LayoutAGraphThread::layoutGraph(graph_t *graph, const QString &layoutComman
     m_layoutCommand = layoutCommand;
     start();
 }
+
+#include "moc_layoutagraphthread.cpp"

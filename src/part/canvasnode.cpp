@@ -139,3 +139,5 @@ CanvasNode::CanvasNode(DotGraphView *v, GraphNode *s, QGraphicsScene *c, QGraphi
 // }
 
 }
+
+#include "moc_canvasnode.cpp"

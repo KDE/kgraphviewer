@@ -26,3 +26,5 @@ CanvasSubgraph::CanvasSubgraph(DotGraphView *v, GraphSubgraph *gsubgraph, QGraph
 }
 
 }
+
+#include "moc_canvassubgraph.cpp"

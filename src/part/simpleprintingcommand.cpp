@@ -267,3 +267,5 @@ void KGVSimplePrintingCommand::showPageSetup(const QString &aTitleText)
 }
 
 }
+
+#include "moc_simpleprintingcommand.cpp"

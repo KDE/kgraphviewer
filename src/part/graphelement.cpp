@@ -203,3 +203,5 @@ QTextStream &operator<<(QTextStream &s, const GraphElement &n)
 }
 
 }
+
+#include "moc_graphelement.cpp"

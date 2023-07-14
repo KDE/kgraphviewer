@@ -800,3 +800,5 @@ void KGraphEditor::slotHoverLeave(const QString &id)
     qCDebug(KGRAPHEDITOR_LOG) << id;
     statusBar()->showMessage("");
 }
+
+#include "moc_kgrapheditor.cpp"

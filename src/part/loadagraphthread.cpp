@@ -60,3 +60,5 @@ void LoadAGraphThread::loadFile(const QString &dotFileName)
     m_g = nullptr;
     start();
 }
+
+#include "moc_loadagraphthread.cpp"

@@ -84,3 +84,5 @@ const KgvKWHeaderFooter &KgvPageLayoutHeader::headerFooter()
         m_headerFooters.footer = HF_SAME;
     return m_headerFooters;
 }
+
+#include "moc_KgvPageLayoutHeader.cpp"

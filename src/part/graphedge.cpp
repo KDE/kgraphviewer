@@ -155,3 +155,5 @@ QTextStream &operator<<(QTextStream &s, const GraphEdge &e)
 }
 
 }
+
+#include "moc_graphedge.cpp"

@@ -85,3 +85,5 @@ void KGraphEditorElementTreeWidget::contextMenuEvent(QContextMenuEvent *e)
     setupPopup(e->pos());
     m_popup->exec(e->globalPos());
 }
+
+#include "moc_KGraphEditorElementTreeWidget.cpp"
