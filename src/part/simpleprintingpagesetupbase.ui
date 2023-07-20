@@ -218,10 +218,6 @@
           <property name="text">
            <string/>
           </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>.</normaloff>.</iconset>
-          </property>
          </widget>
         </item>
         <item row="0" column="0" colspan="2">
