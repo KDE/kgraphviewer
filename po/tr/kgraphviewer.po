@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:43+0000\n"
+"POT-Creation-Date: 2023-07-21 00:46+0000\n"
 "PO-Revision-Date: 2023-06-11 21:53+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -1133,25 +1133,25 @@ msgid "Vertically"
 msgstr "Dikey olarak"
 
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
-#: part/simpleprintingpagesetupbase.ui:232
+#: part/simpleprintingpagesetupbase.ui:228
 #, kde-format
 msgid "&Natural size"
 msgstr "&Doğal boyut"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
-#: part/simpleprintingpagesetupbase.ui:239
+#: part/simpleprintingpagesetupbase.ui:235
 #, kde-format
 msgid "Fit &to one page"
 msgstr "Bi&r sayfaya sığdır"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
-#: part/simpleprintingpagesetupbase.ui:246
+#: part/simpleprintingpagesetupbase.ui:242
 #, kde-format
 msgid "F&it to several pages"
 msgstr "B&irkaç sayfaya sığdır"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
-#: part/simpleprintingpagesetupbase.ui:262
+#: part/simpleprintingpagesetupbase.ui:258
 #, kde-format
 msgid "Related actions:"
 msgstr "İlgili eylemler:"

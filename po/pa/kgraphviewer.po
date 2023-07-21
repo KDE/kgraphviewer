@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:43+0000\n"
+"POT-Creation-Date: 2023-07-21 00:46+0000\n"
 "PO-Revision-Date: 2019-02-10 09:23-0800\n"
 "Last-Translator: A S Alam <alam.yellow@gmail.com>\n"
 "Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
@@ -1098,28 +1098,28 @@ msgid "Vertically"
 msgstr "ਵਰਟੀਕਲ"
 
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
-#: part/simpleprintingpagesetupbase.ui:232
+#: part/simpleprintingpagesetupbase.ui:228
 #, fuzzy, kde-format
 #| msgid "Natural size"
 msgid "&Natural size"
 msgstr "ਕੁਦਰਤੀ ਸਾਈਜ਼"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
-#: part/simpleprintingpagesetupbase.ui:239
+#: part/simpleprintingpagesetupbase.ui:235
 #, fuzzy, kde-format
 #| msgid "Fit to one page"
 msgid "Fit &to one page"
 msgstr "ਇੱਕ ਪੇਜ਼ ਉੱਤੇ ਫਿੱਟ"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
-#: part/simpleprintingpagesetupbase.ui:246
+#: part/simpleprintingpagesetupbase.ui:242
 #, fuzzy, kde-format
 #| msgid "Fit to several pages"
 msgid "F&it to several pages"
 msgstr "ਕਈ ਪੇਜ਼ਾਂ ਉੱਤੇ ਫਿੱਟ"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
-#: part/simpleprintingpagesetupbase.ui:262
+#: part/simpleprintingpagesetupbase.ui:258
 #, kde-format
 msgid "Related actions:"
 msgstr "ਸਬੰਧਿਤ ਐਕਸ਼ਨ:"

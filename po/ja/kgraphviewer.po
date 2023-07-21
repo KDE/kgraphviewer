@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:43+0000\n"
+"POT-Creation-Date: 2023-07-21 00:46+0000\n"
 "PO-Revision-Date: 2009-02-25 00:07+0900\n"
 "Last-Translator: Yukiko Bando <ybando@k6.dion.ne.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1190,28 +1190,28 @@ msgid "Vertically"
 msgstr "垂直方向"
 
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
-#: part/simpleprintingpagesetupbase.ui:232
+#: part/simpleprintingpagesetupbase.ui:228
 #, fuzzy, kde-format
 #| msgid "Natural size"
 msgid "&Natural size"
 msgstr "本来のサイズ"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
-#: part/simpleprintingpagesetupbase.ui:239
+#: part/simpleprintingpagesetupbase.ui:235
 #, fuzzy, kde-format
 #| msgid "Fit to one page"
 msgid "Fit &to one page"
 msgstr "単一ページに印刷"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
-#: part/simpleprintingpagesetupbase.ui:246
+#: part/simpleprintingpagesetupbase.ui:242
 #, fuzzy, kde-format
 #| msgid "Fit to several pages"
 msgid "F&it to several pages"
 msgstr "複数ページに印刷"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
-#: part/simpleprintingpagesetupbase.ui:262
+#: part/simpleprintingpagesetupbase.ui:258
 #, kde-format
 msgid "Related actions:"
 msgstr "関連するアクション:"

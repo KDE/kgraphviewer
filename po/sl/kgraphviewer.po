@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:43+0000\n"
+"POT-Creation-Date: 2023-07-21 00:46+0000\n"
 "PO-Revision-Date: 2022-10-20 07:18+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -1124,25 +1124,25 @@ msgid "Vertically"
 msgstr "Navpično"
 
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
-#: part/simpleprintingpagesetupbase.ui:232
+#: part/simpleprintingpagesetupbase.ui:228
 #, kde-format
 msgid "&Natural size"
 msgstr "Naravna velikost"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
-#: part/simpleprintingpagesetupbase.ui:239
+#: part/simpleprintingpagesetupbase.ui:235
 #, kde-format
 msgid "Fit &to one page"
 msgstr "Prilagodi na eno stran"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
-#: part/simpleprintingpagesetupbase.ui:246
+#: part/simpleprintingpagesetupbase.ui:242
 #, kde-format
 msgid "F&it to several pages"
 msgstr "Prilagodi na več strani"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
-#: part/simpleprintingpagesetupbase.ui:262
+#: part/simpleprintingpagesetupbase.ui:258
 #, kde-format
 msgid "Related actions:"
 msgstr "Povezana dejanja:"

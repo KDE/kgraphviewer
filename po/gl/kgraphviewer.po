@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:43+0000\n"
+"POT-Creation-Date: 2023-07-21 00:46+0000\n"
 "PO-Revision-Date: 2023-04-24 07:53+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -1137,25 +1137,25 @@ msgid "Vertically"
 msgstr "Verticalmente"
 
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
-#: part/simpleprintingpagesetupbase.ui:232
+#: part/simpleprintingpagesetupbase.ui:228
 #, kde-format
 msgid "&Natural size"
 msgstr "Tamaño &natural"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
-#: part/simpleprintingpagesetupbase.ui:239
+#: part/simpleprintingpagesetupbase.ui:235
 #, kde-format
 msgid "Fit &to one page"
 msgstr "Axus&tar a unha páxina"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
-#: part/simpleprintingpagesetupbase.ui:246
+#: part/simpleprintingpagesetupbase.ui:242
 #, kde-format
 msgid "F&it to several pages"
 msgstr "Axustar a varias páx&inas"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
-#: part/simpleprintingpagesetupbase.ui:262
+#: part/simpleprintingpagesetupbase.ui:258
 #, kde-format
 msgid "Related actions:"
 msgstr "Accións relacionadas:"
