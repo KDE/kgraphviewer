@@ -251,7 +251,7 @@
 >Annan programvara som krävs: &kgraphviewer; är ett program som använder &graphviz;-verktyget &dot; för layout av grafer. Dess beroenden är: <itemizedlist>
 	<listitem
 ><para
->&Qt;- och KF5-biblioteken version 5.x,</para
+>&Qt;- och &kde; Ramverk-biblioteken version 5.x,</para
 ></listitem>
 	<listitem
 ><para
