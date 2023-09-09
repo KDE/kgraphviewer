@@ -76,6 +76,8 @@ target_sources(kgrapheditor PRIVATE
     kgrapheditorConfigDialog.cpp
     KGraphEditorNodesTreeWidget.cpp
     KGraphEditorElementTreeWidget.cpp
+
+    kgrapheditor.qrc
 )
 
 set(kgrapheditor_dbus_SRCS)
@@ -110,7 +112,6 @@ install( TARGETS kgrapheditor ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 ########### install kgrapheditor files ###############
 
 install(FILES kgrapheditorsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
-install(FILES kgrapheditorui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kgrapheditor)
 install(PROGRAMS org.kde.kgrapheditor.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
 
 
