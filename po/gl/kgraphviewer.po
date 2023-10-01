@@ -8,14 +8,14 @@
 # Xosé <xosecalvo@gmail.com>, 2009, 2012.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
+# SPDX-FileCopyrightText: 2023 Adrián Chaves (Gallaecio)
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-21 00:46+0000\n"
-"PO-Revision-Date: 2023-04-24 07:53+0200\n"
+"PO-Revision-Date: 2023-09-30 14:13+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -48,12 +48,12 @@ msgstr "Quere cargar de novo os ficheiros da sesión anterior?"
 #: kgrapheditor.cpp:146
 #, kde-format
 msgid "Unable to start"
-msgstr "Non se pode iniciar."
+msgstr "Non é posíbel iniciar."
 
 #: kgrapheditor.cpp:146 kgraphviewer.cpp:145
 #, kde-format
 msgid "Could not find the KGraphViewer part."
-msgstr "Non se puido atopar o compoñente KGraphViewer."
+msgstr "Non foi posíbel atopar o compoñente KGraphViewer."
 
 #: kgrapheditor.cpp:227 kgraphviewer.cpp:225
 #, kde-format
@@ -387,7 +387,7 @@ msgstr "Fallou o proceso de deseño"
 #: part/dotgraph.cpp:265
 #, kde-format
 msgid "Unable to start %1."
-msgstr "Non se pode iniciar %1."
+msgstr "Non é posíbel iniciar %1."
 
 #: part/dotgraph.cpp:268
 #, kde-format
@@ -691,7 +691,7 @@ msgstr "non se cargou ningún gráfico"
 #: part/dotgraphview.cpp:974
 #, kde-format
 msgid "graph %1 is getting loaded..."
-msgstr "estase a cargar o gráfico %1…"
+msgstr "Cargando o gráfico %1…"
 
 #: part/dotgraphview.cpp:914
 #, kde-format
@@ -729,7 +729,7 @@ msgstr ""
 #: part/dotgraphview.cpp:2155
 #, kde-format
 msgid "Failed to open %1"
-msgstr "Non se puido abrir %1."
+msgstr "Non foi posíbel abrir %1."
 
 #: part/kgraphviewer_part.cpp:102
 #, kde-format
