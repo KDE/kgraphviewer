@@ -336,7 +336,7 @@ msgstr "Martin Sandsmark"
 #: main.cpp:59
 #, kde-format
 msgid "Port to KF5"
-msgstr "Adaptació al KF5"
+msgstr "Adaptació als KF5"
 
 #: main.cpp:94
 #, kde-format
