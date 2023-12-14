@@ -82,6 +82,7 @@ Comment[tr]=Graphviz DOT dosya görüntüleyici
 Comment[uk]=Засіб перегляду файлів DOT Graphviz
 Comment[x-test]=xxGraphviz DOT files viewerxx
 Comment[zh_CN]=Graphviz DOT 文件查看器
+Comment[zh_TW]=Graphviz DOT 檔案檢視器
 MimeType=text/vnd.graphviz
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=kgraphviewerpart
