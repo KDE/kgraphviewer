@@ -69,6 +69,7 @@
   <summary xml:lang="uk">Програма для перегляду графів DOT Graphviz (бібліотека спільного використання)</summary>
   <summary xml:lang="x-test">xxA Graphviz DOT graph viewer (shared library)xx</summary>
   <summary xml:lang="zh-CN">Graphviz DOT 图表查看器 (共享库)</summary>
+  <summary xml:lang="zh-TW">一個 Graphviz DOT 圖形檢視器（分享函式庫）</summary>
   <url type="homepage">https://www.kde.org/applications/graphics/kgraphviewer/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kgraphviewer</url>
   <project_group>KDE</project_group>
