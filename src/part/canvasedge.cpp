@@ -215,7 +215,7 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
             int fontSize = edge()->fontSize();
             m_font->setPointSize(fontSize);
             QFontMetrics fm(*m_font);
-            while (fm.width(str) > stringWidthGoal && fontSize > 1) {
+            while (fm.horizontalAdvance(str) > stringWidthGoal && fontSize > 1) {
                 fontSize--;
                 m_font->setPointSize(fontSize);
                 fm = QFontMetrics(*m_font);
@@ -225,7 +225,7 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
 
             p->setPen(Dot2QtConsts::componentData().qtColor(edge()->fontColor()));
 
-            qreal x = (m_scaleX * ((dro.integers[0]) + (((-dro.integers[2]) * (fm.width(dro.str))) / 2) - ((fm.width(dro.str)) / 2))) + m_xMargin;
+            qreal x = (m_scaleX * ((dro.integers[0]) + (((-dro.integers[2]) * (fm.horizontalAdvance(dro.str))) / 2) - ((fm.horizontalAdvance(dro.str)) / 2))) + m_xMargin;
             qreal y = ((m_gh - (dro.integers[1])) * m_scaleY) + m_yMargin;
             QPointF point(x, y);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawText" << edge()->fontColor() << point;

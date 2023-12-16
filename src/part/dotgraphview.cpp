@@ -1121,7 +1121,7 @@ bool DotGraphView::displayGraph()
             QFont *font = FontsCache::changeable().fromName(d->m_graph->fontName());
             font->setPointSize(fontSize);
             QFontMetrics fm(*font);
-            while (fm.width(str) > stringWidthGoal && fontSize > 1) {
+            while (fm.horizontalAdvance(str) > stringWidthGoal && fontSize > 1) {
                 fontSize--;
                 font->setPointSize(fontSize);
                 fm = QFontMetrics(*font);

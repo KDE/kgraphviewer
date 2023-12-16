@@ -416,13 +416,13 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
                 m_font->setPointSize(fontSize);
 
                 QFontMetrics fm(*m_font);
-                fontWidth = fm.width(dro.str);
+                fontWidth = fm.horizontalAdvance(dro.str);
                 while (fontWidth > stringWidthGoal && fontSize > 1) {
                     // use floor'ed extrapolated font size
                     fontSize = double(stringWidthGoal) / fontWidth * fontSize;
                     m_font->setPointSize(fontSize);
                     fm = QFontMetrics(*m_font);
-                    fontWidth = fm.width(dro.str);
+                    fontWidth = fm.horizontalAdvance(dro.str);
                 }
                 m_fontSizeCache[num_T] = qMakePair(fontSize, fontWidth);
             }
