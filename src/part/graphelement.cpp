@@ -25,7 +25,7 @@
 
 #include <QDebug>
 
-#include <QRegExp>
+#include <qregularexpression.h>
 #include <graphviz/gvc.h>
 
 namespace KGraphViewer
@@ -154,8 +154,8 @@ void GraphElement::exportToGraphviz(void *element) const
             if (it.key() == "label") {
                 QString label = it.value();
                 if (label != "label") {
-                    label.replace(QRegExp("\n"), "\\n");
-                    //           qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << "=\"" << label << "\",";
+                    label.replace(QRegularExpression("\n"), "\\n");
+                               qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << "=\"" << label << "\",";
                     agsafeset(element, it.key().toUtf8().data(), label.toUtf8().data(), QString().toUtf8().data());
                 }
             } else if (it.key() == "_draw_" || it.key() == "_ldraw_") {
@@ -179,8 +179,8 @@ QTextStream &operator<<(QTextStream &s, const GraphElement &n)
             if (it.key() == "label") {
                 QString label = it.value();
                 if (label != "label") {
-                    label.replace(QRegExp("\n"), "\\n");
-                    //           qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << "=\"" << label << "\",";
+                    label.replace(QRegularExpression("\n"), "\\n");
+                               qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << "=\"" << label << "\",";
                     if (firstAttr)
                         firstAttr = false;
                     else

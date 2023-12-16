@@ -32,7 +32,7 @@
 #include <QDebug>
 #include <QLocale>
 #include <klocalizedstring.h>
-#include <qregexp.h>
+#include <qregularexpression.h>
 
 QStringList KgvUnit::listOfUnitName()
 {
@@ -156,7 +156,7 @@ double KgvUnit::parseValue(const QString &sval, double defaultVal)
     if (value.isEmpty())
         return defaultVal;
 
-    int index = value.indexOf(QRegExp("[a-z]+$"));
+    int index = value.indexOf(QRegularExpression("[a-z]+$"));
     if (index == -1)
         return value.toDouble();
 
