@@ -90,14 +90,14 @@ int main(int argc, char **argv)
                     if (iface.isValid()) {
                         QDBusReply<void> reply = iface.call("openUrl", url.url(QUrl::PreferLocalFile));
                         if (reply.isValid()) {
-                            qCDebug(KGRAPHEDITOR_LOG) << "Reply was valid" << endl;
+                            qCDebug(KGRAPHEDITOR_LOG) << "Reply was valid" << Qt::endl;
                             return 0;
                         }
 
-                        qCWarning(KGRAPHEDITOR_LOG) << "Call failed: " << reply.error().message() << endl;
+                        qCWarning(KGRAPHEDITOR_LOG) << "Call failed: " << reply.error().message() << Qt::endl;
                         return 1;
                     }
-                    qCWarning(KGRAPHEDITOR_LOG) << "Invalid interface" << endl;
+                    qCWarning(KGRAPHEDITOR_LOG) << "Invalid interface" << Qt::endl;
                     exit(0);
                 } else {
                     widget = new KGraphEditor;

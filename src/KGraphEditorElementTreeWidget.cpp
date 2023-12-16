@@ -72,7 +72,7 @@ void KGraphEditorElementTreeWidget::slotRemoveAttribute()
     qCDebug(KGRAPHEDITOR_LOG) << "Remove Attribute";
     if (m_item == nullptr) // should not happen
     {
-        qCWarning(KGRAPHEDITOR_LOG) << "null item ; should not happen" << endl;
+        qCWarning(KGRAPHEDITOR_LOG) << "null item ; should not happen" << Qt::endl;
         return;
     }
     emit removeAttribute(m_item->text(0));

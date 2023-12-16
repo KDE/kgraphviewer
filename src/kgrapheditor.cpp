@@ -153,7 +153,7 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
     KGraphViewerInterface *view = qobject_cast<KGraphViewerInterface *>(part);
     if (!view) {
         // This should not happen
-        qCWarning(KGRAPHEDITOR_LOG) << "Failed to get KPart" << endl;
+        qCWarning(KGRAPHEDITOR_LOG) << "Failed to get KPart" << Qt::endl;
         return nullptr;
     }
     view->setReadWrite();

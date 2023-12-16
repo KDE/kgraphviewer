@@ -217,7 +217,7 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
         foreach (int i, op.integers) {
             dd << i << " ";
         }
-        dd << op.str << endl;
+        dd << op.str << Qt::endl;
     }
     qCDebug(KGRAPHVIEWERLIB_LOG) << msg;
 #endif
