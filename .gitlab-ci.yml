@@ -4,5 +4,5 @@
 include:
   - project: sysadmin/ci-utilities
     file:
-      - /gitlab-templates/linux-qt5.yml
-      - /gitlab-templates/freebsd-qt5.yml
+      - /gitlab-templates/linux.yml
+      - /gitlab-templates/freebsd.yml
