@@ -160,7 +160,7 @@ void CanvasElement::computeBoundingRect()
             QString msg;
             QTextStream dd(&msg);
             dd << element()->id() << " an op: " << (*it).renderop << " ";
-            foreach (int i, (*it).integers) {
+            for (int i : (*it).integers) {
                 dd << i << " ";
             }
             dd << (*it).str;
@@ -212,9 +212,9 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
 #if RENDER_DEBUG
     QString msg;
     QTextStream dd(&msg);
-    foreach (const DotRenderOp &op, element()->renderOperations()) {
+    for (const DotRenderOp &op : element()->renderOperations()) {
         dd << element()->id() << " an op: " << op.renderop << " ";
-        foreach (int i, op.integers) {
+        for (int i : op.integers) {
             dd << i << " ";
         }
         dd << op.str << Qt::endl;

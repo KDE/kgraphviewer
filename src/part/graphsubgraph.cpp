@@ -53,8 +53,8 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph &subgraph)
     GraphElement::updateWithElement(subgraph);
 
     bool found = false;
-    foreach (GraphElement *updatingge, subgraph.content()) {
-        foreach (GraphElement *ge, content()) {
+    for (GraphElement *updatingge : subgraph.content()) {
+        for (GraphElement *ge : content()) {
             if (ge->id() == updatingge->id()) {
                 found = true;
                 if (dynamic_cast<GraphNode *>(ge)) {
@@ -160,7 +160,7 @@ GraphElement *GraphSubgraph::elementNamed(const QString &id)
 {
     if (this->id() == id)
         return this;
-    foreach (GraphElement *element, content()) {
+    for (GraphElement *element : content()) {
         if (element->id() == id) {
             return element;
         } else if (dynamic_cast<GraphSubgraph *>(element)) {
@@ -188,7 +188,7 @@ bool GraphSubgraph::setElementSelected(GraphElement *element, bool selectValue, 
         setSelected(false);
         canvasElement()->update();
     }
-    foreach (GraphElement *el, content()) {
+    for (GraphElement *el : content()) {
         if (dynamic_cast<GraphSubgraph *>(el)) {
             bool subres = dynamic_cast<GraphSubgraph *>(el)->setElementSelected(element, selectValue, unselectOthers);
             if (!res)
@@ -214,7 +214,7 @@ void GraphSubgraph::retrieveSelectedElementsIds(QList<QString> selection)
     if (isSelected()) {
         selection.push_back(id());
     }
-    foreach (GraphElement *el, content()) {
+    for (GraphElement *el : content()) {
         if (dynamic_cast<GraphSubgraph *>(el)) {
             dynamic_cast<GraphSubgraph *>(el)->retrieveSelectedElementsIds(selection);
         } else if (el->isSelected()) {
@@ -226,7 +226,7 @@ void GraphSubgraph::retrieveSelectedElementsIds(QList<QString> selection)
 QTextStream &operator<<(QTextStream &s, const GraphSubgraph &sg)
 {
     s << "subgraph " << sg.id() << "  {" << Qt::endl << "graph [ " << dynamic_cast<const GraphElement &>(sg) << " ] " << Qt::endl;
-    foreach (const GraphElement *el, sg.content()) {
+    for (const GraphElement *el : sg.content()) {
         s << *(dynamic_cast<const GraphNode *>(el));
     }
     s << "}" << Qt::endl;

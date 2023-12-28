@@ -200,7 +200,7 @@ void KGraphViewerWindow::fileOpen()
         return;
     }
 
-    foreach (const QUrl &url, fileDialog.selectedUrls()) {
+    for (const QUrl &url : fileDialog.selectedUrls()) {
         openUrl(url);
     }
 }
@@ -521,7 +521,7 @@ void KGraphViewerWindow::slotHoverLeave(const QString &id)
 void KGraphViewerWindow::slotBackgroundColorChanged(const QColor &)
 {
     qCDebug(KGRAPHVIEWER_LOG);
-    foreach (KParts::Part *part, m_tabsPartsMap) {
+    for (KParts::Part *part : m_tabsPartsMap) {
         KGraphViewer::KGraphViewerInterface *kgv = qobject_cast<KGraphViewer::KGraphViewerInterface *>(part);
         if (!kgv) {
             // This should not happen

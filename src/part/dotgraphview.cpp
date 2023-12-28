@@ -382,7 +382,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph *gsubgraph, int zValue, C
         m_canvas->addItem(csubgraph);
         qCDebug(KGRAPHVIEWERLIB_LOG) << " one CanvasSubgraph... Done";
     }
-    foreach (GraphElement *element, gsubgraph->content()) {
+    for (GraphElement *element : gsubgraph->content()) {
         GraphNode *gnode = dynamic_cast<GraphNode *>(element);
         if (gnode->canvasNode() == nullptr) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating canvas node for:" << gnode->id();
@@ -401,7 +401,7 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph *gsubgraph, int zValue, C
     gsubgraph->canvasSubgraph()->computeBoundingRect();
 
     int newZvalue = zValue;
-    foreach (GraphSubgraph *ssg, gsubgraph->subgraphs()) {
+    for (GraphSubgraph *ssg : gsubgraph->subgraphs()) {
         int hereZvalue = displaySubgraph(ssg, zValue, gsubgraph->canvasSubgraph());
         if (hereZvalue > newZvalue)
             newZvalue = hereZvalue;
@@ -564,7 +564,7 @@ void DotGraphViewPrivate::exportToImage()
         return;
 
     QStringList writableMimetypes;
-    foreach (const QByteArray &mimeType, QImageWriter::supportedMimeTypes()) {
+    for (const QByteArray &mimeType : QImageWriter::supportedMimeTypes()) {
         writableMimetypes.append(QString::fromLatin1(mimeType));
     }
     const QString svgMimetype = QStringLiteral("image/svg+xml");
@@ -1061,7 +1061,7 @@ bool DotGraphView::displayGraph()
 
     qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating" << d->m_graph->subgraphs().size() << "CanvasSubgraphs from" << d->m_graph;
     int zvalue = -1;
-    foreach (GraphSubgraph *gsubgraph, d->m_graph->subgraphs()) {
+    for (GraphSubgraph *gsubgraph : d->m_graph->subgraphs()) {
         int newZvalue = d->displaySubgraph(gsubgraph, zvalue);
         if (newZvalue > zvalue)
             zvalue = newZvalue;
@@ -1091,7 +1091,7 @@ bool DotGraphView::displayGraph()
     }
 
     qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating" << d->m_graph->edges().size() << "edges from" << d->m_graph;
-    foreach (GraphEdge *gedge, d->m_graph->edges()) {
+    for (GraphEdge *gedge : d->m_graph->edges()) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << "One GraphEdge:" << gedge->id();
         if (gedge->canvasEdge() == nullptr && gedge->fromNode() && gedge->toNode()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "New CanvasEdge for" << gedge->id();
@@ -1112,7 +1112,7 @@ bool DotGraphView::displayGraph()
             gedge->canvasEdge()->computeBoundingRect();
     }
     qCDebug(KGRAPHVIEWERLIB_LOG) << "Adding graph render operations: " << d->m_graph->renderOperations().size();
-    foreach (const DotRenderOp &dro, d->m_graph->renderOperations()) {
+    for (const DotRenderOp &dro : d->m_graph->renderOperations()) {
         if (dro.renderop == "T") {
             //       std::cerr << "Adding graph label '"<<dro.str<<"'" << std::endl;
             const QString &str = dro.str;
@@ -1353,19 +1353,19 @@ void DotGraphView::mousePressEvent(QMouseEvent *e)
             } else if (d->m_editingMode == AddNewEdge) {
                 d->m_editingMode = None;
             }
-            foreach (GraphEdge *e, d->m_graph->edges()) {
+            for (GraphEdge *e : d->m_graph->edges()) {
                 if (e->isSelected()) {
                     e->setSelected(false);
                     e->canvasEdge()->update();
                 }
             }
-            foreach (GraphNode *n, d->m_graph->nodes()) {
+            for (GraphNode *n : d->m_graph->nodes()) {
                 if (n->isSelected()) {
                     n->setSelected(false);
                     n->canvasElement()->update();
                 }
             }
-            foreach (GraphSubgraph *s, d->m_graph->subgraphs()) {
+            for (GraphSubgraph *s : d->m_graph->subgraphs()) {
                 if (s->isSelected()) {
                     s->setSelected(false);
                     s->canvasElement()->update();
@@ -1417,7 +1417,7 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent *e)
         qCDebug(KGRAPHVIEWERLIB_LOG) << "Stopping selection" << scene() << d->m_canvas;
         QList<QGraphicsItem *> items = scene()->selectedItems();
         QList<QString> selection;
-        foreach (QGraphicsItem *item, items) {
+        for (QGraphicsItem *item : items) {
             CanvasElement *element = dynamic_cast<CanvasElement *>(item);
             element->element()->setSelected(true);
             if (element) {
@@ -1826,7 +1826,7 @@ void DotGraphView::prepareAddNewEdge(QMap<QString, QString> attribs)
     Q_D(DotGraphView);
     qCDebug(KGRAPHVIEWERLIB_LOG) << attribs;
     bool anySelected = false;
-    foreach (GraphEdge *edge, d->m_graph->edges()) {
+    for (GraphEdge *edge : d->m_graph->edges()) {
         if (edge->isSelected()) {
             anySelected = true;
             QMap<QString, QString>::const_iterator it = attribs.constBegin();
@@ -1957,33 +1957,33 @@ void DotGraphView::slotEdgeSelected(CanvasEdge *edge, Qt::KeyboardModifiers modi
     QList<QString> selection;
     selection.push_back(edge->edge()->id());
     if (!modifiers.testFlag(Qt::ControlModifier)) {
-        foreach (GraphEdge *e, d->m_graph->edges()) {
+        for (GraphEdge *e : d->m_graph->edges()) {
             if (e->canvasEdge() != edge) {
                 e->setSelected(false);
                 e->canvasEdge()->update();
             }
         }
-        foreach (GraphNode *n, d->m_graph->nodes()) {
+        for (GraphNode *n : d->m_graph->nodes()) {
             n->setSelected(false);
             n->canvasNode()->update();
         }
-        foreach (GraphSubgraph *s, d->m_graph->subgraphs()) {
+        for (GraphSubgraph *s : d->m_graph->subgraphs()) {
             s->setElementSelected(nullptr, false, true);
         }
     } else {
-        foreach (GraphEdge *e, d->m_graph->edges()) {
+        for (GraphEdge *e : d->m_graph->edges()) {
             if (e->canvasEdge() != edge) {
                 if (e->isSelected()) {
                     selection.push_back(e->id());
                 }
             }
         }
-        foreach (GraphNode *n, d->m_graph->nodes()) {
+        for (GraphNode *n : d->m_graph->nodes()) {
             if (n->isSelected()) {
                 selection.push_back(n->id());
             }
         }
-        foreach (GraphSubgraph *s, d->m_graph->subgraphs()) {
+        for (GraphSubgraph *s : d->m_graph->subgraphs()) {
             if (s->isSelected()) {
                 selection.push_back(s->id());
             }
@@ -1998,13 +1998,13 @@ void DotGraphView::slotElementSelected(CanvasElement *element, Qt::KeyboardModif
     QList<QString> selection;
     selection.push_back(element->element()->id());
     if (!modifiers.testFlag(Qt::ControlModifier)) {
-        foreach (GraphEdge *e, d->m_graph->edges()) {
+        for (GraphEdge *e : d->m_graph->edges()) {
             if (e->isSelected()) {
                 e->setSelected(false);
                 e->canvasEdge()->update();
             }
         }
-        foreach (GraphNode *e, d->m_graph->nodes()) {
+        for (GraphNode *e : d->m_graph->nodes()) {
             if (e->canvasElement() != element) {
                 if (e->isSelected()) {
                     e->setSelected(false);
@@ -2012,21 +2012,21 @@ void DotGraphView::slotElementSelected(CanvasElement *element, Qt::KeyboardModif
                 }
             }
         }
-        foreach (GraphSubgraph *s, d->m_graph->subgraphs()) {
+        for (GraphSubgraph *s : d->m_graph->subgraphs()) {
             s->setElementSelected(element->element(), true, true);
         }
     } else {
-        foreach (GraphEdge *e, d->m_graph->edges()) {
+        for (GraphEdge *e : d->m_graph->edges()) {
             if (e->isSelected()) {
                 selection.push_back(e->id());
             }
         }
-        foreach (GraphNode *n, d->m_graph->nodes()) {
+        for (GraphNode *n : d->m_graph->nodes()) {
             if (n->isSelected()) {
                 selection.push_back(n->id());
             }
         }
-        foreach (GraphSubgraph *s, d->m_graph->subgraphs()) {
+        for (GraphSubgraph *s : d->m_graph->subgraphs()) {
             s->retrieveSelectedElementsIds(selection);
         }
     }
@@ -2036,7 +2036,7 @@ void DotGraphView::slotElementSelected(CanvasElement *element, Qt::KeyboardModif
 void DotGraphView::removeSelectedEdges()
 {
     Q_D(DotGraphView);
-    foreach (GraphEdge *e, d->m_graph->edges()) {
+    for (GraphEdge *e : d->m_graph->edges()) {
         if (e->isSelected()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting removeEdge " << e->id();
             d->m_graph->removeEdge(e->id());
@@ -2049,7 +2049,7 @@ void DotGraphView::removeSelectedNodes()
 {
     Q_D(DotGraphView);
     qCDebug(KGRAPHVIEWERLIB_LOG);
-    foreach (GraphNode *e, d->m_graph->nodes()) {
+    for (GraphNode *e : d->m_graph->nodes()) {
         if (e->isSelected()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting removeElement " << e->id();
             d->m_graph->removeElement(e->id());
@@ -2061,7 +2061,7 @@ void DotGraphView::removeSelectedNodes()
 void DotGraphView::removeSelectedSubgraphs()
 {
     Q_D(DotGraphView);
-    foreach (GraphSubgraph *e, d->m_graph->subgraphs()) {
+    for (GraphSubgraph *e : d->m_graph->subgraphs()) {
         if (e->isSelected()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting removeElement " << e->id();
             d->m_graph->removeElement(e->id());

@@ -78,7 +78,7 @@ void KGraphEditorNodesTreeWidget::slotRemoveElement(const QString &id)
 {
     qCDebug(KGRAPHEDITOR_LOG) << id;
     QList<QTreeWidgetItem *> items = findItems(id, Qt::MatchExactly, 0);
-    foreach (QTreeWidgetItem *item, items) {
+    for (QTreeWidgetItem *item : items) {
         delete takeTopLevelItem(indexOfTopLevelItem(item));
     }
 }

@@ -127,14 +127,14 @@ graph_t *GraphExporter::exportToGraphviz(const DotGraph *graph)
 
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << "writing nodes";
     GraphNodeMap::const_iterator nit;
-    foreach (GraphNode *n, graph->nodes()) {
+    for (GraphNode *n : graph->nodes()) {
         node_t *node = agnode(agraph, n->id().toUtf8().data(), 1);
         n->exportToGraphviz(node);
     }
 
     qCDebug(KGRAPHVIEWERLIB_LOG) << "writing edges";
     GraphEdgeMap::const_iterator eit;
-    foreach (GraphEdge *e, graph->edges()) {
+    for (GraphEdge *e : graph->edges()) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << "writing edge" << e->id();
         edge_t *edge = agedge(agraph, agnode(agraph, e->fromNode()->id().toUtf8().data(), 0), agnode(agraph, e->toNode()->id().toUtf8().data(), 0), nullptr, 1);
         e->exportToGraphviz(edge);

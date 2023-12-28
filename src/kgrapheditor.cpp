@@ -207,7 +207,7 @@ void KGraphEditor::fileOpen()
         return;
     }
 
-    foreach (const QUrl &url, fileDialog.selectedUrls()) {
+    for (const QUrl &url : fileDialog.selectedUrls()) {
         openUrl(url);
     }
 }
@@ -557,12 +557,12 @@ void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
 
     QList<QString> nodesIds; // TODO = m_currentPart->nodesIds();
     QList<QTreeWidgetItem *> items;
-    foreach (const QString &nodeId, nodesIds) {
+    for (const QString &nodeId : nodesIds) {
         qCDebug(KGRAPHEDITOR_LOG) << "new item " << nodeId;
         QTreeWidgetItem *item = new QTreeWidgetItem((QTreeWidget *)nullptr, QStringList(nodeId));
         item->setFlags(item->flags() | Qt::ItemIsEditable);
         QMap<QString, QString> attributes; // TODO = m_currentPart->nodeAtributes(nodeId);
-        foreach (const QString &attrib, attributes.keys()) {
+        for (const QString &attrib : attributes.keys()) {
             if (attrib != "_draw_" && attrib != "_ldraw_") {
                 QStringList list(attrib);
                 list << attributes[attrib];
@@ -620,7 +620,7 @@ void KGraphEditor::slotGraphLoaded()
 
     QList<QString> nodesIds; // TODO = m_currentPart->nodesIds();
     QList<QTreeWidgetItem *> items;
-    foreach (const QString &nodeId, nodesIds) {
+    for (const QString &nodeId : nodesIds) {
         qCDebug(KGRAPHEDITOR_LOG) << "item " << nodeId;
         QTreeWidgetItem *item;
         QList<QTreeWidgetItem *> existingItems = m_treeWidget->findItems(nodeId, Qt::MatchRecursive | Qt::MatchExactly);
@@ -639,7 +639,7 @@ void KGraphEditor::slotGraphLoaded()
                 keys.removeAll(item->child(i)->text(0));
             }
         }
-        foreach (const QString &attrib, keys) {
+        for (const QString &attrib : keys) {
             if (attrib != "_draw_" && attrib != "_ldraw_") {
                 QStringList list(attrib);
                 list << attributes[attrib];
@@ -758,12 +758,12 @@ void KGraphEditor::slotSelectionIs(const QList<QString> &elements, const QPoint 
     qCDebug(KGRAPHEDITOR_LOG);
     Q_UNUSED(p);
     QList<QTreeWidgetItem *> items = m_treeWidget->selectedItems();
-    foreach (QTreeWidgetItem *item, items) {
+    for (QTreeWidgetItem *item : items) {
         item->setSelected(false);
     }
-    foreach (const QString &elementName, elements) {
+    for (const QString &elementName : elements) {
         QList<QTreeWidgetItem *> items = m_treeWidget->findItems(elementName, Qt::MatchExactly, 0);
-        foreach (QTreeWidgetItem *item, items) {
+        for (QTreeWidgetItem *item : items) {
             item->setSelected(true);
         }
     }

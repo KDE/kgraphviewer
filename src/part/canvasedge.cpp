@@ -109,7 +109,7 @@ QPainterPath CanvasEdge::shape() const
         return m_shape;
     }
 
-    foreach (const DotRenderOp &dro, edge()->renderOperations()) {
+    for (const DotRenderOp &dro : edge()->renderOperations()) {
         if (dro.renderop == "B") {
             for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum == 0 && edge()->colors().count() == 0); splineNum++) {
                 m_shape.addPath(pathForSpline(splineNum, dro));
@@ -190,7 +190,7 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
     const QPen oldPen = p->pen();
     const QBrush oldBrush = p->brush();
 
-    foreach (const DotRenderOp &dro, edge()->renderOperations()) {
+    for (const DotRenderOp &dro : edge()->renderOperations()) {
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << dro.renderop << "; selected:" << edge()->isSelected();
         if (dro.renderop == "c") {
             QColor c(dro.str.mid(0, 7));
@@ -330,8 +330,8 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
         //     p->drawRect(m_boundingRect);
         qreal maxDist = 0;
         QPair<QPointF, QPointF> pointsPair;
-        foreach (const QPointF &point1, allPoints) {
-            foreach (const QPointF &point2, allPoints) {
+        for (const QPointF &point1 : allPoints) {
+            for (const QPointF &point2 : allPoints) {
                 if (distance(point1, point2) > maxDist) {
                     maxDist = distance(point1, point2);
                     pointsPair = qMakePair(point1, point2);
@@ -372,7 +372,7 @@ void CanvasEdge::computeBoundingRect()
         }
     } else {
         QPolygonF points;
-        foreach (const DotRenderOp &dro, edge()->renderOperations()) {
+        for (const DotRenderOp &dro : edge()->renderOperations()) {
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << dro.renderop  << ", ";
             if ((dro.renderop != "B") && (dro.renderop != "p") && (dro.renderop != "P"))
                 continue;
