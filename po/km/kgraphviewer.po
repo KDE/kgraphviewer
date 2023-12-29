@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:26+0000\n"
+"POT-Creation-Date: 2023-12-29 00:39+0000\n"
 "PO-Revision-Date: 2012-07-09 11:11+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -1008,7 +1008,7 @@ msgstr ""
 "កណ្ដាល​របស់​ទិដ្ឋភាព​ ទៅកាន់​កន្លែង​ដែល​កណ្ដុរ​ត្រូវ​បាន​ចុច ។</p><p>ការ​ចុច​ និង​អូស​នៅ​ក្នុង​កា​រ៉េ​ក្រហម​​នឹង​ធ្វើ​"
 "ឲ្យ​ទិដ្ឋភាព​មាន​សកម្មភាព​តាម​ចលនា ។</p>​"
 
-#: part/simpleprintingcommand.cpp:98
+#: part/simpleprintingcommand.cpp:97
 #, kde-format
 msgid "Print Preview"
 msgstr "មើល​មុន​បោះពុម្ព​"

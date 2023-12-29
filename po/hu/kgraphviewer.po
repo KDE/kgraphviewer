@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:26+0000\n"
+"POT-Creation-Date: 2023-12-29 00:39+0000\n"
 "PO-Revision-Date: 2014-03-31 16:26+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -995,7 +995,7 @@ msgid ""
 "follow the movement.</p>"
 msgstr ""
 
-#: part/simpleprintingcommand.cpp:98
+#: part/simpleprintingcommand.cpp:97
 #, kde-format
 msgid "Print Preview"
 msgstr "Nyomtatási előnézet"

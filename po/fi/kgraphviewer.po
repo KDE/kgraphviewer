@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:26+0000\n"
+"POT-Creation-Date: 2023-12-29 00:39+0000\n"
 "PO-Revision-Date: 2023-04-17 19:58+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -984,7 +984,7 @@ msgstr ""
 "neliötä, näkymän keskusta siirtyy siihen kohtaan.</p><p>Punaisen neliön "
 "sisältä napsauttaminen ja vetäminen saa näkymän seuraamaan liikettä.</p>"
 
-#: part/simpleprintingcommand.cpp:98
+#: part/simpleprintingcommand.cpp:97
 #, kde-format
 msgid "Print Preview"
 msgstr "Tulostuksen esikatselu"

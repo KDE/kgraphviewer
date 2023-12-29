@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:26+0000\n"
+"POT-Creation-Date: 2023-12-29 00:39+0000\n"
 "PO-Revision-Date: 2009-02-25 00:07+0900\n"
 "Last-Translator: Yukiko Bando <ybando@k6.dion.ne.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1050,7 +1050,7 @@ msgstr ""
 "移動します。</p><p>赤枠の中をクリックしてドラッグすると赤枠がマウスに従って移"
 "動します。</p>"
 
-#: part/simpleprintingcommand.cpp:98
+#: part/simpleprintingcommand.cpp:97
 #, kde-format
 msgid "Print Preview"
 msgstr "印刷プレビュー"

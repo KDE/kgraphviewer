@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:26+0000\n"
+"POT-Creation-Date: 2023-12-29 00:39+0000\n"
 "PO-Revision-Date: 2022-12-31 15:24+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
@@ -985,7 +985,7 @@ msgstr ""
 "p><p>Clicking and dragging within the red square will cause the view to "
 "follow the movement.</p>"
 
-#: part/simpleprintingcommand.cpp:98
+#: part/simpleprintingcommand.cpp:97
 #, kde-format
 msgid "Print Preview"
 msgstr "Print Preview"

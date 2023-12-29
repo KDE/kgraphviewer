@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:26+0000\n"
+"POT-Creation-Date: 2023-12-29 00:39+0000\n"
 "PO-Revision-Date: 2023-01-05 16:15+0200\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -999,7 +999,7 @@ msgstr ""
 "αυτό.</p><p>Κάνοντας κλικ με σύρσιμο του ποντικιού μέσα στο κόκκινο "
 "τετράγωνο η προβολή θα ακολουθεί την κίνηση του ποντικιού.</p>"
 
-#: part/simpleprintingcommand.cpp:98
+#: part/simpleprintingcommand.cpp:97
 #, kde-format
 msgid "Print Preview"
 msgstr "Προεπισκόπηση εκτύπωσης"
