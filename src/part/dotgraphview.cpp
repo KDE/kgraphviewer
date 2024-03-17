@@ -1221,14 +1221,17 @@ void DotGraphView::wheelEvent(QWheelEvent *e)
     if (QApplication::keyboardModifiers() == Qt::ShiftModifier || QApplication::keyboardModifiers() == Qt::ControlModifier) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << " + Shift/Ctrl: zooming";
         // move canvas...
-        if (e->delta() < 0) {
+        const int delta = e->angleDelta().y();
+        if (delta < 0) {
             zoomOut();
-        } else {
+        } else if (delta > 0) {
             zoomIn();
         }
     } else {
         qCDebug(KGRAPHVIEWERLIB_LOG) << " : scrolling ";
-        scrollViewPercent(e->orientation() == Qt::Horizontal, e->delta() < 0 ? 10 : -10);
+        const bool horizontal = (std::abs(e->angleDelta().x()) > std::abs(e->angleDelta().y()));
+        const int delta = horizontal ? e->angleDelta().x() : e->angleDelta().y();
+        scrollViewPercent(horizontal, delta < 0 ? 10 : -10);
     }
 }
 
