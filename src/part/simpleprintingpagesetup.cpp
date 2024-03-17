@@ -89,7 +89,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     // GUI
     m_contents = new Ui::KGVSimplePrintingPageSetupBase();
     m_contents->setupUi(this);
-    layout()->setMargin(0);
+    layout()->setContentsMargins(0, 0, 0, 0);
 
     setFocusPolicy(Qt::WheelFocus);
     // 	m_contents->setFocusProxy(m_contents->headerTitleLineEdit);
