@@ -59,7 +59,7 @@ PannerView::PannerView(DotGraphView *parent)
     // viewport()->setBackgroundMode(Qt::NoBackground);
 
     // if there are ever graphic glitches to be found, remove this again
-    setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing | QGraphicsView::DontClipPainter | QGraphicsView::DontSavePainterState);
+    setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing | QGraphicsView::DontSavePainterState);
 
     setToolTip(i18n("View of the complete graph. Click and drag to move the visible part."));
     setWhatsThis(
