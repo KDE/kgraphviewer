@@ -70,7 +70,7 @@ void KGVSimplePrintPreviewView::paintEvent(QPaintEvent *pe)
 }
 
 // TODO: redo usages instead with QStyle::PM_Layout{Top,Left,Right,Bottom}Margin
-#define KGVSimplePrintPreviewScrollView_MARGIN QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing)
+#define KGVSimplePrintPreviewScrollView_HMARGIN QApplication::style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing)
 
 KGVSimplePrintPreviewScrollView::KGVSimplePrintPreviewScrollView(KGVSimplePrintPreviewWindow *window)
     : QScrollArea(window)
@@ -123,7 +123,7 @@ void KGVSimplePrintPreviewScrollView::setFullWidth()
     double widthMM = KgvPageFormat::width(m_window->settings()->pageLayout.format, m_window->settings()->pageLayout.orientation);
     double heightMM = KgvPageFormat::height(m_window->settings()->pageLayout.format, m_window->settings()->pageLayout.orientation);
     //  int constantWidth = m_window->width()- KGVSimplePrintPreviewScrollView_MARGIN*6;
-    double constantWidth = width() - KGVSimplePrintPreviewScrollView_MARGIN * 6;
+    double constantWidth = width() - KGVSimplePrintPreviewScrollView_HMARGIN * 6;
     double heightForWidth = constantWidth * heightMM / widthMM;
     //  heightForWidth = qMin(kapp->desktop()->height()*4/5, heightForWidth);
     constantWidth = heightForWidth * widthMM / heightMM;
