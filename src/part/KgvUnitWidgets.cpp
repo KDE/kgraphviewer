@@ -30,6 +30,7 @@
 
 #include <QDebug>
 #include <QEvent>
+#include <QRegExp>
 #include <QGridLayout>
 #include <QLocale>
 #include <qlayout.h>

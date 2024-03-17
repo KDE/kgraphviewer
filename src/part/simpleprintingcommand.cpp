@@ -41,7 +41,7 @@
 #include <QInputDialog>
 #include <QLineEdit>
 #include <QMessageBox>
-#include <QPrintDialog>
+#include <QPointer>
 #include <QPushButton>
 #include <QStandardPaths>
 #include <kurllabel.h>
