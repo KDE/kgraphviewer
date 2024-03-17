@@ -493,7 +493,7 @@ void DotGraphViewPrivate::setupPopup()
 
     m_bevEnabledAction = new KToggleAction(QIcon(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-bev.png")), i18n("Enable Bird's-eye View"), q);
     actionCollection()->addAction("view_bev_enabled", m_bevEnabledAction);
-    actionCollection()->setDefaultShortcut(m_bevEnabledAction, Qt::CTRL + Qt::Key_B);
+    actionCollection()->setDefaultShortcut(m_bevEnabledAction, Qt::CTRL | Qt::Key_B);
     m_bevEnabledAction->setWhatsThis(i18n("Enables or disables the Bird's-eye View"));
     QObject::connect(m_bevEnabledAction, &QAction::triggered, q, &DotGraphView::slotBevToggled);
     m_bevEnabledAction->setCheckable(true);

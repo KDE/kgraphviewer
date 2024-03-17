@@ -98,11 +98,11 @@ KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const
     setWidget(d->m_widget);
 
     QAction *printAct = actionCollection()->addAction(KStandardAction::Print, "file_print", d->m_widget, SLOT(print()));
-    actionCollection()->setDefaultShortcut(printAct, Qt::ControlModifier + Qt::Key_P);
+    actionCollection()->setDefaultShortcut(printAct, Qt::CTRL | Qt::Key_P);
     printAct->setWhatsThis(i18n("Print the graph using current page setup settings"));
 
     QAction *printPreviewAct = actionCollection()->addAction(KStandardAction::PrintPreview, "file_print_preview", d->m_widget, SLOT(printPreview()));
-    actionCollection()->setDefaultShortcut(printPreviewAct, Qt::ControlModifier + Qt::ShiftModifier + Qt::Key_P);
+    actionCollection()->setDefaultShortcut(printPreviewAct, Qt::CTRL | Qt::SHIFT | Qt::Key_P);
     printPreviewAct->setWhatsThis(i18n("Open the print preview window"));
 
     //   KAction* pagesetupAct = new KAction(i18n("&Page setup"), this); //actionCollection(), "file_page_setup");
