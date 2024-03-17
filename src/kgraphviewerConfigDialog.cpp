@@ -34,7 +34,6 @@
 #include <kparts/partmanager.h>
 
 #include <KPluginFactory>
-#include <KService>
 #include <QMessageBox>
 #include <QStatusBar>
 #include <kconfigdialog.h>

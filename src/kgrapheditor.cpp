@@ -29,7 +29,6 @@
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
 
 #include <KActionCollection>
-#include <KService>
 #include <QDebug>
 #include <QDockWidget>
 #include <QFileDialog>

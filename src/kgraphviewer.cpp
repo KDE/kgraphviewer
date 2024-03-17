@@ -31,7 +31,6 @@
 #include <KColorScheme>
 #include <KParts/ReadOnlyPart>
 #include <KPluginFactory>
-#include <KService>
 #include <QDBusConnection>
 #include <QDebug>
 #include <QFileDialog>
