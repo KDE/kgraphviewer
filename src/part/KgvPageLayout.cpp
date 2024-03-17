@@ -34,6 +34,8 @@
 #include <QPageSize>
 #include <QPrinterInfo>
 #include <klocalizedstring.h>
+#include <KLazyLocalizedString>
+
 #include <qdom.h>
 
 KgvPageLayout KgvPageLayout::standardLayout()
@@ -57,38 +59,38 @@ struct PageFormatInfo {
     KgvFormat format;
     QPageSize::PageSizeId pageSize;
     const char *shortName;       // Short name
-    const char *descriptiveName; // Full name, which will be translated; nullptr to use QPageSize
+    KLazyLocalizedString descriptiveName; // Full name, which will be translated; nullptr to use QPageSize
 };
 
-const PageFormatInfo pageFormatInfo[] = {{PG_DIN_A3, QPageSize::A3, "A3", nullptr},
-                                         {PG_DIN_A4, QPageSize::A4, "A4", nullptr},
-                                         {PG_DIN_A5, QPageSize::A5, "A5", nullptr},
-                                         {PG_US_LETTER, QPageSize::Letter, "Letter", nullptr},
-                                         {PG_US_LEGAL, QPageSize::Legal, "Legal", nullptr},
-                                         {PG_SCREEN, QPageSize::A4, "Screen", I18N_NOOP2("Page size", "Screen")}, // Custom, so fall back to A4
-                                         {PG_CUSTOM, QPageSize::A4, "Custom", I18N_NOOP2("Page size", "Custom")}, // Custom, so fall back to A4
-                                         {PG_DIN_B5, QPageSize::B5, "B5", nullptr},
-                                         {PG_US_EXECUTIVE, QPageSize::Executive, "Executive", nullptr},
-                                         {PG_DIN_A0, QPageSize::A0, "A0", nullptr},
-                                         {PG_DIN_A1, QPageSize::A1, "A1", nullptr},
-                                         {PG_DIN_A2, QPageSize::A2, "A2", nullptr},
-                                         {PG_DIN_A6, QPageSize::A6, "A6", nullptr},
-                                         {PG_DIN_A7, QPageSize::A7, "A7", nullptr},
-                                         {PG_DIN_A8, QPageSize::A8, "A8", nullptr},
-                                         {PG_DIN_A9, QPageSize::A9, "A9", nullptr},
-                                         {PG_DIN_B0, QPageSize::B0, "B0", nullptr},
-                                         {PG_DIN_B1, QPageSize::B1, "B1", nullptr},
-                                         {PG_DIN_B10, QPageSize::B10, "B10", nullptr},
-                                         {PG_DIN_B2, QPageSize::B2, "B2", nullptr},
-                                         {PG_DIN_B3, QPageSize::B3, "B3", nullptr},
-                                         {PG_DIN_B4, QPageSize::B4, "B4", nullptr},
-                                         {PG_DIN_B6, QPageSize::B6, "B6", nullptr},
-                                         {PG_ISO_C5, QPageSize::C5E, "C5", nullptr},
-                                         {PG_US_COMM10, QPageSize::Comm10E, "Comm10", nullptr},
-                                         {PG_ISO_DL, QPageSize::DLE, "DL", nullptr},
-                                         {PG_US_FOLIO, QPageSize::Folio, "Folio", nullptr},
-                                         {PG_US_LEDGER, QPageSize::Ledger, "Ledger", nullptr},
-                                         {PG_US_TABLOID, QPageSize::Tabloid, "Tabloid", nullptr}};
+const PageFormatInfo pageFormatInfo[] = {{PG_DIN_A3, QPageSize::A3, "A3", {}},
+                                         {PG_DIN_A4, QPageSize::A4, "A4", {}},
+                                         {PG_DIN_A5, QPageSize::A5, "A5", {}},
+                                         {PG_US_LETTER, QPageSize::Letter, "Letter", {}},
+                                         {PG_US_LEGAL, QPageSize::Legal, "Legal", {}},
+                                         {PG_SCREEN, QPageSize::A4, "Screen", kli18nc("Page size", "Screen")}, // Custom, so fall back to A4
+                                         {PG_CUSTOM, QPageSize::A4, "Custom", kli18nc("Page size", "Custom")}, // Custom, so fall back to A4
+                                         {PG_DIN_B5, QPageSize::B5, "B5", {}},
+                                         {PG_US_EXECUTIVE, QPageSize::Executive, "Executive", {}},
+                                         {PG_DIN_A0, QPageSize::A0, "A0", {}},
+                                         {PG_DIN_A1, QPageSize::A1, "A1", {}},
+                                         {PG_DIN_A2, QPageSize::A2, "A2", {}},
+                                         {PG_DIN_A6, QPageSize::A6, "A6", {}},
+                                         {PG_DIN_A7, QPageSize::A7, "A7", {}},
+                                         {PG_DIN_A8, QPageSize::A8, "A8", {}},
+                                         {PG_DIN_A9, QPageSize::A9, "A9", {}},
+                                         {PG_DIN_B0, QPageSize::B0, "B0", {}},
+                                         {PG_DIN_B1, QPageSize::B1, "B1", {}},
+                                         {PG_DIN_B10, QPageSize::B10, "B10", {}},
+                                         {PG_DIN_B2, QPageSize::B2, "B2", {}},
+                                         {PG_DIN_B3, QPageSize::B3, "B3", {}},
+                                         {PG_DIN_B4, QPageSize::B4, "B4", {}},
+                                         {PG_DIN_B6, QPageSize::B6, "B6", {}},
+                                         {PG_ISO_C5, QPageSize::C5E, "C5", {}},
+                                         {PG_US_COMM10, QPageSize::Comm10E, "Comm10", {}},
+                                         {PG_ISO_DL, QPageSize::DLE, "DL", {}},
+                                         {PG_US_FOLIO, QPageSize::Folio, "Folio", {}},
+                                         {PG_US_LEDGER, QPageSize::Ledger, "Ledger", {}},
+                                         {PG_US_TABLOID, QPageSize::Tabloid, "Tabloid", {}}};
 
 int KgvPageFormat::printerPageSize(KgvFormat format)
 {
@@ -164,8 +166,8 @@ KgvFormat KgvPageFormat::defaultFormat()
 QString KgvPageFormat::name(KgvFormat format)
 {
     if (format <= PG_LAST_FORMAT) {
-        if (pageFormatInfo[format].descriptiveName)
-            return i18nc("Page size", pageFormatInfo[format].descriptiveName);
+        if (!pageFormatInfo[format].descriptiveName.isEmpty())
+            return pageFormatInfo[format].descriptiveName.toString();
         else
             return QPageSize::name(pageFormatInfo[format].pageSize);
     }
@@ -176,8 +178,8 @@ QStringList KgvPageFormat::allFormats()
 {
     QStringList lst;
     for (int i = 0; i <= PG_LAST_FORMAT; ++i) {
-        if (pageFormatInfo[i].descriptiveName)
-            lst << i18nc("Page size", pageFormatInfo[i].descriptiveName);
+        if (!pageFormatInfo[i].descriptiveName.isEmpty())
+            lst << pageFormatInfo[i].descriptiveName.toString();
         else
             lst << QPageSize::name(pageFormatInfo[i].pageSize);
     }
