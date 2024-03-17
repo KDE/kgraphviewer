@@ -165,7 +165,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     m_fittingModeButtons.addButton(m_contents->naturalSizeRadioButton, NaturalSize);
     m_fittingModeButtons.addButton(m_contents->fitToOnePageRadioButton, FitToOnePage);
     m_fittingModeButtons.addButton(m_contents->fitToSeveralPagesRadioButton, FitToSeveralPages);
-    connect(&m_fittingModeButtons, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KGVSimplePrintingPageSetup::slotFittingButtonClicked);
+    connect(&m_fittingModeButtons, &QButtonGroup::idClicked, this, &KGVSimplePrintingPageSetup::slotFittingButtonClicked);
 
     m_fittingModeButtons.button(m_settings->fittingMode)->setChecked(true);
     if (m_settings->fittingMode != FitToSeveralPages) {

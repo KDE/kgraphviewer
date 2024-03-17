@@ -145,7 +145,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(QWidget *parent, const KgvPageLayout &layou
     m_orientGroup->setLayout(lay3);
     m_orientButtons.addButton(rbLandscape);
 
-    connect(&m_orientButtons, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &KgvPageLayoutSize::orientationChanged);
+    connect(&m_orientButtons, &QButtonGroup::idClicked, this, &KgvPageLayoutSize::orientationChanged);
 
     // --------------- page margins ---------------
     QGroupBox *marginsFrame = new QGroupBox(i18n("Margins"), this);
