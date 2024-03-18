@@ -50,7 +50,7 @@ int main(int argc, char **argv)
                      KAboutLicense::GPL,
                      i18n("(C) 2005-2010 Gaël de Chalendar"),
                      QString(),
-                     QStringLiteral("https://www.kde.org/applications/graphics/kgraphviewer"));
+                     QStringLiteral("https://apps.kde.org/kgraphviewer"));
     about.addAuthor(i18n("Gaël de Chalendar"), i18n("Original Author and current maintainer"), "kleag@free.fr");
     about.addAuthor(i18n("Reimar Döffinger"), i18n("Contributor"), "kde@reimardoeffinger.de");
     about.addAuthor(i18n("Matthias Peinhardt"), i18n("Contributor"), "matthias.peinhardt@googlemail.com");

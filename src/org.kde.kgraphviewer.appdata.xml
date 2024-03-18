@@ -483,7 +483,7 @@
     </ul>
   </description>
   <content_rating type="oars-1.1"/>
-  <url type="homepage">https://www.kde.org/applications/graphics/kgraphviewer/</url>
+  <url type="homepage">https://apps.kde.org/kgraphviewer</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kgraphviewer</url>
   <url type="help">https://docs.kde.org/?application=kgraphviewer</url>
   <screenshots>
