@@ -34,8 +34,7 @@
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qtimer.h>
-// Added by qt3to4:
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QEvent>
 #include <QKeyEvent>
 #include <QPixmap>
@@ -140,7 +139,8 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine
     m_navToolbar->addAction((QAction *)lastPageAction);
     m_navToolbar->addSeparator();
 
-    resize(width(), qApp->desktop()->height() * 4 / 5);
+    // TODO: how to know which screen this will be shown on?
+    resize(width(), qApp->primaryScreen()->size().height() * 4 / 5);
 
     this->setLayout(lyr);
     //! @todo progress bar...
