@@ -140,7 +140,7 @@ bool KGVSimplePrintingCommand::print(const QString &aTitleText)
     uint loops, loopsPerPage;
     QList<int> pagesToPrint;
     int fromPage = 0;
-    // on !win32 print QPrinter::numCopies() times (the OS does not perform buffering)
+    // on !win32 print QPrinter::copyCount() times (the OS does not perform buffering)
     //   pagesToPrint = printer.pageList();
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << pagesToPrint;
     if (pagesToPrint.isEmpty()) {
@@ -153,16 +153,16 @@ bool KGVSimplePrintingCommand::print(const QString &aTitleText)
         fromPage = pagesToPrint.first();
     if (printer.collateCopies()) {
         // collation: p1, p2,..pn; p1, p2,..pn; ......; p1, p2,..pn
-        loops = printer.numCopies();
+        loops = printer.copyCount();
         loopsPerPage = 1;
     } else {
         // no collation: p1, p1, ..., p1; p2, p2, ..., p2; ......; pn, pn,..pn
         loops = 1;
-        loopsPerPage = printer.numCopies();
+        loopsPerPage = printer.copyCount();
     }
     //! @todo also look at printer.pageSet() option : all/odd/even pages
     // #endif
-    // now, total number of printed pages is printer.numCopies()*printer.pageList().count()
+    // now, total number of printed pages is printer.copyCount()*printer.pageList().count()
 
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << "printing...";
     bool firstPage = true;
