@@ -38,7 +38,9 @@
 
 int main(int argc, char **argv)
 {
+#if QT_VERSION_MAJOR == 5
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
     QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain("kgraphviewer");

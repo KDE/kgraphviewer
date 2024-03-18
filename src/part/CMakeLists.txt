@@ -64,15 +64,21 @@ target_include_directories(kgraphviewerlib PRIVATE
 
 target_link_libraries(kgraphviewerlib
     PUBLIC
-        KF5::Parts
+        KF${KF_MAJOR_VERSION}::Parts
         Graphviz::Graphviz
     PRIVATE
         Qt${QT_MAJOR_VERSION}::Svg
         Qt${QT_MAJOR_VERSION}::PrintSupport
-        KF5::WidgetsAddons
-        KF5::XmlGui
-        KF5::I18n
+        KF${KF_MAJOR_VERSION}::WidgetsAddons
+        KF${KF_MAJOR_VERSION}::XmlGui
+        KF${KF_MAJOR_VERSION}::I18n
 )
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(kgraphviewerlib
+        PRIVATE
+            Qt6::Core5Compat
+    )
+endif()
 
 set_target_properties(kgraphviewerlib PROPERTIES
     VERSION ${PROJECT_VERSION}
@@ -85,7 +91,11 @@ install( TARGETS kgraphviewerlib ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
-configure_file(kgraphviewer_part.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop @ONLY)
+if (QT_MAJOR_VERSION STREQUAL "6")
+    configure_file(kgraphviewer_part.json.in ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.json @ONLY)
+else()
+    configure_file(kgraphviewer_part.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop @ONLY)
+endif()
 
 ecm_setup_version(${PROJECT_VERSION}
     VARIABLE_PREFIX KGRAPHVIEWERPART
@@ -101,7 +111,9 @@ target_sources(kgraphviewerpart PRIVATE
     kgraphviewer_part.qrc
 )
 
-kcoreaddons_desktop_to_json(kgraphviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop)
+if (QT_MAJOR_VERSION STREQUAL "5")
+    kcoreaddons_desktop_to_json(kgraphviewerpart ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop)
+endif()
 
 generate_export_header(kgraphviewerpart BASE_NAME kgraphviewer)
 
@@ -111,7 +123,8 @@ target_include_directories(kgraphviewerpart PRIVATE
 
 target_link_libraries(kgraphviewerpart
     kgraphviewerlib
-    KF5::Parts
+    KF${KF_MAJOR_VERSION}::Parts
+    KF${KF_MAJOR_VERSION}::I18n
 )
 
 add_library(KGraphViewerPart INTERFACE)
@@ -123,7 +136,11 @@ install(TARGETS KGraphViewerPart EXPORT KGraphViewerPartTargets ${KDE_INSTALL_TA
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KGraphViewerPart")
 install(EXPORT KGraphViewerPartTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KGraphViewerPartTargets.cmake)
 
-install(TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
+if (QT_MAJOR_VERSION STREQUAL "6")
+    install(TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/parts)
+else()
+    install(TARGETS kgraphviewerpart DESTINATION ${KDE_INSTALL_PLUGINDIR})
+endif()
 
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/KGraphViewerPartConfig.cmake.in"
@@ -138,7 +155,9 @@ configure_file(org.kde.libkgraphviewer.metainfo.xml.in "${CMAKE_CURRENT_BINARY_D
 
 install( FILES kgraphviewer_partsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
 
-install( FILES ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop DESTINATION ${KDE_INSTALL_KSERVICESDIR} )
+if (QT_MAJOR_VERSION STREQUAL "5")
+    install( FILES ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop DESTINATION ${KDE_INSTALL_KSERVICESDIR} )
+endif()
 install( FILES chain.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES chain-broken.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-bev.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )

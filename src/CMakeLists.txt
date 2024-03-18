@@ -42,8 +42,9 @@ ecm_qt_declare_logging_category(kgraphviewer
 )
 
 target_link_libraries(kgraphviewer PRIVATE
-    KF5::CoreAddons
-    KF5::Parts
+    KF${KF_MAJOR_VERSION}::CoreAddons
+    KF${KF_MAJOR_VERSION}::Parts
+    KF${KF_MAJOR_VERSION}::I18n
 )
 
 install( TARGETS kgraphviewer ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
@@ -103,8 +104,9 @@ ecm_qt_declare_logging_category(kgrapheditor
 )
 
 target_link_libraries(kgrapheditor PRIVATE
-    KF5::CoreAddons
-    KF5::Parts
+    KF${KF_MAJOR_VERSION}::CoreAddons
+    KF${KF_MAJOR_VERSION}::Parts
+    KF${KF_MAJOR_VERSION}::I18n
 )
 
 install( TARGETS kgrapheditor ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

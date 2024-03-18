@@ -22,12 +22,30 @@ include(ECMInstallIcons)
 include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
 
-# search basic libraries first
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets Svg PrintSupport)
+if (QT_MAJOR_VERSION STREQUAL "6")
+    set(QT_REQUIRED_VERSION "6.5.0")
+    set(KF_MIN_VERSION "6.0.0")
+    set(KF_MAJOR_VERSION "6")
+else()
+    set(KF_MAJOR_VERSION "5")
+endif()
 
-find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+# search basic libraries first
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED COMPONENTS
+    Core
+    DBus
+    Widgets
+    Svg
+    PrintSupport
+)
+if (QT_MAJOR_VERSION STREQUAL "6")
+    find_package(Qt6Core5Compat ${QT_MIN_VERSION} REQUIRED)
+endif()
+
+find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
     DocTools
+    I18n
     Parts
     WidgetsAddons
 )
@@ -60,7 +78,7 @@ add_subdirectory(src)
 add_subdirectory(doc)
 
 ki18n_install(po)
-if(KF5DocTools_FOUND)
+if(KF${KF_MAJOR_VERSION}DocTools_FOUND)
     kdoctools_install(po)
 endif()
 

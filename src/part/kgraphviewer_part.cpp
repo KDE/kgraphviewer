@@ -67,14 +67,20 @@ public:
 };
 
 KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const KPluginMetaData &metaData, const QVariantList &)
+#if QT_VERSION_MAJOR == 5
     : KParts::ReadOnlyPart(parent)
+#else
+    : KParts::ReadOnlyPart(parent, metaData)
+#endif
     , d(new KGraphViewerPartPrivate())
 {
+#if QT_VERSION_MAJOR == 5
     /* set the component name (1st argument) so that the XMLGUI .rc
        file is found also when this part is called from applications
        different then kgraphviewer (like kgrapheditor and konqueror).
      */
     setMetaData(metaData);
+#endif
 
     // set our XML-UI resource file
     setXMLFile(QStringLiteral("kgraphviewer_part.rc"), true);

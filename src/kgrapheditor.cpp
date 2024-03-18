@@ -138,7 +138,11 @@ void KGraphEditor::reloadPreviousFiles()
 
 KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
 {
+#if QT_VERSION_MAJOR == 5
     KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData("kgraphviewerpart")).plugin;
+#else
+    KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData("kf6/parts/kgraphviewerpart")).plugin;
+#endif
     if (!factory) {
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful
