@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-29 00:39+0000\n"
+"POT-Creation-Date: 2024-03-18 01:59+0000\n"
 "PO-Revision-Date: 2023-11-10 16:08+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -28,62 +28,62 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "vit@pelcak.org, dom.toretto@seznam.cz"
 
-#: kgrapheditor.cpp:130 kgraphviewer.cpp:119
+#: kgrapheditor.cpp:129 kgraphviewer.cpp:118
 #, kde-format
 msgid "Session Restore"
 msgstr "Obnovení sezení"
 
-#: kgrapheditor.cpp:130
+#: kgrapheditor.cpp:129
 #, kde-format
 msgid "Do you want to reload files from previous session?"
 msgstr "Přejete si znovu načíst soubory z předchozího sezení?"
 
-#: kgrapheditor.cpp:146
+#: kgrapheditor.cpp:145
 #, kde-format
 msgid "Unable to start"
 msgstr "Nelze spustit"
 
-#: kgrapheditor.cpp:146 kgraphviewer.cpp:145
+#: kgrapheditor.cpp:145 kgraphviewer.cpp:144
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "Nelze nalézt součást KGraphViewer."
 
-#: kgrapheditor.cpp:227 kgraphviewer.cpp:225
+#: kgrapheditor.cpp:226 kgraphviewer.cpp:224
 #, kde-format
 msgid "Closes the current file"
 msgstr "Zavře současný soubor"
 
-#: kgrapheditor.cpp:238
+#: kgrapheditor.cpp:237
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "Vytvořit nový vertex"
 
-#: kgrapheditor.cpp:243
+#: kgrapheditor.cpp:242
 #, kde-format
 msgid "Create a New Edge"
 msgstr "Vytvořit nový okraj"
 
-#: kgrapheditor.cpp:498
+#: kgrapheditor.cpp:497
 #, kde-format
 msgid "Save current graph"
 msgstr "Uložit současný graf"
 
-#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
+#: kgrapheditorConfigDialog.cpp:60 kgraphviewerConfigDialog.cpp:71
 #, kde-format
 msgid "Parsing"
 msgstr "Zpracovávám"
 
-#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
+#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
 #, kde-format
 msgid "Reloading"
 msgstr "Znova načítám"
 
-#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
+#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
 #, kde-format
 msgid "Opening"
 msgstr "Otevírám"
 
-#: kgrapheditorConfigDialog.cpp:64 kgraphviewerConfigDialog.cpp:75
+#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
 #, kde-format
 msgid "Session Management"
 msgstr "Správa sezení"
@@ -208,36 +208,36 @@ msgstr "Pomocný panel nástrojů"
 msgid "Edit Toolbar"
 msgstr "Upravit panel nástrojů"
 
-#: kgraphviewer.cpp:118
+#: kgraphviewer.cpp:117
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
 msgstr "Přejete si znovu načíst soubory z předchozího sezení?"
 
-#: kgraphviewer.cpp:120
+#: kgraphviewer.cpp:119
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "Obnovit"
 
-#: kgraphviewer.cpp:121
+#: kgraphviewer.cpp:120
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr "Nenačítat znovu"
 
-#: kgraphviewer.cpp:212
+#: kgraphviewer.cpp:211
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "Otevře nové prázdné okno KGraphVieweru."
 
-#: kgraphviewer.cpp:215
+#: kgraphviewer.cpp:214
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 "Zobrazí dialog otevření souboru pro výběr DOT souborů Graphviz, které mají "
 "být otevřeny."
 
-#: kgraphviewer.cpp:219
+#: kgraphviewer.cpp:218
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -246,27 +246,27 @@ msgstr ""
 "Zde je seznam soubor, které jste nedávno otevřeli; můžete je nyní snadno "
 "otevřít znovu."
 
-#: kgraphviewer.cpp:229
+#: kgraphviewer.cpp:228
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "Ukončit KGraphViewer"
 
-#: kgraphviewer.cpp:232
+#: kgraphviewer.cpp:231
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "Zobrazí nebo skryje stavový panel."
 
-#: kgraphviewer.cpp:235
+#: kgraphviewer.cpp:234
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "Nastavení panelu nástrojů."
 
-#: kgraphviewer.cpp:238
+#: kgraphviewer.cpp:237
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "Hlavní volby nastavení KGraphVieweru."
 
-#: kgraphviewerConfigDialog.cpp:71
+#: kgraphviewerConfigDialog.cpp:70
 #, kde-format
 msgid "Appearance"
 msgstr "Vzhled"
@@ -687,12 +687,12 @@ msgstr "graf %1 se načítá..."
 msgid "error parsing file %1"
 msgstr "chyba při zpracování souboru %1"
 
-#: part/dotgraphview.cpp:1615
+#: part/dotgraphview.cpp:1618
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "Potvrzení znovu načtení"
 
-#: part/dotgraphview.cpp:1615
+#: part/dotgraphview.cpp:1618
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
@@ -701,12 +701,12 @@ msgstr ""
 "Soubor %1 byl změněn na disku.\n"
 "Přejete si jej znovu načíst?"
 
-#: part/dotgraphview.cpp:1701
+#: part/dotgraphview.cpp:1704
 #, kde-format
 msgid "Layout Command"
 msgstr "Příkaz rozvržení"
 
-#: part/dotgraphview.cpp:1702
+#: part/dotgraphview.cpp:1705
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
@@ -715,7 +715,7 @@ msgstr ""
 "Sem zadejte příkaz, který bude použit pro rozvržení grafu.\n"
 "Příkaz MUSÍ vypsat svůj výsledek na standardní výstup ve formátu xdot."
 
-#: part/dotgraphview.cpp:2155
+#: part/dotgraphview.cpp:2158
 #, kde-format
 msgid "Failed to open %1"
 msgstr "Otevření %1 selhalo"
@@ -767,14 +767,12 @@ msgstr "Sou&bor"
 msgid "&View"
 msgstr "Poh&led"
 
-#: part/KgvPageLayout.cpp:68
-#, kde-format
+#: part/KgvPageLayout.cpp:70
 msgctxt "Page size"
 msgid "Screen"
 msgstr "Obrazovka"
 
-#: part/KgvPageLayout.cpp:69
-#, kde-format
+#: part/KgvPageLayout.cpp:71
 msgctxt "Page size"
 msgid "Custom"
 msgstr "Vlastní"
@@ -1148,22 +1146,22 @@ msgstr "Přizpůsob&it více stránkám"
 msgid "Related actions:"
 msgstr "Související činnosti:"
 
-#: part/simpleprintpreviewwindow.cpp:69
+#: part/simpleprintpreviewwindow.cpp:68
 #, kde-format
 msgid "%1 - Print Preview - %2"
 msgstr "%1 - Náhled před tiskem - %2"
 
-#: part/simpleprintpreviewwindow.cpp:84
+#: part/simpleprintpreviewwindow.cpp:83
 #, kde-format
 msgid "&Page setup"
 msgstr "&Nastavení stránky"
 
-#: part/simpleprintpreviewwindow.cpp:123
+#: part/simpleprintpreviewwindow.cpp:122
 #, kde-format
 msgid "Previous Page"
 msgstr "Předchozí strana"
 
-#: part/simpleprintpreviewwindow.cpp:133
+#: part/simpleprintpreviewwindow.cpp:132
 #, kde-format
 msgid "Next Page"
 msgstr "Následující strana"
