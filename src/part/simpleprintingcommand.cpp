@@ -113,7 +113,7 @@ bool KGVSimplePrintingCommand::print(const QString &aTitleText)
 
     // setup printing
     QPrinter printer;
-    printer.setOrientation(m_settings->pageLayout.orientation == PG_PORTRAIT ? QPrinter::Portrait : QPrinter::Landscape);
+    printer.setPageOrientation(m_settings->pageLayout.orientation == PG_PORTRAIT ? QPageLayout::Portrait : QPageLayout::Landscape);
     printer.setPageSize(QPageSize((QPageSize::PageSizeId)KgvPageFormat::printerPageSize(m_settings->pageLayout.format)));
     // #endif
 
