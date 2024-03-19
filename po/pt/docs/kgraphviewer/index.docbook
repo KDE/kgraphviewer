@@ -1,43 +1,20 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY kgraphviewer "<application
->KGraphViewer</application
->">
   <!ENTITY graphviz "<application
-><ulink url=&#034;http://www.graphviz.org&#034;
->GraphViz</ulink
+><ulink url=&#034;https://www.graphviz.org&#034;
+>Graphviz</ulink
 ></application
 >">
-  <!ENTITY boost "<ulink url=&#034;http://www.boost.org&#034;
+  <!ENTITY boost "<ulink url=&#034;https://www.boost.org&#034;
 >Boost</ulink
->">
-  <!ENTITY GUI "<acronym
->GUI</acronym
->">
-  <!ENTITY tcltk "<application
->Tcl/Tk</application
->">
-  <!ENTITY X11 "<application
->X11</application
 >">
   <!ENTITY qanava "<application
 >Qanava</application
 >">
   <!ENTITY kcachegrind "<application
 >KCacheGrind</application
->">
-  <!ENTITY spirit "<application
->Spirit</application
->">
-  <!ENTITY kexi "<application
->Kexi</application
->">
-  <!ENTITY qt "<application
->Qt</application
->">
-  <!ENTITY png "<acronym
->png</acronym
->">
+>"
+> <!--not in kdoctools 5.16-->
   <!ENTITY dot "<application
 >DOT</application
 >">
@@ -53,10 +30,6 @@
   <!ENTITY circo "<application
 >CIRCO</application
 >">
-  <!ENTITY kappname "&kgraphviewer;"
-><!-- Do *not* replace kappname-->
-  <!ENTITY package "extragear-graphics"
-><!-- kdebase, kdeadmin, etc -->
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % Portuguese "INCLUDE"
 ><!-- change language only here -->
@@ -128,15 +101,15 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2006-10-22</date>
+>2020-12-14</date>
 <releaseinfo
->1.0.3</releaseinfo>
+>&kgraphviewer; 2.4.3</releaseinfo>
 
 <abstract>
 <para
->O &kgraphviewer; é um visualizador de grafos do &dot; do &graphviz; para o KDE. Os programas do &graphviz; são motores de disposição de grafos em 'software' livre. Os grafos são normalmente usados em domínios científicos e, em particular, na informática. Mas, até agora, faltava uma &GUI; moderna para olhar para os grafos. Os programas fornecidos com o &graphviz; são, na opinião do autor, desactualizados com interfaces em &X11; ou &tcltk; e com poucas funcionalidades. </para>
+>O &kgraphviewer; é um visualizador de grafos do &dot; do &graphviz;. Foi desenvolvido pela comunidade do &kde;. Os programas do &graphviz; são motores de disposição de grafos em 'software' livre. Os grafos são normalmente usados em domínios científicos e, em particular, na informática. </para>
 <para
->O projecto &kgraphviewer; pretende substituir estas ferramentas com uma &GUI; moderna e amigável, com todas as potencialidades de uma aplicação do &kde; bem integrada. </para>
+>O &kgraphviewer; mostra os grafos com uma &GUI; moderna e amigável. </para>
 </abstract>
 
 <keywordset>
@@ -161,15 +134,12 @@
 >Introdução</title>
 
 <para
->O &kgraphviewer; é um visualizador de grafos pontuais do &graphviz; para o &kde;. Os programas do &graphviz; são motores de disposição de grafos em 'software' livre. O &kgraphviewer; mostra os grafos numa &GUI; gráfica moderna e amigável, com todas as potencialidades de uma aplicação do &kde; bem integrada. Tem as seguintes funcionalidades&nbsp;: <screenshot>
+>O &kgraphviewer; é um visualizador de grafos &dot; do &graphviz;. Os programas do &graphviz; são motores de disposição de grafos em 'software' livre. O &kgraphviewer; mostra os grafos numa &GUI; gráfica moderna e amigável. Tem as seguintes funcionalidades: <screenshot>
 <screeninfo
 >Aqui está uma imagem do &kgraphviewer;</screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
-    </imageobject>
-    <imageobject>
-      <imagedata fileref="kgraphviewer-snap-main.eps" format="EPS"/>
     </imageobject>
     <textobject>
       <phrase
@@ -237,10 +207,6 @@
 >As funcionalidades previstas são: <itemizedlist>
 	<listitem
 ><para
->modificação para o &kde; 4</para
-></listitem>
-	<listitem
-><para
 >usar eventualmente a biblioteca &qanava; para suportar a representação de grafos internos</para
 ></listitem>
 	<listitem
@@ -278,18 +244,14 @@
 ></note>
 <note
 ><para
->Repare também que o sistema de impressão é da aplicação &koffice;/&kexi;.</para
+>Repare também que o sistema de impressão é da aplicação &koffice;/&kexi; do &calligra;.</para
 ></note>
 
 <para
->Outro 'Software' Necessário: o &kgraphviewer; é um programa do &kde; que usa a ferramenta &dot; do &graphviz; para a disposição dos grafos. As suas dependências são: <itemizedlist>
+>Outro 'software' necessário: o &kgraphviewer; é um programa do &kde; que usa a ferramenta &dot; do &graphviz; para a disposição dos grafos. As suas dependências são: <itemizedlist>
 	<listitem
 ><para
->A biblioteca &qt; 3.x (3.3.6 e superior, para evitar um erro de pintura)</para
-></listitem>
-	<listitem
-><para
->bibliotecas do &kde; (pacote 'kdelibs'), desenvolvido e testado com a versão 3.5.2;</para
+>As bibliotecas do &Qt; e &kde-frameworks; na versão 5.x;</para
 ></listitem>
 	<listitem
 ><para
@@ -297,7 +259,7 @@
 ></listitem>
 	<listitem
 ><para
->A biblioteca &boost;/&spirit; (testado com a versão 0.32).</para
+>A biblioteca &boost; na versão 1.36.</para
 ></listitem>
 </itemizedlist
 ></para>
@@ -314,9 +276,9 @@
 
 <para
 >A janela principal mostra os grafos carregados, estando cada um deles na sua própria página. Inicialmente, se arrancar o &kgraphviewer; sem argumentos, a sua janela principal estará vazia, como acontece na imagem abaixo. Neste caso, a barra de ferramentas contém apenas os itens <guimenuitem
->Abrir um Ficheiro</guimenuitem
-> e os <guimenuitem
->Ficheiros Abertos Recentemente</guimenuitem
+>Abrir...</guimenuitem
+> e os botões para <guimenuitem
+>Abrir um Recente</guimenuitem
 > (vazio). Carregue na primeira opção para abrir a janela normal para <guilabel
 >Abrir um Ficheiro</guilabel
 >.</para>
@@ -327,9 +289,6 @@
   <mediaobject>
     <imageobject>
       <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
-    </imageobject>
-    <imageobject>
-      <imagedata fileref="kgraphviewer-snap-init.eps" format="EPS"/>
     </imageobject>
     <textobject>
       <phrase
@@ -351,9 +310,6 @@
   <mediaobject>
     <imageobject>
       <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
-    </imageobject>
-    <imageobject>
-      <imagedata fileref="kgraphviewer-snap-main.eps" format="EPS"/>
     </imageobject>
     <textobject>
       <phrase
@@ -495,7 +451,7 @@
 >Poderá optar por carregar de novo o grafo ou ignorar a alteração. Poderá também fazer com que o &kgraphviewer; recorde a sua escolha e volte a fazer a mesmo coisa das próximas vezes. Se quiser modificar mais tarde a sua escolha, então seleccione o item do menu <guimenu
 >Configuração</guimenu
 ><guimenuitem
->Configurar o &kgraphviewer;</guimenuitem
+>Configurar o &kgraphviewer;...</guimenuitem
 >. Veja o capítulo <xref linkend="kgraphviewer-configuration"/>.</para>
 </sect3>
 
@@ -563,10 +519,10 @@
 <title
 >Impressão do Grafo</title>
 <para
->Tente os botões <guilabel
->Antevisão da impressão</guilabel
-> ou de <guilabel
->Configuração da página</guilabel
+>Tente os botões <guibutton
+>Antevisão da impressão</guibutton
+> ou de <guibutton
+>Configuração da página</guibutton
 > para explorar as opções de impressão.</para>
 
 <screenshot>
@@ -681,6 +637,52 @@
 >Configurar o &kgraphviewer;</title>
 
 <para
+>A página de <guilabel
+>Aparência</guilabel
+> permite modificar a cor de fundo por omissão usada no &kgraphviewer; se um grafo não tiver a sua própria cor de fundo.</para>
+
+<screenshot>
+<screeninfo
+>Página para mudar a aparência de um grafo</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Página para mudar a aparência de um grafo</phrase>
+</textobject>
+<caption
+><para
+>Página para mudar a aparência de um grafo</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>A página de <guilabel
+>Processamento</guilabel
+> permite seleccionar um comando externo ou a biblioteca interna para processar os ficheiros &dot; do &graphviz;.</para>
+
+<screenshot>
+<screeninfo
+>Página para recarregar os ficheiros modificados na janela de configuração</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Página para recarregar os ficheiros modificados na janela de configuração</phrase>
+</textobject>
+<caption
+><para
+>Página para recarregar os ficheiros modificados na janela de configuração</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
 >A página para <guilabel
 >Recarregar</guilabel
 > permite-lhe alterar o comportamento do &kgraphviewer; quando um ficheiro for modificado no disco. Poderá escolher uma resposta por omissão (recarregar automaticamente ou não) ou ser avisado de cada vez.</para>
@@ -759,8 +761,8 @@
 >O menu de contexto, obtido através do &RMB; na vista do grafo, oferece mais algumas possibilidades: <variablelist>
 <varlistentry>
 <term
-><guimenu
->Disposição</guimenu
+><guisubmenu
+>Disposição</guisubmenu
 ></term>
 <listitem
 ><para
@@ -840,7 +842,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Repor o comando de disposição predefinido</guimenuitem
+>Repõe o comando de disposição predefinido</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -854,8 +856,8 @@
 
 <varlistentry>
 <term
-><guimenu
->Exportar o Grafo</guimenu
+><guisubmenu
+>Exportar o Grafo</guisubmenu
 ></term>
 <listitem
 ><para>
@@ -867,7 +869,7 @@
 ></term>
 	<listitem
 ><para
->Permite exportar o grafo completo numa imagem &png;.</para
+>Permite exportar o grafo completo para todos os formatos de imagem suportados.</para
 ></listitem>
 	</varlistentry>
 	</variablelist>
@@ -888,8 +890,8 @@
 
 <varlistentry>
 <term
-><guimenu
->Vista de Topo</guimenu
+><guisubmenu
+>Vista de Topo</guisubmenu
 ></term>
 <listitem
 ><para
@@ -979,6 +981,29 @@
 ><shortcut
 > <keycombo action="simul"
 >&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+><guimenu
+>Ficheiro</guimenu
+> <guimenuitem
+>Novo</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Abre</action
+> uma nova janela do &kgraphviewer;.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
 >O</keycap
 ></keycombo
 > </shortcut
@@ -1030,7 +1055,7 @@
 ><para
 >Permite <action
 >exportar</action
-> o grafo completo numa imagem &png;.</para
+> o grafo completo em qualquer um dos formatos de imagens suportados.</para
 ></listitem>
 	</varlistentry>
 
@@ -1060,6 +1085,12 @@
 	<varlistentry>
 	<term
 ><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>P</keycap
+></keycombo
+> </shortcut
 ><guimenu
 >Ficheiro</guimenu
 ><guimenuitem
@@ -1128,23 +1159,6 @@
 	<varlistentry>
 	<term
 ><menuchoice
-><guimenu
->Ver</guimenu
-><guimenuitem
->Recarregar</guimenuitem
-></menuchoice
-></term>
-	<listitem
-><para
-><action
->Volta a carregar</action
-> o grafo actual.</para
-></listitem>
-	</varlistentry>
-
-	<varlistentry>
-	<term
-><menuchoice
 ><shortcut
 ><keycombo action="simul"
 >&Ctrl;<keycap
@@ -1185,6 +1199,38 @@
 ><action
 >Reduz</action
 > o grafo actual em 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Ver</guimenu
+><guimenuitem
+>Recarregar</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Volta a carregar</action
+> o grafo actual.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Ver</guimenu
+><guimenuitem
+>Seleccionar o Algoritmo de Disposição</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Abre um submenu com os vários algoritmos do &graphviz; para o grafo actual.</para
 ></listitem>
 	</varlistentry>
 
@@ -1285,10 +1331,20 @@
 
 <sect2>
 <title
->O Menu <guimenu
+>Os Menus de Configuração e Ajuda</title>
+
+<para
+>O &kgraphviewer; tem os itens dos menus de <guimenu
+>Configuração</guimenu
+> e <guimenu
 >Ajuda</guimenu
-></title>
-&help.menu.documentation; </sect2>
+> normais do &kde;; para mais informações, leia a secção sobre os menus de <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Configuração</ulink
+> e <ulink url="help:/fundamentals/menus.html#menus-help"
+>Ajuda</ulink
+> dos Fundamentos do &kde;. </para>
+
+</sect2>
 </sect1>
 
 <sect1 id="kgraphviewer-commands-toolbars">
@@ -1298,9 +1354,10 @@
 <sect2>
 <title
 >A Barra Principal</title>
-
+<!--document-new-->
 <variablelist>
-	<varlistentry>
+	<varlistentry
+><!--document-open-->
 	<term
 ><guibutton
 ><inlinemediaobject
@@ -1319,7 +1376,8 @@
 ></listitem>
 	</varlistentry>
 
-	<varlistentry>
+	<varlistentry
+><!--document-open-recent-->
 	<term
 ><guibutton
 ><inlinemediaobject
@@ -1335,8 +1393,8 @@
 > a lista dos ficheiros abertos recentemente.</para
 ></listitem>
 	</varlistentry>
-
-	<varlistentry>
+<!--document-close-->
+	<!--varlistentry>
 	<term
 ><guibutton
 ><inlinemediaobject
@@ -1348,10 +1406,10 @@
 	<listitem
 ><para
 ><action
->Imprime o grafo</action
-> com a configuração actual.</para
+>Prints the graph</action
+> using current setup.</para
 ></listitem>
-	</varlistentry>
+	</varlistentry-->
 
 	<varlistentry>
 	<term
@@ -1367,12 +1425,12 @@
 ><action
 >Mostra</action
 > a janela de <guilabel
->Antevisão de Impressão</guilabel
+>Antevisão da Impressão</guilabel
 >.</para
 ></listitem>
 	</varlistentry>
 
-	<varlistentry>
+	<!--varlistentry>
 	<term
 ><guibutton
 ><inlinemediaobject
@@ -1384,12 +1442,12 @@
 	<listitem
 ><para
 ><action
->Mostra</action
-> a janela de <guilabel
->Configuração da Página</guilabel
->.</para
+>Shows</action
+> the <guilabel
+>Page Setup</guilabel
+> dialog.</para
 ></listitem>
-	</varlistentry>
+	</varlistentry-->
 </variablelist>
 </sect2>
 
@@ -1398,7 +1456,7 @@
 >A Barra de Visualização</title>
 
 <variablelist>
-	<varlistentry>
+	<!--varlistentry>
 	<term
 ><guibutton
 ><inlinemediaobject
@@ -1410,10 +1468,10 @@
 	<listitem
 ><para
 ><action
->Volta a carregar</action
-> o grafo actual.</para
+>Reloads</action
+> the current graph.</para
 ></listitem>
-	</varlistentry>
+	</varlistentry-->
 
 	<varlistentry>
 	<term
@@ -1433,8 +1491,9 @@
 > a lista de algoritmos predefinidos.</para
 ></listitem>
 	</varlistentry>
-
-	<varlistentry>
+	
+	<varlistentry
+><!--zoom-in-->
 	<term
 ><guibutton
 ><inlinemediaobject
@@ -1451,7 +1510,8 @@
 ></listitem>
 	</varlistentry>
 
-	<varlistentry>
+	<varlistentry
+><!--zoom-out-->
 	<term
 ><guibutton
 ><inlinemediaobject
@@ -1468,6 +1528,7 @@
 ></listitem>
 	</varlistentry>
 </variablelist>
+<!--kgraphviewer-bev "Enable Bird's-eye View"-->
 </sect2>
 
 <sect2>
@@ -1475,7 +1536,8 @@
 >A Barra de Ajuda</title>
 
 <variablelist>
-	<varlistentry>
+	<varlistentry
+><!--help-contextual-->
 	<term
 ><guibutton
 ><inlinemediaobject
@@ -1559,7 +1621,7 @@
 <variablelist>
 	<varlistentry>
 	<term
-><ulink url="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi"
+><ulink url="https://kcachegrind.github.io/html/Home.html"
 >&kcachegrind;</ulink
 ></term>
 	<listitem
@@ -1588,86 +1650,9 @@
 >Tradução de José Nuno Pires <email
 >zepires@gmail.com</email
 ></para
-> 
-&underFDL; &underGPL; </sect1>
+> &underFDL; &underGPL; </sect1>
 
 </chapter>
-
-<appendix id="installation">
-<title
->Instalação</title>
-
-<sect1 id="getting-kgraphviewer">
-<title
->Como obter o &kgraphviewer;</title>
-
-<para
->O <ulink url="http://extragear.kde.org/apps/kgraphviewer/"
->&kgraphviewer;</ulink
-> faz parte do pacote do <ulink url="http://www.kde.org"
->&kde;</ulink
-> <ulink url="http://extragear.kde.org/"
->extragear</ulink
->. O seu repositório de Subversion pode ser encontrado no kde.org <ulink url="http://websvn.kde.org/trunk/extragear/graphics/kgraphviewer/"
->aqui</ulink
->.</para>
-
-<para
->As versões independentes do &kgraphviewer; podem ser encontradas na <ulink url="https://gna.org/projects/kgraphviewer"
->página pessoal do &kgraphviewer;</ulink
->.</para>
-
-<para
->Poderá encontrar uma lista das alterações <ulink url="http://kde-apps.org/content/show.php?content=23999"
->nesta página</ulink
-> e no ficheiro ChangeLog, no topo do pacote da distribuição.</para>
-
-</sect1>
-
-<sect1 id="requirements">
-<title
->Dependências</title>
-
-<para
->O &kgraphviewer; é um programa do &kde; que usa as ferramentas do &graphviz; para a disposição dos grafos. Necessita de ter instalados os seguintes programas: <itemizedlist>
-	<listitem
-><para
->A biblioteca &qt; 3.x (3.3.6 e superior, para evitar um erro de pintura);</para
-></listitem>
-	<listitem
-><para
->Bibliotecas do &kde; (desenvolvido e testado com a versão 3.5.x);</para
-></listitem>
-	<listitem
-><para
->As ferramentas do &graphviz; (testado com as versões até à 2.8);</para
-></listitem>
-	<listitem
-><para
->A biblioteca &boost;/&spirit; (testado com a versão 0.32).</para
-></listitem>
-</itemizedlist>
-</para>
-
-</sect1>
-
-<sect1 id="compilation">
-<title
->Compilação e Instalação</title>
-&install.compile.documentation; </sect1>
-
-<sect1 id="configuration">
-<title
->Configuração</title>
-
-<para
->Não é necessária nenhuma configuração especial para usar o &kgraphviewer;. Veja o menu de <guimenu
->Configuração</guimenu
-> para algumas opções.</para>
-
-</sect1>
-
-</appendix>
 
 &documentation.index;
 </book>
