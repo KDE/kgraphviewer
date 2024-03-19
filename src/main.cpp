@@ -58,9 +58,7 @@ int main(int argc, char **argv)
     about.addAuthor(i18n("Milian Wolff"), i18n("Contributor"), "mail@milianw.de");
     about.addAuthor(i18n("Martin Sandsmark"), i18n("Port to KF5"), "martin.sandsmark@kde.org");
 
-    app.setOrganizationDomain(QStringLiteral("kde.org"));
     app.setOrganizationName(QStringLiteral("KDE"));
-
     KAboutData::setApplicationData(about);
 
     app.setWindowIcon(QIcon::fromTheme("kgraphviewer", app.windowIcon()));
