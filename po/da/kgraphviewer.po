@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-18 01:59+0000\n"
+"POT-Creation-Date: 2024-03-20 01:39+0000\n"
 "PO-Revision-Date: 2014-04-10 11:39+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -118,12 +118,12 @@ msgstr "Et program til visning af Graphviz dot-grafer til KDE"
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:58 main.cpp:67
 #, kde-format
 msgid "Path or URL to scan"
 msgstr ""
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:58 main.cpp:67
 #, kde-format
 msgid "[url]"
 msgstr ""
@@ -137,7 +137,7 @@ msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
 msgstr "Et KGraphEditor-vindue er allerede åbent, hvor vil du åbne denne fil?"
 
-#: kgrapheditormain.cpp:83 main.cpp:94
+#: kgrapheditormain.cpp:83 main.cpp:92
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "Bekræft åbning i et nyt vindue"
@@ -340,7 +340,7 @@ msgstr ""
 msgid "Port to KF5"
 msgstr ""
 
-#: main.cpp:94
+#: main.cpp:92
 #, fuzzy, kde-format
 #| msgid ""
 #| "A KGraphViewer window is already open, where do you want to open this "

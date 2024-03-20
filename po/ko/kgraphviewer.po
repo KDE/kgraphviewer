@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-18 01:59+0000\n"
+"POT-Creation-Date: 2024-03-20 01:39+0000\n"
 "PO-Revision-Date: 2023-03-01 02:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -112,12 +112,12 @@ msgstr "KDE의 Graphviz DOT 그래프 편집기"
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:58 main.cpp:67
 #, kde-format
 msgid "Path or URL to scan"
 msgstr "검색할 경로나 URL"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:58 main.cpp:67
 #, kde-format
 msgid "[url]"
 msgstr "[url]"
@@ -128,7 +128,7 @@ msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
 msgstr "KGraphEditor 창이 열려 있습니다. 해당 창에 파일을 여시겠습니까?"
 
-#: kgrapheditormain.cpp:83 main.cpp:94
+#: kgrapheditormain.cpp:83 main.cpp:92
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "새 창에서 열기 확인"
@@ -322,7 +322,7 @@ msgstr "Martin Sandsmark"
 msgid "Port to KF5"
 msgstr "KF5 이식"
 
-#: main.cpp:94
+#: main.cpp:92
 #, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "

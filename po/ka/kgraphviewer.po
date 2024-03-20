@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-18 01:59+0000\n"
+"POT-Creation-Date: 2024-03-20 01:39+0000\n"
 "PO-Revision-Date: 2023-02-03 17:01+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -113,12 +113,12 @@ msgstr "Graphviz გრაფების რედაქტორი KDE-სთ
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:58 main.cpp:67
 #, kde-format
 msgid "Path or URL to scan"
 msgstr "დასასკანერებელი ბილიკი ან URL"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:58 main.cpp:67
 #, kde-format
 msgid "[url]"
 msgstr "[url]"
@@ -129,7 +129,7 @@ msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
 msgstr "KGraphEditor -ის ფანჯარა უკვე ღიაა. გნებავთ ფაილი მასში გახსნათ?"
 
-#: kgrapheditormain.cpp:83 main.cpp:94
+#: kgrapheditormain.cpp:83 main.cpp:92
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "ფაილის ახალ ფანჯარაში გახსნის დადასტურება"
@@ -320,7 +320,7 @@ msgstr "Martin Sandsmark"
 msgid "Port to KF5"
 msgstr "KF5-ზე პორტი"
 
-#: main.cpp:94
+#: main.cpp:92
 #, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
