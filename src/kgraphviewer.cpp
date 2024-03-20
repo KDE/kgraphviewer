@@ -26,7 +26,6 @@
 #include "ui_preferencesReload.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
 
-#include <kwidgetsaddons_version.h>
 #include <KActionCollection>
 #include <KColorScheme>
 #include <KParts/ReadOnlyPart>
@@ -109,21 +108,13 @@ void KGraphViewerWindow::reloadPreviousFiles()
 {
     QStringList previouslyOpenedFiles = KGraphViewerSettings::previouslyOpenedFiles();
     if ((previouslyOpenedFiles.empty() == false) &&
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         (KMessageBox::questionTwoActions(this,
-#else
-        (KMessageBox::questionYesNo(this,
-#endif
                                     i18n("Do you want to reload files from the previous session?"),
                                     i18n("Session Restore"),
                                     KGuiItem(i18nc("@action:button", "Reload"), QStringLiteral("document-open")),
                                     KGuiItem(i18nc("@action:button", "Do Not Reload"), QStringLiteral("dialog-cancel")),
                                     "reopenPreviouslyOpenedFilesMode")
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         == KMessageBox::PrimaryAction)) {
-#else
-        == KMessageBox::Yes)) {
-#endif
         QStringList::const_iterator it, it_end;
         it = previouslyOpenedFiles.constBegin();
         it_end = previouslyOpenedFiles.constEnd();
