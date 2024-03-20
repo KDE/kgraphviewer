@@ -1376,7 +1376,11 @@ void DotGraphView::mousePressEvent(QMouseEvent *e)
             }
             Q_EMIT selectionIs(QList<QString>(), QPoint());
         }
+#if QT_VERSION_MAJOR == 5
         d->m_pressPos = e->globalPos();
+#else
+        d->m_pressPos = e->globalPosition().toPoint();
+#endif
         d->m_pressScrollBarsPos = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
     }
     d->m_isMoving = true;
@@ -1400,7 +1404,11 @@ void DotGraphView::mouseMoveEvent(QMouseEvent *e)
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "selecting";
     } else if (e->buttons().testFlag(Qt::LeftButton)) {
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << (e->globalPos() - d->m_pressPos);
+#if QT_VERSION_MAJOR == 5
         QPoint diff = e->globalPos() - d->m_pressPos;
+#else
+        QPoint diff = e->globalPosition().toPoint() - d->m_pressPos;
+#endif
         horizontalScrollBar()->setValue(d->m_pressScrollBarsPos.x() - diff.x());
         verticalScrollBar()->setValue(d->m_pressScrollBarsPos.y() - diff.y());
     }
