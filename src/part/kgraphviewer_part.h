@@ -22,7 +22,6 @@
 #include <KParts/ReadOnlyPart>
 #include <KPluginFactory>
 #include <kparts/part.h>
-#include <kparts_version.h>
 
 #include "kgraphviewer_interface.h"
 

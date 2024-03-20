@@ -75,7 +75,6 @@
 #include <QUuid>
 #include <QWheelEvent>
 
-#include <kwidgetsaddons_version.h>
 #include <kactionmenu.h>
 #include <klocalizedstring.h>
 #include <kmessagebox.h>
