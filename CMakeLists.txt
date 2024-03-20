@@ -19,6 +19,7 @@ include(FeatureSummary)
 include(GenerateExportHeader)
 include(ECMInstallIcons)
 include(ECMQtDeclareLoggingCategory)
+include(ECMDeprecationSettings)
 include(ECMSetupVersion)
 
 if (QT_MAJOR_VERSION STREQUAL "6")
@@ -66,9 +67,18 @@ option(BUILD_GRAPHEDITOR "Build the graph editor app (WIP, not yet functional). 
 remove_definitions(
     -DQT_NO_CAST_FROM_ASCII
 )
-add_definitions(
-    -DQT_DISABLE_DEPRECATED_BEFORE=0x050400
-)
+
+if (QT_MAJOR_VERSION STREQUAL "6")
+    ecm_set_disabled_deprecation_versions(
+        QT 6.5
+        KF 6.0
+    )
+else()
+    ecm_set_disabled_deprecation_versions(
+        QT 5.15.2
+        KF 5.100
+    )
+endif()
 
 add_subdirectory(src)
 add_subdirectory(doc)
