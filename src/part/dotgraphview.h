@@ -241,7 +241,7 @@ protected:
     DotGraphViewPrivate *const d_ptr;
 
 private:
-    Q_DECLARE_PRIVATE(DotGraphView);
+    Q_DECLARE_PRIVATE(DotGraphView)
 };
 
 }

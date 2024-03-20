@@ -204,7 +204,7 @@ public:
     QColor m_backgroundColor;
 
     DotGraphView *const q_ptr;
-    Q_DECLARE_PUBLIC(DotGraphView);
+    Q_DECLARE_PUBLIC(DotGraphView)
 };
 
 void DotGraphViewPrivate::updateSizes(QSizeF s)
