@@ -69,13 +69,13 @@ void KgvPageLayoutColumns::nColChanged(int columns)
 {
     m_columns.columns = columns;
     m_preview->setPageColumns(m_columns);
-    emit propertyChange(m_columns);
+    Q_EMIT propertyChange(m_columns);
 }
 
 void KgvPageLayoutColumns::nSpaceChanged(double spacing)
 {
     m_columns.ptColumnSpacing = spacing;
-    emit propertyChange(m_columns);
+    Q_EMIT propertyChange(m_columns);
 }
 
 void KgvPageLayoutColumns::setLayout(KgvPageLayout &layout)

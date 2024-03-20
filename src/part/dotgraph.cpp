@@ -253,7 +253,7 @@ void DotGraph::slotDotRunningDone(int exitCode, QProcess::ExitStatus exitStatus)
     //   else
     //   {
     qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting readyToDisplay";
-    emit(readyToDisplay());
+    Q_EMIT readyToDisplay();
     //   }
 }
 
@@ -481,7 +481,7 @@ void DotGraph::updateWithGraph(graph_t *newGraph)
         ngn = agnxtnode(newGraph, ngn);
     }
     qCDebug(KGRAPHVIEWERLIB_LOG) << "Done";
-    emit readyToDisplay();
+    Q_EMIT readyToDisplay();
     computeCells();
 }
 

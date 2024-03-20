@@ -404,7 +404,7 @@ void KGraphEditor::applyNewToolbarConfig()
 //     return;
 //   }
 //   qCDebug(KGRAPHEDITOR_LOG) << "emiting";
-//   emit(settingsChanged());
+//   Q_EMIT settingsChanged();
 //   KGraphEditorSettings::save();
 // }
 //
@@ -428,7 +428,7 @@ void KGraphEditor::applyNewToolbarConfig()
 //   }
 //
 //   std::cerr << "emiting" << std::endl;
-//   emit(settingsChanged());
+//   Q_EMIT settingsChanged();
 //   KGraphEditorSettings::save();
 // }
 //
@@ -452,7 +452,7 @@ void KGraphEditor::applyNewToolbarConfig()
 //   }
 //
 //   std::cerr << "emiting" << std::endl;
-//   emit(settingsChanged());
+//   Q_EMIT settingsChanged();
 //   KGraphEditorSettings::save();
 // }
 
@@ -490,7 +490,7 @@ void KGraphEditor::fileSave()
 {
     QWidget *currentPage = m_widget->currentWidget();
     if (currentPage) {
-        emit(saveTo(QUrl(m_tabsFilesMap[currentPage]).path()));
+        Q_EMIT saveTo(QUrl(m_tabsFilesMap[currentPage]).path());
     }
 }
 
@@ -510,14 +510,14 @@ void KGraphEditor::fileSaveAs()
         }
 
         m_tabsFilesMap[currentPage] = fileName;
-        emit(saveTo(fileName));
+        Q_EMIT saveTo(fileName);
     }
 }
 
 void KGraphEditor::newTabSelectedSlot(int index)
 {
     //   qCDebug(KGRAPHEDITOR_LOG) << tab;
-    emit(hide((KParts::Part *)(m_manager->activePart())));
+    Q_EMIT hide((KParts::Part *)(m_manager->activePart()));
     QWidget *tab = m_widget->widget(index);
     if (tab) {
         slotSetActiveGraph(m_tabsPartsMap[tab]);
@@ -611,7 +611,7 @@ void KGraphEditor::slotNewEdgeAdded(const QString &ids, const QString &idt)
 void KGraphEditor::slotNewEdgeFinished(const QString &srcId, const QString &tgtId, const QMap<QString, QString> &attribs)
 {
     qCDebug(KGRAPHEDITOR_LOG) << srcId << tgtId << attribs;
-    emit saddNewEdge(srcId, tgtId, attribs);
+    Q_EMIT saddNewEdge(srcId, tgtId, attribs);
     update();
 }
 
@@ -665,17 +665,17 @@ void KGraphEditor::slotItemChanged(QTreeWidgetItem *item, int column)
     if (column == 0) {
         QString oldNodeName = m_currentTreeWidgetItemText;
         QString newNodeName = item->text(0);
-        emit(renameNode(oldNodeName, newNodeName));
+        Q_EMIT renameNode(oldNodeName, newNodeName);
     } else if (column == 1) {
         /* there is a parent ; it is an attribute line */
         if (item->parent()) {
             QString nodeLabel = item->parent()->text(0);
             QString attributeName = item->text(0);
             QString attributeValue = item->text(1);
-            emit(setAttribute(nodeLabel, attributeName, attributeValue));
+            Q_EMIT setAttribute(nodeLabel, attributeName, attributeValue);
         }
     }
-    emit update();
+    Q_EMIT update();
 }
 
 void KGraphEditor::slotItemClicked(QTreeWidgetItem *item, int column)
@@ -684,7 +684,7 @@ void KGraphEditor::slotItemClicked(QTreeWidgetItem *item, int column)
     m_currentTreeWidgetItemText = item->text(0);
 
     QString nodeName = item->parent() ? item->parent()->text(0) : item->text(0);
-    emit selectNode(nodeName);
+    Q_EMIT selectNode(nodeName);
 }
 
 void KGraphEditor::slotEditNewVertex()
@@ -694,7 +694,7 @@ void KGraphEditor::slotEditNewVertex()
         return;
     }
     qCDebug(KGRAPHEDITOR_LOG) << "new vertex";
-    emit(prepareAddNewElement(m_newElementAttributes));
+    Q_EMIT prepareAddNewElement(m_newElementAttributes);
 }
 
 void KGraphEditor::slotEditNewEdge()
@@ -704,25 +704,25 @@ void KGraphEditor::slotEditNewEdge()
         return;
     }
     qCDebug(KGRAPHEDITOR_LOG) << "new edge";
-    emit(prepareAddNewEdge(m_newElementAttributes));
+    Q_EMIT prepareAddNewEdge(m_newElementAttributes);
 }
 
 void KGraphEditor::slotRemoveNode(const QString &nodeName)
 {
-    emit removeNode(nodeName);
-    emit update();
+    Q_EMIT removeNode(nodeName);
+    Q_EMIT update();
 }
 
 void KGraphEditor::slotAddAttribute(const QString &attribName)
 {
-    emit addAttribute(attribName);
-    emit update();
+    Q_EMIT addAttribute(attribName);
+    Q_EMIT update();
 }
 
 void KGraphEditor::slotRemoveAttribute(const QString &nodeName, const QString &attribName)
 {
-    emit removeAttribute(nodeName, attribName);
-    emit update();
+    Q_EMIT removeAttribute(nodeName, attribName);
+    Q_EMIT update();
 }
 
 void KGraphEditor::slotNewElementItemChanged(QTreeWidgetItem *item, int column)
@@ -753,7 +753,7 @@ void KGraphEditor::slotRemoveElement(const QString &id)
 {
     qCDebug(KGRAPHEDITOR_LOG) << id;
     m_treeWidget->slotRemoveElement(id);
-    emit(removeElement(id));
+    Q_EMIT removeElement(id);
 }
 
 void KGraphEditor::slotSelectionIs(const QList<QString> &elements, const QPoint &p)
@@ -778,7 +778,7 @@ void KGraphEditor::slotParsingModeExternalToggled(bool value)
         KGraphEditorSettings::setParsingMode("external");
     }
     //   qCDebug(KGRAPHEDITOR_LOG) << "emiting";
-    //   emit(settingsChanged());
+    //   Q_EMIT settingsChanged();
     KGraphEditorSettings::self()->save();
 }
 
@@ -788,7 +788,7 @@ void KGraphEditor::slotParsingModeInternalToggled(bool value)
         KGraphEditorSettings::setParsingMode("internal");
     }
     //   qCDebug(KGRAPHEDITOR_LOG) << "emiting";
-    //   emit(settingsChanged());
+    //   Q_EMIT settingsChanged();
     KGraphEditorSettings::self()->save();
 }
 

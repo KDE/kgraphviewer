@@ -115,7 +115,7 @@ void PannerView::moveZoomRectTo(const QPointF &newPos, bool notify)
     scene()->invalidate(m_zoomRect, QGraphicsScene::ForegroundLayer);
 
     if (m_zoomRect.isValid() && notify) {
-        emit zoomRectMovedTo(newPos);
+        Q_EMIT zoomRectMovedTo(newPos);
         m_lastPos = newPos;
     }
 }
@@ -166,7 +166,7 @@ void PannerView::mouseReleaseEvent(QMouseEvent *e)
     moveZoomRectTo(mapToScene(e->pos()));
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << "PannerView::mouseReleaseEvent " << pos;
     m_movingZoomRect = false;
-    emit zoomRectMoveFinished();
+    Q_EMIT zoomRectMoveFinished();
 }
 
 void PannerView::contextMenuEvent(QContextMenuEvent *event)

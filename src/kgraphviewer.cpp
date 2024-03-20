@@ -367,7 +367,7 @@ void KGraphViewerWindow::slotReloadOnChangeModeYesToggled(bool value)
         KGraphViewerSettings::setReloadOnChangeMode("true");
     }
     //   qCDebug(KGRAPHVIEWER_LOG) << "emitting";
-    //   emit(settingsChanged());
+    //   Q_EMIT settingsChanged();
     KGraphViewerSettings::self()->save();
 }
 
@@ -378,7 +378,7 @@ void KGraphViewerWindow::slotReloadOnChangeModeNoToggled(bool value)
         KGraphViewerSettings::setReloadOnChangeMode("false");
     }
     //   qCDebug(KGRAPHVIEWER_LOG) << "emitting";
-    //   emit(settingsChanged());
+    //   Q_EMIT settingsChanged();
     KGraphViewerSettings::self()->save();
 }
 
@@ -389,7 +389,7 @@ void KGraphViewerWindow::slotReloadOnChangeModeAskToggled(bool value)
         KGraphViewerSettings::setReloadOnChangeMode("ask");
     }
     //   qCDebug(KGRAPHVIEWER_LOG) << "emitting";
-    //   emit(settingsChanged());
+    //   Q_EMIT settingsChanged();
     KGraphViewerSettings::self()->save();
 }
 
@@ -454,7 +454,7 @@ void KGraphViewerWindow::slotParsingModeExternalToggled(bool value)
         KGraphViewerSettings::setParsingMode("external");
     }
     //   qCDebug(KGRAPHVIEWER_LOG) << "emitting";
-    //   emit(settingsChanged());
+    //   Q_EMIT settingsChanged();
     KGraphViewerSettings::self()->save();
 }
 
@@ -465,7 +465,7 @@ void KGraphViewerWindow::slotParsingModeInternalToggled(bool value)
         KGraphViewerSettings::setParsingMode("internal");
     }
     //   qCDebug(KGRAPHVIEWER_LOG) << "emitting";
-    //   emit(settingsChanged());
+    //   Q_EMIT settingsChanged();
     KGraphViewerSettings::self()->save();
 }
 
@@ -501,7 +501,7 @@ void KGraphViewerWindow::close()
 
 void KGraphViewerWindow::newTabSelectedSlot(int index)
 {
-    emit(hide((KParts::Part *)(m_manager->activePart())));
+    Q_EMIT hide((KParts::Part *)(m_manager->activePart()));
 
     QWidget *tab = m_widget->widget(index);
     if (tab) {

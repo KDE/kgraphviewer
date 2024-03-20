@@ -169,7 +169,7 @@ void KgvUnitDoubleSpinBox::changeValue(double val)
 
 void KgvUnitDoubleSpinBox::privateValueChanged()
 {
-    emit valueChangedPt(value());
+    Q_EMIT valueChangedPt(value());
 }
 
 void KgvUnitDoubleSpinBox::setUnit(KgvUnit::Unit unit)
@@ -329,7 +329,7 @@ void KgvUnitDoubleComboBox::changeValue(double value)
     QString oldLabel = lineEdit()->text();
     updateValue(value);
     if (lineEdit()->text() != oldLabel)
-        emit valueChanged(m_value);
+        Q_EMIT valueChanged(m_value);
 }
 
 void KgvUnitDoubleComboBox::updateValue(double value)
@@ -350,7 +350,7 @@ void KgvUnitDoubleComboBox::slotActivated(int index)
     double value = toDouble(itemText(index), &ok);
     m_value = value < m_lower ? m_lower : (value > m_upper ? m_upper : value);
     if (m_value != oldvalue)
-        emit valueChanged(m_value);
+        Q_EMIT valueChanged(m_value);
 }
 
 void KgvUnitDoubleComboBox::setUnit(KgvUnit::Unit unit)

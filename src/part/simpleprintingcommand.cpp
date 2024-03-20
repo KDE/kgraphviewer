@@ -262,7 +262,7 @@ void KGVSimplePrintingCommand::slotShowPageSetupRequested()
 void KGVSimplePrintingCommand::showPageSetup(const QString &aTitleText)
 {
     init(aTitleText);
-    emit showPageSetupRequested();
+    Q_EMIT showPageSetupRequested();
 }
 
 }

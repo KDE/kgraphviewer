@@ -214,7 +214,7 @@ void KGVSimplePrintingPageSetup::setDirty(bool set)
     if (set) {
         m_printPreviewNeedsReloading = true;
         m_command->engine()->clear();
-        emit needsRedraw();
+        Q_EMIT needsRedraw();
     }
 }
 
@@ -226,12 +226,12 @@ void KGVSimplePrintingPageSetup::slotSaveSetup()
 
 void KGVSimplePrintingPageSetup::slotPrint()
 {
-    emit print();
+    Q_EMIT print();
 }
 
 void KGVSimplePrintingPageSetup::slotPrintPreview()
 {
-    emit printPreview();
+    Q_EMIT printPreview();
     m_printPreviewNeedsReloading = false;
 }
 
@@ -326,7 +326,7 @@ void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
         m_contents->maintainAspectButton->setIcon(QPixmap(chainPixString));
         m_settings->chainedFittings = true;
     }
-    emit needsRedraw();
+    Q_EMIT needsRedraw();
 }
 
 void KGVSimplePrintingPageSetup::slotClose()
@@ -338,14 +338,14 @@ void KGVSimplePrintingPageSetup::slotHorizFitChanged(int newValue)
 {
     m_settings->horizFitting = newValue;
     m_printPreviewNeedsReloading = true;
-    emit needsRedraw();
+    Q_EMIT needsRedraw();
 }
 
 void KGVSimplePrintingPageSetup::slotVertFitChanged(int newValue)
 {
     m_settings->vertFitting = newValue;
     m_printPreviewNeedsReloading = true;
-    emit needsRedraw();
+    Q_EMIT needsRedraw();
 }
 
 }

@@ -69,7 +69,7 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint &point)
 
 void KGraphEditorNodesTreeWidget::slotRemoveNode()
 {
-    emit removeNode(m_item->text(0));
+    Q_EMIT removeNode(m_item->text(0));
     delete takeTopLevelItem(indexOfTopLevelItem(m_item));
     m_item = nullptr;
 }
@@ -87,7 +87,7 @@ void KGraphEditorNodesTreeWidget::slotAddAttribute()
 {
     qCDebug(KGRAPHEDITOR_LOG) << "Add Attribute";
     QString nodeName = "NewAttribute";
-    emit addAttribute(m_item->text(0));
+    Q_EMIT addAttribute(m_item->text(0));
     if (m_item->parent() == nullptr) {
         nodeName += QString::number(m_item->childCount());
         QTreeWidgetItem *item = new QTreeWidgetItem(m_item, QStringList(nodeName));
@@ -102,7 +102,7 @@ void KGraphEditorNodesTreeWidget::slotAddAttribute()
 void KGraphEditorNodesTreeWidget::slotRemoveAttribute()
 {
     qCDebug(KGRAPHEDITOR_LOG) << "Remove Attribute";
-    emit removeAttribute(m_item->parent()->text(0), m_item->text(0));
+    Q_EMIT removeAttribute(m_item->parent()->text(0), m_item->text(0));
     m_item->parent()->removeChild(m_item);
     m_item = nullptr;
 }

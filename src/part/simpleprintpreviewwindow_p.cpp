@@ -65,7 +65,7 @@ void KGVSimplePrintPreviewView::paintEvent(QPaintEvent *pe)
         qCDebug(KGRAPHVIEWERLIB_LOG) << "painting page";
         m_window->m_engine.paintPage(m_window->currentPage(), p);
     }
-    //    emit m_window->paintingPageRequested(m_window->currentPage(), p);
+    //    Q_EMIT m_window->paintingPageRequested(m_window->currentPage(), p);
     p.end();
 }
 

@@ -1151,7 +1151,7 @@ bool DotGraphView::displayGraph()
     }
     d->m_canvas->update();
 
-    emit graphLoaded();
+    Q_EMIT graphLoaded();
 
     return true;
 }
@@ -1259,7 +1259,7 @@ void DotGraphView::setZoomFactor(double newZoom)
     QTransform m;
     m.scale(d->m_zoom, d->m_zoom);
     setTransform(m);
-    emit zoomed(d->m_zoom);
+    Q_EMIT zoomed(d->m_zoom);
     setUpdatesEnabled(true);
     d->updateSizes();
 }
@@ -1338,7 +1338,7 @@ void DotGraphView::mousePressEvent(QMouseEvent *e)
 
         d->m_editingMode = None;
         unsetCursor();
-        emit newNodeAdded(newNode->id());
+        Q_EMIT newNodeAdded(newNode->id());
     } else if (d->m_editingMode == SelectingElements) {
     } else {
         if (d->m_editingMode != None && itemAt(e->pos()) == nullptr) // click outside any item: unselect all
@@ -1374,7 +1374,7 @@ void DotGraphView::mousePressEvent(QMouseEvent *e)
                     s->canvasElement()->update();
                 }
             }
-            emit selectionIs(QList<QString>(), QPoint());
+            Q_EMIT selectionIs(QList<QString>(), QPoint());
         }
         d->m_pressPos = e->globalPos();
         d->m_pressScrollBarsPos = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
@@ -1432,7 +1432,7 @@ void DotGraphView::mouseReleaseEvent(QMouseEvent *e)
         setDragMode(NoDrag);
         if (!selection.isEmpty()) {
             update();
-            emit selectionIs(selection, mapToGlobal(e->pos()));
+            Q_EMIT selectionIs(selection, mapToGlobal(e->pos()));
         }
     } else {
         QGraphicsView::mouseReleaseEvent(e);
@@ -1457,7 +1457,7 @@ void DotGraphView::slotContextMenuEvent(const QString &id, const QPoint &p)
 {
     //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
 
-    emit(contextMenuEvent(id, p));
+    Q_EMIT contextMenuEvent(id, p);
 }
 
 void DotGraphView::slotElementHoverEnter(CanvasElement *element)
@@ -1465,7 +1465,7 @@ void DotGraphView::slotElementHoverEnter(CanvasElement *element)
     qCDebug(KGRAPHVIEWERLIB_LOG) << element->element()->id();
     //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
 
-    emit(hoverEnter(element->element()->id()));
+    Q_EMIT hoverEnter(element->element()->id());
 }
 
 void DotGraphView::slotElementHoverLeave(CanvasElement *element)
@@ -1473,7 +1473,7 @@ void DotGraphView::slotElementHoverLeave(CanvasElement *element)
     qCDebug(KGRAPHVIEWERLIB_LOG) << element->element()->id();
     //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
 
-    emit(hoverLeave(element->element()->id()));
+    Q_EMIT hoverLeave(element->element()->id());
 }
 
 void DotGraphView::slotElementHoverEnter(CanvasEdge *element)
@@ -1481,7 +1481,7 @@ void DotGraphView::slotElementHoverEnter(CanvasEdge *element)
     qCDebug(KGRAPHVIEWERLIB_LOG) << element->edge()->id();
     //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
 
-    emit(hoverEnter(element->edge()->id()));
+    Q_EMIT hoverEnter(element->edge()->id());
 }
 
 void DotGraphView::slotElementHoverLeave(CanvasEdge *element)
@@ -1489,7 +1489,7 @@ void DotGraphView::slotElementHoverLeave(CanvasEdge *element)
     qCDebug(KGRAPHVIEWERLIB_LOG) << element->edge()->id();
     //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
 
-    emit(hoverLeave(element->edge()->id()));
+    Q_EMIT hoverLeave(element->edge()->id());
 }
 
 void DotGraphView::setLayoutCommand(const QString &command)
@@ -1531,7 +1531,7 @@ void DotGraphView::viewBevActivated(int newZoomPos)
     Q_D(DotGraphView);
     d->m_zoomPosition = (KGraphViewerInterface::PannerPosition)newZoomPos;
     d->updateSizes();
-    emit(sigViewBevActivated(newZoomPos));
+    Q_EMIT sigViewBevActivated(newZoomPos);
 }
 
 QString DotGraphView::zoomPosString(KGraphViewerInterface::PannerPosition p)
@@ -1556,7 +1556,7 @@ void DotGraphView::readViewConfig()
     QVariant dl = DEFAULT_DETAILLEVEL;
     d->m_detailLevel = g.readEntry("DetailLevel", dl).toInt();
     d->m_zoomPosition = zoomPos(g.readEntry("KGraphViewerInterface::PannerPosition", zoomPosString(DEFAULT_ZOOMPOS)));
-    emit(sigViewBevActivated(d->m_zoomPosition));
+    Q_EMIT sigViewBevActivated(d->m_zoomPosition);
 }
 
 void DotGraphView::saveViewConfig()
@@ -1893,7 +1893,7 @@ void DotGraphView::finishNewEdgeTo(CanvasElement *node)
         d->m_newEdgeDraft = nullptr;
     }
 
-    emit newEdgeFinished(d->m_newEdgeSource->element()->id(), node->element()->id(), d->m_newElementAttributes);
+    Q_EMIT newEdgeFinished(d->m_newEdgeSource->element()->id(), node->element()->id(), d->m_newElementAttributes);
 
     d->m_newEdgeSource = nullptr;
 }
@@ -1932,7 +1932,7 @@ void DotGraphView::finishNewEdgeTo(CanvasElement *node)
 //   cedge->show();
 //   scene()->addItem(cedge);
 //
-//   emit newEdgeAdded(gedge->fromNode()->id(),gedge->toNode()->id());
+//   Q_EMIT newEdgeAdded(gedge->fromNode()->id(),gedge->toNode()->id());
 // }
 
 void DotGraphView::setReadOnly()
@@ -1992,7 +1992,7 @@ void DotGraphView::slotEdgeSelected(CanvasEdge *edge, Qt::KeyboardModifiers modi
             }
         }
     }
-    emit selectionIs(selection, QPoint());
+    Q_EMIT selectionIs(selection, QPoint());
 }
 
 void DotGraphView::slotElementSelected(CanvasElement *element, Qt::KeyboardModifiers modifiers)
@@ -2033,7 +2033,7 @@ void DotGraphView::slotElementSelected(CanvasElement *element, Qt::KeyboardModif
             s->retrieveSelectedElementsIds(selection);
         }
     }
-    emit selectionIs(selection, QPoint());
+    Q_EMIT selectionIs(selection, QPoint());
 }
 
 void DotGraphView::removeSelectedEdges()
@@ -2043,7 +2043,7 @@ void DotGraphView::removeSelectedEdges()
         if (e->isSelected()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting removeEdge " << e->id();
             d->m_graph->removeEdge(e->id());
-            emit removeEdge(e->id());
+            Q_EMIT removeEdge(e->id());
         }
     }
 }
@@ -2056,7 +2056,7 @@ void DotGraphView::removeSelectedNodes()
         if (e->isSelected()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting removeElement " << e->id();
             d->m_graph->removeElement(e->id());
-            emit removeElement(e->id());
+            Q_EMIT removeElement(e->id());
         }
     }
 }
@@ -2068,7 +2068,7 @@ void DotGraphView::removeSelectedSubgraphs()
         if (e->isSelected()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting removeElement " << e->id();
             d->m_graph->removeElement(e->id());
-            emit removeElement(e->id());
+            Q_EMIT removeElement(e->id());
         }
     }
 }

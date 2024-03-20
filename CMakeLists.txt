@@ -65,11 +65,9 @@ option(BUILD_GRAPHEDITOR "Build the graph editor app (WIP, not yet functional). 
 # added by KDE_COMPILERSETTINGS_LEVEL >= 5.85.0
 remove_definitions(
     -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_KEYWORDS
 )
 add_definitions(
     -DQT_DISABLE_DEPRECATED_BEFORE=0x050400
-    -DQT_NO_SIGNALS_SLOTS_KEYWORDS
 )
 
 add_subdirectory(src)

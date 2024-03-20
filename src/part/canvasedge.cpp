@@ -411,17 +411,17 @@ void CanvasEdge::mousePressEvent(QGraphicsSceneMouseEvent *event)
     if (event->button() == Qt::LeftButton) {
         edge()->setSelected(!edge()->isSelected());
         if (edge()->isSelected()) {
-            emit(selected(this, event->modifiers()));
+            Q_EMIT selected(this, event->modifiers());
         }
         update();
     } else if (event->button() == Qt::RightButton) {
         if (!edge()->isSelected()) {
             edge()->setSelected(true);
-            emit(selected(this, event->modifiers()));
+            Q_EMIT selected(this, event->modifiers());
             update();
         }
         qCDebug(KGRAPHVIEWERLIB_LOG) << "emiting edgeContextMenuEvent(" << m_edge->id() << "," << event->screenPos() << ")";
-        emit(edgeContextMenuEvent(m_edge->id(), event->screenPos()));
+        Q_EMIT edgeContextMenuEvent(m_edge->id(), event->screenPos());
         // opens the selected edge contextual menu and if necessary select the edge
         /*    qCDebug(KGRAPHVIEWERLIB_LOG) << "opens the contextual menu";
             m_popup->exec(event->screenPos());*/
@@ -442,14 +442,14 @@ void CanvasEdge::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
     Q_UNUSED(event)
     qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->id();
-    emit hoverEnter(this);
+    Q_EMIT hoverEnter(this);
 }
 
 void CanvasEdge::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     Q_UNUSED(event)
     qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->id();
-    emit hoverLeave(this);
+    Q_EMIT hoverLeave(this);
 }
 
 }

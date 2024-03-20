@@ -62,7 +62,7 @@ void KGraphEditorElementTreeWidget::slotAddAttribute()
 {
     QString nodeName = "NewAttribute";
     nodeName += QString::number(topLevelItemCount());
-    emit addAttribute(nodeName);
+    Q_EMIT addAttribute(nodeName);
     QTreeWidgetItem *item = new QTreeWidgetItem(this, QStringList(nodeName));
     item->setFlags(item->flags() | Qt::ItemIsEditable);
 }
@@ -75,7 +75,7 @@ void KGraphEditorElementTreeWidget::slotRemoveAttribute()
         qCWarning(KGRAPHEDITOR_LOG) << "null item ; should not happen" << Qt::endl;
         return;
     }
-    emit removeAttribute(m_item->text(0));
+    Q_EMIT removeAttribute(m_item->text(0));
     delete takeTopLevelItem(indexOfTopLevelItem(m_item));
     m_item = nullptr;
 }

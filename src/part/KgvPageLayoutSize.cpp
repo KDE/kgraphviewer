@@ -212,7 +212,7 @@ void KgvPageLayoutSize::setEnableBorders(bool on)
 
     // use updated m_layout
     updatePreview();
-    emit propertyChange(m_layout);
+    Q_EMIT propertyChange(m_layout);
 }
 
 void KgvPageLayoutSize::updatePreview()
@@ -288,7 +288,7 @@ void KgvPageLayoutSize::formatChanged(int format)
     epgHeight->changeValue(m_layout.ptHeight);
 
     updatePreview();
-    emit propertyChange(m_layout);
+    Q_EMIT propertyChange(m_layout);
 }
 
 void KgvPageLayoutSize::orientationChanged(int which)
@@ -325,7 +325,7 @@ void KgvPageLayoutSize::widthChanged(double width)
         return;
     m_layout.ptWidth = width;
     updatePreview();
-    emit propertyChange(m_layout);
+    Q_EMIT propertyChange(m_layout);
 }
 void KgvPageLayoutSize::heightChanged(double height)
 {
@@ -333,7 +333,7 @@ void KgvPageLayoutSize::heightChanged(double height)
         return;
     m_layout.ptHeight = height;
     updatePreview();
-    emit propertyChange(m_layout);
+    Q_EMIT propertyChange(m_layout);
 }
 void KgvPageLayoutSize::leftChanged(double left)
 {
@@ -341,7 +341,7 @@ void KgvPageLayoutSize::leftChanged(double left)
         return;
     m_layout.ptLeft = left;
     updatePreview();
-    emit propertyChange(m_layout);
+    Q_EMIT propertyChange(m_layout);
 }
 void KgvPageLayoutSize::rightChanged(double right)
 {
@@ -349,7 +349,7 @@ void KgvPageLayoutSize::rightChanged(double right)
         return;
     m_layout.ptRight = right;
     updatePreview();
-    emit propertyChange(m_layout);
+    Q_EMIT propertyChange(m_layout);
 }
 void KgvPageLayoutSize::topChanged(double top)
 {
@@ -357,7 +357,7 @@ void KgvPageLayoutSize::topChanged(double top)
         return;
     m_layout.ptTop = top;
     updatePreview();
-    emit propertyChange(m_layout);
+    Q_EMIT propertyChange(m_layout);
 }
 void KgvPageLayoutSize::bottomChanged(double bottom)
 {
@@ -365,7 +365,7 @@ void KgvPageLayoutSize::bottomChanged(double bottom)
         return;
     m_layout.ptBottom = bottom;
     updatePreview();
-    emit propertyChange(m_layout);
+    Q_EMIT propertyChange(m_layout);
 }
 
 bool KgvPageLayoutSize::queryClose()

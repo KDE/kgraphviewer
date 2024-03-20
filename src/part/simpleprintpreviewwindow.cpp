@@ -163,7 +163,7 @@ KGVSimplePrintPreviewWindow::~KGVSimplePrintPreviewWindow()
 void KGVSimplePrintPreviewWindow::slotPrintClicked()
 {
     hide();
-    emit printRequested();
+    Q_EMIT printRequested();
     show();
     raise();
 }
@@ -171,7 +171,7 @@ void KGVSimplePrintPreviewWindow::slotPrintClicked()
 void KGVSimplePrintPreviewWindow::slotPageSetup()
 {
     lower();
-    emit pageSetupRequested();
+    Q_EMIT pageSetupRequested();
 }
 
 void KGVSimplePrintPreviewWindow::slotZoomInClicked()

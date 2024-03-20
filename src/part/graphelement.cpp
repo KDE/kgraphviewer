@@ -121,7 +121,7 @@ void GraphElement::updateWithElement(const GraphElement &element)
               qCDebug(KGRAPHVIEWERLIB_LOG) << msg;
             }
             g() << "modified: emiting changed";*/
-        emit changed();
+        Q_EMIT changed();
     }
     qCDebug(KGRAPHVIEWERLIB_LOG) << "done" << m_renderOperations.size();
 }
@@ -141,7 +141,7 @@ void GraphElement::removeAttribute(const QString &attribName)
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << attribName;
     m_attributes.remove(attribName);
-    emit changed();
+    Q_EMIT changed();
 }
 
 void GraphElement::exportToGraphviz(void *element) const

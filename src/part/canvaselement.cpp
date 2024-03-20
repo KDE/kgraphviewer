@@ -472,20 +472,20 @@ void CanvasElement::mousePressEvent(QGraphicsSceneMouseEvent *event)
     if (event->button() == Qt::LeftButton) {
         m_element->setSelected(!m_element->isSelected());
         if (m_element->isSelected()) {
-            emit(selected(this, event->modifiers()));
+            Q_EMIT selected(this, event->modifiers());
         }
         update();
     } else if (event->button() == Qt::RightButton) {
         // opens the selected edge contextual menu and if necessary select the edge
         if (!m_element->isSelected()) {
             m_element->setSelected(true);
-            emit(selected(this, event->modifiers()));
+            Q_EMIT selected(this, event->modifiers());
             update();
         }
 
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "opens the contextual menu";
         //     m_popup->exec(event->screenPos());
-        emit(elementContextMenuEvent(m_element->id(), event->screenPos()));
+        Q_EMIT elementContextMenuEvent(m_element->id(), event->screenPos());
     }
 }
 
@@ -512,7 +512,7 @@ void CanvasElement::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
     //   qCDebug(KGRAPHVIEWERLIB_LOG);
     m_hovered = true;
     update();
-    emit hoverEnter(this);
+    Q_EMIT hoverEnter(this);
 }
 
 void CanvasElement::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
@@ -521,7 +521,7 @@ void CanvasElement::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
     //   qCDebug(KGRAPHVIEWERLIB_LOG);
     m_hovered = false;
     update();
-    emit hoverLeave(this);
+    Q_EMIT hoverLeave(this);
 }
 
 }

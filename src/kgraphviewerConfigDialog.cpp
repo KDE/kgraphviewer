@@ -173,7 +173,7 @@ void KgvConfigurationDialog::updateWidgets()
 void KgvConfigurationDialog::slotBackgroundColorChanged(const QColor &color)
 {
     KGraphViewerSettings::setBackgroundColor(color);
-    emit backgroundColorChanged(color);
+    Q_EMIT backgroundColorChanged(color);
 }
 
 #include "moc_kgraphviewerConfigDialog.cpp"
