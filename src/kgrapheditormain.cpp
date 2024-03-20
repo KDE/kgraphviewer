@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 
             for (int i = 0; i < args.count(); i++) {
                 if (instanceExists &&
-                    (QMessageBox::question(nullptr, i18n("A KGraphEditor window is already open, do you want to open the file in it?"), i18n("Opening in new window confirmation"), "openInNewWindowMode") == QMessageBox::Yes)) {
+                    (QMessageBox::question(nullptr, i18n("Opening in new window confirmation"), i18n("A KGraphEditor window is already open, do you want to open the file in it?")) == QMessageBox::Yes)) {
                     QByteArray tosenddata;
                     QDataStream arg(&tosenddata, QIODevice::WriteOnly);
                     QString strarg = args[i];
