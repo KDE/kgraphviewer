@@ -116,7 +116,7 @@ KGraphEditor::KGraphEditor()
     // case since our Part is made for this Shell
 
     // Creates the GUI with a null part to make appear the main app menus and tools
-    createGUI(0);
+    createGUI(nullptr);
 }
 
 KGraphEditor::~KGraphEditor()
