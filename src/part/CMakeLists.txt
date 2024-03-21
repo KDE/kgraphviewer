@@ -13,6 +13,12 @@ ecm_qt_declare_logging_category(kgraphviewerlib_LIB_DEBUG_SRCS
 
 add_library(kgraphviewerlib SHARED)
 
+set_target_properties(kgraphviewerlib PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION ${KGRAPHVIEWER_SOVERSION}
+    OUTPUT_NAME kgraphviewer
+)
+
 target_sources(kgraphviewerlib PRIVATE
     loadagraphthread.cpp
     layoutagraphthread.cpp
@@ -79,12 +85,6 @@ if (QT_MAJOR_VERSION STREQUAL "6")
             Qt6::Core5Compat
     )
 endif()
-
-set_target_properties(kgraphviewerlib PROPERTIES
-    VERSION ${PROJECT_VERSION}
-    SOVERSION ${KGRAPHVIEWER_SOVERSION}
-    OUTPUT_NAME kgraphviewer
-)
 
 install( TARGETS kgraphviewerlib ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
