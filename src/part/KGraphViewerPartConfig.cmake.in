@@ -4,6 +4,4 @@ include(CMakeFindDependencyMacro)
 
 find_dependency(Qt6Core @QT_MIN_VERSION@)
 
-set(KGraphViewerPart_INCLUDE_DIRS "@KDE_INSTALL_FULL_INCLUDEDIR@/kgraphviewer")
-
 include("${CMAKE_CURRENT_LIST_DIR}/KGraphViewerPartTargets.cmake")
