@@ -148,9 +148,6 @@ configure_package_config_file(
     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
 )
 
-########### configure AppStream metadata ###############
-configure_file(org.kde.libkgraphviewer.metainfo.xml.in "${CMAKE_CURRENT_BINARY_DIR}/org.kde.libkgraphviewer.metainfo.xml" IMMEDIATE @ONLY)
-
 ########### install files ###############
 
 install( FILES kgraphviewer_partsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} )
@@ -163,7 +160,6 @@ install( FILES chain-broken.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerp
 install( FILES kgraphviewer-bev.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-newnode.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 install( FILES kgraphviewer-newedge.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
-install( FILES "${CMAKE_CURRENT_BINARY_DIR}/org.kde.libkgraphviewer.metainfo.xml" DESTINATION ${KDE_INSTALL_METAINFODIR} )
 
 install(FILES kgraphviewer_interface.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
 
