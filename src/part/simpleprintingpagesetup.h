@@ -74,7 +74,7 @@ protected Q_SLOTS:
     void slotFittingButtonClicked(int id);
     void slotHorizFitChanged(int newValue);
     void slotVertFitChanged(int newValue);
-    void slotMaintainAspectButtonToggled();
+    void slotMaintainAspectCheckBoxToggled();
 
 protected:
     void setupPrintingCommand();

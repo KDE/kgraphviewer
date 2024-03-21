@@ -42,7 +42,6 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSpinBox>
-#include <QStandardPaths>
 #include <QUrl>
 
 #include <QRadioButton>
@@ -54,7 +53,6 @@
 #include <qtimer.h>
 #include <qtooltip.h>
 // Added by qt3to4:
-#include <QPixmap>
 #include <QVBoxLayout>
 #include <iostream>
 #include <klocalizedstring.h>
@@ -158,7 +156,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     m_settings->vertFitting = m_command->engine()->maxVertFit();
     m_contents->horizFitNumInput->setValue(m_settings->horizFitting);
     m_contents->vertFitNumInput->setValue(m_settings->vertFitting);
-    connect(m_contents->maintainAspectButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled);
+    connect(m_contents->maintainAspectCheckBox, &QCheckBox::toggled, this, &KGVSimplePrintingPageSetup::slotMaintainAspectCheckBoxToggled);
     connect(m_contents->horizFitNumInput, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &KGVSimplePrintingPageSetup::slotHorizFitChanged);
     connect(m_contents->vertFitNumInput, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &KGVSimplePrintingPageSetup::slotVertFitChanged);
 
@@ -171,17 +169,10 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     if (m_settings->fittingMode != FitToSeveralPages) {
         m_contents->horizFitNumInput->setEnabled(false);
         m_contents->vertFitNumInput->setEnabled(false);
-        m_contents->maintainAspectButton->setEnabled(false);
+        m_contents->maintainAspectCheckBox->setEnabled(false);
     }
 
-    QString chainStatePixString = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/chain.png");
-    if (!m_settings->chainedFittings) {
-        chainStatePixString = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/chain-broken.png");
-    }
-    if (chainStatePixString.isNull()) {
-        std::cerr << "chain state pixmap not found !" << std::endl;
-    }
-    m_contents->maintainAspectButton->setIcon(QPixmap(chainStatePixString));
+    m_contents->maintainAspectCheckBox->setChecked(m_settings->chainedFittings);
 
     // hides currently unused title label
     m_contents->headerTitleLineEdit->setText(i18n("Chosen font looks like this"));
@@ -294,38 +285,24 @@ void KGVSimplePrintingPageSetup::slotFittingButtonClicked(int id)
         m_settings->fitToOnePage = false;
         m_contents->horizFitNumInput->setEnabled(false);
         m_contents->vertFitNumInput->setEnabled(false);
-        m_contents->maintainAspectButton->setEnabled(false);
+        m_contents->maintainAspectCheckBox->setEnabled(false);
     } else if (id == FitToOnePage) {
         m_settings->fitToOnePage = true;
         m_contents->horizFitNumInput->setEnabled(false);
         m_contents->vertFitNumInput->setEnabled(false);
-        m_contents->maintainAspectButton->setEnabled(false);
+        m_contents->maintainAspectCheckBox->setEnabled(false);
     } else if (id == FitToSeveralPages) {
         m_settings->fitToOnePage = false;
         m_contents->horizFitNumInput->setEnabled(true);
         m_contents->vertFitNumInput->setEnabled(true);
-        m_contents->maintainAspectButton->setEnabled(true);
+        m_contents->maintainAspectCheckBox->setEnabled(true);
     }
     setDirty(true);
 }
 
-void KGVSimplePrintingPageSetup::slotMaintainAspectButtonToggled()
+void KGVSimplePrintingPageSetup::slotMaintainAspectCheckBoxToggled()
 {
-    if (m_settings->chainedFittings) {
-        QString chainBreakPixString = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/chain-broken.png");
-        if (chainBreakPixString.isNull()) {
-            std::cerr << "chain break pixmap not found !" << std::endl;
-        }
-        m_contents->maintainAspectButton->setIcon(QPixmap(chainBreakPixString));
-        m_settings->chainedFittings = false;
-    } else {
-        QString chainPixString = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/chain.png");
-        if (chainPixString.isNull()) {
-            std::cerr << "chain pixmap not found !" << std::endl;
-        }
-        m_contents->maintainAspectButton->setIcon(QPixmap(chainPixString));
-        m_settings->chainedFittings = true;
-    }
+    m_settings->chainedFittings = m_contents->maintainAspectCheckBox->isChecked();
     Q_EMIT needsRedraw();
 }
 
