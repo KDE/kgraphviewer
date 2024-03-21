@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-20 01:39+0000\n"
+"POT-Creation-Date: 2024-03-21 01:38+0000\n"
 "PO-Revision-Date: 2009-02-25 00:07+0900\n"
 "Last-Translator: Yukiko Bando <ybando@k6.dion.ne.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -28,7 +28,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "ybando@k6.dion.ne.jp"
 
-#: kgrapheditor.cpp:129 kgraphviewer.cpp:118
+#: kgrapheditor.cpp:129 kgraphviewer.cpp:113
 #, fuzzy, kde-format
 #| msgid "Session Management"
 msgid "Session Restore"
@@ -40,35 +40,35 @@ msgstr "セッションの管理"
 msgid "Do you want to reload files from previous session?"
 msgstr "前回のセッションのファイルを再読み込みしますか？"
 
-#: kgrapheditor.cpp:145
+#: kgrapheditor.cpp:149
 #, fuzzy, kde-format
 #| msgid "Unable to start %1."
 msgid "Unable to start"
 msgstr "%1 を開始できません。"
 
-#: kgrapheditor.cpp:145 kgraphviewer.cpp:144
+#: kgrapheditor.cpp:149 kgraphviewer.cpp:139
 #, fuzzy, kde-format
 #| msgid "Could not find our part."
 msgid "Could not find the KGraphViewer part."
 msgstr "必要なコンポーネントが見つかりませんでした。"
 
-#: kgrapheditor.cpp:226 kgraphviewer.cpp:224
+#: kgrapheditor.cpp:230 kgraphviewer.cpp:219
 #, fuzzy, kde-format
 #| msgid "Closes the current tab"
 msgid "Closes the current file"
 msgstr "現在のタブを閉じます"
 
-#: kgrapheditor.cpp:237
+#: kgrapheditor.cpp:241
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "新しい頂点を作成"
 
-#: kgrapheditor.cpp:242
+#: kgrapheditor.cpp:246
 #, kde-format
 msgid "Create a New Edge"
 msgstr "新しいエッジを作成"
 
-#: kgrapheditor.cpp:497
+#: kgrapheditor.cpp:501
 #, fuzzy, kde-format
 #| msgid "Save current graph to..."
 msgid "Save current graph"
@@ -115,32 +115,32 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "KDE のための Graphviz DOT グラフビューア"
 
-#: kgrapheditormain.cpp:46 main.cpp:51
+#: kgrapheditormain.cpp:46 main.cpp:53
 #, fuzzy, kde-format
 #| msgid "(C) 2005-2006 Gaël de Chalendar"
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2006 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:58 main.cpp:67
+#: kgrapheditormain.cpp:58 main.cpp:69
 #, kde-format
 msgid "Path or URL to scan"
 msgstr ""
 
-#: kgrapheditormain.cpp:58 main.cpp:67
+#: kgrapheditormain.cpp:58 main.cpp:69
 #, kde-format
 msgid "[url]"
 msgstr ""
+
+#: kgrapheditormain.cpp:83 main.cpp:94
+#, kde-format
+msgid "Opening in new window confirmation"
+msgstr "確認 - 新しいウィンドウで開く"
 
 #: kgrapheditormain.cpp:83
 #, kde-format
 msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
 msgstr ""
-
-#: kgrapheditormain.cpp:83 main.cpp:92
-#, kde-format
-msgid "Opening in new window confirmation"
-msgstr "確認 - 新しいウィンドウで開く"
 
 #: KGraphEditorNodesTreeWidget.cpp:65
 #, kde-format
@@ -217,37 +217,37 @@ msgstr "ヘルプツールバー"
 msgid "Edit Toolbar"
 msgstr "編集ツールバー"
 
-#: kgraphviewer.cpp:117
+#: kgraphviewer.cpp:112
 #, fuzzy, kde-format
 #| msgid "Do you want to reload files from previous session ?"
 msgid "Do you want to reload files from the previous session?"
 msgstr "前回のセッションのファイルを再読み込みしますか？"
 
-#: kgraphviewer.cpp:119
+#: kgraphviewer.cpp:114
 #, fuzzy, kde-format
 #| msgid "Reloading"
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "再読み込み"
 
-#: kgraphviewer.cpp:120
+#: kgraphviewer.cpp:115
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr ""
 
-#: kgraphviewer.cpp:211
+#: kgraphviewer.cpp:206
 #, fuzzy, kde-format
 #| msgid "Open the print preview window"
 msgid "Opens a new empty KGraphViewer window."
 msgstr "印刷プレビューウィンドウを開きます"
 
-#: kgraphviewer.cpp:214
+#: kgraphviewer.cpp:209
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 
-#: kgraphviewer.cpp:218
+#: kgraphviewer.cpp:213
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -256,24 +256,24 @@ msgstr ""
 "ここに最近開いたファイルが表示されます。同じファイルをもう一度開くときに役立"
 "ちます。"
 
-#: kgraphviewer.cpp:228
+#: kgraphviewer.cpp:223
 #, fuzzy, kde-format
 #| msgid "KGraphViewer"
 msgid "Quits KGraphViewer."
 msgstr "KGraphViewer"
 
-#: kgraphviewer.cpp:231
+#: kgraphviewer.cpp:226
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr ""
 
-#: kgraphviewer.cpp:234
+#: kgraphviewer.cpp:229
 #, fuzzy, kde-format
 #| msgid "Reload Confirmation"
 msgid "Toolbar configuration."
 msgstr "再読み込みの確認"
 
-#: kgraphviewer.cpp:237
+#: kgraphviewer.cpp:232
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr ""
@@ -289,63 +289,63 @@ msgstr ""
 msgid "Background color of the graph view."
 msgstr ""
 
-#: main.cpp:47
+#: main.cpp:49
 #, kde-format
 msgid "KGraphViewer"
 msgstr "KGraphViewer"
 
-#: main.cpp:49
+#: main.cpp:51
 #, fuzzy, kde-format
 #| msgid "A Graphviz dot graph viewer for KDE"
 msgid "A Graphviz DOT graph viewer"
 msgstr "KDE のための Graphviz DOT グラフビューア"
 
-#: main.cpp:54
+#: main.cpp:56
 #, kde-format
 msgid "Gaël de Chalendar"
 msgstr "Gaël de Chalendar"
 
-#: main.cpp:54
+#: main.cpp:56
 #, kde-format
 msgid "Original Author and current maintainer"
 msgstr ""
 
-#: main.cpp:55
+#: main.cpp:57
 #, kde-format
 msgid "Reimar Döffinger"
 msgstr ""
 
-#: main.cpp:55 main.cpp:56 main.cpp:57 main.cpp:58
+#: main.cpp:57 main.cpp:58 main.cpp:59 main.cpp:60
 #, kde-format
 msgid "Contributor"
 msgstr ""
 
-#: main.cpp:56
+#: main.cpp:58
 #, kde-format
 msgid "Matthias Peinhardt"
 msgstr ""
 
-#: main.cpp:57
+#: main.cpp:59
 #, kde-format
 msgid "Sandro Andrade"
 msgstr ""
 
-#: main.cpp:58
+#: main.cpp:60
 #, kde-format
 msgid "Milian Wolff"
 msgstr ""
 
-#: main.cpp:59
+#: main.cpp:61
 #, kde-format
 msgid "Martin Sandsmark"
 msgstr ""
 
-#: main.cpp:59
+#: main.cpp:61
 #, kde-format
 msgid "Port to KF5"
 msgstr ""
 
-#: main.cpp:92
+#: main.cpp:94
 #, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
@@ -416,68 +416,68 @@ msgstr "%1 プロセスからデータを読み取れませんでした。"
 msgid "Unknown error running %1."
 msgstr "%1 の実行で未知のエラーが発生しました。"
 
-#: part/dotgraphview.cpp:421
+#: part/dotgraphview.cpp:420
 #, kde-format
 msgid "Select Layout Algo"
 msgstr "レイアウトアルゴリズムを選択"
 
-#: part/dotgraphview.cpp:424
+#: part/dotgraphview.cpp:423
 #, kde-format
 msgid "Dot"
 msgstr "Dot"
 
-#: part/dotgraphview.cpp:425
+#: part/dotgraphview.cpp:424
 #, kde-format
 msgid "Layout the graph using the dot program."
 msgstr "dot プログラムを使ってグラフをレイアウトします。"
 
-#: part/dotgraphview.cpp:429
+#: part/dotgraphview.cpp:428
 #, kde-format
 msgid "Neato"
 msgstr "Neato"
 
-#: part/dotgraphview.cpp:430
+#: part/dotgraphview.cpp:429
 #, kde-format
 msgid "Layout the graph using the neato program."
 msgstr "neato プログラムを使ってグラフをレイアウトします。"
 
-#: part/dotgraphview.cpp:434
+#: part/dotgraphview.cpp:433
 #, kde-format
 msgid "Twopi"
 msgstr "Twopi"
 
-#: part/dotgraphview.cpp:435
+#: part/dotgraphview.cpp:434
 #, kde-format
 msgid "Layout the graph using the twopi program."
 msgstr "twopi プログラムを使ってグラフをレイアウトします。"
 
-#: part/dotgraphview.cpp:439
+#: part/dotgraphview.cpp:438
 #, kde-format
 msgid "Fdp"
 msgstr "Fdp"
 
-#: part/dotgraphview.cpp:440
+#: part/dotgraphview.cpp:439
 #, kde-format
 msgid "Layout the graph using the fdp program."
 msgstr "fdp プログラムを使ってグラフをレイアウトします。"
 
-#: part/dotgraphview.cpp:444
+#: part/dotgraphview.cpp:443
 #, kde-format
 msgid "Circo"
 msgstr "Circo"
 
-#: part/dotgraphview.cpp:445
+#: part/dotgraphview.cpp:444
 #, kde-format
 msgid "Layout the graph using the circo program."
 msgstr "circo プログラムを使ってグラフをレイアウトします。"
 
-#: part/dotgraphview.cpp:457
+#: part/dotgraphview.cpp:456
 #, fuzzy, kde-format
 #| msgid "Choose a GraphViz layout algorithm or edit your own one."
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr "GraphViz レイアウトアルゴリズムを選択するか独自のものを編集します。"
 
-#: part/dotgraphview.cpp:459
+#: part/dotgraphview.cpp:458
 #, fuzzy, kde-format
 #| msgid ""
 #| "Choose a GraphViz layout algorithm or type in your own command that will "
@@ -495,17 +495,17 @@ msgstr ""
 "<tt>G</tt> オプションを指定するには次のように入力します: <tt>dot -"
 "Gname=MyGraphName -Txdot </tt>"
 
-#: part/dotgraphview.cpp:465
+#: part/dotgraphview.cpp:464
 #, kde-format
 msgid "Layout"
 msgstr "レイアウト"
 
-#: part/dotgraphview.cpp:467
+#: part/dotgraphview.cpp:466
 #, kde-format
 msgid "Specify layout command"
 msgstr "レイアウトコマンドを指定"
 
-#: part/dotgraphview.cpp:468
+#: part/dotgraphview.cpp:467
 #, kde-format
 msgid ""
 "Specify yourself the layout command to use. Given a dot file, it should "
@@ -514,12 +514,12 @@ msgstr ""
 "使用するレイアウトコマンドを自分で指定します。DOT ファイルの場合は、標準出力"
 "に xdot ファイルを生成しなければなりません。"
 
-#: part/dotgraphview.cpp:469
+#: part/dotgraphview.cpp:468
 #, kde-format
 msgid "Reset layout command to default"
 msgstr "レイアウトコマンドを標準に戻す"
 
-#: part/dotgraphview.cpp:470
+#: part/dotgraphview.cpp:469
 #, kde-format
 msgid ""
 "Resets the layout command to use to the default depending on the graph type "
@@ -527,28 +527,28 @@ msgid ""
 msgstr ""
 "使用するレイアウトコマンドをグラフのタイプ (有向か無向か) の標準に戻します"
 
-#: part/dotgraphview.cpp:472
+#: part/dotgraphview.cpp:471
 #, kde-format
 msgid "Zoom In"
 msgstr ""
 
-#: part/dotgraphview.cpp:473
+#: part/dotgraphview.cpp:472
 #, kde-format
 msgid "Zoom Out"
 msgstr ""
 
-#: part/dotgraphview.cpp:477
+#: part/dotgraphview.cpp:476
 #, kde-format
 msgid "Export Graph"
 msgstr "グラフをエクスポート"
 
-#: part/dotgraphview.cpp:479
+#: part/dotgraphview.cpp:478
 #, fuzzy, kde-format
 #| msgid "Allows to export the graph to another format."
 msgid "Allows the graph to be exported in another format."
 msgstr "グラフを他のフォーマットにエクスポートします。"
 
-#: part/dotgraphview.cpp:481
+#: part/dotgraphview.cpp:480
 #, fuzzy, kde-format
 #| msgid ""
 #| "Use the Export Graph menu to export the graph to another format. There is "
@@ -561,111 +561,111 @@ msgstr ""
 "</interface>メニューを使います。現在サポートされているのは PNG フォーマットへ"
 "のエクスポートのみです。"
 
-#: part/dotgraphview.cpp:485
+#: part/dotgraphview.cpp:484
 #, fuzzy, kde-format
 #| msgid "As Image ..."
 msgid "As Image..."
 msgstr "画像として..."
 
-#: part/dotgraphview.cpp:486
+#: part/dotgraphview.cpp:485
 #, fuzzy, kde-format
 #| msgid "Export the graph to an image (currently PNG only) file."
 msgid "Export the graph to an image file."
 msgstr "グラフを画像ファイルにエクスポートします。(現在は PNG のみ)"
 
-#: part/dotgraphview.cpp:494
+#: part/dotgraphview.cpp:493
 #, kde-format
 msgid "Enable Bird's-eye View"
 msgstr "概観図を表示する"
 
-#: part/dotgraphview.cpp:497
+#: part/dotgraphview.cpp:496
 #, kde-format
 msgid "Enables or disables the Bird's-eye View"
 msgstr "概観図の表示/非表示を切り替えます"
 
-#: part/dotgraphview.cpp:502
+#: part/dotgraphview.cpp:501
 #, kde-format
 msgid "Birds-eye View"
 msgstr "概観図"
 
-#: part/dotgraphview.cpp:503
+#: part/dotgraphview.cpp:502
 #, fuzzy, kde-format
 #| msgid "Allows to setup the Bird's-eye View."
 msgid "Allows the Bird's-eye View to be setup."
 msgstr "概観図を設定します。"
 
-#: part/dotgraphview.cpp:507
+#: part/dotgraphview.cpp:506
 #, kde-format
 msgid "Top Left"
 msgstr "左上"
 
-#: part/dotgraphview.cpp:508
+#: part/dotgraphview.cpp:507
 #, fuzzy, kde-format
 #| msgid "Puts the Bird's-eye View at the top left corner."
 msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "概観図を左上隅に配置します。"
 
-#: part/dotgraphview.cpp:512
+#: part/dotgraphview.cpp:511
 #, kde-format
 msgid "Top Right"
 msgstr "右上"
 
-#: part/dotgraphview.cpp:513
+#: part/dotgraphview.cpp:512
 #, fuzzy, kde-format
 #| msgid "Puts the Bird's-eye View at the top right corner."
 msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "概観図を右上隅に配置します。"
 
-#: part/dotgraphview.cpp:517
+#: part/dotgraphview.cpp:516
 #, kde-format
 msgid "Bottom Left"
 msgstr "左下"
 
-#: part/dotgraphview.cpp:518
+#: part/dotgraphview.cpp:517
 #, fuzzy, kde-format
 #| msgid "Puts the Bird's-eye View at the bottom left corner."
 msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "概観図を左下隅に配置します。"
 
-#: part/dotgraphview.cpp:522
+#: part/dotgraphview.cpp:521
 #, kde-format
 msgid "Bottom Right"
 msgstr "右下"
 
-#: part/dotgraphview.cpp:523
+#: part/dotgraphview.cpp:522
 #, fuzzy, kde-format
 #| msgid "Puts the Bird's-eye View at the bottom right corner."
 msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "概観図を右下隅に配置します。"
 
-#: part/dotgraphview.cpp:527
+#: part/dotgraphview.cpp:526
 #, kde-format
 msgid "Automatic"
 msgstr "自動"
 
-#: part/dotgraphview.cpp:528
+#: part/dotgraphview.cpp:527
 #, fuzzy, kde-format
 #| msgid "Let's KGraphViewer automaticaly choose the Bird's-eye View position."
 msgid ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
 msgstr "KGraphViewer に概観図の位置を自動的に選択させます。"
 
-#: part/dotgraphview.cpp:575
+#: part/dotgraphview.cpp:574
 #, kde-format
 msgid "Select file"
 msgstr ""
 
-#: part/dotgraphview.cpp:589
+#: part/dotgraphview.cpp:588
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer"
 msgstr ""
 
-#: part/dotgraphview.cpp:590
+#: part/dotgraphview.cpp:589
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer."
 msgstr ""
 
-#: part/dotgraphview.cpp:637
+#: part/dotgraphview.cpp:636
 #, fuzzy, kde-format
 #| msgid ""
 #| "<h1>GraphViz dot format graph visualization</h1><p>If the graph is larger "
@@ -712,29 +712,29 @@ msgstr ""
 "<interface>印刷プレビュー</interface>または<interface>ページ設定</interface>"
 "ボタンを押してください。</li></ul>"
 
-#: part/dotgraphview.cpp:790
+#: part/dotgraphview.cpp:789
 #, fuzzy, kde-format
 #| msgid "Dot graph to open"
 msgid "no graph loaded"
 msgstr "開く DOT グラフ"
 
-#: part/dotgraphview.cpp:906 part/dotgraphview.cpp:927
-#: part/dotgraphview.cpp:974
+#: part/dotgraphview.cpp:905 part/dotgraphview.cpp:926
+#: part/dotgraphview.cpp:973
 #, kde-format
 msgid "graph %1 is getting loaded..."
 msgstr ""
 
-#: part/dotgraphview.cpp:914
+#: part/dotgraphview.cpp:913
 #, kde-format
 msgid "error parsing file %1"
 msgstr ""
 
-#: part/dotgraphview.cpp:1618
+#: part/dotgraphview.cpp:1625
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "再読み込みの確認"
 
-#: part/dotgraphview.cpp:1618
+#: part/dotgraphview.cpp:1625
 #, fuzzy, kde-format
 #| msgid ""
 #| "The file %1 has been modified on disk.\n"
@@ -746,12 +746,12 @@ msgstr ""
 "ファイル <filename>%1</filename> はディスク上で変更されています。\n"
 "再読み込みしますか？"
 
-#: part/dotgraphview.cpp:1704
+#: part/dotgraphview.cpp:1711
 #, kde-format
 msgid "Layout Command"
 msgstr "レイアウトコマンド"
 
-#: part/dotgraphview.cpp:1705
+#: part/dotgraphview.cpp:1712
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
@@ -760,27 +760,27 @@ msgstr ""
 "ここにグラフのレイアウトに使用するコマンドを入力します。\n"
 "コマンドはその結果を xdot フォーマットで標準出力に出力しなければなりません。"
 
-#: part/dotgraphview.cpp:2158
+#: part/dotgraphview.cpp:2165
 #, kde-format
 msgid "Failed to open %1"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:102
+#: part/kgraphviewer_part.cpp:108
 #, kde-format
 msgid "Print the graph using current page setup settings"
 msgstr "現在のページ設定を使ってグラフを印刷します"
 
-#: part/kgraphviewer_part.cpp:106
+#: part/kgraphviewer_part.cpp:112
 #, kde-format
 msgid "Open the print preview window"
 msgstr "印刷プレビューウィンドウを開きます"
 
-#: part/kgraphviewer_part.cpp:110
+#: part/kgraphviewer_part.cpp:116
 #, kde-format
 msgid "Page setup"
 msgstr "ページ設定"
 
-#: part/kgraphviewer_part.cpp:111
+#: part/kgraphviewer_part.cpp:117
 #, fuzzy, kde-format
 #| msgid ""
 #| "Opens the Page Setup dialog allowing to setup how the graph will be "
@@ -788,18 +788,18 @@ msgstr "ページ設定"
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr "ページ設定ダイアログを開いてグラフをどのように印刷するかを設定します"
 
-#: part/kgraphviewer_part.cpp:114
+#: part/kgraphviewer_part.cpp:120
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "現在のグラフをファイルから再読み込みします"
 
-#: part/kgraphviewer_part.cpp:119
+#: part/kgraphviewer_part.cpp:125
 #, fuzzy, no-c-format, kde-format
 #| msgid "Zoom in by 10% the currently viewed graph"
 msgid "Zoom in by 10% on the currently viewed graph"
 msgstr "現在表示されているグラフを 10% 拡大します"
 
-#: part/kgraphviewer_part.cpp:124
+#: part/kgraphviewer_part.cpp:130
 #, fuzzy, no-c-format, kde-format
 #| msgid "Zoom out by 10% the currently viewed graph"
 msgid "Zoom out by 10% from the currently viewed graph"
