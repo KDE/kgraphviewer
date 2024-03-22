@@ -37,7 +37,7 @@
 #include <QTabWidget>
 #include <QTreeWidget>
 #include <QUrl>
-#include <QtDBus/QtDBus>
+#include <QDBusConnection>
 #include <kconfig.h>
 #include <kconfigdialog.h>
 #include <kedittoolbar.h>
