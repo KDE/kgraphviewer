@@ -3,16 +3,36 @@
         "Authors": [
             {
                 "Email": "kleag@free.fr",
-                "Name": "Gaël de Chalendar"
+                "Name": "Gaël de Chalendar",
+                "Name[ca]": "Gaël de Chalendar",
+                "Name[nl]": "Gaël de Chalendar",
+                "Name[sl]": "Gaël de Chalendar",
+                "Name[tr]": "Gaël de Chalendar",
+                "Name[uk]": "Gaël de Chalendar",
+                "Name[x-test]": "xxGaël de Chalendarxx"
             }
         ],
         "Copyright": "Copyright 2005-2006 Gaël de Chalendar",
+        "Copyright[ca]": "Copyright 2005-2006 Gaël de Chalendar",
+        "Copyright[nl]": "Copyright 2005-2006 Gaël de Chalendar",
+        "Copyright[sl]": "Copyright 2005-2006 Gaël de Chalendar",
+        "Copyright[tr]": "Telif hakkı 2005–2006 Gaël de Chalendar",
+        "Copyright[uk]": "© Gaël de Chalendar, 2005–2006",
+        "Copyright[x-test]": "xxCopyright 2005-2006 Gaël de Chalendarxx",
         "Description": "Graphviz DOT files viewer",
+        "Description[ca]": "Visualitzador de fitxers DOT del Graphviz",
+        "Description[nl]": "Graphviz DOT-bestanden-viewer",
+        "Description[sl]": "Pregledovalnik datotek Graphviz DOT",
+        "Description[tr]": "Graphviz DOT dosyalarıgörüntüleyici si",
+        "Description[uk]": "Переглядач файлів DOT Graphviz",
+        "Description[x-test]": "xxGraphviz DOT files viewerxx",
         "License": "GPL",
         "MimeTypes": [
             "text/vnd.graphviz"
         ],
         "Name": "KGraphViewer",
+        "Name[nb]": "KGraphViewer",
+        "Name[nn]": "KGraphViewer",
         "ServiceTypes": [
             "KParts/ReadOnlyPart"
         ],
