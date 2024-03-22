@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-21 01:38+0000\n"
+"POT-Creation-Date: 2024-03-22 01:35+0000\n"
 "PO-Revision-Date: 2014-03-31 16:26+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1010,149 +1010,160 @@ msgstr "%1 / %2 oldal"
 msgid "Page %1"
 msgstr "%1. oldal"
 
-#: part/simpleprintingpagesetup.cpp:101
+#: part/simpleprintingpagesetup.cpp:99
 #, kde-format
 msgid "Print Preview..."
 msgstr "Nyomtatási előnézet…"
 
-#: part/simpleprintingpagesetup.cpp:104
+#: part/simpleprintingpagesetup.cpp:102
 #, kde-format
 msgid "Font..."
 msgstr ""
 
-#: part/simpleprintingpagesetup.cpp:105
+#: part/simpleprintingpagesetup.cpp:103
 #, kde-format
 msgid "Changes font for title text."
 msgstr "Módosítja a betűkészletet a címszöveghez."
 
-#: part/simpleprintingpagesetup.cpp:111
+#: part/simpleprintingpagesetup.cpp:109
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
 msgstr "<qt><h2>Oldalbeállítás a(z) „%1” gráf nyomtatásához</h2></qt>"
 
-#: part/simpleprintingpagesetup.cpp:116
+#: part/simpleprintingpagesetup.cpp:114
 #, kde-format
 msgid "Saves settings for this setup as default."
 msgstr "Elmenti a beállításokat alapértelmezettként ehhez a beállításhoz."
 
-#: part/simpleprintingpagesetup.cpp:119
+#: part/simpleprintingpagesetup.cpp:117
 #, kde-format
 msgid "Adds date and time to the header."
 msgstr "Hozzáadja a dátumot és időt a fejléchez."
 
-#: part/simpleprintingpagesetup.cpp:120
+#: part/simpleprintingpagesetup.cpp:118
 #, kde-format
 msgid "Adds page numbers to the footer."
 msgstr "Hozzáadja az oldalszámokat a lábléchez."
 
-#: part/simpleprintingpagesetup.cpp:121
+#: part/simpleprintingpagesetup.cpp:119
 #, kde-format
 msgid "Adds table borders."
 msgstr "Hozzáadja a táblázatszegélyeket."
 
-#: part/simpleprintingpagesetup.cpp:129
+#: part/simpleprintingpagesetup.cpp:127
 #, fuzzy, kde-format
 #| msgid "Changes page size and margins."
 msgid "Change Page Size and Margins..."
 msgstr "Módosítja az oldalméretet és a margókat."
 
-#: part/simpleprintingpagesetup.cpp:130
+#: part/simpleprintingpagesetup.cpp:128
 #, kde-format
 msgid "Changes page size and margins."
 msgstr "Módosítja az oldalméretet és a margókat."
 
-#: part/simpleprintingpagesetup.cpp:187
+#: part/simpleprintingpagesetup.cpp:178
 #, kde-format
 msgid "Chosen font looks like this"
 msgstr "A választott betűkészlet így néz ki"
 
-#: part/simpleprintingpagesetup.cpp:203
+#: part/simpleprintingpagesetup.cpp:194
 #, kde-format
 msgid "Portrait"
 msgstr "Álló"
 
-#: part/simpleprintingpagesetup.cpp:203
+#: part/simpleprintingpagesetup.cpp:194
 #, kde-format
 msgid "Landscape"
 msgstr "Fekvő"
 
-#: part/simpleprintingpagesetup.cpp:203
+#: part/simpleprintingpagesetup.cpp:194
 #, kde-format
 msgid "margins:"
 msgstr "margók:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
-#: part/simpleprintingpagesetupbase.ui:68
+#: part/simpleprintingpagesetupbase.ui:64
 #, fuzzy, kde-format
 #| msgid "Page &font:"
 msgid "Pa&ge font:"
 msgstr "Oldal &betűkészlet:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
-#: part/simpleprintingpagesetupbase.ui:97
+#: part/simpleprintingpagesetupbase.ui:93
 #, kde-format
 msgid "Page Size && Margins"
 msgstr "Oldalméret és margók"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
-#: part/simpleprintingpagesetupbase.ui:122
+#: part/simpleprintingpagesetupbase.ui:118
 #, kde-format
 msgid "Add &borders"
 msgstr "&Szegélyek hozzáadása"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
-#: part/simpleprintingpagesetupbase.ui:129
+#: part/simpleprintingpagesetupbase.ui:125
 #, kde-format
 msgid "Add date and time"
 msgstr "Dátum és idő hozzáadása"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
-#: part/simpleprintingpagesetupbase.ui:152
+#: part/simpleprintingpagesetupbase.ui:148
 #, kde-format
 msgid "Add page numbers"
 msgstr "Oldalszámok hozzáadása"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
-#: part/simpleprintingpagesetupbase.ui:163
+#: part/simpleprintingpagesetupbase.ui:159
 #, kde-format
 msgid "Number of pages to fit on"
 msgstr "Oldalak száma az igazításhoz"
 
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
-#: part/simpleprintingpagesetupbase.ui:195
-#, kde-format
-msgid "Horizontally"
-msgstr "Vízszintesen"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
-#: part/simpleprintingpagesetupbase.ui:207
-#, kde-format
-msgid "Vertically"
-msgstr "Függőlegesen"
-
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
-#: part/simpleprintingpagesetupbase.ui:228
+#: part/simpleprintingpagesetupbase.ui:167
 #, fuzzy, kde-format
 #| msgid "Natural size"
 msgid "&Natural size"
 msgstr "Természetes méret"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
-#: part/simpleprintingpagesetupbase.ui:235
+#: part/simpleprintingpagesetupbase.ui:174
 #, fuzzy, kde-format
 #| msgid "Fit to one page"
 msgid "Fit &to one page"
 msgstr "Igazítás egy oldalra"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
-#: part/simpleprintingpagesetupbase.ui:242
+#: part/simpleprintingpagesetupbase.ui:181
 #, fuzzy, kde-format
 #| msgid "Fit to several pages"
 msgid "F&it to several pages"
 msgstr "Igazítás számos oldalhoz"
 
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:192
+#, fuzzy, kde-format
+#| msgid "Horizontally"
+msgctxt "@label:spinbox"
+msgid "Horizontally:"
+msgstr "Vízszintesen"
+
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:202
+#, fuzzy, kde-format
+#| msgid "Vertically"
+msgctxt "@label:spinbox"
+msgid "Vertically:"
+msgstr "Függőlegesen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
+#: part/simpleprintingpagesetupbase.ui:212
+#, kde-format
+msgctxt "@option:check"
+msgid "Preserve aspect ratio:"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
-#: part/simpleprintingpagesetupbase.ui:258
+#: part/simpleprintingpagesetupbase.ui:228
 #, kde-format
 msgid "Related actions:"
 msgstr "Kapcsolódó műveletek:"

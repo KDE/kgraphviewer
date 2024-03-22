@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-21 01:38+0000\n"
+"POT-Creation-Date: 2024-03-22 01:35+0000\n"
 "PO-Revision-Date: 2022-10-19 14:20+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -1016,144 +1016,155 @@ msgstr "Сторінка %1 з %2"
 msgid "Page %1"
 msgstr "Сторінка %1"
 
-#: part/simpleprintingpagesetup.cpp:101
+#: part/simpleprintingpagesetup.cpp:99
 #, kde-format
 msgid "Print Preview..."
 msgstr "Перегляд друку..."
 
-#: part/simpleprintingpagesetup.cpp:104
+#: part/simpleprintingpagesetup.cpp:102
 #, kde-format
 msgid "Font..."
 msgstr "Шрифт…"
 
-#: part/simpleprintingpagesetup.cpp:105
+#: part/simpleprintingpagesetup.cpp:103
 #, kde-format
 msgid "Changes font for title text."
 msgstr "Змінює шрифт тексту заголовка."
 
-#: part/simpleprintingpagesetup.cpp:111
+#: part/simpleprintingpagesetup.cpp:109
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
 msgstr "<qt><h2>Параметри сторінки для друку графу «%1»</h2></qt>"
 
-#: part/simpleprintingpagesetup.cpp:116
+#: part/simpleprintingpagesetup.cpp:114
 #, kde-format
 msgid "Saves settings for this setup as default."
 msgstr "Зберігає ці параметри сторінки як типові."
 
-#: part/simpleprintingpagesetup.cpp:119
+#: part/simpleprintingpagesetup.cpp:117
 #, kde-format
 msgid "Adds date and time to the header."
 msgstr "Додає дату і час до шапки."
 
-#: part/simpleprintingpagesetup.cpp:120
+#: part/simpleprintingpagesetup.cpp:118
 #, kde-format
 msgid "Adds page numbers to the footer."
 msgstr "Додає номери сторінок до підвалу."
 
-#: part/simpleprintingpagesetup.cpp:121
+#: part/simpleprintingpagesetup.cpp:119
 #, kde-format
 msgid "Adds table borders."
 msgstr "Додає рамки до таблиць."
 
-#: part/simpleprintingpagesetup.cpp:129
+#: part/simpleprintingpagesetup.cpp:127
 #, kde-format
 msgid "Change Page Size and Margins..."
 msgstr "Змінити розмір і поля сторінки…"
 
-#: part/simpleprintingpagesetup.cpp:130
+#: part/simpleprintingpagesetup.cpp:128
 #, kde-format
 msgid "Changes page size and margins."
 msgstr "Змінює розмір і поля сторінки."
 
-#: part/simpleprintingpagesetup.cpp:187
+#: part/simpleprintingpagesetup.cpp:178
 #, kde-format
 msgid "Chosen font looks like this"
 msgstr "Вибраний шрифт виглядає так"
 
-#: part/simpleprintingpagesetup.cpp:203
+#: part/simpleprintingpagesetup.cpp:194
 #, kde-format
 msgid "Portrait"
 msgstr "Книжкова"
 
-#: part/simpleprintingpagesetup.cpp:203
+#: part/simpleprintingpagesetup.cpp:194
 #, kde-format
 msgid "Landscape"
 msgstr "Альбомна"
 
-#: part/simpleprintingpagesetup.cpp:203
+#: part/simpleprintingpagesetup.cpp:194
 #, kde-format
 msgid "margins:"
 msgstr "поля:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
-#: part/simpleprintingpagesetupbase.ui:68
+#: part/simpleprintingpagesetupbase.ui:64
 #, kde-format
 msgid "Pa&ge font:"
 msgstr "&Шрифт сторінки:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
-#: part/simpleprintingpagesetupbase.ui:97
+#: part/simpleprintingpagesetupbase.ui:93
 #, kde-format
 msgid "Page Size && Margins"
 msgstr "Розмір сторінки і поля"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
-#: part/simpleprintingpagesetupbase.ui:122
+#: part/simpleprintingpagesetupbase.ui:118
 #, kde-format
 msgid "Add &borders"
 msgstr "Додати &рамку"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
-#: part/simpleprintingpagesetupbase.ui:129
+#: part/simpleprintingpagesetupbase.ui:125
 #, kde-format
 msgid "Add date and time"
 msgstr "Додати дату і час"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
-#: part/simpleprintingpagesetupbase.ui:152
+#: part/simpleprintingpagesetupbase.ui:148
 #, kde-format
 msgid "Add page numbers"
 msgstr "Додати номери сторінок"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
-#: part/simpleprintingpagesetupbase.ui:163
+#: part/simpleprintingpagesetupbase.ui:159
 #, kde-format
 msgid "Number of pages to fit on"
 msgstr "Кількість сторінок для підбору"
 
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
-#: part/simpleprintingpagesetupbase.ui:195
-#, kde-format
-msgid "Horizontally"
-msgstr "Горизонтально"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
-#: part/simpleprintingpagesetupbase.ui:207
-#, kde-format
-msgid "Vertically"
-msgstr "Вертикально"
-
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
-#: part/simpleprintingpagesetupbase.ui:228
+#: part/simpleprintingpagesetupbase.ui:167
 #, kde-format
 msgid "&Natural size"
 msgstr "Сп&равжній розмір"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
-#: part/simpleprintingpagesetupbase.ui:235
+#: part/simpleprintingpagesetupbase.ui:174
 #, kde-format
 msgid "Fit &to one page"
 msgstr "П&ідібрати під одну сторінку"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
-#: part/simpleprintingpagesetupbase.ui:242
+#: part/simpleprintingpagesetupbase.ui:181
 #, kde-format
 msgid "F&it to several pages"
 msgstr "Пі&дібрати під декілька сторінок"
 
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:192
+#, fuzzy, kde-format
+#| msgid "Horizontally"
+msgctxt "@label:spinbox"
+msgid "Horizontally:"
+msgstr "Горизонтально"
+
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:202
+#, fuzzy, kde-format
+#| msgid "Vertically"
+msgctxt "@label:spinbox"
+msgid "Vertically:"
+msgstr "Вертикально"
+
+#. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
+#: part/simpleprintingpagesetupbase.ui:212
+#, kde-format
+msgctxt "@option:check"
+msgid "Preserve aspect ratio:"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
-#: part/simpleprintingpagesetupbase.ui:258
+#: part/simpleprintingpagesetupbase.ui:228
 #, kde-format
 msgid "Related actions:"
 msgstr "Відповідні дії:"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-21 01:38+0000\n"
+"POT-Creation-Date: 2024-03-22 01:35+0000\n"
 "PO-Revision-Date: 2022-11-10 20:28+0100\n"
 "Last-Translator: Frank Steinmetzger <dev-kde@felsenfleischer.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -1015,144 +1015,155 @@ msgstr "Seite %1 von %2"
 msgid "Page %1"
 msgstr "Seite %1"
 
-#: part/simpleprintingpagesetup.cpp:101
+#: part/simpleprintingpagesetup.cpp:99
 #, kde-format
 msgid "Print Preview..."
 msgstr "Druckvorschau ..."
 
-#: part/simpleprintingpagesetup.cpp:104
+#: part/simpleprintingpagesetup.cpp:102
 #, kde-format
 msgid "Font..."
 msgstr "Schriftart ..."
 
-#: part/simpleprintingpagesetup.cpp:105
+#: part/simpleprintingpagesetup.cpp:103
 #, kde-format
 msgid "Changes font for title text."
 msgstr "Ändert die Schriftart für Titeltext."
 
-#: part/simpleprintingpagesetup.cpp:111
+#: part/simpleprintingpagesetup.cpp:109
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
 msgstr "<qt><h2>Seiteneinrichtung zum Drucken des Graphen „%1“</h2></qt>"
 
-#: part/simpleprintingpagesetup.cpp:116
+#: part/simpleprintingpagesetup.cpp:114
 #, kde-format
 msgid "Saves settings for this setup as default."
 msgstr "Speichert diese Einstellungen als Standard."
 
-#: part/simpleprintingpagesetup.cpp:119
+#: part/simpleprintingpagesetup.cpp:117
 #, kde-format
 msgid "Adds date and time to the header."
 msgstr "Fügt Datum und Zeit zur Kopfzeile hinzu."
 
-#: part/simpleprintingpagesetup.cpp:120
+#: part/simpleprintingpagesetup.cpp:118
 #, kde-format
 msgid "Adds page numbers to the footer."
 msgstr "Fügt Seitenzahlen zur Fußzeile hinzu."
 
-#: part/simpleprintingpagesetup.cpp:121
+#: part/simpleprintingpagesetup.cpp:119
 #, kde-format
 msgid "Adds table borders."
 msgstr "Fügt Tabellenumrandungen hinzu."
 
-#: part/simpleprintingpagesetup.cpp:129
+#: part/simpleprintingpagesetup.cpp:127
 #, kde-format
 msgid "Change Page Size and Margins..."
 msgstr "Seitengröße und Ränder ändern ..."
 
-#: part/simpleprintingpagesetup.cpp:130
+#: part/simpleprintingpagesetup.cpp:128
 #, kde-format
 msgid "Changes page size and margins."
 msgstr "Ändert Seitengröße und Ränder."
 
-#: part/simpleprintingpagesetup.cpp:187
+#: part/simpleprintingpagesetup.cpp:178
 #, kde-format
 msgid "Chosen font looks like this"
 msgstr "Aussehen der ausgewählten Schriftart"
 
-#: part/simpleprintingpagesetup.cpp:203
+#: part/simpleprintingpagesetup.cpp:194
 #, kde-format
 msgid "Portrait"
 msgstr "Hochformat"
 
-#: part/simpleprintingpagesetup.cpp:203
+#: part/simpleprintingpagesetup.cpp:194
 #, kde-format
 msgid "Landscape"
 msgstr "Querformat"
 
-#: part/simpleprintingpagesetup.cpp:203
+#: part/simpleprintingpagesetup.cpp:194
 #, kde-format
 msgid "margins:"
 msgstr "Ränder:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
-#: part/simpleprintingpagesetupbase.ui:68
+#: part/simpleprintingpagesetupbase.ui:64
 #, kde-format
 msgid "Pa&ge font:"
 msgstr "&Schriftart der Seite:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
-#: part/simpleprintingpagesetupbase.ui:97
+#: part/simpleprintingpagesetupbase.ui:93
 #, kde-format
 msgid "Page Size && Margins"
 msgstr "Seitengröße && Ränder"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
-#: part/simpleprintingpagesetupbase.ui:122
+#: part/simpleprintingpagesetupbase.ui:118
 #, kde-format
 msgid "Add &borders"
 msgstr "&Ränder hinzufügen"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
-#: part/simpleprintingpagesetupbase.ui:129
+#: part/simpleprintingpagesetupbase.ui:125
 #, kde-format
 msgid "Add date and time"
 msgstr "Datum und Uhrzeit hinzufügen"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
-#: part/simpleprintingpagesetupbase.ui:152
+#: part/simpleprintingpagesetupbase.ui:148
 #, kde-format
 msgid "Add page numbers"
 msgstr "Seitenzahlen hinzufügen"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
-#: part/simpleprintingpagesetupbase.ui:163
+#: part/simpleprintingpagesetupbase.ui:159
 #, kde-format
 msgid "Number of pages to fit on"
 msgstr "Anzahl der Seiten, auf die eingepasst werden soll"
 
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
-#: part/simpleprintingpagesetupbase.ui:195
-#, kde-format
-msgid "Horizontally"
-msgstr "Horizontal"
-
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
-#: part/simpleprintingpagesetupbase.ui:207
-#, kde-format
-msgid "Vertically"
-msgstr "Vertikal"
-
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
-#: part/simpleprintingpagesetupbase.ui:228
+#: part/simpleprintingpagesetupbase.ui:167
 #, kde-format
 msgid "&Natural size"
 msgstr "&Tatsächliche Größe"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
-#: part/simpleprintingpagesetupbase.ui:235
+#: part/simpleprintingpagesetupbase.ui:174
 #, kde-format
 msgid "Fit &to one page"
 msgstr "&Auf eine Seite einpassen"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
-#: part/simpleprintingpagesetupbase.ui:242
+#: part/simpleprintingpagesetupbase.ui:181
 #, kde-format
 msgid "F&it to several pages"
 msgstr "Auf &mehrere Seiten einpassen"
 
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:192
+#, fuzzy, kde-format
+#| msgid "Horizontally"
+msgctxt "@label:spinbox"
+msgid "Horizontally:"
+msgstr "Horizontal"
+
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:202
+#, fuzzy, kde-format
+#| msgid "Vertically"
+msgctxt "@label:spinbox"
+msgid "Vertically:"
+msgstr "Vertikal"
+
+#. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
+#: part/simpleprintingpagesetupbase.ui:212
+#, kde-format
+msgctxt "@option:check"
+msgid "Preserve aspect ratio:"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
-#: part/simpleprintingpagesetupbase.ui:258
+#: part/simpleprintingpagesetupbase.ui:228
 #, kde-format
 msgid "Related actions:"
 msgstr "Zugehörige Aktionen:"
