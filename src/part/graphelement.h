@@ -19,13 +19,12 @@
 #ifndef GRAPH_ELEMENT_H
 #define GRAPH_ELEMENT_H
 
+// lib
 #include "dotrenderop.h"
-
-#include <QList>
+// Qt
+#include <QObject>
 #include <QMap>
 #include <QTextStream>
-#include <QVector>
-#include <QObject>
 
 namespace KGraphViewer
 {

@@ -30,55 +30,46 @@
 
 #include "dotgraphview.h"
 
-#include "FontsCache.h"
+// lib
 #include "canvasedge.h"
-#include "canvasnode.h"
 #include "canvassubgraph.h"
+#include "canvaselement.h"
 #include "dot2qtconsts.h"
 #include "dotgraph.h"
-#include "graphedge.h"
-#include "graphelement.h"
+#include "FontsCache.h"
+#include "pannerview.h"
 #include "graphexporter.h"
-#include "graphnode.h"
-#include "kgraphviewer_partsettings.h"
-#include "kgraphviewerlib_debug.h"
 #include "layoutagraphthread.h"
 #include "loadagraphthread.h"
-#include "pannerview.h"
 #include "simpleprintingcommand.h"
-
-#include <iostream>
-#include <math.h>
-#include <stdlib.h>
-
+#include "kgraphviewer_partsettings.h"
+#include "kgraphviewerlib_debug.h"
+// KF
+#include <KActionCollection>
+#include <KActionMenu>
+#include <KSelectAction>
+#include <KToggleAction>
+#include <KConfigGroup>
+#include <KSharedConfig>
+#include <KLocalizedString>
+// Qt
 #include <QApplication>
-#include <QBitmap>
-#include <QContextMenuEvent>
-#include <QDebug>
-#include <QFileDialog>
-#include <QFocusEvent>
-#include <QGraphicsSimpleTextItem>
-#include <QImage>
-#include <QImageWriter>
-#include <QInputDialog>
-#include <QKeyEvent>
-#include <QMenu>
-#include <QMouseEvent>
-#include <QPainter>
-#include <QPixmap>
-#include <QResizeEvent>
-#include <QScrollBar>
-#include <QStyle>
 #include <QSvgGenerator>
-#include <QTransform>
-#include <QUuid>
-#include <QWheelEvent>
-
-#include <kactionmenu.h>
-#include <klocalizedstring.h>
-#include <kmessagebox.h>
-#include <kselectaction.h>
-#include <ktoggleaction.h>
+#include <QFileDialog>
+#include <QInputDialog>
+#include <QMessageBox>
+#include <QMenu>
+#include <QLineEdit>
+#include <QScrollBar>
+#include <QAction>
+#include <QImageWriter>
+#include <QBitmap>
+#include <QTimerEvent>
+#include <QMouseEvent>
+#include <QContextMenuEvent>
+// Std
+#include <cmath>
+#include <limits>
 
 // DotGraphView defaults
 

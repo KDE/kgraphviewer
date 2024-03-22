@@ -28,9 +28,12 @@
 #ifndef KGVSIMPLEPRINTINGPAGESETUP_H
 #define KGVSIMPLEPRINTINGPAGESETUP_H
 
-#include "simpleprintingengine.h"
-
+// lib
+#include "KgvUnit.h"
+// Qt
+#include <QWidget>
 #include <QButtonGroup>
+#include <QMap>
 
 namespace Ui
 {
@@ -38,9 +41,10 @@ class KGVSimplePrintingPageSetupBase;
 }
 namespace KGraphViewer
 {
-class DotGraphView;
 class KGVSimplePrintingCommand;
+class KGVSimplePrintingSettings;
 class KgvPageLayoutSize;
+class DotGraphView;
 
 //! @short A window for displaying settings for simple printing.
 class KGVSimplePrintingPageSetup : public QWidget

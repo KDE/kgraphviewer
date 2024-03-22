@@ -19,15 +19,17 @@
 #ifndef _KGRAPHVIEWER_H_
 #define _KGRAPHVIEWER_H_
 
-//#include <config-kgraphviewer.h>
-
+// KF
 #include <KParts/MainWindow>
-#include <KRecentFilesAction>
-#include <QAction>
+// Qt
+#include <QMap>
+#include <QUrl>
 #include <QDir>
-#include <QTabWidget>
 
+class KRecentFilesAction;
 class KToggleAction;
+
+class QTabWidget;
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and

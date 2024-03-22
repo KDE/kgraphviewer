@@ -28,18 +28,18 @@
 #ifndef KGVUNITWIDGETS_H
 #define KGVUNITWIDGETS_H
 
-#include <KgvUnit.h>
-#include <QComboBox>
+// lib
+#include "KgvUnit.h"
+// Qt
+#include <QDoubleValidator>
 #include <QDoubleSpinBox>
-#include <QEvent>
-#include <QIntValidator>
 #include <QLineEdit>
-#include <QSpinBox>
+#include <QComboBox>
+
+class KgvUnitDoubleBase;
 
 // ----------------------------------------------------------------
 //                          Support classes
-
-class KgvUnitDoubleBase;
 
 // ### TODO: put it out of the public header file (if possible)
 /**

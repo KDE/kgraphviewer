@@ -25,13 +25,11 @@
 */
 
 #include "graphexporter.h"
+
+// lib
 #include "dotgraph.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <QFile>
-#include <QTextStream>
-
-#include <QDebug>
+// Qt
 #include <QTemporaryFile>
 
 namespace KGraphViewer

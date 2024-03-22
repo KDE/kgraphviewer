@@ -26,14 +26,10 @@
  */
 
 #include <KgvPageLayoutColumns.h>
-#include <KgvPageLayoutDia.h>
-#include <KgvUnit.h>
-#include <KgvUnitWidgets.h>
 
-#include <qlabel.h>
-#include <qlayout.h>
-// Added by qt3to4:
-#include <QHBoxLayout>
+// lib
+#include "KgvPageLayoutDia.h"
+#include "KgvUnitWidgets.h"
 
 KgvPageLayoutColumns::KgvPageLayoutColumns(QWidget *parent, const KgvColumns &columns, KgvUnit::Unit unit, const KgvPageLayout &layout)
     : QWidget(parent)

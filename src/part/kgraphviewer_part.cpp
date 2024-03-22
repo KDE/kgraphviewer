@@ -17,29 +17,18 @@
 */
 
 #include "kgraphviewer_part.h"
-#include "config-kgraphviewer.h"
-#include "dotgraph.h"
-#include "dotgraphview.h"
-#include "kgraphviewerlib_debug.h"
 
+// part
+#include "kgraphviewerlib_debug.h"
+// libkgraphviewer
+#include "dotgraphview.h"
+#include "dotgraph.h"
+// KF
 #include <KDirWatch>
 #include <KPluginFactory>
-#include <KSharedConfig>
-#include <QAction>
-#include <QDebug>
-#include <QIcon>
-#include <QStandardPaths>
-#include <iostream>
-#include <kactioncollection.h>
-#include <klocalizedstring.h>
-#include <kselectaction.h>
-#include <kstandardaction.h>
-#include <ktoggleaction.h>
-
-#include <graphviz/gvc.h>
-
-// #include "kgraphviewersettings.h"
-#include "kgraphviewer_partsettings.h"
+#include <KActionCollection>
+#include <KStandardAction>
+#include <KLocalizedString>
 
 namespace KGraphViewer
 {

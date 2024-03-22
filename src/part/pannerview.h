@@ -31,10 +31,8 @@
 #ifndef PANNER_VIEW_H
 #define PANNER_VIEW_H
 
+// Qt
 #include <QGraphicsView>
-#include <QWidget>
-// Added by qt3to4:
-#include <QMouseEvent>
 
 namespace KGraphViewer
 {

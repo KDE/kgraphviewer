@@ -27,27 +27,12 @@
 
 #include "simpleprintingsettings.h"
 
-// #include <core/keximainwindow.h>
-// #include <kexiutils/utils.h>
-
+// KF
+#include <KConfigGroup>
 #include <KSharedConfig>
+// Qt
 #include <QApplication>
-// #include <kiconloader.h>
-// #include <kfontdialog.h>
-// #include <kurllabel.h>
-#include <QDebug>
-#include <kconfig.h>
-#include <kconfiggroup.h>
-
-// #include <qimage.h>
-// #include <qlabel.h>
-// #include <qlayout.h>
-// #include <qpainter.h>
-// #include <qcheckbox.h>
-// #include <qwhatsthis.h>
-// #include <qpaintdevicemetrics.h>
-
-// #include <kprinter.h>
+#include <QFontInfo>
 
 namespace KGraphViewer
 {

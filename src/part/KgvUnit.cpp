@@ -25,14 +25,15 @@
    version 2 of the License, or (at your option) any later version.
  */
 
-//#include <KoGlobal.h>
 #include "KgvUnit.h"
-#include "kgraphviewerlib_debug.h"
 
-#include <QDebug>
+// lib
+#include "kgraphviewerlib_debug.h"
+// KF
+#include <KLocalizedString>
+// Qt
+#include <QRegularExpression>
 #include <QLocale>
-#include <klocalizedstring.h>
-#include <qregularexpression.h>
 
 QStringList KgvUnit::listOfUnitName()
 {

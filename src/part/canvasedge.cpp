@@ -25,23 +25,19 @@
 */
 
 #include "canvasedge.h"
-#include "FontsCache.h"
-#include "dot2qtconsts.h"
-#include "dotdefaults.h"
+
+// lib
 #include "dotgraphview.h"
+#include "dot2qtconsts.h"
+#include "canvaselement.h"
+#include "FontsCache.h"
 #include "graphedge.h"
-#include "graphnode.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <QAction>
-
-#include <QGraphicsSceneMouseEvent>
+// KF
+#include <KLocalizedString>
+// Q
 #include <QMenu>
-#include <QPainter>
-
-#include <klocalizedstring.h>
-
-#include <iostream>
+#include <QGraphicsSceneMouseEvent>
 
 //
 // CanvasEdge

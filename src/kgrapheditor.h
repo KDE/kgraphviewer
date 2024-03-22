@@ -19,16 +19,12 @@
 #ifndef _KGRAPHEDITOR_H_
 #define _KGRAPHEDITOR_H_
 
+// KF
 #include <KParts/MainWindow>
-#include <KRecentFilesAction>
-#include <QAction>
+// Qt
+#include <QMap>
+#include <QUrl>
 #include <QDir>
-#include <QTabWidget>
-
-class QTreeWidget;
-class QTreeWidgetItem;
-
-class KToggleAction;
 
 class KGraphEditorNodesTreeWidget;
 class KGraphEditorElementTreeWidget;
@@ -37,6 +33,10 @@ namespace KParts
 {
 class ReadOnlyPart;
 }
+class KRecentFilesAction;
+class KToggleAction;
+
+class QTreeWidgetItem;
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and

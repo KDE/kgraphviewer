@@ -17,30 +17,25 @@
 */
 
 #include "dotgraph.h"
-#include "DotGraphParsingHelper.h"
+
+// lib
 #include "canvasedge.h"
 #include "canvassubgraph.h"
 #include "dotgrammar.h"
 #include "graphexporter.h"
-#include "kgraphviewerlib_debug.h"
 #include "layoutagraphthread.h"
-
-#include "fdstream.hpp"
-#include <boost/spirit/include/classic_confix.hpp>
-#include <graphviz/gvc.h>
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-
-#include <QMessageBox>
-
-#include <QByteArray>
+#include "DotGraphParsingHelper.h"
+#include "kgraphviewerlib_debug.h"
+// KF
+#include <KLocalizedString>
+// Qt
 #include <QFile>
-#include <QMutexLocker>
-#include <QPair>
-#include <QProcess>
+#include <QMessageBox>
 #include <QUuid>
-#include <klocalizedstring.h>
+// Boost
+#include <boost/spirit/include/classic_confix.hpp>
+// Std
+#include <cmath>
 
 using namespace boost;
 using namespace boost::spirit::classic;

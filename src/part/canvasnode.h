@@ -31,6 +31,7 @@
 #ifndef CANVAS_NODE_H
 #define CANVAS_NODE_H
 
+// lib
 #include "canvaselement.h"
 
 namespace KGraphViewer

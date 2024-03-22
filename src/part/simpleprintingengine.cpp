@@ -26,28 +26,18 @@
  */
 
 #include "simpleprintingengine.h"
-#include "kgraphviewerlib_debug.h"
+
+// lib
+#include "dotgraphview.h"
+#include "KgvPageLayout.h"
 #include "simpleprintingsettings.h"
-
-#include <QApplication>
-#include <QDebug>
-#include <QFontDialog>
-#include <QIcon>
-#include <kconfig.h>
-#include <kurllabel.h>
-
-#include <qcheckbox.h>
-#include <qimage.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qpainter.h>
-
-#include <QDateTime>
-#include <QGraphicsScene>
-#include <QPaintDevice>
-#include <QPixmap>
-#include <klocalizedstring.h>
-#include <math.h>
+#include "kgraphviewerlib_debug.h"
+// KF
+#include <KLocalizedString>
+// Qt
+#include <QPainter>
+// Std
+#include <cmath>
 
 namespace KGraphViewer
 {

@@ -21,12 +21,13 @@
  */
 
 #include "graphsubgraph.h"
-#include "canvassubgraph.h"
-#include "dotdefaults.h"
-#include "graphnode.h"
-#include "kgraphviewerlib_debug.h"
 
-#include <QDebug>
+// lib
+#include "dotdefaults.h"
+#include "dotgrammar.h"
+#include "graphnode.h"
+#include "canvassubgraph.h"
+#include "kgraphviewerlib_debug.h"
 
 namespace KGraphViewer
 {

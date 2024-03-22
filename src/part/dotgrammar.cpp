@@ -17,21 +17,20 @@
 */
 
 #include "dotgrammar.h"
-#include "DotGraphParsingHelper.h"
-#include "dotdefaults.h"
+
+// lib
 #include "dotgraph.h"
-#include "graphedge.h"
-#include "graphnode.h"
+#include "DotGraphParsingHelper.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <iostream>
-
-#include <QDebug>
-
-#include <QFile>
-
+// Qt
+#include <QColor>
+#include <QPoint>
+// Boost
 #include <boost/spirit/include/classic_confix.hpp>
 #include <boost/throw_exception.hpp>
+// Std
+#include <limits>
+
 namespace boost
 {
 void throw_exception(std::exception const &)

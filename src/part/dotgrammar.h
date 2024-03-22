@@ -23,22 +23,21 @@
 #ifndef DOT_GRAMMAR_H
 #define DOT_GRAMMAR_H
 
+// lib
 #include "dotrenderop.h"
-
+// Qt
+#include <QPair>
+#include <QVector>
+// Boost
 #include <boost/spirit/include/classic_core.hpp>
 #include <boost/spirit/include/classic_distinct.hpp>
 #include <boost/spirit/include/classic_loops.hpp>
 #include <boost/throw_exception.hpp>
-
-#include <QColor>
-#include <QPair>
-#include <QPoint>
-#include <QVector>
-
-#include <list>
-#include <map>
-#include <sstream>
+// Std
 #include <string>
+
+class QColor;
+class QPoint;
 
 bool parse(const std::string &str);
 

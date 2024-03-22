@@ -28,14 +28,13 @@
 #ifndef KGVSIMPLEPRINTPREVIEWWINDOW_P_H
 #define KGVSIMPLEPRINTPREVIEWWINDOW_P_H
 
-#include "simpleprintpreviewwindow.h"
-// Added by qt3to4:
-#include <QPaintEvent>
-#include <QResizeEvent>
+// Qt
 #include <QScrollArea>
 
 namespace KGraphViewer
 {
+class KGVSimplePrintPreviewWindow;
+
 class KGVSimplePrintPreviewView : public QWidget
 {
     Q_OBJECT

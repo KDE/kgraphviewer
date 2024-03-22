@@ -30,13 +30,15 @@
 #ifndef kgvpagelayoutcolumns_h
 #define kgvpagelayoutcolumns_h
 
-#include <KgvPageLayout.h>
-#include <KgvUnit.h>
-#include <ui_KgvPageLayoutColumnsBase.h>
+// lib
+#include "ui_KgvPageLayoutColumnsBase.h"
+#include "KgvPageLayout.h"
+#include "KgvUnit.h"
+// Qt
+#include <QWidget>
 
-class QWidget;
-class KgvUnitDoubleSpinBox;
 class KgvPagePreview;
+class KgvUnitDoubleSpinBox;
 
 /**
  * This class is a widget that shows the KgvColumns data structure and allows the user to change it.

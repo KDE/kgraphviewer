@@ -29,25 +29,12 @@
  */
 
 #include "canvasnode.h"
-#include "FontsCache.h"
-#include "dot2qtconsts.h"
-#include "dotdefaults.h"
-#include "dotgraphview.h"
+
+// lib
 #include "graphnode.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <iostream>
-#include <math.h>
-#include <stdlib.h>
-
-#include <QDebug>
-#include <QGraphicsScene>
-#include <QPainter>
-#include <QPixmap>
-#include <QPolygonF>
-#include <QStyle>
-
-#include <klocalizedstring.h>
+// KF
+#include <KLocalizedString>
 
 namespace KGraphViewer
 {

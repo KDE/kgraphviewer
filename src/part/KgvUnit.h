@@ -28,9 +28,10 @@
 #ifndef KGVUNIT_H
 #define KGVUNIT_H
 
-#include <math.h> // for floor
-#include <qstring.h>
-#include <qstringlist.h>
+// Qt
+#include <QStringList>
+// Std
+#include <cmath>
 
 // 1 inch ^= 72 pt
 // 1 inch ^= 25.399956 mm (-pedantic ;p)

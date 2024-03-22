@@ -17,13 +17,14 @@
 */
 
 #include "KGraphEditorElementTreeWidget.h"
-#include "kgrapheditor_debug.h"
 
-#include <QAction>
+// app
+#include "kgrapheditor_debug.h"
+// KF
+#include <KLocalizedString>
+// Qt
 #include <QContextMenuEvent>
-#include <QDebug>
 #include <QMenu>
-#include <klocalizedstring.h>
 
 KGraphEditorElementTreeWidget::KGraphEditorElementTreeWidget(QWidget *parent)
     : QTreeWidget(parent)

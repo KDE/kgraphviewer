@@ -17,25 +17,20 @@
 */
 
 #include "canvaselement.h"
-#include "FontsCache.h"
+
+// lib
 #include "dot2qtconsts.h"
-#include "dotdefaults.h"
 #include "dotgraphview.h"
+#include "FontsCache.h"
 #include "graphelement.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <iostream>
-#include <math.h>
-#include <stdlib.h>
-
+// KF
+#include <KLocalizedString>
+// Qt
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
-#include <QMenu>
 #include <QPainter>
-
-#include <QAction>
-#include <QDebug>
-#include <klocalizedstring.h>
+#include <QMenu>
 
 // comment out to get extended debug output during rendering
 // #define RENDER_DEBUG 1

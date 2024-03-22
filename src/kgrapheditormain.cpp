@@ -16,26 +16,18 @@
    02110-1301, USA
 */
 
+// app
 #include "kgrapheditor.h"
-#include "kgrapheditor_debug.h"
-
-#include <QApplication>
-#include <QByteArray>
-#include <QCommandLineParser>
-#include <QDBusConnection>
-#include <QDBusConnectionInterface>
-#include <QDBusInterface>
-#include <QDBusReply>
-#include <QDebug>
-#include <QDir>
-#include <QMessageBox>
-#include <iostream>
-#include <kaboutdata.h>
-
-#include "config-kgraphviewer.h"
 #include "kgrapheditoradaptor.h"
+#include "config-kgraphviewer.h"
+#include "kgrapheditor_debug.h"
+// KF
 #include <KAboutData>
-#include <klocalizedstring.h>
+#include <KLocalizedString>
+// Qt
+#include <QApplication>
+#include <QCommandLineParser>
+#include <QMessageBox>
 
 int main(int argc, char **argv)
 {

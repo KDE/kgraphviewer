@@ -26,15 +26,13 @@
  */
 
 #include "KgvUnitWidgets.h"
-#include "kgraphviewerlib_debug.h"
 
-#include <QDebug>
-#include <QEvent>
-#include <QRegExp>
+// lib
+#include "kgraphviewerlib_debug.h"
+// Qt
 #include <QGridLayout>
-#include <QLocale>
-#include <qlayout.h>
-#include <qpushbutton.h>
+#include <QPushButton>
+#include <QRegExp>
 
 // ----------------------------------------------------------------
 //                          Support classes

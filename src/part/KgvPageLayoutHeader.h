@@ -28,11 +28,13 @@
 #ifndef kgvpagelayoutheader_h
 #define kgvpagelayoutheader_h
 
-#include <KgvPageLayout.h>
-#include <KgvUnit.h>
+// lib
+#include "KgvUnit.h"
+#include "KgvPageLayout.h"
 #include <ui_KgvPageLayoutHeaderBase.h>
+// Qt
+#include <QWidget>
 
-class QWidget;
 class KgvUnitDoubleSpinBox;
 
 /**

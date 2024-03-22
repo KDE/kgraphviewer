@@ -28,22 +28,20 @@
 #ifndef KGVSIMPLEPRINTPREVIEWWINDOW_H
 #define KGVSIMPLEPRINTPREVIEWWINDOW_H
 
-#include <qpainter.h>
-// Added by qt3to4:
-#include <KgvPageLayoutDia.h>
-#include <QEvent>
-#include <kactioncollection.h>
-#include <ktoolbar.h>
+// KF
+#include <KActionCollection>
+// Qt
+#include <QWidget>
 
+class KToolBar;
 class QLabel;
-class QScrollArea;
 
 namespace KGraphViewer
 {
+class KGVSimplePrintingEngine;
+class KGVSimplePrintingSettings;
 class KGVSimplePrintPreviewScrollView;
 class KGVSimplePrintPreviewView;
-class KGVSimplePrintingSettings;
-class KGVSimplePrintingEngine;
 
 //! @short A window for displaying print preview for simple printing.
 class KGVSimplePrintPreviewWindow : public QWidget

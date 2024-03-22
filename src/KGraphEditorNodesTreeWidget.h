@@ -19,6 +19,7 @@
 #ifndef _KGRAPHEDITORNODESTREEWIDGET_H_
 #define _KGRAPHEDITORNODESTREEWIDGET_H_
 
+// Qt
 #include <QTreeWidget>
 
 /**

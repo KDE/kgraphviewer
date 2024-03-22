@@ -17,38 +17,36 @@
 */
 
 #include "kgrapheditor.h"
+
+// app
 #include "KGraphEditorElementTreeWidget.h"
 #include "KGraphEditorNodesTreeWidget.h"
 #include "kgrapheditorConfigDialog.h"
 #include "kgrapheditor_debug.h"
 #include "kgrapheditorsettings.h"
-#include "part/kgraphviewer_part.h"
-#include "ui_preferencesOpenInExistingWindow.h"
+// #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesParsing.h"
-#include "ui_preferencesReload.h"
-#include "ui_preferencesReopenPreviouslyOpenedFiles.h"
-
+// #include "ui_preferencesReload.h"
+// #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
+// KGraphViewerInterface
+#include <part/kgraphviewer_interface.h>
+// KF
 #include <KActionCollection>
-#include <QDebug>
-#include <QDockWidget>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QStatusBar>
-#include <QTabWidget>
-#include <QTreeWidget>
-#include <QUrl>
+#include <KStandardAction>
+#include <KParts/PartManager>
+#include <KParts/ReadOnlyPart>
+#include <KPluginFactory>
+#include <KEditToolBar>
+#include <KToolBar>
+#include <KSharedConfig>
+#include <KConfigGroup>
+#include <KLocalizedString>
+// Qt
 #include <QDBusConnection>
-#include <kconfig.h>
-#include <kconfigdialog.h>
-#include <kedittoolbar.h>
-#include <klocalizedstring.h>
-#include <kparts/partmanager.h>
-#include <krecentfilesaction.h>
-#include <kstandardaction.h>
-#include <ktoggleaction.h>
-#include <ktoolbar.h>
-
-#include <iostream>
+#include <QFileDialog>
+#include <QStatusBar>
+#include <QMessageBox>
+#include <QDockWidget>
 
 using namespace KGraphViewer;
 

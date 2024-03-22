@@ -29,29 +29,20 @@
 
 /******************************************************************/
 
+#include "KgvPageLayoutDia.h"
+
+// lib
+#include "KgvGlobal.h"
+#include "KgvPageLayoutColumns.h"
+#include "KgvPageLayoutHeader.h"
+#include "KgvPageLayoutSize.h"
 #include "kgraphviewerlib_debug.h"
-#include <KgvGlobal.h>
-#include <KgvPageLayoutColumns.h>
-#include <KgvPageLayoutDia.h>
-#include <KgvPageLayoutHeader.h>
-#include <KgvPageLayoutSize.h>
-#include <KgvUnit.h>
-#include <KgvUnitWidgets.h>
-
-#include <QDebug>
-#include <QIcon>
-#include <QMessageBox>
-
-#include <qcheckbox.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qpainter.h>
-#include <qradiobutton.h>
-// Added by qt3to4:
-#include <QHBoxLayout>
-#include <QPaintEngine>
+// KF
+#include <KLocalizedString>
+// Qt
+#include <QLineEdit>
+#include <QPainter>
 #include <QPointer>
-#include <klocalizedstring.h>
 
 /******************************************************************/
 /* class KgvPagePreview                                            */

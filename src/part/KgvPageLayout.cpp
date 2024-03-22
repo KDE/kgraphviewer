@@ -26,17 +26,16 @@
  */
 
 #include "KgvPageLayout.h"
+
+// lib
+#include "KgvUnit.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <KSharedConfig>
-#include <KgvUnit.h>
-#include <QDebug>
-#include <QPageSize>
-#include <QPrinterInfo>
-#include <klocalizedstring.h>
+// KF
 #include <KLazyLocalizedString>
-
-#include <qdom.h>
+// Qt
+#include <QPageSize>
+#include <QSizeF>
+#include <QPrinterInfo>
 
 KgvPageLayout KgvPageLayout::standardLayout()
 {

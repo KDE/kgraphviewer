@@ -31,16 +31,10 @@
 #ifndef GRAPH_EDGE_H
 #define GRAPH_EDGE_H
 
-#include "canvasnode.h"
-#include "dotgrammar.h"
-#include "dotrenderop.h"
+// lib
 #include "graphelement.h"
-
+// Graphviz
 #include <graphviz/gvc.h>
-
-#include <QMap>
-#include <QStringList>
-#include <QTextStream>
 
 namespace KGraphViewer
 {

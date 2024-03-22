@@ -20,9 +20,10 @@
 #ifndef LOADAGRAPHTHREAD_H
 #define LOADAGRAPHTHREAD_H
 
+// Qt
 #include <QSemaphore>
 #include <QThread>
-
+// Graphviz
 #include <graphviz/gvc.h>
 
 class LoadAGraphThread : public QThread

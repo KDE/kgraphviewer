@@ -25,24 +25,20 @@
    version 2 of the License, or (at your option) any later version.
  */
 
+#include "KgvPageLayoutSize.h"
+
+// lib
+#include "KgvUnitWidgets.h"
+#include "KgvPageLayoutDia.h"
 #include "kgraphviewerlib_debug.h"
-#include <KgvPageLayoutDia.h>
-#include <KgvPageLayoutSize.h>
-#include <KgvUnit.h>
-#include <KgvUnitWidgets.h>
-
-#include <QDebug>
-#include <QIcon>
-#include <QMessageBox>
-
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qradiobutton.h>
-// Added by qt3to4:
-#include "klocalizedstring.h"
+// KF
+#include <KLocalizedString>
+// Qt
 #include <QGridLayout>
-#include <QHBoxLayout>
-#include <QPixmap>
+#include <QMessageBox>
+#include <QGroupBox>
+#include <QRadioButton>
+#include <QLabel>
 
 KgvPageLayoutSize::KgvPageLayoutSize(QWidget *parent, const KgvPageLayout &layout, KgvUnit::Unit unit, const KgvColumns &columns, bool unitChooser, bool enableBorders)
     : QWidget(parent)

@@ -31,34 +31,26 @@
 #ifndef DOTGRAPHVIEW_H
 #define DOTGRAPHVIEW_H
 
-#include <kactioncollection.h>
-#include <kconfig.h>
-#include <kconfiggroup.h>
-
-#include <QGraphicsView>
-#include <QSet>
-
-#include <graphviz/types.h>
-
+// lib
 #include "kgraphviewer_export.h"
+// KGraphViewerInterface
 #include "kgraphviewer_interface.h"
+// Qt
+#include <QGraphicsView>
+// Graphviz
+#include <graphviz/gvc.h>
 
-class KSelectAction;
-
-class QKeyEvent;
-class QMouseEvent;
-class QFocusEvent;
-class QResizeEvent;
-class QWheelEvent;
-class QContextMenuEvent;
-class QWidget;
+class KActionCollection;
+class KSelectAction;;
+class KConfigGroup;
+class KConfig;
 
 namespace KGraphViewer
 {
-class GraphElement;
-class CanvasElement;
-class CanvasEdge;
 class DotGraph;
+class CanvasEdge;
+class CanvasElement;
+class GraphElement;
 
 #define DEFAULT_DETAILLEVEL 1
 

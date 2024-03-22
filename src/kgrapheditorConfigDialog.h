@@ -19,8 +19,10 @@
 #ifndef KGRAPHEDITORCONFIGDIALOG_H
 #define KGRAPHEDITORCONFIGDIALOG_H
 
-#include <KConfigSkeleton>
-#include <kconfigdialog.h>
+// KF
+#include <KConfigDialog>
+
+class KConfigSkeleton;
 
 namespace Ui
 {

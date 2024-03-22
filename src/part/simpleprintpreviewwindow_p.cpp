@@ -26,15 +26,16 @@
  */
 
 #include "simpleprintpreviewwindow_p.h"
-#include "kgraphviewerlib_debug.h"
+
+// lib
+#include "KgvPageLayout.h"
 #include "simpleprintingengine.h"
 #include "simpleprintingsettings.h"
-
+#include "simpleprintpreviewwindow.h"
+#include "kgraphviewerlib_debug.h"
+// Qt
 #include <QApplication>
-#include <QDebug>
-#include <QPaintEvent>
-#include <QPixmap>
-#include <QResizeEvent>
+#include <QPainter>
 #include <QStyle>
 
 namespace KGraphViewer

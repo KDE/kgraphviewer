@@ -19,6 +19,7 @@
 #ifndef _KGRAPHEDITORELEMENTTREEWIDGET_H_
 #define _KGRAPHEDITORELEMENTTREEWIDGET_H_
 
+// Qt
 #include <QTreeWidget>
 
 /**

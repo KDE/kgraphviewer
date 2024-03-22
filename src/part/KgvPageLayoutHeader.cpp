@@ -25,13 +25,10 @@
    version 2 of the License, or (at your option) any later version.
  */
 
-#include <KgvPageLayoutHeader.h>
-#include <KgvUnitWidgets.h>
+#include "KgvPageLayoutHeader.h"
 
-#include <qcheckbox.h>
-#include <qlayout.h>
-// Added by qt3to4:
-#include <QHBoxLayout>
+// lib
+#include "KgvUnitWidgets.h"
 
 KgvPageLayoutHeader::KgvPageLayoutHeader(QWidget *parent, KgvUnit::Unit unit, const KgvKWHeaderFooter &kwhf)
     : QWidget(parent)

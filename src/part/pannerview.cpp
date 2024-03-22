@@ -29,19 +29,14 @@
  */
 
 #include "pannerview.h"
+
+// lib
 #include "dotgraphview.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <iostream>
-#include <math.h>
-#include <stdlib.h>
-
-#include <QDebug>
-#include <QGraphicsScene>
+// KF
+#include <KLocalizedString>
+// Qt
 #include <QMouseEvent>
-#include <QPainter>
-
-#include <klocalizedstring.h>
 
 namespace KGraphViewer
 {

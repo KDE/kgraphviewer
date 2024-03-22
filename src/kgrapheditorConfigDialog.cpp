@@ -17,29 +17,17 @@
 */
 
 #include "kgrapheditorConfigDialog.h"
-#include "kgrapheditorsettings.h"
+
+// app
 #include "ui_preferencesOpenInExistingWindow.h"
 #include "ui_preferencesParsing.h"
 #include "ui_preferencesReload.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
-
-#include <QDebug>
-#include <QFileDialog>
-#include <QTabWidget>
-#include <QUrl>
-#include <kconfig.h>
-#include <kedittoolbar.h>
-#include <kparts/partmanager.h>
-
-#include <QStatusBar>
-#include <kconfigdialog.h>
-#include <klocalizedstring.h>
-#include <kmessagebox.h>
-
-//#include <kapp.h>
-//#include <dcopclient.h>
-
-#include <iostream>
+// KF
+#include <KConfigSkeleton>
+#include <KLocalizedString>
+// Qt
+#include <QGroupBox>
 
 KgeConfigurationDialog::KgeConfigurationDialog(QWidget *parent, const QString &name, KConfigSkeleton *config)
     : KConfigDialog(parent, name, config)

@@ -19,10 +19,10 @@
 #ifndef KGRAPHVIEWERCONFIGDIALOG_H
 #define KGRAPHVIEWERCONFIGDIALOG_H
 
-#include <QLoggingCategory>
+// KF
+#include <KConfigDialog>
 
-#include <KConfigSkeleton>
-#include <kconfigdialog.h>
+class KConfigSkeleton;
 
 namespace Ui
 {

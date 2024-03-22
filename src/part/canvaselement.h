@@ -23,19 +23,16 @@
 #ifndef CANVAS_ELEMENT_H
 #define CANVAS_ELEMENT_H
 
+// Qt
+#include <QObject>
 #include <QAbstractGraphicsShapeItem>
-#include <QBrush>
 #include <QPen>
-
-#include "dotgrammar.h"
-
-class QMenu;
-class QGraphicsScene;
+#include <QBrush>
 
 namespace KGraphViewer
 {
-class GraphElement;
 class DotGraphView;
+class GraphElement;
 
 class CanvasElement : public QObject, public QAbstractGraphicsShapeItem
 {

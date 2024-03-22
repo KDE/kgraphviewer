@@ -26,32 +26,22 @@
  */
 
 #include "simpleprintpreviewwindow.h"
-#include "kgraphviewerlib_debug.h"
-#include "simpleprintingengine.h"
 #include "simpleprintpreviewwindow_p.h"
-// #include <kexi_version.h>
 
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qtimer.h>
-#include <QScreen>
-#include <QEvent>
-#include <QKeyEvent>
-#include <QPixmap>
-#include <QVBoxLayout>
-
-#include <QAction>
+// lib
+#include "simpleprintingengine.h"
+#include "kgraphviewerlib_debug.h"
+// KF
+#include <KToolBar>
+#include <KLocalizedString>
+// Qt
 #include <QApplication>
-#include <QDebug>
-#include <QDialog>
-#include <QIcon>
-#include <QPushButton>
-#include <QToolButton>
-#include <kparts/mainwindow.h>
-#include <kstandardaction.h>
-
-#include <iostream>
-#include <klocalizedstring.h>
+#include <QScreen>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QPainter>
+#include <QKeyEvent>
+#include <QTimer>
 
 namespace KGraphViewer
 {

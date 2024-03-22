@@ -28,7 +28,11 @@
 #ifndef KGVSIMPLEPRINTINGSETTINGS_H
 #define KGVSIMPLEPRINTINGSETTINGS_H
 
-#include "KgvPageLayoutDia.h"
+// lib
+#include "KgvPageLayout.h"
+#include "KgvUnit.h"
+// Qt
+#include <QFont>
 
 namespace KGraphViewer
 {

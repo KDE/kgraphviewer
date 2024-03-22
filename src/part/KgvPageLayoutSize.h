@@ -28,17 +28,18 @@
 #ifndef kgvpagelayoutsize_h
 #define kgvpagelayoutsize_h
 
+// lib
+#include "KgvPageLayout.h"
+#include "KgvUnit.h"
+// Qt
+#include <QWidget>
 #include <QButtonGroup>
-#include <QGroupBox>
-// #include <KgvGlobal.h>
-#include <KgvPageLayout.h>
-#include <KgvPageLayoutDia.h>
-#include <KgvUnit.h>
-#include <QComboBox>
-#include <QDialog>
 
-class KComboBox;
 class KgvUnitDoubleSpinBox;
+class KgvPagePreview;
+
+class QGroupBox;
+class QComboBox;
 
 /**
  * This class is a widget that shows the KgvPageLayout data structure and allows the user to change it.

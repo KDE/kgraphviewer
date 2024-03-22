@@ -29,15 +29,10 @@
  */
 
 #include "graphnode.h"
-#include "canvasnode.h"
-#include "dotdefaults.h"
-#include "dotgraphview.h"
+
+// lib
+#include "dotgrammar.h"
 #include "kgraphviewerlib_debug.h"
-#include "pannerview.h"
-
-#include <math.h>
-
-#include <QDebug>
 
 namespace KGraphViewer
 {

@@ -20,6 +20,8 @@
 #ifndef DOT2QTCONSTS_H
 #define DOT2QTCONSTS_H
 
+// Qt
+#include <QColor>
 #include <QFont>
 #include <QMap>
 #include <QString>

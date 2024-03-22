@@ -20,9 +20,10 @@
 #ifndef LAYOUTAGRAPHTHREAD_H
 #define LAYOUTAGRAPHTHREAD_H
 
+// Qt
 #include <QSemaphore>
 #include <QThread>
-
+// Graphviz
 #include <graphviz/gvc.h>
 
 int threadsafe_wrap_gvLayout(GVC_t *gvc, graph_t *g, const char *engine);

@@ -18,7 +18,10 @@
 
 #include "FontsCache.h"
 
+// lib
 #include "dot2qtconsts.h"
+// Qt
+#include <QFont>
 
 FontsCache::~FontsCache()
 {

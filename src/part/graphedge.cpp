@@ -25,9 +25,11 @@
 */
 
 #include "graphedge.h"
-#include "canvasedge.h"
+
+// lib
 #include "dotdefaults.h"
-#include "graphnode.h"
+#include "dotgrammar.h"
+#include "canvasedge.h"
 #include "graphsubgraph.h"
 #include "kgraphviewerlib_debug.h"
 

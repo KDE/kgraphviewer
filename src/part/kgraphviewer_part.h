@@ -19,17 +19,13 @@
 #ifndef _KGRAPHVIEWERPART_H_
 #define _KGRAPHVIEWERPART_H_
 
+// KF
 #include <KParts/ReadOnlyPart>
-#include <KPluginFactory>
-#include <kparts/part.h>
-
+// KGraphViewerInterface
 #include "kgraphviewer_interface.h"
-
-class QWidget;
 
 namespace KGraphViewer
 {
-class DotGraph;
 
 class KGraphViewerPartPrivate;
 

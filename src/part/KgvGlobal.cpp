@@ -25,18 +25,14 @@
    version 2 of the License, or (at your option) any later version.
  */
 
+#include "KgvGlobal.h"
+
+// lib
 #include "kgraphviewerlib_debug.h"
-#include <KSharedConfig>
-#include <KgvGlobal.h>
-#include <QApplication>
-#include <QDebug>
-#include <QPaintDevice>
-#include <QStandardPaths>
-#include <qfont.h>
-#include <qfontinfo.h>
-// #include <k3staticdeleter.h>
-#include <QIcon>
-#include <QImage>
+// KF
+#include <KConfig>
+// Qt
+#include <QFontInfo>
 
 KgvGlobal *KgvGlobal::s_global = nullptr;
 // static K3StaticDeleter<KgvGlobal> sdg;

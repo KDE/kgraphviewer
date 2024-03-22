@@ -28,20 +28,18 @@
 #ifndef KGVSIMPLEPRINTINGENGINE_H
 #define KGVSIMPLEPRINTINGENGINE_H
 
-#include "KgvPageLayoutDia.h"
-
-#include <qfont.h>
-#include <qfontmetrics.h>
-// Added by qt3to4:
+// Qt
+#include <QObject>
+#include <QFont>
 #include <QPixmap>
+#include <QRect>
 
-class QPaintDevice;
-
-#include "dotgraphview.h"
+class QPainter;
 
 namespace KGraphViewer
 {
 class KGVSimplePrintingSettings;
+class DotGraphView;
 
 /*! @short An engine painting data on pages using QPainter.
  The engine allows for random access to any page. */

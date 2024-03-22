@@ -27,16 +27,9 @@
 #ifndef CANVAS_EDGE_H
 #define CANVAS_EDGE_H
 
+// Qt
+#include <QObject>
 #include <QAbstractGraphicsShapeItem>
-#include <QFont>
-#include <QGraphicsPathItem>
-#include <QGraphicsScene>
-#include <QMap>
-#include <QWidget>
-
-#include "graphexporter.h"
-
-class QMenu;
 
 struct DotRenderOp;
 
@@ -49,10 +42,8 @@ struct DotRenderOp;
  */
 namespace KGraphViewer
 {
-class CanvasNode;
-class CanvasEdge;
-class GraphEdge;
 class DotGraphView;
+class GraphEdge;
 
 class CanvasEdge : public QObject, public QAbstractGraphicsShapeItem
 {

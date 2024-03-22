@@ -26,36 +26,22 @@
  */
 
 #include "simpleprintingpagesetup.h"
+
+// lib
 #include "dotgraphview.h"
-#include "kgraphviewerlib_debug.h"
+#include "KgvPageLayoutDia.h"
 #include "simpleprintingcommand.h"
 #include "simpleprintingsettings.h"
-#include "simpleprintpreviewwindow.h"
+#include "simpleprintingengine.h"
 #include "ui_simpleprintingpagesetupbase.h"
-
-#include <QApplication>
-#include <QDebug>
+#include "kgraphviewerlib_debug.h"
+// KF
+#include <KLocalizedString>
+// Qt
 #include <QFontDialog>
-#include <QIcon>
-#include <QLabel>
-#include <QLineEdit>
-#include <QMessageBox>
-#include <QPushButton>
-#include <QSpinBox>
+#include <QLocale>
+#include <QTimer>
 #include <QUrl>
-
-#include <QRadioButton>
-#include <qcheckbox.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qpainter.h>
-#include <qslider.h>
-#include <qtimer.h>
-#include <qtooltip.h>
-// Added by qt3to4:
-#include <QVBoxLayout>
-#include <iostream>
-#include <klocalizedstring.h>
 
 namespace KGraphViewer
 {

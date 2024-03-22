@@ -17,15 +17,13 @@
 */
 
 #include "graphelement.h"
-#include "canvaselement.h"
+
+// lib
 #include "dotdefaults.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <math.h>
-
-#include <QDebug>
-
-#include <qregularexpression.h>
+// Qt
+#include <QRegularExpression>
+// Graphviz
 #include <graphviz/gvc.h>
 
 namespace KGraphViewer

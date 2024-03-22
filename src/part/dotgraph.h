@@ -23,20 +23,16 @@
 #ifndef DOT_GRAPH_H
 #define DOT_GRAPH_H
 
-#include <QList>
+// lib
+#include "kgraphviewer_export.h"
+#include "graphelement.h"
+#include "graphedge.h"
+#include "graphnode.h"
+#include "graphsubgraph.h"
+// Qt
 #include <QMutex>
 #include <QProcess>
 #include <QSet>
-#include <QString>
-
-#include <graphviz/gvc.h>
-
-#include "dotdefaults.h"
-#include "graphedge.h"
-#include "graphelement.h"
-#include "graphnode.h"
-#include "graphsubgraph.h"
-#include "kgraphviewer_export.h"
 
 namespace KGraphViewer
 {

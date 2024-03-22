@@ -28,11 +28,10 @@
 #ifndef kgvGlobal_h
 #define kgvGlobal_h
 
-#include <QApplication>
+// Qt
 #include <QFont>
-#include <QMap>
+#include <QApplication>
 #include <QScreen>
-#include <QStringList>
 
 class KConfig;
 

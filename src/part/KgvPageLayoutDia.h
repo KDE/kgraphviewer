@@ -30,18 +30,19 @@
 #ifndef KGVPAGELAYOUTDIA_H
 #define KGVPAGELAYOUTDIA_H
 
-#include <KgvPageLayout.h>
-#include <KgvUnit.h>
+// lib
+#include "KgvPageLayout.h"
+#include "KgvUnit.h"
+// KF
+#include <KPageDialog>
+// Qt
 #include <QGroupBox>
-#include <QLineEdit>
-#include <kpagedialog.h>
 
-class KLineEdit;
-class QPaintEvent;
-
-class KgvPageLayoutColumns;
 class KgvPageLayoutSize;
+class KgvPageLayoutColumns;
 class KgvPageLayoutHeader;
+
+class QLineEdit;
 
 enum { FORMAT_AND_BORDERS = 1, HEADER_AND_FOOTER = 2, COLUMNS = 4, DISABLE_BORDERS = 8, KW_HEADER_AND_FOOTER = 16, DISABLE_UNIT = 32 };
 

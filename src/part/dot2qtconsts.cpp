@@ -17,13 +17,12 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
    02110-1301, USA
  ***************************************************************************/
+
 #include "dot2qtconsts.h"
-#include "canvasnode.h"
+
+// lib
 #include "dotgrammar.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <QColor>
-#include <QDebug>
 
 const Dot2QtConsts Dot2QtConsts::m_componentData;
 

@@ -18,11 +18,12 @@
 */
 
 #include "layoutagraphthread.h"
+
+// lib
 #include "kgraphviewerlib_debug.h"
-
+// Qt
 #include <QMutex>
-
-#include <QDebug>
+#include <QMutexLocker>
 
 static QMutex gv_mutex;
 

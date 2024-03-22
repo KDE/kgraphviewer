@@ -19,9 +19,9 @@
 #ifndef DOT_RENDEROP_H
 #define DOT_RENDEROP_H
 
+// Qt
 #include <QList>
 #include <QString>
-#include <QTextStream>
 
 /**
  * members are interpreted in function of render operations definitions given at:

@@ -17,26 +17,19 @@
 */
 
 #include "DotGraphParsingHelper.h"
-#include "dotdefaults.h"
-#include "dotgrammar.h"
+
+// lib
 #include "dotgraph.h"
-//#include "graphsubgraph.h"
-#include "graphedge.h"
-#include "graphnode.h"
+#include "dotgrammar.h"
+#include "graphelement.h"
 #include "kgraphviewerlib_debug.h"
-
-#include <boost/spirit/include/classic_confix.hpp>
-#include <boost/spirit/include/classic_core.hpp>
-#include <boost/spirit/include/classic_distinct.hpp>
-#include <boost/spirit/include/classic_loops.hpp>
-#include <boost/throw_exception.hpp>
-
-#include <iostream>
-
-#include <QDebug>
-
-#include <QFile>
+// Qt
 #include <QUuid>
+// Std
+#include <limits>
+#include <sstream>
+#include <string>
+#include <vector>
 
 using namespace std;
 

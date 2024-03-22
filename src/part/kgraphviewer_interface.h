@@ -19,14 +19,17 @@
 #ifndef KGRAPHVIEWER_INTERFACE_H
 #define KGRAPHVIEWER_INTERFACE_H
 
+// Qt
 #include <QMap>
-#include <QObject>
+#include <QtPlugin>
 
 namespace KParts
 {
 class Part;
 }
 class QCursor;
+class QColor;
+class QString;
 
 extern "C" {
 typedef struct Agraph_s graph_t;

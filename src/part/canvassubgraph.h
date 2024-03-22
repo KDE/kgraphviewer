@@ -23,14 +23,12 @@
 #ifndef CANVAS_SUBGRAPH_H
 #define CANVAS_SUBGRAPH_H
 
+// lib
 #include "canvaselement.h"
-
-class QGraphicsScene;
 
 namespace KGraphViewer
 {
 class GraphSubgraph;
-class DotGraphView;
 
 class CanvasSubgraph : public CanvasElement
 {

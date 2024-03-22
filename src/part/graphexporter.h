@@ -31,8 +31,9 @@
 #ifndef GRAPH_EXPORTER_H
 #define GRAPH_EXPORTER_H
 
+// Qt
 #include <QString>
-
+// Graphviz
 #include <graphviz/gvc.h>
 
 namespace KGraphViewer

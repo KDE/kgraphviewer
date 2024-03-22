@@ -28,12 +28,16 @@
 #ifndef KGVSIMPLEPRINTINGCOMMAND_H
 #define KGVSIMPLEPRINTINGCOMMAND_H
 
-#include "simpleprintingengine.h"
-#include <dotgraphview.h>
-#include <kgraphviewer_part.h>
+// Qt
+#include <QObject>
+
+class QDialog;
 
 namespace KGraphViewer
 {
+class DotGraphView;
+class KGVSimplePrintingEngine;
+class KGVSimplePrintingSettings;
 class KGVSimplePrintPreviewWindow;
 
 /*! @short A command for simple printing and print preview.

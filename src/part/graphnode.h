@@ -31,22 +31,14 @@
 #ifndef GRAPH_NODE_H
 #define GRAPH_NODE_H
 
-#include <QList>
-#include <QMap>
-#include <QTextStream>
-#include <QVector>
-
-#include <graphviz/gvc.h>
-
-#include "canvaselement.h"
-#include "canvasnode.h"
-#include "dotgrammar.h"
-#include "dotrenderop.h"
+// lib
 #include "graphelement.h"
+#include "canvasnode.h"
+// Graphviz
+#include <graphviz/gvc.h>
 
 namespace KGraphViewer
 {
-class CanvasNode;
 
 /**
  * Colors and styles are DOT names

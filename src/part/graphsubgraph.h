@@ -23,13 +23,11 @@
 #ifndef GRAPH_SUBGRAPH_H
 #define GRAPH_SUBGRAPH_H
 
-#include <QMap>
-#include <QTextStream>
-
-#include "dotgrammar.h"
-#include "dotrenderop.h"
+// lib
 #include "graphelement.h"
-
+// Qt
+#include <QMap>
+// Graphviz
 #include <graphviz/gvc.h>
 
 namespace KGraphViewer

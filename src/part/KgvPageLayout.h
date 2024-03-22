@@ -28,8 +28,8 @@
 #ifndef KGVPAGELAYOUT_H
 #define KGVPAGELAYOUT_H
 
-// #include <KgvGenStyles.h>
-#include <QStringList>
+// Qt
+#include <QString>
 
 /**
  * @brief Represents the paper format a document shall be printed on.

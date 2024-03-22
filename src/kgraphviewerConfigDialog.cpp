@@ -17,6 +17,8 @@
 */
 
 #include "kgraphviewerConfigDialog.h"
+
+// app
 #include "kgraphviewer_debug.h"
 #include "kgraphviewersettings.h"
 #include "ui_preferencesAppearance.h"
@@ -24,26 +26,8 @@
 #include "ui_preferencesParsing.h"
 #include "ui_preferencesReload.h"
 #include "ui_preferencesReopenPreviouslyOpenedFiles.h"
-
-#include <QDebug>
-#include <QFileDialog>
-#include <QTabWidget>
-#include <QUrl>
-#include <kconfig.h>
-#include <kedittoolbar.h>
-#include <kparts/partmanager.h>
-
-#include <KPluginFactory>
-#include <QMessageBox>
-#include <QStatusBar>
-#include <kconfigdialog.h>
-#include <klocalizedstring.h>
-
-//#include <kapp.h>
-//#include <dcopclient.h>
-
-#include <QDialogButtonBox>
-#include <iostream>
+// KF
+#include <KLocalizedString>
 
 KgvConfigurationDialog::KgvConfigurationDialog(QWidget *parent, const QString &name, KConfigSkeleton *config)
     : KConfigDialog(parent, name, config)

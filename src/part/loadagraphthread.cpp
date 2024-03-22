@@ -18,9 +18,9 @@
 */
 
 #include "loadagraphthread.h"
-#include "kgraphviewerlib_debug.h"
 
-#include <QDebug>
+// lib
+#include "kgraphviewerlib_debug.h"
 
 void LoadAGraphThread::run()
 {
