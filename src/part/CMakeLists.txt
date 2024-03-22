@@ -155,9 +155,6 @@ install( FILES kgraphviewer_partsettings.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR}
 if (QT_MAJOR_VERSION STREQUAL "5")
     install( FILES ${CMAKE_CURRENT_BINARY_DIR}/kgraphviewer_part.desktop DESTINATION ${KDE_INSTALL_KSERVICESDIR} )
 endif()
-install( FILES kgraphviewer-bev.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
-install( FILES kgraphviewer-newnode.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
-install( FILES kgraphviewer-newedge.png DESTINATION ${KDE_INSTALL_DATADIR}/kgraphviewerpart/pics )
 
 install(FILES kgraphviewer_interface.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kgraphviewer/ COMPONENT Devel)
 

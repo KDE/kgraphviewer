@@ -3,4 +3,9 @@
     <qresource prefix="/kxmlgui5/kgraphviewer">
         <file>kgraphviewer_part.rc</file>
     </qresource>
+    <qresource prefix="/kgraphviewerpart/pics">
+        <file alias="bev.png">kgraphviewer-bev.png</file>
+        <file alias="newnode.png">kgraphviewer-newnode.png</file>
+        <file alias="newedge.png">kgraphviewer-newedge.png</file>
+    </qresource>
 </RCC>

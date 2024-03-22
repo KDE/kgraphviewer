@@ -68,7 +68,6 @@
 #include <QPixmap>
 #include <QResizeEvent>
 #include <QScrollBar>
-#include <QStandardPaths>
 #include <QStyle>
 #include <QSvgGenerator>
 #include <QTransform>
@@ -104,7 +103,7 @@ public:
         , m_actions(actions)
         , m_detailLevel(DEFAULT_DETAILLEVEL)
         , m_defaultNewElement(nullptr)
-        , m_defaultNewElementPixmap(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-newnode.png"))
+        , m_defaultNewElementPixmap(QStringLiteral(":/kgraphviewerpart/pics/newnode.png"))
         , m_editingMode(DotGraphView::None)
         , m_newEdgeSource(nullptr)
         , m_newEdgeDraft(nullptr)
@@ -490,7 +489,8 @@ void DotGraphViewPrivate::setupPopup()
 
     m_popup->addSeparator();
 
-    m_bevEnabledAction = new KToggleAction(QIcon(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-bev.png")), i18n("Enable Bird's-eye View"), q);
+    m_bevEnabledAction = new KToggleAction(QIcon(QStringLiteral(":/kgraphviewerpart/pics/bev.png")), i18n("Enable Bird's-eye View"), q);
+
     actionCollection()->addAction("view_bev_enabled", m_bevEnabledAction);
     actionCollection()->setDefaultShortcut(m_bevEnabledAction, Qt::CTRL | Qt::Key_B);
     m_bevEnabledAction->setWhatsThis(i18n("Enables or disables the Bird's-eye View"));
@@ -1851,7 +1851,7 @@ void DotGraphView::prepareAddNewEdge(QMap<QString, QString> attribs)
     d->m_editingMode = AddNewEdge;
     d->m_newElementAttributes = attribs;
     unsetCursor();
-    QBitmap bm(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-newedge.png"));
+    QBitmap bm(QStringLiteral(":/kgraphviewerpart/pics/newedge.png"));
     setCursor(QCursor(bm, bm, 32, 16));
 }
 

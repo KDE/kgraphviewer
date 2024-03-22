@@ -33,7 +33,6 @@
 #include <QDockWidget>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QStandardPaths>
 #include <QStatusBar>
 #include <QTabWidget>
 #include <QTreeWidget>
@@ -239,12 +238,12 @@ void KGraphEditor::setupActions()
 
     QAction *edit_new_vertex = actionCollection()->addAction("edit_new_vertex");
     edit_new_vertex->setText(i18n("Create a New Vertex"));
-    edit_new_vertex->setIcon(QPixmap(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-newnode.png")));
+    edit_new_vertex->setIcon(QPixmap(QStringLiteral(":/kgraphviewerpart/pics/newnode.png")));
     connect(edit_new_vertex, SIGNAL(triggered(bool)), this, SLOT(slotEditNewVertex()));
 
     QAction *edit_new_edge = actionCollection()->addAction("edit_new_edge");
     edit_new_edge->setText(i18n("Create a New Edge"));
-    edit_new_edge->setIcon(QPixmap(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kgraphviewerpart/pics/kgraphviewer-newedge.png")));
+    edit_new_edge->setIcon(QPixmap(QStringLiteral(":/kgraphviewerpart/pics/newedge.png")));
     connect(edit_new_edge, SIGNAL(triggered(bool)), this, SLOT(slotEditNewEdge()));
 }
 
