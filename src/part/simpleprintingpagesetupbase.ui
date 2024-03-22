@@ -10,10 +10,6 @@
     <height>805</height>
    </rect>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>kgraphviewer-bev.png</normaloff>kgraphviewer-bev.png</iconset>
-  </property>
   <layout class="QVBoxLayout">
    <item>
     <layout class="QVBoxLayout">
