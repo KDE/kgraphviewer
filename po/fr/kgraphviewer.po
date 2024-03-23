@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-22 01:35+0000\n"
+"POT-Creation-Date: 2024-03-23 01:36+0000\n"
 "PO-Revision-Date: 2023-02-05 16:49+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -41,107 +41,107 @@ msgstr ""
 "jcorn@free.fr, roussel.cedric@gmail.com, thomas.vergnaud@mailo.eu, xavier."
 "besnard@kde.org"
 
-#: kgrapheditor.cpp:129 kgraphviewer.cpp:113
+#: kgrapheditor.cpp:126 kgraphviewer.cpp:107
 #, kde-format
 msgid "Session Restore"
 msgstr "Restauration de la session"
 
-#: kgrapheditor.cpp:129
+#: kgrapheditor.cpp:126
 #, kde-format
 msgid "Do you want to reload files from previous session?"
 msgstr "Voulez-vous recharger les fichiers de la session précédente ?"
 
-#: kgrapheditor.cpp:149
+#: kgrapheditor.cpp:146
 #, kde-format
 msgid "Unable to start"
 msgstr "Impossible de lancer"
 
-#: kgrapheditor.cpp:149 kgraphviewer.cpp:139
+#: kgrapheditor.cpp:146 kgraphviewer.cpp:133
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "Impossible de trouver le composant KGraphViewer."
 
-#: kgrapheditor.cpp:230 kgraphviewer.cpp:219
+#: kgrapheditor.cpp:227 kgraphviewer.cpp:213
 #, kde-format
 msgid "Closes the current file"
 msgstr "Ferme le fichier actuel"
 
-#: kgrapheditor.cpp:241
+#: kgrapheditor.cpp:238
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "Créer un nouveau sommet"
 
-#: kgrapheditor.cpp:246
+#: kgrapheditor.cpp:243
 #, kde-format
 msgid "Create a New Edge"
 msgstr "Créer une nouvelle arête"
 
-#: kgrapheditor.cpp:501
+#: kgrapheditor.cpp:498
 #, kde-format
 msgid "Save current graph"
 msgstr "Enregistrer le graphe actuel"
 
-#: kgrapheditorConfigDialog.cpp:60 kgraphviewerConfigDialog.cpp:71
+#: kgrapheditorConfigDialog.cpp:48 kgraphviewerConfigDialog.cpp:55
 #, kde-format
 msgid "Parsing"
 msgstr "Analyse"
 
-#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
+#: kgrapheditorConfigDialog.cpp:49 kgraphviewerConfigDialog.cpp:56
 #, kde-format
 msgid "Reloading"
 msgstr "Rechargement"
 
-#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
+#: kgrapheditorConfigDialog.cpp:50 kgraphviewerConfigDialog.cpp:57
 #, kde-format
 msgid "Opening"
 msgstr "Ouverture"
 
-#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
+#: kgrapheditorConfigDialog.cpp:51 kgraphviewerConfigDialog.cpp:58
 #, kde-format
 msgid "Session Management"
 msgstr "Gestion des sessions"
 
-#: KGraphEditorElementTreeWidget.cpp:49 KGraphEditorNodesTreeWidget.cpp:54
+#: KGraphEditorElementTreeWidget.cpp:50 KGraphEditorNodesTreeWidget.cpp:54
 #, kde-format
 msgid "Add a new attribute"
 msgstr "Ajouter un nouvel attribut"
 
-#: KGraphEditorElementTreeWidget.cpp:55 KGraphEditorNodesTreeWidget.cpp:60
+#: KGraphEditorElementTreeWidget.cpp:56 KGraphEditorNodesTreeWidget.cpp:60
 #, kde-format
 msgid "Remove this attribute"
 msgstr "Supprimer cet attribut"
 
-#: kgrapheditormain.cpp:46
+#: kgrapheditormain.cpp:38
 #, kde-format
 msgid "KGraphEditor"
 msgstr "KGraphEditor"
 
-#: kgrapheditormain.cpp:46
+#: kgrapheditormain.cpp:38
 #, kde-format
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Un éditeur de graphes « DOT » au format « Graphviz » pour KDE"
 
-#: kgrapheditormain.cpp:46 main.cpp:53
+#: kgrapheditormain.cpp:38 main.cpp:46
 #, kde-format
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:50 main.cpp:62
 #, kde-format
 msgid "Path or URL to scan"
 msgstr "Emplacement ou URL à analyser"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:50 main.cpp:62
 #, kde-format
 msgid "[url]"
 msgstr "[URL]"
 
-#: kgrapheditormain.cpp:83 main.cpp:94
+#: kgrapheditormain.cpp:75 main.cpp:87
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "Confirmation d'ouverture dans une nouvelle fenêtre"
 
-#: kgrapheditormain.cpp:83
+#: kgrapheditormain.cpp:75
 #, kde-format
 msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
@@ -224,36 +224,36 @@ msgstr "Barre d'aide"
 msgid "Edit Toolbar"
 msgstr "Barre d'édition"
 
-#: kgraphviewer.cpp:112
+#: kgraphviewer.cpp:106
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
 msgstr "Voulez-vous recharger les fichiers de la session précédente ?"
 
-#: kgraphviewer.cpp:114
+#: kgraphviewer.cpp:108
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "Recharger"
 
-#: kgraphviewer.cpp:115
+#: kgraphviewer.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr "Ne pas recharger"
 
-#: kgraphviewer.cpp:206
+#: kgraphviewer.cpp:200
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "Ouvre une nouvelle fenêtre KGraphViewer vide."
 
-#: kgraphviewer.cpp:209
+#: kgraphviewer.cpp:203
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 "Affiche la boîte de dialogue « Ouvrir un fichier » pour choisir un fichier "
 "DOT au format « GraphViz » à ouvrir."
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:207
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -262,27 +262,27 @@ msgstr ""
 "Cette fonction liste les fichiers récemment ouverts et permet de les ouvrir "
 "à nouveau plus facilement."
 
-#: kgraphviewer.cpp:223
+#: kgraphviewer.cpp:217
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "Quitte KGraphViewer."
 
-#: kgraphviewer.cpp:226
+#: kgraphviewer.cpp:220
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "Affiche ou cache la barre d'état."
 
-#: kgraphviewer.cpp:229
+#: kgraphviewer.cpp:223
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "Confirmation de la barre d'outils."
 
-#: kgraphviewer.cpp:232
+#: kgraphviewer.cpp:226
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "Options de configuration principales de KGraphViewer."
 
-#: kgraphviewerConfigDialog.cpp:70
+#: kgraphviewerConfigDialog.cpp:54
 #, kde-format
 msgid "Appearance"
 msgstr "Apparence"
@@ -293,62 +293,62 @@ msgstr "Apparence"
 msgid "Background color of the graph view."
 msgstr "Couleur de fond de la vue du graphe."
 
-#: main.cpp:49
+#: main.cpp:42
 #, kde-format
 msgid "KGraphViewer"
 msgstr "KGraphViewer"
 
-#: main.cpp:51
+#: main.cpp:44
 #, kde-format
 msgid "A Graphviz DOT graph viewer"
 msgstr "Un afficheur de graphes DOT au format Graphviz"
 
-#: main.cpp:56
+#: main.cpp:49
 #, kde-format
 msgid "Gaël de Chalendar"
 msgstr "Gaël de Chalendar"
 
-#: main.cpp:56
+#: main.cpp:49
 #, kde-format
 msgid "Original Author and current maintainer"
 msgstr "Auteur originel et mainteneur actuel"
 
-#: main.cpp:57
+#: main.cpp:50
 #, kde-format
 msgid "Reimar Döffinger"
 msgstr "Reimar Döffinger"
 
-#: main.cpp:57 main.cpp:58 main.cpp:59 main.cpp:60
+#: main.cpp:50 main.cpp:51 main.cpp:52 main.cpp:53
 #, kde-format
 msgid "Contributor"
 msgstr "Contributeur"
 
-#: main.cpp:58
+#: main.cpp:51
 #, kde-format
 msgid "Matthias Peinhardt"
 msgstr "Matthias Peinhardt"
 
-#: main.cpp:59
+#: main.cpp:52
 #, kde-format
 msgid "Sandro Andrade"
 msgstr "Sandro Andrade"
 
-#: main.cpp:60
+#: main.cpp:53
 #, kde-format
 msgid "Milian Wolff"
 msgstr "Milian Wolff"
 
-#: main.cpp:61
+#: main.cpp:54
 #, kde-format
 msgid "Martin Sandsmark"
 msgstr "Martin Sandsmark"
 
-#: main.cpp:61
+#: main.cpp:54
 #, kde-format
 msgid "Port to KF5"
 msgstr "Portage vers KF5"
 
-#: main.cpp:94
+#: main.cpp:87
 #, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
@@ -357,7 +357,7 @@ msgstr ""
 "Une fenêtre KGraphViewer est déjà ouverte. Où voulez-vous ouvrir ce fichier "
 "dans la fenêtre existante ?"
 
-#: part/canvasedge.cpp:74
+#: part/canvasedge.cpp:70
 #, kde-format
 msgid ""
 "%1 -> %2\n"
@@ -366,17 +366,17 @@ msgstr ""
 "%1 → %2\n"
 "étiquette= « %3 »"
 
-#: part/canvasedge.cpp:78
+#: part/canvasedge.cpp:74
 #, kde-format
 msgid "Remove selected edge(s)"
 msgstr "Supprimer l'arête ou les arêtes sélectionnées"
 
-#: part/canvaselement.cpp:92
+#: part/canvaselement.cpp:87
 #, kde-format
 msgid "Remove selected element(s)"
 msgstr "Supprimer l'élément ou les éléments sélectionnés"
 
-#: part/canvasnode.cpp:64
+#: part/canvasnode.cpp:51
 #, kde-format
 msgid ""
 "id='%1'\n"
@@ -385,105 +385,105 @@ msgstr ""
 "id= « %1 »\n"
 "étiquette= « %2 »"
 
-#: part/dotgraph.cpp:265 part/dotgraph.cpp:268 part/dotgraph.cpp:271
-#: part/dotgraph.cpp:274 part/dotgraph.cpp:277 part/dotgraph.cpp:280
+#: part/dotgraph.cpp:260 part/dotgraph.cpp:263 part/dotgraph.cpp:266
+#: part/dotgraph.cpp:269 part/dotgraph.cpp:272 part/dotgraph.cpp:275
 #, kde-format
 msgid "Layout process failed"
 msgstr "Le processus de représentation a échoué"
 
-#: part/dotgraph.cpp:265
+#: part/dotgraph.cpp:260
 #, kde-format
 msgid "Unable to start %1."
 msgstr "Impossible de lancer %1."
 
-#: part/dotgraph.cpp:268
+#: part/dotgraph.cpp:263
 #, kde-format
 msgid "%1 crashed."
 msgstr "%1 s'est arrêté de façon anormale."
 
-#: part/dotgraph.cpp:271
+#: part/dotgraph.cpp:266
 #, kde-format
 msgid "%1 timed out."
 msgstr "%1 a dépassé le temps imparti."
 
-#: part/dotgraph.cpp:274
+#: part/dotgraph.cpp:269
 #, kde-format
 msgid "Was not able to write data to the %1 process."
 msgstr "Impossible d'écrire des données dans le processus %1."
 
-#: part/dotgraph.cpp:277
+#: part/dotgraph.cpp:272
 #, kde-format
 msgid "Was not able to read data from the %1 process."
 msgstr "Impossible de lire des données depuis le processus %1."
 
-#: part/dotgraph.cpp:280
+#: part/dotgraph.cpp:275
 #, kde-format
 msgid "Unknown error running %1."
 msgstr "Erreur inconnue lors de l'exécution de %1."
 
-#: part/dotgraphview.cpp:420
+#: part/dotgraphview.cpp:410
 #, kde-format
 msgid "Select Layout Algo"
 msgstr "Sélectionner un algorithme de représentation"
 
-#: part/dotgraphview.cpp:423
+#: part/dotgraphview.cpp:413
 #, kde-format
 msgid "Dot"
 msgstr "Dot"
 
-#: part/dotgraphview.cpp:424
+#: part/dotgraphview.cpp:414
 #, kde-format
 msgid "Layout the graph using the dot program."
 msgstr "Représentation du graphe à l'aide du programme Dot."
 
-#: part/dotgraphview.cpp:428
+#: part/dotgraphview.cpp:418
 #, kde-format
 msgid "Neato"
 msgstr "Neato"
 
-#: part/dotgraphview.cpp:429
+#: part/dotgraphview.cpp:419
 #, kde-format
 msgid "Layout the graph using the neato program."
 msgstr "Représentation du graphe à l'aide du programme « Neato »."
 
-#: part/dotgraphview.cpp:433
+#: part/dotgraphview.cpp:423
 #, kde-format
 msgid "Twopi"
 msgstr "Twopi"
 
-#: part/dotgraphview.cpp:434
+#: part/dotgraphview.cpp:424
 #, kde-format
 msgid "Layout the graph using the twopi program."
 msgstr "Représentation du graphe à l'aide du programme « Twopi »."
 
-#: part/dotgraphview.cpp:438
+#: part/dotgraphview.cpp:428
 #, kde-format
 msgid "Fdp"
 msgstr "Fdp"
 
-#: part/dotgraphview.cpp:439
+#: part/dotgraphview.cpp:429
 #, kde-format
 msgid "Layout the graph using the fdp program."
 msgstr "Représentation du graphe à l'aide du programme « Fdp »."
 
-#: part/dotgraphview.cpp:443
+#: part/dotgraphview.cpp:433
 #, kde-format
 msgid "Circo"
 msgstr "Circo"
 
-#: part/dotgraphview.cpp:444
+#: part/dotgraphview.cpp:434
 #, kde-format
 msgid "Layout the graph using the circo program."
 msgstr "Représentation du graphe à l'aide du programme « Circo »."
 
-#: part/dotgraphview.cpp:456
+#: part/dotgraphview.cpp:446
 #, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr ""
 "Choisissez un algorithme de représentation pour données « GraphViz » ou "
 "créez le vôtre."
 
-#: part/dotgraphview.cpp:458
+#: part/dotgraphview.cpp:448
 #, kde-format
 msgid ""
 "Choose a Graphviz layout algorithm or type in your own command that will "
@@ -496,17 +496,17 @@ msgstr ""
 "sortie standard. Par exemple, pour spécifier l'option <tt>G</tt> à la "
 "commande « dot », saisissez : <tt>dot -Gname=Nom_de_mon_graphe -Txdot</tt>"
 
-#: part/dotgraphview.cpp:464
+#: part/dotgraphview.cpp:454
 #, kde-format
 msgid "Layout"
 msgstr "Représentation"
 
-#: part/dotgraphview.cpp:466
+#: part/dotgraphview.cpp:456
 #, kde-format
 msgid "Specify layout command"
 msgstr "Indiquer la commande de représentation"
 
-#: part/dotgraphview.cpp:467
+#: part/dotgraphview.cpp:457
 #, kde-format
 msgid ""
 "Specify yourself the layout command to use. Given a dot file, it should "
@@ -516,13 +516,13 @@ msgstr ""
 "fichier « dot », il devra produire un fichier « xdot » sur sa sortie "
 "standard."
 
-#: part/dotgraphview.cpp:468
+#: part/dotgraphview.cpp:458
 #, kde-format
 msgid "Reset layout command to default"
 msgstr ""
 "Réinitialiser la commande de représentation à ses paramètres par défaut"
 
-#: part/dotgraphview.cpp:469
+#: part/dotgraphview.cpp:459
 #, kde-format
 msgid ""
 "Resets the layout command to use to the default depending on the graph type "
@@ -531,27 +531,27 @@ msgstr ""
 "Réinitialise la commande de représentation pour l'utiliser à ses réglages "
 "par défaut en fonction du type de graphe (orienté ou non)."
 
-#: part/dotgraphview.cpp:471
+#: part/dotgraphview.cpp:461
 #, kde-format
 msgid "Zoom In"
 msgstr "Zoom avant"
 
-#: part/dotgraphview.cpp:472
+#: part/dotgraphview.cpp:462
 #, kde-format
 msgid "Zoom Out"
 msgstr "Zoom arrière"
 
-#: part/dotgraphview.cpp:476
+#: part/dotgraphview.cpp:466
 #, kde-format
 msgid "Export Graph"
 msgstr "Exporter un graphe"
 
-#: part/dotgraphview.cpp:478
+#: part/dotgraphview.cpp:468
 #, kde-format
 msgid "Allows the graph to be exported in another format."
 msgstr "Permet d'exporter le graphe dans un autre format."
 
-#: part/dotgraphview.cpp:480
+#: part/dotgraphview.cpp:470
 #, kde-format
 msgid ""
 "Use the Export Graph menu to export the graph in another format. There is "
@@ -561,82 +561,82 @@ msgstr ""
 "autre format. Il n'existe actuellement qu'un seul format pris en charge : "
 "comme image PNG."
 
-#: part/dotgraphview.cpp:484
+#: part/dotgraphview.cpp:474
 #, kde-format
 msgid "As Image..."
 msgstr "Comme image..."
 
-#: part/dotgraphview.cpp:485
+#: part/dotgraphview.cpp:475
 #, kde-format
 msgid "Export the graph to an image file."
 msgstr "Exporter le graphe dans un fichier image."
 
-#: part/dotgraphview.cpp:493
+#: part/dotgraphview.cpp:483
 #, kde-format
 msgid "Enable Bird's-eye View"
 msgstr "Activer la vue d'ensemble"
 
-#: part/dotgraphview.cpp:496
+#: part/dotgraphview.cpp:487
 #, kde-format
 msgid "Enables or disables the Bird's-eye View"
 msgstr "Active ou désactive la vue d'ensemble"
 
-#: part/dotgraphview.cpp:501
+#: part/dotgraphview.cpp:492
 #, kde-format
 msgid "Birds-eye View"
 msgstr "Vue d'ensemble"
 
-#: part/dotgraphview.cpp:502
+#: part/dotgraphview.cpp:493
 #, kde-format
 msgid "Allows the Bird's-eye View to be setup."
 msgstr "Permet de configurer la vue d'ensemble."
 
-#: part/dotgraphview.cpp:506
+#: part/dotgraphview.cpp:497
 #, kde-format
 msgid "Top Left"
 msgstr "En haut à gauche"
 
-#: part/dotgraphview.cpp:507
+#: part/dotgraphview.cpp:498
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Place la vue d'ensemble dans le coin supérieur gauche."
 
-#: part/dotgraphview.cpp:511
+#: part/dotgraphview.cpp:502
 #, kde-format
 msgid "Top Right"
 msgstr "En haut à droite"
 
-#: part/dotgraphview.cpp:512
+#: part/dotgraphview.cpp:503
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Place la vue d'ensemble dans le coin supérieur droit."
 
-#: part/dotgraphview.cpp:516
+#: part/dotgraphview.cpp:507
 #, kde-format
 msgid "Bottom Left"
 msgstr "En bas à gauche"
 
-#: part/dotgraphview.cpp:517
+#: part/dotgraphview.cpp:508
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Place la vue d'ensemble dans le coin inférieur gauche."
 
-#: part/dotgraphview.cpp:521
+#: part/dotgraphview.cpp:512
 #, kde-format
 msgid "Bottom Right"
 msgstr "En bas à droite"
 
-#: part/dotgraphview.cpp:522
+#: part/dotgraphview.cpp:513
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Place la vue d'ensemble dans le coin inférieur droit."
 
-#: part/dotgraphview.cpp:526
+#: part/dotgraphview.cpp:517
 #, kde-format
 msgid "Automatic"
 msgstr "Automatique"
 
-#: part/dotgraphview.cpp:527
+#: part/dotgraphview.cpp:518
 #, kde-format
 msgid ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
@@ -644,22 +644,22 @@ msgstr ""
 "Permet à KGraphViewer de choisir automatiquement la position de la vue "
 "d'ensemble."
 
-#: part/dotgraphview.cpp:574
+#: part/dotgraphview.cpp:565
 #, kde-format
 msgid "Select file"
 msgstr "Sélectionnez un fichier"
 
-#: part/dotgraphview.cpp:588
+#: part/dotgraphview.cpp:579
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer"
 msgstr "Graphe SVG généré par KGraphViewer"
 
-#: part/dotgraphview.cpp:589
+#: part/dotgraphview.cpp:580
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer."
 msgstr "Graphe SVG généré par KGraphViewer."
 
-#: part/dotgraphview.cpp:636
+#: part/dotgraphview.cpp:627
 #, kde-format
 msgid ""
 "<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
@@ -697,28 +697,28 @@ msgstr ""
 "<tt>Configuration de la page</tt> pour explorer les options d'impression.</"
 "li></ul>"
 
-#: part/dotgraphview.cpp:789
+#: part/dotgraphview.cpp:780
 #, kde-format
 msgid "no graph loaded"
 msgstr "aucun graphe chargé"
 
-#: part/dotgraphview.cpp:905 part/dotgraphview.cpp:926
-#: part/dotgraphview.cpp:973
+#: part/dotgraphview.cpp:896 part/dotgraphview.cpp:917
+#: part/dotgraphview.cpp:964
 #, kde-format
 msgid "graph %1 is getting loaded..."
 msgstr "le graphe %1 est en cours de chargement..."
 
-#: part/dotgraphview.cpp:913
+#: part/dotgraphview.cpp:904
 #, kde-format
 msgid "error parsing file %1"
 msgstr "erreur d'analyse du fichier %1"
 
-#: part/dotgraphview.cpp:1625
+#: part/dotgraphview.cpp:1616
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "Confirmation du rechargement"
 
-#: part/dotgraphview.cpp:1625
+#: part/dotgraphview.cpp:1616
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
@@ -727,12 +727,12 @@ msgstr ""
 "Le fichier %1 a été modifié sur le disque.\n"
 "Voulez-vous le recharger ?"
 
-#: part/dotgraphview.cpp:1711
+#: part/dotgraphview.cpp:1702
 #, kde-format
 msgid "Layout Command"
 msgstr "Commande de représentation"
 
-#: part/dotgraphview.cpp:1712
+#: part/dotgraphview.cpp:1703
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
@@ -741,46 +741,46 @@ msgstr ""
 "Indiquez ici la commande à utiliser pour représenter le graphe.\n"
 "La commande DOIT écrire ses résultats sur la sortie standard au format xdot."
 
-#: part/dotgraphview.cpp:2165
+#: part/dotgraphview.cpp:2156
 #, kde-format
 msgid "Failed to open %1"
 msgstr "Impossible d'ouvrir %1"
 
-#: part/kgraphviewer_part.cpp:108
+#: part/kgraphviewer_part.cpp:97
 #, kde-format
 msgid "Print the graph using current page setup settings"
 msgstr ""
 "Imprimer le graphe à l'aide des paramètres de configuration actuels de la "
 "page"
 
-#: part/kgraphviewer_part.cpp:112
+#: part/kgraphviewer_part.cpp:101
 #, kde-format
 msgid "Open the print preview window"
 msgstr "Ouvrir la fenêtre d'aperçu avant impression"
 
-#: part/kgraphviewer_part.cpp:116
+#: part/kgraphviewer_part.cpp:105
 #, kde-format
 msgid "Page setup"
 msgstr "Configuration de la page"
 
-#: part/kgraphviewer_part.cpp:117
+#: part/kgraphviewer_part.cpp:106
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr ""
 "Ouvre la boîte de dialogue « Configuration de la page » pour pouvoir mettre "
 "en place l'impression du graphe"
 
-#: part/kgraphviewer_part.cpp:120
+#: part/kgraphviewer_part.cpp:109
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "Recharger le graphe actuel depuis un fichier"
 
-#: part/kgraphviewer_part.cpp:125
+#: part/kgraphviewer_part.cpp:114
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
 msgstr "Zoom avant de 10 % sur la vue actuellement affichée"
 
-#: part/kgraphviewer_part.cpp:130
+#: part/kgraphviewer_part.cpp:119
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "Zoom arrière de 10 % depuis la vue actuellement affichée"
@@ -797,12 +797,12 @@ msgstr "&Fichier"
 msgid "&View"
 msgstr "&Affichage"
 
-#: part/KgvPageLayout.cpp:70
+#: part/KgvPageLayout.cpp:69
 msgctxt "Page size"
 msgid "Screen"
 msgstr "Écran"
 
-#: part/KgvPageLayout.cpp:71
+#: part/KgvPageLayout.cpp:70
 msgctxt "Page size"
 msgid "Custom"
 msgstr "Personnalisée"
@@ -819,12 +819,12 @@ msgstr "Colonnes :"
 msgid "Column spacing:"
 msgstr "Espacement des colonnes :"
 
-#: part/KgvPageLayoutDia.cpp:62
+#: part/KgvPageLayoutDia.cpp:53
 #, kde-format
 msgid "Page Preview"
 msgstr "Aperçu de la page"
 
-#: part/KgvPageLayoutDia.cpp:277
+#: part/KgvPageLayoutDia.cpp:268
 #, kde-format
 msgid "Page Size & Margins"
 msgstr "Taille de la page et des marges"
@@ -889,124 +889,124 @@ msgstr "Note de bas de page / Note de fin"
 msgid "Spacing between footnote and body:"
 msgstr "Espacement entre la note de bas de page et le corps :"
 
-#: part/KgvPageLayoutSize.cpp:62
+#: part/KgvPageLayoutSize.cpp:58
 #, kde-format
 msgid "Unit:"
 msgstr "Unité :"
 
-#: part/KgvPageLayoutSize.cpp:75
+#: part/KgvPageLayoutSize.cpp:71
 #, kde-format
 msgid "All values are given in %1."
 msgstr "Toutes les valeurs sont indiquées en %1."
 
-#: part/KgvPageLayoutSize.cpp:80
+#: part/KgvPageLayoutSize.cpp:76
 #, kde-format
 msgid "Page Size"
 msgstr "Taille de la page"
 
-#: part/KgvPageLayoutSize.cpp:89
+#: part/KgvPageLayoutSize.cpp:85
 #, kde-format
 msgid "&Size:"
 msgstr "&Taille :"
 
-#: part/KgvPageLayoutSize.cpp:110
+#: part/KgvPageLayoutSize.cpp:106
 #, kde-format
 msgid "&Width:"
 msgstr "&Largeur :"
 
-#: part/KgvPageLayoutSize.cpp:121
+#: part/KgvPageLayoutSize.cpp:117
 #, kde-format
 msgid "&Height:"
 msgstr "&Hauteur :"
 
-#: part/KgvPageLayoutSize.cpp:135
+#: part/KgvPageLayoutSize.cpp:131
 #, kde-format
 msgid "Orientation"
 msgstr "Orientation"
 
-#: part/KgvPageLayoutSize.cpp:139
+#: part/KgvPageLayoutSize.cpp:135
 #, kde-format
 msgid "&Portrait"
 msgstr "&Portrait"
 
-#: part/KgvPageLayoutSize.cpp:143
+#: part/KgvPageLayoutSize.cpp:139
 #, kde-format
 msgid "La&ndscape"
 msgstr "Pa&ysage"
 
-#: part/KgvPageLayoutSize.cpp:151
+#: part/KgvPageLayoutSize.cpp:147
 #, kde-format
 msgid "Margins"
 msgstr "Marges"
 
-#: part/KgvPageLayoutSize.cpp:374 part/KgvPageLayoutSize.cpp:378
+#: part/KgvPageLayoutSize.cpp:370 part/KgvPageLayoutSize.cpp:374
 #, kde-format
 msgid "Page Layout Problem"
 msgstr "Problème de représentation de la page"
 
-#: part/KgvPageLayoutSize.cpp:374
+#: part/KgvPageLayoutSize.cpp:370
 #, kde-format
 msgid "The page width is smaller than the left and right margins."
 msgstr "La largeur de la page est inférieure aux marges gauche et droite."
 
-#: part/KgvPageLayoutSize.cpp:378
+#: part/KgvPageLayoutSize.cpp:374
 #, kde-format
 msgid "The page height is smaller than the top and bottom margins."
 msgstr "La hauteur de la page est inférieure aux marges du haut et du bas."
 
-#: part/KgvUnit.cpp:51
+#: part/KgvUnit.cpp:52
 #, kde-format
 msgid "Millimeters (mm)"
 msgstr "Millimètres (mm)"
 
-#: part/KgvUnit.cpp:53
+#: part/KgvUnit.cpp:54
 #, kde-format
 msgid "Centimeters (cm)"
 msgstr "Centimètres (cm)"
 
-#: part/KgvUnit.cpp:55
+#: part/KgvUnit.cpp:56
 #, kde-format
 msgid "Decimeters (dm)"
 msgstr "Décimètres (dm)"
 
-#: part/KgvUnit.cpp:57
+#: part/KgvUnit.cpp:58
 #, kde-format
 msgid "Inches (in)"
 msgstr "Pouces (in)"
 
-#: part/KgvUnit.cpp:59
+#: part/KgvUnit.cpp:60
 #, kde-format
 msgid "Pica (pi)"
 msgstr "Pica (pi)"
 
-#: part/KgvUnit.cpp:61
+#: part/KgvUnit.cpp:62
 #, kde-format
 msgid "Didot (dd)"
 msgstr "Didot (dd)"
 
-#: part/KgvUnit.cpp:63
+#: part/KgvUnit.cpp:64
 #, kde-format
 msgid "Cicero (cc)"
 msgstr "Cicero (cc)"
 
-#: part/KgvUnit.cpp:65
+#: part/KgvUnit.cpp:66
 #, kde-format
 msgid "Points (pt)"
 msgstr "Points (pt)"
 
-#: part/KgvUnit.cpp:67
+#: part/KgvUnit.cpp:68
 #, kde-format
 msgid "Error."
 msgstr "Erreur."
 
-#: part/pannerview.cpp:64
+#: part/pannerview.cpp:59
 #, kde-format
 msgid "View of the complete graph. Click and drag to move the visible part."
 msgstr ""
 "Vue du graphe complet. Cliquez et faites glisser pour déplacer la partie "
 "visible."
 
-#: part/pannerview.cpp:66
+#: part/pannerview.cpp:61
 #, kde-format
 msgid ""
 "<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
@@ -1019,91 +1019,91 @@ msgstr ""
 "souris.</p><p>Cliquer et faire glisser dans le carré rouge amènera la vue à "
 "suivre le mouvement.</p>"
 
-#: part/simpleprintingcommand.cpp:97
+#: part/simpleprintingcommand.cpp:78
 #, kde-format
 msgid "Print Preview"
 msgstr "Aperçu avant impression"
 
-#: part/simpleprintingengine.cpp:200 part/simpleprintpreviewwindow.cpp:219
-#: part/simpleprintpreviewwindow.cpp:237
+#: part/simpleprintingengine.cpp:190 part/simpleprintpreviewwindow.cpp:209
+#: part/simpleprintpreviewwindow.cpp:227
 #, kde-format
 msgctxt "Page (number) of (total)"
 msgid "Page %1 of %2"
 msgstr "Page %1 sur %2"
 
-#: part/simpleprintingengine.cpp:202
+#: part/simpleprintingengine.cpp:192
 #, kde-format
 msgid "Page %1"
 msgstr "Page %1"
 
-#: part/simpleprintingpagesetup.cpp:99
+#: part/simpleprintingpagesetup.cpp:85
 #, kde-format
 msgid "Print Preview..."
 msgstr "Aperçu avant impression..."
 
-#: part/simpleprintingpagesetup.cpp:102
+#: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font..."
 msgstr "Police..."
 
-#: part/simpleprintingpagesetup.cpp:103
+#: part/simpleprintingpagesetup.cpp:89
 #, kde-format
 msgid "Changes font for title text."
 msgstr "Change la police du texte des titres."
 
-#: part/simpleprintingpagesetup.cpp:109
+#: part/simpleprintingpagesetup.cpp:95
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
 msgstr ""
 "<qt><h2>Configuration de la page pour l'impression du graphe « %1 »</h2></qt>"
 
-#: part/simpleprintingpagesetup.cpp:114
+#: part/simpleprintingpagesetup.cpp:100
 #, kde-format
 msgid "Saves settings for this setup as default."
 msgstr ""
 "Enregistre les paramètres de cette configuration comme valeurs par défaut."
 
-#: part/simpleprintingpagesetup.cpp:117
+#: part/simpleprintingpagesetup.cpp:103
 #, kde-format
 msgid "Adds date and time to the header."
 msgstr "Ajoute la date et l'heure à l'en-tête."
 
-#: part/simpleprintingpagesetup.cpp:118
+#: part/simpleprintingpagesetup.cpp:104
 #, kde-format
 msgid "Adds page numbers to the footer."
 msgstr "Ajoute des numéros de page au pied de page."
 
-#: part/simpleprintingpagesetup.cpp:119
+#: part/simpleprintingpagesetup.cpp:105
 #, kde-format
 msgid "Adds table borders."
 msgstr "Ajoute des bordures de tableaux."
 
-#: part/simpleprintingpagesetup.cpp:127
+#: part/simpleprintingpagesetup.cpp:113
 #, kde-format
 msgid "Change Page Size and Margins..."
 msgstr "Change la taille et les marges de la page..."
 
-#: part/simpleprintingpagesetup.cpp:128
+#: part/simpleprintingpagesetup.cpp:114
 #, kde-format
 msgid "Changes page size and margins."
 msgstr "Change la taille et les marges de la page."
 
-#: part/simpleprintingpagesetup.cpp:178
+#: part/simpleprintingpagesetup.cpp:164
 #, kde-format
 msgid "Chosen font looks like this"
 msgstr "Voici à quoi ressemble la police choisie"
 
-#: part/simpleprintingpagesetup.cpp:194
+#: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "Portrait"
 msgstr "Portrait"
 
-#: part/simpleprintingpagesetup.cpp:194
+#: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "Landscape"
 msgstr "Paysage"
 
-#: part/simpleprintingpagesetup.cpp:194
+#: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "margins:"
 msgstr "marges :"
@@ -1191,22 +1191,22 @@ msgstr ""
 msgid "Related actions:"
 msgstr "Actions liées :"
 
-#: part/simpleprintpreviewwindow.cpp:68
+#: part/simpleprintpreviewwindow.cpp:58
 #, kde-format
 msgid "%1 - Print Preview - %2"
 msgstr "%1 - Aperçu avant impression - %2"
 
-#: part/simpleprintpreviewwindow.cpp:83
+#: part/simpleprintpreviewwindow.cpp:73
 #, kde-format
 msgid "&Page setup"
 msgstr "Configuration de la &page"
 
-#: part/simpleprintpreviewwindow.cpp:122
+#: part/simpleprintpreviewwindow.cpp:112
 #, kde-format
 msgid "Previous Page"
 msgstr "Page précédente"
 
-#: part/simpleprintpreviewwindow.cpp:132
+#: part/simpleprintpreviewwindow.cpp:122
 #, kde-format
 msgid "Next Page"
 msgstr "Page suivante"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-22 01:35+0000\n"
+"POT-Creation-Date: 2024-03-23 01:36+0000\n"
 "PO-Revision-Date: 2023-12-13 18:17+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -27,107 +27,107 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "franklin@goodhorse.idv.tw"
 
-#: kgrapheditor.cpp:129 kgraphviewer.cpp:113
+#: kgrapheditor.cpp:126 kgraphviewer.cpp:107
 #, kde-format
 msgid "Session Restore"
 msgstr "作業階段回復"
 
-#: kgrapheditor.cpp:129
+#: kgrapheditor.cpp:126
 #, kde-format
 msgid "Do you want to reload files from previous session?"
 msgstr "您要從前一個工作階段中重新載入檔案嗎？"
 
-#: kgrapheditor.cpp:149
+#: kgrapheditor.cpp:146
 #, kde-format
 msgid "Unable to start"
 msgstr "無法啟動。"
 
-#: kgrapheditor.cpp:149 kgraphviewer.cpp:139
+#: kgrapheditor.cpp:146 kgraphviewer.cpp:133
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "找不到 KGraphViewer 部件。"
 
-#: kgrapheditor.cpp:230 kgraphviewer.cpp:219
+#: kgrapheditor.cpp:227 kgraphviewer.cpp:213
 #, kde-format
 msgid "Closes the current file"
 msgstr "關閉目前檔案"
 
-#: kgrapheditor.cpp:241
+#: kgrapheditor.cpp:238
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "建立新頂點"
 
-#: kgrapheditor.cpp:246
+#: kgrapheditor.cpp:243
 #, kde-format
 msgid "Create a New Edge"
 msgstr "建立新邊緣"
 
-#: kgrapheditor.cpp:501
+#: kgrapheditor.cpp:498
 #, kde-format
 msgid "Save current graph"
 msgstr "儲存目前圖形"
 
-#: kgrapheditorConfigDialog.cpp:60 kgraphviewerConfigDialog.cpp:71
+#: kgrapheditorConfigDialog.cpp:48 kgraphviewerConfigDialog.cpp:55
 #, kde-format
 msgid "Parsing"
 msgstr "剖析中"
 
-#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
+#: kgrapheditorConfigDialog.cpp:49 kgraphviewerConfigDialog.cpp:56
 #, kde-format
 msgid "Reloading"
 msgstr "重新載入中"
 
-#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
+#: kgrapheditorConfigDialog.cpp:50 kgraphviewerConfigDialog.cpp:57
 #, kde-format
 msgid "Opening"
 msgstr "開啟中"
 
-#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
+#: kgrapheditorConfigDialog.cpp:51 kgraphviewerConfigDialog.cpp:58
 #, kde-format
 msgid "Session Management"
 msgstr "作業階段管理程式"
 
-#: KGraphEditorElementTreeWidget.cpp:49 KGraphEditorNodesTreeWidget.cpp:54
+#: KGraphEditorElementTreeWidget.cpp:50 KGraphEditorNodesTreeWidget.cpp:54
 #, kde-format
 msgid "Add a new attribute"
 msgstr "新增屬性"
 
-#: KGraphEditorElementTreeWidget.cpp:55 KGraphEditorNodesTreeWidget.cpp:60
+#: KGraphEditorElementTreeWidget.cpp:56 KGraphEditorNodesTreeWidget.cpp:60
 #, kde-format
 msgid "Remove this attribute"
 msgstr "移除此屬性"
 
-#: kgrapheditormain.cpp:46
+#: kgrapheditormain.cpp:38
 #, kde-format
 msgid "KGraphEditor"
 msgstr "KGraphEditor"
 
-#: kgrapheditormain.cpp:46
+#: kgrapheditormain.cpp:38
 #, kde-format
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "來自 KDE 的 Graphviz DOT 圖檔編輯器"
 
-#: kgrapheditormain.cpp:46 main.cpp:53
+#: kgrapheditormain.cpp:38 main.cpp:46
 #, kde-format
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:50 main.cpp:62
 #, kde-format
 msgid "Path or URL to scan"
 msgstr "要掃描的路徑或網址"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:50 main.cpp:62
 #, kde-format
 msgid "[url]"
 msgstr "[url]"
 
-#: kgrapheditormain.cpp:83 main.cpp:94
+#: kgrapheditormain.cpp:75 main.cpp:87
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "在新視窗開啟確認"
 
-#: kgrapheditormain.cpp:83
+#: kgrapheditormain.cpp:75
 #, kde-format
 msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
@@ -201,61 +201,61 @@ msgstr "說明工具列"
 msgid "Edit Toolbar"
 msgstr "編輯工具列"
 
-#: kgraphviewer.cpp:112
+#: kgraphviewer.cpp:106
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
 msgstr "您要從前一個工作階段重新載入檔案嗎？"
 
-#: kgraphviewer.cpp:114
+#: kgraphviewer.cpp:108
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "重新載入"
 
-#: kgraphviewer.cpp:115
+#: kgraphviewer.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr "不要重新載入"
 
-#: kgraphviewer.cpp:206
+#: kgraphviewer.cpp:200
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "開啟新的空白 KGraphViewer 視窗。"
 
-#: kgraphviewer.cpp:209
+#: kgraphviewer.cpp:203
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr "顯示檔案開啟對話框，選擇要開啟的 Graphviz DOT 圖檔。"
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:207
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
 "open them again."
 msgstr "這是您最近開啟的檔案清單，並且讓您可以很容易的再次開啟它們。"
 
-#: kgraphviewer.cpp:223
+#: kgraphviewer.cpp:217
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "離開 KGraphViewer。"
 
-#: kgraphviewer.cpp:226
+#: kgraphviewer.cpp:220
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "顯示或隱藏狀態列。"
 
-#: kgraphviewer.cpp:229
+#: kgraphviewer.cpp:223
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "工具列設定。"
 
-#: kgraphviewer.cpp:232
+#: kgraphviewer.cpp:226
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "主要 KGraphviewer 設定選項。"
 
-#: kgraphviewerConfigDialog.cpp:70
+#: kgraphviewerConfigDialog.cpp:54
 #, kde-format
 msgid "Appearance"
 msgstr "外觀"
@@ -266,69 +266,69 @@ msgstr "外觀"
 msgid "Background color of the graph view."
 msgstr "圖形檢視的背景顏色。"
 
-#: main.cpp:49
+#: main.cpp:42
 #, kde-format
 msgid "KGraphViewer"
 msgstr "KGraphViewer"
 
-#: main.cpp:51
+#: main.cpp:44
 #, kde-format
 msgid "A Graphviz DOT graph viewer"
 msgstr "Graphviz DOT 圖檔檢視器"
 
-#: main.cpp:56
+#: main.cpp:49
 #, kde-format
 msgid "Gaël de Chalendar"
 msgstr "Gaël de Chalendar"
 
-#: main.cpp:56
+#: main.cpp:49
 #, kde-format
 msgid "Original Author and current maintainer"
 msgstr "原始作者，目前維護者"
 
-#: main.cpp:57
+#: main.cpp:50
 #, kde-format
 msgid "Reimar Döffinger"
 msgstr "Reimar Döffinger"
 
-#: main.cpp:57 main.cpp:58 main.cpp:59 main.cpp:60
+#: main.cpp:50 main.cpp:51 main.cpp:52 main.cpp:53
 #, kde-format
 msgid "Contributor"
 msgstr "貢獻者"
 
-#: main.cpp:58
+#: main.cpp:51
 #, kde-format
 msgid "Matthias Peinhardt"
 msgstr "Matthias Peinhardt"
 
-#: main.cpp:59
+#: main.cpp:52
 #, kde-format
 msgid "Sandro Andrade"
 msgstr "Sandro Andrade"
 
-#: main.cpp:60
+#: main.cpp:53
 #, kde-format
 msgid "Milian Wolff"
 msgstr "Milian Wolff"
 
-#: main.cpp:61
+#: main.cpp:54
 #, kde-format
 msgid "Martin Sandsmark"
 msgstr "Martin Sandsmark"
 
-#: main.cpp:61
+#: main.cpp:54
 #, kde-format
 msgid "Port to KF5"
 msgstr "移植至 KF5"
 
-#: main.cpp:94
+#: main.cpp:87
 #, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
 "in the existing window?"
 msgstr "KGraphViewer 視窗已開啟。您要在目前視窗的何處開啟此檔案？"
 
-#: part/canvasedge.cpp:74
+#: part/canvasedge.cpp:70
 #, kde-format
 msgid ""
 "%1 -> %2\n"
@@ -337,17 +337,17 @@ msgstr ""
 "%1 -> %2\n"
 "標籤='%3'"
 
-#: part/canvasedge.cpp:78
+#: part/canvasedge.cpp:74
 #, kde-format
 msgid "Remove selected edge(s)"
 msgstr "移除選取的邊緣"
 
-#: part/canvaselement.cpp:92
+#: part/canvaselement.cpp:87
 #, kde-format
 msgid "Remove selected element(s)"
 msgstr "移除選取的元素"
 
-#: part/canvasnode.cpp:64
+#: part/canvasnode.cpp:51
 #, kde-format
 msgid ""
 "id='%1'\n"
@@ -356,103 +356,103 @@ msgstr ""
 "代碼='%1'\n"
 "標籤='%2'"
 
-#: part/dotgraph.cpp:265 part/dotgraph.cpp:268 part/dotgraph.cpp:271
-#: part/dotgraph.cpp:274 part/dotgraph.cpp:277 part/dotgraph.cpp:280
+#: part/dotgraph.cpp:260 part/dotgraph.cpp:263 part/dotgraph.cpp:266
+#: part/dotgraph.cpp:269 part/dotgraph.cpp:272 part/dotgraph.cpp:275
 #, kde-format
 msgid "Layout process failed"
 msgstr "佈局行程失敗"
 
-#: part/dotgraph.cpp:265
+#: part/dotgraph.cpp:260
 #, kde-format
 msgid "Unable to start %1."
 msgstr "無法啟動 %1。"
 
-#: part/dotgraph.cpp:268
+#: part/dotgraph.cpp:263
 #, kde-format
 msgid "%1 crashed."
 msgstr "%1 已崩潰。"
 
-#: part/dotgraph.cpp:271
+#: part/dotgraph.cpp:266
 #, kde-format
 msgid "%1 timed out."
 msgstr "%1 已逾時"
 
-#: part/dotgraph.cpp:274
+#: part/dotgraph.cpp:269
 #, kde-format
 msgid "Was not able to write data to the %1 process."
 msgstr "無法寫入資料到 %1 行程。"
 
-#: part/dotgraph.cpp:277
+#: part/dotgraph.cpp:272
 #, kde-format
 msgid "Was not able to read data from the %1 process."
 msgstr "無法從 %1 行程讀取資料。"
 
-#: part/dotgraph.cpp:280
+#: part/dotgraph.cpp:275
 #, kde-format
 msgid "Unknown error running %1."
 msgstr "執行 %1 時發生未知的錯誤"
 
-#: part/dotgraphview.cpp:420
+#: part/dotgraphview.cpp:410
 #, kde-format
 msgid "Select Layout Algo"
 msgstr "選擇佈局演算法"
 
-#: part/dotgraphview.cpp:423
+#: part/dotgraphview.cpp:413
 #, kde-format
 msgid "Dot"
 msgstr "Dot"
 
-#: part/dotgraphview.cpp:424
+#: part/dotgraphview.cpp:414
 #, kde-format
 msgid "Layout the graph using the dot program."
 msgstr "使用 dot 程式來佈局圖形。"
 
-#: part/dotgraphview.cpp:428
+#: part/dotgraphview.cpp:418
 #, kde-format
 msgid "Neato"
 msgstr "Neato"
 
-#: part/dotgraphview.cpp:429
+#: part/dotgraphview.cpp:419
 #, kde-format
 msgid "Layout the graph using the neato program."
 msgstr "使用 neato 程式來佈局圖形。"
 
-#: part/dotgraphview.cpp:433
+#: part/dotgraphview.cpp:423
 #, kde-format
 msgid "Twopi"
 msgstr "Twopi"
 
-#: part/dotgraphview.cpp:434
+#: part/dotgraphview.cpp:424
 #, kde-format
 msgid "Layout the graph using the twopi program."
 msgstr "使用 twopi 程式來佈局圖形。"
 
-#: part/dotgraphview.cpp:438
+#: part/dotgraphview.cpp:428
 #, kde-format
 msgid "Fdp"
 msgstr "Fdp"
 
-#: part/dotgraphview.cpp:439
+#: part/dotgraphview.cpp:429
 #, kde-format
 msgid "Layout the graph using the fdp program."
 msgstr "使用 fdp 程式來佈局圖形。"
 
-#: part/dotgraphview.cpp:443
+#: part/dotgraphview.cpp:433
 #, kde-format
 msgid "Circo"
 msgstr "Circo"
 
-#: part/dotgraphview.cpp:444
+#: part/dotgraphview.cpp:434
 #, kde-format
 msgid "Layout the graph using the circo program."
 msgstr "使用 circo 程式來佈局圖形。"
 
-#: part/dotgraphview.cpp:456
+#: part/dotgraphview.cpp:446
 #, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr "選擇 GraphViz 的佈局演算法，或自己編輯一個。"
 
-#: part/dotgraphview.cpp:458
+#: part/dotgraphview.cpp:448
 #, kde-format
 msgid ""
 "Choose a Graphviz layout algorithm or type in your own command that will "
@@ -464,17 +464,17 @@ msgstr ""
 "如，要手動指定 dot 的 <tt>G</tt> 選項，輸入 <tt>dlt -Gname=MyGraphName -"
 "Txdot</tt>"
 
-#: part/dotgraphview.cpp:464
+#: part/dotgraphview.cpp:454
 #, kde-format
 msgid "Layout"
 msgstr "佈局"
 
-#: part/dotgraphview.cpp:466
+#: part/dotgraphview.cpp:456
 #, kde-format
 msgid "Specify layout command"
 msgstr "指定佈局指令"
 
-#: part/dotgraphview.cpp:467
+#: part/dotgraphview.cpp:457
 #, kde-format
 msgid ""
 "Specify yourself the layout command to use. Given a dot file, it should "
@@ -483,39 +483,39 @@ msgstr ""
 "請指定您要使用的佈局指令。給定一個 dot 圖檔，它應該會在標準輸出產生一個 xdot "
 "檔。"
 
-#: part/dotgraphview.cpp:468
+#: part/dotgraphview.cpp:458
 #, kde-format
 msgid "Reset layout command to default"
 msgstr "將佈局指令重置為預設值"
 
-#: part/dotgraphview.cpp:469
+#: part/dotgraphview.cpp:459
 #, kde-format
 msgid ""
 "Resets the layout command to use to the default depending on the graph type "
 "(directed or not)."
 msgstr "將佈局指令重置，依圖形型態（有向或無向）設定預設值。"
 
-#: part/dotgraphview.cpp:471
+#: part/dotgraphview.cpp:461
 #, kde-format
 msgid "Zoom In"
 msgstr "放大"
 
-#: part/dotgraphview.cpp:472
+#: part/dotgraphview.cpp:462
 #, kde-format
 msgid "Zoom Out"
 msgstr "縮小"
 
-#: part/dotgraphview.cpp:476
+#: part/dotgraphview.cpp:466
 #, kde-format
 msgid "Export Graph"
 msgstr "匯出圖形"
 
-#: part/dotgraphview.cpp:478
+#: part/dotgraphview.cpp:468
 #, kde-format
 msgid "Allows the graph to be exported in another format."
 msgstr "允許圖形匯出為其它格式。"
 
-#: part/dotgraphview.cpp:480
+#: part/dotgraphview.cpp:470
 #, kde-format
 msgid ""
 "Use the Export Graph menu to export the graph in another format. There is "
@@ -523,103 +523,103 @@ msgid ""
 msgstr ""
 "使用「匯出圖形」選單來將圖形匯出成其它格式。目前只支援一種匯出格式：PNG。"
 
-#: part/dotgraphview.cpp:484
+#: part/dotgraphview.cpp:474
 #, kde-format
 msgid "As Image..."
 msgstr "為影像檔..."
 
-#: part/dotgraphview.cpp:485
+#: part/dotgraphview.cpp:475
 #, kde-format
 msgid "Export the graph to an image file."
 msgstr "將圖形匯出為影像檔。"
 
-#: part/dotgraphview.cpp:493
+#: part/dotgraphview.cpp:483
 #, kde-format
 msgid "Enable Bird's-eye View"
 msgstr "開啟鳥瞰檢視"
 
-#: part/dotgraphview.cpp:496
+#: part/dotgraphview.cpp:487
 #, kde-format
 msgid "Enables or disables the Bird's-eye View"
 msgstr "開啟或關閉鳥瞰檢視"
 
-#: part/dotgraphview.cpp:501
+#: part/dotgraphview.cpp:492
 #, kde-format
 msgid "Birds-eye View"
 msgstr "鳥瞰檢視"
 
-#: part/dotgraphview.cpp:502
+#: part/dotgraphview.cpp:493
 #, kde-format
 msgid "Allows the Bird's-eye View to be setup."
 msgstr "允許設定鳥瞰圖檢視。"
 
-#: part/dotgraphview.cpp:506
+#: part/dotgraphview.cpp:497
 #, kde-format
 msgid "Top Left"
 msgstr "左上方"
 
-#: part/dotgraphview.cpp:507
+#: part/dotgraphview.cpp:498
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "將鳥瞰檢視放在左上角。"
 
-#: part/dotgraphview.cpp:511
+#: part/dotgraphview.cpp:502
 #, kde-format
 msgid "Top Right"
 msgstr "右上方"
 
-#: part/dotgraphview.cpp:512
+#: part/dotgraphview.cpp:503
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "將鳥瞰檢視放在右上角。"
 
-#: part/dotgraphview.cpp:516
+#: part/dotgraphview.cpp:507
 #, kde-format
 msgid "Bottom Left"
 msgstr "左下方"
 
-#: part/dotgraphview.cpp:517
+#: part/dotgraphview.cpp:508
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "將鳥瞰檢視放在左下角。"
 
-#: part/dotgraphview.cpp:521
+#: part/dotgraphview.cpp:512
 #, kde-format
 msgid "Bottom Right"
 msgstr "右下方"
 
-#: part/dotgraphview.cpp:522
+#: part/dotgraphview.cpp:513
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "將鳥瞰檢視放在右下角。"
 
-#: part/dotgraphview.cpp:526
+#: part/dotgraphview.cpp:517
 #, kde-format
 msgid "Automatic"
 msgstr "自動"
 
-#: part/dotgraphview.cpp:527
+#: part/dotgraphview.cpp:518
 #, kde-format
 msgid ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
 msgstr "讓 KGraphviewer 自動選擇鳥瞰檢視的位置。"
 
-#: part/dotgraphview.cpp:574
+#: part/dotgraphview.cpp:565
 #, kde-format
 msgid "Select file"
 msgstr "選擇檔案"
 
-#: part/dotgraphview.cpp:588
+#: part/dotgraphview.cpp:579
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer"
 msgstr "KGraphViewer 產生的 SVG 圖形"
 
-#: part/dotgraphview.cpp:589
+#: part/dotgraphview.cpp:580
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer."
 msgstr "KGraphViewer 產生的 SVG 圖形。"
 
-#: part/dotgraphview.cpp:636
+#: part/dotgraphview.cpp:627
 #, kde-format
 msgid ""
 "<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
@@ -647,28 +647,28 @@ msgstr ""
 "單，您可以找到其它的用法。</li> <li>使用「預覽列印」或「頁面設定」鍵，您可以"
 "看到其他的列印選項。</li></ul>"
 
-#: part/dotgraphview.cpp:789
+#: part/dotgraphview.cpp:780
 #, kde-format
 msgid "no graph loaded"
 msgstr "沒有載入圖形"
 
-#: part/dotgraphview.cpp:905 part/dotgraphview.cpp:926
-#: part/dotgraphview.cpp:973
+#: part/dotgraphview.cpp:896 part/dotgraphview.cpp:917
+#: part/dotgraphview.cpp:964
 #, kde-format
 msgid "graph %1 is getting loaded..."
 msgstr "圖形 %1 正在載入中..."
 
-#: part/dotgraphview.cpp:913
+#: part/dotgraphview.cpp:904
 #, kde-format
 msgid "error parsing file %1"
 msgstr "剖析檔案 %1 時發生錯誤"
 
-#: part/dotgraphview.cpp:1625
+#: part/dotgraphview.cpp:1616
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "確認重新載入"
 
-#: part/dotgraphview.cpp:1625
+#: part/dotgraphview.cpp:1616
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
@@ -677,12 +677,12 @@ msgstr ""
 "檔案 %1 在磁碟上已被變更。\n"
 "您要重新載入它嗎？"
 
-#: part/dotgraphview.cpp:1711
+#: part/dotgraphview.cpp:1702
 #, kde-format
 msgid "Layout Command"
 msgstr "佈局指令"
 
-#: part/dotgraphview.cpp:1712
+#: part/dotgraphview.cpp:1703
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
@@ -691,42 +691,42 @@ msgstr ""
 "在此指定要用於佈局圖形的指令。\n"
 "指令必須以 xdot 格式將結果寫到標準輸出。"
 
-#: part/dotgraphview.cpp:2165
+#: part/dotgraphview.cpp:2156
 #, kde-format
 msgid "Failed to open %1"
 msgstr "開啟 %1 失敗"
 
-#: part/kgraphviewer_part.cpp:108
+#: part/kgraphviewer_part.cpp:97
 #, kde-format
 msgid "Print the graph using current page setup settings"
 msgstr "用目前的頁面設定列印圖形"
 
-#: part/kgraphviewer_part.cpp:112
+#: part/kgraphviewer_part.cpp:101
 #, kde-format
 msgid "Open the print preview window"
 msgstr "開啟列印預覽視窗"
 
-#: part/kgraphviewer_part.cpp:116
+#: part/kgraphviewer_part.cpp:105
 #, kde-format
 msgid "Page setup"
 msgstr "頁面設定"
 
-#: part/kgraphviewer_part.cpp:117
+#: part/kgraphviewer_part.cpp:106
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr "開啟頁面設定對話框，允許設定圖形列印"
 
-#: part/kgraphviewer_part.cpp:120
+#: part/kgraphviewer_part.cpp:109
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "從檔案重新載入目前的圖形"
 
-#: part/kgraphviewer_part.cpp:125
+#: part/kgraphviewer_part.cpp:114
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
 msgstr "將目前檢視的圖形放大 10%"
 
-#: part/kgraphviewer_part.cpp:130
+#: part/kgraphviewer_part.cpp:119
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "將目前檢視的圖形縮小 10%"
@@ -743,12 +743,12 @@ msgstr "檔案(&F)"
 msgid "&View"
 msgstr "檢視(&V)"
 
-#: part/KgvPageLayout.cpp:70
+#: part/KgvPageLayout.cpp:69
 msgctxt "Page size"
 msgid "Screen"
 msgstr "螢幕"
 
-#: part/KgvPageLayout.cpp:71
+#: part/KgvPageLayout.cpp:70
 msgctxt "Page size"
 msgid "Custom"
 msgstr "自訂"
@@ -765,12 +765,12 @@ msgstr "欄："
 msgid "Column spacing:"
 msgstr "欄位空間："
 
-#: part/KgvPageLayoutDia.cpp:62
+#: part/KgvPageLayoutDia.cpp:53
 #, kde-format
 msgid "Page Preview"
 msgstr "頁面預覽"
 
-#: part/KgvPageLayoutDia.cpp:277
+#: part/KgvPageLayoutDia.cpp:268
 #, kde-format
 msgid "Page Size & Margins"
 msgstr "頁面大小與邊界"
@@ -835,122 +835,122 @@ msgstr "註腳 / 尾註"
 msgid "Spacing between footnote and body:"
 msgstr "尾註與主體間的空間大小："
 
-#: part/KgvPageLayoutSize.cpp:62
+#: part/KgvPageLayoutSize.cpp:58
 #, kde-format
 msgid "Unit:"
 msgstr "單位："
 
-#: part/KgvPageLayoutSize.cpp:75
+#: part/KgvPageLayoutSize.cpp:71
 #, kde-format
 msgid "All values are given in %1."
 msgstr "所有值皆以 %1 為單位。"
 
-#: part/KgvPageLayoutSize.cpp:80
+#: part/KgvPageLayoutSize.cpp:76
 #, kde-format
 msgid "Page Size"
 msgstr "頁面大小"
 
-#: part/KgvPageLayoutSize.cpp:89
+#: part/KgvPageLayoutSize.cpp:85
 #, kde-format
 msgid "&Size:"
 msgstr "大小(&S)："
 
-#: part/KgvPageLayoutSize.cpp:110
+#: part/KgvPageLayoutSize.cpp:106
 #, kde-format
 msgid "&Width:"
 msgstr "寬度(&W)："
 
-#: part/KgvPageLayoutSize.cpp:121
+#: part/KgvPageLayoutSize.cpp:117
 #, kde-format
 msgid "&Height:"
 msgstr "高度(&H)："
 
-#: part/KgvPageLayoutSize.cpp:135
+#: part/KgvPageLayoutSize.cpp:131
 #, kde-format
 msgid "Orientation"
 msgstr "方向"
 
-#: part/KgvPageLayoutSize.cpp:139
+#: part/KgvPageLayoutSize.cpp:135
 #, kde-format
 msgid "&Portrait"
 msgstr "縱向(&P)"
 
-#: part/KgvPageLayoutSize.cpp:143
+#: part/KgvPageLayoutSize.cpp:139
 #, kde-format
 msgid "La&ndscape"
 msgstr "橫向(&N)"
 
-#: part/KgvPageLayoutSize.cpp:151
+#: part/KgvPageLayoutSize.cpp:147
 #, kde-format
 msgid "Margins"
 msgstr "邊界"
 
-#: part/KgvPageLayoutSize.cpp:374 part/KgvPageLayoutSize.cpp:378
+#: part/KgvPageLayoutSize.cpp:370 part/KgvPageLayoutSize.cpp:374
 #, kde-format
 msgid "Page Layout Problem"
 msgstr "頁面佈局問題"
 
-#: part/KgvPageLayoutSize.cpp:374
+#: part/KgvPageLayoutSize.cpp:370
 #, kde-format
 msgid "The page width is smaller than the left and right margins."
 msgstr "頁面寬度比左邊與右邊邊界值還小"
 
-#: part/KgvPageLayoutSize.cpp:378
+#: part/KgvPageLayoutSize.cpp:374
 #, kde-format
 msgid "The page height is smaller than the top and bottom margins."
 msgstr "頁面高度比頂端跟底端的邊界值還小。"
 
-#: part/KgvUnit.cpp:51
+#: part/KgvUnit.cpp:52
 #, kde-format
 msgid "Millimeters (mm)"
 msgstr "公釐（mm）"
 
-#: part/KgvUnit.cpp:53
+#: part/KgvUnit.cpp:54
 #, kde-format
 msgid "Centimeters (cm)"
 msgstr "公分（cm）"
 
-#: part/KgvUnit.cpp:55
+#: part/KgvUnit.cpp:56
 #, kde-format
 msgid "Decimeters (dm)"
 msgstr "公寸（dm）"
 
-#: part/KgvUnit.cpp:57
+#: part/KgvUnit.cpp:58
 #, kde-format
 msgid "Inches (in)"
 msgstr "英吋（in）"
 
-#: part/KgvUnit.cpp:59
+#: part/KgvUnit.cpp:60
 #, kde-format
 msgid "Pica (pi)"
 msgstr "Pica（pi）"
 
-#: part/KgvUnit.cpp:61
+#: part/KgvUnit.cpp:62
 #, kde-format
 msgid "Didot (dd)"
 msgstr "Didot (dd)"
 
-#: part/KgvUnit.cpp:63
+#: part/KgvUnit.cpp:64
 #, kde-format
 msgid "Cicero (cc)"
 msgstr "Cicero (cc)"
 
-#: part/KgvUnit.cpp:65
+#: part/KgvUnit.cpp:66
 #, kde-format
 msgid "Points (pt)"
 msgstr "點（pt）"
 
-#: part/KgvUnit.cpp:67
+#: part/KgvUnit.cpp:68
 #, kde-format
 msgid "Error."
 msgstr "錯誤。"
 
-#: part/pannerview.cpp:64
+#: part/pannerview.cpp:59
 #, kde-format
 msgid "View of the complete graph. Click and drag to move the visible part."
 msgstr "完整圖形的檢視。點擊並拖曳以移動到可見區。"
 
-#: part/pannerview.cpp:66
+#: part/pannerview.cpp:61
 #, kde-format
 msgid ""
 "<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
@@ -961,89 +961,89 @@ msgstr ""
 "<h1>完整圖形的檢視</h1><p>單擊某些沒有紅色方塊的地方會將檢視的中心移到滑鼠點"
 "擊的位置。</p> <p>點擊並拖曳紅色方塊會讓整個檢視跟著移動。</p>"
 
-#: part/simpleprintingcommand.cpp:97
+#: part/simpleprintingcommand.cpp:78
 #, kde-format
 msgid "Print Preview"
 msgstr "預覽列印"
 
-#: part/simpleprintingengine.cpp:200 part/simpleprintpreviewwindow.cpp:219
-#: part/simpleprintpreviewwindow.cpp:237
+#: part/simpleprintingengine.cpp:190 part/simpleprintpreviewwindow.cpp:209
+#: part/simpleprintpreviewwindow.cpp:227
 #, kde-format
 msgctxt "Page (number) of (total)"
 msgid "Page %1 of %2"
 msgstr "第 %1 頁，共 %2 頁"
 
-#: part/simpleprintingengine.cpp:202
+#: part/simpleprintingengine.cpp:192
 #, kde-format
 msgid "Page %1"
 msgstr "第 %1 頁"
 
-#: part/simpleprintingpagesetup.cpp:99
+#: part/simpleprintingpagesetup.cpp:85
 #, kde-format
 msgid "Print Preview..."
 msgstr "預覽列印..."
 
-#: part/simpleprintingpagesetup.cpp:102
+#: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font..."
 msgstr "字型…"
 
-#: part/simpleprintingpagesetup.cpp:103
+#: part/simpleprintingpagesetup.cpp:89
 #, kde-format
 msgid "Changes font for title text."
 msgstr "改變標題文字的字型。"
 
-#: part/simpleprintingpagesetup.cpp:109
+#: part/simpleprintingpagesetup.cpp:95
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
 msgstr "<qt><h2>列印圖形 %1 的頁面設定</h2></qt>"
 
-#: part/simpleprintingpagesetup.cpp:114
+#: part/simpleprintingpagesetup.cpp:100
 #, kde-format
 msgid "Saves settings for this setup as default."
 msgstr "儲存此設定做為預設值。"
 
-#: part/simpleprintingpagesetup.cpp:117
+#: part/simpleprintingpagesetup.cpp:103
 #, kde-format
 msgid "Adds date and time to the header."
 msgstr "將日期與時間加入標頭。"
 
-#: part/simpleprintingpagesetup.cpp:118
+#: part/simpleprintingpagesetup.cpp:104
 #, kde-format
 msgid "Adds page numbers to the footer."
 msgstr "新增頁碼到註腳。"
 
-#: part/simpleprintingpagesetup.cpp:119
+#: part/simpleprintingpagesetup.cpp:105
 #, kde-format
 msgid "Adds table borders."
 msgstr "新增表格邊框。"
 
-#: part/simpleprintingpagesetup.cpp:127
+#: part/simpleprintingpagesetup.cpp:113
 #, kde-format
 msgid "Change Page Size and Margins..."
 msgstr "變更頁面大小與邊界…"
 
-#: part/simpleprintingpagesetup.cpp:128
+#: part/simpleprintingpagesetup.cpp:114
 #, kde-format
 msgid "Changes page size and margins."
 msgstr "改變頁面大小與邊界。"
 
-#: part/simpleprintingpagesetup.cpp:178
+#: part/simpleprintingpagesetup.cpp:164
 #, kde-format
 msgid "Chosen font looks like this"
 msgstr "選取的字型像這樣"
 
-#: part/simpleprintingpagesetup.cpp:194
+#: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "Portrait"
 msgstr "縱向"
 
-#: part/simpleprintingpagesetup.cpp:194
+#: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "Landscape"
 msgstr "橫向"
 
-#: part/simpleprintingpagesetup.cpp:194
+#: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "margins:"
 msgstr "邊界："
@@ -1131,22 +1131,22 @@ msgstr ""
 msgid "Related actions:"
 msgstr "相關動作："
 
-#: part/simpleprintpreviewwindow.cpp:68
+#: part/simpleprintpreviewwindow.cpp:58
 #, kde-format
 msgid "%1 - Print Preview - %2"
 msgstr "%1─預覽列印─%2"
 
-#: part/simpleprintpreviewwindow.cpp:83
+#: part/simpleprintpreviewwindow.cpp:73
 #, kde-format
 msgid "&Page setup"
 msgstr "頁面設定(&P)"
 
-#: part/simpleprintpreviewwindow.cpp:122
+#: part/simpleprintpreviewwindow.cpp:112
 #, kde-format
 msgid "Previous Page"
 msgstr "前一頁"
 
-#: part/simpleprintpreviewwindow.cpp:132
+#: part/simpleprintpreviewwindow.cpp:122
 #, kde-format
 msgid "Next Page"
 msgstr "下一頁"

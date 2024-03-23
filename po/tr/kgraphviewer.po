@@ -6,13 +6,13 @@
 # Engin Çağatay <engincagatay@yahoo.com>, 2006.
 # obsoleteman <tulliana@gmail.com>, 2008-2009,2012.
 # Volkan Gezer <volkangezer@gmail.com>, 2013.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-22 01:35+0000\n"
-"PO-Revision-Date: 2023-08-31 19:35+0300\n"
+"POT-Creation-Date: 2024-03-23 01:36+0000\n"
+"PO-Revision-Date: 2024-03-22 15:49+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.11.70\n"
+"X-Generator: Lokalize 24.02.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -32,107 +32,107 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "dellpardus@hotmail.com"
 
-#: kgrapheditor.cpp:129 kgraphviewer.cpp:113
+#: kgrapheditor.cpp:126 kgraphviewer.cpp:107
 #, kde-format
 msgid "Session Restore"
 msgstr "Oturum Geri Yüklemesi"
 
-#: kgrapheditor.cpp:129
+#: kgrapheditor.cpp:126
 #, kde-format
 msgid "Do you want to reload files from previous session?"
 msgstr "Dosyaları önceki oturumdan yüklemek ister misiniz?"
 
-#: kgrapheditor.cpp:149
+#: kgrapheditor.cpp:146
 #, kde-format
 msgid "Unable to start"
 msgstr "Başlatılamadı"
 
-#: kgrapheditor.cpp:149 kgraphviewer.cpp:139
+#: kgrapheditor.cpp:146 kgraphviewer.cpp:133
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "K Grafik Görüntüleyicisi parçası bulunamadı."
 
-#: kgrapheditor.cpp:230 kgraphviewer.cpp:219
+#: kgrapheditor.cpp:227 kgraphviewer.cpp:213
 #, kde-format
 msgid "Closes the current file"
 msgstr "Geçerli dosyayı kapatır"
 
-#: kgrapheditor.cpp:241
+#: kgrapheditor.cpp:238
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "Yeni bir Zirve Oluştur"
 
-#: kgrapheditor.cpp:246
+#: kgrapheditor.cpp:243
 #, kde-format
 msgid "Create a New Edge"
 msgstr "Yeni bir Kenar Oluştur"
 
-#: kgrapheditor.cpp:501
+#: kgrapheditor.cpp:498
 #, kde-format
 msgid "Save current graph"
-msgstr "Geçerli grafı kaydet"
+msgstr "Geçerli grafiği kaydet"
 
-#: kgrapheditorConfigDialog.cpp:60 kgraphviewerConfigDialog.cpp:71
+#: kgrapheditorConfigDialog.cpp:48 kgraphviewerConfigDialog.cpp:55
 #, kde-format
 msgid "Parsing"
 msgstr "Ayrıştırılıyor"
 
-#: kgrapheditorConfigDialog.cpp:61 kgraphviewerConfigDialog.cpp:72
+#: kgrapheditorConfigDialog.cpp:49 kgraphviewerConfigDialog.cpp:56
 #, kde-format
 msgid "Reloading"
 msgstr "Yeniden Yükleniyor"
 
-#: kgrapheditorConfigDialog.cpp:62 kgraphviewerConfigDialog.cpp:73
+#: kgrapheditorConfigDialog.cpp:50 kgraphviewerConfigDialog.cpp:57
 #, kde-format
 msgid "Opening"
 msgstr "Açılıyor"
 
-#: kgrapheditorConfigDialog.cpp:63 kgraphviewerConfigDialog.cpp:74
+#: kgrapheditorConfigDialog.cpp:51 kgraphviewerConfigDialog.cpp:58
 #, kde-format
 msgid "Session Management"
 msgstr "Oturum Yönetimi"
 
-#: KGraphEditorElementTreeWidget.cpp:49 KGraphEditorNodesTreeWidget.cpp:54
+#: KGraphEditorElementTreeWidget.cpp:50 KGraphEditorNodesTreeWidget.cpp:54
 #, kde-format
 msgid "Add a new attribute"
 msgstr "Yeni nitelik ekle"
 
-#: KGraphEditorElementTreeWidget.cpp:55 KGraphEditorNodesTreeWidget.cpp:60
+#: KGraphEditorElementTreeWidget.cpp:56 KGraphEditorNodesTreeWidget.cpp:60
 #, kde-format
 msgid "Remove this attribute"
 msgstr "Bu niteliği kaldır"
 
-#: kgrapheditormain.cpp:46
+#: kgrapheditormain.cpp:38
 #, kde-format
 msgid "KGraphEditor"
 msgstr "KGraphEditor"
 
-#: kgrapheditormain.cpp:46
+#: kgrapheditormain.cpp:38
 #, kde-format
 msgid "A Graphviz DOT graph editor by KDE"
-msgstr "KDE'den Graphviz DOT graf görüntüleyicisi"
+msgstr "KDE’den Graphviz DOT grafiği düzenleyicisi"
 
-#: kgrapheditormain.cpp:46 main.cpp:53
+#: kgrapheditormain.cpp:38 main.cpp:46
 #, kde-format
 msgid "(C) 2005-2010 Gaël de Chalendar"
-msgstr "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005–2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:50 main.cpp:62
 #, kde-format
 msgid "Path or URL to scan"
 msgstr "Taramak için yol ya da URL"
 
-#: kgrapheditormain.cpp:58 main.cpp:69
+#: kgrapheditormain.cpp:50 main.cpp:62
 #, kde-format
 msgid "[url]"
 msgstr "[url]"
 
-#: kgrapheditormain.cpp:83 main.cpp:94
+#: kgrapheditormain.cpp:75 main.cpp:87
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "Yeni doğrulama penceresinde açılıyor"
 
-#: kgrapheditormain.cpp:83
+#: kgrapheditormain.cpp:75
 #, kde-format
 msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
@@ -149,7 +149,7 @@ msgstr "Bu düğümü kaldır"
 #: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
 #, kde-format
 msgid "The answer to the question 'File modified, do you want to reload it'"
-msgstr "'Dosya değiştirildi, yeniden yüklemek istiyor musunuz?' sorusuna yanıt"
+msgstr "“Dosya değiştirildi, yeniden yüklemek istiyor musunuz?” sorusuna yanıt"
 
 #. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
@@ -168,8 +168,8 @@ msgid ""
 "The answer to the question 'If another window already exist when launching "
 "kgraphviewer, should we open in it, open a new window or ask?'"
 msgstr ""
-"'Kgraphviewer başlatılırken, başka bir pencerede zaten açıksa açık olan "
-"pencerede mi açılsın yoksa yeni bir pencerede mi açılsın?' sorusuna yanıt"
+"“Kgraphviewer başlatılırken, başka bir pencerede zaten açıksa açık olan "
+"pencerede mi açılsın yoksa yeni bir pencerede mi açılsın?” sorusuna yanıt"
 
 #. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
@@ -178,7 +178,7 @@ msgid ""
 "The answer to the question 'Should the files that were opened in previous "
 "sessions be reopened at startup?'"
 msgstr ""
-"'Daha önceki oturumlarda açılan dosyalar başlangıçta yeniden açılsın mı?' "
+"“Daha önceki oturumlarda açılan dosyalar başlangıçta yeniden açılsın mı?” "
 "sorusuna yanıt"
 
 #. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
@@ -192,7 +192,7 @@ msgstr "Eğer doğru ise, gerektiğinde kuş bakışı görünüm gösterilecek.
 #: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
 #, kde-format
 msgid "The list of files that were opened in past instances of kgraphviewer"
-msgstr "Kgraphviewer'ın önceki oturumlarında açılan dosyaların listesi"
+msgstr "Kgraphviewer’ın önceki oturumlarında açılan dosyaların listesi"
 
 #. i18n: ectx: ToolBar (viewToolBar)
 #: kgrapheditorui.rc:23 kgraphviewerui.rc:17
@@ -212,35 +212,35 @@ msgstr "Yardım Araç Çubuğu"
 msgid "Edit Toolbar"
 msgstr "Düzenleme Araç Çubuğu"
 
-#: kgraphviewer.cpp:112
+#: kgraphviewer.cpp:106
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
 msgstr "Dosyaları önceki oturumdan yüklemek ister misiniz?"
 
-#: kgraphviewer.cpp:114
+#: kgraphviewer.cpp:108
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "Yeniden Yükle"
 
-#: kgraphviewer.cpp:115
+#: kgraphviewer.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr "Yeniden Yükleme"
 
-#: kgraphviewer.cpp:206
+#: kgraphviewer.cpp:200
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "Yeni ve boş bir K Grafik Görüntüleyicisi penceresi açar."
 
-#: kgraphviewer.cpp:209
+#: kgraphviewer.cpp:203
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 "Açılacak Graphviz DOT dosyasını seçmek için dosya açma penceresini gösterir."
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:207
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -249,27 +249,27 @@ msgstr ""
 "Son zamanlarda açılan dosyaları sıralar ve onları kolaylıkla yeniden "
 "açabilmenizi sağlar."
 
-#: kgraphviewer.cpp:223
+#: kgraphviewer.cpp:217
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "K Grafik Görüntüleyicisi uygulamasından çıkar."
 
-#: kgraphviewer.cpp:226
+#: kgraphviewer.cpp:220
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "Durum çubuğunu gösterir ya da gizler."
 
-#: kgraphviewer.cpp:229
+#: kgraphviewer.cpp:223
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "Araç çubuğu yapılandırması."
 
-#: kgraphviewer.cpp:232
+#: kgraphviewer.cpp:226
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "Ana K Grafik Görüntüleyicisi yapılandırma seçenekleri."
 
-#: kgraphviewerConfigDialog.cpp:70
+#: kgraphviewerConfigDialog.cpp:54
 #, kde-format
 msgid "Appearance"
 msgstr "Görünüş"
@@ -280,197 +280,197 @@ msgstr "Görünüş"
 msgid "Background color of the graph view."
 msgstr "Grafik görünümünün arka plan rengi."
 
-#: main.cpp:49
+#: main.cpp:42
 #, kde-format
 msgid "KGraphViewer"
 msgstr "K Grafik Görüntüleyicisi"
 
-#: main.cpp:51
+#: main.cpp:44
 #, kde-format
 msgid "A Graphviz DOT graph viewer"
 msgstr "Graphviz DOT graf görüntüleyicisi"
 
-#: main.cpp:56
+#: main.cpp:49
 #, kde-format
 msgid "Gaël de Chalendar"
 msgstr "Gaël de Chalendar"
 
-#: main.cpp:56
+#: main.cpp:49
 #, kde-format
 msgid "Original Author and current maintainer"
-msgstr "Asıl Yazar ve mevcut yürüten"
+msgstr "Özgün yazar ve şu anki bakımcı"
 
-#: main.cpp:57
+#: main.cpp:50
 #, kde-format
 msgid "Reimar Döffinger"
 msgstr "Reimar Döffinger"
 
-#: main.cpp:57 main.cpp:58 main.cpp:59 main.cpp:60
+#: main.cpp:50 main.cpp:51 main.cpp:52 main.cpp:53
 #, kde-format
 msgid "Contributor"
 msgstr "Katkıda bulunan"
 
-#: main.cpp:58
+#: main.cpp:51
 #, kde-format
 msgid "Matthias Peinhardt"
 msgstr "Matthias Peinhardt"
 
-#: main.cpp:59
+#: main.cpp:52
 #, kde-format
 msgid "Sandro Andrade"
 msgstr "Sandro Andrade"
 
-#: main.cpp:60
+#: main.cpp:53
 #, kde-format
 msgid "Milian Wolff"
 msgstr "Milian Wolff"
 
-#: main.cpp:61
+#: main.cpp:54
 #, kde-format
 msgid "Martin Sandsmark"
 msgstr "Martin Sandsmark"
 
-#: main.cpp:61
+#: main.cpp:54
 #, kde-format
 msgid "Port to KF5"
-msgstr "KF5'e Geç"
+msgstr "KF5’e geçiş"
 
-#: main.cpp:94
+#: main.cpp:87
 #, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
 "in the existing window?"
 msgstr ""
-"Bir K Grafik Görüntüleyicisi pencersiz zaten açık, bu dosyayı mevcut "
+"Bir K Grafik Görüntüleyicisi pencersiz zaten açık, bu dosyayı var olan "
 "pencerede nerede açmak istersiniz?"
 
-#: part/canvasedge.cpp:74
+#: part/canvasedge.cpp:70
 #, kde-format
 msgid ""
 "%1 -> %2\n"
 "label='%3'"
 msgstr ""
-"%1 -> %2\n"
-"etiket='%3'"
+"%1 → %2\n"
+"etiket=“%3”"
 
-#: part/canvasedge.cpp:78
+#: part/canvasedge.cpp:74
 #, kde-format
 msgid "Remove selected edge(s)"
 msgstr "Seçili kenar(lar)ı sil"
 
-#: part/canvaselement.cpp:92
+#: part/canvaselement.cpp:87
 #, kde-format
 msgid "Remove selected element(s)"
 msgstr "Seçili ögeleri sil"
 
-#: part/canvasnode.cpp:64
+#: part/canvasnode.cpp:51
 #, kde-format
 msgid ""
 "id='%1'\n"
 "label='%2'"
 msgstr ""
-"kimlik='%1'\n"
-"etiket='%2'"
+"kimlik=“%1”\n"
+"etiket=“%2”"
 
-#: part/dotgraph.cpp:265 part/dotgraph.cpp:268 part/dotgraph.cpp:271
-#: part/dotgraph.cpp:274 part/dotgraph.cpp:277 part/dotgraph.cpp:280
+#: part/dotgraph.cpp:260 part/dotgraph.cpp:263 part/dotgraph.cpp:266
+#: part/dotgraph.cpp:269 part/dotgraph.cpp:272 part/dotgraph.cpp:275
 #, kde-format
 msgid "Layout process failed"
 msgstr "Düzen oluşturulamadı"
 
-#: part/dotgraph.cpp:265
+#: part/dotgraph.cpp:260
 #, kde-format
 msgid "Unable to start %1."
 msgstr "%1 başlatılamadı."
 
-#: part/dotgraph.cpp:268
+#: part/dotgraph.cpp:263
 #, kde-format
 msgid "%1 crashed."
 msgstr "%1 çöktü."
 
-#: part/dotgraph.cpp:271
+#: part/dotgraph.cpp:266
 #, kde-format
 msgid "%1 timed out."
 msgstr "%1 zaman aşımına uğradı."
 
-#: part/dotgraph.cpp:274
+#: part/dotgraph.cpp:269
 #, kde-format
 msgid "Was not able to write data to the %1 process."
 msgstr "%1 işlemine veri yazılamıyor."
 
-#: part/dotgraph.cpp:277
+#: part/dotgraph.cpp:272
 #, kde-format
 msgid "Was not able to read data from the %1 process."
 msgstr "%1 işleminden veri okunamıyor."
 
-#: part/dotgraph.cpp:280
+#: part/dotgraph.cpp:275
 #, kde-format
 msgid "Unknown error running %1."
 msgstr "%1 çalıştırılırken bilinmeyen bir hata oluştu."
 
-#: part/dotgraphview.cpp:420
+#: part/dotgraphview.cpp:410
 #, kde-format
 msgid "Select Layout Algo"
 msgstr "Düzen Algoritmasını Seç"
 
-#: part/dotgraphview.cpp:423
+#: part/dotgraphview.cpp:413
 #, kde-format
 msgid "Dot"
 msgstr "Dot"
 
-#: part/dotgraphview.cpp:424
+#: part/dotgraphview.cpp:414
 #, kde-format
 msgid "Layout the graph using the dot program."
-msgstr "dot programı ile grafı düzenle."
+msgstr "dot programı ile grafiği düzenleyin."
 
-#: part/dotgraphview.cpp:428
+#: part/dotgraphview.cpp:418
 #, kde-format
 msgid "Neato"
 msgstr "Neato"
 
-#: part/dotgraphview.cpp:429
+#: part/dotgraphview.cpp:419
 #, kde-format
 msgid "Layout the graph using the neato program."
-msgstr "neato programı ile grafı düzenle."
+msgstr "neato programı ile grafiği düzenleyin."
 
-#: part/dotgraphview.cpp:433
+#: part/dotgraphview.cpp:423
 #, kde-format
 msgid "Twopi"
 msgstr "Twopi"
 
-#: part/dotgraphview.cpp:434
+#: part/dotgraphview.cpp:424
 #, kde-format
 msgid "Layout the graph using the twopi program."
-msgstr "twopi programı ile grafı düzenle."
+msgstr "twopi programı ile grafiği düzenleyin."
 
-#: part/dotgraphview.cpp:438
+#: part/dotgraphview.cpp:428
 #, kde-format
 msgid "Fdp"
 msgstr "Fdp"
 
-#: part/dotgraphview.cpp:439
+#: part/dotgraphview.cpp:429
 #, kde-format
 msgid "Layout the graph using the fdp program."
-msgstr "fdp programı ile grafı düzenle."
+msgstr "fdp programı ile grafiği düzenleyin."
 
-#: part/dotgraphview.cpp:443
+#: part/dotgraphview.cpp:433
 #, kde-format
 msgid "Circo"
 msgstr "Circo"
 
-#: part/dotgraphview.cpp:444
+#: part/dotgraphview.cpp:434
 #, kde-format
 msgid "Layout the graph using the circo program."
-msgstr "circo programı ile grafı düzenle."
+msgstr "circo programı ile grafiği düzenleyin."
 
-#: part/dotgraphview.cpp:456
+#: part/dotgraphview.cpp:446
 #, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr ""
 "Graphviz yerleşim algoritmasını seçin ya da sahip olduğunuz bir tanesini "
 "düzenleyin."
 
-#: part/dotgraphview.cpp:458
+#: part/dotgraphview.cpp:448
 #, kde-format
 msgid ""
 "Choose a Graphviz layout algorithm or type in your own command that will "
@@ -478,22 +478,22 @@ msgid ""
 "manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
 "Gname=MyGraphName -Txdot </tt>"
 msgstr ""
-"Bir Graphviz yerleşim algoritması seçin ya da standart çıktısı xdot formatı "
-"olan ve bir graf üretecek olan kendi komutunuzu yazın. Örneğin, elle <tt>G</"
-"tt> parametresini dot komutuna vermek için, <tt> dot -Gname=BenimGrafAdim -"
-"Txdot</tt> yazabilirsiniz."
+"Bir Graphviz yerleşim algoritması seçin veya standart çıktısı xdot biçimi "
+"olan ve bir grafik üretecek olan kendi komutunuzu yazın. Örneğin, elle "
+"<tt>G</tt> parametresini dot komutuna vermek için, <tt> dot -"
+"Gname=BenimGrafAdim -Txdot</tt> yazabilirsiniz."
 
-#: part/dotgraphview.cpp:464
+#: part/dotgraphview.cpp:454
 #, kde-format
 msgid "Layout"
 msgstr "Düzen"
 
-#: part/dotgraphview.cpp:466
+#: part/dotgraphview.cpp:456
 #, kde-format
 msgid "Specify layout command"
 msgstr "Düzen komutunu belirtin"
 
-#: part/dotgraphview.cpp:467
+#: part/dotgraphview.cpp:457
 #, kde-format
 msgid ""
 "Specify yourself the layout command to use. Given a dot file, it should "
@@ -502,149 +502,148 @@ msgstr ""
 "Kullanılacak yerleşim komutunuzu belirtin. Verilen dot dosyası üzerine "
 "standart çıktıda xdot dosyası üretmelidir."
 
-#: part/dotgraphview.cpp:468
+#: part/dotgraphview.cpp:458
 #, kde-format
 msgid "Reset layout command to default"
 msgstr "Düzen komutunu öntanımlı hale döndür"
 
-#: part/dotgraphview.cpp:469
+#: part/dotgraphview.cpp:459
 #, kde-format
 msgid ""
 "Resets the layout command to use to the default depending on the graph type "
 "(directed or not)."
 msgstr ""
-"Graf tipine bağlı olarak öntanımlı kullanılacak yerleşim komutunu sıfırlar "
-"(doğrudan ya da değil)."
+"Grafik tipine bağlı olarak öntanımlı kullanılacak yerleşim komutunu sıfırlar "
+"(doğrudan veya değil)."
 
-#: part/dotgraphview.cpp:471
+#: part/dotgraphview.cpp:461
 #, kde-format
 msgid "Zoom In"
 msgstr "Yakınlaştır"
 
-#: part/dotgraphview.cpp:472
+#: part/dotgraphview.cpp:462
 #, kde-format
 msgid "Zoom Out"
 msgstr "Uzaklaştır"
 
-#: part/dotgraphview.cpp:476
+#: part/dotgraphview.cpp:466
 #, kde-format
 msgid "Export Graph"
 msgstr "Grafiği Dışa Aktar"
 
-#: part/dotgraphview.cpp:478
+#: part/dotgraphview.cpp:468
 #, kde-format
 msgid "Allows the graph to be exported in another format."
-msgstr "Grafın başka bir formatta dışa aktarılmazına izin verir."
+msgstr "Grafiğin başka bir biçimde dışa aktarılmazına izin verir."
 
-#: part/dotgraphview.cpp:480
+#: part/dotgraphview.cpp:470
 #, kde-format
 msgid ""
 "Use the Export Graph menu to export the graph in another format. There is "
 "currently only one export format supported: as a PNG image."
 msgstr ""
-"Grafı başka bir formatta dışa aktarmak için Graf Dışa Aktar menüsünü "
-"kullanın. Mevcutta yalnızca bir dışa aktarma formatı destekleniyor: PNG "
-"resim."
+"Grafiği başka bir biçimde dışa aktarmak için Grafik Dışa Aktar menüsünü "
+"kullanın. Şu an yalnızca bir dışa aktarma biçimi destekleniyor: PNG görseli."
 
-#: part/dotgraphview.cpp:484
+#: part/dotgraphview.cpp:474
 #, kde-format
 msgid "As Image..."
-msgstr "Resim Olarak..."
+msgstr "Görsel Olarak…"
 
-#: part/dotgraphview.cpp:485
+#: part/dotgraphview.cpp:475
 #, kde-format
 msgid "Export the graph to an image file."
-msgstr "Grafı bir resim dosyasına aktar."
+msgstr "Grafiği bir görsel dosyasına dışa aktarın."
 
-#: part/dotgraphview.cpp:493
+#: part/dotgraphview.cpp:483
 #, kde-format
 msgid "Enable Bird's-eye View"
 msgstr "Kuş Bakışı Görünümünü Aç"
 
-#: part/dotgraphview.cpp:496
+#: part/dotgraphview.cpp:487
 #, kde-format
 msgid "Enables or disables the Bird's-eye View"
 msgstr "Kuş bakışı görünümü etkinleştirir ya da kapatır"
 
-#: part/dotgraphview.cpp:501
+#: part/dotgraphview.cpp:492
 #, kde-format
 msgid "Birds-eye View"
 msgstr "Kuşbakışı Görünümü"
 
-#: part/dotgraphview.cpp:502
+#: part/dotgraphview.cpp:493
 #, kde-format
 msgid "Allows the Bird's-eye View to be setup."
 msgstr "Kuş bakışı görünümün ayarlanabilmesine izin verir."
 
-#: part/dotgraphview.cpp:506
+#: part/dotgraphview.cpp:497
 #, kde-format
 msgid "Top Left"
 msgstr "Üst Sol"
 
-#: part/dotgraphview.cpp:507
+#: part/dotgraphview.cpp:498
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Kuş bakışı görünümü sol üst köşeye koyar."
 
-#: part/dotgraphview.cpp:511
+#: part/dotgraphview.cpp:502
 #, kde-format
 msgid "Top Right"
 msgstr "Üst Sağ"
 
-#: part/dotgraphview.cpp:512
+#: part/dotgraphview.cpp:503
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Kuş bakışı görünümü sağ üst köşeye koyar."
 
-#: part/dotgraphview.cpp:516
+#: part/dotgraphview.cpp:507
 #, kde-format
 msgid "Bottom Left"
 msgstr "Alt Sol"
 
-#: part/dotgraphview.cpp:517
+#: part/dotgraphview.cpp:508
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Kuş bakışı görünümü sol alt köşeye koyar."
 
-#: part/dotgraphview.cpp:521
+#: part/dotgraphview.cpp:512
 #, kde-format
 msgid "Bottom Right"
 msgstr "Alt Sağ"
 
-#: part/dotgraphview.cpp:522
+#: part/dotgraphview.cpp:513
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Sağ alt köşeye Kuş bakışı Görünümü koyar."
 
-#: part/dotgraphview.cpp:526
+#: part/dotgraphview.cpp:517
 #, kde-format
 msgid "Automatic"
 msgstr "Otomatik"
 
-#: part/dotgraphview.cpp:527
+#: part/dotgraphview.cpp:518
 #, kde-format
 msgid ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
 msgstr ""
-"K Grafik Görüntüleyicisi'nin kuşbakışı görünümün konumunu otomatik seçmesine "
-"izin verin."
+"K Grafik Görüntüleyicisi’nin kuşbakışı görünümün konumunu kendiliğinden "
+"seçmesine izin verin."
 
-#: part/dotgraphview.cpp:574
+#: part/dotgraphview.cpp:565
 #, kde-format
 msgid "Select file"
 msgstr "Dosya seç"
 
-#: part/dotgraphview.cpp:588
+#: part/dotgraphview.cpp:579
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer"
 msgstr "K Grafik Görüntüleyicisi tarafında üretilmiş Graf SVG"
 
-#: part/dotgraphview.cpp:589
+#: part/dotgraphview.cpp:580
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer."
 msgstr "K Grafik Görüntüleyicisi tarafında üretilmiş Graf SVG."
 
-#: part/dotgraphview.cpp:636
+#: part/dotgraphview.cpp:627
 #, kde-format
 msgid ""
 "<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
@@ -662,9 +661,9 @@ msgid ""
 "<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
 "printing options.</li></ul>"
 msgstr ""
-"<H1>Graphviz DOT biçimi graf görselleştirme</h1><p>Graf araç takımı "
+"<H1>Graphviz DOT biçimi grafik görselleştirmesi</h1><p>Grafik araç takımı "
 "alanından büyükse bir kenarda genel bakış panosu gösterilir. Bu genellemenin "
-"en uygun konumu otomatik olarak hesaplanacaksa veya istediğiniz yere "
+"en uygun konumu kendiliğinden hesaplanacaksa veya istediğiniz yere "
 "koyarsanız bağlam menüsü üzerinden seçim yapın.</p><h2>Bununla nasıl "
 "çalışılsın?</h2><ul><li> Grafı taşımak için şunları yapabilirsiniz:  "
 "<ul><li>tıklayıp sürükleyebilirsiniz</li><li>kaldırıcıları kullanın</"
@@ -675,31 +674,31 @@ msgstr ""
 "uzaklaştırma araç çubuğu düğmelerini kullanabilir veya farenizin tekerleğini "
 "çevirirken <Üst Karakter> düğmesine basabilirsiniz.</li><li>Bağlam menüsünü "
 "deneyin (genellikle sağ tık ile)</li><li>Yazdırma seçeneklerini keşfetmek "
-"için <tt>Baskı önizleme</tt> veya <tt>Sayfa Ayarı </tt>düğmelerini deneyin.</"
-"li></ul>"
+"için <tt>Yazdırma Önizlemesi</tt> veya <tt>Sayfa Ayarı </tt>düğmelerini "
+"deneyin.</li></ul>"
 
-#: part/dotgraphview.cpp:789
+#: part/dotgraphview.cpp:780
 #, kde-format
 msgid "no graph loaded"
 msgstr "yüklenmiş grafik yok"
 
-#: part/dotgraphview.cpp:905 part/dotgraphview.cpp:926
-#: part/dotgraphview.cpp:973
+#: part/dotgraphview.cpp:896 part/dotgraphview.cpp:917
+#: part/dotgraphview.cpp:964
 #, kde-format
 msgid "graph %1 is getting loaded..."
-msgstr "graf %1 yükleniyor..."
+msgstr "%1 grafiği yükleniyor…"
 
-#: part/dotgraphview.cpp:913
+#: part/dotgraphview.cpp:904
 #, kde-format
 msgid "error parsing file %1"
 msgstr "%1 dosyası ayrıştırılırken hata"
 
-#: part/dotgraphview.cpp:1625
+#: part/dotgraphview.cpp:1616
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "Yeniden Yükleme Doğrulaması"
 
-#: part/dotgraphview.cpp:1625
+#: part/dotgraphview.cpp:1616
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
@@ -708,59 +707,59 @@ msgstr ""
 "%1 dosyası diskte değiştirildi.\n"
 "Dosyayı yeniden yüklemek ister misiniz?"
 
-#: part/dotgraphview.cpp:1711
+#: part/dotgraphview.cpp:1702
 #, kde-format
 msgid "Layout Command"
 msgstr "Düzen Komutu"
 
-#: part/dotgraphview.cpp:1712
+#: part/dotgraphview.cpp:1703
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
 "The command MUST write its results on stdout in xdot format."
 msgstr ""
 "Grafiğin düzeni için kullanılacak komutu burada belirtin.\n"
-"Komut sonuçlarını stdout'a xdot biçiminde yazmalıdır."
+"Komut sonuçlarını stdout’a xdot biçiminde yazmalıdır."
 
-#: part/dotgraphview.cpp:2165
+#: part/dotgraphview.cpp:2156
 #, kde-format
 msgid "Failed to open %1"
 msgstr "%1 açılamadı"
 
-#: part/kgraphviewer_part.cpp:108
+#: part/kgraphviewer_part.cpp:97
 #, kde-format
 msgid "Print the graph using current page setup settings"
-msgstr "Grafiği mevcut sayfa ayarlarıyla yazdır"
+msgstr "Grafiği geçerli sayfa ayarlarıyla yazdır"
 
-#: part/kgraphviewer_part.cpp:112
+#: part/kgraphviewer_part.cpp:101
 #, kde-format
 msgid "Open the print preview window"
 msgstr "Yazdırma önizlemesi penceresini aç"
 
-#: part/kgraphviewer_part.cpp:116
+#: part/kgraphviewer_part.cpp:105
 #, kde-format
 msgid "Page setup"
 msgstr "Sayfa düzeni"
 
-#: part/kgraphviewer_part.cpp:117
+#: part/kgraphviewer_part.cpp:106
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr "Grafik yazdırmasını yapılandırmak üzere Sayfa Yapısı penceresini açar"
 
-#: part/kgraphviewer_part.cpp:120
+#: part/kgraphviewer_part.cpp:109
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "Geçerli grafiği dosyadan geri yükle"
 
-#: part/kgraphviewer_part.cpp:125
+#: part/kgraphviewer_part.cpp:114
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
-msgstr "Mevcut görüntülenen grafa % 10 yakınlaştır"
+msgstr "Şu anda görüntülenen grafiğe %​10 yakınlaştır"
 
-#: part/kgraphviewer_part.cpp:130
+#: part/kgraphviewer_part.cpp:119
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
-msgstr "Mevcut görüntülenen grafa % 10 uzaklaştır"
+msgstr "Şu anda görüntülenen grafikten %​10 uzaklaştır"
 
 #. i18n: ectx: Menu (file)
 #: part/kgraphviewer_part.rc:4
@@ -774,12 +773,12 @@ msgstr "&Dosya"
 msgid "&View"
 msgstr "&Görünüm"
 
-#: part/KgvPageLayout.cpp:70
+#: part/KgvPageLayout.cpp:69
 msgctxt "Page size"
 msgid "Screen"
 msgstr "Ekran"
 
-#: part/KgvPageLayout.cpp:71
+#: part/KgvPageLayout.cpp:70
 msgctxt "Page size"
 msgid "Custom"
 msgstr "Özel"
@@ -796,12 +795,12 @@ msgstr "Sütunlar:"
 msgid "Column spacing:"
 msgstr "Sütun boşluğu:"
 
-#: part/KgvPageLayoutDia.cpp:62
+#: part/KgvPageLayoutDia.cpp:53
 #, kde-format
 msgid "Page Preview"
 msgstr "Sayfa Önizlemesi"
 
-#: part/KgvPageLayoutDia.cpp:277
+#: part/KgvPageLayoutDia.cpp:268
 #, kde-format
 msgid "Page Size & Margins"
 msgstr "Sayfa Boyutu ve Kenar Boşlukları"
@@ -866,123 +865,123 @@ msgstr "Dipnot / Son not"
 msgid "Spacing between footnote and body:"
 msgstr "Dipnot ve gövde arasında boşluk:"
 
-#: part/KgvPageLayoutSize.cpp:62
+#: part/KgvPageLayoutSize.cpp:58
 #, kde-format
 msgid "Unit:"
 msgstr "Birim:"
 
-#: part/KgvPageLayoutSize.cpp:75
+#: part/KgvPageLayoutSize.cpp:71
 #, kde-format
 msgid "All values are given in %1."
 msgstr "Bütün değerler %1 içerisinde verilmiştir."
 
-#: part/KgvPageLayoutSize.cpp:80
+#: part/KgvPageLayoutSize.cpp:76
 #, kde-format
 msgid "Page Size"
 msgstr "Sayfa Boyutu"
 
-#: part/KgvPageLayoutSize.cpp:89
+#: part/KgvPageLayoutSize.cpp:85
 #, kde-format
 msgid "&Size:"
 msgstr "&Boyut:"
 
-#: part/KgvPageLayoutSize.cpp:110
+#: part/KgvPageLayoutSize.cpp:106
 #, kde-format
 msgid "&Width:"
 msgstr "&Genişlik:"
 
-#: part/KgvPageLayoutSize.cpp:121
+#: part/KgvPageLayoutSize.cpp:117
 #, kde-format
 msgid "&Height:"
 msgstr "&Yükseklik:"
 
-#: part/KgvPageLayoutSize.cpp:135
+#: part/KgvPageLayoutSize.cpp:131
 #, kde-format
 msgid "Orientation"
 msgstr "Yönelim"
 
-#: part/KgvPageLayoutSize.cpp:139
+#: part/KgvPageLayoutSize.cpp:135
 #, kde-format
 msgid "&Portrait"
 msgstr "&Dikey"
 
-#: part/KgvPageLayoutSize.cpp:143
+#: part/KgvPageLayoutSize.cpp:139
 #, kde-format
 msgid "La&ndscape"
 msgstr "&Yatay"
 
-#: part/KgvPageLayoutSize.cpp:151
+#: part/KgvPageLayoutSize.cpp:147
 #, kde-format
 msgid "Margins"
 msgstr "Kenar Boşlukları"
 
-#: part/KgvPageLayoutSize.cpp:374 part/KgvPageLayoutSize.cpp:378
+#: part/KgvPageLayoutSize.cpp:370 part/KgvPageLayoutSize.cpp:374
 #, kde-format
 msgid "Page Layout Problem"
 msgstr "Sayfa Yerleşimi Sorunu"
 
-#: part/KgvPageLayoutSize.cpp:374
+#: part/KgvPageLayoutSize.cpp:370
 #, kde-format
 msgid "The page width is smaller than the left and right margins."
 msgstr "Sayfa genişliği sağ ve sol boşluklardan küçük."
 
-#: part/KgvPageLayoutSize.cpp:378
+#: part/KgvPageLayoutSize.cpp:374
 #, kde-format
 msgid "The page height is smaller than the top and bottom margins."
 msgstr "Sayfa yüksekliği üst ve alt boşluklardan küçük."
 
-#: part/KgvUnit.cpp:51
+#: part/KgvUnit.cpp:52
 #, kde-format
 msgid "Millimeters (mm)"
 msgstr "Milimetre (mm)"
 
-#: part/KgvUnit.cpp:53
+#: part/KgvUnit.cpp:54
 #, kde-format
 msgid "Centimeters (cm)"
 msgstr "Santimetre (cm)"
 
-#: part/KgvUnit.cpp:55
+#: part/KgvUnit.cpp:56
 #, kde-format
 msgid "Decimeters (dm)"
 msgstr "Desimetre (dm)"
 
-#: part/KgvUnit.cpp:57
+#: part/KgvUnit.cpp:58
 #, kde-format
 msgid "Inches (in)"
 msgstr "İnç (in)"
 
-#: part/KgvUnit.cpp:59
+#: part/KgvUnit.cpp:60
 #, kde-format
 msgid "Pica (pi)"
 msgstr "Pica (pi)"
 
-#: part/KgvUnit.cpp:61
+#: part/KgvUnit.cpp:62
 #, kde-format
 msgid "Didot (dd)"
 msgstr "Didot (dd)"
 
-#: part/KgvUnit.cpp:63
+#: part/KgvUnit.cpp:64
 #, kde-format
 msgid "Cicero (cc)"
 msgstr "Cicero (cc)"
 
-#: part/KgvUnit.cpp:65
+#: part/KgvUnit.cpp:66
 #, kde-format
 msgid "Points (pt)"
 msgstr "Nokta (pt)"
 
-#: part/KgvUnit.cpp:67
+#: part/KgvUnit.cpp:68
 #, kde-format
 msgid "Error."
 msgstr "Hata."
 
-#: part/pannerview.cpp:64
+#: part/pannerview.cpp:59
 #, kde-format
 msgid "View of the complete graph. Click and drag to move the visible part."
 msgstr ""
-"Tam grafın görünümü. Görünen bölümü taşımak için tıklayın ve sürükleyin."
+"Tam grafiğin görünümü. Görünen kısmı taşımak için tıklayın ve sürükleyin."
 
-#: part/pannerview.cpp:66
+#: part/pannerview.cpp:61
 #, kde-format
 msgid ""
 "<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
@@ -990,94 +989,93 @@ msgid ""
 "p><p>Clicking and dragging within the red square will cause the view to "
 "follow the movement.</p>"
 msgstr ""
-"<h1>Komple Grafın Görünümü</h1><p>Kırmızı kare olmayan tek bir yere "
-"tıklamak, görünümün merkezini farenin tıklandığı yere taşır.</p><p>Kırmızı "
-"kare içinde tıklama ve sürükleme görünümün hareketi takip etmesine neden "
-"olacaktır.</p>"
+"<h1>Tam Grafiğin Görünümü</h1><p>Kırmızı kare olmayan tek bir yere tıklamak, "
+"görünümün merkezini farenin tıklandığı yere taşır.</p><p>Kırmızı kare içinde "
+"tıklama ve sürükleme görünümün hareketi takip etmesine neden olacaktır.</p>"
 
-#: part/simpleprintingcommand.cpp:97
+#: part/simpleprintingcommand.cpp:78
 #, kde-format
 msgid "Print Preview"
 msgstr "Yazdırma Önizlemesi"
 
-#: part/simpleprintingengine.cpp:200 part/simpleprintpreviewwindow.cpp:219
-#: part/simpleprintpreviewwindow.cpp:237
+#: part/simpleprintingengine.cpp:190 part/simpleprintpreviewwindow.cpp:209
+#: part/simpleprintpreviewwindow.cpp:227
 #, kde-format
 msgctxt "Page (number) of (total)"
 msgid "Page %1 of %2"
 msgstr "%2 sayfanın %1 kadarı"
 
-#: part/simpleprintingengine.cpp:202
+#: part/simpleprintingengine.cpp:192
 #, kde-format
 msgid "Page %1"
 msgstr "Sayfa %1"
 
-#: part/simpleprintingpagesetup.cpp:99
+#: part/simpleprintingpagesetup.cpp:85
 #, kde-format
 msgid "Print Preview..."
-msgstr "Yazdırma Önizlemesi..."
+msgstr "Yazdırma Önizlemesi…"
 
-#: part/simpleprintingpagesetup.cpp:102
+#: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font..."
-msgstr "Yazıtipi..."
+msgstr "Yazıtipi…"
 
-#: part/simpleprintingpagesetup.cpp:103
+#: part/simpleprintingpagesetup.cpp:89
 #, kde-format
 msgid "Changes font for title text."
 msgstr "Başlık metninin yazıtipini değiştirir."
 
-#: part/simpleprintingpagesetup.cpp:109
+#: part/simpleprintingpagesetup.cpp:95
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
-msgstr "<qt><h2>\"%1\" Grafiğinin Yazdırılması için Sayfa Ayarları</h2></qt>"
+msgstr "<qt><h2>“%1” Grafiğinin Yazdırılması için Sayfa Ayarları</h2></qt>"
 
-#: part/simpleprintingpagesetup.cpp:114
+#: part/simpleprintingpagesetup.cpp:100
 #, kde-format
 msgid "Saves settings for this setup as default."
 msgstr "Bu ayarları öntanımlı olarak kaydeder."
 
-#: part/simpleprintingpagesetup.cpp:117
+#: part/simpleprintingpagesetup.cpp:103
 #, kde-format
 msgid "Adds date and time to the header."
 msgstr "Başlığa tarih ve zaman ekler."
 
-#: part/simpleprintingpagesetup.cpp:118
+#: part/simpleprintingpagesetup.cpp:104
 #, kde-format
 msgid "Adds page numbers to the footer."
 msgstr "Dipnota sayfa numarası ekler."
 
-#: part/simpleprintingpagesetup.cpp:119
+#: part/simpleprintingpagesetup.cpp:105
 #, kde-format
 msgid "Adds table borders."
 msgstr "Tablo kenarlıklarını ekler."
 
-#: part/simpleprintingpagesetup.cpp:127
+#: part/simpleprintingpagesetup.cpp:113
 #, kde-format
 msgid "Change Page Size and Margins..."
-msgstr "Sayfa Ölçülerini ve Kenar Aralıklarını Değiştir..."
+msgstr "Sayfa Ölçülerini ve Kenar Aralıklarını Değiştir…"
 
-#: part/simpleprintingpagesetup.cpp:128
+#: part/simpleprintingpagesetup.cpp:114
 #, kde-format
 msgid "Changes page size and margins."
 msgstr "Sayfa ölçülerini ve kenar aralıklarını değiştirir."
 
-#: part/simpleprintingpagesetup.cpp:178
+#: part/simpleprintingpagesetup.cpp:164
 #, kde-format
 msgid "Chosen font looks like this"
 msgstr "Seçilen yazıtipi böyle görünüyor"
 
-#: part/simpleprintingpagesetup.cpp:194
+#: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "Portrait"
 msgstr "Dikey"
 
-#: part/simpleprintingpagesetup.cpp:194
+#: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "Landscape"
 msgstr "Yatay"
 
-#: part/simpleprintingpagesetup.cpp:194
+#: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "margins:"
 msgstr "kenar boşlukları:"
@@ -1138,26 +1136,24 @@ msgstr "B&irkaç sayfaya sığdır"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
-#, fuzzy, kde-format
-#| msgid "Horizontally"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "Yatay olarak"
+msgstr "Yatay olarak:"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
-#, fuzzy, kde-format
-#| msgid "Vertically"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "Dikey olarak"
+msgstr "Dikey olarak:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
 #, kde-format
 msgctxt "@option:check"
 msgid "Preserve aspect ratio:"
-msgstr ""
+msgstr "En–boy oranını koru:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: part/simpleprintingpagesetupbase.ui:228
@@ -1165,22 +1161,22 @@ msgstr ""
 msgid "Related actions:"
 msgstr "İlgili eylemler:"
 
-#: part/simpleprintpreviewwindow.cpp:68
+#: part/simpleprintpreviewwindow.cpp:58
 #, kde-format
 msgid "%1 - Print Preview - %2"
-msgstr "%1 - Yazdırma Önizlemesi - %2"
+msgstr "%1 — Yazdırma Önizlemesi — %2"
 
-#: part/simpleprintpreviewwindow.cpp:83
+#: part/simpleprintpreviewwindow.cpp:73
 #, kde-format
 msgid "&Page setup"
 msgstr "&Sayfa ayarları"
 
-#: part/simpleprintpreviewwindow.cpp:122
+#: part/simpleprintpreviewwindow.cpp:112
 #, kde-format
 msgid "Previous Page"
 msgstr "Önceki Sayfa"
 
-#: part/simpleprintpreviewwindow.cpp:132
+#: part/simpleprintpreviewwindow.cpp:122
 #, kde-format
 msgid "Next Page"
 msgstr "Sonraki Sayfa"
@@ -1201,7 +1197,7 @@ msgstr "Not: Grafiğin kendi arka plan rengi varsa bunun üstüne yazılacaktır
 #: preferencesOpenInExistingWindow.ui:17
 #, kde-format
 msgid "Open in existing window"
-msgstr "Mevcut pencerede aç"
+msgstr "Var olan pencerede aç"
 
 #. i18n: ectx: property (text), widget (QRadioButton, yes)
 #: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
