@@ -1,0 +1,1660 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY graphviz "<application
+><ulink url=&#034;https://www.graphviz.org&#034;
+>Graphviz</ulink
+></application
+>">
+  <!ENTITY boost "<ulink url=&#034;https://www.boost.org&#034;
+>Boost</ulink
+>">
+  <!ENTITY qanava "<application
+>Qanava</application
+>">
+  <!ENTITY kcachegrind "<application
+>KCacheGrind</application
+>"
+> <!--not in kdoctools 5.16-->
+  <!ENTITY dot "<application
+>DOT</application
+>">
+  <!ENTITY neato "<application
+>NEATO</application
+>">
+  <!ENTITY twopi "<application
+>TWOPI</application
+>">
+  <!ENTITY fdp "<application
+>FDP</application
+>">
+  <!ENTITY circo "<application
+>CIRCO</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Slovenian "INCLUDE"
+><!-- change language only here -->
+]>
+
+
+<book id="kgraphviewer" lang="&language;">
+
+<bookinfo>
+<title
+>Priročnik za &kgraphviewer;</title>
+
+<authorgroup>
+<author
+><firstname
+>Gaël</firstname
+> <othername
+></othername
+> <surname
+>de Chalendar</surname
+> <affiliation
+> <address
+><email
+>kleag@free.fr</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Federico</firstname
+> <othername
+></othername
+> <surname
+>Zenith</surname
+> <affiliation
+> <address
+><email
+>federico.zenith@member.fsf.org</email
+></address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Krištof</firstname
+><surname
+>Trček</surname
+><affiliation
+><address
+><email
+>kt91536@student.uni-lj.si</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Gaël de Chalendar</holder>
+</copyright>
+<!-- Translators: put here the copyright notice of the translation -->
+<!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
+     and in the FDL itself on how to use it. -->
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>14.12.2020</date>
+<releaseinfo
+>&kgraphviewer; 2.4.3</releaseinfo>
+
+<abstract>
+<para
+>&kgraphviewer; je &graphviz; &dot; pregledovalnik grafov. Razvit je bil v skupnosti &kde;. Programi, ki jih ustvari &graphviz; so prosta programska oprema za razporeditev grafov. Grafi so pogosto uporabljeni na znanstvenih področjih še posebno v računalništvu. </para>
+<para
+>&kgraphviewer; prikaže grafe v modernem, uporabniku prijaznem &GUI; (grafičnem vmesniku). </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kgraphviewer</keyword>
+<keyword
+>graphviz</keyword>
+<keyword
+>dot</keyword>
+<keyword
+>neato</keyword>
+<keyword
+>viewer</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Uvod</title>
+
+<para
+>&kgraphviewer; je &graphviz; &dot; pregledovalnik grafov. Programi, ki jih ustvari &graphviz; so prosta programska oprema za razporeditev grafov. &kgraphviewer; prikaže grafe v modernem, uporabniku prijaznem &GUI; (grafičnem vmesniku). Ima naslednje lastnosti: <screenshot>
+<screeninfo
+>Tu je posnetek zaslona &kgraphviewer;</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Glavno okno &kgraphviewer;-ja prikazuje enega od primerov &graphviz;-a</phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+<itemizedlist>
+  <listitem
+><para
+>Povečevanje;</para
+></listitem>
+  <listitem
+><para
+>Nalaganje več grafov v zavihkih hkrati;</para
+></listitem>
+  <listitem
+><para
+>Shranjevanje seznama nedavnih datotek;</para
+></listitem>
+  <listitem
+><para
+>Pogled iz ptičje perspektive na graf;</para
+></listitem>
+  <listitem
+><para
+>Premikanje grafa z miško;</para
+></listitem>
+  <listitem
+><para
+>Tiskanje z vsemi lastnostmi;</para
+></listitem>
+  <listitem
+><para
+>Popolno risanje vseh &graphviz;-ovih primerov grafov;</para
+></listitem>
+  <listitem
+><para
+>Podprte so vse barve in oblike vozlišč in povezav;</para
+></listitem>
+  <listitem
+><para
+>Samodejna izbira &dot;-a za usmerjene grafe in &neato;-a za neusmerjene;</para
+></listitem>
+  <listitem
+><para
+>Ročno ali samodejno ponovno nalaganje s potrdilom uporabnika (zunanje) spremenjenih datotek (nastavljivo);</para
+></listitem>
+  <listitem
+><para
+>Na novo odpiranje programa kot novih zavihkov v obstoječem oknu (nastavljivo);</para
+></listitem>
+  <listitem
+><para
+>Sistem pomoči;</para
+></listitem>
+  <listitem
+><para
+>Internacionalizacija.</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Načrtovane funkcije so: <itemizedlist>
+	<listitem
+><para
+>Sčasoma bomo uporabljali knjižnico &qanava;, da podpiramo predstavitev notranjih grafov;</para
+></listitem>
+	<listitem
+><para
+>Shraniti podatke seje o grafih (uporabljen program za razpored, faktor povečave &etc;)</para
+></listitem>
+	<listitem
+><para
+>Integracija v &kate; in &konqueror; (da bo sprememba v &kate;-ovem pogledu na graf ponovno razporedila in naložila datoteko v &kgraphviewer;);</para
+></listitem>
+	<listitem
+><para
+>Meni za odpiranje datoteke v programu &kate; <emphasis
+>ali</emphasis
+> za odpiranje dela katepart v oknu &kgraphviewer;;</para
+></listitem>
+	<listitem
+><para
+>Nalaganje velikih grafov (trenutno se pojavijo težave pri približno 1000 vozliščih in obstaja hek, da program prezre vozlišča čez določeno mejo);</para
+></listitem>
+	<listitem
+><para
+>Progresivna podpora vedno večih &dot; lastnosti in vrednosti;</para
+></listitem>
+	<listitem
+><para
+>Postavitev v ozadju (z nitenjem, da ne blokira vmesnika, z vrstico napredka).</para
+></listitem>
+</itemizedlist
+></para>
+
+<note
+><para
+>Upoštevajte, da ta program vsebuje kodo GPL-jevega orodja &kcachegrind; od Josef Weidendorfer, z njegovim pooblastilom.</para
+></note>
+<note
+><para
+>Upoštevajte tudi, da je sistem za tiskanja od &calligra;-ve &kexi; aplikacije za podatkovne baze.</para
+></note>
+
+<para
+>Ostala potrebna programska oprema: &kgraphviewer; je program, ki uporablja orodje &graphviz;-a &dot; za razporeditev grafov. Njegove odvisnosti so: <itemizedlist>
+	<listitem
+><para
+>Knjižnice &Qt; in &kde-frameworks; verzije 5.x;</para
+></listitem>
+	<listitem
+><para
+>&graphviz;-ova orodja kot zunanji programi (testirano z verzijo 2.8);</para
+></listitem>
+	<listitem
+><para
+>Knjižnica &boost; verzije 1.36.</para
+></listitem>
+</itemizedlist
+></para>
+
+</chapter>
+
+<chapter id="using-kgraphviewer">
+<title
+>Uporaba &kgraphviewer;</title>
+
+<sect1 id="using-kgraphviewer-mainwin">
+<title
+>Glavno Okno</title>
+
+<para
+>Glavno okno prikazuje naložene grafe, vsakega v svojem zavihku. Če zaženete &kgraphviewer; brez argumentov, bo glavno okno prazno, kot je prikazano na spodnjem posnetku zaslona. V tem primeru bo orodna vrstica vsebovala le gumbe <guibutton
+>Odpri...</guibutton
+> in (prazen) <guibutton
+>Odpri nedavno</guibutton
+>. Kliknite na prvega, da odprete standardno pogovorno okno za <guilabel
+>Odpiranje Datoteke</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Začetno glavno okno pri prvem odpiranju &kgraphviewer;-ja</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Začetno glavno okno pri prvem odpiranju &kgraphviewer;-ja</phrase>
+    </textobject>
+    <caption
+><para
+>Začetno glavno okno pri prvem odpiranju &kgraphviewer;-ja</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Potem ko izberete eno od datotek &dot;, bo glavno okno izgledalo, kot na spodnjem posnetku zaslona:</para>
+
+<screenshot>
+<screeninfo
+>Glavno okno &kgraphviewer;-ja z nekaj odprtimi datotekami</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Glavno okno &kgraphviewer;-ja z nekaj odprtimi datotekami</phrase>
+    </textobject>
+    <caption
+><para
+>Glavno okno &kgraphviewer;-ja z nekaj odprtimi datotekami</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>Kot lahko vidite, če je graf večji od dodeljenega območja, se v enem od kotov prikaže pogled iz ptičje perspektive. S kontekstnim menijem lahko izberete, ali naj se optimalni položaj tega pregleda samodejno izračuna za vas ali pa ga postavite, kamor želite sami.</para>
+
+<sect2>
+<title
+>Premikanje Grafa v Oknu</title>
+
+<para
+>Graf lahko premaknete tako, da: <itemizedlist>
+	<listitem
+><para
+>Ga kliknete in povlečete;</para
+></listitem>
+	<listitem
+><para
+>Uporabite drsne trakove;</para
+></listitem>
+	<listitem
+><para
+>Pritisnete na tipke s puščicami;</para
+></listitem>
+	<listitem
+><para
+>Kliknete nekam na pogled iz ptičje perspektive;</para
+></listitem>
+	<listitem
+><para
+>Uporabite kolesce miške (gor in dol, če niste spremenili, ter levo in desno, če pritisnete tipko &Alt;);</para
+></listitem>
+	<listitem
+><para
+>ali kliknete in povlečete v pogledu iz ptičje perspektive.</para
+></listitem>
+</itemizedlist
+></para>
+</sect2>
+
+<sect2>
+<title
+>Povečevanje</title>
+
+<para
+>Da povečate, lahko uporabite gumbe iz orodne vrstice <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> in <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+>, da povečate in pomanjšate, ali pa držite tipko &Shift; med vrtenjem kolesca miške. Medtem ko povečujete, se bo rdeči pravokotnik v pogledu iz ptičje perspektive, ki označuje prikazano območje, vedno bolj manjšal. Če se bo zmanjšal na manj kot 10 pikslov na krajši strani, bo namesto njega prikazan poln rdeč pravokotnik, da bo ostal viden. To lahko vidite na posnetku zaslona spodaj.</para>
+
+<screenshot>
+<screeninfo
+>Graf pri največji stopnji povečave</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmax.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Graf pri največji stopnji povečave</phrase>
+</textobject>
+<caption
+><para
+>Graf pri največji stopnji povečave</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Povečevanje je omejeno v obe smeri s faktorjem 10. Spodaj lahko vidite največji faktor pomanjševanja na grafu.</para>
+
+<screenshot>
+<screeninfo
+>Graf pri največji stopnji pomanjšave</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmin.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Graf pri največji stopnji pomanjšave</phrase>
+</textobject>
+<caption
+><para
+>Graf pri največji stopnji pomanjšave</para
+></caption>
+</mediaobject>
+</screenshot>
+</sect2>
+
+<sect2>
+<title
+>Obdelava Datotek z Grafi</title>
+
+<sect3>
+<title
+>Datoteke spremenjene na Disku</title>
+
+<para
+>Če je datoteka, ki je trenutno naložena v &kgraphviewer;, spremenjena iz drugega programa, se bo prikazalo naslednje pogovorno okno:</para>
+
+<screenshot>
+<screeninfo
+>Pogovorno okno za ponovno nalaganje datoteke, ki je bila spremenjena na disku</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pogovorno okno za ponovno nalaganje datoteke, ki je bila spremenjena na disku</phrase>
+</textobject>
+<caption
+><para
+>Pogovorno okno za ponovno nalaganje datoteke, ki je bila spremenjena na disku</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Odločite se lahko, ali boste graf ponovno naložili ali boste ignorirali spremembe. &kgraphviewer; lahko prav tako prilagodite, da si bo zapomnil vašo odločitev in naslednjič naredil isto. Če želite kasneje spremeniti svojo odločitev, izberite element menija <menuchoice
+><guimenu
+>Nastavitve</guimenu
+><guimenuitem
+>Konfiguriraj &kgraphviewer;...</guimenuitem
+></menuchoice
+> točko menija. Glejte <xref linkend="kgraphviewer-configuration"/>.</para>
+</sect3>
+
+<sect3
+><title
+>Datoteke in Okna</title>
+<para
+>Ko odprete datoteko z grafom izven &kgraphviewer;-ja, &eg; iz brskalnika datotek ali ukazne vrstice, imate na izbiro, da odprete novo okno &kgraphviewer;-ja ali da odprete graf v novem zavihku že odprtega okna. To je narejeno s spodnjim pogovornim oknom.</para>
+
+<screenshot>
+<screeninfo
+>Pogovorno okno za odpiranje novega okna</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pogovorno okno za odpiranje novega okna</phrase>
+</textobject>
+<caption
+><para
+>Pogovorno okno za odpiranje novega okna</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Kot pri prejšnji možnosti, lahko svojo izbiro shranite kot privzeto in jo pozneje spremenite v nastavitvenem pogovornem oknu.</para>
+
+</sect3>
+
+<sect3>
+<title
+>Obdelava Seje</title>
+
+<para
+>Ob zagonu lahko ponovno odprete grafe, ki ste jih imeli odprte nazadnje. Tudi tu lahko shranite svojo izbiro in jo spremenite kasneje.</para>
+
+<screenshot>
+<screeninfo
+>Pogovorno okno ob zagonu za ponovno nalaganje grafa iz prejšnje seje</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pogovorno okno ob zagonu za ponovno nalaganje grafa iz prejšnje seje</phrase>
+</textobject>
+<caption
+><para
+>Pogovorno okno ob zagonu za ponovno nalaganje grafa iz prejšnje seje</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect3>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="kgraphviewer-printing">
+<title
+>Tiskanje Grafov</title>
+<para
+>Poskusite gumbe <guibutton
+>Predogled tiskanja</guibutton
+> ali <guibutton
+>Page setup</guibutton
+>, da raziščete možnosti tiskanja.</para>
+
+<screenshot>
+<screeninfo
+>Pogovorno okno za postavitev strani</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-psetup1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Pogovorno okno za postavitev strani</phrase>
+</textobject>
+<caption
+><para
+>Pogovorno okno za postavitev strani</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Možnosti tiskanja lahko nastavite tako, da se bo graf prilegal točno eni strani, kot je prikazano spodaj:</para>
+
+<screenshot>
+<screeninfo
+>Nastavitve predogleda strani, da se prilega eni strani</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Nastavitve predogleda strani, da se prilega eni strani</phrase>
+</textobject>
+<caption
+><para
+>Nastavitve predogleda strani, da se prilega eni strani</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Prav tako lahko izberete, kako boste graf razdelili na več strani. Število vodoravnih in navpičnih strani je lahko neodvisno določeno.</para>
+
+<screenshot>
+<screeninfo
+>Nastavitve predogleda strani, da se graf prilega na več strani in jih zapolni</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Nastavitve predogleda strani, da se graf prilega na več strani in jih zapolni</phrase>
+</textobject>
+<caption
+><para
+>Nastavitve predogleda strani, da se graf prilega na več strani in jih zapolni</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>In nazadnje, ko uporabljate več strani, lahko izberete, da se bo vsak del grafa prilegal svoji strani, kot zgoraj, tako, da ne ohranja razmerja, ali pa da ga ohranja. V zadnjem primeru se strani ne bodo zapolnile.</para>
+
+<para
+>Velikost strani lahko spremenite z obrobami:</para>
+
+<screenshot>
+<screeninfo
+>Velikost strani in pogovorno okno za obrobe</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-pagesmarges.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Velikost strani in pogovorno okno za obrobe</phrase>
+</textobject>
+<caption
+><para
+>Velikost strani in pogovorno okno za obrobe</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Prav tako lahko spremenite vrsto pisave, glave ali noge:</para>
+
+<screenshot>
+<screeninfo
+>Nastavitve predogleda strani, da se prilega na več strani brez glave in z različno pisavo</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Nastavitve predogleda strani, da se prilega na več strani brez glave in z različno pisavo</phrase>
+</textobject>
+<caption
+><para
+>Nastavitve predogleda strani, da se prilega na več strani brez glave in z različno pisavo</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="kgraphviewer-configuration">
+<title
+>Konfiguriranje &kgraphviewer;</title>
+
+<para
+>Stran <guilabel
+>Izgled</guilabel
+> vam omogoča, da spremenite privzeto barvo ozadja v &kgraphviewer;-ju, če graf nima že svoje barve ozadja.</para>
+
+<screenshot>
+<screeninfo
+>Stran za spreminjanje izgleda grafa</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Stran za spreminjanje izgleda grafa</phrase>
+</textobject>
+<caption
+><para
+>Stran za spreminjanje izgleda grafa</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Stran za <guilabel
+>Razčlenjevanje</guilabel
+> (parsing) omogoča izbiro zunanjega ukaza ali notranje knjižnice za razčlenjevanje &graphviz;-ovih datotek &dot;.</para>
+
+<screenshot>
+<screeninfo
+>Stran v nastavitvenem oknu za ponovno nalaganje datotek, ki so bile spremenjene na disku</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Stran v nastavitvenem oknu za ponovno nalaganje datotek, ki so bile spremenjene na disku</phrase>
+</textobject>
+<caption
+><para
+>Stran v nastavitvenem oknu za ponovno nalaganje datotek, ki so bile spremenjene na disku</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Stran za <guilabel
+>Ponovno nalaganje</guilabel
+>omogoča spremembo delovanja &kgraphviewer;-ja, ko neka druga aplikacija spremeni datoteko na disku. Izberete lahko samodejno dejanje (samodejno ponovno naloži ali ignoriraj spremembe) ali pa, da vas program vsakič znova vpraša.</para>
+
+<screenshot>
+<screeninfo
+>Stran v nastavitvenem oknu za ponovno nalaganje datotek, ki so bile spremenjene na disku</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Stran v nastavitvenem oknu za ponovno nalaganje datotek, ki so bile spremenjene na disku</phrase>
+</textobject>
+<caption
+><para
+>Stran v nastavitvenem oknu za ponovno nalaganje datotek, ki so bile spremenjene na disku</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Stran <guilabel
+>Odpiranje</guilabel
+> omogoča spremembo delovanja &kgraphviewer;-ja, ko je datoteka z grafom odprta izven trenutne seje. Izberete lahko samodejno dejanje (odpri v obstoječem oknu ali v novem oknu) ali pa, da vas program vsakič znova vpraša.</para>
+
+<screenshot>
+<screeninfo
+>Stran za odpiranje novih datotek v obstoječem oknu v nastavitvenem pogovoru</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Stran za odpiranje novih datotek v obstoječem oknu v nastavitvenem pogovoru</phrase>
+</textobject>
+<caption
+><para
+>Stran za odpiranje novih datotek v obstoječem oknu v nastavitvenem pogovoru</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Stran <guilabel
+>Upravljalnik Seje</guilabel
+> omogoča spremembo delovanja ob zagonu &kgraphviewer;-ja. Izberete lahko samodejno dejanje (ponovno odpri datoteke prejšnje seje ali ne) ali pa, da vas program vsakič znova vpraša.</para>
+
+<screenshot>
+<screeninfo
+>Stran za ponovno odpiranje datotek iz prejšnje seje v nastavitvenem pogovoru</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Stran za ponovno odpiranje datotek iz prejšnje seje v nastavitvenem pogovoru</phrase>
+</textobject>
+<caption
+><para
+>Stran za ponovno odpiranje datotek iz prejšnje seje v nastavitvenem pogovoru</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="using-kgraphviewer-misc">
+<title
+>Razne funkcije</title>
+
+<para
+>Kontekstni meni, ponavadi pridobljen z desnim klikom v pogledu na graf, ponuja nekaj drugih možnosti: <variablelist>
+<varlistentry>
+<term
+><guisubmenu
+>Razpored</guisubmenu
+></term>
+<listitem
+><para
+>To omogoča izbiro med različnimi &graphviz;-ovimi algoritmi za razporejanje, lahko pa izberete svojega. Vnosi, kot je opisano na domači strani &graphviz;-a, so naslednji: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>&dot;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritem &dot;, privzet za usmerjene grafe. Proizvede <quote
+>hierarhične</quote
+> ali večplastne risbe usmerjenih grafov. Algoritem za razporejanje razporedi povezave v isto smer (od vrha proti dnu ali od leve proti desni) in se nato poizkuša izogniti prekrižanim povezavam in zmanjšati dolžino povezav.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&neato;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritem &neato;, privzet za neusmerjene grafe. Proizvede postavitve <quote
+>vzmetnega modela</quote
+>. Uporablja algoritem Kamada-Kawai, ki je enakovreden statističnemu večdimenzionalnem skaliranju.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&twopi;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritem &twopi; za usmerjene in neusmerjene grafe. Radialna postavitev, po Grahamu Willsu 1997.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&fdp;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritem &fdp; za neusmerjene grafe. Proizvede postavitve <quote
+>vzmetnega modela</quote
+>. Izvaja Fruchterman-Reingoldovo hevristiko, vključno z večmrežnim reševalnikom, ki obravnava večje grafe in gručaste neusmerjene grafe.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&circo;</guimenuitem
+></term>
+	<listitem
+><para
+>Algoritem &circo;. Proizvede krožno postavitev, po Six in Tollis 1999, Kaufman in Wiese 2002. Primeren za določene diagrame večih krožnih struktur.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Določite ukaz za postavitev</guimenuitem
+></term>
+	<listitem
+><para
+>Odpre pogovorno okno, ki vam omogoča, da določite ukaz za postavitev, ki ga izvede lupina. Ta ukaz sprejme le en parameter, ime datoteke z grafom, in izpiše svojo razporeditev na standardni izhod v jeziku xdot. Na ta način lahko podate določene možnosti enemu prejšnjih ukazov ali uporabite filter, ki spremeni vaš graf preden ga poženete skozi &dot;.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Ponastavite ukaz za postavitev na privzetega</guimenuitem
+></term>
+	<listitem
+><para
+>Določite vrsto grafa (usmerjeni ali neusmerjeni) in uporabite na njem privzeti algoritem, ki je trenutno &dot; ali &neato;.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+	</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Izvozi Graf</guisubmenu
+></term>
+<listitem
+><para>
+	<variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Kot Sliko...</guimenuitem
+></term>
+	<listitem
+><para
+>Omogoča izvoz celotnega grafa v vse podprte slikovne formate.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guimenu
+>Omogoči Pogled iz Ptičje Perspektive</guimenu
+></term>
+<listitem
+><para
+>Ko je označeno, se bo prikazal pogled iz ptičje perspektive, ko je to potrebno. V nasprotnem primeru bo skrit, njegov meni za postavitev pa bo onemogočen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>Pogled iz Ptičje Perspektive</guisubmenu
+></term>
+<listitem
+><para
+>Nastavite, kam boste postavili pogled iz ptičje perspektive v pogledu na graf. Možne izbire so: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>Levo Zgoraj</guimenuitem
+></term>
+	<listitem
+><para
+>Postavi pogled iz ptičje perspektive v levi zgornji kot;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Desno Zgoraj</guimenuitem
+></term>
+	<listitem
+><para
+>Postavi pogled iz ptičje perspektive v desni zgornji kot;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Levo Spodaj</guimenuitem
+></term>
+	<listitem
+><para
+>Postavi pogled iz ptičje perspektive v levi spodnji kot;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Desno Spodaj</guimenuitem
+></term>
+	<listitem
+><para
+>Postavi pogled iz ptičje perspektive v desni spodnji kot;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>Samodejno</guimenuitem
+></term>
+	<listitem
+><para
+>Samodejno izbere najboljšo postavitev, da prekrije čim manj grafa.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist
+></para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commands">
+<title
+>Sklic na Ukaz</title>
+
+<sect1 id="kgraphviewer-commands-menus">
+<title
+>Meniji &kgraphviewer;-ja</title>
+
+<sect2>
+<title
+>Meni Datoteka</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Nov</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Odpre</action
+> novo okno &kgraphviewer;-ja.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></shortcut
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Odpri</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Prikaže</action
+> pogovorno okno za <guilabel
+>Odpiranje Datotek</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Odpri Nedavno</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Prikaže</action
+> seznam zadnjih deset datotek z grafi, ki so bile odprte.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Datoteka</guimenu
+><guisubmenu
+>Izvozi Graf</guisubmenu
+><guimenuitem
+>Kot Sliko...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Omogoča <action
+>izvoz</action
+> celotnega grafa v vse podprte slikovne formate.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+></shortcut
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Natisni...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Natisne</action
+> trenutni graf z uporabo parametrov, ki so trenutno nastavljeni.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>P</keycap
+></keycombo
+></shortcut
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Natisni Predogled...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Odpre</action
+>okno <guilabel
+>Natisni Predogled</guilabel
+> za trenutni graf.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Nastavitve Strani</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Odpre</action
+>pogovorno okno<guilabel
+>Nastavitve stravi</guilabel
+> za trenuten graf.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Končaj</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Zapre</action
+> &kgraphviewer;.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Meni Pogled</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+><guimenu
+>Poled</guimenu
+><guimenuitem
+>Približaj</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Približa</action
+> trenuten graf za 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+><guimenu
+>Poled</guimenu
+><guimenuitem
+>Oddalji</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Pomanjša</action
+> trenuten graf za 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Pogled</guimenu
+><guimenuitem
+>Osveži</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>Ponovno naloži</action
+> trenutni graf.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Pogled</guimenu
+><guisubmenu
+>Izberi razporeditveni algoritem</guisubmenu
+></menuchoice
+></term>
+	<listitem
+><para
+>Odpre meni z različnimi razporeditvenimi algoritmi za trenutni graf.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+></shortcut
+><guimenu
+>Pogled</guimenu
+><guimenuitem
+>Omogoči Pogled iz Ptičje Perspektive</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Ko je označeno, se bo prikazal pogled iz ptičje perspektive, ko je to potrebno. V nasprotnem primeru bo skrit, njegov meni za postavitev pa bo onemogočen.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>Pogled</guimenu
+><guimenuitem
+>Pogled iz Ptičje Perspektive</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>Nastavite, kam naj se postavi pogled iz ptičje perspektive v pogledu na graf. Možnosti so: <variablelist>
+		<varlistentry>
+		<term
+><guimenuitem
+>Levo Zgoraj</guimenuitem
+></term>
+		<listitem
+><para
+>Postavi pogled iz ptičje perspektive v levi zgornji kot;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Desno Zgoraj</guimenuitem
+></term>
+		<listitem
+><para
+>Postavi pogled iz ptičje perspektive v desni zgornji kot;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Levo Spodaj</guimenuitem
+></term>
+		<listitem
+><para
+>Postavi pogled iz ptičje perspektive v levi spodnji kot;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Desno Spodaj</guimenuitem
+></term>
+		<listitem
+><para
+>Postavi pogled iz ptičje perspektive v desni spodnji kot;</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>Samodejno</guimenuitem
+></term>
+		<listitem
+><para
+>Samodejno izbere najboljšo postavitev, da prekrije čim manj grafa.</para
+></listitem>
+		</varlistentry>
+	</variablelist
+></para
+></listitem>
+	</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>Meni Nastavitve in Pomoč</title>
+
+<para
+>&kgraphviewer; ima običajna &kde;-jeva elementa menija <guimenu
+>Nastavitve</guimenu
+> in <guimenu
+>Pomoč</guimenu
+>, za več informacij preberite razdelek o <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Meni Nastavitve</ulink
+> in <ulink url="help:/fundamentals/menus.html#menus-help"
+>Meni Pomoč</ulink
+> &kde;-jevih Osnov. </para>
+
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-commands-toolbars">
+<title
+>Orodne Vrstice &kgraphviewer;-ja</title>
+
+<sect2>
+<title
+>Glavna Orodna Vrstica</title>
+<!--document-new-->
+<variablelist>
+	<varlistentry
+><!--document-open-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-open.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prikaže</action
+> pogovorno okno <guilabel
+>Odpri Datoteko</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--document-open-recent-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-prev.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prikaže</action
+> seznam nedavno odprtih datotek.</para
+></listitem>
+	</varlistentry>
+<!--document-close-->
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-print.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prints the graph</action
+> using current setup.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-preview.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prikaže</action
+> pogovorno okno <guilabel
+>Natisni Predogled</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Shows</action
+> the <guilabel
+>Page Setup</guilabel
+> dialog.</para
+></listitem>
+	</varlistentry-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>Orodna Vrstica Pogleda</title>
+
+<variablelist>
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-reload.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Reloads</action
+> the current graph.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-layout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Uredi</action
+> ukaz za postavitev ali <action
+>prikaže</action
+> seznam prednastavljenih algoritmov za razporejanje.</para
+></listitem>
+	</varlistentry>
+	
+	<varlistentry
+><!--zoom-in-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Približa</action
+> trenuten graf za 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--zoom-out-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Pomanjša</action
+> trenuten graf za 10%.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+<!--kgraphviewer-bev "Enable Bird's-eye View"-->
+</sect2>
+
+<sect2>
+<title
+>Orodna Vrstica Pomoči</title>
+
+<variablelist>
+	<varlistentry
+><!--help-contextual-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prikaže</action
+> kazalec miške <guilabel
+>Kaj je to?</guilabel
+>. Kliknite z njim na element &GUI;-ja, da dobite informacije, kako uporabljati ta element (če take informacije obstajajo).</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+<title
+>Zasluge in Licenca</title>
+
+<sect1 id="kgraphviewer-credits-program">
+<title
+>Program</title>
+
+<sect2>
+<title
+>Glavni Avtor</title>
+<para
+>Avtorske pravice programa 2005-2006 Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+</sect2>
+
+<sect2>
+<title
+>Sodelavci (da se je dokončalo)</title>
+<itemizedlist>
+	<listitem
+><para
+>Reimar Döffinger <email
+>Reimar.Doeffinger@stud.uni-karlsruhe.de</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-userguide">
+<title
+>Navodila za Uporabnike</title>
+<para
+>Avtorske pravice dokumentacije 2006 Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+<sect2>
+<title
+>Sodelavci</title>
+<itemizedlist>
+  <listitem
+><para
+>Federico Zenith <email
+>federico.zenith@member.fsf.org</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-other">
+<title
+>Ostale Zasluge</title>
+<para
+>Ta program vsebuje kodo, pridobljeno iz naslednjih Prostih Programskih Oprem:</para>
+<variablelist>
+	<varlistentry>
+	<term
+><ulink url="https://kcachegrind.github.io/html/Home.html"
+>&kcachegrind;</ulink
+></term>
+	<listitem
+><para
+>Začetni model grafa in razredi pogledov;</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><ulink url="http://www.kexi-project.org/"
+>&kexi;</ulink
+></term>
+	<listitem
+><para
+>Nastavitve tiskanja in razredi predogledov.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-licenses"
+><title
+>Licence</title>
+<para
+>Prevod: Krištof Trček <email
+>kt91536@student.uni-lj.si</email
+></para
+> &underFDL; &underGPL; </sect1>
+
+</chapter>
+
+&documentation.index;
+</book>
