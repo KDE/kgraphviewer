@@ -355,7 +355,7 @@ msgstr ""
 #: part/canvasedge.cpp:74
 #, kde-format
 msgid "Remove selected edge(s)"
-msgstr "Forigi elektita(j)n eĝon(j)"
+msgstr "Forigi elektita(j)n eĝo(j)n"
 
 #: part/canvaselement.cpp:87
 #, kde-format
