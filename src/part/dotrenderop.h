@@ -25,7 +25,7 @@
 
 /**
  * members are interpreted in function of render operations definitions given at:
- * @URL http://www.graphviz.org/cvs/doc/info/output.html#d:dot
+ * @URL https://graphviz.org/docs/outputs/canon/
  */
 struct DotRenderOp {
     QString renderop;

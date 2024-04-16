@@ -46,7 +46,7 @@ find_package(Graphviz 2.30.0 REQUIRED)
 find_package(DOT)
 set_package_properties(DOT PROPERTIES
     DESCRIPTION "Tool to draw directed graphs"
-    URL "http://www.graphviz.org/"
+    URL "https://www.graphviz.org/"
     PURPOSE "Needed for parsing .dot files"
     TYPE RUNTIME
 )
