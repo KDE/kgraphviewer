@@ -84,12 +84,7 @@ int main(int argc, char **argv)
                     (QMessageBox::question(nullptr, i18n("Opening in new window confirmation"), i18n("A KGraphViewer window is already open, where do you want to open this file in the existing window?")) == QMessageBox::Yes)) {
                     QByteArray tosenddata;
                     QDataStream arg(&tosenddata, QIODevice::WriteOnly);
-                    QString strarg = args[i];
-                    QUrl url;
-                    if (strarg.left(1) == "/")
-                        url = QUrl::fromUserInput(strarg);
-                    else
-                        url = QUrl::fromLocalFile(QDir::currentPath() + '/' + strarg);
+                    const QUrl url = QUrl::fromUserInput(args[i], QDir::currentPath(), QUrl::AssumeLocalFile);
                     arg << url;
                     QDBusInterface iface("org.kde.kgraphviewer", "/KGraphViewer", "", QDBusConnection::sessionBus());
                     if (iface.isValid()) {
@@ -109,7 +104,7 @@ int main(int argc, char **argv)
                     new KgraphviewerAdaptor(widget);
                     QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
                     widget->show();
-                    widget->openUrl(QUrl::fromUserInput(args[i]));
+                    widget->openUrl(QUrl::fromUserInput(args[i], QDir::currentPath(), QUrl::AssumeLocalFile));
                 }
             }
         }
