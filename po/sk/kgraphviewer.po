@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-23 01:36+0000\n"
+"POT-Creation-Date: 2024-04-16 00:37+0000\n"
 "PO-Revision-Date: 2019-11-18 10:15+0100\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
@@ -37,34 +37,34 @@ msgstr "Obnoviť sedenie"
 msgid "Do you want to reload files from previous session?"
 msgstr "Chcete znovu načítať súbory z predošlého sedenia?"
 
-#: kgrapheditor.cpp:146
+#: kgrapheditor.cpp:142
 #, fuzzy, kde-format
 #| msgid "Unable to start %1."
 msgid "Unable to start"
 msgstr "Nepodarilo sa spustiť %1."
 
-#: kgrapheditor.cpp:146 kgraphviewer.cpp:133
+#: kgrapheditor.cpp:142 kgraphviewer.cpp:129
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "Nepodarilo sa nájsť časť KGraphViewer."
 
-#: kgrapheditor.cpp:227 kgraphviewer.cpp:213
+#: kgrapheditor.cpp:223 kgraphviewer.cpp:209
 #, fuzzy, kde-format
 #| msgid "Closes the current tab"
 msgid "Closes the current file"
 msgstr "Zatvorí aktuálnu záložku"
 
-#: kgrapheditor.cpp:238
+#: kgrapheditor.cpp:234
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "Vytvoriť nový vrchol"
 
-#: kgrapheditor.cpp:243
+#: kgrapheditor.cpp:239
 #, kde-format
 msgid "Create a New Edge"
 msgstr "Vytvoriť novú hranu"
 
-#: kgrapheditor.cpp:498
+#: kgrapheditor.cpp:494
 #, fuzzy, kde-format
 #| msgid "Save current graph to..."
 msgid "Save current graph"
@@ -111,22 +111,22 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Graphviz, bodový grafický prehliadač pre KDE"
 
-#: kgrapheditormain.cpp:38 main.cpp:46
+#: kgrapheditormain.cpp:38 main.cpp:43
 #, kde-format
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:50 main.cpp:62
+#: kgrapheditormain.cpp:50 main.cpp:59
 #, kde-format
 msgid "Path or URL to scan"
 msgstr ""
 
-#: kgrapheditormain.cpp:50 main.cpp:62
+#: kgrapheditormain.cpp:50 main.cpp:59
 #, kde-format
 msgid "[url]"
 msgstr ""
 
-#: kgrapheditormain.cpp:75 main.cpp:87
+#: kgrapheditormain.cpp:75 main.cpp:84
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "Potvrdenie otvorenia v novom okne"
@@ -232,12 +232,12 @@ msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr ""
 
-#: kgraphviewer.cpp:200
+#: kgraphviewer.cpp:196
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "Otvorí nové prázdne okno KGraphViewer."
 
-#: kgraphviewer.cpp:203
+#: kgraphviewer.cpp:199
 #, fuzzy, kde-format
 #| msgid "Shows the file open dialog to choose a GraphViz dot file to open."
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
@@ -245,7 +245,7 @@ msgstr ""
 "Zobrazuje súborový dialóg otvorenia na výber dot súboru GraphViz na "
 "otvorenie."
 
-#: kgraphviewer.cpp:207
+#: kgraphviewer.cpp:203
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -254,22 +254,22 @@ msgstr ""
 "Toto je zoznam súborov, ktoré boli naposledy otvorené. Podporuje ich "
 "jednoduché znovuotvorenie."
 
-#: kgraphviewer.cpp:217
+#: kgraphviewer.cpp:213
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "Ukončí KGraphViewer."
 
-#: kgraphviewer.cpp:220
+#: kgraphviewer.cpp:216
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "Zobrazí alebo skryje stavový riadok."
 
-#: kgraphviewer.cpp:223
+#: kgraphviewer.cpp:219
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "Nastavenie panelu nástrojov."
 
-#: kgraphviewer.cpp:226
+#: kgraphviewer.cpp:222
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "Hlavné možnosti nastavenia KGraphViewer."
@@ -285,63 +285,63 @@ msgstr "Vzhľad"
 msgid "Background color of the graph view."
 msgstr "Farba pozadia pohľadu grafu."
 
-#: main.cpp:42
+#: main.cpp:39
 #, kde-format
 msgid "KGraphViewer"
 msgstr "KGraphViewer"
 
-#: main.cpp:44
+#: main.cpp:41
 #, fuzzy, kde-format
 #| msgid "A Graphviz dot graph viewer for KDE"
 msgid "A Graphviz DOT graph viewer"
 msgstr "Graphviz, bodový grafický prehliadač pre KDE"
 
-#: main.cpp:49
+#: main.cpp:46
 #, kde-format
 msgid "Gaël de Chalendar"
 msgstr "Gaël de Chalendar"
 
-#: main.cpp:49
+#: main.cpp:46
 #, kde-format
 msgid "Original Author and current maintainer"
 msgstr "Pôvodný autor a aktuálny správca"
 
-#: main.cpp:50
+#: main.cpp:47
 #, kde-format
 msgid "Reimar Döffinger"
 msgstr "Reimar Döffinger"
 
-#: main.cpp:50 main.cpp:51 main.cpp:52 main.cpp:53
+#: main.cpp:47 main.cpp:48 main.cpp:49 main.cpp:50
 #, kde-format
 msgid "Contributor"
 msgstr "Prispievateľ"
 
-#: main.cpp:51
+#: main.cpp:48
 #, kde-format
 msgid "Matthias Peinhardt"
 msgstr "Matthias Peinhardt"
 
-#: main.cpp:52
+#: main.cpp:49
 #, kde-format
 msgid "Sandro Andrade"
 msgstr "Sandro Andrade"
 
-#: main.cpp:53
+#: main.cpp:50
 #, kde-format
 msgid "Milian Wolff"
 msgstr "Milian Wolff"
 
-#: main.cpp:54
+#: main.cpp:51
 #, kde-format
 msgid "Martin Sandsmark"
 msgstr "Martin Sandsmark"
 
-#: main.cpp:54
+#: main.cpp:51
 #, kde-format
 msgid "Port to KF5"
 msgstr ""
 
-#: main.cpp:87
+#: main.cpp:84
 #, fuzzy, kde-format
 #| msgid ""
 #| "A KGraphViewer window is already open, where do you want to open this "
@@ -702,12 +702,12 @@ msgstr "graf %1 je načítavaný"
 msgid "error parsing file %1"
 msgstr "chyba pri spracovaní súboru %1"
 
-#: part/dotgraphview.cpp:1616
+#: part/dotgraphview.cpp:1608
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "Opäť načítať potvrdenie"
 
-#: part/dotgraphview.cpp:1616
+#: part/dotgraphview.cpp:1608
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
@@ -716,12 +716,12 @@ msgstr ""
 "Súbor %1 bol na disku zmenený.\n"
 "Chcete ho znova načítať'?"
 
-#: part/dotgraphview.cpp:1702
+#: part/dotgraphview.cpp:1694
 #, kde-format
 msgid "Layout Command"
 msgstr "Príkaz rozloženia"
 
-#: part/dotgraphview.cpp:1703
+#: part/dotgraphview.cpp:1695
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
@@ -730,42 +730,42 @@ msgstr ""
 "Tu zadať príkaz, ktorý bude použitý na rozloženie grafu.\n"
 "Príkaz musí zapísať svoje výsledky na stdout vo formáte xdot."
 
-#: part/dotgraphview.cpp:2156
+#: part/dotgraphview.cpp:2144
 #, kde-format
 msgid "Failed to open %1"
 msgstr "Nepodarilo sa otvoriť %1"
 
-#: part/kgraphviewer_part.cpp:97
+#: part/kgraphviewer_part.cpp:85
 #, kde-format
 msgid "Print the graph using current page setup settings"
 msgstr "Vytlačiť graf použitím aktuálnej voľby nastavenia strany"
 
-#: part/kgraphviewer_part.cpp:101
+#: part/kgraphviewer_part.cpp:89
 #, kde-format
 msgid "Open the print preview window"
 msgstr "Otvoriť okno náhľadu pred tlačou"
 
-#: part/kgraphviewer_part.cpp:105
+#: part/kgraphviewer_part.cpp:93
 #, kde-format
 msgid "Page setup"
 msgstr "Nastavenie strany"
 
-#: part/kgraphviewer_part.cpp:106
+#: part/kgraphviewer_part.cpp:94
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr "Otvorí dialóg Nastavenia strany, aby sa nastavila tlač grafu"
 
-#: part/kgraphviewer_part.cpp:109
+#: part/kgraphviewer_part.cpp:97
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "Znovu načítať aktuálny graf zo súboru"
 
-#: part/kgraphviewer_part.cpp:114
+#: part/kgraphviewer_part.cpp:102
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
 msgstr "Zväčšiť o 10% aktuálne zobrazený graf"
 
-#: part/kgraphviewer_part.cpp:119
+#: part/kgraphviewer_part.cpp:107
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "Oddialiť o 10% aktuálne zobrazený graf"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-23 01:36+0000\n"
+"POT-Creation-Date: 2024-04-16 00:37+0000\n"
 "PO-Revision-Date: 2023-03-01 02:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -37,32 +37,32 @@ msgstr "세션 복원"
 msgid "Do you want to reload files from previous session?"
 msgstr "이전 세션에서 편집한 파일을 다시 불러오시겠습니까?"
 
-#: kgrapheditor.cpp:146
+#: kgrapheditor.cpp:142
 #, kde-format
 msgid "Unable to start"
 msgstr "시작할 수 없음"
 
-#: kgrapheditor.cpp:146 kgraphviewer.cpp:133
+#: kgrapheditor.cpp:142 kgraphviewer.cpp:129
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "KGraphViewer 부분을 찾을 수 없습니다."
 
-#: kgrapheditor.cpp:227 kgraphviewer.cpp:213
+#: kgrapheditor.cpp:223 kgraphviewer.cpp:209
 #, kde-format
 msgid "Closes the current file"
 msgstr "현재 파일 닫기"
 
-#: kgrapheditor.cpp:238
+#: kgrapheditor.cpp:234
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "새 꼭짓점 만들기"
 
-#: kgrapheditor.cpp:243
+#: kgrapheditor.cpp:239
 #, kde-format
 msgid "Create a New Edge"
 msgstr "새 변 만들기"
 
-#: kgrapheditor.cpp:498
+#: kgrapheditor.cpp:494
 #, kde-format
 msgid "Save current graph"
 msgstr "현재 그래프 저장"
@@ -107,22 +107,22 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "KDE의 Graphviz DOT 그래프 편집기"
 
-#: kgrapheditormain.cpp:38 main.cpp:46
+#: kgrapheditormain.cpp:38 main.cpp:43
 #, kde-format
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:50 main.cpp:62
+#: kgrapheditormain.cpp:50 main.cpp:59
 #, kde-format
 msgid "Path or URL to scan"
 msgstr "검색할 경로나 URL"
 
-#: kgrapheditormain.cpp:50 main.cpp:62
+#: kgrapheditormain.cpp:50 main.cpp:59
 #, kde-format
 msgid "[url]"
 msgstr "[url]"
 
-#: kgrapheditormain.cpp:75 main.cpp:87
+#: kgrapheditormain.cpp:75 main.cpp:84
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "새 창에서 열기 확인"
@@ -218,17 +218,17 @@ msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr "새로 고치지 않음"
 
-#: kgraphviewer.cpp:200
+#: kgraphviewer.cpp:196
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "새 빈 KGraphViewer 창을 엽니다."
 
-#: kgraphviewer.cpp:203
+#: kgraphviewer.cpp:199
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr "열 Graphviz DOT 파일을 선택하는 파일 열기 대화 상자를 엽니다."
 
-#: kgraphviewer.cpp:207
+#: kgraphviewer.cpp:203
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -236,22 +236,22 @@ msgid ""
 msgstr ""
 "이 목록은 최근에 열었던 파일 목록이며, 다시 쉽게 열 수 있도록 도와 줍니다."
 
-#: kgraphviewer.cpp:217
+#: kgraphviewer.cpp:213
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "KGraphViewer를 끝냅니다."
 
-#: kgraphviewer.cpp:220
+#: kgraphviewer.cpp:216
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "상태 표시줄을 표시하거나 숨깁니다."
 
-#: kgraphviewer.cpp:223
+#: kgraphviewer.cpp:219
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "도구 모음 설정입니다."
 
-#: kgraphviewer.cpp:226
+#: kgraphviewer.cpp:222
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "주 KGraphView 설정 옵션입니다."
@@ -267,62 +267,62 @@ msgstr "모양"
 msgid "Background color of the graph view."
 msgstr "그래프 보기의 배경색입니다."
 
-#: main.cpp:42
+#: main.cpp:39
 #, kde-format
 msgid "KGraphViewer"
 msgstr "KGraphViewer"
 
-#: main.cpp:44
+#: main.cpp:41
 #, kde-format
 msgid "A Graphviz DOT graph viewer"
 msgstr "Graphviz DOT 그래프 뷰어"
 
-#: main.cpp:49
+#: main.cpp:46
 #, kde-format
 msgid "Gaël de Chalendar"
 msgstr "Gaël de Chalendar"
 
-#: main.cpp:49
+#: main.cpp:46
 #, kde-format
 msgid "Original Author and current maintainer"
 msgstr "원 작성자 및 현재 관리자"
 
-#: main.cpp:50
+#: main.cpp:47
 #, kde-format
 msgid "Reimar Döffinger"
 msgstr "Reimar Döffinger"
 
-#: main.cpp:50 main.cpp:51 main.cpp:52 main.cpp:53
+#: main.cpp:47 main.cpp:48 main.cpp:49 main.cpp:50
 #, kde-format
 msgid "Contributor"
 msgstr "기여자"
 
-#: main.cpp:51
+#: main.cpp:48
 #, kde-format
 msgid "Matthias Peinhardt"
 msgstr "Matthias Peinhardt"
 
-#: main.cpp:52
+#: main.cpp:49
 #, kde-format
 msgid "Sandro Andrade"
 msgstr "Sandro Andrade"
 
-#: main.cpp:53
+#: main.cpp:50
 #, kde-format
 msgid "Milian Wolff"
 msgstr "Milian Wolff"
 
-#: main.cpp:54
+#: main.cpp:51
 #, kde-format
 msgid "Martin Sandsmark"
 msgstr "Martin Sandsmark"
 
-#: main.cpp:54
+#: main.cpp:51
 #, kde-format
 msgid "Port to KF5"
 msgstr "KF5 이식"
 
-#: main.cpp:87
+#: main.cpp:84
 #, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
@@ -672,12 +672,12 @@ msgstr "%1 그래프를 불러오는 중..."
 msgid "error parsing file %1"
 msgstr "%1 파일 처리 오류"
 
-#: part/dotgraphview.cpp:1616
+#: part/dotgraphview.cpp:1608
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "새로 고침 확인"
 
-#: part/dotgraphview.cpp:1616
+#: part/dotgraphview.cpp:1608
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
@@ -686,12 +686,12 @@ msgstr ""
 "파일 %1이(가) 디스크에서 변경되었습니다.\n"
 "다시 불러오시겠습니까?"
 
-#: part/dotgraphview.cpp:1702
+#: part/dotgraphview.cpp:1694
 #, kde-format
 msgid "Layout Command"
 msgstr "레이아웃 명령"
 
-#: part/dotgraphview.cpp:1703
+#: part/dotgraphview.cpp:1695
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
@@ -700,42 +700,42 @@ msgstr ""
 "그래프 레이아웃 작업에 사용할 명령을 지정하십시오.\n"
 "해당 명령은 표준 출력에 xdot 형식으로 결과를 출력해야 합니다."
 
-#: part/dotgraphview.cpp:2156
+#: part/dotgraphview.cpp:2144
 #, kde-format
 msgid "Failed to open %1"
 msgstr "%1을(를) 열 수 없음"
 
-#: part/kgraphviewer_part.cpp:97
+#: part/kgraphviewer_part.cpp:85
 #, kde-format
 msgid "Print the graph using current page setup settings"
 msgstr "현재 쪽 설정으로 그래프 인쇄"
 
-#: part/kgraphviewer_part.cpp:101
+#: part/kgraphviewer_part.cpp:89
 #, kde-format
 msgid "Open the print preview window"
 msgstr "인쇄 미리 보기 창 열기"
 
-#: part/kgraphviewer_part.cpp:105
+#: part/kgraphviewer_part.cpp:93
 #, kde-format
 msgid "Page setup"
 msgstr "쪽 설정"
 
-#: part/kgraphviewer_part.cpp:106
+#: part/kgraphviewer_part.cpp:94
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr "그래프 인쇄를 설정하는 쪽 설정 대화 상자 열기"
 
-#: part/kgraphviewer_part.cpp:109
+#: part/kgraphviewer_part.cpp:97
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "파일에서 현재 그래프 새로 고침"
 
-#: part/kgraphviewer_part.cpp:114
+#: part/kgraphviewer_part.cpp:102
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
 msgstr "현재 보고 있는 그래프를 10% 확대"
 
-#: part/kgraphviewer_part.cpp:119
+#: part/kgraphviewer_part.cpp:107
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "현재 보고 있는 그래프를 10% 축소"

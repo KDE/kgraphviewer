@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-23 01:36+0000\n"
+"POT-Creation-Date: 2024-04-16 00:37+0000\n"
 "PO-Revision-Date: 2023-12-13 18:17+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -37,32 +37,32 @@ msgstr "作業階段回復"
 msgid "Do you want to reload files from previous session?"
 msgstr "您要從前一個工作階段中重新載入檔案嗎？"
 
-#: kgrapheditor.cpp:146
+#: kgrapheditor.cpp:142
 #, kde-format
 msgid "Unable to start"
 msgstr "無法啟動。"
 
-#: kgrapheditor.cpp:146 kgraphviewer.cpp:133
+#: kgrapheditor.cpp:142 kgraphviewer.cpp:129
 #, kde-format
 msgid "Could not find the KGraphViewer part."
 msgstr "找不到 KGraphViewer 部件。"
 
-#: kgrapheditor.cpp:227 kgraphviewer.cpp:213
+#: kgrapheditor.cpp:223 kgraphviewer.cpp:209
 #, kde-format
 msgid "Closes the current file"
 msgstr "關閉目前檔案"
 
-#: kgrapheditor.cpp:238
+#: kgrapheditor.cpp:234
 #, kde-format
 msgid "Create a New Vertex"
 msgstr "建立新頂點"
 
-#: kgrapheditor.cpp:243
+#: kgrapheditor.cpp:239
 #, kde-format
 msgid "Create a New Edge"
 msgstr "建立新邊緣"
 
-#: kgrapheditor.cpp:498
+#: kgrapheditor.cpp:494
 #, kde-format
 msgid "Save current graph"
 msgstr "儲存目前圖形"
@@ -107,22 +107,22 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "來自 KDE 的 Graphviz DOT 圖檔編輯器"
 
-#: kgrapheditormain.cpp:38 main.cpp:46
+#: kgrapheditormain.cpp:38 main.cpp:43
 #, kde-format
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:50 main.cpp:62
+#: kgrapheditormain.cpp:50 main.cpp:59
 #, kde-format
 msgid "Path or URL to scan"
 msgstr "要掃描的路徑或網址"
 
-#: kgrapheditormain.cpp:50 main.cpp:62
+#: kgrapheditormain.cpp:50 main.cpp:59
 #, kde-format
 msgid "[url]"
 msgstr "[url]"
 
-#: kgrapheditormain.cpp:75 main.cpp:87
+#: kgrapheditormain.cpp:75 main.cpp:84
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "在新視窗開啟確認"
@@ -218,39 +218,39 @@ msgctxt "@action:button"
 msgid "Do Not Reload"
 msgstr "不要重新載入"
 
-#: kgraphviewer.cpp:200
+#: kgraphviewer.cpp:196
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
 msgstr "開啟新的空白 KGraphViewer 視窗。"
 
-#: kgraphviewer.cpp:203
+#: kgraphviewer.cpp:199
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr "顯示檔案開啟對話框，選擇要開啟的 Graphviz DOT 圖檔。"
 
-#: kgraphviewer.cpp:207
+#: kgraphviewer.cpp:203
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
 "open them again."
 msgstr "這是您最近開啟的檔案清單，並且讓您可以很容易的再次開啟它們。"
 
-#: kgraphviewer.cpp:217
+#: kgraphviewer.cpp:213
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "離開 KGraphViewer。"
 
-#: kgraphviewer.cpp:220
+#: kgraphviewer.cpp:216
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "顯示或隱藏狀態列。"
 
-#: kgraphviewer.cpp:223
+#: kgraphviewer.cpp:219
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "工具列設定。"
 
-#: kgraphviewer.cpp:226
+#: kgraphviewer.cpp:222
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "主要 KGraphviewer 設定選項。"
@@ -266,62 +266,62 @@ msgstr "外觀"
 msgid "Background color of the graph view."
 msgstr "圖形檢視的背景顏色。"
 
-#: main.cpp:42
+#: main.cpp:39
 #, kde-format
 msgid "KGraphViewer"
 msgstr "KGraphViewer"
 
-#: main.cpp:44
+#: main.cpp:41
 #, kde-format
 msgid "A Graphviz DOT graph viewer"
 msgstr "Graphviz DOT 圖檔檢視器"
 
-#: main.cpp:49
+#: main.cpp:46
 #, kde-format
 msgid "Gaël de Chalendar"
 msgstr "Gaël de Chalendar"
 
-#: main.cpp:49
+#: main.cpp:46
 #, kde-format
 msgid "Original Author and current maintainer"
 msgstr "原始作者，目前維護者"
 
-#: main.cpp:50
+#: main.cpp:47
 #, kde-format
 msgid "Reimar Döffinger"
 msgstr "Reimar Döffinger"
 
-#: main.cpp:50 main.cpp:51 main.cpp:52 main.cpp:53
+#: main.cpp:47 main.cpp:48 main.cpp:49 main.cpp:50
 #, kde-format
 msgid "Contributor"
 msgstr "貢獻者"
 
-#: main.cpp:51
+#: main.cpp:48
 #, kde-format
 msgid "Matthias Peinhardt"
 msgstr "Matthias Peinhardt"
 
-#: main.cpp:52
+#: main.cpp:49
 #, kde-format
 msgid "Sandro Andrade"
 msgstr "Sandro Andrade"
 
-#: main.cpp:53
+#: main.cpp:50
 #, kde-format
 msgid "Milian Wolff"
 msgstr "Milian Wolff"
 
-#: main.cpp:54
+#: main.cpp:51
 #, kde-format
 msgid "Martin Sandsmark"
 msgstr "Martin Sandsmark"
 
-#: main.cpp:54
+#: main.cpp:51
 #, kde-format
 msgid "Port to KF5"
 msgstr "移植至 KF5"
 
-#: main.cpp:87
+#: main.cpp:84
 #, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
@@ -663,12 +663,12 @@ msgstr "圖形 %1 正在載入中..."
 msgid "error parsing file %1"
 msgstr "剖析檔案 %1 時發生錯誤"
 
-#: part/dotgraphview.cpp:1616
+#: part/dotgraphview.cpp:1608
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "確認重新載入"
 
-#: part/dotgraphview.cpp:1616
+#: part/dotgraphview.cpp:1608
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
@@ -677,12 +677,12 @@ msgstr ""
 "檔案 %1 在磁碟上已被變更。\n"
 "您要重新載入它嗎？"
 
-#: part/dotgraphview.cpp:1702
+#: part/dotgraphview.cpp:1694
 #, kde-format
 msgid "Layout Command"
 msgstr "佈局指令"
 
-#: part/dotgraphview.cpp:1703
+#: part/dotgraphview.cpp:1695
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
@@ -691,42 +691,42 @@ msgstr ""
 "在此指定要用於佈局圖形的指令。\n"
 "指令必須以 xdot 格式將結果寫到標準輸出。"
 
-#: part/dotgraphview.cpp:2156
+#: part/dotgraphview.cpp:2144
 #, kde-format
 msgid "Failed to open %1"
 msgstr "開啟 %1 失敗"
 
-#: part/kgraphviewer_part.cpp:97
+#: part/kgraphviewer_part.cpp:85
 #, kde-format
 msgid "Print the graph using current page setup settings"
 msgstr "用目前的頁面設定列印圖形"
 
-#: part/kgraphviewer_part.cpp:101
+#: part/kgraphviewer_part.cpp:89
 #, kde-format
 msgid "Open the print preview window"
 msgstr "開啟列印預覽視窗"
 
-#: part/kgraphviewer_part.cpp:105
+#: part/kgraphviewer_part.cpp:93
 #, kde-format
 msgid "Page setup"
 msgstr "頁面設定"
 
-#: part/kgraphviewer_part.cpp:106
+#: part/kgraphviewer_part.cpp:94
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr "開啟頁面設定對話框，允許設定圖形列印"
 
-#: part/kgraphviewer_part.cpp:109
+#: part/kgraphviewer_part.cpp:97
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "從檔案重新載入目前的圖形"
 
-#: part/kgraphviewer_part.cpp:114
+#: part/kgraphviewer_part.cpp:102
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
 msgstr "將目前檢視的圖形放大 10%"
 
-#: part/kgraphviewer_part.cpp:119
+#: part/kgraphviewer_part.cpp:107
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "將目前檢視的圖形縮小 10%"
