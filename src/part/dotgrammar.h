@@ -27,7 +27,7 @@
 #include "dotrenderop.h"
 // Qt
 #include <QPair>
-#include <QVector>
+#include <QList>
 // Boost
 #include <boost/spirit/include/classic_core.hpp>
 #include <boost/spirit/include/classic_distinct.hpp>
@@ -71,7 +71,7 @@ void finalactions(char const *first, char const *last);
 bool parse_point(char const *str, QPoint &p);
 bool parse_real(char const *str, double &d);
 bool parse_integers(char const *str, std::vector<int> &v);
-bool parse_spline(char const *str, QVector<QPair<float, float>> &points);
+bool parse_spline(char const *str, QList<QPair<float, float>> &points);
 void init_op();
 void valid_op(char const *first, char const *last);
 bool parse_renderop(const std::string &str, DotRenderOpVec &arenderopvec);

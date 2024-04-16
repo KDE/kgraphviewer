@@ -231,7 +231,7 @@ private:
     QString m_layoutCommand;
 
     unsigned int m_horizCellFactor, m_vertCellFactor;
-    QVector<QSet<GraphNode *>> m_cells;
+    QList<QSet<GraphNode *>> m_cells;
 
     double m_wdhcf, m_hdvcf;
 

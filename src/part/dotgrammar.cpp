@@ -355,7 +355,7 @@ bool parse_integers(char const *str, std::vector<int> &v)
     return parse(str, (int_p[push_back_a(v)] >> *(',' >> int_p[push_back_a(v)])), +space_p).full;
 }
 
-bool parse_spline(char const *str, QVector<QPair<float, float>> &points)
+bool parse_spline(char const *str, QList<QPair<float, float>> &points)
 {
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << "Parsing spline..." << QString::fromStdString(str);
     char e = 'n', s = 'n';
