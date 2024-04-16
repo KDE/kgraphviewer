@@ -51,17 +51,6 @@ GraphElement::GraphElement()
     , m_renderOperationsRevision(0)
     , m_selected(false)
 {
-    /*  label("");
-      id("");
-      style(DOT_DEFAULT_STYLE);
-      shape(DOT_DEFAULT_SHAPE);
-      lineColor(DOT_DEFAULT_LINECOLOR);
-      backColor(DOT_DEFAULT_BACKCOLOR);
-      fontName(DOT_DEFAULT_FONTNAME);
-      fontColor(DOT_DEFAULT_FONTCOLOR);
-      url("");
-      shapeFile("");*/
-    setFontSize(DOT_DEFAULT_FONTSIZE);
 }
 
 GraphElement::GraphElement(const GraphElement &element)
@@ -124,6 +113,38 @@ void GraphElement::updateWithElement(const GraphElement &element)
     qCDebug(KGRAPHVIEWERLIB_LOG) << "done" << m_renderOperations.size();
 }
 
+QString GraphElement::style() const
+{
+    auto it = m_attributes.find(KEY_STYLE);
+    if (it != m_attributes.end()) {
+        return *it;
+    }
+    return QStringLiteral(DOT_DEFAULT_STYLE);
+}
+
+QString GraphElement::shape() const
+{
+    auto it = m_attributes.find(KEY_SHAPE);
+    if (it != m_attributes.end()) {
+        return *it;
+    }
+    return QStringLiteral(DOT_DEFAULT_SHAPE);
+}
+
+QString GraphElement::color() const
+{
+    return lineColor();
+}
+
+QString GraphElement::lineColor() const
+{
+    auto it = m_attributes.find(KEY_COLOR);
+    if (it != m_attributes.end()) {
+        return *it;
+    }
+    return QStringLiteral(DOT_DEFAULT_LINECOLOR);
+}
+
 QString GraphElement::backColor() const
 {
     if (m_attributes.find(KEY_FILLCOLOR) != m_attributes.end()) {
@@ -133,6 +154,33 @@ QString GraphElement::backColor() const
     } else {
         return DOT_DEFAULT_NODE_BACKCOLOR;
     }
+}
+
+unsigned int GraphElement::fontSize() const
+{
+    auto it = m_attributes.find(KEY_FONTSIZE);
+    if (it != m_attributes.end()) {
+        return it->toUInt();
+    }
+    return DOT_DEFAULT_FONTSIZE;
+}
+
+QString GraphElement::fontName() const
+{
+    auto it = m_attributes.find(KEY_FONTNAME);
+    if (it != m_attributes.end()) {
+        return *it;
+    }
+    return QStringLiteral(DOT_DEFAULT_FONTNAME);
+}
+
+QString GraphElement::fontColor() const
+{
+    auto it = m_attributes.find(KEY_FONTCOLOR);
+    if (it != m_attributes.end()) {
+        return *it;
+    }
+    return QStringLiteral(DOT_DEFAULT_FONTCOLOR);
 }
 
 void GraphElement::removeAttribute(const QString &attribName)

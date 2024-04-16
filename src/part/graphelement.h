@@ -74,22 +74,10 @@ public:
     {
         return m_attributes[KEY_ID];
     }
-    inline QString style() const
-    {
-        return m_attributes[KEY_STYLE];
-    }
-    inline QString shape() const
-    {
-        return m_attributes[KEY_SHAPE];
-    }
-    inline QString color() const
-    {
-        return m_attributes[KEY_COLOR];
-    }
-    inline QString lineColor() const
-    {
-        return m_attributes[KEY_COLOR];
-    }
+    QString style() const;
+    QString shape() const;
+    QString color() const;
+    QString lineColor() const;
     virtual QString backColor() const;
 
     inline void setLabel(const QString &label)
@@ -101,26 +89,17 @@ public:
         return m_attributes[KEY_LABEL];
     }
 
-    inline unsigned int fontSize() const
-    {
-        return m_attributes[KEY_FONTSIZE].toUInt();
-    }
+    unsigned int fontSize() const;
     inline void setFontSize(unsigned int fs)
     {
         m_attributes[KEY_FONTSIZE] = QString::number(fs);
     }
-    inline QString fontName() const
-    {
-        return m_attributes[KEY_FONTNAME];
-    }
+    QString fontName() const;
     inline void setFontName(const QString &fn)
     {
         m_attributes[KEY_FONTNAME] = fn;
     }
-    inline QString fontColor() const
-    {
-        return m_attributes[KEY_FONTCOLOR];
-    }
+    QString fontColor() const;
     inline void setFontColor(const QString &fc)
     {
         m_attributes[KEY_FONTCOLOR] = fc;
