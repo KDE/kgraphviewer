@@ -34,11 +34,12 @@ find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
 
 find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
-    DocTools
     I18n
     Parts
     WidgetsAddons
 )
+
+find_package(KF6DocTools ${KF_MIN_VERSION})
 
 find_package(Boost 1.36 REQUIRED)
 find_package(Graphviz 2.30.0 REQUIRED)
@@ -64,10 +65,11 @@ ecm_set_disabled_deprecation_versions(
 )
 
 add_subdirectory(src)
-add_subdirectory(doc)
 
 ki18n_install(po)
+
 if(KF6DocTools_FOUND)
+    add_subdirectory(doc)
     kdoctools_install(po)
 endif()
 
