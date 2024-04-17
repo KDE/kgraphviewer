@@ -192,33 +192,32 @@ void KGraphViewerWindow::fileOpen()
 void KGraphViewerWindow::setupActions()
 {
     // create our actions
-    QAction *newAction = actionCollection()->addAction(KStandardAction::New, QStringLiteral("file_new"), this, &KGraphViewerWindow::fileNew);
+    QAction *newAction = KStandardAction::openNew(this, &KGraphViewerWindow::fileNew, actionCollection());
     newAction->setWhatsThis(i18n("Opens a new empty KGraphViewer window."));
 
-    QAction *openAction = actionCollection()->addAction(KStandardAction::Open, QStringLiteral("file_open"), this, &KGraphViewerWindow::fileOpen);
+    QAction *openAction = KStandardAction::open(this, &KGraphViewerWindow::fileOpen, actionCollection());
     openAction->setWhatsThis(i18n("Shows the file open dialog to choose a Graphviz DOT file to open."));
 
-    m_rfa = KStandardAction::openRecent(this, &KGraphViewerWindow::slotURLSelected, this);
-    actionCollection()->addAction(m_rfa->objectName(), m_rfa);
+    m_rfa = KStandardAction::openRecent(this, &KGraphViewerWindow::slotURLSelected, actionCollection());
     m_rfa->setWhatsThis(i18n("This lists files which you have opened recently, and allows you to easily open them again."));
 
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
     m_rfa->loadEntries(KConfigGroup(config, QStringLiteral("kgraphviewer recent files")));
 
-    m_closeAction = actionCollection()->addAction(KStandardAction::Close, QStringLiteral("file_close"), this, qOverload<>(&KGraphViewerWindow::close));
+    m_closeAction = KStandardAction::close(this, qOverload<>(&KGraphViewerWindow::close), actionCollection());
     m_closeAction->setWhatsThis(i18n("Closes the current file"));
     m_closeAction->setEnabled(false);
 
-    QAction *quitAction = actionCollection()->addAction(KStandardAction::Quit, QStringLiteral("file_quit"), qApp, &QApplication::quit);
+    QAction *quitAction = KStandardAction::quit(qApp, &QApplication::quit, actionCollection());
     quitAction->setWhatsThis(i18n("Quits KGraphViewer."));
 
-    m_statusbarAction = KStandardAction::showStatusbar(this, &KGraphViewerWindow::optionsShowStatusbar, this);
+    m_statusbarAction = KStandardAction::showStatusbar(this, &KGraphViewerWindow::optionsShowStatusbar, actionCollection());
     m_statusbarAction->setWhatsThis(i18n("Shows or hides the status bar."));
 
-    QAction *ctAction = actionCollection()->addAction(KStandardAction::ConfigureToolbars, QStringLiteral("options_configure_toolbars"), this, &KGraphViewerWindow::optionsConfigureToolbars);
+    QAction *ctAction = KStandardAction::configureToolbars(this, &KGraphViewerWindow::optionsConfigureToolbars, actionCollection());
     ctAction->setWhatsThis(i18n("Toolbar configuration."));
 
-    QAction *configureAction = actionCollection()->addAction(KStandardAction::Preferences, QStringLiteral("options_configure"), this, &KGraphViewerWindow::optionsConfigure);
+    QAction *configureAction = KStandardAction::preferences(this, &KGraphViewerWindow::optionsConfigure, actionCollection());
     configureAction->setWhatsThis(i18n("Main KGraphViewer configuration options."));
 }
 

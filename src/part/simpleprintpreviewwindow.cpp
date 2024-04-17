@@ -124,7 +124,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine
     m_navToolbar->addAction((QAction *)nextAction);
     m_navToolbar->addSeparator();
 
-    QAction *lastPageAction = KStandardAction::lastPage(this, &KGVSimplePrintPreviewWindow::slotLastClicked, this);
+    QAction *lastPageAction = KStandardAction::lastPage(this, &KGVSimplePrintPreviewWindow::slotLastClicked, &m_actions);
     //                                       &m_actions);
     m_navToolbar->addAction((QAction *)lastPageAction);
     m_navToolbar->addSeparator();

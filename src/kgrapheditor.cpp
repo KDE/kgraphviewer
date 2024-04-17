@@ -212,23 +212,23 @@ void KGraphEditor::setupActions()
 {
     // create our actions
 
-    actionCollection()->addAction(KStandardAction::New, QStringLiteral("file_new"), this, &KGraphEditor::fileNew);
-    actionCollection()->addAction(KStandardAction::Open, QStringLiteral("file_open"), this, &KGraphEditor::fileOpen);
+    KStandardAction::openNew(this, &KGraphEditor::fileNew, actionCollection());
+    KStandardAction::open(this, &KGraphEditor::fileOpen, actionCollection());
     m_rfa = KStandardAction::openRecent(this, &KGraphEditor::slotURLSelected, actionCollection());
     m_rfa->loadEntries(KConfigGroup(KSharedConfig::openConfig(), QStringLiteral("kgrapheditor")));
-    actionCollection()->addAction(KStandardAction::Save, QStringLiteral("file_save"), this, &KGraphEditor::fileSave);
-    actionCollection()->addAction(KStandardAction::SaveAs, QStringLiteral("file_save_as"), this, &KGraphEditor::fileSaveAs);
+    KStandardAction::save(this, &KGraphEditor::fileSave, actionCollection());
+    KStandardAction::saveAs(this, &KGraphEditor::fileSaveAs, actionCollection());
 
-    m_closeAction = actionCollection()->addAction(KStandardAction::Close, QStringLiteral("file_close"), this, qOverload<>(&KGraphEditor::close));
+    m_closeAction = KStandardAction::close(this, qOverload<>(&KGraphEditor::close), actionCollection());
     m_closeAction->setWhatsThis(i18n("Closes the current file"));
     m_closeAction->setEnabled(false);
 
-    actionCollection()->addAction(KStandardAction::Quit, QStringLiteral("file_quit"), qApp, &QApplication::quit);
+    KStandardAction::quit(qApp, &QApplication::quit, actionCollection());
 
-    m_statusbarAction = KStandardAction::showStatusbar(this, &KGraphEditor::optionsShowStatusbar, this);
+    m_statusbarAction = KStandardAction::showStatusbar(this, &KGraphEditor::optionsShowStatusbar, actionCollection());
 
-    actionCollection()->addAction(KStandardAction::ConfigureToolbars, QStringLiteral("options_configure_toolbars"), this, &KGraphEditor::optionsConfigureToolbars);
-    actionCollection()->addAction(KStandardAction::Preferences, QStringLiteral("options_configure"), this, &KGraphEditor::optionsConfigure);
+    KStandardAction::configureToolbars(this, &KGraphEditor::optionsConfigureToolbars, actionCollection());
+    KStandardAction::preferences(this, &KGraphEditor::optionsConfigure, actionCollection());
 
     QAction *edit_new_vertex = actionCollection()->addAction(QStringLiteral("edit_new_vertex"));
     edit_new_vertex->setText(i18n("Create a New Vertex"));

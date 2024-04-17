@@ -80,12 +80,10 @@ KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const
     // notify the part that this is our internal widget
     setWidget(d->m_widget);
 
-    QAction *printAct = actionCollection()->addAction(KStandardAction::Print, QStringLiteral("file_print"), d->m_widget, &DotGraphView::print);
-    actionCollection()->setDefaultShortcut(printAct, Qt::CTRL | Qt::Key_P);
+    QAction *printAct = KStandardAction::print(d->m_widget, &DotGraphView::print, actionCollection());
     printAct->setWhatsThis(i18n("Print the graph using current page setup settings"));
 
-    QAction *printPreviewAct = actionCollection()->addAction(KStandardAction::PrintPreview, QStringLiteral("file_print_preview"), d->m_widget, &DotGraphView::printPreview);
-    actionCollection()->setDefaultShortcut(printPreviewAct, Qt::CTRL | Qt::SHIFT | Qt::Key_P);
+    QAction *printPreviewAct = KStandardAction::printPreview(d->m_widget, &DotGraphView::printPreview, actionCollection());
     printPreviewAct->setWhatsThis(i18n("Open the print preview window"));
 
     //   KAction* pagesetupAct = new KAction(i18n("&Page setup"), this); //actionCollection(), "file_page_setup");
@@ -93,19 +91,16 @@ KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const
     pagesetupAct->setText(i18n("Page setup"));
     pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog to allow graph printing to be setup"));
 
-    QAction *redisplayAct = actionCollection()->addAction(KStandardAction::Redisplay, QStringLiteral("view_redisplay"), d->m_widget, &DotGraphView::reload);
+    QAction *redisplayAct = KStandardAction::redisplay(d->m_widget, &DotGraphView::reload, actionCollection());
     redisplayAct->setWhatsThis(i18n("Reload the current graph from file"));
-    redisplayAct->setShortcut(Qt::Key_F5);
 
-    QAction *zoomInAct = actionCollection()->addAction(KStandardAction::ZoomIn, QStringLiteral("view_zoom_in"), d->m_widget, &DotGraphView::zoomIn);
+    QAction *zoomInAct = KStandardAction::zoomIn(d->m_widget, &DotGraphView::zoomIn, actionCollection());
     // xgettext: no-c-format
     zoomInAct->setWhatsThis(i18n("Zoom in by 10% on the currently viewed graph"));
-    zoomInAct->setShortcut(Qt::Key_F7);
 
-    QAction *zoomOutAct = actionCollection()->addAction(KStandardAction::ZoomOut, QStringLiteral("view_zoom_out"), d->m_widget, &DotGraphView::zoomOut);
+    QAction *zoomOutAct = KStandardAction::zoomOut(d->m_widget, &DotGraphView::zoomOut, actionCollection());
     // xgettext: no-c-format
     zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
-    zoomOutAct->setShortcut(Qt::Key_F8);
 }
 
 QString KGraphViewerPart::componentName() const
