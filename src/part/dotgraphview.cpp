@@ -103,7 +103,7 @@ public:
         , m_highlighting(false)
         , m_loadThread()
         , m_layoutThread()
-        , m_backgroundColor(QColor("white"))
+        , m_backgroundColor(Qt::white)
         , q_ptr(parent)
     {
     }
