@@ -63,7 +63,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine
     m_toolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     lyr->addWidget(m_toolbar);
 
-    QAction *printAction = KStandardAction::print(this, SLOT(slotPrintClicked()), &m_actions);
+    QAction *printAction = KStandardAction::print(this, &KGVSimplePrintPreviewWindow::slotPrintClicked, &m_actions);
     m_toolbar->addAction((QAction *)printAction);
     /// @todo handle the accelerator
     // 	static_cast<KPushButton*>(m_toolbar->getWidget(id))->setAccel(Qt::CTRL|Qt::Key_P);
@@ -92,7 +92,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine
     m_toolbar->addSeparator();*/
 #endif
 
-    QAction *closeAction = KStandardAction::close(this, SLOT(close()), &m_actions);
+    QAction *closeAction = KStandardAction::close(this, &KGVSimplePrintPreviewWindow::close, &m_actions);
     m_toolbar->addAction((QAction *)closeAction);
 
     m_scrollView = new KGVSimplePrintPreviewScrollView(this);
@@ -105,7 +105,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine
     m_navToolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     lyr->addWidget(m_navToolbar);
 
-    QAction *firstPageAction = KStandardAction::firstPage(this, SLOT(slotFirstClicked()), &m_actions);
+    QAction *firstPageAction = KStandardAction::firstPage(this, &KGVSimplePrintPreviewWindow::slotFirstClicked, &m_actions);
     m_navToolbar->addAction((QAction *)firstPageAction);
     m_navToolbar->addSeparator();
 
@@ -124,7 +124,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine
     m_navToolbar->addAction((QAction *)nextAction);
     m_navToolbar->addSeparator();
 
-    QAction *lastPageAction = KStandardAction::lastPage(this, SLOT(slotLastClicked()), this);
+    QAction *lastPageAction = KStandardAction::lastPage(this, &KGVSimplePrintPreviewWindow::slotLastClicked, this);
     //                                       &m_actions);
     m_navToolbar->addAction((QAction *)lastPageAction);
     m_navToolbar->addSeparator();
@@ -135,7 +135,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine
     this->setLayout(lyr);
     //! @todo progress bar...
 
-    QTimer::singleShot(50, this, SLOT(initLater()));
+    QTimer::singleShot(50, this, &KGVSimplePrintPreviewWindow::initLater);
 }
 
 void KGVSimplePrintPreviewWindow::initLater()

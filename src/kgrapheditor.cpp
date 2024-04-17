@@ -60,19 +60,19 @@ KGraphEditor::KGraphEditor()
 
     m_widget = new QTabWidget(this);
     m_widget->setTabsClosable(true);
-    connect(m_widget, SIGNAL(tabCloseRequested(int)), this, SLOT(close(int)));
-    connect(m_widget, SIGNAL(currentChanged(int)), this, SLOT(newTabSelectedSlot(int)));
+    connect(m_widget, &QTabWidget::tabCloseRequested, this, qOverload<int>(&KGraphEditor::close));
+    connect(m_widget, &QTabWidget::currentChanged, this, &KGraphEditor::newTabSelectedSlot);
 
     setCentralWidget(m_widget);
 
     QDockWidget *topLeftDockWidget = new QDockWidget(this);
     topLeftDockWidget->setObjectName(QStringLiteral("TopLeftDockWidget"));
     m_treeWidget = new KGraphEditorNodesTreeWidget(topLeftDockWidget);
-    connect(m_treeWidget, SIGNAL(itemChanged(QTreeWidgetItem *, int)), this, SLOT(slotItemChanged(QTreeWidgetItem *, int)));
-    connect(m_treeWidget, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(slotItemClicked(QTreeWidgetItem *, int)));
-    connect(m_treeWidget, SIGNAL(removeNode(QString)), this, SLOT(slotRemoveNode(QString)));
-    connect(m_treeWidget, SIGNAL(addAttribute(QString)), this, SLOT(slotAddAttribute(QString)));
-    connect(m_treeWidget, SIGNAL(removeAttribute(QString, QString)), this, SLOT(slotRemoveAttribute(QString, QString)));
+    connect(m_treeWidget, &KGraphEditorNodesTreeWidget::itemChanged, this, &KGraphEditor::slotItemChanged);
+    connect(m_treeWidget, &KGraphEditorNodesTreeWidget::itemClicked, this, &KGraphEditor::slotItemClicked);
+    connect(m_treeWidget, &KGraphEditorNodesTreeWidget::removeNode, this, &KGraphEditor::slotRemoveNode);
+    connect(m_treeWidget, &KGraphEditorNodesTreeWidget::addAttribute, this, &KGraphEditor::slotAddAttribute);
+    connect(m_treeWidget, &KGraphEditorNodesTreeWidget::removeAttribute, this, &KGraphEditor::slotRemoveAttribute);
 
     //   m_treeWidget->setItemDelegate(new VariantDelegate(m_treeWidget));
     m_treeWidget->setColumnCount(2);
@@ -82,9 +82,9 @@ KGraphEditor::KGraphEditor()
     QDockWidget *bottomLeftDockWidget = new QDockWidget(this);
     bottomLeftDockWidget->setObjectName(QStringLiteral("BottomLeftDockWidget"));
     m_newElementAttributesWidget = new KGraphEditorElementTreeWidget(bottomLeftDockWidget);
-    connect(m_newElementAttributesWidget, SIGNAL(itemChanged(QTreeWidgetItem *, int)), this, SLOT(slotNewElementItemChanged(QTreeWidgetItem *, int)));
-    connect(m_newElementAttributesWidget, SIGNAL(addAttribute(QString)), this, SLOT(slotAddNewElementAttribute(QString)));
-    connect(m_newElementAttributesWidget, SIGNAL(removeAttribute(QString)), this, SLOT(slotRemoveNewElementAttribute(QString)));
+    connect(m_newElementAttributesWidget, &KGraphEditorElementTreeWidget::itemChanged, this, &KGraphEditor::slotNewElementItemChanged);
+    connect(m_newElementAttributesWidget, &KGraphEditorElementTreeWidget::addAttribute, this, &KGraphEditor::slotAddNewElementAttribute);
+    connect(m_newElementAttributesWidget, &KGraphEditorElementTreeWidget::removeAttribute, this, &KGraphEditor::slotRemoveNewElementAttribute);
     m_newElementAttributesWidget->setColumnCount(2);
     bottomLeftDockWidget->setWidget(m_newElementAttributesWidget);
     addDockWidget(Qt::LeftDockWidgetArea, bottomLeftDockWidget);
@@ -101,7 +101,7 @@ KGraphEditor::KGraphEditor()
     m_manager = new KParts::PartManager(this);
 
     // When the manager says the active part changes, the window updates (recreates) the GUI
-    connect(m_manager, SIGNAL(activePartChanged(KParts::Part *)), this, SLOT(createGUI(KParts::Part *)));
+    connect(m_manager, &KParts::PartManager::activePartChanged, this, &KGraphEditor::createGUI);
 
     setupGUI(ToolBar | Keys | StatusBar | Save);
 
@@ -212,33 +212,33 @@ void KGraphEditor::setupActions()
 {
     // create our actions
 
-    actionCollection()->addAction(KStandardAction::New, QStringLiteral("file_new"), this, SLOT(fileNew()));
-    actionCollection()->addAction(KStandardAction::Open, QStringLiteral("file_open"), this, SLOT(fileOpen()));
-    m_rfa = (KRecentFilesAction *)actionCollection()->addAction(KStandardAction::OpenRecent, QStringLiteral("file_open_recent"), this, SLOT(slotURLSelected(QUrl)));
+    actionCollection()->addAction(KStandardAction::New, QStringLiteral("file_new"), this, &KGraphEditor::fileNew);
+    actionCollection()->addAction(KStandardAction::Open, QStringLiteral("file_open"), this, &KGraphEditor::fileOpen);
+    m_rfa = KStandardAction::openRecent(this, &KGraphEditor::slotURLSelected, actionCollection());
     m_rfa->loadEntries(KConfigGroup(KSharedConfig::openConfig(), QStringLiteral("kgrapheditor")));
-    actionCollection()->addAction(KStandardAction::Save, QStringLiteral("file_save"), this, SLOT(fileSave()));
-    actionCollection()->addAction(KStandardAction::SaveAs, QStringLiteral("file_save_as"), this, SLOT(fileSaveAs()));
+    actionCollection()->addAction(KStandardAction::Save, QStringLiteral("file_save"), this, &KGraphEditor::fileSave);
+    actionCollection()->addAction(KStandardAction::SaveAs, QStringLiteral("file_save_as"), this, &KGraphEditor::fileSaveAs);
 
-    m_closeAction = actionCollection()->addAction(KStandardAction::Close, QStringLiteral("file_close"), this, SLOT(close()));
+    m_closeAction = actionCollection()->addAction(KStandardAction::Close, QStringLiteral("file_close"), this, qOverload<>(&KGraphEditor::close));
     m_closeAction->setWhatsThis(i18n("Closes the current file"));
     m_closeAction->setEnabled(false);
 
-    actionCollection()->addAction(KStandardAction::Quit, QStringLiteral("file_quit"), qApp, SLOT(quit()));
+    actionCollection()->addAction(KStandardAction::Quit, QStringLiteral("file_quit"), qApp, &QApplication::quit);
 
-    m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
+    m_statusbarAction = KStandardAction::showStatusbar(this, &KGraphEditor::optionsShowStatusbar, this);
 
-    actionCollection()->addAction(KStandardAction::ConfigureToolbars, QStringLiteral("options_configure_toolbars"), this, SLOT(optionsConfigureToolbars()));
-    actionCollection()->addAction(KStandardAction::Preferences, QStringLiteral("options_configure"), this, SLOT(optionsConfigure()));
+    actionCollection()->addAction(KStandardAction::ConfigureToolbars, QStringLiteral("options_configure_toolbars"), this, &KGraphEditor::optionsConfigureToolbars);
+    actionCollection()->addAction(KStandardAction::Preferences, QStringLiteral("options_configure"), this, &KGraphEditor::optionsConfigure);
 
     QAction *edit_new_vertex = actionCollection()->addAction(QStringLiteral("edit_new_vertex"));
     edit_new_vertex->setText(i18n("Create a New Vertex"));
     edit_new_vertex->setIcon(QPixmap(QStringLiteral(":/kgraphviewerpart/pics/newnode.png")));
-    connect(edit_new_vertex, SIGNAL(triggered(bool)), this, SLOT(slotEditNewVertex()));
+    connect(edit_new_vertex, &QAction::triggered, this, &KGraphEditor::slotEditNewVertex);
 
     QAction *edit_new_edge = actionCollection()->addAction(QStringLiteral("edit_new_edge"));
     edit_new_edge->setText(i18n("Create a New Edge"));
     edit_new_edge->setIcon(QPixmap(QStringLiteral(":/kgraphviewerpart/pics/newedge.png")));
-    connect(edit_new_edge, SIGNAL(triggered(bool)), this, SLOT(slotEditNewEdge()));
+    connect(edit_new_edge, &QAction::triggered, this, &KGraphEditor::slotEditNewEdge);
 }
 
 void KGraphEditor::closeEvent(QCloseEvent *event)
@@ -286,7 +286,7 @@ void KGraphEditor::optionsConfigureToolbars()
 
     // use the standard toolbar editor
     KEditToolBar dlg(factory());
-    connect(&dlg, SIGNAL(newToolbarConfig()), this, SLOT(applyNewToolbarConfig()));
+    connect(&dlg, &KEditToolBar::newToolBarConfig, this, &KGraphEditor::applyNewToolbarConfig);
     dlg.exec();
 }
 
@@ -308,8 +308,8 @@ void KGraphEditor::optionsConfigure()
     } else if (KGraphEditorSettings::parsingMode() == QStringLiteral("internal")) {
         parsingWidget->internal->setChecked(true);
     }
-    connect((QObject *)parsingWidget->external, SIGNAL(toggled(bool)), this, SLOT(slotParsingModeExternalToggled(bool)));
-    connect((QObject *)parsingWidget->internal, SIGNAL(toggled(bool)), this, SLOT(slotParsingModeInternalToggled(bool)));
+    connect(parsingWidget->external, &QRadioButton::toggled, this, &KGraphEditor::slotParsingModeExternalToggled);
+    connect(parsingWidget->internal, &QRadioButton::toggled, this, &KGraphEditor::slotParsingModeInternalToggled);
 
     /*  KGraphViewerPreferencesReloadWidget*  reloadWidget =
           new KGraphViewerPreferencesReloadWidget( 0, "KGraphViewer Settings" );
@@ -611,8 +611,8 @@ void KGraphEditor::slotNewEdgeFinished(const QString &srcId, const QString &tgtI
 void KGraphEditor::slotGraphLoaded()
 {
     qCDebug(KGRAPHEDITOR_LOG);
-    disconnect(m_treeWidget, SIGNAL(itemChanged(QTreeWidgetItem *, int)), this, SLOT(slotItemChanged(QTreeWidgetItem *, int)));
-    disconnect(m_treeWidget, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(slotItemClicked(QTreeWidgetItem *, int)));
+    disconnect(m_treeWidget, &KGraphEditorNodesTreeWidget::itemChanged, this, &KGraphEditor::slotItemChanged);
+    disconnect(m_treeWidget, &KGraphEditorNodesTreeWidget::itemClicked, this, &KGraphEditor::slotItemClicked);
 
     QList<QString> nodesIds; // TODO = m_currentPart->nodesIds();
     QList<QTreeWidgetItem *> items;
@@ -647,8 +647,8 @@ void KGraphEditor::slotGraphLoaded()
     }
     qCDebug(KGRAPHEDITOR_LOG) << "inserting";
     m_treeWidget->insertTopLevelItems(0, items);
-    connect(m_treeWidget, SIGNAL(itemChanged(QTreeWidgetItem *, int)), this, SLOT(slotItemChanged(QTreeWidgetItem *, int)));
-    connect(m_treeWidget, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(slotItemClicked(QTreeWidgetItem *, int)));
+    connect(m_treeWidget, &KGraphEditorNodesTreeWidget::itemChanged, this, &KGraphEditor::slotItemChanged);
+    connect(m_treeWidget, &KGraphEditorNodesTreeWidget::itemClicked, this, &KGraphEditor::slotItemClicked);
 }
 
 void KGraphEditor::slotItemChanged(QTreeWidgetItem *item, int column)

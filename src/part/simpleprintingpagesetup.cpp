@@ -128,9 +128,9 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     m_printPreviewNeedsReloading = false;
 
     if (printPreview)
-        QTimer::singleShot(50, this, SLOT(printPreview()));
+        QTimer::singleShot(50, this, qOverload<>(&KGVSimplePrintingPageSetup::printPreview));
     else if (print)
-        QTimer::singleShot(50, this, SLOT(print()));
+        QTimer::singleShot(50, this, qOverload<>(&KGVSimplePrintingPageSetup::print));
     connect(this, static_cast<void (KGVSimplePrintingPageSetup::*)()>(&KGVSimplePrintingPageSetup::print), m_graphView, &DotGraphView::print);
     connect(this, static_cast<void (KGVSimplePrintingPageSetup::*)()>(&KGVSimplePrintingPageSetup::printPreview), m_graphView, &DotGraphView::printPreview);
 

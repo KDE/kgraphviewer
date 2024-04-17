@@ -453,13 +453,13 @@ void DotGraphViewPrivate::setupPopup()
 
     QMenu *layoutPopup = m_popup->addMenu(i18n("Layout"));
     layoutPopup->addAction(m_layoutAlgoSelectAction);
-    QAction *slc = layoutPopup->addAction(i18n("Specify layout command"), q, SLOT(slotLayoutSpecify()));
+    QAction *slc = layoutPopup->addAction(i18n("Specify layout command"), q, &DotGraphView::slotLayoutSpecify);
     slc->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
-    QAction *rlc = layoutPopup->addAction(i18n("Reset layout command to default"), q, SLOT(slotLayoutReset()));
+    QAction *rlc = layoutPopup->addAction(i18n("Reset layout command to default"), q, &DotGraphView::slotLayoutReset);
     rlc->setWhatsThis(i18n("Resets the layout command to use to the default depending on the graph type (directed or not)."));
 
-    m_popup->addAction(QIcon::fromTheme(QStringLiteral("zoom-in")), i18n("Zoom In"), q, SLOT(zoomIn()));
-    m_popup->addAction(QIcon::fromTheme(QStringLiteral("zoom-out")), i18n("Zoom Out"), q, SLOT(zoomOut()));
+    m_popup->addAction(QIcon::fromTheme(QStringLiteral("zoom-in")), i18n("Zoom In"), q, &DotGraphView::zoomIn);
+    m_popup->addAction(QIcon::fromTheme(QStringLiteral("zoom-out")), i18n("Zoom Out"), q, &DotGraphView::zoomOut);
 
     m_popup->addSeparator();
 
