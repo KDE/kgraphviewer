@@ -598,22 +598,22 @@
 </screenshot>
 
 <para
->També podeu canviar el tipus de lletra, capçaleres i peus de pàgina:</para>
+>També podeu canviar la lletra, les capçaleres i els peus de pàgina:</para>
 
 <screenshot>
 <screeninfo
->Configuració de la vista prèvia de la pàgina per a cabre en múltiples pàgines sense capçalera i un tipus de lletra diferent</screeninfo>
+>Configuració de la vista prèvia de la pàgina per a cabre en múltiples pàgines sense capçalera i una lletra diferent</screeninfo>
 <mediaobject>
 <imageobject>
 <imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG"/>
 </imageobject>
 <textobject>
 <phrase
->Configuració de la vista prèvia de la pàgina per a cabre en múltiples pàgines sense capçalera i un tipus de lletra diferent</phrase>
+>Configuració de la vista prèvia de la pàgina per a cabre en múltiples pàgines sense capçalera i una lletra diferent</phrase>
 </textobject>
 <caption
 ><para
->Configuració de la vista prèvia de la pàgina per a cabre en múltiples pàgines sense capçalera i un tipus de lletra diferent</para
+>Configuració de la vista prèvia de la pàgina per a cabre en múltiples pàgines sense capçalera i una lletra diferent</para
 ></caption>
 </mediaobject>
 </screenshot>
@@ -762,9 +762,7 @@
 ></term>
 	<listitem
 ><para
->Algorisme &dot;, predeterminat per a gràfiques dirigides. Produeix dibuixos <quote
->jeràrquics</quote
-> o en capes de gràfiques dirigides. L'algoritme de disseny col·loca les vores en la mateixa direcció (de dalt a baix o d'esquerra a dreta) i després intenta evitar els encreuaments de les vores i reduir la longitud de la vora.</para
+>Algorisme &dot;, predeterminat per a gràfiques dirigides. Produeix dibuixos «jeràrquics» o en capes de gràfiques dirigides. L'algoritme de disseny col·loca les vores en la mateixa direcció (de dalt a baix o d'esquerra a dreta) i després intenta evitar els encreuaments de les vores i reduir la longitud de la vora.</para
 ></listitem>
 	</varlistentry>
 
@@ -775,9 +773,7 @@
 ></term>
 	<listitem
 ><para
->Algorisme &neato;, predeterminat per a gràfiques no dirigides. Produeix disposicions de <quote
->model de primavera</quote
->. Utilitza l'algoritme Kamada-Kawai, el qual és equivalent a l'escalat estadístic multidimensional.</para
+>Algorisme &neato;, predeterminat per a gràfiques no dirigides. Produeix disposicions de «model de primavera». Utilitza l'algoritme Kamada-Kawai, el qual és equivalent a l'escalat estadístic multidimensional.</para
 ></listitem>
 	</varlistentry>
 
@@ -799,9 +795,7 @@
 ></term>
 	<listitem
 ><para
->Algorisme &fdp;, per a gràfiques no dirigides. Produeix disposicions de <quote
->model de primavera</quote
->. Implementa l'heurística Fruchterman-Reingold, inclòs un solucionador de quadrícula múltiple que gestiona gràfiques més grans i gràfiques agrupades no dirigides.</para
+>Algorisme &fdp;, per a gràfiques no dirigides. Produeix disposicions de «model de primavera». Implementa l'heurística Fruchterman-Reingold, inclòs un solucionador de quadrícula múltiple que gestiona gràfiques més grans i gràfiques agrupades no dirigides.</para
 ></listitem>
 	</varlistentry>
 

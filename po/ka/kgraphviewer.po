@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-16 00:37+0000\n"
-"PO-Revision-Date: 2023-02-03 17:01+0100\n"
+"PO-Revision-Date: 2024-04-16 03:43+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -152,6 +152,8 @@ msgid ""
 "To choose whether to parse using an external command (usually dot) or the "
 "graphviz library"
 msgstr ""
+"არჩევა, დამუშავება გარე ბრძანებით (ჩვეულებრივ - dot) მოხდება, თუ graphviz-ის "
+"ბიბლიოთეკით"
 
 #. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
@@ -160,6 +162,8 @@ msgid ""
 "The answer to the question 'If another window already exist when launching "
 "kgraphviewer, should we open in it, open a new window or ask?'"
 msgstr ""
+"პასუხი კითხვაზე 'თუ kgraphviewer-ის გაშვებისას სხვა ფანჯარა უკვე არსებობს, "
+"ის უნდა გავხსნათ, ახალი ფანჯარა, თუ გკითხოთ?'"
 
 #. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
@@ -168,6 +172,8 @@ msgid ""
 "The answer to the question 'Should the files that were opened in previous "
 "sessions be reopened at startup?'"
 msgstr ""
+"კითხვა პასუხზე 'უნდა გაიხსნას თუ არა გაშვებისას თავიდან ფაილები, რომლებიც "
+"წინა სესიებში გქონდათ გახსნილი?'"
 
 #. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
@@ -180,7 +186,7 @@ msgstr "თუ ჩართულია, საჭიროების შე�
 #: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
 #, kde-format
 msgid "The list of files that were opened in past instances of kgraphviewer"
-msgstr ""
+msgstr "ფაილების სია, რომელიც წარსულში kgraphviewer-მა გახსნა"
 
 #. i18n: ectx: ToolBar (viewToolBar)
 #: kgrapheditorui.rc:23 kgraphviewerui.rc:17
@@ -226,6 +232,8 @@ msgstr "ახალი ცარიელი KGraphViewer -ის ფანჯ�
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
+"გაჩვენებთ ფაილის გახსნის დიალოგს, სადაც გასახსნელი Graphviz DOT ფაილის "
+"არჩევა შეგიძლიათ."
 
 #: kgraphviewer.cpp:203
 #, kde-format
@@ -233,6 +241,8 @@ msgid ""
 "This lists files which you have opened recently, and allows you to easily "
 "open them again."
 msgstr ""
+"ეს სია შეიცავს ფაილებს, რომლებიც ახლახანს გახსენით და საშუალებას გაძლევთ, "
+"ადვილად მიაგნოთ მათ."
 
 #: kgraphviewer.cpp:213
 #, kde-format
@@ -326,6 +336,8 @@ msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
 "in the existing window?"
 msgstr ""
+"KGraphViewer-ის ფანჯარა უკვე ღიაა. რა ადგილას გნებავთ ამ ფაილის გახსნა "
+"არსებულ ფანჯარაში?"
 
 #: part/canvasedge.cpp:70
 #, kde-format
@@ -450,6 +462,7 @@ msgstr "გრაფის განლაგება circo პროგრა�
 #, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr ""
+"აირჩიეთ Graphviz-ის განლაგების ალგორითმი, ან ჩაასწორეთ თქვენი საკუთარი."
 
 #: part/dotgraphview.cpp:448
 #, kde-format
@@ -459,6 +472,10 @@ msgid ""
 "manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
 "Gname=MyGraphName -Txdot </tt>"
 msgstr ""
+"აირჩიეთ Graphviz-ის განლაგების ალგორითმი ან შეიყვანეთ თქვენი საკუთარ "
+"ბრძანება, რომელიც გრაფიკს stdout-ზე, xdot ფორმატში დააგენერირებს. მაგალითად, "
+"dot ბრძანებისთვის <tt>G</tt> პარამეტრის ხელით მისათითებლად აკრიფეთ: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
 
 #: part/dotgraphview.cpp:454
 #, kde-format
@@ -476,11 +493,13 @@ msgid ""
 "Specify yourself the layout command to use. Given a dot file, it should "
 "produce an xdot file on its standard output."
 msgstr ""
+"მიუთითეთ თქვენი განლაგების ბრძანება. გადაეცემა dot ფაილი და მან სტანდარტულ "
+"გამოტანაზე xdot ფაილი უნდა გამოიტანოს."
 
 #: part/dotgraphview.cpp:458
 #, kde-format
 msgid "Reset layout command to default"
-msgstr ""
+msgstr "განლაგების ბრძანების ნაგულისხმევზე ჩამოყრა"
 
 #: part/dotgraphview.cpp:459
 #, kde-format
@@ -488,6 +507,8 @@ msgid ""
 "Resets the layout command to use to the default depending on the graph type "
 "(directed or not)."
 msgstr ""
+"ჩამოყრის განლაგების ბრძანებას ნაგულისხმევზე გრაფიკის ტიპზე დამოკიდებულებით "
+"(მიმართულია, თუ არა)."
 
 #: part/dotgraphview.cpp:461
 #, kde-format
@@ -507,7 +528,7 @@ msgstr "გრაფიკის გატანა"
 #: part/dotgraphview.cpp:468
 #, kde-format
 msgid "Allows the graph to be exported in another format."
-msgstr ""
+msgstr "საშუალებას გაძლევთ, გრაფიკი სხვა ფორმატში გაიტანოთ."
 
 #: part/dotgraphview.cpp:470
 #, kde-format
@@ -515,6 +536,8 @@ msgid ""
 "Use the Export Graph menu to export the graph in another format. There is "
 "currently only one export format supported: as a PNG image."
 msgstr ""
+"გამოიყენეთ გრაფიკის გატანა მენიუში, რომ გრაფიკი სხვა ფორმატში გაიტანოთ. "
+"ამჟამად, მხოლოდ, ერთი გატანის ფორმატია მხარდაჭერილი: როგორც PNG გამოსახულება."
 
 #: part/dotgraphview.cpp:474
 #, kde-format
@@ -544,7 +567,7 @@ msgstr "გადახედვა"
 #: part/dotgraphview.cpp:493
 #, kde-format
 msgid "Allows the Bird's-eye View to be setup."
-msgstr ""
+msgstr "საერთოდ ხედის მორგების დაშვება."
 
 #: part/dotgraphview.cpp:497
 #, kde-format
@@ -554,7 +577,7 @@ msgstr "ზედა მარცხენა"
 #: part/dotgraphview.cpp:498
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-left corner."
-msgstr ""
+msgstr "განათავსებს საერთო ხედს ზედა მარცხენა კუთხეში."
 
 #: part/dotgraphview.cpp:502
 #, kde-format
@@ -564,7 +587,7 @@ msgstr "ზედა მარჯვენა"
 #: part/dotgraphview.cpp:503
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-right corner."
-msgstr ""
+msgstr "განათავსებს საერთო ხედს ზედა მარჯვენა კუთხეში."
 
 #: part/dotgraphview.cpp:507
 #, kde-format
@@ -574,7 +597,7 @@ msgstr "ქვედა მარცხენა"
 #: part/dotgraphview.cpp:508
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-left corner."
-msgstr ""
+msgstr "განათავსებს საერთო ხედს ქვედა მარცხენა კუთხეში."
 
 #: part/dotgraphview.cpp:512
 #, kde-format
@@ -584,7 +607,7 @@ msgstr "ქვედა მარჯვენა"
 #: part/dotgraphview.cpp:513
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-right corner."
-msgstr ""
+msgstr "განათავსებს საერთო ხედს ქვედა მარჯვენა კუთხეში."
 
 #: part/dotgraphview.cpp:517
 #, kde-format
@@ -596,6 +619,8 @@ msgstr "ავტომატური"
 msgid ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
 msgstr ""
+"KGraphViewer-სთვის საერთო ხედის მდებარეობის ავტომატურად არჩევის უფლების "
+"მიცემა."
 
 #: part/dotgraphview.cpp:565
 #, kde-format
@@ -630,6 +655,21 @@ msgid ""
 "<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
 "printing options.</li></ul>"
 msgstr ""
+"<h1>Graphviz DOT ფორმატის გრაფიკის ვიზუალიზაცია<h1><p>თუ გრაფიკი უფრო დიდია, "
+"ვიდრე ვიჯეტის ალაგი, ერთ წიბოსთან განლაგების შემგროვებელი იქნება ნაჩვენები. "
+"აირჩიეთ კონტექსტური მენიუთი, თუ ამ გადახედვის ოპტიმალური მდებარეობა "
+"ავტომატურად უნდა იქნეს გამოთვლილი, თუ ხელით დადებთ, სადაც თქვენ გნებავთ."
+"<p><h2>როგორ უნდა ვიმუშაო მასთან ერთად?</h2><ul><li>გრაფიკის გადასატანად, "
+"შეგიძლიათ:  <ul>     <li>დააწკაპუნოთ და გადაათრიოთ ის</li>    <li>გამოიყენოთ "
+"ლიფტები</li>   <li>დააწექით ისრის ღილაკებს</li>   <li>დააწკაპუნეთ სადმე "
+"შემგროვებლის ხედზე<li>   <li>გამოიყენეთ თაგუნას ბორბალი (მაღლა და დაბლა, "
+"მოდიფიკატორის გარეშე, მარჯვნივ და მარცხნივ, თუ <Alt> ღილაკია დაჭერილი</"
+"li>    <li>ან დააწკაპუნეთ და გადაათრიეთ შემგროვებლის ხედზე</li>   </"
+"ul><li><li>გასადიდებლად, შეგიძლიათ გამოიყენოთ გადიდების და დაპატარავების "
+"ღილაკები ხელსაწყოების პანელზე, ან გეჭიროთ ღილაკზე <Shift> თაგუნას ბორბლის "
+"ტრიალისას.</li><li>სცადეთ კონტექსტური მენიუ (ჩვეულებრივ, მარჯვენა წკაპით) "
+"სხვა შესაძლებლობებისთვის.</li><li>სცადეთ <tt>ბეჭდვის მინიატურის</tt> ან "
+"<tt>გვერდის მორგების</tt> ღილაკები, რომ ბეჭდვის ვარიანტები იხილოთ.</li></ul>"
 
 #: part/dotgraphview.cpp:780
 #, kde-format
@@ -658,6 +698,8 @@ msgid ""
 "The file %1 has been modified on disk.\n"
 "Do you want to reload it?"
 msgstr ""
+"ფაილი %1 დისკზე შეიცვალა.\n"
+"გნებავთ, თავიდან ჩატვირთოთ ის?"
 
 #: part/dotgraphview.cpp:1694
 #, kde-format
@@ -670,6 +712,8 @@ msgid ""
 "Specify here the command that will be used to layout the graph.\n"
 "The command MUST write its results on stdout in xdot format."
 msgstr ""
+"აქ შეიყვანეთ ბრძანება, რომელიც გრაფიკის განლაგებისთვის იქნება გამოყენებული.\n"
+"ბრძანებამ *უნდა* გამოიტანოს შედეგები stdout-ზე, xdot ფორმატში."
 
 #: part/dotgraphview.cpp:2144
 #, kde-format
@@ -679,12 +723,12 @@ msgstr "%1-ის გახსნის შეცდომა"
 #: part/kgraphviewer_part.cpp:85
 #, kde-format
 msgid "Print the graph using current page setup settings"
-msgstr ""
+msgstr "გრაფიკის დაბეჭდვა ამჟამად არჩეული გვერდის პარამეტრებით"
 
 #: part/kgraphviewer_part.cpp:89
 #, kde-format
 msgid "Open the print preview window"
-msgstr ""
+msgstr "ბეჭდვის გადახედვის ფანჯრის გახსნა"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -695,6 +739,7 @@ msgstr "გვერდის პარამეტრები"
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr ""
+"გახსნის გვერდის მორგების დიალოგს, სადაც გრაფიკის დაბეჭდვის მორგება შეგიძლიათ"
 
 #: part/kgraphviewer_part.cpp:97
 #, kde-format
@@ -704,12 +749,12 @@ msgstr "მიმდინარე გრაფის ფაილიდან 
 #: part/kgraphviewer_part.cpp:102
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
-msgstr ""
+msgstr "ამჟამად გახსნილი გრაფიკის 10%-ით გადიდება"
 
 #: part/kgraphviewer_part.cpp:107
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
-msgstr ""
+msgstr "ამჟამად გახსნილი გრაფიკის 10%-ით დაპატარავება"
 
 #. i18n: ectx: Menu (file)
 #: part/kgraphviewer_part.rc:4
@@ -765,13 +810,13 @@ msgstr "სათაური"
 #: part/KgvPageLayoutHeaderBase.ui:23
 #, kde-format
 msgid "Different header for the first page"
-msgstr ""
+msgstr "განსხვავებული თავსართი პირველი გვერდისთვის"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
 #: part/KgvPageLayoutHeaderBase.ui:30
 #, kde-format
 msgid "Different header for even and odd pages"
-msgstr ""
+msgstr "განსხვავებული თავსართი კენტი და ლუწი გვერდებისთვის"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: part/KgvPageLayoutHeaderBase.ui:55
@@ -807,13 +852,13 @@ msgstr "დაშორება ქვესართსა და სხეუ
 #: part/KgvPageLayoutHeaderBase.ui:137
 #, kde-format
 msgid "Footnote/Endnote"
-msgstr ""
+msgstr "ქვედა კოლონტიტული/ბოლოსართი"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel5)
 #: part/KgvPageLayoutHeaderBase.ui:159
 #, kde-format
 msgid "Spacing between footnote and body:"
-msgstr ""
+msgstr "დაშორება ქვედა კოლონტიტულსა და სხეულს შორის:"
 
 #: part/KgvPageLayoutSize.cpp:58
 #, kde-format
@@ -823,7 +868,7 @@ msgstr "ერთეული:"
 #: part/KgvPageLayoutSize.cpp:71
 #, kde-format
 msgid "All values are given in %1."
-msgstr ""
+msgstr "ყველა მნიშვნელობა მოცემულია %1-ში."
 
 #: part/KgvPageLayoutSize.cpp:76
 #, kde-format
@@ -873,12 +918,12 @@ msgstr "გვერდის განლაგების პრობლე�
 #: part/KgvPageLayoutSize.cpp:370
 #, kde-format
 msgid "The page width is smaller than the left and right margins."
-msgstr ""
+msgstr "გვერდის სიგანე ნაკლებია, ვიდრე მარცხენა და მარჯვენა საზღვრები."
 
 #: part/KgvPageLayoutSize.cpp:374
 #, kde-format
 msgid "The page height is smaller than the top and bottom margins."
-msgstr ""
+msgstr "გვერდის სიმაღლე ნაკლებია, ვიდრე ზედა და ქვედა საზღვრები."
 
 #: part/KgvUnit.cpp:52
 #, kde-format
@@ -929,6 +974,7 @@ msgstr "შეცდომა."
 #, kde-format
 msgid "View of the complete graph. Click and drag to move the visible part."
 msgstr ""
+"სრული გრაფიკის ხედი. დააწკაპუნეთ და გადაათრიეთ ხილული ნაწილის გადასატანად."
 
 #: part/pannerview.cpp:61
 #, kde-format
@@ -938,6 +984,9 @@ msgid ""
 "p><p>Clicking and dragging within the red square will cause the view to "
 "follow the movement.</p>"
 msgstr ""
+"<h1>სრული გრაფიკის ხედი</h1><p>ერთი წკაპით სადმე წითელი ოთხკუთხედის გარეთ "
+"ხედის ცენტრს თაგუნას დაწკაპუნების ადგილას გადაიტანს.</p><p>წითელი "
+"ოთხკუთხედის შიგნით დაწკაპუნება და გადათრევა ხედს მოძრაობას გააყოლებს.</p>"
 
 #: part/simpleprintingcommand.cpp:78
 #, kde-format
@@ -1082,26 +1131,24 @@ msgstr "&რამდენიმე გვერდში ჩატევა"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
-#, fuzzy, kde-format
-#| msgid "Horizontally"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "ჰორიზონტალურად"
+msgstr "ჰორიზონტალურად:"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
-#, fuzzy, kde-format
-#| msgid "Vertically"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "ვერტიკალურად"
+msgstr "ვერტიკალურად:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
 #, kde-format
 msgctxt "@option:check"
 msgid "Preserve aspect ratio:"
-msgstr ""
+msgstr "პროპორციების შენარჩუნება:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: part/simpleprintingpagesetupbase.ui:228
@@ -1139,7 +1186,7 @@ msgstr "ფონის ნაგულისხმები ფერი:"
 #: preferencesAppearance.ui:51
 #, kde-format
 msgid "Note: this will be overridden if the graph has its own background color"
-msgstr ""
+msgstr "შენიშვნა: ეს გადაიფარება, თუ გრაფიკს საკუთარი ფონის ფერი აქვს"
 
 #. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
 #: preferencesOpenInExistingWindow.ui:17

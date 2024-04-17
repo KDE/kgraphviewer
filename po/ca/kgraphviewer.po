@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-16 00:37+0000\n"
-"PO-Revision-Date: 2024-03-22 15:43+0100\n"
+"PO-Revision-Date: 2024-04-16 11:55+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -1028,12 +1028,12 @@ msgstr "Vista prèvia d'impressió..."
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font..."
-msgstr "Tipus de lletra..."
+msgstr "Lletra..."
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
 msgid "Changes font for title text."
-msgstr "Canvia el tipus de lletra del text del títol."
+msgstr "Canvia la lletra del text del títol."
 
 #: part/simpleprintingpagesetup.cpp:95
 #, kde-format
@@ -1074,7 +1074,7 @@ msgstr "Canvia la mida i els marges de la pàgina."
 #: part/simpleprintingpagesetup.cpp:164
 #, kde-format
 msgid "Chosen font looks like this"
-msgstr "El tipus de lletra escollit es veurà així"
+msgstr "La lletra escollida es veurà així"
 
 #: part/simpleprintingpagesetup.cpp:180
 #, kde-format
@@ -1095,7 +1095,7 @@ msgstr "marges:"
 #: part/simpleprintingpagesetupbase.ui:64
 #, kde-format
 msgid "Pa&ge font:"
-msgstr "Tipus de lletra de la pà&gina:"
+msgstr "Lletra de la pà&gina:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/simpleprintingpagesetupbase.ui:93
@@ -1267,6 +1267,3 @@ msgstr "Pregunt&a"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Reobre els fitxers prèviament oberts"
-
-#~ msgid "Configure the bindings between keys and actions."
-#~ msgstr "Configura les vinculacions entre tecles i accions."
