@@ -50,7 +50,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     , m_settings(command->engine()->settings())
     , m_command(command)
 {
-    setObjectName("KGVSimplePrintingPageSetup");
+    setObjectName(QStringLiteral("KGVSimplePrintingPageSetup"));
     // object to print
     bool ok = args;
     m_graphView = mainWin;
@@ -60,9 +60,9 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     bool print = false;
     bool pageSetup = false;
     if (ok) {
-        printPreview = (*args)["action"] == "printPreview";
-        print = (*args)["action"] == "print";
-        pageSetup = (*args)["action"] == "pageSetup";
+        printPreview = (*args)[QStringLiteral("action")] == QLatin1String("printPreview");
+        print = (*args)[QStringLiteral("action")] == QLatin1String("print");
+        pageSetup = (*args)[QStringLiteral("action")] == QLatin1String("pageSetup");
         ok = printPreview || print || pageSetup;
     }
 
@@ -78,10 +78,10 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     setFocusPolicy(Qt::WheelFocus);
     // 	m_contents->setFocusProxy(m_contents->headerTitleLineEdit);
 
-    m_contents->printButton->setIcon(QIcon::fromTheme("printer"));
+    m_contents->printButton->setIcon(QIcon::fromTheme(QStringLiteral("printer")));
     connect(m_contents->printButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotPrint);
 
-    m_contents->printPreviewButton->setIcon(QIcon::fromTheme("document-print-preview"));
+    m_contents->printPreviewButton->setIcon(QIcon::fromTheme(QStringLiteral("document-print-preview")));
     m_contents->printPreviewButton->setText(i18n("Print Preview..."));
     connect(m_contents->printPreviewButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotPrintPreview);
 
@@ -90,7 +90,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     connect(m_contents->headerTitleFontButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotChangeTitleFont);
 
     if (m_graphView) {
-        m_contents->headerTitleLineEdit->setText((*args)["title"]);
+        m_contents->headerTitleLineEdit->setText((*args)[QStringLiteral("title")]);
         QString origCaptionLabelText = m_contents->captionLabel->text();
         m_contents->captionLabel->setText(i18n("<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>", QUrl::fromLocalFile(m_graphView->dotFileName()).fileName()));
     }
@@ -174,11 +174,11 @@ void KGVSimplePrintingPageSetup::updatePageLayoutAndUnitInfo()
 {
     QString s;
     if (m_settings->pageLayout.format == PG_CUSTOM) {
-        s += QString(" (%1 %2 x %3 %4)").arg(m_settings->pageLayout.ptWidth).arg(KgvUnit::unitName(m_unit)).arg(m_settings->pageLayout.ptHeight).arg(KgvUnit::unitName(m_unit));
+        s += QStringLiteral(" (%1 %2 x %3 %4)").arg(m_settings->pageLayout.ptWidth).arg(KgvUnit::unitName(m_unit)).arg(m_settings->pageLayout.ptHeight).arg(KgvUnit::unitName(m_unit));
     } else
         s += KgvPageFormat::name(m_settings->pageLayout.format);
-    s += QString(", ") + (m_settings->pageLayout.orientation == PG_PORTRAIT ? i18n("Portrait") : i18n("Landscape")) + ", " + i18n("margins:") + ' ' + KgvUnit::toUserStringValue(m_settings->pageLayout.ptLeft, m_unit) + '/' +
-        KgvUnit::toUserStringValue(m_settings->pageLayout.ptRight, m_unit) + '/' + KgvUnit::toUserStringValue(m_settings->pageLayout.ptTop, m_unit) + '/' + KgvUnit::toUserStringValue(m_settings->pageLayout.ptBottom, m_unit) + ' ' +
+    s += QLatin1String(", ") + (m_settings->pageLayout.orientation == PG_PORTRAIT ? i18n("Portrait") : i18n("Landscape")) + QLatin1String(", ") + i18n("margins:") + QLatin1Char(' ') + KgvUnit::toUserStringValue(m_settings->pageLayout.ptLeft, m_unit) + QLatin1Char('/') +
+        KgvUnit::toUserStringValue(m_settings->pageLayout.ptRight, m_unit) + QLatin1Char('/') + KgvUnit::toUserStringValue(m_settings->pageLayout.ptTop, m_unit) + QLatin1Char('/') + KgvUnit::toUserStringValue(m_settings->pageLayout.ptBottom, m_unit) + QLatin1Char(' ') +
         KgvUnit::unitName(m_unit);
     m_contents->pageSizeAndMarginsLabel->setText(s);
     m_contents->horizFitNumInput->setRange(1, m_command->engine()->maxHorizFit());

@@ -71,8 +71,8 @@ void DotGraphParsingHelper::setgraphelementattributes(GraphElement *ge, const At
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "    " << QString::fromStdString((*it).first) << "\t=\t'" << QString::fromStdString((*it).second) <<"'";
         if ((*it).first == "label") {
             QString label = QString::fromUtf8((*it).second.c_str());
-            label.replace("\\n", "\n");
-            (*ge).attributes()["label"] = label;
+            label.replace(QStringLiteral("\\n"), QStringLiteral("\n"));
+            (*ge).attributes()[QStringLiteral("label")] = label;
         } else {
             (*ge).attributes()[QString::fromStdString((*it).first)] = QString::fromStdString((*it).second);
         }
@@ -283,7 +283,7 @@ void DotGraphParsingHelper::createedges()
         setedgeattributes();
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << ge->id();
         if (ge->id().isEmpty()) {
-            ge->setId(QString::fromStdString(node1Name) + QString::fromStdString(node2Name) + QUuid::createUuid().toString().remove('{').remove('}').remove('-'));
+            ge->setId(QString::fromStdString(node1Name) + QString::fromStdString(node2Name) + QUuid::createUuid().toString().remove(QLatin1Char('{')).remove(QLatin1Char('}')).remove(QLatin1Char('-')));
         }
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << ge->id();
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "num before=" << graph->edges().size();

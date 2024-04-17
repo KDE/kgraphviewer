@@ -161,7 +161,7 @@ void KGVSimplePrintingEngine::paintPage(int pageNumber, QPainter &painter, bool 
         m_dateTimeText = QLocale().toString(QDateTime::currentDateTime());
         m_dateTimeWidth = 0;
         if (m_settings->addDateAndTime) {
-            m_dateTimeWidth = painter.boundingRect(leftMargin, topMargin, m_pageWidth, m_pageHeight, Qt::AlignRight, m_dateTimeText + "   ").width();
+            m_dateTimeWidth = painter.boundingRect(leftMargin, topMargin, m_pageWidth, m_pageHeight, Qt::AlignRight, m_dateTimeText + QLatin1String("   ")).width();
         }
         m_mainLineSpacing = painter.fontMetrics().lineSpacing();
         m_headerTextRect = painter.boundingRect((int)leftMargin, (int)topMargin, m_pageWidth - m_dateTimeWidth, m_pageHeight, Qt::AlignLeft | Qt::TextWordWrap, m_headerText);

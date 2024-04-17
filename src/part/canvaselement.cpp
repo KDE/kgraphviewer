@@ -64,19 +64,19 @@ CanvasElement::CanvasElement(DotGraphView *v, GraphElement *gelement, QGraphicsS
       qCDebug(KGRAPHVIEWERLIB_LOG) << "    data: " << wdhcf << "," << hdvcf << "," << gh << ","
         << scaleX << "," << scaleY << "," << xMargin << "," << yMargin << endl;*/
 
-    if (element()->style() == "bold") {
+    if (element()->style() == QLatin1String("bold")) {
         m_pen.setStyle(Qt::SolidLine);
         m_pen.setWidth(int(2 * ((m_scaleX + m_scaleY) / 2)));
-    } else if (element()->style() != "filled") {
+    } else if (element()->style() != QLatin1String("filled")) {
         m_pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(m_element->style()));
         m_pen.setWidth(int((m_scaleX + m_scaleY) / 2));
-        if (element()->style().left(12) == "setlinewidth") {
+        if (element()->style().left(12) == QLatin1String("setlinewidth")) {
             bool ok;
             uint lineWidth = element()->style().mid(13, m_element->style().length() - 1 - 13).toInt(&ok);
             m_pen.setWidth(lineWidth * int((m_scaleX + m_scaleY) / 2));
         }
     }
-    if (m_element->style() == "filled") {
+    if (m_element->style() == QLatin1String("filled")) {
         m_brush = Dot2QtConsts::componentData().qtColor(element()->backColor());
         //     QCanvasPolygon::drawShape(p);
     } else {
@@ -162,7 +162,7 @@ void CanvasElement::computeBoundingRect()
             qCDebug(KGRAPHVIEWERLIB_LOG) << msg;
 #endif
 
-            if ((*it).renderop == "e" || (*it).renderop == "E") {
+            if ((*it).renderop == QLatin1String("e") || (*it).renderop == QLatin1String("E")) {
                 //         qCDebug(KGRAPHVIEWERLIB_LOG) << "integers[0]=" << (*it).integers[0] << ";
                 qreal w = m_scaleX * (*it).integers[2] * 2;
                 qreal h = m_scaleY * (*it).integers[3] * 2;
@@ -170,7 +170,7 @@ void CanvasElement::computeBoundingRect()
                 qreal y = ((m_gh - (*it).integers[1]) * m_scaleY) + m_yMargin - h / 2;
                 m_boundingRect = QRectF(x - adjust, y - adjust, w + adjust, h + adjust);
                 //         qCDebug(KGRAPHVIEWERLIB_LOG) << "'" << element()->id() << "' set rect for ellipse to " << rect;
-            } else if ((*it).renderop == "p" || (*it).renderop == "P") {
+            } else if ((*it).renderop == QLatin1String("p") || (*it).renderop == QLatin1String("P")) {
                 QPolygonF polygon((*it).integers[0]);
                 for (int i = 0; i < (*it).integers[0]; i++) {
                     qreal x, y;
@@ -237,13 +237,13 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
 
     while (it.hasNext()) {
         const DotRenderOp &dro = it.next();
-        if (dro.renderop == "c") {
+        if (dro.renderop == QLatin1String("c")) {
             QColor c(dro.str.mid(0, 7));
             bool ok;
             c.setAlpha(255 - dro.str.mid(8).toInt(&ok, 16));
             lineColor = c;
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "c" << dro.str.mid(0,7) << lineColor;
-        } else if (dro.renderop == "C") {
+        } else if (dro.renderop == QLatin1String("C")) {
             QColor c(dro.str.mid(0, 7));
             bool ok;
             c.setAlpha(255 - dro.str.mid(8).toInt(&ok, 16));
@@ -252,7 +252,7 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
             }
             backColor = c;
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "C" << dro.str.mid(0,7) << backColor;
-        } else if (dro.renderop == "e" || dro.renderop == "E") {
+        } else if (dro.renderop == QLatin1String("e") || dro.renderop == QLatin1String("E")) {
             QPen pen = oldPen;
             qreal w = m_scaleX * dro.integers[2] * 2;
             qreal h = m_scaleY * dro.integers[3] * 2;
@@ -260,9 +260,9 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
             qreal y = ((m_gh - dro.integers[1]) * m_scaleY) + m_yMargin - h / 2;
             QRectF rect(x, y, w, h);
             pen.setColor(lineColor);
-            if (element()->attributes().contains("penwidth")) {
+            if (element()->attributes().contains(QStringLiteral("penwidth"))) {
                 bool ok;
-                int lineWidth = element()->attributes()["penwidth"].toInt(&ok);
+                int lineWidth = element()->attributes()[QStringLiteral("penwidth")].toInt(&ok);
                 pen.setWidth(int(lineWidth * widthScaleFactor));
             }
 
@@ -272,7 +272,7 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << element()->id() << "drawEllipse" << lineColor << backColor << rect;
             //       rect = QRectF(0,0,100,100);
             p->drawEllipse(rect);
-        } else if (dro.renderop == "p" || dro.renderop == "P") {
+        } else if (dro.renderop == QLatin1String("p") || dro.renderop == QLatin1String("P")) {
             //       std::cerr << "Drawing polygon for node '"<<element()->id()<<"': ";
             QPolygonF points(dro.integers[0]);
             for (int i = 0; i < dro.integers[0]; i++) {
@@ -287,18 +287,18 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
 
             QPen pen = oldPen;
             pen.setColor(lineColor);
-            if (element()->style() == "bold") {
+            if (element()->style() == QLatin1String("bold")) {
                 pen.setStyle(Qt::SolidLine);
                 pen.setWidth(2);
             }
-            if (element()->attributes().contains("penwidth")) {
+            if (element()->attributes().contains(QStringLiteral("penwidth"))) {
                 bool ok;
-                int lineWidth = element()->attributes()["penwidth"].toInt(&ok);
+                int lineWidth = element()->attributes()[QStringLiteral("penwidth")].toInt(&ok);
                 pen.setWidth(int(lineWidth * widthScaleFactor));
-            } else if (element()->style() != "filled") {
+            } else if (element()->style() != QLatin1String("filled")) {
                 pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));
             }
-            if (element()->style().left(12) == "setlinewidth") {
+            if (element()->style().left(12) == QLatin1String("setlinewidth")) {
                 bool ok;
                 uint lineWidth = element()->style().mid(12, element()->style().length() - 1 - 12).toInt(&ok);
                 pen.setWidth(lineWidth);
@@ -331,13 +331,13 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
     it.toFront();
     while (it.hasNext()) {
         const DotRenderOp &dro = it.next();
-        if (dro.renderop == "c") {
+        if (dro.renderop == QLatin1String("c")) {
             QColor c(dro.str.mid(0, 7));
             bool ok;
             c.setAlpha(255 - dro.str.mid(8).toInt(&ok, 16));
             lineColor = c;
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "c" << dro.str.mid(0,7) << lineColor;
-        } else if (dro.renderop == "C") {
+        } else if (dro.renderop == QLatin1String("C")) {
             QColor c(dro.str.mid(0, 7));
             bool ok;
             c.setAlpha(255 - dro.str.mid(8).toInt(&ok, 16));
@@ -346,7 +346,7 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
             }
             backColor = c;
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "C" << dro.str.mid(0,7) << backColor;
-        } else if (dro.renderop == "L") {
+        } else if (dro.renderop == QLatin1String("L")) {
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "Label";
             QPolygonF points(dro.integers[0]);
             for (int i = 0; i < dro.integers[0]; i++) {
@@ -357,10 +357,10 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
                 points[i] = p;
             }
             QPen pen(lineColor);
-            if (element()->style() == "bold") {
+            if (element()->style() == QLatin1String("bold")) {
                 pen.setStyle(Qt::SolidLine);
                 pen.setWidth(2);
-            } else if (element()->style() != "filled") {
+            } else if (element()->style() != QLatin1String("filled")) {
                 pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));
             }
             p->setPen(pen);
@@ -376,14 +376,14 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
     uint num_T = 0;
     while (it.hasNext()) {
         const DotRenderOp &dro = it.next();
-        if (dro.renderop == "c" || dro.renderop == "C") {
+        if (dro.renderop == QLatin1String("c") || dro.renderop == QLatin1String("C")) {
             color = dro.str.mid(0, 7);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << dro.renderop << color;
-        } else if (dro.renderop == "F") {
+        } else if (dro.renderop == QLatin1String("F")) {
             element()->setFontName(dro.str);
             element()->setFontSize(dro.integers[0]);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "F" << element()->fontName() << element()->fontColor() << element()->fontSize();
-        } else if (dro.renderop == "T") {
+        } else if (dro.renderop == QLatin1String("T")) {
             ++num_T;
             // we suppose here that the color has been set just before
             element()->setFontColor(color);

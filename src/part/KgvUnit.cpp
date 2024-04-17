@@ -152,12 +152,12 @@ double KgvUnit::parseValue(const QString &sval, double defaultVal)
 {
     QString value = sval;
     value = value.simplified();
-    value.remove(' ');
+    value.remove(QLatin1Char(' '));
 
     if (value.isEmpty())
         return defaultVal;
 
-    int index = value.indexOf(QRegularExpression("[a-z]+$"));
+    int index = value.indexOf(QRegularExpression(QStringLiteral("[a-z]+$")));
     if (index == -1)
         return value.toDouble();
 
@@ -165,7 +165,7 @@ double KgvUnit::parseValue(const QString &sval, double defaultVal)
     value.truncate(index);
     double val = value.toDouble();
 
-    if (unit == "pt")
+    if (unit == QStringLiteral("pt"))
         return val;
 
     bool ok;
@@ -173,9 +173,9 @@ double KgvUnit::parseValue(const QString &sval, double defaultVal)
     if (ok)
         return fromUserValue(val, u);
 
-    if (unit == "m")
+    if (unit == QStringLiteral("m"))
         return fromUserValue(val * 10.0, U_DM);
-    else if (unit == "km")
+    else if (unit == QStringLiteral("km"))
         return fromUserValue(val * 10000.0, U_DM);
     qCWarning(KGRAPHVIEWERLIB_LOG) << "Unit" << unit << "is not supported, please report.";
 
@@ -187,21 +187,21 @@ KgvUnit::Unit KgvUnit::unit(const QString &_unitName, bool *ok)
 {
     if (ok)
         *ok = true;
-    if (_unitName == QString::fromLatin1("mm"))
+    if (_unitName == QStringLiteral("mm"))
         return U_MM;
-    if (_unitName == QString::fromLatin1("cm"))
+    if (_unitName == QStringLiteral("cm"))
         return U_CM;
-    if (_unitName == QString::fromLatin1("dm"))
+    if (_unitName == QStringLiteral("dm"))
         return U_DM;
-    if (_unitName == QString::fromLatin1("in") || _unitName == QString::fromLatin1("inch") /*compat*/)
+    if (_unitName == QStringLiteral("in") || _unitName == QStringLiteral("inch") /*compat*/)
         return U_INCH;
-    if (_unitName == QString::fromLatin1("pi"))
+    if (_unitName == QStringLiteral("pi"))
         return U_PI;
-    if (_unitName == QString::fromLatin1("dd"))
+    if (_unitName == QStringLiteral("dd"))
         return U_DD;
-    if (_unitName == QString::fromLatin1("cc"))
+    if (_unitName == QStringLiteral("cc"))
         return U_CC;
-    if (_unitName == QString::fromLatin1("pt"))
+    if (_unitName == QStringLiteral("pt"))
         return U_PT;
     if (ok)
         *ok = false;
@@ -211,18 +211,18 @@ KgvUnit::Unit KgvUnit::unit(const QString &_unitName, bool *ok)
 QString KgvUnit::unitName(Unit _unit)
 {
     if (_unit == U_MM)
-        return QString::fromLatin1("mm");
+        return QStringLiteral("mm");
     if (_unit == U_CM)
-        return QString::fromLatin1("cm");
+        return QStringLiteral("cm");
     if (_unit == U_DM)
-        return QString::fromLatin1("dm");
+        return QStringLiteral("dm");
     if (_unit == U_INCH)
-        return QString::fromLatin1("in");
+        return QStringLiteral("in");
     if (_unit == U_PI)
-        return QString::fromLatin1("pi");
+        return QStringLiteral("pi");
     if (_unit == U_DD)
-        return QString::fromLatin1("dd");
+        return QStringLiteral("dd");
     if (_unit == U_CC)
-        return QString::fromLatin1("cc");
-    return QString::fromLatin1("pt");
+        return QStringLiteral("cc");
+    return QStringLiteral("pt");
 }

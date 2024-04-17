@@ -56,7 +56,7 @@ KGraphEditor::KGraphEditor()
     , m_currentPart(nullptr)
 {
     // set the shell's ui resource file
-    setXMLFile("kgrapheditorui.rc");
+    setXMLFile(QStringLiteral("kgrapheditorui.rc"));
 
     m_widget = new QTabWidget(this);
     m_widget->setTabsClosable(true);
@@ -89,9 +89,9 @@ KGraphEditor::KGraphEditor()
     bottomLeftDockWidget->setWidget(m_newElementAttributesWidget);
     addDockWidget(Qt::LeftDockWidgetArea, bottomLeftDockWidget);
 
-    if (QDBusConnection::sessionBus().registerService("org.kde.kgrapheditor")) {
+    if (QDBusConnection::sessionBus().registerService(QStringLiteral("org.kde.kgrapheditor"))) {
         qCDebug(KGRAPHEDITOR_LOG) << "Service Registered successfully";
-        QDBusConnection::sessionBus().registerObject("/", this, QDBusConnection::ExportAllSlots);
+        QDBusConnection::sessionBus().registerObject(QStringLiteral("/"), this, QDBusConnection::ExportAllSlots);
 
     } else {
         qCDebug(KGRAPHEDITOR_LOG) << "Failed to register service...";
@@ -135,7 +135,7 @@ void KGraphEditor::reloadPreviousFiles()
 
 KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
 {
-    KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData("kf6/parts/kgraphviewerpart")).plugin;
+    KPluginFactory *factory = KPluginFactory::loadFactory(KPluginMetaData(QStringLiteral("kf6/parts/kgraphviewerpart"))).plugin;
     if (!factory) {
         // if we couldn't find our Part, we exit since the Shell by
         // itself can't do anything useful
@@ -157,12 +157,12 @@ KParts::ReadOnlyPart *KGraphEditor::slotNewGraph()
     QWidget *w = part->widget();
 
     m_tabsPartsMap[w] = part;
-    m_tabsFilesMap[w] = "";
+    m_tabsFilesMap[w] = QString();
     connect(this, SIGNAL(hide(KParts::Part *)), part, SLOT(slotHide(KParts::Part *)));
 
     m_manager->addPart(part, true);
 
-    m_widget->addTab(w, QIcon::fromTheme("kgraphviewer"), "");
+    m_widget->addTab(w, QIcon::fromTheme(QStringLiteral("kgraphviewer")), QString());
     m_widget->setCurrentWidget(w);
     m_closeAction->setEnabled(true);
     return part;
@@ -177,7 +177,7 @@ void KGraphEditor::openUrl(const QUrl &url)
     //     ?kgv->setLayoutMethod(KGraphViewerInterface::ExternalProgram)
     //     :kgv->setLayoutMethod(KGraphViewerInterface::InternalLibrary);
 
-    QString label = url.path().section('/', -1, -1);
+    QString label = url.path().section(QLatin1Char('/'), -1, -1);
     // @TODO set label
     m_widget->setTabText(m_widget->currentIndex(), label);
     m_tabsFilesMap[m_widget->currentWidget()] = url.path();
@@ -212,30 +212,30 @@ void KGraphEditor::setupActions()
 {
     // create our actions
 
-    actionCollection()->addAction(KStandardAction::New, "file_new", this, SLOT(fileNew()));
-    actionCollection()->addAction(KStandardAction::Open, "file_open", this, SLOT(fileOpen()));
-    m_rfa = (KRecentFilesAction *)actionCollection()->addAction(KStandardAction::OpenRecent, "file_open_recent", this, SLOT(slotURLSelected(QUrl)));
-    m_rfa->loadEntries(KConfigGroup(KSharedConfig::openConfig(), "kgrapheditor"));
-    actionCollection()->addAction(KStandardAction::Save, "file_save", this, SLOT(fileSave()));
-    actionCollection()->addAction(KStandardAction::SaveAs, "file_save_as", this, SLOT(fileSaveAs()));
+    actionCollection()->addAction(KStandardAction::New, QStringLiteral("file_new"), this, SLOT(fileNew()));
+    actionCollection()->addAction(KStandardAction::Open, QStringLiteral("file_open"), this, SLOT(fileOpen()));
+    m_rfa = (KRecentFilesAction *)actionCollection()->addAction(KStandardAction::OpenRecent, QStringLiteral("file_open_recent"), this, SLOT(slotURLSelected(QUrl)));
+    m_rfa->loadEntries(KConfigGroup(KSharedConfig::openConfig(), QStringLiteral("kgrapheditor")));
+    actionCollection()->addAction(KStandardAction::Save, QStringLiteral("file_save"), this, SLOT(fileSave()));
+    actionCollection()->addAction(KStandardAction::SaveAs, QStringLiteral("file_save_as"), this, SLOT(fileSaveAs()));
 
-    m_closeAction = actionCollection()->addAction(KStandardAction::Close, "file_close", this, SLOT(close()));
+    m_closeAction = actionCollection()->addAction(KStandardAction::Close, QStringLiteral("file_close"), this, SLOT(close()));
     m_closeAction->setWhatsThis(i18n("Closes the current file"));
     m_closeAction->setEnabled(false);
 
-    actionCollection()->addAction(KStandardAction::Quit, "file_quit", qApp, SLOT(quit()));
+    actionCollection()->addAction(KStandardAction::Quit, QStringLiteral("file_quit"), qApp, SLOT(quit()));
 
     m_statusbarAction = KStandardAction::showStatusbar(this, SLOT(optionsShowStatusbar()), this);
 
-    actionCollection()->addAction(KStandardAction::ConfigureToolbars, "options_configure_toolbars", this, SLOT(optionsConfigureToolbars()));
-    actionCollection()->addAction(KStandardAction::Preferences, "options_configure", this, SLOT(optionsConfigure()));
+    actionCollection()->addAction(KStandardAction::ConfigureToolbars, QStringLiteral("options_configure_toolbars"), this, SLOT(optionsConfigureToolbars()));
+    actionCollection()->addAction(KStandardAction::Preferences, QStringLiteral("options_configure"), this, SLOT(optionsConfigure()));
 
-    QAction *edit_new_vertex = actionCollection()->addAction("edit_new_vertex");
+    QAction *edit_new_vertex = actionCollection()->addAction(QStringLiteral("edit_new_vertex"));
     edit_new_vertex->setText(i18n("Create a New Vertex"));
     edit_new_vertex->setIcon(QPixmap(QStringLiteral(":/kgraphviewerpart/pics/newnode.png")));
     connect(edit_new_vertex, SIGNAL(triggered(bool)), this, SLOT(slotEditNewVertex()));
 
-    QAction *edit_new_edge = actionCollection()->addAction("edit_new_edge");
+    QAction *edit_new_edge = actionCollection()->addAction(QStringLiteral("edit_new_edge"));
     edit_new_edge->setText(i18n("Create a New Edge"));
     edit_new_edge->setIcon(QPixmap(QStringLiteral(":/kgraphviewerpart/pics/newedge.png")));
     connect(edit_new_edge, SIGNAL(triggered(bool)), this, SLOT(slotEditNewEdge()));
@@ -244,7 +244,7 @@ void KGraphEditor::setupActions()
 void KGraphEditor::closeEvent(QCloseEvent *event)
 {
     KGraphEditorSettings::setPreviouslyOpenedFiles(m_openedFiles);
-    m_rfa->saveEntries(KConfigGroup(KSharedConfig::openConfig(), "kgrapheditor"));
+    m_rfa->saveEntries(KConfigGroup(KSharedConfig::openConfig(), QStringLiteral("kgrapheditor")));
 
     KGraphEditorSettings::self()->save();
     KXmlGuiWindow::closeEvent(event);
@@ -281,7 +281,7 @@ void KGraphEditor::optionsShowStatusbar()
 
 void KGraphEditor::optionsConfigureToolbars()
 {
-    KConfigGroup conf(KConfigGroup(KSharedConfig::openConfig(), "kgrapheditor"));
+    KConfigGroup conf(KConfigGroup(KSharedConfig::openConfig(), QStringLiteral("kgrapheditor")));
     saveMainWindowSettings(conf);
 
     // use the standard toolbar editor
@@ -295,17 +295,17 @@ void KGraphEditor::optionsConfigure()
     // An instance of your dialog could be already created and could be cached,
     // in which case you want to display the cached dialog instead of creating
     // another one
-    if (KgeConfigurationDialog::showDialog("settings"))
+    if (KgeConfigurationDialog::showDialog(QStringLiteral("settings")))
         return;
 
     // KConfigDialog didn't find an instance of this dialog, so lets create it :
-    KgeConfigurationDialog *dialog = new KgeConfigurationDialog(this, "settings", KGraphEditorSettings::self());
+    KgeConfigurationDialog *dialog = new KgeConfigurationDialog(this, QStringLiteral("settings"), KGraphEditorSettings::self());
 
     Ui::KGraphViewerPreferencesParsingWidget *parsingWidget = dialog->m_parsingWidget;
     qCDebug(KGRAPHEDITOR_LOG) << KGraphEditorSettings::parsingMode();
-    if (KGraphEditorSettings::parsingMode() == "external") {
+    if (KGraphEditorSettings::parsingMode() == QStringLiteral("external")) {
         parsingWidget->external->setChecked(true);
-    } else if (KGraphEditorSettings::parsingMode() == "internal") {
+    } else if (KGraphEditorSettings::parsingMode() == QStringLiteral("internal")) {
         parsingWidget->internal->setChecked(true);
     }
     connect((QObject *)parsingWidget->external, SIGNAL(toggled(bool)), this, SLOT(slotParsingModeExternalToggled(bool)));
@@ -375,7 +375,7 @@ void KGraphEditor::optionsConfigure()
 
 void KGraphEditor::applyNewToolbarConfig()
 {
-    applyMainWindowSettings(KConfigGroup(KSharedConfig::openConfig(), "kgrapheditor"));
+    applyMainWindowSettings(KConfigGroup(KSharedConfig::openConfig(), QStringLiteral("kgrapheditor")));
 }
 
 // void KGraphViewer::reloadOnChangeMode_pressed(int value)
@@ -559,7 +559,7 @@ void KGraphEditor::slotSetActiveGraph(KParts::ReadOnlyPart *part)
         item->setFlags(item->flags() | Qt::ItemIsEditable);
         QMap<QString, QString> attributes; // TODO = m_currentPart->nodeAtributes(nodeId);
         for (const QString &attrib : attributes.keys()) {
-            if (attrib != "_draw_" && attrib != "_ldraw_") {
+            if (attrib != QLatin1String("_draw_") && attrib != QLatin1String("_ldraw_")) {
                 QStringList list(attrib);
                 list << attributes[attrib];
                 QTreeWidgetItem *child = new QTreeWidgetItem((QTreeWidget *)nullptr, list);
@@ -636,7 +636,7 @@ void KGraphEditor::slotGraphLoaded()
             }
         }
         for (const QString &attrib : keys) {
-            if (attrib != "_draw_" && attrib != "_ldraw_") {
+            if (attrib != QLatin1String("_draw_") && attrib != QLatin1String("_ldraw_")) {
                 QStringList list(attrib);
                 list << attributes[attrib];
                 QTreeWidgetItem *child = new QTreeWidgetItem((QTreeWidget *)nullptr, list);
@@ -768,7 +768,7 @@ void KGraphEditor::slotSelectionIs(const QList<QString> &elements, const QPoint 
 void KGraphEditor::slotParsingModeExternalToggled(bool value)
 {
     if (value) {
-        KGraphEditorSettings::setParsingMode("external");
+        KGraphEditorSettings::setParsingMode(QStringLiteral("external"));
     }
     //   qCDebug(KGRAPHEDITOR_LOG) << "emiting";
     //   Q_EMIT settingsChanged();
@@ -778,7 +778,7 @@ void KGraphEditor::slotParsingModeExternalToggled(bool value)
 void KGraphEditor::slotParsingModeInternalToggled(bool value)
 {
     if (value) {
-        KGraphEditorSettings::setParsingMode("internal");
+        KGraphEditorSettings::setParsingMode(QStringLiteral("internal"));
     }
     //   qCDebug(KGRAPHEDITOR_LOG) << "emiting";
     //   Q_EMIT settingsChanged();
@@ -794,7 +794,7 @@ void KGraphEditor::slotHoverEnter(const QString &id)
 void KGraphEditor::slotHoverLeave(const QString &id)
 {
     qCDebug(KGRAPHEDITOR_LOG) << id;
-    statusBar()->showMessage("");
+    statusBar()->showMessage(QString());
 }
 
 #include "moc_kgrapheditor.cpp"

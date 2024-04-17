@@ -178,7 +178,7 @@ QString KgvGlobal::languageFromTag(const QString &langTag)
 KConfig *KgvGlobal::_kofficeConfig()
 {
     if (!m_kofficeConfig) {
-        m_kofficeConfig = new KConfig("kofficerc");
+        m_kofficeConfig = new KConfig(QStringLiteral("kofficerc"));
     }
     return m_kofficeConfig;
 }

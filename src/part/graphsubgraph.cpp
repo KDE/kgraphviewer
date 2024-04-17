@@ -93,9 +93,9 @@ void GraphSubgraph::updateWithSubgraph(const GraphSubgraph &subgraph)
 void GraphSubgraph::updateWithSubgraph(graph_t *subgraph)
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(subgraph);
-    m_attributes["id"] = agnameof(subgraph);
+    m_attributes[QStringLiteral("id")] = QString::fromUtf8(agnameof(subgraph));
     if (GD_label(subgraph))
-        m_attributes["label"] = GD_label(subgraph)->text;
+        m_attributes[QStringLiteral("label")] = QString::fromUtf8(GD_label(subgraph)->text);
 
     DotRenderOpVec ops;
     // decrease mem peak
@@ -115,25 +115,25 @@ void GraphSubgraph::updateWithSubgraph(graph_t *subgraph)
     Agsym_t *attr = agnxtattr(subgraph, AGRAPH, nullptr);
     while (attr) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(subgraph) << ":" << attr->name << agxget(subgraph, attr);
-        m_attributes[attr->name] = agxget(subgraph, attr);
+        m_attributes[QString::fromUtf8(attr->name)] = QString::fromUtf8(agxget(subgraph, attr));
         attr = agnxtattr(subgraph, AGRAPH, attr);
     }
 
     for (graph_t *sg = agfstsubg(subgraph); sg; sg = agnxtsubg(sg)) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << "subsubgraph:" << agnameof(sg);
-        if (subgraphs().contains(agnameof(sg))) {
+        if (subgraphs().contains(QString::fromUtf8(agnameof(sg)))) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "known subsubgraph";
             // ???
             //       nodes()[ngn->name]->setZ(ngn->z());
-            subgraphs()[agnameof(sg)]->updateWithSubgraph(sg);
-            if (subgraphs()[agnameof(sg)]->canvasElement()) {
+            subgraphs()[QString::fromUtf8(agnameof(sg))]->updateWithSubgraph(sg);
+            if (subgraphs()[QString::fromUtf8(agnameof(sg))]->canvasElement()) {
                 //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
             }
         } else {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "new subsubgraph";
             GraphSubgraph *newsg = new GraphSubgraph(sg);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
-            subgraphs().insert(agnameof(sg), newsg);
+            subgraphs().insert(QString::fromUtf8(agnameof(sg)), newsg);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
         }
     }
@@ -141,14 +141,14 @@ void GraphSubgraph::updateWithSubgraph(graph_t *subgraph)
 
 QString GraphSubgraph::backColor() const
 {
-    if (m_attributes.find("bgcolor") != m_attributes.end()) {
-        return m_attributes["bgcolor"];
-    } else if ((m_attributes.find("style") != m_attributes.end()) && (m_attributes["style"] == "filled") && (m_attributes.find("color") != m_attributes.end())) {
-        return m_attributes["color"];
-    } else if ((m_attributes.find("style") != m_attributes.end()) && (m_attributes["style"] == "filled") && (m_attributes.find("fillcolor") != m_attributes.end())) {
-        return m_attributes["fillcolor"];
+    if (m_attributes.find(QStringLiteral("bgcolor")) != m_attributes.end()) {
+        return m_attributes[QStringLiteral("bgcolor")];
+    } else if ((m_attributes.find(QStringLiteral("style")) != m_attributes.end()) && (m_attributes[QStringLiteral("style")] == QLatin1String("filled")) && (m_attributes.find(QStringLiteral("color")) != m_attributes.end())) {
+        return m_attributes[QStringLiteral("color")];
+    } else if ((m_attributes.find(QStringLiteral("style")) != m_attributes.end()) && (m_attributes[QStringLiteral("style")] == QLatin1String("filled")) && (m_attributes.find(QStringLiteral("fillcolor")) != m_attributes.end())) {
+        return m_attributes[QStringLiteral("fillcolor")];
     } else {
-        return DOT_DEFAULT_BACKCOLOR;
+        return QStringLiteral(DOT_DEFAULT_BACKCOLOR);
     }
 }
 

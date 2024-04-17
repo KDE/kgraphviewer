@@ -85,7 +85,7 @@ void GraphElement::updateWithElement(const GraphElement &element)
         const QString &attrib = it.key();
         if ((!m_attributes.contains(attrib)) || (m_attributes[attrib] != it.value())) {
             m_attributes[attrib] = it.value();
-            if (attrib == "z") {
+            if (attrib == QLatin1String("z")) {
                 bool ok;
                 setZ(m_attributes[attrib].toDouble(&ok));
             }
@@ -152,7 +152,7 @@ QString GraphElement::backColor() const
     } else if ((m_attributes.find(KEY_COLOR) != m_attributes.end()) && (m_attributes[KEY_STYLE] == QLatin1String("filled"))) {
         return m_attributes[KEY_COLOR];
     } else {
-        return DOT_DEFAULT_NODE_BACKCOLOR;
+        return QStringLiteral(DOT_DEFAULT_NODE_BACKCOLOR);
     }
 }
 
@@ -197,14 +197,14 @@ void GraphElement::exportToGraphviz(void *element) const
     it_end = attributes().end();
     for (; it != it_end; it++) {
         if (!it.value().isEmpty()) {
-            if (it.key() == "label") {
+            if (it.key() == QLatin1String("label")) {
                 QString label = it.value();
-                if (label != "label") {
-                    label.replace(QRegularExpression("\n"), "\\n");
+                if (label != QLatin1String("label")) {
+                    label.replace(QRegularExpression(QStringLiteral("\n")), QStringLiteral("\\n"));
                                qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << "=\"" << label << "\",";
                     agsafeset(element, it.key().toUtf8().data(), label.toUtf8().data(), QString().toUtf8().data());
                 }
-            } else if (it.key() == "_draw_" || it.key() == "_ldraw_") {
+            } else if (it.key() == QLatin1String("_draw_") || it.key() == QLatin1String("_ldraw_")) {
             } else if (originalAttributes().isEmpty() || originalAttributes().contains(it.key())) {
                 //         qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << it.value();
 
@@ -222,10 +222,10 @@ QTextStream &operator<<(QTextStream &s, const GraphElement &n)
     it_end = n.attributes().end();
     for (; it != it_end; it++) {
         if (!it.value().isEmpty()) {
-            if (it.key() == "label") {
+            if (it.key() == QLatin1String("label")) {
                 QString label = it.value();
-                if (label != "label") {
-                    label.replace(QRegularExpression("\n"), "\\n");
+                if (label != QLatin1String("label")) {
+                    label.replace(QRegularExpression(QStringLiteral("\n")), QStringLiteral("\\n"));
                                qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << "=\"" << label << "\",";
                     if (firstAttr)
                         firstAttr = false;
@@ -233,7 +233,7 @@ QTextStream &operator<<(QTextStream &s, const GraphElement &n)
                         s << ',';
                     s << it.key() << "=\"" << label << '"';
                 }
-            } else if (it.key() == "_draw_" || it.key() == "_ldraw_") {
+            } else if (it.key() == QLatin1String("_draw_") || it.key() == QLatin1String("_ldraw_")) {
             } else if (n.originalAttributes().isEmpty() || n.originalAttributes().contains(it.key())) {
                 //         qCDebug(KGRAPHVIEWERLIB_LOG) << it.key() << it.value();
 

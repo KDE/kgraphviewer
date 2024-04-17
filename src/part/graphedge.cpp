@@ -45,7 +45,7 @@ GraphEdge::GraphEdge()
     , m_toNode(nullptr)
     , m_visible(true)
     , m_colors()
-    , m_dir(DOT_DEFAULT_EDGE_DIR)
+    , m_dir(QStringLiteral(DOT_DEFAULT_EDGE_DIR))
     , m_arrowheads()
 {
     //   qCDebug(KGRAPHVIEWERLIB_LOG) ;
@@ -69,7 +69,7 @@ GraphEdge::GraphEdge(const GraphEdge &edge)
 
 void GraphEdge::colors(const QString &cs)
 {
-    m_colors = cs.split(':');
+    m_colors = cs.split(QLatin1Char(':'));
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << fromNode()->id() << " -> " << toNode()->id() << ": nb colors: " << m_colors.size();
 }
 
@@ -84,7 +84,7 @@ const QString GraphEdge::color(uint i)
         return m_colors[i];
     } else {
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << fromNode()->id() << " -> " << toNode()->id() << "no edge color " << i << ". returning " << DOT_DEFAULT_EDGE_COLOR;
-        return DOT_DEFAULT_EDGE_COLOR;
+        return QStringLiteral(DOT_DEFAULT_EDGE_COLOR);
     }
 }
 
@@ -136,7 +136,7 @@ void GraphEdge::updateWithEdge(edge_t *edge)
     Agsym_t *attr = agnxtattr(agraphof(agtail(edge)), AGEDGE, nullptr);
     while (attr) {
         qCDebug(KGRAPHVIEWERLIB_LOG) /*<< edge->name*/ << ":" << attr->name << agxget(edge, attr);
-        m_attributes[attr->name] = agxget(edge, attr);
+        m_attributes[QString::fromUtf8(attr->name)] = QString::fromUtf8(agxget(edge, attr));
         attr = agnxtattr(agraphof(agtail(edge)), AGEDGE, attr);
     }
 }
@@ -145,11 +145,11 @@ QTextStream &operator<<(QTextStream &s, const GraphEdge &e)
 {
     QString srcLabel = e.fromNode()->id();
     if (dynamic_cast<const GraphSubgraph *>(e.fromNode())) {
-        srcLabel = QString("subgraph ") + srcLabel;
+        srcLabel = QLatin1String("subgraph ") + srcLabel;
     }
     QString tgtLabel = e.toNode()->id();
     if (dynamic_cast<const GraphSubgraph *>(e.toNode())) {
-        tgtLabel = QString("subgraph ") + tgtLabel;
+        tgtLabel = QLatin1String("subgraph ") + tgtLabel;
     }
     s << srcLabel << " -> " << tgtLabel << "  [" << dynamic_cast<const GraphElement &>(e) << "];" << Qt::endl;
 

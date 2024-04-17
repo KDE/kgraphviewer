@@ -50,7 +50,7 @@ QString GraphExporter::writeDot(const DotGraph *graph, const QString &fileName)
 
     if (fileName.isEmpty()) {
         QTemporaryFile tempFile;
-        tempFile.setFileTemplate("XXXXXX.dot");
+        tempFile.setFileTemplate(QStringLiteral("XXXXXX.dot"));
         if (!tempFile.open()) {
             qCWarning(KGRAPHVIEWERLIB_LOG) << "Unable to open for temp file for writing " << tempFile.fileName();
             exit(2);
@@ -68,7 +68,7 @@ QString GraphExporter::writeDot(const DotGraph *graph, const QString &fileName)
     QTextStream stream(&f);
 
     stream << "digraph \"";
-    if (graph->id() != "\"\"") {
+    if (graph->id() != QLatin1String("\"\"")) {
         stream << graph->id();
     }
     stream << "\" {\n";
@@ -109,7 +109,7 @@ graph_t *GraphExporter::exportToGraphviz(const DotGraph *graph)
     type.directed = graph->directed();
     type.strict = graph->strict();
 
-    graph_t *agraph = agopen((graph->id() != "\"\"") ? graph->id().toUtf8().data() : QString("unnamed").toUtf8().data(), type, nullptr);
+    graph_t *agraph = agopen((graph->id() != QLatin1String("\"\"")) ? graph->id().toUtf8().data() : QStringLiteral("unnamed").toUtf8().data(), type, nullptr);
 
     QTextStream stream;
     graph->exportToGraphviz(agraph);

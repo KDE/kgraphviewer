@@ -37,23 +37,23 @@ int main(int argc, char **argv)
 
     KAboutData about(QStringLiteral("kgraphviewer"),
                      i18n("KGraphViewer"),
-                     KGRAPHVIEWER_VERSION_STRING,
+                     QStringLiteral(KGRAPHVIEWER_VERSION_STRING),
                      i18n("A Graphviz DOT graph viewer"),
                      KAboutLicense::GPL,
                      i18n("(C) 2005-2010 Gaël de Chalendar"),
                      QString(),
                      QStringLiteral("https://apps.kde.org/kgraphviewer"));
-    about.addAuthor(i18n("Gaël de Chalendar"), i18n("Original Author and current maintainer"), "kleag@free.fr");
-    about.addAuthor(i18n("Reimar Döffinger"), i18n("Contributor"), "kde@reimardoeffinger.de");
-    about.addAuthor(i18n("Matthias Peinhardt"), i18n("Contributor"), "matthias.peinhardt@googlemail.com");
-    about.addAuthor(i18n("Sandro Andrade"), i18n("Contributor"), "sandro.andrade@gmail.com");
-    about.addAuthor(i18n("Milian Wolff"), i18n("Contributor"), "mail@milianw.de");
-    about.addAuthor(i18n("Martin Sandsmark"), i18n("Port to KF5"), "martin.sandsmark@kde.org");
+    about.addAuthor(i18n("Gaël de Chalendar"), i18n("Original Author and current maintainer"), QStringLiteral("kleag@free.fr"));
+    about.addAuthor(i18n("Reimar Döffinger"), i18n("Contributor"), QStringLiteral("kde@reimardoeffinger.de"));
+    about.addAuthor(i18n("Matthias Peinhardt"), i18n("Contributor"), QStringLiteral("matthias.peinhardt@googlemail.com"));
+    about.addAuthor(i18n("Sandro Andrade"), i18n("Contributor"), QStringLiteral("sandro.andrade@gmail.com"));
+    about.addAuthor(i18n("Milian Wolff"), i18n("Contributor"), QStringLiteral("mail@milianw.de"));
+    about.addAuthor(i18n("Martin Sandsmark"), i18n("Port to KF5"), QStringLiteral("martin.sandsmark@kde.org"));
 
     app.setOrganizationName(QStringLiteral("KDE"));
     KAboutData::setApplicationData(about);
 
-    app.setWindowIcon(QIcon::fromTheme("kgraphviewer", app.windowIcon()));
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kgraphviewer"), app.windowIcon()));
 
     QCommandLineParser options;
     options.addPositionalArgument(QStringLiteral("url"), i18n("Path or URL to scan"), i18n("[url]"));
@@ -72,10 +72,10 @@ int main(int argc, char **argv)
         if (args.count() == 0) {
             widget = new KGraphViewerWindow;
             new KgraphviewerAdaptor(widget);
-            QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
+            QDBusConnection::sessionBus().registerObject(QStringLiteral("/KGraphViewer"), widget);
             widget->show();
         } else {
-            QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered("org.kde.kgraphviewer");
+            QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered(QStringLiteral("org.kde.kgraphviewer"));
 
             bool instanceExists = reply.value();
 
@@ -86,9 +86,9 @@ int main(int argc, char **argv)
                     QDataStream arg(&tosenddata, QIODevice::WriteOnly);
                     const QUrl url = QUrl::fromUserInput(args[i], QDir::currentPath(), QUrl::AssumeLocalFile);
                     arg << url;
-                    QDBusInterface iface("org.kde.kgraphviewer", "/KGraphViewer", "", QDBusConnection::sessionBus());
+                    QDBusInterface iface(QStringLiteral("org.kde.kgraphviewer"), QStringLiteral("/KGraphViewer"), QString(), QDBusConnection::sessionBus());
                     if (iface.isValid()) {
-                        QDBusReply<void> reply = iface.call("openUrl", url.url(QUrl::PreferLocalFile));
+                        QDBusReply<void> reply = iface.call(QStringLiteral("openUrl"), url.url(QUrl::PreferLocalFile));
                         if (reply.isValid()) {
                             qCWarning(KGRAPHVIEWER_LOG) << "Reply was valid";
                             return 0;
@@ -102,7 +102,7 @@ int main(int argc, char **argv)
                 } else {
                     widget = new KGraphViewerWindow;
                     new KgraphviewerAdaptor(widget);
-                    QDBusConnection::sessionBus().registerObject("/KGraphViewer", widget);
+                    QDBusConnection::sessionBus().registerObject(QStringLiteral("/KGraphViewer"), widget);
                     widget->show();
                     widget->openUrl(QUrl::fromUserInput(args[i], QDir::currentPath(), QUrl::AssumeLocalFile));
                 }

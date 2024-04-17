@@ -48,7 +48,7 @@ QValidator::State KgvUnitDoubleValidator::validate(QString &s, int &pos) const
     qCDebug(KGRAPHVIEWERLIB_LOG) << "KgvUnitDoubleValidator::validate : " << s << " at " << pos;
     QValidator::State result = Acceptable;
 
-    QRegExp regexp("([ a-zA-Z]+)$"); // Letters or spaces at end
+    QRegExp regexp(QStringLiteral("([ a-zA-Z]+)$")); // Letters or spaces at end
     const int res = regexp.indexIn(s);
 
     if (res == -1) {
@@ -89,7 +89,7 @@ QValidator::State KgvUnitDoubleValidator::validate(QString &s, int &pos) const
 
 QString KgvUnitDoubleBase::getVisibleText(double value) const
 {
-    const QString num(QString("%1%2").arg(QLocale().toString(value, m_precision), KgvUnit::unitName(m_unit)));
+    const QString num(QStringLiteral("%1%2").arg(QLocale().toString(value, m_precision), KgvUnit::unitName(m_unit)));
     qCDebug(KGRAPHVIEWERLIB_LOG) << "getVisibleText: " << QString::number(value, 'f', 12) << " => " << num;
     return num;
 }
@@ -178,7 +178,7 @@ void KgvUnitDoubleSpinBox::setUnit(KgvUnit::Unit unit)
     QDoubleSpinBox::setSingleStep(KgvUnit::toUserValue(m_stepInPoints, unit));
     QDoubleSpinBox::setValue(KgvUnit::ptToUnit(oldvalue, unit));
     m_unit = unit;
-    setSuffix(KgvUnit::unitName(unit).prepend(' '));
+    setSuffix(KgvUnit::unitName(unit).prepend(QLatin1Char(' ')));
 }
 
 double KgvUnitDoubleSpinBox::value(void) const
@@ -388,14 +388,14 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox(QWidget *parent)
 {
     QGridLayout *layout = new QGridLayout(this);
     // layout->setMargin( 2 );
-    QPushButton *up = new QPushButton("+", this);
+    QPushButton *up = new QPushButton(QStringLiteral("+"), this);
     // up->setFlat( true );
     up->setMaximumHeight(15);
     up->setMaximumWidth(15);
     layout->addWidget(up, 0, 0);
     connect(up, &QPushButton::clicked, this, &KgvUnitDoubleSpinComboBox::slotUpClicked);
 
-    QPushButton *down = new QPushButton("-", this);
+    QPushButton *down = new QPushButton(QStringLiteral("-"), this);
     down->setMaximumHeight(15);
     down->setMaximumWidth(15);
     layout->addWidget(down, 1, 0);
@@ -412,14 +412,14 @@ KgvUnitDoubleSpinComboBox::KgvUnitDoubleSpinComboBox(QWidget *parent, double low
 {
     QGridLayout *layout = new QGridLayout(this);
     // layout->setMargin( 2 );
-    QPushButton *up = new QPushButton("+", this);
+    QPushButton *up = new QPushButton(QStringLiteral("+"), this);
     // up->setFlat( true );
     up->setMaximumHeight(15);
     up->setMaximumWidth(15);
     layout->addWidget(up, 0, 0);
     connect(up, &QPushButton::clicked, this, &KgvUnitDoubleSpinComboBox::slotUpClicked);
 
-    QPushButton *down = new QPushButton("-", this);
+    QPushButton *down = new QPushButton(QStringLiteral("-"), this);
     down->setMaximumHeight(15);
     down->setMaximumWidth(15);
     layout->addWidget(down, 1, 0);

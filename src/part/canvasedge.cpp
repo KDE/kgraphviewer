@@ -106,7 +106,7 @@ QPainterPath CanvasEdge::shape() const
     }
 
     for (const DotRenderOp &dro : edge()->renderOperations()) {
-        if (dro.renderop == "B") {
+        if (dro.renderop == QLatin1String("B")) {
             for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum == 0 && edge()->colors().count() == 0); splineNum++) {
                 m_shape.addPath(pathForSpline(splineNum, dro));
             }
@@ -167,7 +167,7 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
         widthScaleFactor = 1;
     }
 
-    if (edge()->style() == "invis") {
+    if (edge()->style() == QLatin1String("invis")) {
         return;
     }
     if (edge()->renderOperations().isEmpty()) {
@@ -188,13 +188,13 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
 
     for (const DotRenderOp &dro : edge()->renderOperations()) {
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "renderop" << dro.renderop << "; selected:" << edge()->isSelected();
-        if (dro.renderop == "c") {
+        if (dro.renderop == QLatin1String("c")) {
             QColor c(dro.str.mid(0, 7));
             bool ok;
             c.setAlpha(255 - dro.str.mid(8).toInt(&ok, 16));
             lineColor = c;
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "c" << dro.str.mid(0,7) << lineColor;
-        } else if (dro.renderop == "C") {
+        } else if (dro.renderop == QLatin1String("C")) {
             QColor c(dro.str.mid(0, 7));
             bool ok;
             c.setAlpha(255 - dro.str.mid(8).toInt(&ok, 16));
@@ -204,7 +204,7 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
                   }*/
             backColor = c;
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "C" << dro.str.mid(0,7) << backColor;
-        } else if (dro.renderop == "T") {
+        } else if (dro.renderop == QLatin1String("T")) {
             const QString &str = dro.str;
 
             qreal stringWidthGoal = dro.integers[3] * m_scaleX;
@@ -230,7 +230,7 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
 
             p->setFont(oldFont);
             p->setPen(oldPen);
-        } else if ((dro.renderop == "p") || (dro.renderop == "P")) {
+        } else if ((dro.renderop == QLatin1String("p")) || (dro.renderop == QLatin1String("P"))) {
             QPolygonF polygon(dro.integers[0]);
             for (int i = 0; i < dro.integers[0]; i++) {
                 QPointF point((int(dro.integers[2 * i + 1]) /*%m_wdhcf*/) * m_scaleX + m_xMargin, (int(m_gh - dro.integers[2 * i + 2]) /*%m_hdvcf*/) * m_scaleY + m_yMargin);
@@ -238,16 +238,16 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
                 //         qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << point;
                 allPoints.append(point);
             }
-            if (dro.renderop == "P") {
+            if (dro.renderop == QLatin1String("P")) {
                 p->setBrush(lineColor);
                 p->drawPolygon(polygon);
                 //         qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPolygon" << edge()->color(0) << polygon;
                 p->setBrush(oldBrush);
             } else {
-                p->setBrush(Dot2QtConsts::componentData().qtColor("white"));
+                p->setBrush(Dot2QtConsts::componentData().qtColor(QStringLiteral("white")));
             }
             QPen pen(lineColor);
-            if (edge()->style() == "bold") {
+            if (edge()->style() == QLatin1String("bold")) {
                 pen.setStyle(Qt::SolidLine);
                 pen.setWidth((int)(2 * widthScaleFactor));
             } else {
@@ -260,18 +260,18 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
             p->drawPolyline(polygon);
             p->setPen(oldPen);
             p->setBrush(oldBrush);
-        } else if ((dro.renderop == "e") || (dro.renderop == "E")) {
+        } else if ((dro.renderop == QLatin1String("e")) || (dro.renderop == QLatin1String("E"))) {
             qreal w = m_scaleX * dro.integers[2] * 2;
             qreal h = m_scaleY * dro.integers[3] * 2;
             qreal x = (m_xMargin + (dro.integers[0] /*%m_wdhcf*/) * m_scaleX) - w / 2;
             qreal y = ((m_gh - dro.integers[1] /*%m_hdvcf*/) * m_scaleY + m_yMargin) - h / 2;
-            if (dro.renderop == "E") {
+            if (dro.renderop == QLatin1String("E")) {
                 p->setBrush(lineColor);
             } else {
-                p->setBrush(Dot2QtConsts::componentData().qtColor("white"));
+                p->setBrush(Dot2QtConsts::componentData().qtColor(QStringLiteral("white")));
             }
             QPen pen(lineColor);
-            if (edge()->style() == "bold") {
+            if (edge()->style() == QLatin1String("bold")) {
                 pen.setStyle(Qt::SolidLine);
                 pen.setWidth(int(2 * widthScaleFactor));
             } else {
@@ -284,28 +284,28 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
             p->drawEllipse(rect);
             p->setPen(oldPen);
             p->setBrush(oldBrush);
-        } else if (dro.renderop == "B") {
+        } else if (dro.renderop == QLatin1String("B")) {
             uint lineWidth = 1;
             QPen pen;
-            if (edge()->style() == "bold") {
+            if (edge()->style() == QLatin1String("bold")) {
                 pen.setStyle(Qt::SolidLine);
                 pen.setWidth(int(2 * widthScaleFactor));
-            } else if (edge()->style() != "filled") {
+            } else if (edge()->style() != QLatin1String("filled")) {
                 pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(edge()->style()));
             }
-            if (edge()->style().left(12) == "setlinewidth") {
+            if (edge()->style().left(12) == QLatin1String("setlinewidth")) {
                 bool ok;
                 lineWidth = edge()->style().mid(12, edge()->style().length() - 1 - 12).toInt(&ok);
                 pen.setWidth(int(lineWidth * widthScaleFactor));
             }
-            if (edge()->attributes().contains("penwidth")) {
+            if (edge()->attributes().contains(QStringLiteral("penwidth"))) {
                 bool ok;
-                lineWidth = edge()->attributes()["penwidth"].toInt(&ok);
+                lineWidth = edge()->attributes()[QStringLiteral("penwidth")].toInt(&ok);
                 pen.setWidth(int(lineWidth * widthScaleFactor));
             }
-            if (edge()->attributes().contains("color")) {
-                qCDebug(KGRAPHVIEWERLIB_LOG) << "set edge color to " << QColor(edge()->attributes()["color"]).name();
-                lineColor = QColor(edge()->attributes()["color"]);
+            if (edge()->attributes().contains(QStringLiteral("color"))) {
+                qCDebug(KGRAPHVIEWERLIB_LOG) << "set edge color to " << QColor(edge()->attributes()[QStringLiteral("color")]).name();
+                lineColor = QColor(edge()->attributes()[QStringLiteral("color")]);
             }
             for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum == 0 && edge()->colors().count() == 0); splineNum++) {
                 if (splineNum != 0)
@@ -359,7 +359,7 @@ void CanvasEdge::computeBoundingRect()
     // invalidate bounding region cache
     m_shape = QPainterPath();
     if (edge()->renderOperations().isEmpty()) {
-        if ((edge()->fromNode()->canvasElement() == nullptr) || (edge()->toNode()->canvasElement() == nullptr) || edge()->style() == "invis") {
+        if ((edge()->fromNode()->canvasElement() == nullptr) || (edge()->toNode()->canvasElement() == nullptr) || edge()->style() == QLatin1String("invis")) {
             m_boundingRect = QRectF();
         } else {
             QRectF br(edge()->fromNode()->canvasElement()->boundingRect().center() + edge()->fromNode()->canvasElement()->pos(), edge()->toNode()->canvasElement()->boundingRect().center() + edge()->toNode()->canvasElement()->pos());
@@ -370,7 +370,7 @@ void CanvasEdge::computeBoundingRect()
         QPolygonF points;
         for (const DotRenderOp &dro : edge()->renderOperations()) {
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << dro.renderop  << ", ";
-            if ((dro.renderop != "B") && (dro.renderop != "p") && (dro.renderop != "P"))
+            if ((dro.renderop != QLatin1String("B")) && (dro.renderop != QLatin1String("p")) && (dro.renderop != QLatin1String("P")))
                 continue;
             uint previousSize = points.size();
             points.resize(previousSize + dro.integers[0]);

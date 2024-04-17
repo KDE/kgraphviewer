@@ -101,7 +101,7 @@ bool KGVSimplePrintingCommand::print(const QString &aTitleText)
     printer.setFullPage(true);
     QString docName(aTitleText);
     printer.setDocName(docName);
-    printer.setCreator("kgraphviewer");
+    printer.setCreator(QStringLiteral("kgraphviewer"));
     QPointer<QPrintDialog> dlg = new QPrintDialog(&printer, m_graphView);
     if (dlg->exec() != QDialog::Accepted) {
         return true;
@@ -226,9 +226,10 @@ void KGVSimplePrintingCommand::slotShowPageSetupRequested()
 {
     if (m_pageSetupDialog == nullptr) {
         m_pageSetupDialog = new QDialog(nullptr);
-        QMap<QString, QString> map;
-        map["action"] = "pageSetup";
-        map["title"] = m_graphView->dotFileName();
+        QMap<QString, QString> map{
+            {QStringLiteral("action"), QStringLiteral("pageSetup")},
+            {QStringLiteral("title"), m_graphView->dotFileName()},
+        };
         QVBoxLayout *lyr = new QVBoxLayout(m_pageSetupDialog);
         KGVSimplePrintingPageSetup *sppsb = new KGVSimplePrintingPageSetup(this, m_graphView, m_pageSetupDialog, &map);
         if (m_previewWindow) {

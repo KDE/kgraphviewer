@@ -398,9 +398,9 @@ void valid_op(char const *first, char const *last)
 
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << "Validating render operation '"<<QString::fromStdString(s)<<"': '"<<renderop.renderop<<"/"<<renderop.str<<"'";
     renderopvec->push_back(renderop);
-    renderop.renderop = "";
+    renderop.renderop.clear();
     renderop.integers = QList<int>();
-    renderop.str = "";
+    renderop.str.clear();
 }
 
 bool parse_renderop(const std::string &str, DotRenderOpVec &arenderopvec)

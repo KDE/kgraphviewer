@@ -45,10 +45,10 @@ KgeConfigurationDialog::KgeConfigurationDialog(QWidget *parent, const QString &n
     m_openingWidget->setupUi(page2);
     QWidget *page3 = new QWidget();
     m_reopeningWidget->setupUi(page3);
-    addPage(page0, i18n("Parsing"), "preferences-other", i18n("Parsing"), false);
-    addPage(page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
-    addPage(page2, i18n("Opening"), "document-open", i18n("Opening"), false);
-    addPage(page3, i18n("Session Management"), "preferences-other", i18n("Session Management"), false);
+    addPage(page0, i18n("Parsing"), QStringLiteral("preferences-other"), i18n("Parsing"), false);
+    addPage(page1, i18n("Reloading"), QStringLiteral("view-refresh"), i18n("Reloading"), false);
+    addPage(page2, i18n("Opening"), QStringLiteral("document-open"), i18n("Opening"), false);
+    addPage(page3, i18n("Session Management"), QStringLiteral("preferences-other"), i18n("Session Management"), false);
     connect(m_parsingWidget->parsingMode, &QGroupBox::clicked, this, &KgeConfigurationDialog::settingChanged);
     connect(m_reloadWidget->reloadOnChangeMode, &QGroupBox::clicked, this, &KgeConfigurationDialog::settingChanged);
     connect(m_openingWidget->openInExistingWindowMode, &QGroupBox::clicked, this, &KgeConfigurationDialog::settingChanged);

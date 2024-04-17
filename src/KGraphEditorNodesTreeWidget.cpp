@@ -86,7 +86,7 @@ void KGraphEditorNodesTreeWidget::slotRemoveElement(const QString &id)
 void KGraphEditorNodesTreeWidget::slotAddAttribute()
 {
     qCDebug(KGRAPHEDITOR_LOG) << "Add Attribute";
-    QString nodeName = "NewAttribute";
+    QString nodeName = QStringLiteral("NewAttribute");
     Q_EMIT addAttribute(m_item->text(0));
     if (m_item->parent() == nullptr) {
         nodeName += QString::number(m_item->childCount());

@@ -72,8 +72,8 @@ void GraphNode::updateWithNode(const GraphNode &node)
 void GraphNode::updateWithNode(node_t *node)
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(node);
-    m_attributes["id"] = agnameof(node);
-    m_attributes["label"] = ND_label(node)->text;
+    m_attributes[QStringLiteral("id")] = QString::fromUtf8(agnameof(node));
+    m_attributes[QStringLiteral("label")] = QString::fromUtf8(ND_label(node)->text);
 
     DotRenderOpVec ops;
     // decrease mem peak
@@ -93,7 +93,7 @@ void GraphNode::updateWithNode(node_t *node)
     Agsym_t *attr = agnxtattr(agraphof(node), AGNODE, nullptr);
     while (attr) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << agnameof(node) << ":" << attr->name << agxget(node, attr);
-        m_attributes[attr->name] = agxget(node, attr);
+        m_attributes[QString::fromUtf8(attr->name)] = QString::fromUtf8(agxget(node, attr));
         attr = agnxtattr(agraphof(node), AGNODE, attr);
     }
 }

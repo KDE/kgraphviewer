@@ -74,7 +74,7 @@ public:
     bool KGRAPHVIEWER_EXPORT loadDot(const QString &dotFileName);
     bool KGRAPHVIEWER_EXPORT loadLibrary(const QString &dotFileName);
     bool KGRAPHVIEWER_EXPORT loadLibrarySync(const QString &dotFileName);
-    bool loadLibrary(graph_t *graph, const QString &layoutCommand = "dot");
+    bool loadLibrary(graph_t *graph, const QString &layoutCommand = QStringLiteral("dot"));
 
     void readViewConfig();
     void saveViewConfig();

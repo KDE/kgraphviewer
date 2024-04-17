@@ -60,14 +60,14 @@ KGVSimplePrintingSettings KGVSimplePrintingSettings::load()
 {
     KGVSimplePrintingSettings settings; // this will set defaults
 
-    KConfigGroup simplegroup(KSharedConfig::openConfig(), "Simple Printing");
+    KConfigGroup simplegroup(KSharedConfig::openConfig(), QStringLiteral("Simple Printing"));
 
     // 	if (simplegroup.hasKey("pageTitleFont"))
     // 		settings.pageTitleFont = simplegroup.readFontEntry("pageTitleFont");
     //! @todo system default?
     if (simplegroup.hasKey("pageFormat"))
         settings.pageLayout.format = KgvPageFormat::formatFromString(simplegroup.readEntry("pageFormat"));
-    if (simplegroup.readEntry("pageOrientation", "portrait").toLower() == "landscape")
+    if (simplegroup.readEntry("pageOrientation", "portrait").toLower() == QLatin1String("landscape"))
         settings.pageLayout.orientation = PG_LANDSCAPE;
     else
         settings.pageLayout.orientation = PG_PORTRAIT;
@@ -100,7 +100,7 @@ KGVSimplePrintingSettings KGVSimplePrintingSettings::load()
 
 void KGVSimplePrintingSettings::save()
 {
-    KConfigGroup simplegroup(KSharedConfig::openConfig(), "Simple Printing");
+    KConfigGroup simplegroup(KSharedConfig::openConfig(), QStringLiteral("Simple Printing"));
 
     simplegroup.writeEntry("pageTitleFont", pageTitleFont);
     simplegroup.writeEntry("pageFormat", KgvPageFormat::formatString(pageLayout.format));

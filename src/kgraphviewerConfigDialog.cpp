@@ -51,11 +51,11 @@ KgvConfigurationDialog::KgvConfigurationDialog(QWidget *parent, const QString &n
 
     appearanceWidget->kcolorbutton->setColor(KGraphViewerSettings::backgroundColor());
     appearanceWidget->kcolorbutton->setDefaultColor(KGraphViewerSettings::backgroundColor());
-    addPage(page4, i18n("Appearance"), "preferences-other", i18n("Appearance"), false);
-    addPage(page0, i18n("Parsing"), "preferences-other", i18n("Parsing"), false);
-    addPage(page1, i18n("Reloading"), "view-refresh", i18n("Reloading"), false);
-    addPage(page2, i18n("Opening"), "document-open", i18n("Opening"), false);
-    addPage(page3, i18n("Session Management"), "preferences-other", i18n("Session Management"), false);
+    addPage(page4, i18n("Appearance"), QStringLiteral("preferences-other"), i18n("Appearance"), false);
+    addPage(page0, i18n("Parsing"), QStringLiteral("preferences-other"), i18n("Parsing"), false);
+    addPage(page1, i18n("Reloading"), QStringLiteral("view-refresh"), i18n("Reloading"), false);
+    addPage(page2, i18n("Opening"), QStringLiteral("document-open"), i18n("Opening"), false);
+    addPage(page3, i18n("Session Management"), QStringLiteral("preferences-other"), i18n("Session Management"), false);
     connect(parsingWidget->parsingMode, &QGroupBox::clicked, this, &KgvConfigurationDialog::settingChanged);
     connect(reloadWidget->reloadOnChangeMode, &QGroupBox::clicked, this, &KgvConfigurationDialog::settingChanged);
     connect(openingWidget->openInExistingWindowMode, &QGroupBox::clicked, this, &KgvConfigurationDialog::settingChanged);

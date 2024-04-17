@@ -54,11 +54,6 @@ set_package_properties(DOT PROPERTIES
 
 option(BUILD_GRAPHEDITOR "Build the graph editor app (WIP, not yet functional). [default=OFF]" OFF)
 
-# added by KDE_COMPILERSETTINGS_LEVEL >= 5.85.0
-remove_definitions(
-    -DQT_NO_CAST_FROM_ASCII
-)
-
 ecm_set_disabled_deprecation_versions(
     QT 6.5
     KF 6.0

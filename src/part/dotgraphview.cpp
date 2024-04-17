@@ -408,31 +408,31 @@ void DotGraphViewPrivate::setupPopup()
     m_popup = new QMenu();
 
     m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"), q);
-    actionCollection()->addAction("view_layout_algo", m_layoutAlgoSelectAction);
+    actionCollection()->addAction(QStringLiteral("view_layout_algo"), m_layoutAlgoSelectAction);
 
     QAction *lda = new QAction(i18n("Dot"), q);
     lda->setWhatsThis(i18n("Layout the graph using the dot program."));
-    actionCollection()->addAction("layout_dot", lda);
+    actionCollection()->addAction(QStringLiteral("layout_dot"), lda);
     lda->setCheckable(true);
 
     QAction *lna = new QAction(i18n("Neato"), q);
     lna->setWhatsThis(i18n("Layout the graph using the neato program."));
-    actionCollection()->addAction("layout_neato", lna);
+    actionCollection()->addAction(QStringLiteral("layout_neato"), lna);
     lna->setCheckable(true);
 
     QAction *lta = new QAction(i18n("Twopi"), q);
     lta->setWhatsThis(i18n("Layout the graph using the twopi program."));
-    actionCollection()->addAction("layout_twopi", lta);
+    actionCollection()->addAction(QStringLiteral("layout_twopi"), lta);
     lta->setCheckable(true);
 
     QAction *lfa = new QAction(i18n("Fdp"), q);
     lfa->setWhatsThis(i18n("Layout the graph using the fdp program."));
-    actionCollection()->addAction("layout_fdp", lfa);
+    actionCollection()->addAction(QStringLiteral("layout_fdp"), lfa);
     lfa->setCheckable(true);
 
     QAction *lca = new QAction(i18n("Circo"), q);
     lca->setWhatsThis(i18n("Layout the graph using the circo program."));
-    actionCollection()->addAction("layout_c", lca);
+    actionCollection()->addAction(QStringLiteral("layout_c"), lca);
     lca->setCheckable(true);
 
     m_layoutAlgoSelectAction->addAction(lda);
@@ -458,13 +458,13 @@ void DotGraphViewPrivate::setupPopup()
     QAction *rlc = layoutPopup->addAction(i18n("Reset layout command to default"), q, SLOT(slotLayoutReset()));
     rlc->setWhatsThis(i18n("Resets the layout command to use to the default depending on the graph type (directed or not)."));
 
-    m_popup->addAction(QIcon::fromTheme("zoom-in"), i18n("Zoom In"), q, SLOT(zoomIn()));
-    m_popup->addAction(QIcon::fromTheme("zoom-out"), i18n("Zoom Out"), q, SLOT(zoomOut()));
+    m_popup->addAction(QIcon::fromTheme(QStringLiteral("zoom-in")), i18n("Zoom In"), q, SLOT(zoomIn()));
+    m_popup->addAction(QIcon::fromTheme(QStringLiteral("zoom-out")), i18n("Zoom Out"), q, SLOT(zoomOut()));
 
     m_popup->addSeparator();
 
     KActionMenu *file_exportMenu = new KActionMenu(i18n("Export Graph"), q);
-    actionCollection()->addAction("file_export", file_exportMenu);
+    actionCollection()->addAction(QStringLiteral("file_export"), file_exportMenu);
     file_exportMenu->setToolTip(i18n("Allows the graph to be exported in another format."));
     file_exportMenu->setWhatsThis(
         i18n("Use the Export Graph menu to export the graph in another format. "
@@ -473,7 +473,7 @@ void DotGraphViewPrivate::setupPopup()
     m_popup->addAction(file_exportMenu);
     QAction *exportToImageAction = new QAction(i18n("As Image..."), q);
     exportToImageAction->setWhatsThis(i18n("Export the graph to an image file."));
-    actionCollection()->addAction("export_image", exportToImageAction);
+    actionCollection()->addAction(QStringLiteral("export_image"), exportToImageAction);
     QObject::connect(exportToImageAction, &QAction::triggered, q, &DotGraphView::slotExportImage);
 
     file_exportMenu->addAction(exportToImageAction);
@@ -482,7 +482,7 @@ void DotGraphViewPrivate::setupPopup()
 
     m_bevEnabledAction = new KToggleAction(QIcon(QStringLiteral(":/kgraphviewerpart/pics/bev.png")), i18n("Enable Bird's-eye View"), q);
 
-    actionCollection()->addAction("view_bev_enabled", m_bevEnabledAction);
+    actionCollection()->addAction(QStringLiteral("view_bev_enabled"), m_bevEnabledAction);
     actionCollection()->setDefaultShortcut(m_bevEnabledAction, Qt::CTRL | Qt::Key_B);
     m_bevEnabledAction->setWhatsThis(i18n("Enables or disables the Bird's-eye View"));
     QObject::connect(m_bevEnabledAction, &QAction::triggered, q, &DotGraphView::slotBevToggled);
@@ -492,32 +492,32 @@ void DotGraphViewPrivate::setupPopup()
     m_bevPopup = new KSelectAction(i18n("Birds-eye View"), q);
     m_bevPopup->setWhatsThis(i18n("Allows the Bird's-eye View to be setup."));
     m_popup->addAction(m_bevPopup);
-    actionCollection()->addAction("view_bev", m_bevPopup);
+    actionCollection()->addAction(QStringLiteral("view_bev"), m_bevPopup);
 
     QAction *btla = new QAction(i18n("Top Left"), q);
     btla->setWhatsThis(i18n("Puts the Bird's-eye View in the top-left corner."));
     btla->setCheckable(true);
-    actionCollection()->addAction("bev_top_left", btla);
+    actionCollection()->addAction(QStringLiteral("bev_top_left"), btla);
     QObject::connect(btla, &QAction::triggered, q, &DotGraphView::slotBevTopLeft);
     QAction *btra = new QAction(i18n("Top Right"), q);
     btra->setWhatsThis(i18n("Puts the Bird's-eye View in the top-right corner."));
     btra->setCheckable(true);
-    actionCollection()->addAction("bev_top_right", btra);
+    actionCollection()->addAction(QStringLiteral("bev_top_right"), btra);
     QObject::connect(btra, &QAction::triggered, q, &DotGraphView::slotBevTopRight);
     QAction *bbla = new QAction(i18n("Bottom Left"), q);
     bbla->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-left corner."));
     bbla->setCheckable(true);
-    actionCollection()->addAction("bev_bottom_left", bbla);
+    actionCollection()->addAction(QStringLiteral("bev_bottom_left"), bbla);
     QObject::connect(bbla, &QAction::triggered, q, &DotGraphView::slotBevBottomLeft);
     QAction *bbra = new QAction(i18n("Bottom Right"), q);
     bbra->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-right corner."));
     bbra->setCheckable(true);
-    actionCollection()->addAction("bev_bottom_right", bbra);
+    actionCollection()->addAction(QStringLiteral("bev_bottom_right"), bbra);
     QObject::connect(bbra, &QAction::triggered, q, &DotGraphView::slotBevBottomRight);
     QAction *bba = new QAction(i18n("Automatic"), q);
     bba->setWhatsThis(i18n("Let KGraphViewer automatically choose the position of the Bird's-eye View."));
     bba->setCheckable(true);
-    actionCollection()->addAction("bev_automatic", bba);
+    actionCollection()->addAction(QStringLiteral("bev_automatic"), bba);
     QObject::connect(bba, &QAction::triggered, q, &DotGraphView::slotBevAutomatic);
     m_bevPopup->addAction(btla);
     m_bevPopup->addAction(btra);
@@ -807,10 +807,10 @@ bool DotGraphView::slotLoadLibrary(graph_t *graph)
     delete d->m_graph;
 
     if (layoutCommand.isEmpty())
-        layoutCommand = "dot";
+        layoutCommand = QStringLiteral("dot");
 
     qCDebug(KGRAPHVIEWERLIB_LOG) << "layoutCommand:" << layoutCommand;
-    d->m_graph = new DotGraph(layoutCommand, "");
+    d->m_graph = new DotGraph(layoutCommand, QString());
     d->m_graph->setUseLibrary(true);
 
     connect(d->m_graph, &DotGraph::readyToDisplay, this, &DotGraphView::displayGraph);
@@ -948,7 +948,7 @@ bool DotGraphView::loadLibrarySync(const QString &dotFileName)
 
     QString layoutCommand = (d->m_graph ? d->m_graph->layoutCommand() : QString());
     if (layoutCommand.isEmpty()) {
-        layoutCommand = d->m_graph ? d->m_graph->chooseLayoutProgramForFile(dotFileName) : "dot";
+        layoutCommand = d->m_graph ? d->m_graph->chooseLayoutProgramForFile(dotFileName) : QStringLiteral("dot");
     }
     d->m_layoutThread.layoutGraph(graph, layoutCommand);
 
@@ -988,7 +988,7 @@ bool DotGraphView::loadLibrary(graph_t *graph, const QString &layoutCommand)
         return false;
 
     qCDebug(KGRAPHVIEWERLIB_LOG) << "layoutCommand:" << layoutCommand;
-    d->m_graph = new DotGraph(layoutCommand, "");
+    d->m_graph = new DotGraph(layoutCommand, QString());
     d->m_graph->setUseLibrary(true);
 
     connect(d->m_graph, &DotGraph::readyToDisplay, this, &DotGraphView::displayGraph);
@@ -1103,7 +1103,7 @@ bool DotGraphView::displayGraph()
     }
     qCDebug(KGRAPHVIEWERLIB_LOG) << "Adding graph render operations: " << d->m_graph->renderOperations().size();
     for (const DotRenderOp &dro : d->m_graph->renderOperations()) {
-        if (dro.renderop == "T") {
+        if (dro.renderop == QLatin1String("T")) {
             //       std::cerr << "Adding graph label '"<<dro.str<<"'" << std::endl;
             const QString &str = dro.str;
             int stringWidthGoal = int(dro.integers[3] * scale);
@@ -1310,10 +1310,10 @@ void DotGraphView::mousePressEvent(QMouseEvent *e)
         QPointF pos = mapToScene(e->pos().x() - d->m_defaultNewElementPixmap.width() / 2, e->pos().y() - d->m_defaultNewElementPixmap.height() / 2);
         GraphNode *newNode = new GraphNode();
         newNode->attributes() = d->m_newElementAttributes;
-        if (newNode->attributes().find("id") == newNode->attributes().end()) {
-            newNode->setId(QString("NewNode%1").arg(d->m_graph->nodes().size()));
+        if (newNode->attributes().find(QStringLiteral("id")) == newNode->attributes().end()) {
+            newNode->setId(QStringLiteral("NewNode%1").arg(d->m_graph->nodes().size()));
         }
-        if (newNode->attributes().find("label") == newNode->attributes().end()) {
+        if (newNode->attributes().find(QStringLiteral("label")) == newNode->attributes().end()) {
             newNode->setLabel(newNode->id());
         }
         d->m_graph->nodes().insert(newNode->id(), newNode);
@@ -1492,15 +1492,15 @@ void DotGraphView::setLayoutCommand(const QString &command)
 KGraphViewerInterface::PannerPosition DotGraphView::zoomPos(const QString &s)
 {
     KGraphViewerInterface::PannerPosition res = DEFAULT_ZOOMPOS;
-    if (s == QString("KGraphViewerInterface::TopLeft"))
+    if (s == QStringLiteral("KGraphViewerInterface::TopLeft"))
         res = KGraphViewerInterface::TopLeft;
-    if (s == QString("KGraphViewerInterface::TopRight"))
+    if (s == QStringLiteral("KGraphViewerInterface::TopRight"))
         res = KGraphViewerInterface::TopRight;
-    if (s == QString("KGraphViewerInterface::BottomLeft"))
+    if (s == QStringLiteral("KGraphViewerInterface::BottomLeft"))
         res = KGraphViewerInterface::BottomLeft;
-    if (s == QString("KGraphViewerInterface::BottomRight"))
+    if (s == QStringLiteral("KGraphViewerInterface::BottomRight"))
         res = KGraphViewerInterface::BottomRight;
-    if (s == QString("Automatic"))
+    if (s == QStringLiteral("Automatic"))
         res = KGraphViewerInterface::Auto;
 
     return res;
@@ -1527,21 +1527,21 @@ void DotGraphView::viewBevActivated(int newZoomPos)
 QString DotGraphView::zoomPosString(KGraphViewerInterface::PannerPosition p)
 {
     if (p == KGraphViewerInterface::TopRight)
-        return QString("KGraphViewerInterface::TopRight");
+        return QStringLiteral("KGraphViewerInterface::TopRight");
     if (p == KGraphViewerInterface::BottomLeft)
-        return QString("KGraphViewerInterface::BottomLeft");
+        return QStringLiteral("KGraphViewerInterface::BottomLeft");
     if (p == KGraphViewerInterface::BottomRight)
-        return QString("KGraphViewerInterface::BottomRight");
+        return QStringLiteral("KGraphViewerInterface::BottomRight");
     if (p == KGraphViewerInterface::Auto)
-        return QString("Automatic");
+        return QStringLiteral("Automatic");
 
-    return QString("KGraphViewerInterface::TopLeft");
+    return QStringLiteral("KGraphViewerInterface::TopLeft");
 }
 
 void DotGraphView::readViewConfig()
 {
     Q_D(DotGraphView);
-    KConfigGroup g(KSharedConfig::openConfig(), "GraphViewLayout");
+    KConfigGroup g(KSharedConfig::openConfig(), QStringLiteral("GraphViewLayout"));
 
     QVariant dl = DEFAULT_DETAILLEVEL;
     d->m_detailLevel = g.readEntry("DetailLevel", dl).toInt();
@@ -1553,7 +1553,7 @@ void DotGraphView::saveViewConfig()
 {
     Q_D(DotGraphView);
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << "Saving view config";
-    KConfigGroup g(KSharedConfig::openConfig(), "GraphViewLayout");
+    KConfigGroup g(KSharedConfig::openConfig(), QStringLiteral("GraphViewLayout"));
 
     writeConfigEntry(&g, "DetailLevel", d->m_detailLevel, DEFAULT_DETAILLEVEL);
     writeConfigEntry(&g, "KGraphViewerInterface::PannerPosition", zoomPosString(d->m_zoomPosition), zoomPosString(DEFAULT_ZOOMPOS).toUtf8().data());
@@ -1627,7 +1627,7 @@ void DotGraphView::writeConfigEntry(KConfigGroup *c, const char *pKey, const QSt
 {
     if (!c)
         return;
-    if ((value.isEmpty() && ((def == nullptr) || (*def == 0))) || (value == QString(def)))
+    if ((value.isEmpty() && ((def == nullptr) || (*def == 0))) || (value == QString::fromUtf8(def)))
         c->deleteEntry(pKey);
     else
         c->writeEntry(pKey, value);
@@ -1712,24 +1712,24 @@ void DotGraphView::slotLayoutSpecify()
 void DotGraphView::slotLayoutReset()
 {
     Q_D(DotGraphView);
-    d->m_layoutAlgoSelectAction->setCurrentAction("Dot");
-    slotSelectLayoutAlgo("Dot");
+    d->m_layoutAlgoSelectAction->setCurrentAction(QStringLiteral("Dot"));
+    slotSelectLayoutAlgo(QStringLiteral("Dot"));
 }
 
 void DotGraphView::slotSelectLayoutAlgo(const QString &ttext)
 {
     QString text = ttext; //.mid(1);
     qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutAlgo '" << text << "'";
-    if (text == "Dot") {
-        setLayoutCommand("dot");
-    } else if (text == "Neato") {
-        setLayoutCommand("neato");
-    } else if (text == "Twopi") {
-        setLayoutCommand("twopi");
-    } else if (text == "Fdp") {
-        setLayoutCommand("fdp");
-    } else if (text == "Circo") {
-        setLayoutCommand("circo");
+    if (text == QLatin1String("Dot")) {
+        setLayoutCommand(QStringLiteral("dot"));
+    } else if (text == QLatin1String("Neato")) {
+        setLayoutCommand(QStringLiteral("neato"));
+    } else if (text == QLatin1String("Twopi")) {
+        setLayoutCommand(QStringLiteral("twopi"));
+    } else if (text == QLatin1String("Fdp")) {
+        setLayoutCommand(QStringLiteral("fdp"));
+    } else if (text == QLatin1String("Circo")) {
+        setLayoutCommand(QStringLiteral("circo"));
     } else {
         setLayoutCommand(text);
     }
@@ -1738,31 +1738,31 @@ void DotGraphView::slotSelectLayoutAlgo(const QString &ttext)
 void DotGraphView::slotSelectLayoutDot()
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutDot";
-    setLayoutCommand("dot -Txdot");
+    setLayoutCommand(QStringLiteral("dot -Txdot"));
 }
 
 void DotGraphView::slotSelectLayoutNeato()
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutNeato";
-    setLayoutCommand("neato -Txdot");
+    setLayoutCommand(QStringLiteral("neato -Txdot"));
 }
 
 void DotGraphView::slotSelectLayoutTwopi()
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutTwopi";
-    setLayoutCommand("twopi -Txdot");
+    setLayoutCommand(QStringLiteral("twopi -Txdot"));
 }
 
 void DotGraphView::slotSelectLayoutFdp()
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutFdp";
-    setLayoutCommand("fdp -Txdot");
+    setLayoutCommand(QStringLiteral("fdp -Txdot"));
 }
 
 void DotGraphView::slotSelectLayoutCirco()
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::slotSelectLayoutCirco";
-    setLayoutCommand("circo -Txdot");
+    setLayoutCommand(QStringLiteral("circo -Txdot"));
 }
 
 void DotGraphView::slotBevToggled()
@@ -2123,7 +2123,7 @@ void DotGraphView::slotAGraphReadFinished()
         if (!d->m_loadThread.dotFileName().isEmpty())
             layoutCommand = d->m_graph->chooseLayoutProgramForFile(d->m_loadThread.dotFileName());
         else
-            layoutCommand = "dot";
+            layoutCommand = QStringLiteral("dot");
     }
     d->m_layoutThread.layoutGraph(d->m_loadThread.g(), layoutCommand);
     d->m_loadThread.processed_finished();

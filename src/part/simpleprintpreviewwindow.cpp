@@ -55,7 +55,7 @@ KGVSimplePrintPreviewWindow::KGVSimplePrintPreviewWindow(KGVSimplePrintingEngine
     setObjectName("KGVSimplePrintPreviewWindow");
     //	m_pagesCount = INT_MAX;
 
-    setWindowTitle(i18n("%1 - Print Preview - %2", previewName, QString("")));
+    setWindowTitle(i18n("%1 - Print Preview - %2", previewName, QString()));
     setWindowIcon(QIcon::fromTheme(QLatin1String("document-print-preview")));
     QVBoxLayout *lyr = new QVBoxLayout();
 

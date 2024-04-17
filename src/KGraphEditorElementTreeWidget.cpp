@@ -61,7 +61,7 @@ void KGraphEditorElementTreeWidget::setupPopup(const QPoint &point)
 
 void KGraphEditorElementTreeWidget::slotAddAttribute()
 {
-    QString nodeName = "NewAttribute";
+    QString nodeName = QStringLiteral("NewAttribute");
     nodeName += QString::number(topLevelItemCount());
     Q_EMIT addAttribute(nodeName);
     QTreeWidgetItem *item = new QTreeWidgetItem(this, QStringList(nodeName));
