@@ -1,5 +1,5 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="kgrapheditor" version="5" translationDomain="kgraphviewer">
+<gui name="kgrapheditor" version="6" translationDomain="kgraphviewer">
 <MenuBar>
   <Menu name="file">
     <DefineGroup name="file_merge" />
@@ -15,7 +15,6 @@
 
 <ToolBar name="mainToolBar">
   <Action name="file_open"/>
-  <Action name="file_open_recent"/>
   <Action name="file_save"/>
   <Action name="file_save_as"/>
 <Merge/>
