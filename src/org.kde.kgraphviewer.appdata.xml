@@ -87,6 +87,7 @@
     <p xml:lang="gl">KGraphViewer é un visor de gráficos DOT de Graphviz que pretende substituír o resto de ferramentas obsoletas de Graphviz. Os gráficos adoitan usarse en contextos científicos e, especialmente, na enxeñaría informática.</p>
     <p xml:lang="id">KGraphViewer adalah sebuah penampil file grafik Graphviz DOT, ditujukan untuk mengganti alat grafis lainnya yang kedaluwarsa.</p>
     <p xml:lang="it">KGraphViewer è un visore di file di grafi DOT, progettato per sostituire i più datati altri strumenti per Graphviz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
+    <p xml:lang="ka">KGraphViewer წარმოადგენს Graphviz DOT გრაფიკის ფაილის დამთვალიერებელს, რომელიც სხვა, ჩამორჩენილი Graphviz-ის პროგრამების ჩასანაცვლებლადაა განკუთვნილი. გრაფიკები, ჩვეულებრივ, სამეცნიერო წრეებში, უფრო ზუსტად კი კომპიუტერულ მეცნიერებებში გამოიყენება.</p>
     <p xml:lang="ko">KGraphViewer는 Graphviz DOT 그래프 파일 뷰어로, 오래된 GraphViz 도구 대신 사용할 수 있는 것을 목표로 합니다. 그래프는 전산학을 비롯한 여러 과학 분야에서 사용됩니다.</p>
     <p xml:lang="nl">KGraphViewer is een viewer voor DOT-grafiekbestanden van Graphviz, bedoelt om de andere verouderde hulpmiddelen voor GraphViz te vervangen. Grafieken worden algemeen gebruikt in het wetenschappelijke domein en speciaal in de computerwetenschap.</p>
     <p xml:lang="pl">KGraphViewer jest przeglądarką plików Graphviz DOT graph, opracowaną w celu zastąpienia innych przestarzałych narzędzi Graphviz. Grafy są powszechnie używane w obszarach nauki, a w szczególności w obszarze nauki związanej z komputerami.</p>
@@ -182,6 +183,7 @@
       <li xml:lang="gl">Cargar varios gráficos separadores usando fíos</li>
       <li xml:lang="id">Pemuatan berutas dari beberapa grafik dalam tab-tab</li>
       <li xml:lang="it">Caricamento simultaneo con thread di diversi grafi tempo in schede</li>
+      <li xml:lang="ka">რამდენიმე გრაფიკის გახსნა სხვადასხვა ჩანართში</li>
       <li xml:lang="ko">여러 그래프를 탭으로 동시에 불러오기</li>
       <li xml:lang="nl">Parallel laden (threads) van verschillende grafieken in tabbladen</li>
       <li xml:lang="pl">Wczytywanie w wątkach kilku grafów w kartach</li>
@@ -210,6 +212,7 @@
       <li xml:lang="gl">Gardar a lista de ficheiros recentes.</li>
       <li xml:lang="id">Penyimpanan daftar file-file terkini</li>
       <li xml:lang="it">Memorizzazione di un elenco di file recenti</li>
+      <li xml:lang="ka">უახლესი ფაილების ბილიკის შენახვა</li>
       <li xml:lang="ko">최근 파일 목록 관리</li>
       <li xml:lang="nl">De lijst van recente bestanden opslaan</li>
       <li xml:lang="pl">Zachowywanie spisu ostatnio otwieranych plików</li>
@@ -240,6 +243,7 @@
       <li xml:lang="gl">Cargar ficheiros de novo manualmente.</li>
       <li xml:lang="id">Pemuatan-ulang manual file-file</li>
       <li xml:lang="it">Ricaricamento manuale dei file</li>
+      <li xml:lang="ka">ფაილების ხელით ჩატვირთვა</li>
       <li xml:lang="ko">수동으로 파일 새로 고침</li>
       <li xml:lang="nl">Handmatig opnieuw laden van bestanden</li>
       <li xml:lang="pl">Ręczne wczytywanie plików</li>
@@ -270,6 +274,7 @@
       <li xml:lang="gl">Amosar unha vista de paxaro dos gráficos.</li>
       <li xml:lang="id">Mendisplaikan sebuah tampilan mata burung pada grafik</li>
       <li xml:lang="it">Vista a volo d'aquila del grafo</li>
+      <li xml:lang="ka">გრაფიკის საერთო ხედის ჩვენება</li>
       <li xml:lang="ko">그래프 멀리 보기 기능</li>
       <li xml:lang="nl">Een vogelvlucht weergave van een grafiek tonen</li>
       <li xml:lang="pl">Przedstawianie grafu w widoku ptasiego oka</li>
@@ -299,6 +304,7 @@
       <li xml:lang="gl">Usar arrastrar e soltar para mover os gráficos.</li>
       <li xml:lang="id">Pemindahan grafik dengan penyeretan</li>
       <li xml:lang="it">Spostamento del grafo con trascinamento</li>
+      <li xml:lang="ka">გრაფიკის გადაადგილება გადათრევით</li>
       <li xml:lang="ko">드래그로 그래프 이동</li>
       <li xml:lang="nl">De grafiek verplaatsen door slepen</li>
       <li xml:lang="pl">Przesuwanie grafu poprzez przeciąganie</li>
@@ -328,6 +334,7 @@
       <li xml:lang="gl">Todo tipo de funcionalidades de impresión.</li>
       <li xml:lang="id">Pencetakan yang penuh fitur</li>
       <li xml:lang="it">Stampa con ogni funzionalità</li>
+      <li xml:lang="ka">ბეჭდვის სრული მხარდაჭერა</li>
       <li xml:lang="ko">다양한 옵션이 있는 인쇄</li>
       <li xml:lang="nl">Afdrukken met alle mogelijkheden</li>
       <li xml:lang="pl">Pełnowartościowe drukowanie</li>
@@ -358,6 +365,7 @@
       <li xml:lang="gl">Debuxa perfectamente todos os gráficos de exemplo de Graphviz.</li>
       <li xml:lang="id">Penggambaran sempurna dari semua grafik-grafik contoh graphviz</li>
       <li xml:lang="it">Tracciamento perfetto di tutti i grafi d'esempio di graphviz</li>
+      <li xml:lang="ka">Graphviz-ის გრაფიკების შესანიშნავი ხატვა</li>
       <li xml:lang="ko">모든 GraphViz 예제 그래프 렌더링 가능</li>
       <li xml:lang="nl">Perfect tekenen van alle graphviz voorbeeldgrafieken</li>
       <li xml:lang="pl">Perfekcyjne rysowanie wszystkich grafów przykładowych graphviz</li>
@@ -387,6 +395,7 @@
       <li xml:lang="gl">Escolle automaticamente dot para os gráficos dirixidos e neato para os gráficos non dirixidos.</li>
       <li xml:lang="id">Memilih secara otomatis titik untuk grafik yang dilangsungkan dan neato untuk yang takdilangsungkan</li>
       <li xml:lang="it">Scelta automatica di dot per i grafi orientati e neato per i non orientati</li>
+      <li xml:lang="ka">ორიენტირებული გრაფიკებისთვის dot-ის ავტომატური არჩევა და neato-ის - არაორიენტირებულებისთვის</li>
       <li xml:lang="ko">그래프의 방향성에 따른 dot/neato 자동 선택</li>
       <li xml:lang="nl">Automatisch kiezen van commando dot voor gerichte grafieken en neato voor niet gerichte</li>
       <li xml:lang="pl">Samoczynne wybranie dot dla skierowanych grafów i neato dla nieskierowanych</li>
@@ -415,6 +424,7 @@
       <li xml:lang="gl">Permite usar un algoritmo de disposición arbitraria en canto produce o formato xdot.</li>
       <li xml:lang="id">Secara mungkin untuk menggunakan sebuah algoritma tataletak sesukanya setelah menghasilkan format xdot </li>
       <li xml:lang="it">Possibilità di usare un qualsiasi algoritmo di disposizione che produca il formato xdot</li>
+      <li xml:lang="ka">შემთხვევითი განლაგების ალგორითმის გამოყენების შესაძლებლობა, თუ ის xdot ფორმატს გამოსცემს</li>
       <li xml:lang="ko">xdot 형식으로 변환한 이후 임의의 레이아웃 알고리즘 선택 가능</li>
       <li xml:lang="nl">Mogelijkheid om een willekeurig algoritme voor de opmaak te gebruiken wanneer het xdot-formaat produceert</li>
       <li xml:lang="pl">Możliwość użycia dowolnego algorytmu układu już od chwili utworzenia formatu xdot</li>
@@ -443,6 +453,7 @@
       <li xml:lang="gl">Permite cargar de novo automaticamente, previa confirmación por parte do usuario, ficheiros modificador de maneira externa.</li>
       <li xml:lang="id">Memuat-ulang otomatis dengan konfirmasi pengguna dari (secara external) file-file yang dimodifikasi (dapatdikonfigurasi)</li>
       <li xml:lang="it">Ricaricamento automatico con conferma dell'utente dei file modificati da altri programmi (configurabile)</li>
+      <li xml:lang="ka">(პროგრამის გარეთ) შეცვლილი ფაილების თავიდან ავტომატური თავიდან ჩატვირთვა მომხმარებლის დადასტურებით (მორგებადი)</li>
       <li xml:lang="ko">외부에서 수정된 파일을 사용자 확인 하에 자동으로 불러오기(설정 가능)</li>
       <li xml:lang="nl">Automatisch opnieuw laden met toestemming van de gebruiker van (extern) gewijzigde bestanden (te configureren)</li>
       <li xml:lang="pl">Samoczynne ponowne wczytywanie przy zgodzie użytkownika (zewnętrznie) zmienionych plików (do ustawieni)</li>
@@ -471,6 +482,7 @@
       <li xml:lang="gl">Permite abrir novas instancias como separadores da instancia anterior</li>
       <li xml:lang="id">Buka instansi baru sebagai tab-tab baru di dalam lawasnya (dapatdikonfigurasi) </li>
       <li xml:lang="it">Apertura di nuove istanze come nuove schede della preesistente (configurabile)</li>
+      <li xml:lang="ka">გახსენით ახალი გაშვებული ასლები ძველ ფანჯარაში ახალი ჩანართების სახით (მორგებადი)</li>
       <li xml:lang="ko">새 인스턴스를 탭으로 열기(설정 가능)</li>
       <li xml:lang="nl">Nieuwe exemplaren als nieuwe tabbladden openen in de oude (te configureren)</li>
       <li xml:lang="pl">Otwieranie nowych wystąpień jako nowe karty w starym wystąpieniu (do ustawienia)</li>
