@@ -495,12 +495,12 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 	</varlistentry>
 
 	<varlistentry>
-	<term><guimenuitem>Specify layout command</guimenuitem></term>
+	<term><guimenuitem>Specify Layout Command…</guimenuitem></term>
 	<listitem><para>Opens a dialog allowing you to specify a layout command executed by the shell. This command should accept one parameter, the graph file name, and write its layout on stdout in the xdot language. This way, you can give specific options to one of the previous commands, or apply a filter modifying your graph before running it through &dot;.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term><guimenuitem>Reset layout command to default</guimenuitem></term>
+	<term><guimenuitem>Reset Layout Command to Default</guimenuitem></term>
 	<listitem><para>Determine the graph type (directed or not) and apply the default algorithm to it, currently &dot; and &neato; respectively.</para></listitem>
 	</varlistentry>
 	</variablelist>
@@ -512,7 +512,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 <listitem><para>
 	<variablelist>
 	<varlistentry>
-	<term><guimenuitem>As Image...</guimenuitem></term>
+	<term><guimenuitem>As Image…</guimenuitem></term>
 	<listitem><para>Allows to export the full graph to all supported image formats.</para></listitem>
 	</varlistentry>
 	</variablelist>
@@ -520,12 +520,12 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 </varlistentry>
 
 <varlistentry>
-<term><guimenu>Enable Bird's-eye View</guimenu></term>
+<term><guimenu>Enable Bird's-Eye View</guimenu></term>
 <listitem><para>When checked, the Bird's-eye view is displayed when necessary. Otherwise, it is hidden and its positioning menu is disabled.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guisubmenu>Bird's-eye View</guisubmenu></term>
+<term><guisubmenu>Bird's-Eye View Position</guisubmenu></term>
 <listitem><para>Configure where to place the bird's-eye view in the graph view. The possible choices are:
 	<variablelist>
 	<varlistentry>
@@ -588,7 +588,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 	</varlistentry>
 
 	<varlistentry>
-	<term><menuchoice><guimenu>File</guimenu><guisubmenu>Export Graph</guisubmenu><guimenuitem>As Image...</guimenuitem></menuchoice></term>
+	<term><menuchoice><guimenu>File</guimenu><guisubmenu>Export Graph</guisubmenu><guimenuitem>As Image…</guimenuitem></menuchoice></term>
 	<listitem><para>Allows to <action>export</action> the full graph to all supported image formats.</para></listitem>
 	</varlistentry>
 
@@ -603,7 +603,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 	</varlistentry>
 
 	<varlistentry>
-	<term><menuchoice><guimenu>File</guimenu><guimenuitem>Page Setup</guimenuitem></menuchoice></term>
+	<term><menuchoice><guimenu>File</guimenu><guimenuitem>Page Setup…</guimenuitem></menuchoice></term>
 	<listitem><para><action>Opens</action> the <guilabel>Page Setup</guilabel> dialog for the current graph.</para></listitem>
 	</varlistentry>
 
@@ -629,23 +629,23 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 	</varlistentry>
 
 	<varlistentry>
-	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Redisplay</guimenuitem></menuchoice></term>
+	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Refresh</guimenuitem></menuchoice></term>
 	<listitem><para><action>Reloads</action> the current graph.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term><menuchoice><guimenu>View</guimenu><guisubmenu>Select Layout Algo</guisubmenu></menuchoice></term>
+	<term><menuchoice><guimenu>View</guimenu><guisubmenu>Layout Algorithm</guisubmenu></menuchoice></term>
 	<listitem><para>Opens a submenu with various &graphviz; layout algorithms for the current graph.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>B</keycap></keycombo></shortcut><guimenu>View</guimenu><guimenuitem>Enable Bird's-eye View</guimenuitem></menuchoice></term>
+	<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>B</keycap></keycombo></shortcut><guimenu>View</guimenu><guimenuitem>Enable Bird's-Eye View</guimenuitem></menuchoice></term>
 	<listitem><para>When checked, the Bird's-eye view is displayed when necessary. Otherwise, it is hidden and its positioning menu is disabled.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Birds-eye View</guimenuitem></menuchoice></term>
-	<listitem><para>Configure where to place the bird-eye view in the graph view. Choices are:
+	<term><menuchoice><guimenu>View</guimenu><guimenuitem>Bird's-Eye View Position</guimenuitem></menuchoice></term>
+	<listitem><para>Configure where to place the Bird's-eye view in the graph view. Choices are:
 	<variablelist>
 		<varlistentry>
 		<term><guimenuitem>Top Left</guimenuitem></term>

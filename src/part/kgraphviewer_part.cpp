@@ -89,7 +89,7 @@ KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const
     //   KAction* pagesetupAct = new KAction(i18n("&Page setup"), this); //actionCollection(), "file_page_setup");
     QAction *pagesetupAct = actionCollection()->addAction(QStringLiteral("file_page_setup"), d->m_widget, &DotGraphView::pageSetup);
     pagesetupAct->setIcon(QIcon::fromTheme(QStringLiteral("document-properties")));
-    pagesetupAct->setText(i18n("Page setup"));
+    pagesetupAct->setText(i18nc("@action:inmenu", "Page Setup…"));
     pagesetupAct->setWhatsThis(i18n("Opens the Page Setup dialog to allow graph printing to be setup"));
 
     QAction *redisplayAct = KStandardAction::redisplay(d->m_widget, &DotGraphView::reload, actionCollection());
