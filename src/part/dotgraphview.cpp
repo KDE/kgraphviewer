@@ -403,7 +403,7 @@ void DotGraphViewPrivate::setupActions()
 {
     Q_Q(DotGraphView);
 
-    m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"), actionCollection());
+    m_layoutAlgoSelectAction = new KSelectAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Select Layout Algo"), actionCollection());
     actionCollection()->addAction(QStringLiteral("view_layout_algo"), m_layoutAlgoSelectAction);
 
     auto *lda = new QAction(i18n("Dot"), m_layoutAlgoSelectAction);
@@ -477,7 +477,7 @@ void DotGraphViewPrivate::setupActions()
     QObject::connect(m_bevEnabledAction, &QAction::triggered, q, &DotGraphView::slotBevToggled);
     actionCollection()->addAction(QStringLiteral("view_bev_enabled"), m_bevEnabledAction);
 
-    m_bevPopup = new KSelectAction(i18n("Birds-eye View"), actionCollection());
+    m_bevPopup = new KSelectAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Birds-eye View"), actionCollection());
     m_bevPopup->setWhatsThis(i18n("Allows the Bird's-eye View to be setup."));
 
     auto *btla = new QAction(i18n("Top Left"), m_bevPopup);
@@ -550,7 +550,7 @@ void DotGraphViewPrivate::setupPopup()
     qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::setupPopup";
     m_popup = new QMenu(q);
 
-    QMenu *layoutPopup = m_popup->addMenu(i18n("Layout"));
+    QMenu *layoutPopup = m_popup->addMenu(QIcon::fromTheme(QStringLiteral("distribute-graph")), i18n("Layout"));
     layoutPopup->addAction(m_layoutAlgoSelectAction);
     QAction *slc = layoutPopup->addAction(QIcon::fromTheme(QStringLiteral("edit-rename")),
                                           i18n("Specify layout command"),
