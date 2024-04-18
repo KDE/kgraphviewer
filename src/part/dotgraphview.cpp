@@ -122,6 +122,7 @@ public:
 
     void updateSizes(QSizeF s = QSizeF(0, 0));
     void updateBirdEyeView();
+    void setupActions();
     void setupPopup();
     void exportToImage();
     KActionCollection *actionCollection()
@@ -398,42 +399,37 @@ int DotGraphViewPrivate::displaySubgraph(GraphSubgraph *gsubgraph, int zValue, C
     return newZvalue;
 }
 
-void DotGraphViewPrivate::setupPopup()
+void DotGraphViewPrivate::setupActions()
 {
     Q_Q(DotGraphView);
-    if (m_popup) {
-        return;
-    }
-    qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::setupPopup";
-    m_popup = new QMenu();
 
-    m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"), q);
+    m_layoutAlgoSelectAction = new KSelectAction(i18n("Select Layout Algo"), actionCollection());
     actionCollection()->addAction(QStringLiteral("view_layout_algo"), m_layoutAlgoSelectAction);
 
-    QAction *lda = new QAction(i18n("Dot"), q);
+    auto *lda = new QAction(i18n("Dot"), m_layoutAlgoSelectAction);
     lda->setWhatsThis(i18n("Layout the graph using the dot program."));
-    actionCollection()->addAction(QStringLiteral("layout_dot"), lda);
     lda->setCheckable(true);
+    actionCollection()->addAction(QStringLiteral("layout_dot"), lda);
 
-    QAction *lna = new QAction(i18n("Neato"), q);
+    auto *lna = new QAction(i18n("Neato"), m_layoutAlgoSelectAction);
     lna->setWhatsThis(i18n("Layout the graph using the neato program."));
-    actionCollection()->addAction(QStringLiteral("layout_neato"), lna);
     lna->setCheckable(true);
+    actionCollection()->addAction(QStringLiteral("layout_neato"), lna);
 
-    QAction *lta = new QAction(i18n("Twopi"), q);
+    auto *lta = new QAction(i18n("Twopi"), m_layoutAlgoSelectAction);
     lta->setWhatsThis(i18n("Layout the graph using the twopi program."));
-    actionCollection()->addAction(QStringLiteral("layout_twopi"), lta);
     lta->setCheckable(true);
+    actionCollection()->addAction(QStringLiteral("layout_twopi"), lta);
 
-    QAction *lfa = new QAction(i18n("Fdp"), q);
+    auto *lfa = new QAction(i18n("Fdp"), m_layoutAlgoSelectAction);
     lfa->setWhatsThis(i18n("Layout the graph using the fdp program."));
-    actionCollection()->addAction(QStringLiteral("layout_fdp"), lfa);
     lfa->setCheckable(true);
+    actionCollection()->addAction(QStringLiteral("layout_fdp"), lfa);
 
-    QAction *lca = new QAction(i18n("Circo"), q);
+    auto *lca = new QAction(i18n("Circo"), m_layoutAlgoSelectAction);
     lca->setWhatsThis(i18n("Layout the graph using the circo program."));
-    actionCollection()->addAction(QStringLiteral("layout_c"), lca);
     lca->setCheckable(true);
+    actionCollection()->addAction(QStringLiteral("layout_c"), lca);
 
     m_layoutAlgoSelectAction->addAction(lda);
     m_layoutAlgoSelectAction->addAction(lna);
@@ -449,83 +445,71 @@ void DotGraphViewPrivate::setupPopup()
              "generate a graph in the xdot format on its standard output. For example, to "
              "manually specify the <tt>G</tt> option to the dot command, type in: "
              "<tt>dot -Gname=MyGraphName -Txdot </tt>"));
-    QObject::connect(m_layoutAlgoSelectAction, &KSelectAction::textTriggered, q, &DotGraphView::slotSelectLayoutAlgo);
+    QObject::connect(m_layoutAlgoSelectAction, &KSelectAction::textTriggered,
+                     q, &DotGraphView::slotSelectLayoutAlgo);
 
-    QMenu *layoutPopup = m_popup->addMenu(i18n("Layout"));
-    layoutPopup->addAction(m_layoutAlgoSelectAction);
-    QAction *slc = layoutPopup->addAction(i18n("Specify layout command"), q, &DotGraphView::slotLayoutSpecify);
-    slc->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
-    QAction *rlc = layoutPopup->addAction(i18n("Reset layout command to default"), q, &DotGraphView::slotLayoutReset);
-    rlc->setWhatsThis(i18n("Resets the layout command to use to the default depending on the graph type (directed or not)."));
-
-    QAction *zoomInAct = KStandardAction::zoomIn(q, &DotGraphView::zoomIn, actionCollection());
-    // xgettext: no-c-format
-    zoomInAct->setWhatsThis(i18n("Zoom in by 10% on the currently viewed graph"));
-    m_popup->addAction(zoomInAct);
-
-    QAction *zoomOutAct = KStandardAction::zoomOut(q, &DotGraphView::zoomOut, actionCollection());
-    // xgettext: no-c-format
-    zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
-    m_popup->addAction(zoomOutAct);
-
-    m_popup->addSeparator();
-
-    KActionMenu *file_exportMenu = new KActionMenu(i18n("Export Graph"), q);
-    actionCollection()->addAction(QStringLiteral("file_export"), file_exportMenu);
+    auto *file_exportMenu = new KActionMenu(QIcon::fromTheme(QStringLiteral("document-export")), i18n("Export Graph"), actionCollection());
     file_exportMenu->setToolTip(i18n("Allows the graph to be exported in another format."));
     file_exportMenu->setWhatsThis(
         i18n("Use the Export Graph menu to export the graph in another format. "
              "There is currently only one export format supported: as a PNG image."));
 
-    m_popup->addAction(file_exportMenu);
-    QAction *exportToImageAction = new QAction(i18n("As Image..."), q);
+    auto *exportToImageAction = new QAction(i18n("As Image..."), q);
     exportToImageAction->setWhatsThis(i18n("Export the graph to an image file."));
-    actionCollection()->addAction(QStringLiteral("export_image"), exportToImageAction);
     QObject::connect(exportToImageAction, &QAction::triggered, q, &DotGraphView::slotExportImage);
+    actionCollection()->addAction(QStringLiteral("export_image"), exportToImageAction);
 
     file_exportMenu->addAction(exportToImageAction);
 
-    m_popup->addSeparator();
+    actionCollection()->addAction(QStringLiteral("file_export"), file_exportMenu);
 
-    m_bevEnabledAction = new KToggleAction(QIcon(QStringLiteral(":/kgraphviewerpart/pics/bev.png")), i18n("Enable Bird's-eye View"), q);
+    QAction *zoomInAct = KStandardAction::zoomIn(q, &DotGraphView::zoomIn, actionCollection());
+    // xgettext: no-c-format
+    zoomInAct->setWhatsThis(i18n("Zoom in by 10% on the currently viewed graph"));
 
-    actionCollection()->addAction(QStringLiteral("view_bev_enabled"), m_bevEnabledAction);
-    actionCollection()->setDefaultShortcut(m_bevEnabledAction, Qt::CTRL | Qt::Key_B);
+    QAction *zoomOutAct = KStandardAction::zoomOut(q, &DotGraphView::zoomOut, actionCollection());
+    // xgettext: no-c-format
+    zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
+
+    m_bevEnabledAction = new KToggleAction(QIcon(QStringLiteral(":/kgraphviewerpart/pics/bev.png")), i18n("Enable Bird's-eye View"), actionCollection());
     m_bevEnabledAction->setWhatsThis(i18n("Enables or disables the Bird's-eye View"));
+    KActionCollection::setDefaultShortcut(m_bevEnabledAction, Qt::CTRL | Qt::Key_B);
     QObject::connect(m_bevEnabledAction, &QAction::triggered, q, &DotGraphView::slotBevToggled);
-    m_bevEnabledAction->setCheckable(true);
-    m_popup->addAction(m_bevEnabledAction);
+    actionCollection()->addAction(QStringLiteral("view_bev_enabled"), m_bevEnabledAction);
 
-    m_bevPopup = new KSelectAction(i18n("Birds-eye View"), q);
+    m_bevPopup = new KSelectAction(i18n("Birds-eye View"), actionCollection());
     m_bevPopup->setWhatsThis(i18n("Allows the Bird's-eye View to be setup."));
-    m_popup->addAction(m_bevPopup);
-    actionCollection()->addAction(QStringLiteral("view_bev"), m_bevPopup);
 
-    QAction *btla = new QAction(i18n("Top Left"), q);
+    auto *btla = new QAction(i18n("Top Left"), m_bevPopup);
     btla->setWhatsThis(i18n("Puts the Bird's-eye View in the top-left corner."));
     btla->setCheckable(true);
-    actionCollection()->addAction(QStringLiteral("bev_top_left"), btla);
     QObject::connect(btla, &QAction::triggered, q, &DotGraphView::slotBevTopLeft);
-    QAction *btra = new QAction(i18n("Top Right"), q);
+    actionCollection()->addAction(QStringLiteral("bev_top_left"), btla);
+
+    auto *btra = new QAction(i18n("Top Right"), m_bevPopup);
     btra->setWhatsThis(i18n("Puts the Bird's-eye View in the top-right corner."));
     btra->setCheckable(true);
-    actionCollection()->addAction(QStringLiteral("bev_top_right"), btra);
     QObject::connect(btra, &QAction::triggered, q, &DotGraphView::slotBevTopRight);
-    QAction *bbla = new QAction(i18n("Bottom Left"), q);
+    actionCollection()->addAction(QStringLiteral("bev_top_right"), btra);
+
+    auto *bbla = new QAction(i18n("Bottom Left"), m_bevPopup);
     bbla->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-left corner."));
     bbla->setCheckable(true);
-    actionCollection()->addAction(QStringLiteral("bev_bottom_left"), bbla);
     QObject::connect(bbla, &QAction::triggered, q, &DotGraphView::slotBevBottomLeft);
-    QAction *bbra = new QAction(i18n("Bottom Right"), q);
+    actionCollection()->addAction(QStringLiteral("bev_bottom_left"), bbla);
+
+    auto *bbra = new QAction(i18n("Bottom Right"), m_bevPopup);
     bbra->setWhatsThis(i18n("Puts the Bird's-eye View in the bottom-right corner."));
     bbra->setCheckable(true);
-    actionCollection()->addAction(QStringLiteral("bev_bottom_right"), bbra);
     QObject::connect(bbra, &QAction::triggered, q, &DotGraphView::slotBevBottomRight);
-    QAction *bba = new QAction(i18n("Automatic"), q);
+    actionCollection()->addAction(QStringLiteral("bev_bottom_right"), bbra);
+
+    auto *bba = new QAction(i18n("Automatic"), m_bevPopup);
     bba->setWhatsThis(i18n("Let KGraphViewer automatically choose the position of the Bird's-eye View."));
     bba->setCheckable(true);
-    actionCollection()->addAction(QStringLiteral("bev_automatic"), bba);
     QObject::connect(bba, &QAction::triggered, q, &DotGraphView::slotBevAutomatic);
+    actionCollection()->addAction(QStringLiteral("bev_automatic"), bba);
+
     m_bevPopup->addAction(btla);
     m_bevPopup->addAction(btra);
     m_bevPopup->addAction(bbla);
@@ -548,10 +532,50 @@ void DotGraphViewPrivate::setupPopup()
         bba->setChecked(true);
         break;
     }
+    actionCollection()->addAction(QStringLiteral("view_bev"), m_bevPopup);
 
     qCDebug(KGRAPHVIEWERLIB_LOG) << "    m_bevEnabledAction setting checked to : " << KGraphViewerPartSettings::birdsEyeViewEnabled();
     m_bevEnabledAction->setChecked(KGraphViewerPartSettings::birdsEyeViewEnabled());
     m_bevPopup->setEnabled(KGraphViewerPartSettings::birdsEyeViewEnabled());
+
+}
+
+void DotGraphViewPrivate::setupPopup()
+{
+    Q_Q(DotGraphView);
+    if (m_popup) {
+        return;
+    }
+
+    qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::setupPopup";
+    m_popup = new QMenu();
+
+    QMenu *layoutPopup = m_popup->addMenu(i18n("Layout"));
+    layoutPopup->addAction(m_layoutAlgoSelectAction);
+    QAction *slc = layoutPopup->addAction(QIcon::fromTheme(QStringLiteral("edit-rename")),
+                                          i18n("Specify layout command"),
+                                          q, &DotGraphView::slotLayoutSpecify);
+    slc->setWhatsThis(i18n("Specify yourself the layout command to use. Given a dot file, it should produce an xdot file on its standard output."));
+    QAction *rlc = layoutPopup->addAction(QIcon::fromTheme(QStringLiteral("edit-reset")),
+                                          i18n("Reset layout command to default"),
+                                          q, &DotGraphView::slotLayoutReset);
+    rlc->setWhatsThis(i18n("Resets the layout command to use to the default depending on the graph type (directed or not)."));
+
+    QAction *zoomInAct = actionCollection()->action(KStandardAction::name(KStandardAction::ZoomIn));
+    m_popup->addAction(zoomInAct);
+
+    QAction *zoomOutAct = actionCollection()->action(KStandardAction::name(KStandardAction::ZoomOut));
+    m_popup->addAction(zoomOutAct);
+
+    m_popup->addSeparator();
+
+    QAction *file_exportMenu = actionCollection()->action(QStringLiteral("file_export"));
+    m_popup->addAction(file_exportMenu);
+
+    m_popup->addSeparator();
+
+    m_popup->addAction(m_bevEnabledAction);
+    m_popup->addAction(m_bevPopup);
 }
 
 void DotGraphViewPrivate::exportToImage()
@@ -659,7 +683,9 @@ DotGraphView::DotGraphView(KActionCollection *actions, QWidget *parent)
     QTransform m;
     m.scale(d->m_zoom, d->m_zoom);
     setTransform(m);
-    d->setupPopup();
+
+    d->setupActions();
+
     setInteractive(true);
     setDragMode(NoDrag);
     setRenderHint(QPainter::Antialiasing);
@@ -1447,6 +1473,7 @@ void DotGraphView::contextMenuEvent(QContextMenuEvent *e)
     Q_D(DotGraphView);
     //   QList<QGraphicsItem *> l = scene()->collidingItems(scene()->itemAt(e->pos()));
 
+    d->setupPopup();
     d->m_popup->exec(e->globalPos());
 }
 
