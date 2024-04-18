@@ -44,7 +44,7 @@ void KGraphEditorNodesTreeWidget::setupPopup(const QPoint &point)
     if (m_popup) {
         delete m_popup;
     }
-    m_popup = new QMenu();
+    m_popup = new QMenu(this);
 
     m_item = itemAt(point);
     if (m_item == nullptr) {

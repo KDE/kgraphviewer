@@ -548,7 +548,7 @@ void DotGraphViewPrivate::setupPopup()
     }
 
     qCDebug(KGRAPHVIEWERLIB_LOG) << "DotGraphView::setupPopup";
-    m_popup = new QMenu();
+    m_popup = new QMenu(q);
 
     QMenu *layoutPopup = m_popup->addMenu(i18n("Layout"));
     layoutPopup->addAction(m_layoutAlgoSelectAction);
