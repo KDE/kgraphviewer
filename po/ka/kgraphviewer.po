@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-16 00:37+0000\n"
+"POT-Creation-Date: 2024-04-18 00:37+0000\n"
 "PO-Revision-Date: 2024-04-16 03:43+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -48,7 +48,7 @@ msgstr "გაშვება შეუძლებელია"
 msgid "Could not find the KGraphViewer part."
 msgstr "KGraphViewer ნაწილი ვერ ვიპოვე."
 
-#: kgrapheditor.cpp:223 kgraphviewer.cpp:209
+#: kgrapheditor.cpp:223 kgraphviewer.cpp:208
 #, kde-format
 msgid "Closes the current file"
 msgstr "მიმდინარე ფაილის დახურვა"
@@ -98,37 +98,37 @@ msgstr "ახალი ატრიბუტის დამატება"
 msgid "Remove this attribute"
 msgstr "ატრიბუტის წაშლა"
 
-#: kgrapheditormain.cpp:38
+#: kgrapheditormain.cpp:40
 #, kde-format
 msgid "KGraphEditor"
 msgstr "KGraphEditor"
 
-#: kgrapheditormain.cpp:38
+#: kgrapheditormain.cpp:42
 #, kde-format
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Graphviz გრაფების რედაქტორი KDE-სთვის"
 
-#: kgrapheditormain.cpp:38 main.cpp:43
+#: kgrapheditormain.cpp:44 main.cpp:43
 #, kde-format
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:50 main.cpp:59
+#: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "Path or URL to scan"
 msgstr "დასასკანერებელი ბილიკი ან URL"
 
-#: kgrapheditormain.cpp:50 main.cpp:59
+#: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "[url]"
 msgstr "[url]"
 
-#: kgrapheditormain.cpp:75 main.cpp:84
+#: kgrapheditormain.cpp:82 main.cpp:84
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "ფაილის ახალ ფანჯარაში გახსნის დადასტურება"
 
-#: kgrapheditormain.cpp:75
+#: kgrapheditormain.cpp:82
 #, kde-format
 msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
@@ -189,19 +189,19 @@ msgid "The list of files that were opened in past instances of kgraphviewer"
 msgstr "ფაილების სია, რომელიც წარსულში kgraphviewer-მა გახსნა"
 
 #. i18n: ectx: ToolBar (viewToolBar)
-#: kgrapheditorui.rc:23 kgraphviewerui.rc:17
+#: kgrapheditorui.rc:22 kgraphviewerui.rc:16
 #, kde-format
 msgid "View Toolbar"
 msgstr "ხელსაწყოთა ზოლის ნახვა"
 
 #. i18n: ectx: ToolBar (helpToolBar)
-#: kgrapheditorui.rc:26 kgraphviewerui.rc:20
+#: kgrapheditorui.rc:25 kgraphviewerui.rc:19
 #, kde-format
 msgid "Help Toolbar"
 msgstr "დახმარების ხელსაწყოთა ზოლი"
 
 #. i18n: ectx: ToolBar (editToolBar)
-#: kgrapheditorui.rc:31
+#: kgrapheditorui.rc:30
 #, kde-format
 msgid "Edit Toolbar"
 msgstr "ხელსაწყოთა ზოლის რედაქტირება"
@@ -235,7 +235,7 @@ msgstr ""
 "გაჩვენებთ ფაილის გახსნის დიალოგს, სადაც გასახსნელი Graphviz DOT ფაილის "
 "არჩევა შეგიძლიათ."
 
-#: kgraphviewer.cpp:203
+#: kgraphviewer.cpp:202
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
@@ -244,22 +244,22 @@ msgstr ""
 "ეს სია შეიცავს ფაილებს, რომლებიც ახლახანს გახსენით და საშუალებას გაძლევთ, "
 "ადვილად მიაგნოთ მათ."
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:212
 #, kde-format
 msgid "Quits KGraphViewer."
 msgstr "KGraphViewer-დან გასვლა."
 
-#: kgraphviewer.cpp:216
+#: kgraphviewer.cpp:215
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr "სტატუსის ზოლის ჩვენება/დამალვა."
 
-#: kgraphviewer.cpp:219
+#: kgraphviewer.cpp:218
 #, kde-format
 msgid "Toolbar configuration."
 msgstr "ხელსაწყოთა ზოლის მორგება."
 
-#: kgraphviewer.cpp:222
+#: kgraphviewer.cpp:221
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr "KGraphViewer -ის მთავარი პარამეტრები."
@@ -720,38 +720,38 @@ msgstr ""
 msgid "Failed to open %1"
 msgstr "%1-ის გახსნის შეცდომა"
 
-#: part/kgraphviewer_part.cpp:85
+#: part/kgraphviewer_part.cpp:84
 #, kde-format
 msgid "Print the graph using current page setup settings"
 msgstr "გრაფიკის დაბეჭდვა ამჟამად არჩეული გვერდის პარამეტრებით"
 
-#: part/kgraphviewer_part.cpp:89
+#: part/kgraphviewer_part.cpp:87
 #, kde-format
 msgid "Open the print preview window"
 msgstr "ბეჭდვის გადახედვის ფანჯრის გახსნა"
 
-#: part/kgraphviewer_part.cpp:93
+#: part/kgraphviewer_part.cpp:91
 #, kde-format
 msgid "Page setup"
 msgstr "გვერდის პარამეტრები"
 
-#: part/kgraphviewer_part.cpp:94
+#: part/kgraphviewer_part.cpp:92
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr ""
 "გახსნის გვერდის მორგების დიალოგს, სადაც გრაფიკის დაბეჭდვის მორგება შეგიძლიათ"
 
-#: part/kgraphviewer_part.cpp:97
+#: part/kgraphviewer_part.cpp:95
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "მიმდინარე გრაფის ფაილიდან თავიდან ჩატვირთვა"
 
-#: part/kgraphviewer_part.cpp:102
+#: part/kgraphviewer_part.cpp:99
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
 msgstr "ამჟამად გახსნილი გრაფიკის 10%-ით გადიდება"
 
-#: part/kgraphviewer_part.cpp:107
+#: part/kgraphviewer_part.cpp:103
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "ამჟამად გახსნილი გრაფიკის 10%-ით დაპატარავება"

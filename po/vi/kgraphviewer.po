@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer KDE4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-16 00:37+0000\n"
+"POT-Creation-Date: 2024-04-18 00:37+0000\n"
 "PO-Revision-Date: 2007-07-04 18:07+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Could not find the KGraphViewer part."
 msgstr "Không tìm thấy phần riêng."
 
-#: kgrapheditor.cpp:223 kgraphviewer.cpp:209
+#: kgrapheditor.cpp:223 kgraphviewer.cpp:208
 #, kde-format
 msgid "Closes the current file"
 msgstr ""
@@ -101,40 +101,40 @@ msgstr "Thêm ngày giờ"
 msgid "Remove this attribute"
 msgstr ""
 
-#: kgrapheditormain.cpp:38
+#: kgrapheditormain.cpp:40
 #, fuzzy, kde-format
 #| msgid "KGraphViewer"
 msgid "KGraphEditor"
 msgstr "Bộ xem đồ thị KDE"
 
-#: kgrapheditormain.cpp:38
+#: kgrapheditormain.cpp:42
 #, fuzzy, kde-format
 #| msgid "A Graphviz dot graph viewer for KDE"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Bộ xem đồ thị chấm GraphViz cho KDE"
 
-#: kgrapheditormain.cpp:38 main.cpp:43
+#: kgrapheditormain.cpp:44 main.cpp:43
 #, fuzzy, kde-format
 #| msgid "(C) 2005-2006 Gaël de Chalendar"
 msgid "(C) 2005-2010 Gaël de Chalendar"
 msgstr "© năm 2005-2006 của Gaël de Chalendar"
 
-#: kgrapheditormain.cpp:50 main.cpp:59
+#: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "Path or URL to scan"
 msgstr ""
 
-#: kgrapheditormain.cpp:50 main.cpp:59
+#: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "[url]"
 msgstr ""
 
-#: kgrapheditormain.cpp:75 main.cpp:84
+#: kgrapheditormain.cpp:82 main.cpp:84
 #, kde-format
 msgid "Opening in new window confirmation"
 msgstr "Xác nhận mở trong cửa sổ mới"
 
-#: kgrapheditormain.cpp:75
+#: kgrapheditormain.cpp:82
 #, kde-format
 msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
@@ -189,19 +189,19 @@ msgid "The list of files that were opened in past instances of kgraphviewer"
 msgstr ""
 
 #. i18n: ectx: ToolBar (viewToolBar)
-#: kgrapheditorui.rc:23 kgraphviewerui.rc:17
+#: kgrapheditorui.rc:22 kgraphviewerui.rc:16
 #, kde-format
 msgid "View Toolbar"
 msgstr "Thanh công cụ Xem"
 
 #. i18n: ectx: ToolBar (helpToolBar)
-#: kgrapheditorui.rc:26 kgraphviewerui.rc:20
+#: kgrapheditorui.rc:25 kgraphviewerui.rc:19
 #, kde-format
 msgid "Help Toolbar"
 msgstr "Thanh công cụ Trợ giúp"
 
 #. i18n: ectx: ToolBar (editToolBar)
-#: kgrapheditorui.rc:31
+#: kgrapheditorui.rc:30
 #, fuzzy, kde-format
 #| msgid "Main Toolbar"
 msgid "Edit Toolbar"
@@ -237,31 +237,31 @@ msgstr "Mở trong cửa sổ đã có"
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 
-#: kgraphviewer.cpp:203
+#: kgraphviewer.cpp:202
 #, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
 "open them again."
 msgstr ""
 
-#: kgraphviewer.cpp:213
+#: kgraphviewer.cpp:212
 #, fuzzy, kde-format
 #| msgid "KGraphViewer"
 msgid "Quits KGraphViewer."
 msgstr "Bộ xem đồ thị KDE"
 
-#: kgraphviewer.cpp:216
+#: kgraphviewer.cpp:215
 #, kde-format
 msgid "Shows or hides the status bar."
 msgstr ""
 
-#: kgraphviewer.cpp:219
+#: kgraphviewer.cpp:218
 #, fuzzy, kde-format
 #| msgid "Reload Confirmation"
 msgid "Toolbar configuration."
 msgstr "Xác nhận nạp lại"
 
-#: kgraphviewer.cpp:222
+#: kgraphviewer.cpp:221
 #, kde-format
 msgid "Main KGraphViewer configuration options."
 msgstr ""
@@ -687,38 +687,38 @@ msgstr ""
 msgid "Failed to open %1"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:85
+#: part/kgraphviewer_part.cpp:84
 #, kde-format
 msgid "Print the graph using current page setup settings"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:89
+#: part/kgraphviewer_part.cpp:87
 #, fuzzy, kde-format
 #| msgid "Open in existing window"
 msgid "Open the print preview window"
 msgstr "Mở trong cửa sổ đã có"
 
-#: part/kgraphviewer_part.cpp:93
+#: part/kgraphviewer_part.cpp:91
 #, kde-format
 msgid "Page setup"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:94
+#: part/kgraphviewer_part.cpp:92
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:97
+#: part/kgraphviewer_part.cpp:95
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:102
+#: part/kgraphviewer_part.cpp:99
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:107
+#: part/kgraphviewer_part.cpp:103
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
 msgstr ""
