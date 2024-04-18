@@ -458,8 +458,15 @@ void DotGraphViewPrivate::setupPopup()
     QAction *rlc = layoutPopup->addAction(i18n("Reset layout command to default"), q, &DotGraphView::slotLayoutReset);
     rlc->setWhatsThis(i18n("Resets the layout command to use to the default depending on the graph type (directed or not)."));
 
-    m_popup->addAction(QIcon::fromTheme(QStringLiteral("zoom-in")), i18n("Zoom In"), q, &DotGraphView::zoomIn);
-    m_popup->addAction(QIcon::fromTheme(QStringLiteral("zoom-out")), i18n("Zoom Out"), q, &DotGraphView::zoomOut);
+    QAction *zoomInAct = KStandardAction::zoomIn(q, &DotGraphView::zoomIn, actionCollection());
+    // xgettext: no-c-format
+    zoomInAct->setWhatsThis(i18n("Zoom in by 10% on the currently viewed graph"));
+    m_popup->addAction(zoomInAct);
+
+    QAction *zoomOutAct = KStandardAction::zoomOut(q, &DotGraphView::zoomOut, actionCollection());
+    // xgettext: no-c-format
+    zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
+    m_popup->addAction(zoomOutAct);
 
     m_popup->addSeparator();
 

@@ -93,14 +93,6 @@ KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const
 
     QAction *redisplayAct = KStandardAction::redisplay(d->m_widget, &DotGraphView::reload, actionCollection());
     redisplayAct->setWhatsThis(i18n("Reload the current graph from file"));
-
-    QAction *zoomInAct = KStandardAction::zoomIn(d->m_widget, &DotGraphView::zoomIn, actionCollection());
-    // xgettext: no-c-format
-    zoomInAct->setWhatsThis(i18n("Zoom in by 10% on the currently viewed graph"));
-
-    QAction *zoomOutAct = KStandardAction::zoomOut(d->m_widget, &DotGraphView::zoomOut, actionCollection());
-    // xgettext: no-c-format
-    zoomOutAct->setWhatsThis(i18n("Zoom out by 10% from the currently viewed graph"));
 }
 
 QString KGraphViewerPart::componentName() const
