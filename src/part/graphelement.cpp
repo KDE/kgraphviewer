@@ -83,11 +83,12 @@ void GraphElement::updateWithElement(const GraphElement &element)
     QMap<QString, QString>::const_iterator it = element.attributes().constBegin();
     for (; it != element.attributes().constEnd(); it++) {
         const QString &attrib = it.key();
-        if ((!m_attributes.contains(attrib)) || (m_attributes[attrib] != it.value())) {
+        auto thisIt = m_attributes.find(attrib);
+        if ((thisIt == m_attributes.constEnd()) || (thisIt.value() != it.value())) {
             m_attributes[attrib] = it.value();
             if (attrib == QLatin1String("z")) {
                 bool ok;
-                setZ(m_attributes[attrib].toDouble(&ok));
+                setZ(it.value().toDouble(&ok));
             }
             modified = true;
         }
@@ -147,13 +148,15 @@ QString GraphElement::lineColor() const
 
 QString GraphElement::backColor() const
 {
-    if (m_attributes.find(KEY_FILLCOLOR) != m_attributes.end()) {
-        return m_attributes[KEY_FILLCOLOR];
-    } else if ((m_attributes.find(KEY_COLOR) != m_attributes.end()) && (m_attributes[KEY_STYLE] == QLatin1String("filled"))) {
-        return m_attributes[KEY_COLOR];
-    } else {
-        return QStringLiteral(DOT_DEFAULT_NODE_BACKCOLOR);
+    auto it = m_attributes.find(KEY_FILLCOLOR);
+    if (it != m_attributes.end()) {
+        return *it;
     }
+    it = m_attributes.find(KEY_COLOR);
+    if ((it != m_attributes.end()) && (m_attributes[KEY_STYLE] == QLatin1String("filled"))) {
+        return *it;
+    }
+    return QStringLiteral(DOT_DEFAULT_NODE_BACKCOLOR);
 }
 
 unsigned int GraphElement::fontSize() const

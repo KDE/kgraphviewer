@@ -79,20 +79,24 @@ void DotGraphParsingHelper::setgraphelementattributes(GraphElement *ge, const At
     }
 
     DotRenderOpVec ops = ge->renderOperations();
-    if (attributes.find("_draw_") != attributes.end()) {
-        parse_renderop((attributes.find("_draw_"))->second, ops);
+    it = attributes.find("_draw_");
+    if (it != it_end) {
+        parse_renderop(it->second, ops);
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "element renderOperations size is now " << ge->renderOperations().size();
     }
-    if (attributes.find("_ldraw_") != attributes.end()) {
-        parse_renderop(attributes.find("_ldraw_")->second, ops);
+    it = attributes.find("_ldraw_");
+    if (it != it_end) {
+        parse_renderop(it->second, ops);
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "element renderOperations size is now " << ge->renderOperations().size();
     }
-    if (attributes.find("_hldraw_") != attributes.end()) {
-        parse_renderop(attributes.find("_hldraw_")->second, ops);
+    it = attributes.find("_hldraw_");
+    if (it != it_end) {
+        parse_renderop(it->second, ops);
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "element renderOperations size is now " << ge->renderOperations().size();
     }
-    if (attributes.find("_tldraw_") != attributes.end()) {
-        parse_renderop(attributes.find("_tldraw_")->second, ops);
+    it = attributes.find("_tldraw_");
+    if (it != it_end) {
+        parse_renderop(it->second, ops);
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "element renderOperations size is now " << ge->renderOperations().size();
     }
     ge->setRenderOperations(ops);
@@ -136,8 +140,9 @@ void DotGraphParsingHelper::setedgeattributes()
     setgraphelementattributes(ge, edgesAttributes);
 
     DotRenderOpVec ops = ge->renderOperations();
-    if (edgesAttributes.find("_tdraw_") != edgesAttributes.end()) {
-        parse_renderop(edgesAttributes["_tdraw_"], ops);
+    auto attributeIt = edgesAttributes.find("_tdraw_");
+    if (attributeIt != edgesAttributes.end()) {
+        parse_renderop(attributeIt->second, ops);
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "edge renderOperations size is now " << ge->renderOperations().size();
         DotRenderOpVec::const_iterator it, it_end;
         it = ops.constBegin();
@@ -145,8 +150,9 @@ void DotGraphParsingHelper::setedgeattributes()
         for (; it != it_end; it++)
             ge->arrowheads().push_back(*it);
     }
-    if (edgesAttributes.find("_hdraw_") != edgesAttributes.end()) {
-        parse_renderop(edgesAttributes["_hdraw_"], ops);
+    attributeIt = edgesAttributes.find("_hdraw_");
+    if (attributeIt != edgesAttributes.end()) {
+        parse_renderop(attributeIt->second, ops);
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "edge renderOperations size is now " << ge->renderOperations().size();
         DotRenderOpVec::const_iterator it, it_end;
         it = ops.constBegin();
@@ -161,18 +167,19 @@ void DotGraphParsingHelper::setattributedlist()
 {
     // //   qCDebug(KGRAPHVIEWERLIB_LOG) << "Setting attributes list for " << QString::fromStdString(attributed);
     if (attributed == "graph") {
-        if (attributes.find("bb") != attributes.end()) {
+        AttributesMap::const_iterator it, it_end;
+        it_end = attributes.end();
+        it = attributes.find("bb");
+        if (it != it_end) {
             std::vector<int> v;
-            parse_integers(attributes["bb"].c_str(), v);
+            parse_integers(it->second.c_str(), v);
             if (v.size() >= 4) {
                 //         qCDebug(KGRAPHVIEWERLIB_LOG) << "setting width and height to " << v[2] << v[3];
                 graph->width(v[2]);
                 graph->height(v[3]);
             }
         }
-        AttributesMap::const_iterator it, it_end;
         it = attributes.begin();
-        it_end = attributes.end();
         for (; it != it_end; it++) {
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "    " << QString::fromStdString((*it).first) << " = " <<  QString::fromStdString((*it).second);
             graphAttributes[(*it).first] = (*it).second;
@@ -228,17 +235,19 @@ void DotGraphParsingHelper::createsubgraph()
             oss << "kgv_id_" << phelper->uniq++;
             str = oss.str();
         }
-        //     qCDebug(KGRAPHVIEWERLIB_LOG) << QString::fromStdString(str);
-        if (graph->subgraphs().find(QString::fromStdString(str)) == graph->subgraphs().end()) {
+        const QString subgraphName = QString::fromStdString(str);
+        //     qCDebug(KGRAPHVIEWERLIB_LOG) << subgraphName;
+        auto it = graph->subgraphs().find(subgraphName);
+        if (it == graph->subgraphs().end()) {
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "Creating a new subgraph";
             gs = new GraphSubgraph();
-            gs->setId(QString::fromStdString(str));
-            //       gs->label(QString::fromStdString(str));
-            graph->subgraphs().insert(QString::fromStdString(str), gs);
+            gs->setId(subgraphName);
+            //       gs->label(subgraphName);
+            graph->subgraphs().insert(subgraphName, gs);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "there is now"<<graph->subgraphs().size()<<"subgraphs in" << graph;
         } else {
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "Found existing subgraph";
-            gs = *(graph->subgraphs().find(QString::fromStdString(str)));
+            gs = *it;
         }
         phelper->subgraphid = "";
     }

@@ -121,19 +121,22 @@ void GraphSubgraph::updateWithSubgraph(graph_t *subgraph)
 
     for (graph_t *sg = agfstsubg(subgraph); sg; sg = agnxtsubg(sg)) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << "subsubgraph:" << agnameof(sg);
-        if (subgraphs().contains(QString::fromUtf8(agnameof(sg)))) {
+        const QString name = QString::fromUtf8(agnameof(sg));
+        auto it = subgraphs().find(name);
+        if (it != subgraphs().end()) {
+            GraphSubgraph *subSubgraph = it.value();
             qCDebug(KGRAPHVIEWERLIB_LOG) << "known subsubgraph";
             // ???
             //       nodes()[ngn->name]->setZ(ngn->z());
-            subgraphs()[QString::fromUtf8(agnameof(sg))]->updateWithSubgraph(sg);
-            if (subgraphs()[QString::fromUtf8(agnameof(sg))]->canvasElement()) {
+            subSubgraph->updateWithSubgraph(sg);
+            if (subSubgraph->canvasElement()) {
                 //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
             }
         } else {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "new subsubgraph";
             GraphSubgraph *newsg = new GraphSubgraph(sg);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
-            subgraphs().insert(QString::fromUtf8(agnameof(sg)), newsg);
+            subgraphs().insert(name, newsg);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
         }
     }
@@ -141,15 +144,22 @@ void GraphSubgraph::updateWithSubgraph(graph_t *subgraph)
 
 QString GraphSubgraph::backColor() const
 {
-    if (m_attributes.find(QStringLiteral("bgcolor")) != m_attributes.end()) {
-        return m_attributes[QStringLiteral("bgcolor")];
-    } else if ((m_attributes.find(QStringLiteral("style")) != m_attributes.end()) && (m_attributes[QStringLiteral("style")] == QLatin1String("filled")) && (m_attributes.find(QStringLiteral("color")) != m_attributes.end())) {
-        return m_attributes[QStringLiteral("color")];
-    } else if ((m_attributes.find(QStringLiteral("style")) != m_attributes.end()) && (m_attributes[QStringLiteral("style")] == QLatin1String("filled")) && (m_attributes.find(QStringLiteral("fillcolor")) != m_attributes.end())) {
-        return m_attributes[QStringLiteral("fillcolor")];
-    } else {
-        return QStringLiteral(DOT_DEFAULT_BACKCOLOR);
+    auto it = m_attributes.find(QStringLiteral("bgcolor"));
+    if (it != m_attributes.end()) {
+        return *it;
     }
+    it = m_attributes.find(QStringLiteral("style"));
+    if ((it != m_attributes.end()) && (*it == QLatin1String("filled"))) {
+        it = m_attributes.find(QStringLiteral("color"));
+        if (it != m_attributes.end()) {
+            return *it;
+        }
+        it = m_attributes.find(QStringLiteral("fillcolor"));
+        if (it != m_attributes.end()) {
+            return *it;
+        }
+    }
+    return QStringLiteral(DOT_DEFAULT_BACKCOLOR);
 }
 
 void GraphSubgraph::removeElement(GraphElement *element)

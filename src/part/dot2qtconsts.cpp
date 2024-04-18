@@ -898,46 +898,49 @@ QColor Dot2QtConsts::qtColor(const QString &dotColor) const
     QColor color;
     if (parse_numeric_color(qPrintable(dotColor), color)) {
         return color;
-    } else {
-        if (m_qcolors.find(dotColor) != m_qcolors.end()) {
-            return (*m_qcolors.find(dotColor));
-        }
-        QColor res(dotColor);
+    }
+    auto qit = m_qcolors.find(dotColor);
+    if (qit != m_qcolors.end()) {
+        return *qit;
+    }
+    QColor res(dotColor);
+    if (res.isValid()) {
+        return res;
+    }
+    auto it = m_colors.find(dotColor);
+    if (it != m_colors.end()) {
+        res = QColor(*it);
         if (res.isValid()) {
             return res;
-        } else {
-            if (m_colors.find(dotColor) != m_colors.end()) {
-                res = QColor((*m_colors.find(dotColor)));
-                if (res.isValid()) {
-                    return res;
-                } else {
-                    qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown stored DOT color '" << dotColor << "'. returning Qt black";
-                    return Qt::black;
-                }
-            } else {
-                //           qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown DOT color '" << dotColor << "'. returning Qt black";
-                return Qt::black;
-            }
         }
+
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown stored DOT color '" << dotColor << "'. returning Qt black";
+        return Qt::black;
     }
+
+    //           qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown DOT color '" << dotColor << "'. returning Qt black";
+    return Qt::black;
 }
 
 Qt::PenStyle Dot2QtConsts::qtPenStyle(const QString &dotLineStyle) const
 {
-    if (m_penStyles.find(dotLineStyle) != m_penStyles.end())
-        return (*(m_penStyles.find(dotLineStyle)));
-    else {
-        if (!dotLineStyle.left(12).isEmpty() && dotLineStyle.left(12) != QLatin1String("setlinewidth"))
-            qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown DOT line style '" << dotLineStyle << "'. returning Qt solid line";
-        return Qt::SolidLine;
+    auto it = m_penStyles.find(dotLineStyle);
+    if (it != m_penStyles.end()) {
+        return *it;
     }
+
+    if (!dotLineStyle.left(12).isEmpty() && dotLineStyle.left(12) != QLatin1String("setlinewidth")) {
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Unknown DOT line style '" << dotLineStyle << "'. returning Qt solid line";
+    }
+    return Qt::SolidLine;
 }
 
 QFont Dot2QtConsts::qtFont(const QString &dotFont) const
 {
-    if (m_psFonts.find(dotFont) != m_psFonts.end())
-        return (*(m_psFonts.find(dotFont)));
-    else {
-        return QFont(QFont::substitute(dotFont));
+    auto it = m_psFonts.find(dotFont);
+    if (it != m_psFonts.end()) {
+        return *it;
     }
+
+    return QFont(QFont::substitute(dotFont));
 }

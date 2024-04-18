@@ -260,9 +260,10 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
             qreal y = ((m_gh - dro.integers[1]) * m_scaleY) + m_yMargin - h / 2;
             QRectF rect(x, y, w, h);
             pen.setColor(lineColor);
-            if (element()->attributes().contains(QStringLiteral("penwidth"))) {
+            auto attributeIt = element()->attributes().find(QStringLiteral("penwidth"));
+            if (attributeIt != element()->attributes().constEnd()) {
                 bool ok;
-                int lineWidth = element()->attributes()[QStringLiteral("penwidth")].toInt(&ok);
+                const int lineWidth = attributeIt->toInt(&ok);
                 pen.setWidth(int(lineWidth * widthScaleFactor));
             }
 
@@ -291,9 +292,10 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
                 pen.setStyle(Qt::SolidLine);
                 pen.setWidth(2);
             }
-            if (element()->attributes().contains(QStringLiteral("penwidth"))) {
+            auto attributeIt = element()->attributes().find(QStringLiteral("penwidth"));
+            if (attributeIt != element()->attributes().constEnd()) {
                 bool ok;
-                int lineWidth = element()->attributes()[QStringLiteral("penwidth")].toInt(&ok);
+                const int lineWidth = attributeIt->toInt(&ok);
                 pen.setWidth(int(lineWidth * widthScaleFactor));
             } else if (element()->style() != QLatin1String("filled")) {
                 pen.setStyle(Dot2QtConsts::componentData().qtPenStyle(element()->style()));

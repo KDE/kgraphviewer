@@ -35,17 +35,19 @@ FontsCache::~FontsCache()
 
 QFont *FontsCache::cachedFont(const QFont &font)
 {
-    if (find(font.key()) == end()) {
-        (*this)[font.key()] = new QFont(font);
+    auto it = find(font.key());
+    if (it == end()) {
+        it = insert(font.key(), new QFont(font));
     }
-    return (*this)[font.key()];
+    return *it;
 }
 
 QFont *FontsCache::fromName(const QString &fontName)
 {
-    if (m_namesToFonts.find(fontName) == m_namesToFonts.end()) {
+    auto it = m_namesToFonts.find(fontName);
+    if (it == m_namesToFonts.end()) {
         QFont font(Dot2QtConsts::componentData().qtFont(fontName));
-        m_namesToFonts[fontName] = cachedFont(font);
+        it = m_namesToFonts.insert(fontName, cachedFont(font));
     }
-    return m_namesToFonts[fontName];
+    return *it;
 }

@@ -298,14 +298,16 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
                 lineWidth = edge()->style().mid(12, edge()->style().length() - 1 - 12).toInt(&ok);
                 pen.setWidth(int(lineWidth * widthScaleFactor));
             }
-            if (edge()->attributes().contains(QStringLiteral("penwidth"))) {
+            auto attributeIt = edge()->attributes().find(QStringLiteral("penwidth"));
+            if (attributeIt != edge()->attributes().constEnd()) {
                 bool ok;
-                lineWidth = edge()->attributes()[QStringLiteral("penwidth")].toInt(&ok);
+                lineWidth = attributeIt->toInt(&ok);
                 pen.setWidth(int(lineWidth * widthScaleFactor));
             }
-            if (edge()->attributes().contains(QStringLiteral("color"))) {
-                qCDebug(KGRAPHVIEWERLIB_LOG) << "set edge color to " << QColor(edge()->attributes()[QStringLiteral("color")]).name();
-                lineColor = QColor(edge()->attributes()[QStringLiteral("color")]);
+            attributeIt = edge()->attributes().find(QStringLiteral("color"));
+            if (attributeIt != edge()->attributes().constEnd()) {
+                qCDebug(KGRAPHVIEWERLIB_LOG) << "set edge color to " << QColor(*attributeIt).name();
+                lineColor = QColor(*attributeIt);
             }
             for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum == 0 && edge()->colors().count() == 0); splineNum++) {
                 if (splineNum != 0)

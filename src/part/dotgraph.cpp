@@ -397,12 +397,15 @@ void DotGraph::updateWithGraph(graph_t *newGraph)
     // copy subgraphs
     for (graph_t *sg = agfstsubg(newGraph); sg; sg = agnxtsubg(sg)) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << "subgraph:" << agnameof(sg);
-        if (subgraphs().contains(QString::fromUtf8(agnameof(sg)))) {
+        const QString subgraphName = QString::fromUtf8(agnameof(sg));
+        auto subgraphIt = subgraphs().find(subgraphName);
+        if (subgraphIt != subgraphs().constEnd()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "known";
+            GraphSubgraph *subgraph = subgraphIt.value();
             // ???
             //       nodes()[ngn->name]->setZ(ngn->z());
-            subgraphs()[QString::fromUtf8(agnameof(sg))]->updateWithSubgraph(sg);
-            if (subgraphs()[QString::fromUtf8(agnameof(sg))]->canvasElement()) {
+            subgraph->updateWithSubgraph(sg);
+            if (subgraph->canvasElement()) {
                 //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
             }
         } else {
@@ -422,19 +425,22 @@ void DotGraph::updateWithGraph(graph_t *newGraph)
     //   foreach (GraphNode* ngn, newGraph.nodes())
     {
         qCDebug(KGRAPHVIEWERLIB_LOG) << "node " << agnameof(ngn);
-        if (nodes().contains(QString::fromUtf8(agnameof(ngn)))) {
+        const QString nodeName = QString::fromUtf8(agnameof(ngn));
+        auto nodeIt = nodes().find(nodeName);
+        if (nodeIt != nodes().constEnd()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "known";
+            GraphNode *node = nodeIt.value();
             // ???
             //       nodes()[ngn->name]->setZ(ngn->z());
-            nodes()[QString::fromUtf8(agnameof(ngn))]->updateWithNode(ngn);
-            if (nodes()[QString::fromUtf8(agnameof(ngn))]->canvasElement()) {
+            node->updateWithNode(ngn);
+            if (node->canvasElement()) {
                 //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
             }
         } else {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "new";
             GraphNode *newgn = new GraphNode(ngn);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
-            nodes().insert(QString::fromUtf8(agnameof(ngn)), newgn);
+            nodes().insert(nodeName, newgn);
             //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new inserted";
         }
 
@@ -443,11 +449,13 @@ void DotGraph::updateWithGraph(graph_t *newGraph)
         while (nge) {
             //      qCDebug(KGRAPHVIEWERLIB_LOG) << "edge " << nge->id;
             const QString edgeName = QString::fromUtf8(agnameof(aghead(nge))) + QString::fromUtf8(agnameof(agtail(nge)));
-            if (edges().contains(edgeName)) {
+            auto edgeIt = edges().find(edgeName);
+            if (edgeIt != edges().constEnd()) {
+                GraphEdge *edge = edgeIt.value();
                 //        () << "edge known" << nge->id;
                 //         edges()[nge->name]->setZ(nge->z());
-                edges()[edgeName]->updateWithEdge(nge);
-                if (edges()[edgeName]->canvasEdge()) {
+                edge->updateWithEdge(nge);
+                if (edge->canvasEdge()) {
                     //         edges()[nge->id()]->canvasEdge()->setGh(m_height);
                 }
             } else {
@@ -456,18 +464,20 @@ void DotGraph::updateWithGraph(graph_t *newGraph)
                     GraphEdge *newEdge = new GraphEdge();
                     newEdge->setId(edgeName);
                     newEdge->updateWithEdge(nge);
-                    if (elementNamed(QString::fromUtf8(agnameof(agtail(nge)))) == nullptr) {
+                    const QString edgeTailName = QString::fromUtf8(agnameof(agtail(nge)));
+                    if (elementNamed(edgeTailName) == nullptr) {
                         GraphNode *newgn = new GraphNode();
                         //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
-                        nodes().insert(QString::fromUtf8(agnameof(agtail(nge))), newgn);
+                        nodes().insert(edgeTailName, newgn);
                     }
-                    newEdge->setFromNode(elementNamed(QString::fromUtf8(agnameof(agtail(nge)))));
-                    if (elementNamed(QString::fromUtf8(agnameof(aghead(nge)))) == nullptr) {
+                    newEdge->setFromNode(elementNamed(edgeTailName));
+                    const QString edgeHeadName = QString::fromUtf8(agnameof(aghead(nge)));
+                    if (elementNamed(edgeHeadName) == nullptr) {
                         GraphNode *newgn = new GraphNode();
                         //       qCDebug(KGRAPHVIEWERLIB_LOG) << "new created";
-                        nodes().insert(QString::fromUtf8(agnameof(aghead(nge))), newgn);
+                        nodes().insert(edgeHeadName, newgn);
                     }
-                    newEdge->setToNode(elementNamed(QString::fromUtf8(agnameof(aghead(nge)))));
+                    newEdge->setToNode(elementNamed(edgeHeadName));
                     edges().insert(edgeName, newEdge);
                 }
             }
@@ -491,10 +501,12 @@ void DotGraph::updateWithGraph(const DotGraph &newGraph)
     computeCells();
     for (GraphSubgraph *nsg : newGraph.subgraphs()) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << "subgraph" << nsg->id();
-        if (subgraphs().contains(nsg->id())) {
+        auto subgraphIt = subgraphs().find(nsg->id());
+        if (subgraphIt != subgraphs().constEnd()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "subgraph known" << nsg->id();
-            subgraphs().value(nsg->id())->updateWithSubgraph(*nsg);
-            if (subgraphs().value(nsg->id())->canvasElement()) {
+            GraphSubgraph *subgraph = subgraphIt.value();
+            subgraph->updateWithSubgraph(*nsg);
+            if (subgraph->canvasElement()) {
                 //         subgraphs().value(nsg->id())->canvasElement()->setGh(m_height);
             }
         } else {
@@ -507,11 +519,13 @@ void DotGraph::updateWithGraph(const DotGraph &newGraph)
     }
     for (GraphNode *ngn : newGraph.nodes()) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << "node " << ngn->id();
-        if (nodes().contains(ngn->id())) {
+        auto nodeIt = nodes().find(ngn->id());
+        if (nodeIt != nodes().constEnd()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "known";
-            nodes()[ngn->id()]->setZ(ngn->z());
-            nodes()[ngn->id()]->updateWithNode(*ngn);
-            if (nodes()[ngn->id()]->canvasElement()) {
+            GraphNode *node = nodeIt.value();
+            node->setZ(ngn->z());
+            node->updateWithNode(*ngn);
+            if (node->canvasElement()) {
                 //         nodes()[ngn->id()]->canvasElement()->setGh(m_height);
             }
         } else {
@@ -524,11 +538,13 @@ void DotGraph::updateWithGraph(const DotGraph &newGraph)
     }
     for (GraphEdge *nge : newGraph.edges()) {
         qCDebug(KGRAPHVIEWERLIB_LOG) << "edge " << nge->id();
-        if (edges().contains(nge->id())) {
+        auto edgeIt = edges().find(nge->id());
+        if (edgeIt != edges().constEnd()) {
             qCDebug(KGRAPHVIEWERLIB_LOG) << "edge known" << nge->id();
-            edges()[nge->id()]->setZ(nge->z());
-            edges()[nge->id()]->updateWithEdge(*nge);
-            if (edges()[nge->id()]->canvasEdge()) {
+            GraphEdge *edge= edgeIt.value();
+            edge->setZ(nge->z());
+            edge->updateWithEdge(*nge);
+            if (edge->canvasEdge()) {
                 //         edges()[nge->id()]->canvasEdge()->setGh(m_height);
             }
         } else {
@@ -698,12 +714,24 @@ void DotGraph::removeElement(const QString &id)
 
 void DotGraph::setAttribute(const QString &elementId, const QString &attributeName, const QString &attributeValue)
 {
-    if (nodes().contains(elementId)) {
-        nodes()[elementId]->attributes()[attributeName] = attributeValue;
-    } else if (edges().contains(elementId)) {
-        edges()[elementId]->attributes()[attributeName] = attributeValue;
-    } else if (subgraphs().contains(elementId)) {
-        subgraphs()[elementId]->attributes()[attributeName] = attributeValue;
+    QMap<QString, QString> *attributes = nullptr;
+
+    auto nodeIt = nodes().find(elementId);
+    if (nodeIt != nodes().constEnd()) {
+        attributes = &(nodeIt.value()->attributes());
+    } else {
+        auto edgeIt = edges().find(elementId);
+        if (edgeIt != edges().constEnd()) {
+            attributes = &(edgeIt.value()->attributes());
+        } else {
+            auto subgraphIt = subgraphs().find(elementId);
+            if (subgraphIt != subgraphs().constEnd()) {
+                attributes = &(subgraphIt.value()->attributes());
+            }
+        }
+    }
+    if (attributes) {
+        (*attributes)[attributeName] = attributeValue;
     }
 }
 
@@ -761,13 +789,14 @@ void DotGraph::addNewNodeToSubgraph(QMap<QString, QString> attribs, QString subg
 void DotGraph::addExistingNodeToSubgraph(QMap<QString, QString> attribs, QString subgraph)
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << attribs << "to" << subgraph;
-    GraphNode *node = dynamic_cast<GraphNode *>(elementNamed(attribs[QStringLiteral("id")]));
+    const QString id = attribs[QStringLiteral("id")];
+    GraphNode *node = dynamic_cast<GraphNode *>(elementNamed(id));
     if (node == nullptr) {
-        qCWarning(KGRAPHVIEWERLIB_LOG) << "No such node" << attribs[QStringLiteral("id")];
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "No such node" << id;
         return;
     }
-    if (nodes().contains(attribs[QStringLiteral("id")])) {
-        nodes().remove(attribs[QStringLiteral("id")]);
+    if (nodes().contains(id)) {
+        nodes().remove(id);
         node->attributes() = attribs;
         subgraphs()[subgraph]->content().push_back(node);
         qCDebug(KGRAPHVIEWERLIB_LOG) << "node " << node->id() << " added in " << subgraph;
@@ -794,12 +823,13 @@ void DotGraph::addExistingNodeToSubgraph(QMap<QString, QString> attribs, QString
 void DotGraph::moveExistingNodeToMainGraph(QMap<QString, QString> attribs)
 {
     qCDebug(KGRAPHVIEWERLIB_LOG) << attribs;
-    GraphNode *node = dynamic_cast<GraphNode *>(elementNamed(attribs[QStringLiteral("id")]));
+    const QString id = attribs[QStringLiteral("id")];
+    GraphNode *node = dynamic_cast<GraphNode *>(elementNamed(id));
     if (node == nullptr) {
-        qCWarning(KGRAPHVIEWERLIB_LOG) << "No such node" << attribs[QStringLiteral("id")];
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "No such node" << id;
         return;
-    } else if (nodes().contains(attribs[QStringLiteral("id")])) {
-        qCWarning(KGRAPHVIEWERLIB_LOG) << "Node" << attribs[QStringLiteral("id")] << "already in main graph";
+    } else if (nodes().contains(id)) {
+        qCWarning(KGRAPHVIEWERLIB_LOG) << "Node" << id << "already in main graph";
         return;
     } else {
         for (GraphSubgraph *gs : subgraphs()) {
@@ -839,8 +869,9 @@ void DotGraph::addNewEdge(QString src, QString tgt, QMap<QString, QString> attri
         qCWarning(KGRAPHVIEWERLIB_LOG) << src << "or" << tgt << "missing";
         return;
     }
-    if (attribs.contains(QStringLiteral("id"))) {
-        newEdge->setId(attribs[QStringLiteral("id")]);
+    auto it = attribs.find(QStringLiteral("id"));
+    if (it != attribs.constEnd()) {
+        newEdge->setId(*it);
     } else {
         newEdge->setId(src + tgt + QUuid::createUuid().toString().remove(QLatin1Char('{')).remove(QLatin1Char('}')).remove(QLatin1Char('-')));
     }
@@ -870,11 +901,12 @@ void DotGraph::renameNode(const QString &oldNodeName, const QString &newNodeName
 
 QString DotGraph::backColor() const
 {
-    if (m_attributes.find(QStringLiteral("bgcolor")) != m_attributes.end()) {
-        return m_attributes[QStringLiteral("bgcolor")];
-    } else {
-        return QString();
+    auto it = m_attributes.find(QStringLiteral("bgcolor"));
+    if (it != m_attributes.end()) {
+        return *it;
     }
+
+    return QString();
 }
 
 }
