@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-18 00:37+0000\n"
+"POT-Creation-Date: 2024-04-19 00:37+0000\n"
 "PO-Revision-Date: 2014-03-31 16:26+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -420,68 +420,80 @@ msgstr "Nem volt lehetséges az adatok olvasása a(z) %1 folyamatból."
 msgid "Unknown error running %1."
 msgstr "Ismeretlen hiba a(z) %1 futtatásakor."
 
-#: part/dotgraphview.cpp:410
-#, kde-format
-msgid "Select Layout Algo"
+#: part/dotgraphview.cpp:407
+#, fuzzy, kde-format
+#| msgid "Select Layout Algo"
+msgctxt "@title:menu"
+msgid "Layout Algorithm"
 msgstr "Elrendezés algoritmus kiválasztása"
 
-#: part/dotgraphview.cpp:413
-#, kde-format
+#: part/dotgraphview.cpp:410
+#, fuzzy, kde-format
+#| msgid "Dot"
+msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
 
-#: part/dotgraphview.cpp:414
+#: part/dotgraphview.cpp:411
 #, kde-format
 msgid "Layout the graph using the dot program."
 msgstr "A gráf elrendezése a dot program használatával."
 
-#: part/dotgraphview.cpp:418
-#, kde-format
+#: part/dotgraphview.cpp:415
+#, fuzzy, kde-format
+#| msgid "Neato"
+msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
 
-#: part/dotgraphview.cpp:419
+#: part/dotgraphview.cpp:416
 #, kde-format
 msgid "Layout the graph using the neato program."
 msgstr "A gráf elrendezése a neato program használatával."
 
-#: part/dotgraphview.cpp:423
-#, kde-format
+#: part/dotgraphview.cpp:420
+#, fuzzy, kde-format
+#| msgid "Twopi"
+msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
 
-#: part/dotgraphview.cpp:424
+#: part/dotgraphview.cpp:421
 #, kde-format
 msgid "Layout the graph using the twopi program."
 msgstr "A gráf elrendezése a twopi program használatával."
 
-#: part/dotgraphview.cpp:428
-#, kde-format
+#: part/dotgraphview.cpp:425
+#, fuzzy, kde-format
+#| msgid "Fdp"
+msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
 
-#: part/dotgraphview.cpp:429
+#: part/dotgraphview.cpp:426
 #, kde-format
 msgid "Layout the graph using the fdp program."
 msgstr "A gráf elrendezése az fdp program használatával."
 
-#: part/dotgraphview.cpp:433
-#, kde-format
+#: part/dotgraphview.cpp:430
+#, fuzzy, kde-format
+#| msgid "Circo"
+msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
 
-#: part/dotgraphview.cpp:434
+#: part/dotgraphview.cpp:431
 #, kde-format
 msgid "Layout the graph using the circo program."
 msgstr "A gráf elrendezése a circo program használatával."
 
-#: part/dotgraphview.cpp:446
+#: part/dotgraphview.cpp:443
 #, fuzzy, kde-format
 #| msgid "Choose a GraphViz layout algorithm or edit your own one."
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr "Válasszon GraphViz elrendezés algoritmust vagy szerkessze a sajátját."
 
-#: part/dotgraphview.cpp:448
+#: part/dotgraphview.cpp:445
 #, fuzzy, kde-format
 #| msgid ""
 #| "Choose a GraphViz layout algorithm or type in your own command that will "
@@ -499,60 +511,19 @@ msgstr ""
 "Például a dot parancshoz a <tt>G</tt> opció kézi megadásához gépelje be: "
 "<tt>dot -Gname=MyGraphName -Txdot </tt>"
 
-#: part/dotgraphview.cpp:454
-#, kde-format
-msgid "Layout"
-msgstr "Elrendezés"
-
-#: part/dotgraphview.cpp:456
-#, kde-format
-msgid "Specify layout command"
-msgstr "Elrendezés parancs megadása"
-
-#: part/dotgraphview.cpp:457
-#, kde-format
-msgid ""
-"Specify yourself the layout command to use. Given a dot file, it should "
-"produce an xdot file on its standard output."
-msgstr ""
-"Adja meg magának a használandó elrendezés parancsot. Adott egy dot fájl, "
-"annak egy xdot fájlt kellene előállítani a szabványos kimenetén."
-
-#: part/dotgraphview.cpp:458
-#, kde-format
-msgid "Reset layout command to default"
-msgstr "Elrendezés parancs visszaállítása az alapértelmezettre"
-
-#: part/dotgraphview.cpp:459
-#, kde-format
-msgid ""
-"Resets the layout command to use to the default depending on the graph type "
-"(directed or not)."
-msgstr ""
-"Visszaállítja a használandó elrendezés parancsot az alapértelmezettre a gráf "
-"típusától függően (irányított vagy nem)."
-
-#: part/dotgraphview.cpp:461
-#, kde-format
-msgid "Zoom In"
-msgstr "Nagyítás"
-
-#: part/dotgraphview.cpp:462
-#, kde-format
-msgid "Zoom Out"
-msgstr "Kicsinyítés"
-
-#: part/dotgraphview.cpp:466
-#, kde-format
+#: part/dotgraphview.cpp:453
+#, fuzzy, kde-format
+#| msgid "Export Graph"
+msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "Gráf exportálása"
 
-#: part/dotgraphview.cpp:468
+#: part/dotgraphview.cpp:454
 #, kde-format
 msgid "Allows the graph to be exported in another format."
 msgstr "Lehetővé teszi a gráf exportálását egy másik formátumba."
 
-#: part/dotgraphview.cpp:470
+#: part/dotgraphview.cpp:456
 #, kde-format
 msgid ""
 "Use the Export Graph menu to export the graph in another format. There is "
@@ -561,104 +532,169 @@ msgstr ""
 "Használja a Gráf exportálása menüt a gráf exportálásához egy másik "
 "formátumba. Jelenleg csak egy exportálási formátum támogatott: PNG képként."
 
-#: part/dotgraphview.cpp:474
-#, kde-format
-msgid "As Image..."
+#: part/dotgraphview.cpp:459
+#, fuzzy, kde-format
+#| msgid "As Image..."
+msgctxt "@action:inmenu"
+msgid "As Image…"
 msgstr "Képként…"
 
-#: part/dotgraphview.cpp:475
+#: part/dotgraphview.cpp:460
 #, kde-format
 msgid "Export the graph to an image file."
 msgstr "A gráf exportálása képfájlba."
 
-#: part/dotgraphview.cpp:483
-#, kde-format
-msgid "Enable Bird's-eye View"
+#: part/dotgraphview.cpp:470
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "Nagyítás 10%-kal a jelenleg nézett gráfon"
+
+#: part/dotgraphview.cpp:474
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "Kicsinyítés 10%-kal a jelenleg nézett gráfon"
+
+#: part/dotgraphview.cpp:477
+#, fuzzy, kde-format
+#| msgid "Enable Bird's-eye View"
+msgctxt "@option:check"
+msgid "Enable Bird's-Eye View"
 msgstr "Madártávlat nézet engedélyezése"
 
-#: part/dotgraphview.cpp:487
+#: part/dotgraphview.cpp:478
 #, kde-format
 msgid "Enables or disables the Bird's-eye View"
 msgstr "Engedélyezi vagy letiltja a madártávlat nézetet"
 
-#: part/dotgraphview.cpp:492
-#, kde-format
-msgid "Birds-eye View"
+#: part/dotgraphview.cpp:484
+#, fuzzy, kde-format
+#| msgid "Birds-eye View"
+msgctxt "@title:menu"
+msgid "Bird's-Eye View Position"
 msgstr "Madártávlat nézet"
 
-#: part/dotgraphview.cpp:493
+#: part/dotgraphview.cpp:485
 #, kde-format
 msgid "Allows the Bird's-eye View to be setup."
 msgstr "Lehetővé teszi a madártávlat nézet beállítását."
 
-#: part/dotgraphview.cpp:497
-#, kde-format
+#: part/dotgraphview.cpp:487
+#, fuzzy, kde-format
+#| msgid "Top Left"
+msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "Bal felső"
 
-#: part/dotgraphview.cpp:498
+#: part/dotgraphview.cpp:488
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "A bal felső sarokba helyezi a madártávlat nézetet."
 
-#: part/dotgraphview.cpp:502
-#, kde-format
+#: part/dotgraphview.cpp:493
+#, fuzzy, kde-format
+#| msgid "Top Right"
+msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "Jobb felső"
 
-#: part/dotgraphview.cpp:503
+#: part/dotgraphview.cpp:494
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "A jobb felső sarokba helyezi a madártávlat nézetet."
 
-#: part/dotgraphview.cpp:507
-#, kde-format
+#: part/dotgraphview.cpp:499
+#, fuzzy, kde-format
+#| msgid "Bottom Left"
+msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "Bal alsó"
 
-#: part/dotgraphview.cpp:508
+#: part/dotgraphview.cpp:500
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "A bal alsó sarokba helyezi a madártávlat nézetet."
 
-#: part/dotgraphview.cpp:512
-#, kde-format
+#: part/dotgraphview.cpp:505
+#, fuzzy, kde-format
+#| msgid "Bottom Right"
+msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "Jobb alsó"
 
-#: part/dotgraphview.cpp:513
+#: part/dotgraphview.cpp:506
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "A jobb alsó sarokba helyezi a madártávlat nézetet."
 
-#: part/dotgraphview.cpp:517
-#, kde-format
+#: part/dotgraphview.cpp:511
+#, fuzzy, kde-format
+#| msgid "Automatic"
+msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "Automatikus"
 
-#: part/dotgraphview.cpp:518
+#: part/dotgraphview.cpp:512
 #, kde-format
 msgid ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
 msgstr ""
 "A KGraphViewer automatikusan válassza ki a madártávlat nézet elhelyezkedését."
 
-#: part/dotgraphview.cpp:565
+#: part/dotgraphview.cpp:557
+#, fuzzy, kde-format
+#| msgid "Layout"
+msgctxt "@title:menu"
+msgid "Layout"
+msgstr "Elrendezés"
+
+#: part/dotgraphview.cpp:560
+#, fuzzy, kde-format
+#| msgid "Specify layout command"
+msgctxt "@action:inmenu"
+msgid "Specify Layout Command…"
+msgstr "Elrendezés parancs megadása"
+
+#: part/dotgraphview.cpp:562
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"Adja meg magának a használandó elrendezés parancsot. Adott egy dot fájl, "
+"annak egy xdot fájlt kellene előállítani a szabványos kimenetén."
+
+#: part/dotgraphview.cpp:564
+#, fuzzy, kde-format
+#| msgid "Reset layout command to default"
+msgctxt "@action:inmenu"
+msgid "Reset Layout Command to Default"
+msgstr "Elrendezés parancs visszaállítása az alapértelmezettre"
+
+#: part/dotgraphview.cpp:566
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+"Visszaállítja a használandó elrendezés parancsot az alapértelmezettre a gráf "
+"típusától függően (irányított vagy nem)."
+
+#: part/dotgraphview.cpp:600
 #, kde-format
 msgid "Select file"
 msgstr ""
 
-#: part/dotgraphview.cpp:579
+#: part/dotgraphview.cpp:614
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer"
 msgstr "Gráf SVG a KGraphViewer által előállítva"
 
-#: part/dotgraphview.cpp:580
+#: part/dotgraphview.cpp:615
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer."
 msgstr "Gráf SVG a KGraphViewer által előállítva."
 
-#: part/dotgraphview.cpp:627
+#: part/dotgraphview.cpp:662
 #, kde-format
 msgid ""
 "<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
@@ -677,28 +713,28 @@ msgid ""
 "printing options.</li></ul>"
 msgstr ""
 
-#: part/dotgraphview.cpp:780
+#: part/dotgraphview.cpp:817
 #, kde-format
 msgid "no graph loaded"
 msgstr "nincs gráf betöltve"
 
-#: part/dotgraphview.cpp:896 part/dotgraphview.cpp:917
-#: part/dotgraphview.cpp:964
+#: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
+#: part/dotgraphview.cpp:1001
 #, kde-format
 msgid "graph %1 is getting loaded..."
 msgstr "a(z) %1 gráf betöltés alatt…"
 
-#: part/dotgraphview.cpp:904
+#: part/dotgraphview.cpp:941
 #, kde-format
 msgid "error parsing file %1"
 msgstr "hiba a(z) %1 fájl feldolgozása közben"
 
-#: part/dotgraphview.cpp:1608
+#: part/dotgraphview.cpp:1646
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "Újratöltés megerősítés"
 
-#: part/dotgraphview.cpp:1608
+#: part/dotgraphview.cpp:1646
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
@@ -707,12 +743,12 @@ msgstr ""
 "A(z) %1 fájl módosult a lemezen.\n"
 "Szeretné újratölteni?"
 
-#: part/dotgraphview.cpp:1694
+#: part/dotgraphview.cpp:1732
 #, kde-format
 msgid "Layout Command"
 msgstr "Elrendezés parancs"
 
-#: part/dotgraphview.cpp:1695
+#: part/dotgraphview.cpp:1733
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
@@ -722,7 +758,7 @@ msgstr ""
 "A parancsnak KÖTELEZŐEN a szabványos kimenetre kell írnia az eredményeket "
 "xdot formátumban."
 
-#: part/dotgraphview.cpp:2144
+#: part/dotgraphview.cpp:2182
 #, kde-format
 msgid "Failed to open %1"
 msgstr ""
@@ -737,32 +773,24 @@ msgstr "A gráf nyomtatása a jelenlegi oldalbeállítások használatával"
 msgid "Open the print preview window"
 msgstr "A nyomtatási előnézet ablak megnyitása"
 
-#: part/kgraphviewer_part.cpp:91
-#, kde-format
-msgid "Page setup"
+#: part/kgraphviewer_part.cpp:92
+#, fuzzy, kde-format
+#| msgid "Page setup"
+msgctxt "@action:inmenu"
+msgid "Page Setup…"
 msgstr "Oldalbeállítás"
 
-#: part/kgraphviewer_part.cpp:92
+#: part/kgraphviewer_part.cpp:93
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr ""
 "Megnyitja az oldalbeállítás párbeszédablakot lehetővé téve a gráf "
 "nyomtatásának beállítását"
 
-#: part/kgraphviewer_part.cpp:95
+#: part/kgraphviewer_part.cpp:96
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "A jelenlegi gráf újratöltése fájlból"
-
-#: part/kgraphviewer_part.cpp:99
-#, no-c-format, kde-format
-msgid "Zoom in by 10% on the currently viewed graph"
-msgstr "Nagyítás 10%-kal a jelenleg nézett gráfon"
-
-#: part/kgraphviewer_part.cpp:103
-#, no-c-format, kde-format
-msgid "Zoom out by 10% from the currently viewed graph"
-msgstr "Kicsinyítés 10%-kal a jelenleg nézett gráfon"
 
 #. i18n: ectx: Menu (file)
 #: part/kgraphviewer_part.rc:4
@@ -1265,6 +1293,12 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Az előzőleg megnyitott fájlok újratöltése"
+
+#~ msgid "Zoom In"
+#~ msgstr "Nagyítás"
+
+#~ msgid "Zoom Out"
+#~ msgstr "Kicsinyítés"
 
 #~ msgid "Configure the bindings between keys and actions."
 #~ msgstr "A kötések beállítása a billentyűk és műveletek között."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-18 00:37+0000\n"
+"POT-Creation-Date: 2024-04-19 00:37+0000\n"
 "PO-Revision-Date: 2023-03-01 02:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -393,69 +393,81 @@ msgstr "%1 프로세스에서 데이터를 읽을 수 없습니다."
 msgid "Unknown error running %1."
 msgstr "%1을(를) 실행하는 중 오류가 발생했습니다."
 
-#: part/dotgraphview.cpp:410
-#, kde-format
-msgid "Select Layout Algo"
+#: part/dotgraphview.cpp:407
+#, fuzzy, kde-format
+#| msgid "Select Layout Algo"
+msgctxt "@title:menu"
+msgid "Layout Algorithm"
 msgstr "레이아웃 알고리즘 선택"
 
-#: part/dotgraphview.cpp:413
-#, kde-format
+#: part/dotgraphview.cpp:410
+#, fuzzy, kde-format
+#| msgid "Dot"
+msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
 
-#: part/dotgraphview.cpp:414
+#: part/dotgraphview.cpp:411
 #, kde-format
 msgid "Layout the graph using the dot program."
 msgstr "dot 프로그램으로 그래프 레이아웃을 지정합니다."
 
-#: part/dotgraphview.cpp:418
-#, kde-format
+#: part/dotgraphview.cpp:415
+#, fuzzy, kde-format
+#| msgid "Neato"
+msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
 
-#: part/dotgraphview.cpp:419
+#: part/dotgraphview.cpp:416
 #, kde-format
 msgid "Layout the graph using the neato program."
 msgstr "neato 프로그램으로 그래프 레이아웃을 지정합니다."
 
-#: part/dotgraphview.cpp:423
-#, kde-format
+#: part/dotgraphview.cpp:420
+#, fuzzy, kde-format
+#| msgid "Twopi"
+msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
 
-#: part/dotgraphview.cpp:424
+#: part/dotgraphview.cpp:421
 #, kde-format
 msgid "Layout the graph using the twopi program."
 msgstr "twopi 프로그램으로 그래프 레이아웃을 지정합니다."
 
-#: part/dotgraphview.cpp:428
-#, kde-format
+#: part/dotgraphview.cpp:425
+#, fuzzy, kde-format
+#| msgid "Fdp"
+msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
 
-#: part/dotgraphview.cpp:429
+#: part/dotgraphview.cpp:426
 #, kde-format
 msgid "Layout the graph using the fdp program."
 msgstr "fdp 프로그램으로 그래프 레이아웃을 지정합니다."
 
-#: part/dotgraphview.cpp:433
-#, kde-format
+#: part/dotgraphview.cpp:430
+#, fuzzy, kde-format
+#| msgid "Circo"
+msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
 
-#: part/dotgraphview.cpp:434
+#: part/dotgraphview.cpp:431
 #, kde-format
 msgid "Layout the graph using the circo program."
 msgstr "circo 프로그램으로 그래프 레이아웃을 지정합니다."
 
-#: part/dotgraphview.cpp:446
+#: part/dotgraphview.cpp:443
 #, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr ""
 "Graphviz 레이아웃 알고리즘을 지정하거나 사용자 정의 알고리즘을 편집할 수 있습"
 "니다."
 
-#: part/dotgraphview.cpp:448
+#: part/dotgraphview.cpp:445
 #, kde-format
 msgid ""
 "Choose a Graphviz layout algorithm or type in your own command that will "
@@ -467,60 +479,19 @@ msgstr ""
 "를 생성하는 사용자 정의 명령을 입력하십시오. 예를 들어 dot 명령에 <tt>G</tt> "
 "옵션을 직접 지정하려면 <tt>dot -Gname=MyGraphName -Txdot</tt>을 입력하십시오."
 
-#: part/dotgraphview.cpp:454
-#, kde-format
-msgid "Layout"
-msgstr "레이아웃"
-
-#: part/dotgraphview.cpp:456
-#, kde-format
-msgid "Specify layout command"
-msgstr "레이아웃 명령 지정"
-
-#: part/dotgraphview.cpp:457
-#, kde-format
-msgid ""
-"Specify yourself the layout command to use. Given a dot file, it should "
-"produce an xdot file on its standard output."
-msgstr ""
-"사용할 레이아웃 명령을 설정하십시오. dot 파일을 지정하면 xdot 형식으로 표준 "
-"출력으로 그래프를 생성해야 합니다."
-
-#: part/dotgraphview.cpp:458
-#, kde-format
-msgid "Reset layout command to default"
-msgstr "레이아웃 명령 기본값으로 초기화"
-
-#: part/dotgraphview.cpp:459
-#, kde-format
-msgid ""
-"Resets the layout command to use to the default depending on the graph type "
-"(directed or not)."
-msgstr ""
-"사용할 레이아웃 명령을 그래프 형식에 따른 기본값으로 초기화합니다(유향 및 무"
-"향)."
-
-#: part/dotgraphview.cpp:461
-#, kde-format
-msgid "Zoom In"
-msgstr "확대"
-
-#: part/dotgraphview.cpp:462
-#, kde-format
-msgid "Zoom Out"
-msgstr "축소"
-
-#: part/dotgraphview.cpp:466
-#, kde-format
+#: part/dotgraphview.cpp:453
+#, fuzzy, kde-format
+#| msgid "Export Graph"
+msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "그래프 내보내기"
 
-#: part/dotgraphview.cpp:468
+#: part/dotgraphview.cpp:454
 #, kde-format
 msgid "Allows the graph to be exported in another format."
 msgstr "그래프를 다른 형식으로 내보냅니다."
 
-#: part/dotgraphview.cpp:470
+#: part/dotgraphview.cpp:456
 #, kde-format
 msgid ""
 "Use the Export Graph menu to export the graph in another format. There is "
@@ -529,103 +500,168 @@ msgstr ""
 "그래프를 다른 형식으로 내보내려면 그래프 내보내기 메뉴를 사용하십시오. 현재"
 "는 PNG 그림으로만 내보낼 수 있습니다."
 
-#: part/dotgraphview.cpp:474
-#, kde-format
-msgid "As Image..."
+#: part/dotgraphview.cpp:459
+#, fuzzy, kde-format
+#| msgid "As Image..."
+msgctxt "@action:inmenu"
+msgid "As Image…"
 msgstr "그림으로..."
 
-#: part/dotgraphview.cpp:475
+#: part/dotgraphview.cpp:460
 #, kde-format
 msgid "Export the graph to an image file."
 msgstr "그래프를 그림 파일로 내보냅니다."
 
-#: part/dotgraphview.cpp:483
-#, kde-format
-msgid "Enable Bird's-eye View"
+#: part/dotgraphview.cpp:470
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "현재 보고 있는 그래프를 10% 확대"
+
+#: part/dotgraphview.cpp:474
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "현재 보고 있는 그래프를 10% 축소"
+
+#: part/dotgraphview.cpp:477
+#, fuzzy, kde-format
+#| msgid "Enable Bird's-eye View"
+msgctxt "@option:check"
+msgid "Enable Bird's-Eye View"
 msgstr "멀리 보기 활성화"
 
-#: part/dotgraphview.cpp:487
+#: part/dotgraphview.cpp:478
 #, kde-format
 msgid "Enables or disables the Bird's-eye View"
 msgstr "멀리 보기 사용/사용 안 함"
 
-#: part/dotgraphview.cpp:492
-#, kde-format
-msgid "Birds-eye View"
+#: part/dotgraphview.cpp:484
+#, fuzzy, kde-format
+#| msgid "Birds-eye View"
+msgctxt "@title:menu"
+msgid "Bird's-Eye View Position"
 msgstr "멀리 보기"
 
-#: part/dotgraphview.cpp:493
+#: part/dotgraphview.cpp:485
 #, kde-format
 msgid "Allows the Bird's-eye View to be setup."
 msgstr "시작할 때 멀리 보기를 사용합니다."
 
-#: part/dotgraphview.cpp:497
-#, kde-format
+#: part/dotgraphview.cpp:487
+#, fuzzy, kde-format
+#| msgid "Top Left"
+msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "왼쪽 위"
 
-#: part/dotgraphview.cpp:498
+#: part/dotgraphview.cpp:488
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "멀리 보기 시점을 왼쪽 위 꼭짓점에 둡니다."
 
-#: part/dotgraphview.cpp:502
-#, kde-format
+#: part/dotgraphview.cpp:493
+#, fuzzy, kde-format
+#| msgid "Top Right"
+msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "오른쪽 위"
 
-#: part/dotgraphview.cpp:503
+#: part/dotgraphview.cpp:494
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "멀리 보기 시점을 오른쪽 위 꼭짓점에 둡니다."
 
-#: part/dotgraphview.cpp:507
-#, kde-format
+#: part/dotgraphview.cpp:499
+#, fuzzy, kde-format
+#| msgid "Bottom Left"
+msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "왼쪽 아래"
 
-#: part/dotgraphview.cpp:508
+#: part/dotgraphview.cpp:500
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "멀리 보기 시점을 왼쪽 아래 꼭짓점에 둡니다."
 
-#: part/dotgraphview.cpp:512
-#, kde-format
+#: part/dotgraphview.cpp:505
+#, fuzzy, kde-format
+#| msgid "Bottom Right"
+msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "오른쪽 아래"
 
-#: part/dotgraphview.cpp:513
+#: part/dotgraphview.cpp:506
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "멀리 보기 시점을 오른쪽 아래 꼭짓점에 둡니다."
 
-#: part/dotgraphview.cpp:517
-#, kde-format
+#: part/dotgraphview.cpp:511
+#, fuzzy, kde-format
+#| msgid "Automatic"
+msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "자동"
 
-#: part/dotgraphview.cpp:518
+#: part/dotgraphview.cpp:512
 #, kde-format
 msgid ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
 msgstr "KGraphViewer에서 멀리 보기 시점을 자동으로 선택합니다."
 
-#: part/dotgraphview.cpp:565
+#: part/dotgraphview.cpp:557
+#, fuzzy, kde-format
+#| msgid "Layout"
+msgctxt "@title:menu"
+msgid "Layout"
+msgstr "레이아웃"
+
+#: part/dotgraphview.cpp:560
+#, fuzzy, kde-format
+#| msgid "Specify layout command"
+msgctxt "@action:inmenu"
+msgid "Specify Layout Command…"
+msgstr "레이아웃 명령 지정"
+
+#: part/dotgraphview.cpp:562
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"사용할 레이아웃 명령을 설정하십시오. dot 파일을 지정하면 xdot 형식으로 표준 "
+"출력으로 그래프를 생성해야 합니다."
+
+#: part/dotgraphview.cpp:564
+#, fuzzy, kde-format
+#| msgid "Reset layout command to default"
+msgctxt "@action:inmenu"
+msgid "Reset Layout Command to Default"
+msgstr "레이아웃 명령 기본값으로 초기화"
+
+#: part/dotgraphview.cpp:566
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+"사용할 레이아웃 명령을 그래프 형식에 따른 기본값으로 초기화합니다(유향 및 무"
+"향)."
+
+#: part/dotgraphview.cpp:600
 #, kde-format
 msgid "Select file"
 msgstr "파일 선택"
 
-#: part/dotgraphview.cpp:579
+#: part/dotgraphview.cpp:614
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer"
 msgstr "KGraphViewer에서 생성한 그래프 SVG"
 
-#: part/dotgraphview.cpp:580
+#: part/dotgraphview.cpp:615
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer."
 msgstr "KGraphViewer에서 생성한 그래프 SVG입니다."
 
-#: part/dotgraphview.cpp:627
+#: part/dotgraphview.cpp:662
 #, kde-format
 msgid ""
 "<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
@@ -656,28 +692,28 @@ msgstr ""
 "릭)를 확인하십시오.</li><li>인쇄 옵션을 확인하려면 <tt>인쇄 미리 보기</tt>나 "
 "<tt>쪽 설정</tt> 단추를 확인하십시오.</li></ul>"
 
-#: part/dotgraphview.cpp:780
+#: part/dotgraphview.cpp:817
 #, kde-format
 msgid "no graph loaded"
 msgstr "불러온 그래프 없음"
 
-#: part/dotgraphview.cpp:896 part/dotgraphview.cpp:917
-#: part/dotgraphview.cpp:964
+#: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
+#: part/dotgraphview.cpp:1001
 #, kde-format
 msgid "graph %1 is getting loaded..."
 msgstr "%1 그래프를 불러오는 중..."
 
-#: part/dotgraphview.cpp:904
+#: part/dotgraphview.cpp:941
 #, kde-format
 msgid "error parsing file %1"
 msgstr "%1 파일 처리 오류"
 
-#: part/dotgraphview.cpp:1608
+#: part/dotgraphview.cpp:1646
 #, kde-format
 msgid "Reload Confirmation"
 msgstr "새로 고침 확인"
 
-#: part/dotgraphview.cpp:1608
+#: part/dotgraphview.cpp:1646
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
@@ -686,12 +722,12 @@ msgstr ""
 "파일 %1이(가) 디스크에서 변경되었습니다.\n"
 "다시 불러오시겠습니까?"
 
-#: part/dotgraphview.cpp:1694
+#: part/dotgraphview.cpp:1732
 #, kde-format
 msgid "Layout Command"
 msgstr "레이아웃 명령"
 
-#: part/dotgraphview.cpp:1695
+#: part/dotgraphview.cpp:1733
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
@@ -700,7 +736,7 @@ msgstr ""
 "그래프 레이아웃 작업에 사용할 명령을 지정하십시오.\n"
 "해당 명령은 표준 출력에 xdot 형식으로 결과를 출력해야 합니다."
 
-#: part/dotgraphview.cpp:2144
+#: part/dotgraphview.cpp:2182
 #, kde-format
 msgid "Failed to open %1"
 msgstr "%1을(를) 열 수 없음"
@@ -715,30 +751,22 @@ msgstr "현재 쪽 설정으로 그래프 인쇄"
 msgid "Open the print preview window"
 msgstr "인쇄 미리 보기 창 열기"
 
-#: part/kgraphviewer_part.cpp:91
-#, kde-format
-msgid "Page setup"
+#: part/kgraphviewer_part.cpp:92
+#, fuzzy, kde-format
+#| msgid "Page setup"
+msgctxt "@action:inmenu"
+msgid "Page Setup…"
 msgstr "쪽 설정"
 
-#: part/kgraphviewer_part.cpp:92
+#: part/kgraphviewer_part.cpp:93
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr "그래프 인쇄를 설정하는 쪽 설정 대화 상자 열기"
 
-#: part/kgraphviewer_part.cpp:95
+#: part/kgraphviewer_part.cpp:96
 #, kde-format
 msgid "Reload the current graph from file"
 msgstr "파일에서 현재 그래프 새로 고침"
-
-#: part/kgraphviewer_part.cpp:99
-#, no-c-format, kde-format
-msgid "Zoom in by 10% on the currently viewed graph"
-msgstr "현재 보고 있는 그래프를 10% 확대"
-
-#: part/kgraphviewer_part.cpp:103
-#, no-c-format, kde-format
-msgid "Zoom out by 10% from the currently viewed graph"
-msgstr "현재 보고 있는 그래프를 10% 축소"
 
 #. i18n: ectx: Menu (file)
 #: part/kgraphviewer_part.rc:4
@@ -1236,6 +1264,12 @@ msgstr "묻기(&A)"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "이전에 열었던 파일 다시 열기"
+
+#~ msgid "Zoom In"
+#~ msgstr "확대"
+
+#~ msgid "Zoom Out"
+#~ msgstr "축소"
 
 #~ msgid "Configure the bindings between keys and actions."
 #~ msgstr "키와 동작 사이의 연결을 설정합니다."

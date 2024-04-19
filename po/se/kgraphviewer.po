@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-18 00:37+0000\n"
+"POT-Creation-Date: 2024-04-19 00:37+0000\n"
 "PO-Revision-Date: 2007-09-11 22:44+0200\n"
 "Last-Translator: Northern Sami translation team <i18n-sme@lister.ping.uio."
 "no>\n"
@@ -388,67 +388,73 @@ msgstr ""
 msgid "Unknown error running %1."
 msgstr ""
 
-#: part/dotgraphview.cpp:410
+#: part/dotgraphview.cpp:407
 #, kde-format
-msgid "Select Layout Algo"
+msgctxt "@title:menu"
+msgid "Layout Algorithm"
 msgstr ""
 
-#: part/dotgraphview.cpp:413
+#: part/dotgraphview.cpp:410
 #, kde-format
+msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr ""
 
-#: part/dotgraphview.cpp:414
+#: part/dotgraphview.cpp:411
 #, kde-format
 msgid "Layout the graph using the dot program."
 msgstr ""
 
-#: part/dotgraphview.cpp:418
+#: part/dotgraphview.cpp:415
 #, kde-format
+msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr ""
 
-#: part/dotgraphview.cpp:419
+#: part/dotgraphview.cpp:416
 #, kde-format
 msgid "Layout the graph using the neato program."
 msgstr ""
 
-#: part/dotgraphview.cpp:423
+#: part/dotgraphview.cpp:420
 #, kde-format
+msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr ""
 
-#: part/dotgraphview.cpp:424
+#: part/dotgraphview.cpp:421
 #, kde-format
 msgid "Layout the graph using the twopi program."
 msgstr ""
 
-#: part/dotgraphview.cpp:428
+#: part/dotgraphview.cpp:425
 #, kde-format
+msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr ""
 
-#: part/dotgraphview.cpp:429
+#: part/dotgraphview.cpp:426
 #, kde-format
 msgid "Layout the graph using the fdp program."
 msgstr ""
 
-#: part/dotgraphview.cpp:433
+#: part/dotgraphview.cpp:430
 #, kde-format
+msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr ""
 
-#: part/dotgraphview.cpp:434
+#: part/dotgraphview.cpp:431
 #, kde-format
 msgid "Layout the graph using the circo program."
 msgstr ""
 
-#: part/dotgraphview.cpp:446
+#: part/dotgraphview.cpp:443
 #, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr ""
 
-#: part/dotgraphview.cpp:448
+#: part/dotgraphview.cpp:445
 #, kde-format
 msgid ""
 "Choose a Graphviz layout algorithm or type in your own command that will "
@@ -457,159 +463,171 @@ msgid ""
 "Gname=MyGraphName -Txdot </tt>"
 msgstr ""
 
-#: part/dotgraphview.cpp:454
+#: part/dotgraphview.cpp:453
 #, kde-format
-msgid "Layout"
-msgstr ""
-
-#: part/dotgraphview.cpp:456
-#, kde-format
-msgid "Specify layout command"
-msgstr ""
-
-#: part/dotgraphview.cpp:457
-#, kde-format
-msgid ""
-"Specify yourself the layout command to use. Given a dot file, it should "
-"produce an xdot file on its standard output."
-msgstr ""
-
-#: part/dotgraphview.cpp:458
-#, kde-format
-msgid "Reset layout command to default"
-msgstr ""
-
-#: part/dotgraphview.cpp:459
-#, kde-format
-msgid ""
-"Resets the layout command to use to the default depending on the graph type "
-"(directed or not)."
-msgstr ""
-
-#: part/dotgraphview.cpp:461
-#, kde-format
-msgid "Zoom In"
-msgstr "Stuorrudit"
-
-#: part/dotgraphview.cpp:462
-#, kde-format
-msgid "Zoom Out"
-msgstr "Unnidit"
-
-#: part/dotgraphview.cpp:466
-#, kde-format
+msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr ""
 
-#: part/dotgraphview.cpp:468
+#: part/dotgraphview.cpp:454
 #, kde-format
 msgid "Allows the graph to be exported in another format."
 msgstr ""
 
-#: part/dotgraphview.cpp:470
+#: part/dotgraphview.cpp:456
 #, kde-format
 msgid ""
 "Use the Export Graph menu to export the graph in another format. There is "
 "currently only one export format supported: as a PNG image."
 msgstr ""
 
-#: part/dotgraphview.cpp:474
+#: part/dotgraphview.cpp:459
 #, kde-format
-msgid "As Image..."
+msgctxt "@action:inmenu"
+msgid "As Image…"
 msgstr ""
 
-#: part/dotgraphview.cpp:475
+#: part/dotgraphview.cpp:460
 #, kde-format
 msgid "Export the graph to an image file."
 msgstr ""
 
-#: part/dotgraphview.cpp:483
-#, kde-format
-msgid "Enable Bird's-eye View"
+#: part/dotgraphview.cpp:470
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
 msgstr ""
 
-#: part/dotgraphview.cpp:487
+#: part/dotgraphview.cpp:474
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr ""
+
+#: part/dotgraphview.cpp:477
+#, kde-format
+msgctxt "@option:check"
+msgid "Enable Bird's-Eye View"
+msgstr ""
+
+#: part/dotgraphview.cpp:478
 #, kde-format
 msgid "Enables or disables the Bird's-eye View"
 msgstr ""
 
-#: part/dotgraphview.cpp:492
+#: part/dotgraphview.cpp:484
 #, kde-format
-msgid "Birds-eye View"
+msgctxt "@title:menu"
+msgid "Bird's-Eye View Position"
 msgstr ""
 
-#: part/dotgraphview.cpp:493
+#: part/dotgraphview.cpp:485
 #, kde-format
 msgid "Allows the Bird's-eye View to be setup."
 msgstr ""
 
-#: part/dotgraphview.cpp:497
+#: part/dotgraphview.cpp:487
 #, kde-format
+msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr ""
 
-#: part/dotgraphview.cpp:498
+#: part/dotgraphview.cpp:488
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr ""
 
-#: part/dotgraphview.cpp:502
+#: part/dotgraphview.cpp:493
 #, kde-format
+msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr ""
 
-#: part/dotgraphview.cpp:503
+#: part/dotgraphview.cpp:494
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr ""
 
-#: part/dotgraphview.cpp:507
+#: part/dotgraphview.cpp:499
 #, kde-format
+msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr ""
 
-#: part/dotgraphview.cpp:508
+#: part/dotgraphview.cpp:500
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr ""
 
-#: part/dotgraphview.cpp:512
+#: part/dotgraphview.cpp:505
 #, kde-format
+msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr ""
 
-#: part/dotgraphview.cpp:513
+#: part/dotgraphview.cpp:506
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr ""
 
-#: part/dotgraphview.cpp:517
+#: part/dotgraphview.cpp:511
 #, kde-format
+msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr ""
 
-#: part/dotgraphview.cpp:518
+#: part/dotgraphview.cpp:512
 #, kde-format
 msgid ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
 msgstr ""
 
-#: part/dotgraphview.cpp:565
+#: part/dotgraphview.cpp:557
+#, kde-format
+msgctxt "@title:menu"
+msgid "Layout"
+msgstr ""
+
+#: part/dotgraphview.cpp:560
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Specify Layout Command…"
+msgstr ""
+
+#: part/dotgraphview.cpp:562
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+
+#: part/dotgraphview.cpp:564
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Reset Layout Command to Default"
+msgstr ""
+
+#: part/dotgraphview.cpp:566
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+
+#: part/dotgraphview.cpp:600
 #, kde-format
 msgid "Select file"
 msgstr ""
 
-#: part/dotgraphview.cpp:579
+#: part/dotgraphview.cpp:614
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer"
 msgstr ""
 
-#: part/dotgraphview.cpp:580
+#: part/dotgraphview.cpp:615
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer."
 msgstr ""
 
-#: part/dotgraphview.cpp:627
+#: part/dotgraphview.cpp:662
 #, kde-format
 msgid ""
 "<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
@@ -628,47 +646,47 @@ msgid ""
 "printing options.</li></ul>"
 msgstr ""
 
-#: part/dotgraphview.cpp:780
+#: part/dotgraphview.cpp:817
 #, kde-format
 msgid "no graph loaded"
 msgstr ""
 
-#: part/dotgraphview.cpp:896 part/dotgraphview.cpp:917
-#: part/dotgraphview.cpp:964
+#: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
+#: part/dotgraphview.cpp:1001
 #, kde-format
 msgid "graph %1 is getting loaded..."
 msgstr ""
 
-#: part/dotgraphview.cpp:904
+#: part/dotgraphview.cpp:941
 #, kde-format
 msgid "error parsing file %1"
 msgstr ""
 
-#: part/dotgraphview.cpp:1608
+#: part/dotgraphview.cpp:1646
 #, kde-format
 msgid "Reload Confirmation"
 msgstr ""
 
-#: part/dotgraphview.cpp:1608
+#: part/dotgraphview.cpp:1646
 #, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
 "Do you want to reload it?"
 msgstr ""
 
-#: part/dotgraphview.cpp:1694
+#: part/dotgraphview.cpp:1732
 #, kde-format
 msgid "Layout Command"
 msgstr ""
 
-#: part/dotgraphview.cpp:1695
+#: part/dotgraphview.cpp:1733
 #, kde-format
 msgid ""
 "Specify here the command that will be used to layout the graph.\n"
 "The command MUST write its results on stdout in xdot format."
 msgstr ""
 
-#: part/dotgraphview.cpp:2144
+#: part/dotgraphview.cpp:2182
 #, kde-format
 msgid "Failed to open %1"
 msgstr ""
@@ -683,29 +701,20 @@ msgstr ""
 msgid "Open the print preview window"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:91
+#: part/kgraphviewer_part.cpp:92
 #, kde-format
-msgid "Page setup"
+msgctxt "@action:inmenu"
+msgid "Page Setup…"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:92
+#: part/kgraphviewer_part.cpp:93
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr ""
 
-#: part/kgraphviewer_part.cpp:95
+#: part/kgraphviewer_part.cpp:96
 #, kde-format
 msgid "Reload the current graph from file"
-msgstr ""
-
-#: part/kgraphviewer_part.cpp:99
-#, no-c-format, kde-format
-msgid "Zoom in by 10% on the currently viewed graph"
-msgstr ""
-
-#: part/kgraphviewer_part.cpp:103
-#, no-c-format, kde-format
-msgid "Zoom out by 10% from the currently viewed graph"
 msgstr ""
 
 #. i18n: ectx: Menu (file)
@@ -1198,3 +1207,9 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr ""
+
+#~ msgid "Zoom In"
+#~ msgstr "Stuorrudit"
+
+#~ msgid "Zoom Out"
+#~ msgstr "Unnidit"
