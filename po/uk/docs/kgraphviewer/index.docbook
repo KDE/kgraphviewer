@@ -833,7 +833,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Вказати команду компонування</guimenuitem
+>Вказати команду компонування…</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -867,7 +867,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Як зображення...</guimenuitem
+>Як зображення…</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -893,7 +893,7 @@
 <varlistentry>
 <term
 ><guisubmenu
->Загальний перегляд</guisubmenu
+>Позиція загального перегляду</guisubmenu
 ></term>
 <listitem
 ><para
@@ -1050,7 +1050,7 @@
 > <guisubmenu
 >Експортувати граф</guisubmenu
 > <guimenuitem
->Як зображення...</guimenuitem
+>Як зображення…</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1115,7 +1115,7 @@
 ><guimenu
 >Файл</guimenu
 > <guimenuitem
->Налаштувати сторінку</guimenuitem
+>Налаштувати сторінку…</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1210,7 +1210,7 @@
 ><guimenu
 >Перегляд</guimenu
 > <guimenuitem
->Перезавантажити</guimenuitem
+>Оновити</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1227,7 +1227,7 @@
 ><guimenu
 >Перегляд</guimenu
 > <guisubmenu
->Вибрати алгоритм компонування</guisubmenu
+>Алгоритм компонування</guisubmenu
 ></menuchoice
 ></term>
 	<listitem
@@ -1263,7 +1263,7 @@
 ><guimenu
 >Перегляд</guimenu
 > <guimenuitem
->Загальний перегляд</guimenuitem
+>Позиція загального перегляду</guimenuitem
 ></menuchoice
 ></term>
 	<listitem

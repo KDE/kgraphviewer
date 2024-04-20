@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-03-22 07:32+0100\n"
+"PO-Revision-Date: 2024-04-19 06:49+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -406,15 +406,13 @@ msgid "Unknown error running %1."
 msgstr "Neznana napaka ob teku %1."
 
 #: part/dotgraphview.cpp:407
-#, fuzzy, kde-format
-#| msgid "Select Layout Algo"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr "Izberite algoritem postavitve"
+msgstr "Algoritem postavitve"
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Pika"
@@ -425,8 +423,7 @@ msgid "Layout the graph using the dot program."
 msgstr "Postavi graf s programom pika."
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -434,11 +431,10 @@ msgstr "Neato"
 #: part/dotgraphview.cpp:416
 #, kde-format
 msgid "Layout the graph using the neato program."
-msgstr "Postavite graf s programom neato."
+msgstr "Postavi graf s programom neato."
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -449,8 +445,7 @@ msgid "Layout the graph using the twopi program."
 msgstr "Postavi graf s pomočjo programa twopi."
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -461,8 +456,7 @@ msgid "Layout the graph using the fdp program."
 msgstr "Postavi graf s pomočjo programa fdp."
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -491,8 +485,7 @@ msgstr ""
 "Txdot</tt>"
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "Izvozi graf"
@@ -512,11 +505,10 @@ msgstr ""
 "en izvozni format: kot slika PNG."
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "Kot slika..."
+msgstr "Kot slika…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -534,8 +526,7 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "Pomanjšaj trenutno prikazani graf za 10%"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
 msgstr "Omogoči ptičji pogled"
@@ -546,11 +537,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr "Omogoči ali onemogoči ptičji pogled"
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "Ptičji pogled"
+msgstr "Pozicija ptičjega pogleda"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -558,11 +548,10 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "Dovoli ptičji pogled za nastavitev."
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
-msgstr "Vrh levo"
+msgstr "Zgoraj levo"
 
 #: part/dotgraphview.cpp:488
 #, kde-format
@@ -570,8 +559,7 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Postavi ptičji pogled v zgornji levi kot."
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "Zgoraj desno"
@@ -582,8 +570,7 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Postavi ptičji pogled v zgornji desni kot."
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "Spodaj levo"
@@ -594,8 +581,7 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Postavi ptičji pogled v spodnji levi kot."
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "Spodaj desno"
@@ -606,8 +592,7 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Postavi ptičji pogled v spodnji desni kot."
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "Avtomatsko"
@@ -619,18 +604,16 @@ msgid ""
 msgstr "Prepusti da KGraphViewer samodejno izbere položaj ptičjega pogleda."
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
 msgstr "Postavitev"
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "Določite ukaz za postavitev"
+msgstr "Določi ukaz za postavitev…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -642,11 +625,10 @@ msgstr ""
 "bi moral ustvariti datoteko xdot na svojem standardnem izhodu."
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr "Ponovno nastavite ukaz postavitve na privzeto"
+msgstr "Ponovno nastavi ukaz postavitve na privzetega"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -764,11 +746,10 @@ msgid "Open the print preview window"
 msgstr "Odpri okno za predogled tiskanja"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Nastavitev strani"
+msgstr "Nastavitev strani…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format

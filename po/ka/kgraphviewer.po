@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-04-16 03:43+0200\n"
+"PO-Revision-Date: 2024-04-19 13:43+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -404,15 +404,13 @@ msgid "Unknown error running %1."
 msgstr "უცნობი შეცდომა %1-ის გაშვებისას."
 
 #: part/dotgraphview.cpp:407
-#, fuzzy, kde-format
-#| msgid "Select Layout Algo"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr "აირჩიეთ განლაგების ალგორითმი"
+msgstr "განლაგების ალგორითმი"
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "წერტილი"
@@ -423,8 +421,7 @@ msgid "Layout the graph using the dot program."
 msgstr "გრაფის განლაგება dot პროგრამით."
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -435,8 +432,7 @@ msgid "Layout the graph using the neato program."
 msgstr "გრაფის განლაგება neato პროგრამით."
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -447,8 +443,7 @@ msgid "Layout the graph using the twopi program."
 msgstr "გრაფის განლაგება twopi პროგრამით."
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -459,8 +454,7 @@ msgid "Layout the graph using the fdp program."
 msgstr "გრაფის განლაგება fdp პროგრამით."
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -490,8 +484,7 @@ msgstr ""
 "Gname=MyGraphName -Txdot </tt>"
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "გრაფიკის გატანა"
@@ -511,11 +504,10 @@ msgstr ""
 "ამჟამად, მხოლოდ, ერთი გატანის ფორმატია მხარდაჭერილი: როგორც PNG გამოსახულება."
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "როგორც გამოსახულება..."
+msgstr "როგორც გამოსახულება…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -533,8 +525,7 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "ამჟამად გახსნილი გრაფიკის 10%-ით დაპატარავება"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
 msgstr "გადახედვის ხედის ჩართვა"
@@ -545,11 +536,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr "გადახედვის ხედის ჩართვა/გამორთვა"
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "გადახედვა"
+msgstr "გადახედვის ხედის მდებარეობა"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -557,8 +547,7 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "საერთოდ ხედის მორგების დაშვება."
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "ზედა მარცხენა"
@@ -569,8 +558,7 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "განათავსებს საერთო ხედს ზედა მარცხენა კუთხეში."
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "ზედა მარჯვენა"
@@ -581,8 +569,7 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "განათავსებს საერთო ხედს ზედა მარჯვენა კუთხეში."
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "ქვედა მარცხენა"
@@ -593,8 +580,7 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "განათავსებს საერთო ხედს ქვედა მარცხენა კუთხეში."
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "ქვედა მარჯვენა"
@@ -605,8 +591,7 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "განათავსებს საერთო ხედს ქვედა მარჯვენა კუთხეში."
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "ავტომატური"
@@ -620,18 +605,16 @@ msgstr ""
 "მიცემა."
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
 msgstr "განლაგება"
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "განლაგების ბრძანების მითითება"
+msgstr "მიუთითეთ განლაგების ბრძანება…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -643,8 +626,7 @@ msgstr ""
 "გამოტანაზე xdot ფაილი უნდა გამოიტანოს."
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
 msgstr "განლაგების ბრძანების ნაგულისხმევზე ჩამოყრა"
@@ -767,11 +749,10 @@ msgid "Open the print preview window"
 msgstr "ბეჭდვის გადახედვის ფანჯრის გახსნა"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "გვერდის პარამეტრები"
+msgstr "გვერდის მორგება…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format

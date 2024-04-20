@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-03-22 15:49+0300\n"
+"PO-Revision-Date: 2024-04-19 13:40+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,17 +20,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.02.1\n"
+"X-Generator: Lokalize 24.04.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Ayhan YALÇINSOY"
+msgstr "Ayhan YALÇINSOY, Emir SARI"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "dellpardus@hotmail.com"
+msgstr "dellpardus@hotmail.com, emir_sari@icloud.com"
 
 #: kgrapheditor.cpp:126 kgraphviewer.cpp:107
 #, kde-format
@@ -376,7 +376,7 @@ msgstr ""
 #: part/dotgraph.cpp:269 part/dotgraph.cpp:272 part/dotgraph.cpp:275
 #, kde-format
 msgid "Layout process failed"
-msgstr "Düzen oluşturulamadı"
+msgstr "Yerleşim süreci başarısız oldu"
 
 #: part/dotgraph.cpp:260
 #, kde-format
@@ -409,15 +409,13 @@ msgid "Unknown error running %1."
 msgstr "%1 çalıştırılırken bilinmeyen bir hata oluştu."
 
 #: part/dotgraphview.cpp:407
-#, fuzzy, kde-format
-#| msgid "Select Layout Algo"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr "Düzen Algoritmasını Seç"
+msgstr "Yerleşim Algoritması"
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
@@ -428,8 +426,7 @@ msgid "Layout the graph using the dot program."
 msgstr "dot programı ile grafiği düzenleyin."
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -440,8 +437,7 @@ msgid "Layout the graph using the neato program."
 msgstr "neato programı ile grafiği düzenleyin."
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -452,8 +448,7 @@ msgid "Layout the graph using the twopi program."
 msgstr "twopi programı ile grafiği düzenleyin."
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -464,8 +459,7 @@ msgid "Layout the graph using the fdp program."
 msgstr "fdp programı ile grafiği düzenleyin."
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -479,7 +473,7 @@ msgstr "circo programı ile grafiği düzenleyin."
 #, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr ""
-"Graphviz yerleşim algoritmasını seçin ya da sahip olduğunuz bir tanesini "
+"Graphviz yerleşim algoritmasını seçin veya sahip olduğunuz bir tanesini "
 "düzenleyin."
 
 #: part/dotgraphview.cpp:445
@@ -496,8 +490,7 @@ msgstr ""
 "Gname=BenimGrafAdim -Txdot</tt> yazabilirsiniz."
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "Grafiği Dışa Aktar"
@@ -517,8 +510,7 @@ msgstr ""
 "kullanın. Şu an yalnızca bir dışa aktarma biçimi destekleniyor: PNG görseli."
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
 msgstr "Görsel Olarak…"
@@ -539,11 +531,10 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "Şu anda görüntülenen grafikten %​10 uzaklaştır"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
-msgstr "Kuş Bakışı Görünümünü Aç"
+msgstr "Kuşbakışı görünümü etkinleştir"
 
 #: part/dotgraphview.cpp:478
 #, kde-format
@@ -551,11 +542,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr "Kuş bakışı görünümü etkinleştirir ya da kapatır"
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "Kuşbakışı Görünümü"
+msgstr "Kuşbakışı Görünüm Konumu"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -563,11 +553,10 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "Kuş bakışı görünümün ayarlanabilmesine izin verir."
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
-msgstr "Üst Sol"
+msgstr "Üst sol"
 
 #: part/dotgraphview.cpp:488
 #, kde-format
@@ -575,11 +564,10 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Kuş bakışı görünümü sol üst köşeye koyar."
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
-msgstr "Üst Sağ"
+msgstr "Üst sağ"
 
 #: part/dotgraphview.cpp:494
 #, kde-format
@@ -587,11 +575,10 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Kuş bakışı görünümü sağ üst köşeye koyar."
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
-msgstr "Alt Sol"
+msgstr "Alt sol"
 
 #: part/dotgraphview.cpp:500
 #, kde-format
@@ -599,11 +586,10 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Kuş bakışı görünümü sol alt köşeye koyar."
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
-msgstr "Alt Sağ"
+msgstr "Alt sağ"
 
 #: part/dotgraphview.cpp:506
 #, kde-format
@@ -611,11 +597,10 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Sağ alt köşeye Kuş bakışı Görünümü koyar."
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
-msgstr "Otomatik"
+msgstr "Kendiliğinden"
 
 #: part/dotgraphview.cpp:512
 #, kde-format
@@ -626,18 +611,16 @@ msgstr ""
 "seçmesine izin verin."
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
-msgstr "Düzen"
+msgstr "Yerleşim"
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "Düzen komutunu belirtin"
+msgstr "Yerleşim Komutunu Belirt…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -649,11 +632,10 @@ msgstr ""
 "standart çıktıda xdot dosyası üretmelidir."
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr "Düzen komutunu öntanımlı hale döndür"
+msgstr "Yerleşim Komutunu Öntanımlıya Sıfırla"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -746,7 +728,7 @@ msgstr ""
 #: part/dotgraphview.cpp:1732
 #, kde-format
 msgid "Layout Command"
-msgstr "Düzen Komutu"
+msgstr "Yerleşim Komutu"
 
 #: part/dotgraphview.cpp:1733
 #, kde-format
@@ -754,7 +736,7 @@ msgid ""
 "Specify here the command that will be used to layout the graph.\n"
 "The command MUST write its results on stdout in xdot format."
 msgstr ""
-"Grafiğin düzeni için kullanılacak komutu burada belirtin.\n"
+"Grafiğin yerleşimi için kullanılacak komutu burada belirtin.\n"
 "Komut sonuçlarını stdout’a xdot biçiminde yazmalıdır."
 
 #: part/dotgraphview.cpp:2182
@@ -773,11 +755,10 @@ msgid "Open the print preview window"
 msgstr "Yazdırma önizlemesi penceresini aç"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Sayfa düzeni"
+msgstr "Sayfa Yerleşimi…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format

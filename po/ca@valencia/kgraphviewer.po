@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-03-22 15:43+0100\n"
+"PO-Revision-Date: 2024-04-19 09:01+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -130,7 +130,7 @@ msgstr "[URL]"
 #: kgrapheditormain.cpp:82 main.cpp:84
 #, kde-format
 msgid "Opening in new window confirmation"
-msgstr "Confirmació d'obertura en una finestra nova"
+msgstr "Confirmeu l'obertura en una finestra nova"
 
 #: kgrapheditormain.cpp:82
 #, kde-format
@@ -413,15 +413,13 @@ msgid "Unknown error running %1."
 msgstr "S'ha produït un error desconegut en executar %1."
 
 #: part/dotgraphview.cpp:407
-#, fuzzy, kde-format
-#| msgid "Select Layout Algo"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr "Selecciona l'algoritme de disseny"
+msgstr "Algoritme de disseny"
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
@@ -432,8 +430,7 @@ msgid "Layout the graph using the dot program."
 msgstr "Dissenya la gràfica utilitzant el programa «dot»."
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -444,8 +441,7 @@ msgid "Layout the graph using the neato program."
 msgstr "Dissenya la gràfica utilitzant el programa «neato»."
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -456,8 +452,7 @@ msgid "Layout the graph using the twopi program."
 msgstr "Dissenya la gràfica utilitzant el programa «twopi»."
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -468,8 +463,7 @@ msgid "Layout the graph using the fdp program."
 msgstr "Dissenya la gràfica utilitzant el programa «fdp»."
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -499,8 +493,7 @@ msgstr ""
 "«dot», introduïu: <tt>dot -Gname=NomGràficaMeva -Txdot </tt>"
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "Exporta la gràfica"
@@ -521,11 +514,10 @@ msgstr ""
 "imatge PNG."
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "Com a imatge..."
+msgstr "Com a imatge…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -543,8 +535,7 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "Allunya un 10% la gràfica visualitzada actualment"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
 msgstr "Habilita la vista d'ocell"
@@ -555,11 +546,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr "Activa o desactiva la vista d'ocell"
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "Vista d'ocell"
+msgstr "Posició de la vista d'ocell"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -567,11 +557,10 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "Permet establir la vista d'ocell."
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
-msgstr "Extrem superior esquerre"
+msgstr "A dalt a l'esquerra"
 
 #: part/dotgraphview.cpp:488
 #, kde-format
@@ -579,11 +568,10 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Apunta la vista d'ocell en l'extrem superior esquerre."
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
-msgstr "Extrem superior dret"
+msgstr "A dalt a la dreta"
 
 #: part/dotgraphview.cpp:494
 #, kde-format
@@ -591,11 +579,10 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Apunta la vista d'ocell en l'extrem superior dret."
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
-msgstr "Extrem inferior esquerre"
+msgstr "A baix a l'esquerra"
 
 #: part/dotgraphview.cpp:500
 #, kde-format
@@ -603,11 +590,10 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Apunta la vista d'ocell en l'extrem inferior esquerre."
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
-msgstr "Extrem inferior dret"
+msgstr "A baix a la dreta"
 
 #: part/dotgraphview.cpp:506
 #, kde-format
@@ -615,8 +601,7 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Apunta la vista d'ocell en l'extrem inferior dret."
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "Automàtica"
@@ -630,18 +615,16 @@ msgstr ""
 "d'ocell."
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
 msgstr "Disseny"
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "Especifica l'ordre de disseny"
+msgstr "Especifica l'ordre de disseny…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -653,8 +636,7 @@ msgstr ""
 "un fitxer DOT, ha de presentar un fitxer xdot en la seua eixida estàndard."
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
 msgstr "Reinicialitza l'ordre de disseny a la predeterminada"
@@ -737,7 +719,7 @@ msgstr "error d'interpretació del fitxer %1"
 #: part/dotgraphview.cpp:1646
 #, kde-format
 msgid "Reload Confirmation"
-msgstr "Confirmació de recàrrega"
+msgstr "Confirmeu la recàrrega"
 
 #: part/dotgraphview.cpp:1646
 #, kde-format
@@ -778,11 +760,10 @@ msgid "Open the print preview window"
 msgstr "Obri la finestra de vista prèvia d'impressió"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Configureu la pàgina"
+msgstr "Configura la pàgina…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -1057,12 +1038,12 @@ msgstr "Vista prèvia d'impressió..."
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font..."
-msgstr "Tipus de lletra..."
+msgstr "Lletra..."
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
 msgid "Changes font for title text."
-msgstr "Canvia el tipus de lletra del text del títol."
+msgstr "Canvia la lletra del text del títol."
 
 #: part/simpleprintingpagesetup.cpp:95
 #, kde-format
@@ -1102,7 +1083,7 @@ msgstr "Canvia la mida i els marges de la pàgina."
 #: part/simpleprintingpagesetup.cpp:164
 #, kde-format
 msgid "Chosen font looks like this"
-msgstr "El tipus de lletra escollit es veurà així"
+msgstr "La lletra escollida es veurà així"
 
 #: part/simpleprintingpagesetup.cpp:180
 #, kde-format
@@ -1123,7 +1104,7 @@ msgstr "marges:"
 #: part/simpleprintingpagesetupbase.ui:64
 #, kde-format
 msgid "Pa&ge font:"
-msgstr "Tipus de lletra de la pà&gina:"
+msgstr "Lletra de la pà&gina:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/simpleprintingpagesetupbase.ui:93
@@ -1295,9 +1276,3 @@ msgstr "Pregunt&a"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Torne a obrir els fitxers prèviament oberts"
-
-#~ msgid "Zoom In"
-#~ msgstr "Augmenta"
-
-#~ msgid "Zoom Out"
-#~ msgstr "Reduïx"

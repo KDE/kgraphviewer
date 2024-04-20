@@ -813,7 +813,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Especifica l'ordre de disseny</guimenuitem
+>Especifica l'ordre de disseny…</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -847,7 +847,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Com a imatge...</guimenuitem
+>Com a imatge…</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -873,7 +873,7 @@
 <varlistentry>
 <term
 ><guisubmenu
->Vista d'ocell</guisubmenu
+>Posició de la vista d'ocell</guisubmenu
 ></term>
 <listitem
 ><para
@@ -1030,7 +1030,7 @@
 ><guisubmenu
 >Exporta la gràfica</guisubmenu
 ><guimenuitem
->Com a imatge...</guimenuitem
+>Com a imatge…</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1095,7 +1095,7 @@
 ><guimenu
 >Fitxer</guimenu
 ><guimenuitem
->Configuració de la pàgina</guimenuitem
+>Configuració de la pàgina…</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1190,7 +1190,7 @@
 ><guimenu
 >Visualitza</guimenu
 ><guimenuitem
->Torna a mostrar</guimenuitem
+>Actualitza</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1207,7 +1207,7 @@
 ><guimenu
 >Visualitza</guimenu
 ><guisubmenu
->Selecciona l'algoritme de disseny</guisubmenu
+>Algoritme de disseny</guisubmenu
 ></menuchoice
 ></term>
 	<listitem
@@ -1243,7 +1243,7 @@
 ><guimenu
 >Visualitza</guimenu
 ><guimenuitem
->Vista d'ocell</guimenuitem
+>Posició de la vista d'ocell</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
