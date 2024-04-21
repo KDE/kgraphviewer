@@ -1254,9 +1254,3 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Åpne på nytt filer som er åpnet før"
-
-#~ msgid "Zoom In"
-#~ msgstr "Forstørr"
-
-#~ msgid "Zoom Out"
-#~ msgstr "Forminsk"
