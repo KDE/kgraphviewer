@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-03-23 10:43+0100\n"
+"PO-Revision-Date: 2024-04-21 17:45+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -408,18 +408,16 @@ msgid "Unknown error running %1."
 msgstr "Nekonata eraro pri funkciado de %1."
 
 #: part/dotgraphview.cpp:407
-#, fuzzy, kde-format
-#| msgid "Select Layout Algo"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
 msgstr "Elekti Aranĝ-Algoritmon"
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
-msgstr "Punkto"
+msgstr "Dot"
 
 #: part/dotgraphview.cpp:411
 #, kde-format
@@ -427,8 +425,7 @@ msgid "Layout the graph using the dot program."
 msgstr "Aranĝi la grafeon uzante la programon dot."
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -439,8 +436,7 @@ msgid "Layout the graph using the neato program."
 msgstr "Aranĝi la grafeon uzante la programon neato."
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -451,8 +447,7 @@ msgid "Layout the graph using the twopi program."
 msgstr "Aranĝi la grafeon uzante la programon twopi."
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -463,8 +458,7 @@ msgid "Layout the graph using the fdp program."
 msgstr "Aranĝi la grafeon uzante la programon fdp."
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -493,11 +487,10 @@ msgstr ""
 "Gname=MyGraphName -Txdot </tt>"
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
-msgstr "Eksporti Grafeon"
+msgstr "Elporti Grafeon"
 
 #: part/dotgraphview.cpp:454
 #, kde-format
@@ -514,11 +507,10 @@ msgstr ""
 "Nuntempe nur unu eksportformato estas subtenata: kiel PNG-bildo."
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "Kiel Bildo..."
+msgstr "Kiel Bildo…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -536,11 +528,10 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "Malzomi je 10% de la nuntempe vidita grafeo"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
-msgstr "Ebligi Birdokulan Vidon"
+msgstr "Ebligi Bird-Okulan Vidon"
 
 #: part/dotgraphview.cpp:478
 #, kde-format
@@ -548,11 +539,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr "Ebligas aŭ malŝaltas la Birdokulan Vidon"
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "Birdokula Vido"
+msgstr "Pozicio de Birdokula Vido"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -560,8 +550,7 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "Permesas agordi la Birdokulan Vidon."
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "Supre Maldekstre"
@@ -572,8 +561,7 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Metas la Birdokulan Vidon en la supran maldekstran angulon."
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "Supre Dekstre"
@@ -584,8 +572,7 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Metas la Birdokulan Vidon en la supran dekstran angulon."
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "Malsupre Maldekstre"
@@ -596,8 +583,7 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Metas la Birdokulan Vidon en la malsupran maldekstran angulon."
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "Malsupre Dekstre"
@@ -608,8 +594,7 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Metas la Birdokulan Vidon en la malsupran dekstran angulon."
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "Aŭtomata"
@@ -621,18 +606,16 @@ msgid ""
 msgstr "Lasi KGraphViewer aŭtomate elekti la pozicion de la Birdokula Vido."
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
-msgstr "Aspekto"
+msgstr "Aranĝo"
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "Specifi aranĝan komandon"
+msgstr "Specifi Aranĝan Komandon…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -644,11 +627,10 @@ msgstr ""
 "produkti xdot-dosieron sur ĝia norma eligo."
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr "Restarigi aranĝan komandon al defaŭlta"
+msgstr "Restarigi Aranĝan Komandon al Defaŭlto"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -767,11 +749,10 @@ msgid "Open the print preview window"
 msgstr "Malfermi la pres-antaŭrigardan fenestron"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Paĝo-agordo"
+msgstr "Paĝ-Agordo…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -1280,9 +1261,3 @@ msgstr "Dem&andi"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Remalfermi antaŭe malfermitajn dosierojn"
-
-#~ msgid "Zoom In"
-#~ msgstr "Enzomi"
-
-#~ msgid "Zoom Out"
-#~ msgstr "Elzomi"
