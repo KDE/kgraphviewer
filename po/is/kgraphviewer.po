@@ -2,20 +2,20 @@
 # Copyright (C) 2010 This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sveinki@nett.is>, 2009, 2010, 2013, 2014, 2015, 2018, 2020.
+# Sveinn í Felli <sveinki@nett.is>, 2009, 2010, 2013, 2014, 2015, 2018, 2020, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2020-04-04 13:37+0000\n"
-"Last-Translator: Sveinn í Felli <sv@fellsnet.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2024-04-22 11:58+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: Icelandic\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 22.04.3\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 "\n"
 "\n"
@@ -132,7 +132,7 @@ msgstr "[url]"
 #: kgrapheditormain.cpp:82 main.cpp:84
 #, kde-format
 msgid "Opening in new window confirmation"
-msgstr ""
+msgstr "Staðfesting á að opna í nýjum glugga"
 
 #: kgrapheditormain.cpp:82
 #, kde-format
@@ -143,7 +143,7 @@ msgstr ""
 #: KGraphEditorNodesTreeWidget.cpp:65
 #, kde-format
 msgid "Remove this node"
-msgstr ""
+msgstr "Fjarlægja þennan lið"
 
 #. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
@@ -214,17 +214,16 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "Viltu endurhlaða inn skrám úr síðustu setu?"
 
 #: kgraphviewer.cpp:108
-#, fuzzy, kde-format
-#| msgid "Reloading"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "Endurles"
+msgstr "Endurlesa"
 
 #: kgraphviewer.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
-msgstr ""
+msgstr "Ekki endurlesa"
 
 #: kgraphviewer.cpp:196
 #, kde-format
@@ -409,11 +408,10 @@ msgid "Layout Algorithm"
 msgstr ""
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
-msgstr "Punktur"
+msgstr "Dot"
 
 #: part/dotgraphview.cpp:411
 #, kde-format
@@ -421,8 +419,7 @@ msgid "Layout the graph using the dot program."
 msgstr "Setja upp grafið með Dot forritinu"
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -433,8 +430,7 @@ msgid "Layout the graph using the neato program."
 msgstr "Setja upp grafið með Neato forritinu"
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -445,8 +441,7 @@ msgid "Layout the graph using the twopi program."
 msgstr "Setja upp grafið með Twopi forritinu"
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -457,8 +452,7 @@ msgid "Layout the graph using the fdp program."
 msgstr "Setja upp grafið með FDP forritinu"
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -483,8 +477,7 @@ msgid ""
 msgstr ""
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "Flytja út graf"
@@ -502,11 +495,10 @@ msgid ""
 msgstr ""
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "Sem mynd..."
+msgstr "Sem mynd…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -546,8 +538,7 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr ""
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "Efst til vinstri"
@@ -558,8 +549,7 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "Efst til hægri"
@@ -570,8 +560,7 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "Neðst til vinstri"
@@ -582,8 +571,7 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "Neðst til hægri"
@@ -594,11 +582,10 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
-msgstr "Sjálfvirk"
+msgstr "Sjálfvirkt"
 
 #: part/dotgraphview.cpp:512
 #, kde-format
@@ -607,8 +594,7 @@ msgid ""
 msgstr ""
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
 msgstr "Framsetning"
@@ -729,11 +715,10 @@ msgid "Open the print preview window"
 msgstr "Opna prentskoðunargluggann"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Uppsetning síðu"
+msgstr "Uppsetning síðu…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -743,7 +728,7 @@ msgstr ""
 #: part/kgraphviewer_part.cpp:96
 #, kde-format
 msgid "Reload the current graph from file"
-msgstr ""
+msgstr "Endurhlaða þessu grafi úr skrá"
 
 #. i18n: ectx: Menu (file)
 #: part/kgraphviewer_part.rc:4
@@ -1116,26 +1101,24 @@ msgstr "Aðlaga á &margar síður"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
-#, fuzzy, kde-format
-#| msgid "Horizontally"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "Lárétt"
+msgstr "Lárétt:"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
-#, fuzzy, kde-format
-#| msgid "Vertically"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "Lóðrétt"
+msgstr "Lóðrétt:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
 #, kde-format
 msgctxt "@option:check"
 msgid "Preserve aspect ratio:"
-msgstr ""
+msgstr "Halda stærðarhlutföllum:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: part/simpleprintingpagesetupbase.ui:228
