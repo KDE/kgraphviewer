@@ -406,18 +406,16 @@ msgid "Unknown error running %1."
 msgstr "Neznámá chyba za běhu %1."
 
 #: part/dotgraphview.cpp:407
-#, fuzzy, kde-format
-#| msgid "Select Layout Algo"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr "Vybrat algoritmus rozvržení"
+msgstr ""
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
-msgstr "DOT"
+msgstr ""
 
 #: part/dotgraphview.cpp:411
 #, kde-format
@@ -425,11 +423,10 @@ msgid "Layout the graph using the dot program."
 msgstr "Rozvržení grafu pomocí programu DOT."
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
-msgstr "Neato"
+msgstr ""
 
 #: part/dotgraphview.cpp:416
 #, kde-format
@@ -437,11 +434,10 @@ msgid "Layout the graph using the neato program."
 msgstr "Rozvržení grafu pomocí programu neato."
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
-msgstr "Twopi"
+msgstr ""
 
 #: part/dotgraphview.cpp:421
 #, kde-format
@@ -449,11 +445,10 @@ msgid "Layout the graph using the twopi program."
 msgstr "Rozvržení grafu pomocí programu twopi."
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
-msgstr "Fdp"
+msgstr ""
 
 #: part/dotgraphview.cpp:426
 #, kde-format
@@ -461,11 +456,10 @@ msgid "Layout the graph using the fdp program."
 msgstr "Rozvržení grafu pomocí programu fdp."
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
-msgstr "Circo"
+msgstr ""
 
 #: part/dotgraphview.cpp:431
 #, kde-format
@@ -491,11 +485,10 @@ msgstr ""
 "Gname=MyGraphName -Txdot </tt>"
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
-msgstr "Exportovat graf"
+msgstr ""
 
 #: part/dotgraphview.cpp:454
 #, kde-format
@@ -512,11 +505,10 @@ msgstr ""
 "současnosti je podporován pouze jeden formát exportu: jako obrázek PNG."
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "Jako obrázek..."
+msgstr ""
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -534,11 +526,10 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "Oddálit aktuálně zobrazený graf o 10%"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
-msgstr "Povolit Pohled z ptačí perspektivy"
+msgstr ""
 
 #: part/dotgraphview.cpp:478
 #, kde-format
@@ -546,11 +537,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr "Povolit nebo zakázat Pohled z ptačí perspektivy"
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "Pohled z ptačí perspektivy"
+msgstr ""
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -558,11 +548,10 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "Povolení nastavení Pohledu z ptačí perspektivy."
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
-msgstr "Nahoře vlevo"
+msgstr ""
 
 #: part/dotgraphview.cpp:488
 #, kde-format
@@ -570,11 +559,10 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Umístí Pohled z ptačí perspektivy do levého horního rohu."
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
-msgstr "Nahoře vpravo"
+msgstr ""
 
 #: part/dotgraphview.cpp:494
 #, kde-format
@@ -582,11 +570,10 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Umístí Pohled z ptačí perspektivy do pravého horního rohu."
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
-msgstr "Dole vlevo"
+msgstr ""
 
 #: part/dotgraphview.cpp:500
 #, kde-format
@@ -594,11 +581,10 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Umístí Pohled z ptačí perspektivy do levého dolního rohu."
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
-msgstr "Dole vpravo"
+msgstr ""
 
 #: part/dotgraphview.cpp:506
 #, kde-format
@@ -606,11 +592,10 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Umístí Pohled z ptačí perspektivy do pravého dolního rohu."
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
-msgstr "Automatické"
+msgstr ""
 
 #: part/dotgraphview.cpp:512
 #, kde-format
@@ -620,18 +605,16 @@ msgstr ""
 "Nechat KGraphViewer automaticky zvolit umístění Pohledu z ptačí perspektivy."
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
-msgstr "Rozvržení"
+msgstr ""
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "Zadat příkaz pro rozvržení"
+msgstr ""
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -643,11 +626,10 @@ msgstr ""
 "by měl vytvořit soubor xdot na svém standardním výstupu."
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr "Obnovit výchozí hodnoty příkazu pro rozvržení"
+msgstr ""
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -767,11 +749,10 @@ msgid "Open the print preview window"
 msgstr "Otevřít okno s náhledem tisku"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Nastavení stránky"
+msgstr ""
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -1277,9 +1258,3 @@ msgstr "Dotáz&at se"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Znovu otevřít naposledy otevřené soubory"
-
-#~ msgid "Zoom In"
-#~ msgstr "Přiblížit"
-
-#~ msgid "Zoom Out"
-#~ msgstr "Oddálit"
