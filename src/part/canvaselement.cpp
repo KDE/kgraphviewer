@@ -94,8 +94,8 @@ CanvasElement::CanvasElement(DotGraphView *v, GraphElement *gelement, QGraphicsS
 
     setAcceptHoverEvents(true);
 
-    connect(this, &CanvasElement::hoverEnter, v, static_cast<void (DotGraphView::*)(CanvasElement *)>(&DotGraphView::slotElementHoverEnter));
-    connect(this, &CanvasElement::hoverLeave, v, static_cast<void (DotGraphView::*)(CanvasElement *)>(&DotGraphView::slotElementHoverLeave));
+    connect(this, &CanvasElement::hoverEnter, v, qOverload<CanvasElement *>(&DotGraphView::slotElementHoverEnter));
+    connect(this, &CanvasElement::hoverLeave, v, qOverload<CanvasElement *>(&DotGraphView::slotElementHoverLeave));
 }
 
 CanvasElement::~CanvasElement()

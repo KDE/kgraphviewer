@@ -83,8 +83,8 @@ CanvasEdge::CanvasEdge(DotGraphView *view, GraphEdge *e, qreal scaleX, qreal sca
     setAcceptHoverEvents(true);
 
     qCDebug(KGRAPHVIEWERLIB_LOG) << "connect slotElementHoverEnter";
-    connect(this, &CanvasEdge::hoverEnter, view, static_cast<void (DotGraphView::*)(CanvasEdge *)>(&DotGraphView::slotElementHoverEnter));
-    connect(this, &CanvasEdge::hoverLeave, view, static_cast<void (DotGraphView::*)(CanvasEdge *)>(&DotGraphView::slotElementHoverLeave));
+    connect(this, &CanvasEdge::hoverEnter, view, qOverload<CanvasEdge *>(&DotGraphView::slotElementHoverEnter));
+    connect(this, &CanvasEdge::hoverLeave, view, qOverload<CanvasEdge *>(&DotGraphView::slotElementHoverLeave));
 }
 
 CanvasEdge::~CanvasEdge()

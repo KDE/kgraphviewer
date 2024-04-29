@@ -131,8 +131,8 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
         QTimer::singleShot(50, this, qOverload<>(&KGVSimplePrintingPageSetup::printPreview));
     else if (print)
         QTimer::singleShot(50, this, qOverload<>(&KGVSimplePrintingPageSetup::print));
-    connect(this, static_cast<void (KGVSimplePrintingPageSetup::*)()>(&KGVSimplePrintingPageSetup::print), m_graphView, &DotGraphView::print);
-    connect(this, static_cast<void (KGVSimplePrintingPageSetup::*)()>(&KGVSimplePrintingPageSetup::printPreview), m_graphView, &DotGraphView::printPreview);
+    connect(this, qOverload<>(&KGVSimplePrintingPageSetup::print), m_graphView, &DotGraphView::print);
+    connect(this, qOverload<>(&KGVSimplePrintingPageSetup::printPreview), m_graphView, &DotGraphView::printPreview);
 
     connect(m_contents->buttonBox->button(QDialogButtonBox::Close), &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotClose);
 

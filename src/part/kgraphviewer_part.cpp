@@ -72,7 +72,7 @@ KGraphViewerPart::KGraphViewerPart(QWidget *parentWidget, QObject *parent, const
     connect(d->m_widget, &DotGraphView::removeEdge, this, &KGraphViewerPart::removeEdge);
     connect(d->m_widget, &DotGraphView::removeElement, this, &KGraphViewerPart::removeElement);
     connect(d->m_widget, &DotGraphView::selectionIs, this, &KGraphViewerPart::selectionIs);
-    connect(d->m_widget, static_cast<void (DotGraphView::*)(const QString &, const QPoint &)>(&DotGraphView::contextMenuEvent), this, &KGraphViewerPart::contextMenuEvent);
+    connect(d->m_widget, qOverload<const QString &, const QPoint &>(&DotGraphView::contextMenuEvent), this, &KGraphViewerPart::contextMenuEvent);
     connect(d->m_widget, &DotGraphView::newEdgeFinished, this, &KGraphViewerPart::newEdgeFinished);
     connect(d->m_widget, &DotGraphView::hoverEnter, this, &KGraphViewerPart::hoverEnter);
     connect(d->m_widget, &DotGraphView::hoverLeave, this, &KGraphViewerPart::hoverLeave);
