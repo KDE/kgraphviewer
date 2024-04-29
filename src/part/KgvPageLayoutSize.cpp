@@ -64,7 +64,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(QWidget *parent, const KgvPageLayout &layou
         cpgUnit->addItems(KgvUnit::listOfUnitName());
         cpgUnit->setCurrentIndex(unit);
         unitLayout->addWidget(cpgUnit, 0, Qt::AlignLeft | Qt::AlignVCenter);
-        connect(cpgUnit, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &KgvPageLayoutSize::setUnitInt);
+        connect(cpgUnit, &QComboBox::activated, this, &KgvPageLayoutSize::setUnitInt);
     } else {
         QString str = KgvUnit::unitDescription(unit);
 
@@ -88,7 +88,7 @@ KgvPageLayoutSize::KgvPageLayoutSize(QWidget *parent, const KgvPageLayout &layou
     cpgFormat = new QComboBox(formatPageSize);
     cpgFormat->addItems(KgvPageFormat::allFormats());
     lpgFormat->setBuddy(cpgFormat);
-    connect(cpgFormat, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &KgvPageLayoutSize::formatChanged);
+    connect(cpgFormat, &QComboBox::activated, this, &KgvPageLayoutSize::formatChanged);
     QHBoxLayout *lay = new QHBoxLayout;
     lay->addWidget(lpgFormat);
     lay->addWidget(cpgFormat);

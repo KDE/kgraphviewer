@@ -151,7 +151,7 @@ bool DotGraph::parseDot(const QString &str)
         delete m_dot;
     }
     m_dot = new QProcess();
-    connect(m_dot, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &DotGraph::slotDotRunningDone);
+    connect(m_dot, &QProcess::finished, this, &DotGraph::slotDotRunningDone);
     connect(m_dot, &QProcess::errorOccurred, this, &DotGraph::slotDotRunningError);
     m_dot->start(m_layoutCommand, options);
     qCDebug(KGRAPHVIEWERLIB_LOG) << "process started";

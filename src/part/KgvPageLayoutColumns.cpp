@@ -50,7 +50,7 @@ KgvPageLayoutColumns::KgvPageLayoutColumns(QWidget *parent, const KgvColumns &co
     nColumns->setValue(m_columns.columns);
     m_preview->setPageColumns(m_columns);
 
-    connect(nColumns, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &KgvPageLayoutColumns::nColChanged);
+    connect(nColumns, &QSpinBox::valueChanged, this, &KgvPageLayoutColumns::nColChanged);
     connect(m_spacing, &KgvUnitDoubleSpinBox::valueChangedPt, this, &KgvPageLayoutColumns::nSpaceChanged);
 }
 

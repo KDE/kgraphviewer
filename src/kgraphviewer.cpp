@@ -56,7 +56,7 @@ KGraphViewerWindow::KGraphViewerWindow()
     //   std::cerr << "Creating tab widget" << std::endl;
     m_widget = new QTabWidget(this);
     m_widget->setTabsClosable(true);
-    connect(m_widget, &QTabWidget::tabCloseRequested, this, static_cast<void (KGraphViewerWindow::*)(int)>(&KGraphViewerWindow::close));
+    connect(m_widget, &QTabWidget::tabCloseRequested, this, qOverload<int>(&KGraphViewerWindow::close));
     connect(m_widget, &QTabWidget::currentChanged, this, &KGraphViewerWindow::newTabSelectedSlot);
 
     setCentralWidget(m_widget);

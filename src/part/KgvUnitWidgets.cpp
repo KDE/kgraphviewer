@@ -127,7 +127,7 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox(QWidget *parent)
     // setAcceptLocalizedNumbers( true );
     setUnit(KgvUnit::U_PT);
 
-    connect(this, static_cast<void (KgvUnitDoubleSpinBox::*)(double)>(&KgvUnitDoubleSpinBox::valueChanged), this, &KgvUnitDoubleSpinBox::privateValueChanged);
+    connect(this, &KgvUnitDoubleSpinBox::valueChanged, this, &KgvUnitDoubleSpinBox::privateValueChanged);
 }
 
 KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox(QWidget *parent, double lower, double upper, double step, double value, KgvUnit::Unit unit, unsigned int precision)
@@ -154,7 +154,7 @@ KgvUnitDoubleSpinBox::KgvUnitDoubleSpinBox(QWidget *parent, double lower, double
     changeValue(value);
     setLineStep(0.5);
 
-    connect(this, static_cast<void (KgvUnitDoubleSpinBox::*)(double)>(&KgvUnitDoubleSpinBox::valueChanged), this, &KgvUnitDoubleSpinBox::privateValueChanged);
+    connect(this, &KgvUnitDoubleSpinBox::valueChanged, this, &KgvUnitDoubleSpinBox::privateValueChanged);
 }
 
 void KgvUnitDoubleSpinBox::changeValue(double val)
@@ -302,7 +302,7 @@ KgvUnitDoubleComboBox::KgvUnitDoubleComboBox(QWidget *parent)
     lineEdit()->setValidator(m_validator);
     setUnit(KgvUnit::U_PT);
     changeValue(KgvUnit::ptToUnit(0.0, KgvUnit::U_PT));
-    connect(this, static_cast<void (KgvUnitDoubleComboBox::*)(int)>(&KgvUnitDoubleComboBox::activated), this, &KgvUnitDoubleComboBox::slotActivated);
+    connect(this, &KgvUnitDoubleComboBox::activated, this, &KgvUnitDoubleComboBox::slotActivated);
 }
 
 KgvUnitDoubleComboBox::KgvUnitDoubleComboBox(QWidget *parent, double lower, double upper, double value, KgvUnit::Unit unit, unsigned int precision)
@@ -319,7 +319,7 @@ KgvUnitDoubleComboBox::KgvUnitDoubleComboBox(QWidget *parent, double lower, doub
     lineEdit()->setValidator(m_validator);
     setUnit(unit);
     changeValue(KgvUnit::ptToUnit(value, unit));
-    connect(this, static_cast<void (KgvUnitDoubleComboBox::*)(int)>(&KgvUnitDoubleComboBox::activated), this, &KgvUnitDoubleComboBox::slotActivated);
+    connect(this, &KgvUnitDoubleComboBox::activated, this, &KgvUnitDoubleComboBox::slotActivated);
 }
 
 void KgvUnitDoubleComboBox::changeValue(double value)

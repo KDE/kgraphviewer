@@ -98,7 +98,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     m_contents->headerTitleLineEdit->setFont(m_settings->pageTitleFont);
 
     m_contents->saveSetupLink->setWhatsThis(i18n("Saves settings for this setup as default."));
-    connect(m_contents->saveSetupLink, static_cast<void (KUrlLabel::*)()>(&KUrlLabel::leftClickedUrl), this, &KGVSimplePrintingPageSetup::slotSaveSetup);
+    connect(m_contents->saveSetupLink, &KUrlLabel::leftClickedUrl, this, &KGVSimplePrintingPageSetup::slotSaveSetup);
 
     m_contents->addDateTimeCheckbox->setWhatsThis(i18n("Adds date and time to the header."));
     m_contents->addPageNumbersCheckbox->setWhatsThis(i18n("Adds page numbers to the footer."));
@@ -143,8 +143,8 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     m_contents->horizFitNumInput->setValue(m_settings->horizFitting);
     m_contents->vertFitNumInput->setValue(m_settings->vertFitting);
     connect(m_contents->maintainAspectCheckBox, &QCheckBox::toggled, this, &KGVSimplePrintingPageSetup::slotMaintainAspectCheckBoxToggled);
-    connect(m_contents->horizFitNumInput, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &KGVSimplePrintingPageSetup::slotHorizFitChanged);
-    connect(m_contents->vertFitNumInput, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &KGVSimplePrintingPageSetup::slotVertFitChanged);
+    connect(m_contents->horizFitNumInput, &QSpinBox::valueChanged, this, &KGVSimplePrintingPageSetup::slotHorizFitChanged);
+    connect(m_contents->vertFitNumInput, &QSpinBox::valueChanged, this, &KGVSimplePrintingPageSetup::slotVertFitChanged);
 
     m_fittingModeButtons.addButton(m_contents->naturalSizeRadioButton, NaturalSize);
     m_fittingModeButtons.addButton(m_contents->fitToOnePageRadioButton, FitToOnePage);
