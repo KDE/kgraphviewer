@@ -833,7 +833,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Specifica comando di struttura</guimenuitem
+>Specifica il comando di struttura…</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -844,7 +844,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Reimposta il comando di struttura al valore predefinito</guimenuitem
+>Reimposta il comando di struttura al suo valore predefinito</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -867,7 +867,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Come immagine...</guimenuitem
+>Come immagine…</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -893,7 +893,7 @@
 <varlistentry>
 <term
 ><guisubmenu
->Vista a volo d'aquila</guisubmenu
+>Posizione della vista a volo d'aquila</guisubmenu
 ></term>
 <listitem
 ><para
@@ -1050,7 +1050,7 @@
 > <guisubmenu
 >Esporta grafo</guisubmenu
 ><guimenuitem
->Come immagine...</guimenuitem
+>Come immagine…</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1115,7 +1115,7 @@
 ><guimenu
 >File</guimenu
 ><guimenuitem
->Configurazione di pagina</guimenuitem
+>Configurazione di pagina…</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1227,7 +1227,7 @@
 ><guimenu
 >Visualizza</guimenu
 ><guisubmenu
->Seleziona algoritmo di struttura</guisubmenu
+>Algoritmo di struttura</guisubmenu
 ></menuchoice
 ></term>
 	<listitem
@@ -1263,7 +1263,7 @@
 ><guimenu
 >Visualizza</guimenu
 ><guimenuitem
->Vista a volo d'aquila</guimenuitem
+>Posizione della vista a volo d'aquila</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
