@@ -819,7 +819,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Indelingscommando opgeven</guimenuitem
+>Indelingscommando speciceren…</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -853,7 +853,7 @@
 	<varlistentry>
 	<term
 ><guimenuitem
->Als afbeelding...</guimenuitem
+>Als afbeelding…</guimenuitem
 ></term>
 	<listitem
 ><para
@@ -879,7 +879,7 @@
 <varlistentry>
 <term
 ><guisubmenu
->Vogelvlucht-overzicht</guisubmenu
+>Positie van vogelvlucht</guisubmenu
 ></term>
 <listitem
 ><para
@@ -1036,7 +1036,7 @@
 ><guisubmenu
 >Grafiek exporteren</guisubmenu
 ><guimenuitem
->Als Afbeelding...</guimenuitem
+>Als afbeelding…</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1101,7 +1101,7 @@
 ><guimenu
 >Bestand</guimenu
 ><guimenuitem
->Pagina instellen</guimenuitem
+>Pagina instellen…</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1194,9 +1194,9 @@
 	<term
 ><menuchoice
 ><guimenu
->Beeld</guimenu
+>Weergave</guimenu
 ><guimenuitem
->Herladen</guimenuitem
+>Verversen</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1213,7 +1213,7 @@
 ><guimenu
 >Beeld</guimenu
 ><guisubmenu
->Indelingsalgoritme selecteren</guisubmenu
+>Indelingsalgoritme</guisubmenu
 ></menuchoice
 ></term>
 	<listitem
@@ -1234,7 +1234,7 @@
 ><guimenu
 >Beeld</guimenu
 ><guimenuitem
->Vogelvlucht activeren</guimenuitem
+>Vogelvluchtweergave inschakelen</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
@@ -1249,12 +1249,12 @@
 ><guimenu
 >Beeld</guimenu
 ><guimenuitem
->Vogelvlucht activeren</guimenuitem
+>Positie van vogelvlucht</guimenuitem
 ></menuchoice
 ></term>
 	<listitem
 ><para
->Configureert waar het overzicht in de grafische weergave wordt geplaatst. De keuzemogelijkheden zijn: <variablelist>
+>Configureert waar de vogelvluchtweergave in de grafische weergave wordt geplaatst. De keuzemogelijkheden zijn: <variablelist>
 		<varlistentry>
 		<term
 ><guimenuitem
@@ -1322,7 +1322,7 @@
 >De menu's Instellingen en Help</title>
 
 <para
->&kgraphviewer; heeft de standaard &kde;-menuitems <guimenu
+>&kgraphviewer; heeft de standaard &kde;-menu-items <guimenu
 >Instellingen</guimenu
 > en <guimenu
 >Help</guimenu
