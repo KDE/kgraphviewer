@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-04-20 16:28+0200\n"
+"PO-Revision-Date: 2024-05-02 12:32+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -119,7 +119,7 @@ msgstr "KGraphEditor"
 #: kgrapheditormain.cpp:42
 #, kde-format
 msgid "A Graphviz DOT graph editor by KDE"
-msgstr "Un éditeur de graphes « DOT » au format « Graphviz » pour KDE"
+msgstr "Un éditeur de graphes « DOT » au format « GraphViz » pour KDE"
 
 #: kgrapheditormain.cpp:44 main.cpp:43
 #, kde-format
@@ -301,7 +301,7 @@ msgstr "KGraphViewer"
 #: main.cpp:41
 #, kde-format
 msgid "A Graphviz DOT graph viewer"
-msgstr "Un afficheur de graphes DOT au format Graphviz"
+msgstr "Un afficheur de graphes DOT au format GraphViz"
 
 #: main.cpp:46
 #, kde-format
