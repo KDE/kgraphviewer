@@ -1,41 +1,40 @@
-# translation of kgraphviewer.po to Basque
-# French translations for PACKAGE package
-# Traductions françaises du paquet PACKAGE.
-# Copyright (C) 2008 This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Translation for kgraphviewer.po to Euskara/Basque (eu).
+# Copyright (C) 2010-2024 This file is copyright:
+# This file is distributed under the same license as the kgraphviewer package.
+# SPDX-FileCopyrightText: 2024 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
 #
-#
+# Translators:
 # Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2010.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2010-06-26 15:31+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
-"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"PO-Revision-Date: 2024-05-04 20:32+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Iñaki Larrañaga Murgoitio"
+msgstr "Iñaki Larrañaga Murgoitio,Iñigo Salvador Azurmendi"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "dooteo@euskalgnu.org"
+msgstr "dooteo@euskalgnu.org,xalba@ni.eus"
 
 #: kgrapheditor.cpp:126 kgraphviewer.cpp:107
-#, fuzzy, kde-format
-#| msgid "Session Management"
+#, kde-format
 msgid "Session Restore"
-msgstr "Saio-kudeaketa"
+msgstr "Saio lehengoratzea"
 
 #: kgrapheditor.cpp:126
 #, kde-format
@@ -43,10 +42,9 @@ msgid "Do you want to reload files from previous session?"
 msgstr "Nahi duzu aurreko saioko fitxategiak berriro kargatzea?"
 
 #: kgrapheditor.cpp:142
-#, fuzzy, kde-format
-#| msgid "Unable to start %1."
+#, kde-format
 msgid "Unable to start"
-msgstr "Ezin da %1 abiarazi."
+msgstr "Ezin da abiarazi"
 
 #: kgrapheditor.cpp:142 kgraphviewer.cpp:129
 #, kde-format
@@ -54,8 +52,7 @@ msgid "Could not find the KGraphViewer part."
 msgstr "Ezin izan da KGraphViewer zatia aurkitu."
 
 #: kgrapheditor.cpp:223 kgraphviewer.cpp:208
-#, fuzzy, kde-format
-#| msgid "Closes the current tab"
+#, kde-format
 msgid "Closes the current file"
 msgstr "Uneko fitxa ixten du"
 
@@ -70,10 +67,9 @@ msgid "Create a New Edge"
 msgstr "Sortu ertz berria"
 
 #: kgrapheditor.cpp:494
-#, fuzzy, kde-format
-#| msgid "Save current graph to..."
+#, kde-format
 msgid "Save current graph"
-msgstr "Gorde uneko grafikoa hemen..."
+msgstr "Gorde uneko grafoa"
 
 #: kgrapheditorConfigDialog.cpp:48 kgraphviewerConfigDialog.cpp:55
 #, kde-format
@@ -111,26 +107,24 @@ msgid "KGraphEditor"
 msgstr "KGraphEditor"
 
 #: kgrapheditormain.cpp:42
-#, fuzzy, kde-format
-#| msgid "A Graphviz dot graph viewer for KDE"
+#, kde-format
 msgid "A Graphviz DOT graph editor by KDE"
-msgstr "KDEren Graphviz-en DOT grafikoen ikustailea"
+msgstr "KDEren Graphviz DOT grafoen erakuslea"
 
 #: kgrapheditormain.cpp:44 main.cpp:43
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2006 Gaël de Chalendar"
+#, kde-format
 msgid "(C) 2005-2010 Gaël de Chalendar"
-msgstr "(C) 2005-2006 Gaël de Chalendar"
+msgstr "(C) 2005-2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "Path or URL to scan"
-msgstr ""
+msgstr "Aztertu beharreko bide-izena edo URLa"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "[url]"
-msgstr ""
+msgstr "[URL]"
 
 #: kgrapheditormain.cpp:82 main.cpp:84
 #, kde-format
@@ -138,15 +132,11 @@ msgid "Opening in new window confirmation"
 msgstr "Leiho berrian irekitzeko berrespena"
 
 #: kgrapheditormain.cpp:82
-#, fuzzy, kde-format
-#| msgid ""
-#| "A KGraphEditor window is already open, where do you want to open this "
-#| "file?"
+#, kde-format
 msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
 msgstr ""
-"KGraphEditor-en leiho bat jadanik irekita dago, non nahi duzu fitxategi hau "
-"irekitzea?"
+"KGraphEditor leiho bat jada irekita dago, fitxategia hor irekitzea nahi duzu?"
 
 #: KGraphEditorNodesTreeWidget.cpp:65
 #, kde-format
@@ -171,29 +161,23 @@ msgstr ""
 
 #. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "The answer to the question 'If another window already exist when "
-#| "launching kgraphviewer, should we open in it, open a new window or ask ?'"
+#, kde-format
 msgid ""
 "The answer to the question 'If another window already exist when launching "
 "kgraphviewer, should we open in it, open a new window or ask?'"
 msgstr ""
-"'Beste leiho bat jadanik irekita balego kgraphviewe abiatzean, hor ireki, "
-"leiho berri batean ireki edo galdetu?' galderaren erantzuna"
+"'kgraphviewer abiaraztean jada beste leiho bat badago, hor ireki, leiho "
+"berri bat ireki edo galdetu?' galderaren erantzuna"
 
 #. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "The answer to the question 'Should the files that were opened in previous "
-#| "sessions be reopened at startup ?'"
+#, kde-format
 msgid ""
 "The answer to the question 'Should the files that were opened in previous "
 "sessions be reopened at startup?'"
 msgstr ""
-"'Aurreko saioetan irekitako fitxategiak abioan berriro ireki behar dira?' "
-"galderaren erantzuna"
+"'Aurreko saioetan irekita zeuden fitxategiak abioan berriro ireki behar "
+"dira?' galderaren erantzuna"
 
 #. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
@@ -232,17 +216,16 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "Nahi duzu aurreko saioko fitxategiak berriro kargatzea?"
 
 #: kgraphviewer.cpp:108
-#, fuzzy, kde-format
-#| msgid "Reloading"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "Birkargatzen"
+msgstr "Birzamatu"
 
 #: kgraphviewer.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
-msgstr ""
+msgstr "Ez birzamatu"
 
 #: kgraphviewer.cpp:196
 #, kde-format
@@ -250,11 +233,10 @@ msgid "Opens a new empty KGraphViewer window."
 msgstr "KGraphViewer leiho huts berri bat irekitzen du."
 
 #: kgraphviewer.cpp:199
-#, fuzzy, kde-format
-#| msgid "Shows the file open dialog to choose a GraphViz dot file to open."
+#, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
-"GraphViz-en DOT fitxategia aukeratzeko elkarrizketa-koadroa erakusten du."
+"GraphViz DOT fitxategi bat irekitzeko elkarrizketa-koadroa erakusten du."
 
 #: kgraphviewer.cpp:202
 #, kde-format
@@ -288,13 +270,13 @@ msgstr "KGraphViewer-eko konfigurazioko aukera nagusiak."
 #: kgraphviewerConfigDialog.cpp:54
 #, kde-format
 msgid "Appearance"
-msgstr ""
+msgstr "Itxura"
 
 #. i18n: ectx: label, entry (backgroundColor), group (Appearance)
 #: kgraphviewersettings.kcfg:34
 #, kde-format
 msgid "Background color of the graph view."
-msgstr ""
+msgstr "Grafo-ikupegiaren atzeko planoko kolorea."
 
 #: main.cpp:39
 #, kde-format
@@ -302,10 +284,9 @@ msgid "KGraphViewer"
 msgstr "KGraphViewer"
 
 #: main.cpp:41
-#, fuzzy, kde-format
-#| msgid "A Graphviz dot graph viewer for KDE"
+#, kde-format
 msgid "A Graphviz DOT graph viewer"
-msgstr "KDEren Graphviz-en DOT grafikoen ikustailea"
+msgstr "Graphviz DOT grafo erakusle bat"
 
 #: main.cpp:46
 #, kde-format
@@ -340,29 +321,26 @@ msgstr "Sandro Andrade"
 #: main.cpp:50
 #, kde-format
 msgid "Milian Wolff"
-msgstr ""
+msgstr "Milian Wolff"
 
 #: main.cpp:51
 #, kde-format
 msgid "Martin Sandsmark"
-msgstr ""
+msgstr "Martin Sandsmark"
 
 #: main.cpp:51
 #, kde-format
 msgid "Port to KF5"
-msgstr ""
+msgstr "KF5era eratortzea"
 
 #: main.cpp:84
-#, fuzzy, kde-format
-#| msgid ""
-#| "A KGraphViewer window is already open, where do you want to open this "
-#| "file?"
+#, kde-format
 msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
 "in the existing window?"
 msgstr ""
-"KGraphViewer-en leiho bat jadanik irekita dago, non nahi duzu fitxategi hau "
-"irekitzea?"
+"KGraphViewer leiho bat jada irekita dago, fitxategi hau dagoen "
+"leihoanirikitzea nahi duzu?"
 
 #: part/canvasedge.cpp:70
 #, kde-format
@@ -429,15 +407,13 @@ msgid "Unknown error running %1."
 msgstr "Errore ezezaguna %1 exekutatzean."
 
 #: part/dotgraphview.cpp:407
-#, fuzzy, kde-format
-#| msgid "Select Layout Algo"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr "Hautatu diseinuaren algoritmoa"
+msgstr "Antolaera-algoritmoa"
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
@@ -445,11 +421,10 @@ msgstr "Dot"
 #: part/dotgraphview.cpp:411
 #, kde-format
 msgid "Layout the graph using the dot program."
-msgstr "Diseinatu grafikoa dot programa erabiliz."
+msgstr "Diseinatu grafoa dot programa erabiliz."
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -457,11 +432,10 @@ msgstr "Neato"
 #: part/dotgraphview.cpp:416
 #, kde-format
 msgid "Layout the graph using the neato program."
-msgstr "Diseinatu grafikoa neato programa erabiliz."
+msgstr "Diseinatu grafoa neato programa erabiliz."
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -469,11 +443,10 @@ msgstr "Twopi"
 #: part/dotgraphview.cpp:421
 #, kde-format
 msgid "Layout the graph using the twopi program."
-msgstr "Diseinatu grafikoa twopi programa erabiliz."
+msgstr "Diseinatu grafoa twopi programa erabiliz."
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -481,11 +454,10 @@ msgstr "Fdp"
 #: part/dotgraphview.cpp:426
 #, kde-format
 msgid "Layout the graph using the fdp program."
-msgstr "Diseinatu grafikoa fdp programa erabiliz."
+msgstr "Antolatu grafoa fdp programa erabiliz."
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -493,13 +465,12 @@ msgstr "Circo"
 #: part/dotgraphview.cpp:431
 #, kde-format
 msgid "Layout the graph using the circo program."
-msgstr "Diseinatu grafikoa circo programa erabiliz."
+msgstr "Diseinatu grafoa circo programa erabiliz."
 
 #: part/dotgraphview.cpp:443
-#, fuzzy, kde-format
-#| msgid "Choose a GraphViz layout algorithm or edit your own one."
+#, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
-msgstr "Aukeratu GraphViz diseinuaren algoritmoa edo editatu zurea."
+msgstr "Aukeratu GraphViz antolaera-algoritmoa edo editatu zurea."
 
 #: part/dotgraphview.cpp:445
 #, fuzzy, kde-format
@@ -520,16 +491,15 @@ msgstr ""
 "Gname=NireGrafikIzena -Txdot </tt>"
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
-msgstr "Esportatu grafikoa"
+msgstr "Esportatu grafoa"
 
 #: part/dotgraphview.cpp:454
 #, kde-format
 msgid "Allows the graph to be exported in another format."
-msgstr "Baimendu grafikoa beste formatu batera esportatzea"
+msgstr "Grafoa beste formatu batean esportatzeko aukera ematen du."
 
 #: part/dotgraphview.cpp:456
 #, kde-format
@@ -537,40 +507,35 @@ msgid ""
 "Use the Export Graph menu to export the graph in another format. There is "
 "currently only one export format supported: as a PNG image."
 msgstr ""
-"Erabili 'Esportatu grafikoa' menua grafikoa beste formatu batera "
-"esportatzeko. Unean esportatzeko formatu bakarra onartzen da: PNG."
+"Erabili 'Esportatu grafoa' menua grafoa beste formatu batean esportatzeko. "
+"Gaur egun esportatzeko formatu bakarra onartzen da: PNG irugi gisa."
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
 msgstr "Irudi gisa..."
 
 #: part/dotgraphview.cpp:460
-#, fuzzy, kde-format
-#| msgid "Export the graph to an image file (currently PNG only.)"
+#, kde-format
 msgid "Export the graph to an image file."
-msgstr "Esportatu grafikoa irudi gisa (oraingoz PNG soilik)"
+msgstr "Esportatu grafoa irudi-fitxategi gisa."
 
 #: part/dotgraphview.cpp:470
-#, fuzzy, no-c-format, kde-format
-#| msgid "Zoom in by 10% on the currently viewed graph"
+#, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
-msgstr "Handiagotu zooma %10ean unean ikusitako grafikoan"
+msgstr "Zooma %&thinsp;10 gerturatu unean erakutsitako grafoan"
 
 #: part/dotgraphview.cpp:474
-#, fuzzy, no-c-format, kde-format
-#| msgid "Zoom out by 10% from the currently viewed graph"
+#, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
-msgstr "Txikiagotu zooma %10ean unean ikusitako grafikoan"
+msgstr "Zooma %&thinsp;10 urrundu unean erakutsitako grafikoan"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
-msgstr "Gaitu txorien ikuspegia"
+msgstr "Gaitu txoriaren ikuspegia"
 
 #: part/dotgraphview.cpp:478
 #, kde-format
@@ -578,11 +543,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr "Txorien ikuspegia gaitzen edo desgaitzen du"
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "Txorien ikuspegia"
+msgstr "Txori-ikuspegiaren kokalekua"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -590,11 +554,10 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "Txorien ikuspegia konfiguratzea baimentzen du."
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
-msgstr "Goi-ezkerrean"
+msgstr "Goian ezkerrean"
 
 #: part/dotgraphview.cpp:488
 #, kde-format
@@ -602,11 +565,10 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Txoriaren ikuspegia goi-ezkerraldeko ertzean jartzen du."
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
-msgstr "Goi-eskuinean"
+msgstr "Goian eskuinean"
 
 #: part/dotgraphview.cpp:494
 #, kde-format
@@ -614,11 +576,10 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Txoriaren ikuspegia goi-eskuinaldeko ertzean jartzen du."
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
-msgstr "Behe-ezkerrean"
+msgstr "Behean ezkerrean"
 
 #: part/dotgraphview.cpp:500
 #, kde-format
@@ -626,11 +587,10 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Txoriaren ikuspegia behe-ezkerraldeko ertzean jartzen du."
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
-msgstr "Behe-eskuinean"
+msgstr "Behean eskuinean"
 
 #: part/dotgraphview.cpp:506
 #, kde-format
@@ -638,8 +598,7 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Txoriaren ikuspegia behe-eskuinaldeko ertzean jartzen du."
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "Automatikoa"
@@ -651,18 +610,16 @@ msgid ""
 msgstr "KGraphViewer automatikoki aukeratuko du txorien ikuspegiaren kokapena."
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
-msgstr "Diseinua"
+msgstr "Antolaera"
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "Zehaztu diseinuaren komandoa"
+msgstr "Zehaztu antolaeraren komandoa..."
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -674,11 +631,10 @@ msgstr ""
 "fitxategi bat sortu beharko luke irteera estandarrean."
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr "Berrezarri diseinuaren komandoa lehenetsira"
+msgstr "Berrezarri antolaeraren komandoa balio lehenetsira"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -692,17 +648,17 @@ msgstr ""
 #: part/dotgraphview.cpp:600
 #, kde-format
 msgid "Select file"
-msgstr ""
+msgstr "Hautatu fitxategia"
 
 #: part/dotgraphview.cpp:614
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer"
-msgstr ""
+msgstr "«KGraphViewer»rek sortuta SVG grafoa"
 
 #: part/dotgraphview.cpp:615
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer."
-msgstr ""
+msgstr "«KGraphViewer»rek sortuta SVG grafoa."
 
 #: part/dotgraphview.cpp:662
 #, fuzzy, kde-format
@@ -776,16 +732,13 @@ msgid "Reload Confirmation"
 msgstr "Birkargatzeko berrespena"
 
 #: part/dotgraphview.cpp:1646
-#, fuzzy, kde-format
-#| msgid ""
-#| "The file %1 has been modified on disk.\n"
-#| "Do you want to reload it ?"
+#, kde-format
 msgid ""
 "The file %1 has been modified on disk.\n"
 "Do you want to reload it?"
 msgstr ""
 "%1 fitxategia diskoan aldatu da.\n"
-"Birkargatzea nahi duzu?"
+"Birzamatu nahi duzu?"
 
 #: part/dotgraphview.cpp:1732
 #, kde-format
@@ -805,7 +758,7 @@ msgstr ""
 #: part/dotgraphview.cpp:2182
 #, kde-format
 msgid "Failed to open %1"
-msgstr ""
+msgstr "%1 irekitzea huts egin du"
 
 #: part/kgraphviewer_part.cpp:84
 #, kde-format
@@ -818,11 +771,10 @@ msgid "Open the print preview window"
 msgstr "Ireki inprimatzeko aurrebistaren leihoa"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Prestatu orrialdea"
+msgstr "Orri-ezarpena..."
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -876,10 +828,9 @@ msgid "Page Preview"
 msgstr "Orrialdearen aurrebista"
 
 #: part/KgvPageLayoutDia.cpp:268
-#, fuzzy, kde-format
-#| msgid "Page Size && Margins"
+#, kde-format
 msgid "Page Size & Margins"
-msgstr "Orrialdearen tamaina eta marjinak"
+msgstr "Orriaren tamaina eta marjinak"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/KgvPageLayoutHeaderBase.ui:17
@@ -1009,22 +960,22 @@ msgstr "Orrialdearen altuera goi eta beheko marjinen baino txikiagoa da."
 #: part/KgvUnit.cpp:52
 #, kde-format
 msgid "Millimeters (mm)"
-msgstr "Milimetroak (mm)"
+msgstr "Milimetro (mm)"
 
 #: part/KgvUnit.cpp:54
 #, kde-format
 msgid "Centimeters (cm)"
-msgstr "Zentimetroak (cm)"
+msgstr "Zentimetro (cm)"
 
 #: part/KgvUnit.cpp:56
 #, kde-format
 msgid "Decimeters (dm)"
-msgstr "Dezimetroak (dm)"
+msgstr "Dezimetro (dm)"
 
 #: part/KgvUnit.cpp:58
 #, kde-format
 msgid "Inches (in)"
-msgstr "Hazbeteak (in)"
+msgstr "Hazbete (in)"
 
 #: part/KgvUnit.cpp:60
 #, kde-format
@@ -1044,7 +995,7 @@ msgstr "Cicero (cc)"
 #: part/KgvUnit.cpp:66
 #, kde-format
 msgid "Points (pt)"
-msgstr "Puntuak (pt)"
+msgstr "Puntu (pt)"
 
 #: part/KgvUnit.cpp:68
 #, kde-format
@@ -1094,7 +1045,7 @@ msgstr "Inprimatzeko aurrebista..."
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font..."
-msgstr ""
+msgstr "Letra-tipoa..."
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1127,10 +1078,9 @@ msgid "Adds table borders."
 msgstr "Taularen ertzak gehitzen ditu."
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Changes page size and margins."
+#, kde-format
 msgid "Change Page Size and Margins..."
-msgstr "Orrialdearen tamaina eta marjinak aldatzen ditu."
+msgstr "Orriaren tamaina eta marjinak aldatzen ditu..."
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
@@ -1159,10 +1109,9 @@ msgstr "marjinak:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: part/simpleprintingpagesetupbase.ui:64
-#, fuzzy, kde-format
-#| msgid "Page &font:"
+#, kde-format
 msgid "Pa&ge font:"
-msgstr "Orrialdearen &letra-tipoa:"
+msgstr "Orriaren letra-tipoa:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/simpleprintingpagesetupbase.ui:93
@@ -1196,47 +1145,42 @@ msgstr "Erabili beharreko orrialde kopurua"
 
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
 #: part/simpleprintingpagesetupbase.ui:167
-#, fuzzy, kde-format
-#| msgid "Natural size"
+#, kde-format
 msgid "&Natural size"
-msgstr "Tamaina naturala"
+msgstr "Tamaina &naturala"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
 #: part/simpleprintingpagesetupbase.ui:174
-#, fuzzy, kde-format
-#| msgid "Fit to one page"
+#, kde-format
 msgid "Fit &to one page"
-msgstr "Doitu orrialde bakarrera"
+msgstr "Doitu orrialde &bakarrera"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
 #: part/simpleprintingpagesetupbase.ui:181
-#, fuzzy, kde-format
-#| msgid "Fit to several pages"
+#, kde-format
 msgid "F&it to several pages"
-msgstr "Doitu hainbat orrialdeetara"
+msgstr "Doitu hainbat orritara"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
-#, fuzzy, kde-format
-#| msgid "Horizontally"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "Horizontalki"
+msgstr "Horizontalki:"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
-#, fuzzy, kde-format
-#| msgid "Vertically"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "Bertikalki"
+msgstr "Bertikalki:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
 #, kde-format
 msgctxt "@option:check"
 msgid "Preserve aspect ratio:"
-msgstr ""
+msgstr "Mantendu itxura-proportzioa:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: part/simpleprintingpagesetupbase.ui:228
@@ -1268,13 +1212,14 @@ msgstr "Hurrengo orrialdea"
 #: preferencesAppearance.ui:19
 #, kde-format
 msgid "Default background color:"
-msgstr ""
+msgstr "Atzeko planoko kolore lehentsia:"
 
 #. i18n: ectx: property (text), widget (QLabel, note)
 #: preferencesAppearance.ui:51
 #, kde-format
 msgid "Note: this will be overridden if the graph has its own background color"
 msgstr ""
+"Oharra: grafoak atzeko planoko kolore propia badu, honi gailenduko zaio"
 
 #. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
 #: preferencesOpenInExistingWindow.ui:17
@@ -1292,10 +1237,9 @@ msgstr "&Bai"
 #. i18n: ectx: property (text), widget (QRadioButton, no)
 #: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
 #: preferencesReopenPreviouslyOpenedFiles.ui:36
-#, fuzzy, kde-format
-#| msgid "No"
+#, kde-format
 msgid "&No"
-msgstr "Ez"
+msgstr "E&z"
 
 #. i18n: ectx: property (text), widget (QRadioButton, ask)
 #: preferencesOpenInExistingWindow.ui:37
@@ -1312,17 +1256,15 @@ msgstr "Analizatu honekin:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, external)
 #: preferencesParsing.ui:26
-#, fuzzy, kde-format
-#| msgid "&External command"
+#, kde-format
 msgid "E&xternal command"
 msgstr "&Kanpoko komandoa"
 
 #. i18n: ectx: property (text), widget (QRadioButton, internal)
 #: preferencesParsing.ui:33
-#, fuzzy, kde-format
-#| msgid "Internal library"
+#, kde-format
 msgid "Internal &library"
-msgstr "Barneko liburutegia"
+msgstr "Barneko &liburutegia"
 
 #. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
 #: preferencesReload.ui:17
@@ -1334,7 +1276,7 @@ msgstr "Birkargatu diskoan aldatutako fitxategiak"
 #: preferencesReload.ui:40
 #, kde-format
 msgid "&Ask"
-msgstr ""
+msgstr "&Galdetu"
 
 #. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
 #: preferencesReopenPreviouslyOpenedFiles.ui:17
