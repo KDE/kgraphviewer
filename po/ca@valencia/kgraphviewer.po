@@ -709,7 +709,7 @@ msgstr "no s'ha carregat cap gràfica"
 #: part/dotgraphview.cpp:1001
 #, kde-format
 msgid "graph %1 is getting loaded..."
-msgstr "s'està carregant la gràfica %1..."
+msgstr "s'està carregant la gràfica %1…"
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -1033,12 +1033,12 @@ msgstr "Pàgina %1"
 #: part/simpleprintingpagesetup.cpp:85
 #, kde-format
 msgid "Print Preview..."
-msgstr "Vista prèvia d'impressió..."
+msgstr "Vista prèvia d'impressió…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font..."
-msgstr "Lletra..."
+msgstr "Lletra…"
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1073,7 +1073,7 @@ msgstr "Afig vores a la taula."
 #: part/simpleprintingpagesetup.cpp:113
 #, kde-format
 msgid "Change Page Size and Margins..."
-msgstr "Canvia la mida i els marges de la pàgina..."
+msgstr "Canvia la mida i els marges de la pàgina…"
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
