@@ -71,6 +71,7 @@
   <summary xml:lang="uk">Засіб перегляду графів DOT Graphviz</summary>
   <summary xml:lang="x-test">xxA Graphviz DOT graph viewerxx</summary>
   <summary xml:lang="zh-CN">Graphviz DOT 图形查看器</summary>
+  <summary xml:lang="zh-TW">Graphviz DOT 圖形檢視器</summary>
   <description>
     <p>
       KGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools.
@@ -102,6 +103,7 @@
     <p xml:lang="uk">KGraphViewer — програма для перегляду графів у форматі DOT Graphviz. Її створено як заміну застарілим інструментам для роботи з Graphviz. Графи широко використовуються у наукових дослідженнях, зокрема у комп’ютерних науках.</p>
     <p xml:lang="x-test">xxKGraphViewer is a Graphviz DOT graph file viewer, aimed to replace the other outdated Graphviz tools. Graphs are commonly used in scientific domains and particularly in computer science.xx</p>
     <p xml:lang="zh-CN">KGraphViewer 是 Graphviz DOT 图形文件查看器，旨在替换其他过时的 Graphviz 工具。Graphs 通常用于科学领域，特别是计算机科学。</p>
+    <p xml:lang="zh-TW">KGraphViewer 是一個 Graphviz DOT 圖形檔案檢視器，希望取代其他過時的 Graphviz 工具。圖形 (graph) 常用於科學領域，尤其是計算機科學。</p>
     <p>Features:</p>
     <p xml:lang="bs">Svojstva:</p>
     <p xml:lang="ca">Característiques:</p>
@@ -202,6 +204,7 @@
       <li xml:lang="uk">Завантаження декількох графів до вкладок у окремих обчислювальних потоках.</li>
       <li xml:lang="x-test">xxThreaded loading of several graphs in tabsxx</li>
       <li xml:lang="zh-CN">在标签页中多线程加载图表</li>
+      <li xml:lang="zh-TW">多執行緒在分頁中載入多個圖形</li>
       <li>Saving of the recent files list</li>
       <li xml:lang="bs">Snimanje nedavne liste fajlova</li>
       <li xml:lang="ca">Desament de la llista de fitxers recents</li>
@@ -233,7 +236,7 @@
       <li xml:lang="uk">Зберігання списку нещодавно використаних файлів.</li>
       <li xml:lang="x-test">xxSaving of the recent files listxx</li>
       <li xml:lang="zh-CN">保存最近使用的文件列表</li>
-      <li xml:lang="zh-TW">會儲存最近使用的檔案列表</li>
+      <li xml:lang="zh-TW">儲存最近使用的檔案列表</li>
       <li>Manual reload of files</li>
       <li xml:lang="bs">Ručno nadopunjavanje fajlova</li>
       <li xml:lang="ca">Recarrega manualment els fitxers</li>
@@ -297,6 +300,7 @@
       <li xml:lang="uk">Показ панелі загального вигляду графу.</li>
       <li xml:lang="x-test">xxDisplay of a bird-eye view of the graphxx</li>
       <li xml:lang="zh-CN">显示图形的鸟瞰图</li>
+      <li xml:lang="zh-TW">以鳥瞰方式顯示圖形</li>
       <li>Moving of the graph by dragging</li>
       <li xml:lang="bs">Pomjeranje grafa povlačenjem</li>
       <li xml:lang="ca">Moviment del gràfic en arrossegar</li>
@@ -328,6 +332,7 @@
       <li xml:lang="uk">Пересування графу перетягуванням.</li>
       <li xml:lang="x-test">xxMoving of the graph by draggingxx</li>
       <li xml:lang="zh-CN">拖拽移动图表</li>
+      <li xml:lang="zh-TW">拖曳來移動圖形</li>
       <li>Full featured printing</li>
       <li xml:lang="bs">Cijelo istaknuto printanje</li>
       <li xml:lang="ca">Impressió amb totes les funcionalitats</li>
@@ -391,6 +396,7 @@
       <li xml:lang="uk">Ідеальне креслення усіх прикладів графів graphviz.</li>
       <li xml:lang="x-test">xxPerfect drawing of all graphviz example graphsxx</li>
       <li xml:lang="zh-CN">完美绘制所有 Graphviz 实例图表</li>
+      <li xml:lang="zh-TW">能夠完美繪製 Graphviz 範例圖形</li>
       <li>Automatically choose dot for directed graphs and neato for undirected</li>
       <li xml:lang="bs">Automatski odabir za tačku za usmjerene grafove i neato za neusmjerene</li>
       <li xml:lang="ca">Selecció automàtica de «dot» per als gràfics dirigits i «neato» per als no dirigits</li>
@@ -421,6 +427,7 @@
       <li xml:lang="uk">Автоматичний вибір dot для орієнтованих графів і neato для неорієнтованих.</li>
       <li xml:lang="x-test">xxAutomatically choose dot for directed graphs and neato for undirectedxx</li>
       <li xml:lang="zh-CN">自动为有向图使用 dot 并为无向图使用 neato。</li>
+      <li xml:lang="zh-TW">自動為有向圖使用 dot、為無向圖使用 neato</li>
       <li>Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="bs">Mogućnost korištenja proizvoljnog rasporeda algoritma dokle god proizvodi xdot format</li>
       <li xml:lang="ca">Possibilitat d'utilitzar un algorisme de disposició arbitrari si produeix un format «xdot»</li>
@@ -451,6 +458,7 @@
       <li xml:lang="uk">Можливість використання довільного алгоритму компонування, який може створювати дані у форматі xdot.</li>
       <li xml:lang="x-test">xxPossibility to use an arbitrary layout algorithm as soon as it produces xdot formatxx</li>
       <li xml:lang="zh-CN">是否可以在生成 xdot 格式时使用任意布局算法</li>
+      <li xml:lang="zh-TW">能夠使用任何佈局演算法，只要能產生 xdot 格式</li>
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="bs">Automatsko ponovno učitavanje potvrdom korisnika o (izvana) modificiranim datotekama (podesivo)</li>
       <li xml:lang="ca">Recarrega automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
@@ -481,6 +489,7 @@
       <li xml:lang="uk">Автоматичне перезавантаження даних з підтвердженням з боку користувача для файлів, змінених сторонніми програмами (можна налаштувати).</li>
       <li xml:lang="x-test">xxAutomatic reloading with user confirmation of (externally) modified files (configurable)xx</li>
       <li xml:lang="zh-CN">自动重新加载用户外部修改的文件 (可配置)</li>
+      <li xml:lang="zh-TW">檔案在外部被變更時自動重新載入，會詢問使用者（可設定）</li>
       <li>Open new instances as new tabs in the old one (configurable)</li>
       <li xml:lang="bs">Otvori nove kopije kao nove kartice u starom (podesivo)</li>
       <li xml:lang="ca">Obre les instàncies noves com a pestanyes noves en l'antiga (configurable)</li>
@@ -511,6 +520,7 @@
       <li xml:lang="uk">Відкриття нових екземплярів програми у вкладках того самого вікна (можна налаштувати).</li>
       <li xml:lang="x-test">xxOpen new instances as new tabs in the old one (configurable)xx</li>
       <li xml:lang="zh-CN">以新标签页打开新实例(可配置)</li>
+      <li xml:lang="zh-TW">在單一實體開啟分頁而非開啟多個實體（可設定）</li>
     </ul>
   </description>
   <content_rating type="oars-1.1"/>
