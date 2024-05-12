@@ -1,13 +1,13 @@
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2009.
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2010, 2011, 2014.
 # pan93412 <pan93412@gmail.com>, 2019.
-# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
+# SPDX-FileCopyrightText: 2023, 2024 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2023-12-13 18:17+0900\n"
+"PO-Revision-Date: 2024-05-10 17:24+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.04.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -393,15 +393,13 @@ msgid "Unknown error running %1."
 msgstr "執行 %1 時發生未知的錯誤"
 
 #: part/dotgraphview.cpp:407
-#, fuzzy, kde-format
-#| msgid "Select Layout Algo"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr "選擇佈局演算法"
+msgstr "佈局演算法"
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
@@ -412,8 +410,7 @@ msgid "Layout the graph using the dot program."
 msgstr "使用 dot 程式來佈局圖形。"
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -424,8 +421,7 @@ msgid "Layout the graph using the neato program."
 msgstr "使用 neato 程式來佈局圖形。"
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -436,8 +432,7 @@ msgid "Layout the graph using the twopi program."
 msgstr "使用 twopi 程式來佈局圖形。"
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -448,8 +443,7 @@ msgid "Layout the graph using the fdp program."
 msgstr "使用 fdp 程式來佈局圖形。"
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -477,8 +471,7 @@ msgstr ""
 "Txdot</tt>"
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "匯出圖形"
@@ -497,11 +490,10 @@ msgstr ""
 "使用「匯出圖形」選單來將圖形匯出成其它格式。目前只支援一種匯出格式：PNG。"
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "為影像檔..."
+msgstr "為影像檔…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -519,8 +511,7 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "將目前檢視的圖形縮小 10%"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
 msgstr "開啟鳥瞰檢視"
@@ -531,11 +522,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr "開啟或關閉鳥瞰檢視"
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "鳥瞰檢視"
+msgstr "鳥瞰檢視位置"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -543,8 +533,7 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "允許設定鳥瞰圖檢視。"
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "左上方"
@@ -555,8 +544,7 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "將鳥瞰檢視放在左上角。"
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "右上方"
@@ -567,8 +555,7 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "將鳥瞰檢視放在右上角。"
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "左下方"
@@ -579,8 +566,7 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "將鳥瞰檢視放在左下角。"
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "右下方"
@@ -591,8 +577,7 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "將鳥瞰檢視放在右下角。"
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "自動"
@@ -604,18 +589,16 @@ msgid ""
 msgstr "讓 KGraphviewer 自動選擇鳥瞰檢視的位置。"
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
 msgstr "佈局"
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "指定佈局指令"
+msgstr "指定佈局指令…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -627,18 +610,17 @@ msgstr ""
 "檔。"
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr "將佈局指令重置為預設值"
+msgstr "將佈局指令重設為預設值"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
 msgid ""
 "Resets the layout command to use to the default depending on the graph type "
 "(directed or not)."
-msgstr "將佈局指令重置，依圖形型態（有向或無向）設定預設值。"
+msgstr "將佈局指令重設，依圖形型態（有向或無向）設定預設值。"
 
 #: part/dotgraphview.cpp:600
 #, kde-format
@@ -692,7 +674,7 @@ msgstr "沒有載入圖形"
 #: part/dotgraphview.cpp:1001
 #, kde-format
 msgid "graph %1 is getting loaded..."
-msgstr "圖形 %1 正在載入中..."
+msgstr "圖形 %1 正在載入中…"
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -743,11 +725,10 @@ msgid "Open the print preview window"
 msgstr "開啟列印預覽視窗"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "頁面設定"
+msgstr "頁面設定…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -1009,7 +990,7 @@ msgstr "第 %1 頁"
 #: part/simpleprintingpagesetup.cpp:85
 #, kde-format
 msgid "Print Preview..."
-msgstr "預覽列印..."
+msgstr "預覽列印…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
@@ -1132,26 +1113,24 @@ msgstr "符合數頁大小(&I)"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
-#, fuzzy, kde-format
-#| msgid "Horizontally"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "水平"
+msgstr "水平："
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
-#, fuzzy, kde-format
-#| msgid "Vertically"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "垂直"
+msgstr "垂直："
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
 #, kde-format
 msgctxt "@option:check"
 msgid "Preserve aspect ratio:"
-msgstr ""
+msgstr "維持外觀比例："
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: part/simpleprintingpagesetupbase.ui:228
