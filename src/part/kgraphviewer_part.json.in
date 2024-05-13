@@ -19,7 +19,8 @@
                 "Name[sl]": "Gaël de Chalendar",
                 "Name[tr]": "Gaël de Chalendar",
                 "Name[uk]": "Gaël de Chalendar",
-                "Name[x-test]": "xxGaël de Chalendarxx"
+                "Name[x-test]": "xxGaël de Chalendarxx",
+                "Name[zh_TW]": "Gaël de Chalendar"
             }
         ],
         "Copyright": "Copyright 2005-2006 Gaël de Chalendar",
@@ -39,6 +40,7 @@
         "Copyright[tr]": "Telif hakkı 2005–2006 Gaël de Chalendar",
         "Copyright[uk]": "© Gaël de Chalendar, 2005–2006",
         "Copyright[x-test]": "xxCopyright 2005-2006 Gaël de Chalendarxx",
+        "Copyright[zh_TW]": "版權所有 2005-2006 Gaël de Chalendar",
         "Description": "Graphviz DOT files viewer",
         "Description[ca@valencia]": "Visor de fitxers DOT de Graphviz",
         "Description[ca]": "Visualitzador de fitxers DOT del Graphviz",
@@ -56,6 +58,7 @@
         "Description[tr]": "Graphviz DOT dosyalarıgörüntüleyici si",
         "Description[uk]": "Переглядач файлів DOT Graphviz",
         "Description[x-test]": "xxGraphviz DOT files viewerxx",
+        "Description[zh_TW]": "Graphviz DOT 檔案檢視器",
         "License": "GPL",
         "MimeTypes": [
             "text/vnd.graphviz"
