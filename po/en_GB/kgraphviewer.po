@@ -2,21 +2,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Andrew Coles <andrew_coles@yahoo.co.uk>, 2009, 2010.
-# Steve Allewell <steve.allewell@gmail.com>, 2014, 2017, 2018, 2022.
+# SPDX-FileCopyrightText: 2014, 2017, 2018, 2022, 2024 Steve Allewell <steve.allewell@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2022-12-31 15:24+0000\n"
+"PO-Revision-Date: 2024-05-23 19:39+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
-"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
+"Language-Team: British English\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -403,15 +403,13 @@ msgid "Unknown error running %1."
 msgstr "Unknown error running %1."
 
 #: part/dotgraphview.cpp:407
-#, fuzzy, kde-format
-#| msgid "Select Layout Algo"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr "Select Layout Algo"
+msgstr "Layout Algorithm"
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
@@ -422,8 +420,7 @@ msgid "Layout the graph using the dot program."
 msgstr "Layout the graph using the dot program."
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -434,8 +431,7 @@ msgid "Layout the graph using the neato program."
 msgstr "Layout the graph using the neato program."
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -446,8 +442,7 @@ msgid "Layout the graph using the twopi program."
 msgstr "Layout the graph using the twopi program."
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -458,8 +453,7 @@ msgid "Layout the graph using the fdp program."
 msgstr "Layout the graph using the fdp program."
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -488,8 +482,7 @@ msgstr ""
 "Gname=MyGraphName -Txdot </tt>"
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "Export Graph"
@@ -509,11 +502,10 @@ msgstr ""
 "currently only one export format supported: as a PNG image."
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "As Image..."
+msgstr "As Image…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -531,11 +523,10 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "Zoom out by 10% from the currently viewed graph"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
-msgstr "Enable Bird's-eye View"
+msgstr "Enable Bird's-Eye View"
 
 #: part/dotgraphview.cpp:478
 #, kde-format
@@ -543,11 +534,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr "Enables or disables the Bird's-eye View"
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "Birds-eye View"
+msgstr "Bird's-Eye View Position"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -555,8 +545,7 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "Allows the Bird's-eye View to be setup."
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "Top Left"
@@ -567,8 +556,7 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Puts the Bird's-eye View in the top-left corner."
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "Top Right"
@@ -579,8 +567,7 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Puts the Bird's-eye View in the top-right corner."
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "Bottom Left"
@@ -591,8 +578,7 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Puts the Bird's-eye View in the bottom-left corner."
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "Bottom Right"
@@ -603,8 +589,7 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Puts the Bird's-eye View in the bottom-right corner."
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "Automatic"
@@ -617,18 +602,16 @@ msgstr ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
 msgstr "Layout"
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "Specify layout command"
+msgstr "Specify Layout Command…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -640,11 +623,10 @@ msgstr ""
 "produce an xdot file on its standard output."
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr "Reset layout command to default"
+msgstr "Reset Layout Command to Default"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -763,11 +745,10 @@ msgid "Open the print preview window"
 msgstr "Open the print preview window"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Page setup"
+msgstr "Page Setup…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -1154,26 +1135,24 @@ msgstr "F&it to several pages"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
-#, fuzzy, kde-format
-#| msgid "Horizontally"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "Horizontally"
+msgstr "Horizontally:"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
-#, fuzzy, kde-format
-#| msgid "Vertically"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "Vertically"
+msgstr "Vertically:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
 #, kde-format
 msgctxt "@option:check"
 msgid "Preserve aspect ratio:"
-msgstr ""
+msgstr "Preserve aspect ratio:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: part/simpleprintingpagesetupbase.ui:228
