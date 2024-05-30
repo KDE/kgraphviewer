@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-04-19 11:24+0200\n"
+"PO-Revision-Date: 2024-05-29 15:02+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -365,7 +365,7 @@ msgstr ""
 #: part/dotgraph.cpp:260
 #, kde-format
 msgid "Unable to start %1."
-msgstr ""
+msgstr "Incapace a startar %1."
 
 #: part/dotgraph.cpp:263
 #, kde-format
