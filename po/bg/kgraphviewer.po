@@ -1222,9 +1222,3 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr ""
-
-#~ msgid "Zoom In"
-#~ msgstr "Увеличаване"
-
-#~ msgid "Zoom Out"
-#~ msgstr "Намаляване"
