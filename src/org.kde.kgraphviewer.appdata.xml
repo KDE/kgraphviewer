@@ -22,6 +22,7 @@
   <name xml:lang="fi">KGraphViewer</name>
   <name xml:lang="fr">KGraphViewer</name>
   <name xml:lang="gl">KGraphViewer</name>
+  <name xml:lang="he">KGraphViewer</name>
   <name xml:lang="hu">KGraphViewer</name>
   <name xml:lang="id">KGraphViewer</name>
   <name xml:lang="it">KGraphViewer</name>
@@ -55,6 +56,7 @@
   <summary xml:lang="fi">Graphviz DOT -graafikatselin</summary>
   <summary xml:lang="fr">Un afficheur de graphes « DOT » au format « GraphViz »</summary>
   <summary xml:lang="gl">Un visor de gráficos de Graphviz DOT</summary>
+  <summary xml:lang="he">מציג תרשימי DOT של Graphviz</summary>
   <summary xml:lang="id">Sebuah penampil grafik Graphviz DOT</summary>
   <summary xml:lang="it">Un visore di grafi DOT di Graphviz</summary>
   <summary xml:lang="ka">Graphviz-ის DOT გრაფიკის დათვალიერება</summary>
@@ -120,6 +122,7 @@
     <p xml:lang="fi">Ominaisuudet:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="gl">Funcionalidades:</p>
+    <p xml:lang="he">יכולות:</p>
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Caratteristiche:</p>
@@ -156,6 +159,7 @@
       <li xml:lang="fi">Suurennus</li>
       <li xml:lang="fr">Zoom</li>
       <li xml:lang="gl">Ampliación.</li>
+      <li xml:lang="he">תקריב</li>
       <li xml:lang="hu">Nagyítás</li>
       <li xml:lang="id">Pengezooman</li>
       <li xml:lang="it">Ingrandimento</li>
@@ -220,6 +224,7 @@
       <li xml:lang="fi">Viimeaikaisten tiedostojen luettelon tallennus</li>
       <li xml:lang="fr">Enregistrement de la liste des fichiers récemment ouverts</li>
       <li xml:lang="gl">Gardar a lista de ficheiros recentes.</li>
+      <li xml:lang="he">שמירת רשימת הקבצים האחרונים</li>
       <li xml:lang="id">Penyimpanan daftar file-file terkini</li>
       <li xml:lang="it">Memorizzazione di un elenco di file recenti</li>
       <li xml:lang="ka">უახლესი ფაილების ბილიკის შენახვა</li>
@@ -252,6 +257,7 @@
       <li xml:lang="fi">Tiedostojen uudelleenlataus käsin</li>
       <li xml:lang="fr">Rechargement manuel des fichiers</li>
       <li xml:lang="gl">Cargar ficheiros de novo manualmente.</li>
+      <li xml:lang="he">טעינת קבצים ידנית מחדש</li>
       <li xml:lang="id">Pemuatan-ulang manual file-file</li>
       <li xml:lang="it">Ricaricamento manuale dei file</li>
       <li xml:lang="ka">ფაილების ხელით ჩატვირთვა</li>
@@ -348,6 +354,7 @@
       <li xml:lang="fi">Tulostus kaikilla ominaisuuksilla</li>
       <li xml:lang="fr">Système d'impression complet</li>
       <li xml:lang="gl">Todo tipo de funcionalidades de impresión.</li>
+      <li xml:lang="he">יכולות הדפסה מלאות</li>
       <li xml:lang="id">Pencetakan yang penuh fitur</li>
       <li xml:lang="it">Stampa con ogni funzionalità</li>
       <li xml:lang="ka">ბეჭდვის სრული მხარდაჭერა</li>
