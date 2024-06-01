@@ -1,0 +1,1233 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kgraphviewer package.
+#
+# SPDX-FileCopyrightText: 2024 Yaron Shahrabani <sh.yaron@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kgraphviewer\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"PO-Revision-Date: 2024-05-31 09:27+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 24.02.2\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "צוות התרגום של KDE ישראל"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kde-l10n-he@kde.org"
+
+#: kgrapheditor.cpp:126 kgraphviewer.cpp:107
+#, kde-format
+msgid "Session Restore"
+msgstr "שחזור הפעלה"
+
+#: kgrapheditor.cpp:126
+#, kde-format
+msgid "Do you want to reload files from previous session?"
+msgstr "לטעון מחדש את הקבצים מההפעלה הקודמת?"
+
+#: kgrapheditor.cpp:142
+#, kde-format
+msgid "Unable to start"
+msgstr "לא ניתן להפעיל"
+
+#: kgrapheditor.cpp:142 kgraphviewer.cpp:129
+#, kde-format
+msgid "Could not find the KGraphViewer part."
+msgstr "לא ניתן לאתר את החלק של KGraphViewer."
+
+#: kgrapheditor.cpp:223 kgraphviewer.cpp:208
+#, kde-format
+msgid "Closes the current file"
+msgstr "סגירת הקובץ הנוכחי"
+
+#: kgrapheditor.cpp:234
+#, kde-format
+msgid "Create a New Vertex"
+msgstr "יצירת קודקוד חדש"
+
+#: kgrapheditor.cpp:239
+#, kde-format
+msgid "Create a New Edge"
+msgstr "יצירת קצה חדש"
+
+#: kgrapheditor.cpp:494
+#, kde-format
+msgid "Save current graph"
+msgstr "שמירת התרשים הנוכחי"
+
+#: kgrapheditorConfigDialog.cpp:48 kgraphviewerConfigDialog.cpp:55
+#, kde-format
+msgid "Parsing"
+msgstr "פענוח"
+
+#: kgrapheditorConfigDialog.cpp:49 kgraphviewerConfigDialog.cpp:56
+#, kde-format
+msgid "Reloading"
+msgstr "רענון"
+
+#: kgrapheditorConfigDialog.cpp:50 kgraphviewerConfigDialog.cpp:57
+#, kde-format
+msgid "Opening"
+msgstr "פתיחה"
+
+#: kgrapheditorConfigDialog.cpp:51 kgraphviewerConfigDialog.cpp:58
+#, kde-format
+msgid "Session Management"
+msgstr "ניהול הפעלות"
+
+#: KGraphEditorElementTreeWidget.cpp:50 KGraphEditorNodesTreeWidget.cpp:54
+#, kde-format
+msgid "Add a new attribute"
+msgstr "הוספת מאפיין חדש"
+
+#: KGraphEditorElementTreeWidget.cpp:56 KGraphEditorNodesTreeWidget.cpp:60
+#, kde-format
+msgid "Remove this attribute"
+msgstr "הסרת המאפיין הזה"
+
+#: kgrapheditormain.cpp:40
+#, kde-format
+msgid "KGraphEditor"
+msgstr "KGraphEditor"
+
+#: kgrapheditormain.cpp:42
+#, kde-format
+msgid "A Graphviz DOT graph editor by KDE"
+msgstr "עורך תרשימי DOT של Graphviz מבית KDE"
+
+#: kgrapheditormain.cpp:44 main.cpp:43
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005‏-2010 גאל דה שלנדה"
+
+#: kgrapheditormain.cpp:57 main.cpp:59
+#, kde-format
+msgid "Path or URL to scan"
+msgstr "נתיב או כתובת לסריקה"
+
+#: kgrapheditormain.cpp:57 main.cpp:59
+#, kde-format
+msgid "[url]"
+msgstr "[כתובת]"
+
+#: kgrapheditormain.cpp:82 main.cpp:84
+#, kde-format
+msgid "Opening in new window confirmation"
+msgstr "אישור פתיחה בחלון חדש"
+
+#: kgrapheditormain.cpp:82
+#, kde-format
+msgid ""
+"A KGraphEditor window is already open, do you want to open the file in it?"
+msgstr "כבר יש חלון פתוח של KGraphEditor, לפתוח בו את הקובץ?"
+
+#: KGraphEditorNodesTreeWidget.cpp:65
+#, kde-format
+msgid "Remove this node"
+msgstr "הסרת המפרק הזה"
+
+#. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
+#, kde-format
+msgid "The answer to the question 'File modified, do you want to reload it'"
+msgstr "התשובה לשאלה ‚הקובץ השתנה, לרענן אותו’"
+
+#. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
+#, kde-format
+msgid ""
+"To choose whether to parse using an external command (usually dot) or the "
+"graphviz library"
+msgstr ""
+"לבחור האם לפענח באמצעות פקודה חיצונית (בדרך כלל dot) או באמצעות ספריית "
+"graphviz"
+
+#. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
+#, kde-format
+msgid ""
+"The answer to the question 'If another window already exist when launching "
+"kgraphviewer, should we open in it, open a new window or ask?'"
+msgstr ""
+"התשובה לשאלה ‚אם חלון אחר כבר קיים בעת הפעלת kgraphviewer, האם לפתוח בו, "
+"לפתוח בחלון חדש או לשאול?’"
+
+#. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
+#, kde-format
+msgid ""
+"The answer to the question 'Should the files that were opened in previous "
+"sessions be reopened at startup?'"
+msgstr ""
+"התשובה לשאלה ‚האם לפתוח את הקבצים שנשארו פתוחים בהפעלות קודמות מחדש עם "
+"העלייה?’"
+
+#. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
+#: part/kgraphviewer_partsettings.kcfg:9
+#, kde-format
+msgid "If true, the bird's eye view will be shown if needed."
+msgstr "אם חיובי, תצוגת מעוף הציפור תופיע בעת הצורך."
+
+#. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
+#, kde-format
+msgid "The list of files that were opened in past instances of kgraphviewer"
+msgstr "רשימת הקבצים שנפתחו במופעים הקודמים של kgraphviewer"
+
+#. i18n: ectx: ToolBar (viewToolBar)
+#: kgrapheditorui.rc:22 kgraphviewerui.rc:16
+#, kde-format
+msgid "View Toolbar"
+msgstr "סרגל כלי תצוגה"
+
+#. i18n: ectx: ToolBar (helpToolBar)
+#: kgrapheditorui.rc:25 kgraphviewerui.rc:19
+#, kde-format
+msgid "Help Toolbar"
+msgstr "סרגל כלי עזרה"
+
+#. i18n: ectx: ToolBar (editToolBar)
+#: kgrapheditorui.rc:30
+#, kde-format
+msgid "Edit Toolbar"
+msgstr "עריכת סרגל כלים"
+
+#: kgraphviewer.cpp:106
+#, kde-format
+msgid "Do you want to reload files from the previous session?"
+msgstr "לטעון מחדש את הקבצים מההפעלה הקודמת?"
+
+#: kgraphviewer.cpp:108
+#, kde-format
+msgctxt "@action:button"
+msgid "Reload"
+msgstr "לטעון מחדש"
+
+#: kgraphviewer.cpp:109
+#, kde-format
+msgctxt "@action:button"
+msgid "Do Not Reload"
+msgstr "לא לטעון"
+
+#: kgraphviewer.cpp:196
+#, kde-format
+msgid "Opens a new empty KGraphViewer window."
+msgstr "פתיחת חלון ריק חדש של KGraphViewer."
+
+#: kgraphviewer.cpp:199
+#, kde-format
+msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
+msgstr "הצגת חלונית פתיחת קבצים כדי לבחור קובץ DOT של Graphviz לפתיחה."
+
+#: kgraphviewer.cpp:202
+#, kde-format
+msgid ""
+"This lists files which you have opened recently, and allows you to easily "
+"open them again."
+msgstr "הצגת רשימת הקבצים שפתחת לאחרונה, בנוסף לאפשרות לפתוח אותם שוב בקלות."
+
+#: kgraphviewer.cpp:212
+#, kde-format
+msgid "Quits KGraphViewer."
+msgstr "יציאה מ־KGraphViewer."
+
+#: kgraphviewer.cpp:215
+#, kde-format
+msgid "Shows or hides the status bar."
+msgstr "הצגת או הסתרת שורת המצב."
+
+#: kgraphviewer.cpp:218
+#, kde-format
+msgid "Toolbar configuration."
+msgstr "הגדרות סרגל כלים."
+
+#: kgraphviewer.cpp:221
+#, kde-format
+msgid "Main KGraphViewer configuration options."
+msgstr "אפשרויות התצורה העיקריות של KGraphViewer."
+
+#: kgraphviewerConfigDialog.cpp:54
+#, kde-format
+msgid "Appearance"
+msgstr "מראה"
+
+#. i18n: ectx: label, entry (backgroundColor), group (Appearance)
+#: kgraphviewersettings.kcfg:34
+#, kde-format
+msgid "Background color of the graph view."
+msgstr "צבע רקע תצוגת התרשים."
+
+#: main.cpp:39
+#, kde-format
+msgid "KGraphViewer"
+msgstr "KGraphViewer"
+
+#: main.cpp:41
+#, kde-format
+msgid "A Graphviz DOT graph viewer"
+msgstr "מציג תרשימי DOT של Graphviz"
+
+#: main.cpp:46
+#, kde-format
+msgid "Gaël de Chalendar"
+msgstr "גאל דה שלנדה"
+
+#: main.cpp:46
+#, kde-format
+msgid "Original Author and current maintainer"
+msgstr "יוצר מקורי ומתחזק נוכחי"
+
+#: main.cpp:47
+#, kde-format
+msgid "Reimar Döffinger"
+msgstr "ריימאר דפינגר"
+
+#: main.cpp:47 main.cpp:48 main.cpp:49 main.cpp:50
+#, kde-format
+msgid "Contributor"
+msgstr "מתנדב"
+
+#: main.cpp:48
+#, kde-format
+msgid "Matthias Peinhardt"
+msgstr "מתיאס פיינדהארדט"
+
+#: main.cpp:49
+#, kde-format
+msgid "Sandro Andrade"
+msgstr "סאנדרו אנדרייד"
+
+#: main.cpp:50
+#, kde-format
+msgid "Milian Wolff"
+msgstr "מיליאן וולף"
+
+#: main.cpp:51
+#, kde-format
+msgid "Martin Sandsmark"
+msgstr "מרטין זנדסמרק"
+
+#: main.cpp:51
+#, kde-format
+msgid "Port to KF5"
+msgstr "הסבה ל־KF5"
+
+#: main.cpp:84
+#, kde-format
+msgid ""
+"A KGraphViewer window is already open, where do you want to open this file "
+"in the existing window?"
+msgstr ""
+"כבר יש חלון פתוח של KGraphViewer, איפה לפתוח את הקובץ הזה בחלון הנוכחי?"
+
+#: part/canvasedge.cpp:70
+#, kde-format
+msgid ""
+"%1 -> %2\n"
+"label='%3'"
+msgstr ""
+"%1 -> %2\n"
+"תווית=‚%3’"
+
+#: part/canvasedge.cpp:74
+#, kde-format
+msgid "Remove selected edge(s)"
+msgstr "הסרת הקצוות הנבחרים"
+
+#: part/canvaselement.cpp:87
+#, kde-format
+msgid "Remove selected element(s)"
+msgstr "הסרת הרכיבים הנבחרים"
+
+#: part/canvasnode.cpp:51
+#, kde-format
+msgid ""
+"id='%1'\n"
+"label='%2'"
+msgstr ""
+"מזהה=‚%1’\n"
+"תווית=‚%2’"
+
+#: part/dotgraph.cpp:260 part/dotgraph.cpp:263 part/dotgraph.cpp:266
+#: part/dotgraph.cpp:269 part/dotgraph.cpp:272 part/dotgraph.cpp:275
+#, kde-format
+msgid "Layout process failed"
+msgstr "עיבוד הפריסה נכשל"
+
+#: part/dotgraph.cpp:260
+#, kde-format
+msgid "Unable to start %1."
+msgstr "לא ניתן להפעיל את %1."
+
+#: part/dotgraph.cpp:263
+#, kde-format
+msgid "%1 crashed."
+msgstr "%1 קרס."
+
+#: part/dotgraph.cpp:266
+#, kde-format
+msgid "%1 timed out."
+msgstr "הזמן שהוקצב ל־%1 הסתיים."
+
+#: part/dotgraph.cpp:269
+#, kde-format
+msgid "Was not able to write data to the %1 process."
+msgstr "אי אפשר לכתוב את הנתונים לתהליך %1."
+
+#: part/dotgraph.cpp:272
+#, kde-format
+msgid "Was not able to read data from the %1 process."
+msgstr "לא הייתה אפשרות לקרוא נתונים מהתהליך %1."
+
+#: part/dotgraph.cpp:275
+#, kde-format
+msgid "Unknown error running %1."
+msgstr "שגיאה לא ידועה בהרצת %1."
+
+#: part/dotgraphview.cpp:407
+#, kde-format
+msgctxt "@title:menu"
+msgid "Layout Algorithm"
+msgstr "אלגוריתם פריסה"
+
+#: part/dotgraphview.cpp:410
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Dot"
+msgstr "Dot"
+
+#: part/dotgraphview.cpp:411
+#, kde-format
+msgid "Layout the graph using the dot program."
+msgstr "פריסת התרשים באמצעות התוכנית dot."
+
+#: part/dotgraphview.cpp:415
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Neato"
+msgstr "Neato"
+
+#: part/dotgraphview.cpp:416
+#, kde-format
+msgid "Layout the graph using the neato program."
+msgstr "פריסת התרשים באמצעות התוכנית neato."
+
+#: part/dotgraphview.cpp:420
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Twopi"
+msgstr "Twopi"
+
+#: part/dotgraphview.cpp:421
+#, kde-format
+msgid "Layout the graph using the twopi program."
+msgstr "פריסת התרשים באמצעות התוכנית twopi."
+
+#: part/dotgraphview.cpp:425
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Fdp"
+msgstr "Fdp"
+
+#: part/dotgraphview.cpp:426
+#, kde-format
+msgid "Layout the graph using the fdp program."
+msgstr "פריסת התרשים באמצעות התוכנית fdp."
+
+#: part/dotgraphview.cpp:430
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Circo"
+msgstr "Circo"
+
+#: part/dotgraphview.cpp:431
+#, kde-format
+msgid "Layout the graph using the circo program."
+msgstr "פריסת התרשים באמצעות התוכנית circo."
+
+#: part/dotgraphview.cpp:443
+#, kde-format
+msgid "Choose a Graphviz layout algorithm or edit your own one."
+msgstr "נא לבחור אלגוריתם פריסה ל־Graphviz או לערוך אחד משלך."
+
+#: part/dotgraphview.cpp:445
+#, kde-format
+msgid ""
+"Choose a Graphviz layout algorithm or type in your own command that will "
+"generate a graph in the xdot format on its standard output. For example, to "
+"manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+msgstr ""
+"נא לבחור אלגוריתם פריסת Graphviz או להקליד פקודה משלך שתייצר תרשים בתבנית "
+"xdot דרך הפלט התקני (stdout). למשל, כדי לציין ידנית את האפשרות <tt>G</tt> "
+"לפקודת dot, יש להקליד: <tt>dot -Gname=MyGraphName -Txdot </tt>"
+
+#: part/dotgraphview.cpp:453
+#, kde-format
+msgctxt "@title:menu"
+msgid "Export Graph"
+msgstr "ייצוא תרשים"
+
+#: part/dotgraphview.cpp:454
+#, kde-format
+msgid "Allows the graph to be exported in another format."
+msgstr "מאפשר לייצא את הגרף לתבנית קובץ אחרת."
+
+#: part/dotgraphview.cpp:456
+#, kde-format
+msgid ""
+"Use the Export Graph menu to export the graph in another format. There is "
+"currently only one export format supported: as a PNG image."
+msgstr ""
+"ניתן להשתמש בתפריט ייצוא תרשים כדי לייצר את התרשים לסוג קובץ אחר. כרגע יש "
+"תמיכה רק בסוג אחד של קובץ לייצוא: תמונת PNG."
+
+#: part/dotgraphview.cpp:459
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "As Image…"
+msgstr "כתמונה…"
+
+#: part/dotgraphview.cpp:460
+#, kde-format
+msgid "Export the graph to an image file."
+msgstr "ייצוא התרשים לקובץ תמונה."
+
+#: part/dotgraphview.cpp:470
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "התקרבות ב־10% לתרשים שמוצג כרגע"
+
+#: part/dotgraphview.cpp:474
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "התרחקות ב־10% לתרשים שמוצג כרגע"
+
+#: part/dotgraphview.cpp:477
+#, kde-format
+msgctxt "@option:check"
+msgid "Enable Bird's-Eye View"
+msgstr "הפעלת תצוגה ממעוף הציפור"
+
+#: part/dotgraphview.cpp:478
+#, kde-format
+msgid "Enables or disables the Bird's-eye View"
+msgstr "הפעלה או השבתה של תצוגה ממעוף הציפור"
+
+#: part/dotgraphview.cpp:484
+#, kde-format
+msgctxt "@title:menu"
+msgid "Bird's-Eye View Position"
+msgstr "מקום תצוגה ממעוף הציפור"
+
+#: part/dotgraphview.cpp:485
+#, kde-format
+msgid "Allows the Bird's-eye View to be setup."
+msgstr "מאפשר את הגדרת תצוגת מעוף הציפור."
+
+#: part/dotgraphview.cpp:487
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Top Left"
+msgstr "משמאל למעלה"
+
+#: part/dotgraphview.cpp:488
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-left corner."
+msgstr "הצבת תצוגת מעוף הציבור בפינה השמאלית העליונה."
+
+#: part/dotgraphview.cpp:493
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Top Right"
+msgstr "מימין למעלה"
+
+#: part/dotgraphview.cpp:494
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-right corner."
+msgstr "הצבת תצוגת מעוף הציבור בפינה הימנית העליונה."
+
+#: part/dotgraphview.cpp:499
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Bottom Left"
+msgstr "משמאל למטה"
+
+#: part/dotgraphview.cpp:500
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-left corner."
+msgstr "הצבת תצוגת מעוף הציבור בפינה השמאלית התחתונה."
+
+#: part/dotgraphview.cpp:505
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Bottom Right"
+msgstr "מימין למטה"
+
+#: part/dotgraphview.cpp:506
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-right corner."
+msgstr "הצבת תצוגת מעוף הציבור בפינה הימנית התחתונה."
+
+#: part/dotgraphview.cpp:511
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Automatic"
+msgstr "אוטומטי"
+
+#: part/dotgraphview.cpp:512
+#, kde-format
+msgid ""
+"Let KGraphViewer automatically choose the position of the Bird's-eye View."
+msgstr "לאפשר ל־KGraphViewer לבחור את מקום תצוגת מעוף הציפור אוטומטית."
+
+#: part/dotgraphview.cpp:557
+#, kde-format
+msgctxt "@title:menu"
+msgid "Layout"
+msgstr "פריסה"
+
+#: part/dotgraphview.cpp:560
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Specify Layout Command…"
+msgstr "בחירת פקודת פריסה…"
+
+#: part/dotgraphview.cpp:562
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"בחירת פקודת הפריסה לשימוש בעצמך. אם סופק קובץ dot, אמור להיווצר קובץ xdot "
+"דרך הפלט התקני (stdout)."
+
+#: part/dotgraphview.cpp:564
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Reset Layout Command to Default"
+msgstr "איפוס פקודת הפריסה לברירת המחדל"
+
+#: part/dotgraphview.cpp:566
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+"איפוס פקודת הפריסה לשימוש בברירת המחדל כתלות בסוג התרשים (מכוון או לא)."
+
+#: part/dotgraphview.cpp:600
+#, kde-format
+msgid "Select file"
+msgstr "בחירת קובץ"
+
+#: part/dotgraphview.cpp:614
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer"
+msgstr "SVG של התרשים שנוצר על ידי KGraphViewer"
+
+#: part/dotgraphview.cpp:615
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer."
+msgstr "SVG של התרשים שנוצר על ידי KGraphViewer."
+
+#: part/dotgraphview.cpp:662
+#, kde-format
+msgid ""
+"<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
+"than the widget area, an overview panner is shown in one edge. Choose "
+"through the context menu if the optimal position of this overview should be "
+"automatically computed or put it where you want.</p><h2>How to work with it?"
+"</h2><ul><li>To move the graph, you can:  <ul>    <li>click & drag it</"
+"li>    <li>use the elevators</li>    <li>press the arrows keys</li>    "
+"<li>click somewhere in the panner view</li>    <li>use the mouse wheel (up "
+"and down with no modifier, left and right with the <Alt> key pressed)</"
+"li>    <li>or click & drag the panner view</li>  </ul></li><li>To zoom, you "
+"can either use the zoom in and zoom out toolbar buttons, or click on the "
+"<Shift> key while rolling your mouse wheel.</li><li>Try the contextual menu "
+"(usually by right-clicking) to discover other possibilities.</li><li>Try the "
+"<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
+"printing options.</li></ul>"
+msgstr ""
+
+#: part/dotgraphview.cpp:817
+#, kde-format
+msgid "no graph loaded"
+msgstr "לא נטען תרשים"
+
+#: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
+#: part/dotgraphview.cpp:1001
+#, kde-format
+msgid "graph %1 is getting loaded..."
+msgstr "התרשים %1 נטען…"
+
+#: part/dotgraphview.cpp:941
+#, kde-format
+msgid "error parsing file %1"
+msgstr "שגיאה בפענוח הקובץ %1"
+
+#: part/dotgraphview.cpp:1646
+#, kde-format
+msgid "Reload Confirmation"
+msgstr "אישור טעינה מחדש"
+
+#: part/dotgraphview.cpp:1646
+#, kde-format
+msgid ""
+"The file %1 has been modified on disk.\n"
+"Do you want to reload it?"
+msgstr ""
+"הקובץ %1 השתנה בכונן.\n"
+"לטעון אותו מחדש?"
+
+#: part/dotgraphview.cpp:1732
+#, kde-format
+msgid "Layout Command"
+msgstr "פקודת פריסה"
+
+#: part/dotgraphview.cpp:1733
+#, kde-format
+msgid ""
+"Specify here the command that will be used to layout the graph.\n"
+"The command MUST write its results on stdout in xdot format."
+msgstr ""
+"נא לציין כאן את הפקודה שתשמש לפריסת התרשים.\n"
+"הפקודה חייבת לכתובת את התוצאות שלה לפלט התקני (stdout) בתבנית xdot."
+
+#: part/dotgraphview.cpp:2182
+#, kde-format
+msgid "Failed to open %1"
+msgstr "הפתיחה של %1 נכשלה"
+
+#: part/kgraphviewer_part.cpp:84
+#, kde-format
+msgid "Print the graph using current page setup settings"
+msgstr "להדפיס את התרשים עם הגדרות תצורת העמוד הנוכחיות"
+
+#: part/kgraphviewer_part.cpp:87
+#, kde-format
+msgid "Open the print preview window"
+msgstr "פתיחת חלון תצוגה מקדימה להדפסה"
+
+#: part/kgraphviewer_part.cpp:92
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Page Setup…"
+msgstr "הגדרות עמוד…"
+
+#: part/kgraphviewer_part.cpp:93
+#, kde-format
+msgid "Opens the Page Setup dialog to allow graph printing to be setup"
+msgstr "פתיחת חלונית הגדרת עמוד כדי לאפשר הגדרת הדפסת תרשים"
+
+#: part/kgraphviewer_part.cpp:96
+#, kde-format
+msgid "Reload the current graph from file"
+msgstr "לטעון את התרשים הנוכחי מחדש מקובץ"
+
+#. i18n: ectx: Menu (file)
+#: part/kgraphviewer_part.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&קובץ"
+
+#. i18n: ectx: Menu (view)
+#: part/kgraphviewer_part.rc:11
+#, kde-format
+msgid "&View"
+msgstr "ת&צוגה"
+
+#: part/KgvPageLayout.cpp:69
+msgctxt "Page size"
+msgid "Screen"
+msgstr "מסך"
+
+#: part/KgvPageLayout.cpp:70
+msgctxt "Page size"
+msgid "Custom"
+msgstr "מותאם אישית"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: part/KgvPageLayoutColumnsBase.ui:27
+#, kde-format
+msgid "Columns:"
+msgstr "עמודות:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelSpacing)
+#: part/KgvPageLayoutColumnsBase.ui:37
+#, kde-format
+msgid "Column spacing:"
+msgstr "מרווח בין עמודות:"
+
+#: part/KgvPageLayoutDia.cpp:53
+#, kde-format
+msgid "Page Preview"
+msgstr "תצוגת עמוד מקדימה"
+
+#: part/KgvPageLayoutDia.cpp:268
+#, kde-format
+msgid "Page Size & Margins"
+msgstr "גודל עמוד ושוליים"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/KgvPageLayoutHeaderBase.ui:17
+#, kde-format
+msgid "Header"
+msgstr "כותרת עליונה"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhFirst)
+#: part/KgvPageLayoutHeaderBase.ui:23
+#, kde-format
+msgid "Different header for the first page"
+msgstr "כותרת עליונה שונה לעמוד הראשון"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:30
+#, kde-format
+msgid "Different header for even and odd pages"
+msgstr "כותרת עליונה שונה בין עמודים זוגיים לאי־זוגיים"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: part/KgvPageLayoutHeaderBase.ui:55
+#, kde-format
+msgid "Spacing between header and body:"
+msgstr "ריווח בין הכותרת העליונה והגוף:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/KgvPageLayoutHeaderBase.ui:77
+#, kde-format
+msgid "Footer"
+msgstr "כותרת תחתונה"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfFirst)
+#: part/KgvPageLayoutHeaderBase.ui:83
+#, kde-format
+msgid "Different footer for the first page"
+msgstr "כותרת תחתונה שונה לעמוד הראשון"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:90
+#, kde-format
+msgid "Different footer for even and odd pages"
+msgstr "כותרת תחתונה שונה בין עמודים זוגיים לאי־זוגיים"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: part/KgvPageLayoutHeaderBase.ui:115
+#, kde-format
+msgid "Spacing between footer and body:"
+msgstr "ריווח בין הכותרת התחתונה והגוף:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/KgvPageLayoutHeaderBase.ui:137
+#, kde-format
+msgid "Footnote/Endnote"
+msgstr "הערות סיום/שוליים"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: part/KgvPageLayoutHeaderBase.ui:159
+#, kde-format
+msgid "Spacing between footnote and body:"
+msgstr "ריווח בין הערות הסיום והגוף:"
+
+#: part/KgvPageLayoutSize.cpp:58
+#, kde-format
+msgid "Unit:"
+msgstr "יחידה:"
+
+#: part/KgvPageLayoutSize.cpp:71
+#, kde-format
+msgid "All values are given in %1."
+msgstr "כל הערכים מסופקים ב־%1."
+
+#: part/KgvPageLayoutSize.cpp:76
+#, kde-format
+msgid "Page Size"
+msgstr "גודל עמוד"
+
+#: part/KgvPageLayoutSize.cpp:85
+#, kde-format
+msgid "&Size:"
+msgstr "&גודל:"
+
+#: part/KgvPageLayoutSize.cpp:106
+#, kde-format
+msgid "&Width:"
+msgstr "&רוחב:"
+
+#: part/KgvPageLayoutSize.cpp:117
+#, kde-format
+msgid "&Height:"
+msgstr "גו&בה:"
+
+#: part/KgvPageLayoutSize.cpp:131
+#, kde-format
+msgid "Orientation"
+msgstr "כיוון"
+
+#: part/KgvPageLayoutSize.cpp:135
+#, kde-format
+msgid "&Portrait"
+msgstr "ל&אורך"
+
+#: part/KgvPageLayoutSize.cpp:139
+#, kde-format
+msgid "La&ndscape"
+msgstr "ל&רוחב"
+
+#: part/KgvPageLayoutSize.cpp:147
+#, kde-format
+msgid "Margins"
+msgstr "שוליים"
+
+#: part/KgvPageLayoutSize.cpp:370 part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "Page Layout Problem"
+msgstr "בעיית פריסת עמוד"
+
+#: part/KgvPageLayoutSize.cpp:370
+#, kde-format
+msgid "The page width is smaller than the left and right margins."
+msgstr "רוחב העמוד קטן מהשוליים השמאלי והימני."
+
+#: part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "The page height is smaller than the top and bottom margins."
+msgstr "גובה העמוד קטן מהשוליים העליונים והתחתונים."
+
+#: part/KgvUnit.cpp:52
+#, kde-format
+msgid "Millimeters (mm)"
+msgstr "מילימטרים (מ״מ)"
+
+#: part/KgvUnit.cpp:54
+#, kde-format
+msgid "Centimeters (cm)"
+msgstr "סנטימטרים (ס״מ)"
+
+#: part/KgvUnit.cpp:56
+#, kde-format
+msgid "Decimeters (dm)"
+msgstr "דצימטרים (ד״מ)"
+
+#: part/KgvUnit.cpp:58
+#, kde-format
+msgid "Inches (in)"
+msgstr "אינטשים (in)"
+
+#: part/KgvUnit.cpp:60
+#, kde-format
+msgid "Pica (pi)"
+msgstr "פיקה (pi)"
+
+#: part/KgvUnit.cpp:62
+#, kde-format
+msgid "Didot (dd)"
+msgstr "נקודת דידו (dd)"
+
+#: part/KgvUnit.cpp:64
+#, kde-format
+msgid "Cicero (cc)"
+msgstr "קיקרו (cc)"
+
+#: part/KgvUnit.cpp:66
+#, kde-format
+msgid "Points (pt)"
+msgstr "נקודות (נק׳)"
+
+#: part/KgvUnit.cpp:68
+#, kde-format
+msgid "Error."
+msgstr "שגיאה."
+
+#: part/pannerview.cpp:59
+#, kde-format
+msgid "View of the complete graph. Click and drag to move the visible part."
+msgstr "הצגת התרשים במלואו. לחיצה וגרירה יזיזו את החלק הגלוי."
+
+#: part/pannerview.cpp:61
+#, kde-format
+msgid ""
+"<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
+"red square will move the center of the view to where the mouse was clicked.</"
+"p><p>Clicking and dragging within the red square will cause the view to "
+"follow the movement.</p>"
+msgstr ""
+"<h1>הצגת התרשים המלא</h1><p>לחיצה על מקום כלשהו ללא הריבוע האדום תזיז את "
+"מרכז התצוגה לאיפה שלחצת.</p><p>לחיצה וגרירה בתוך הריבוע האדום תגרום לתצוגה "
+"לעקוב אחר התנועה.</p>"
+
+#: part/simpleprintingcommand.cpp:78
+#, kde-format
+msgid "Print Preview"
+msgstr "הצגה מקדימה להדפסה"
+
+#: part/simpleprintingengine.cpp:190 part/simpleprintpreviewwindow.cpp:209
+#: part/simpleprintpreviewwindow.cpp:227
+#, kde-format
+msgctxt "Page (number) of (total)"
+msgid "Page %1 of %2"
+msgstr "עמוד %1 מתוך %2"
+
+#: part/simpleprintingengine.cpp:192
+#, kde-format
+msgid "Page %1"
+msgstr "עמוד %1"
+
+#: part/simpleprintingpagesetup.cpp:85
+#, kde-format
+msgid "Print Preview..."
+msgstr "תצוגה מקדימה להדפסה…"
+
+#: part/simpleprintingpagesetup.cpp:88
+#, kde-format
+msgid "Font..."
+msgstr "גופן…"
+
+#: part/simpleprintingpagesetup.cpp:89
+#, kde-format
+msgid "Changes font for title text."
+msgstr "החלפת גופן לטקסט הכותרת."
+
+#: part/simpleprintingpagesetup.cpp:95
+#, kde-format
+msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
+msgstr "<qt><h2>הגדרת עמוד להדפסת התרשים „%1”</h2></qt>"
+
+#: part/simpleprintingpagesetup.cpp:100
+#, kde-format
+msgid "Saves settings for this setup as default."
+msgstr "שמירת הגדרות התצורה האלה כברירת מחדל."
+
+#: part/simpleprintingpagesetup.cpp:103
+#, kde-format
+msgid "Adds date and time to the header."
+msgstr "הוספת תאריך ושעה לכותרת העליונה."
+
+#: part/simpleprintingpagesetup.cpp:104
+#, kde-format
+msgid "Adds page numbers to the footer."
+msgstr "הוספת מספרי עמודים לכותרת התחתונה."
+
+#: part/simpleprintingpagesetup.cpp:105
+#, kde-format
+msgid "Adds table borders."
+msgstr "הוספת מסגרת לטבלה."
+
+#: part/simpleprintingpagesetup.cpp:113
+#, kde-format
+msgid "Change Page Size and Margins..."
+msgstr "שינוי גודל ושולי העמוד…"
+
+#: part/simpleprintingpagesetup.cpp:114
+#, kde-format
+msgid "Changes page size and margins."
+msgstr "שינוי גודל ושולי העמוד."
+
+#: part/simpleprintingpagesetup.cpp:164
+#, kde-format
+msgid "Chosen font looks like this"
+msgstr "הגופן הנבחר נראה כך"
+
+#: part/simpleprintingpagesetup.cpp:180
+#, kde-format
+msgid "Portrait"
+msgstr "לאורך"
+
+#: part/simpleprintingpagesetup.cpp:180
+#, kde-format
+msgid "Landscape"
+msgstr "לרוחב"
+
+#: part/simpleprintingpagesetup.cpp:180
+#, kde-format
+msgid "margins:"
+msgstr "שוליים:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: part/simpleprintingpagesetupbase.ui:64
+#, kde-format
+msgid "Pa&ge font:"
+msgstr "&גופן העמוד:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/simpleprintingpagesetupbase.ui:93
+#, kde-format
+msgid "Page Size && Margins"
+msgstr "גודל עמוד ושוליים"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:118
+#, kde-format
+msgid "Add &borders"
+msgstr "הוספת מ&סגרת"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
+#: part/simpleprintingpagesetupbase.ui:125
+#, kde-format
+msgid "Add date and time"
+msgstr "הוספת תאריך ושעה"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:148
+#, kde-format
+msgid "Add page numbers"
+msgstr "הוספת מספרי עמודים"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
+#: part/simpleprintingpagesetupbase.ui:159
+#, kde-format
+msgid "Number of pages to fit on"
+msgstr "מספר העמודים להתאמה"
+
+#. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
+#: part/simpleprintingpagesetupbase.ui:167
+#, kde-format
+msgid "&Natural size"
+msgstr "גודל &טבעי"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
+#: part/simpleprintingpagesetupbase.ui:174
+#, kde-format
+msgid "Fit &to one page"
+msgstr "התאמה לעמוד &אחד"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
+#: part/simpleprintingpagesetupbase.ui:181
+#, kde-format
+msgid "F&it to several pages"
+msgstr "התאמה ל&כמה עמודים"
+
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:192
+#, kde-format
+msgctxt "@label:spinbox"
+msgid "Horizontally:"
+msgstr "אופקית:"
+
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:202
+#, kde-format
+msgctxt "@label:spinbox"
+msgid "Vertically:"
+msgstr "אנכית:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
+#: part/simpleprintingpagesetupbase.ui:212
+#, kde-format
+msgctxt "@option:check"
+msgid "Preserve aspect ratio:"
+msgstr "שימור יחס גובה־רוחב:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: part/simpleprintingpagesetupbase.ui:228
+#, kde-format
+msgid "Related actions:"
+msgstr "פעולות קשורות:"
+
+#: part/simpleprintpreviewwindow.cpp:58
+#, kde-format
+msgid "%1 - Print Preview - %2"
+msgstr "%1 - תצוגה מקדימה להדפסה - %2"
+
+#: part/simpleprintpreviewwindow.cpp:73
+#, kde-format
+msgid "&Page setup"
+msgstr "הג&דרת עמוד"
+
+#: part/simpleprintpreviewwindow.cpp:112
+#, kde-format
+msgid "Previous Page"
+msgstr "העמוד הקודם"
+
+#: part/simpleprintpreviewwindow.cpp:122
+#, kde-format
+msgid "Next Page"
+msgstr "העמוד הבא"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: preferencesAppearance.ui:19
+#, kde-format
+msgid "Default background color:"
+msgstr "צבע רקע כברירת מחדל"
+
+#. i18n: ectx: property (text), widget (QLabel, note)
+#: preferencesAppearance.ui:51
+#, kde-format
+msgid "Note: this will be overridden if the graph has its own background color"
+msgstr "הערה: ההגדרה הזאת תידרס אם לתרשים יש צבע רקע משלו"
+
+#. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
+#: preferencesOpenInExistingWindow.ui:17
+#, kde-format
+msgid "Open in existing window"
+msgstr "פתיחה בחלון הנוכחי"
+
+#. i18n: ectx: property (text), widget (QRadioButton, yes)
+#: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
+#: preferencesReopenPreviouslyOpenedFiles.ui:29
+#, kde-format
+msgid "&Yes"
+msgstr "&כן"
+
+#. i18n: ectx: property (text), widget (QRadioButton, no)
+#: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
+#: preferencesReopenPreviouslyOpenedFiles.ui:36
+#, kde-format
+msgid "&No"
+msgstr "&לא"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesOpenInExistingWindow.ui:37
+#: preferencesReopenPreviouslyOpenedFiles.ui:43
+#, kde-format
+msgid "As&k"
+msgstr "ל&שאול"
+
+#. i18n: ectx: property (title), widget (QGroupBox, parsingMode)
+#: preferencesParsing.ui:17
+#, kde-format
+msgid "Parse using:"
+msgstr "פענוח באמצעות:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, external)
+#: preferencesParsing.ui:26
+#, kde-format
+msgid "E&xternal command"
+msgstr "פקודה &חיצונית"
+
+#. i18n: ectx: property (text), widget (QRadioButton, internal)
+#: preferencesParsing.ui:33
+#, kde-format
+msgid "Internal &library"
+msgstr "ספרייה &פנימית"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
+#: preferencesReload.ui:17
+#, kde-format
+msgid "Reload files modified on disk"
+msgstr "לרענן קבצים שנערכו בכונן"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesReload.ui:40
+#, kde-format
+msgid "&Ask"
+msgstr "ל&שאול"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
+#: preferencesReopenPreviouslyOpenedFiles.ui:17
+#, kde-format
+msgid "Reopen previously opened files"
+msgstr "לפתוח קבצים שנשארו פתוחים מהפעם הקודמת"
