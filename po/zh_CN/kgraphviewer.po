@@ -397,7 +397,7 @@ msgstr "运行 %1 发生未知错误。"
 #, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr ""
+msgstr "布局算法"
 
 #: part/dotgraphview.cpp:410
 #, kde-format
@@ -494,7 +494,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr ""
+msgstr "作为图像..."
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -515,7 +515,7 @@ msgstr "将当前所观察的图缩小10%"
 #, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
-msgstr ""
+msgstr "启用鸟瞰图"
 
 #: part/dotgraphview.cpp:478
 #, kde-format
@@ -526,7 +526,7 @@ msgstr "启用或禁用鸟瞰视图"
 #, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr ""
+msgstr "鸟瞰视图位置"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -599,7 +599,7 @@ msgstr "布局"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr ""
+msgstr "指定布局命令"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -614,7 +614,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr ""
+msgstr "重置布局命令为默认值"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -729,7 +729,7 @@ msgstr "打开打印预览窗口"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr ""
+msgstr "页面设置"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
