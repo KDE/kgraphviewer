@@ -91,6 +91,7 @@
     <p xml:lang="fi">KGraphViewer on Graphviz DOT -graafitiedostokatselin, jonka tavoitteena on korvata vanhentuneet GraphViz-työkalut. Graafeja käytetään usein tieteellisillä aloilla ja erityisesti tietojenkäsittelyssä.</p>
     <p xml:lang="fr">KGraphViewer est un afficheur de fichiers de graphes DOT au format GraphViz, prévu pour remplacer les autres outils GraphViz maintenant obsolètes. Les graphes sont utilisés couramment dans les domaines scientifiques, et en particulier en informatique.</p>
     <p xml:lang="gl">KGraphViewer é un visor de gráficos DOT de Graphviz que pretende substituír o resto de ferramentas obsoletas de Graphviz. Os gráficos adoitan usarse en contextos científicos e, especialmente, na enxeñaría informática.</p>
+    <p xml:lang="he">KGraphViewer מצי קובצי תרשימי DOT של Graphviz, מיועד להחליף את שאר כלי ה־Graphviz המיושנים. תרשימים מאוד נפוצים בתחומי המדעים ובמיוחד במדעי המחשב.</p>
     <p xml:lang="id">KGraphViewer adalah sebuah penampil file grafik Graphviz DOT, ditujukan untuk mengganti alat grafis lainnya yang kedaluwarsa.</p>
     <p xml:lang="it">KGraphViewer è un visore di file di grafi DOT, progettato per sostituire i più datati altri strumenti per Graphviz. I grafi sono spesso usati in ambito scientifico, soprattutto in informatica.</p>
     <p xml:lang="ka">KGraphViewer წარმოადგენს Graphviz DOT გრაფიკის ფაილის დამთვალიერებელს, რომელიც სხვა, ჩამორჩენილი Graphviz-ის პროგრამების ჩასანაცვლებლადაა განკუთვნილი. გრაფიკები, ჩვეულებრივ, სამეცნიერო წრეებში, უფრო ზუსტად კი კომპიუტერულ მეცნიერებებში გამოიყენება.</p>
@@ -193,6 +194,7 @@
       <li xml:lang="fi">Useamman graafin säikeistetty lataus välilehtiin</li>
       <li xml:lang="fr">Chargement en parallèle de plusieurs graphes dans des onglets</li>
       <li xml:lang="gl">Cargar varios gráficos separadores usando fíos</li>
+      <li xml:lang="he">טעינה רב־תהליכית של מגוון תרשימים בלשוניות</li>
       <li xml:lang="id">Pemuatan berutas dari beberapa grafik dalam tab-tab</li>
       <li xml:lang="it">Caricamento simultaneo con thread di diversi grafi tempo in schede</li>
       <li xml:lang="ka">რამდენიმე გრაფიკის გახსნა სხვადასხვა ჩანართში</li>
@@ -290,6 +292,7 @@
       <li xml:lang="fi">Graafin näyttö lintuperspektiivissä</li>
       <li xml:lang="fr">Affichage de la totalité du graphe</li>
       <li xml:lang="gl">Amosar unha vista de paxaro dos gráficos.</li>
+      <li xml:lang="he">הצגת התרשים ממעוף הציפור</li>
       <li xml:lang="id">Mendisplaikan sebuah tampilan mata burung pada grafik</li>
       <li xml:lang="it">Vista a volo d'aquila del grafo</li>
       <li xml:lang="ka">გრაფიკის საერთო ხედის ჩვენება</li>
@@ -322,6 +325,7 @@
       <li xml:lang="fi">Graafin siirto vetämällä</li>
       <li xml:lang="fr">Déplacement du graphe par glissement</li>
       <li xml:lang="gl">Usar arrastrar e soltar para mover os gráficos.</li>
+      <li xml:lang="he">אפשר להזיז את התרשים בגרירה</li>
       <li xml:lang="id">Pemindahan grafik dengan penyeretan</li>
       <li xml:lang="it">Spostamento del grafo con trascinamento</li>
       <li xml:lang="ka">გრაფიკის გადაადგილება გადათრევით</li>
@@ -387,6 +391,7 @@
       <li xml:lang="fi">Kaikkien graphviz-esimerkkigraafien täydellinen piirto</li>
       <li xml:lang="fr">Rendu parfait de tous les exemples de graphes « GraphViz »</li>
       <li xml:lang="gl">Debuxa perfectamente todos os gráficos de exemplo de Graphviz.</li>
+      <li xml:lang="he">ציור מושלם של כל תרשימי ההדגמה של graphviz</li>
       <li xml:lang="id">Penggambaran sempurna dari semua grafik-grafik contoh graphviz</li>
       <li xml:lang="it">Tracciamento perfetto di tutti i grafi d'esempio di graphviz</li>
       <li xml:lang="ka">Graphviz-ის გრაფიკების შესანიშნავი ხატვა</li>
@@ -419,6 +424,7 @@
       <li xml:lang="fi">Valitse dot automaattisesti suunnatuille graafeille ja neato suuntaamattomille</li>
       <li xml:lang="fr">Choisir automatiquement le format « dot » pour les graphes orientés et le format « neato » pour les graphes non-orientés</li>
       <li xml:lang="gl">Escolle automaticamente dot para os gráficos dirixidos e neato para os gráficos non dirixidos.</li>
+      <li xml:lang="he">בחירה אוטומטית ב־dot לתרשימים מוכוונים וב־neato לתרשימים לא מוכוונים</li>
       <li xml:lang="id">Memilih secara otomatis titik untuk grafik yang dilangsungkan dan neato untuk yang takdilangsungkan</li>
       <li xml:lang="it">Scelta automatica di dot per i grafi orientati e neato per i non orientati</li>
       <li xml:lang="ka">ორიენტირებული გრაფიკებისთვის dot-ის ავტომატური არჩევა და neato-ის - არაორიენტირებულებისთვის</li>
@@ -450,6 +456,7 @@
       <li xml:lang="fi">Mahdollisuus käyttää mitä tahansa asettelualgoritmia, kunhan se tuottaa xdot-muotoa</li>
       <li xml:lang="fr">Possibilité d'utiliser un algorithme de disposition arbitraire du moment qu'il produit le format xdot</li>
       <li xml:lang="gl">Permite usar un algoritmo de disposición arbitraria en canto produce o formato xdot.</li>
+      <li xml:lang="he">אפשרות להשתמש באלגוריתם פריסה שרירותי תוך כדי יצירה בתסדיר xdot</li>
       <li xml:lang="id">Secara mungkin untuk menggunakan sebuah algoritma tataletak sesukanya setelah menghasilkan format xdot </li>
       <li xml:lang="it">Possibilità di usare un qualsiasi algoritmo di disposizione che produca il formato xdot</li>
       <li xml:lang="ka">შემთხვევითი განლაგების ალგორითმის გამოყენების შესაძლებლობა, თუ ის xdot ფორმატს გამოსცემს</li>
@@ -481,6 +488,7 @@
       <li xml:lang="fi">Automaattinen uudelleenlataus mutta käyttäjä vahvistaa (ulkoisesti) muuttuneet tiedostot (mukautettavissa)</li>
       <li xml:lang="fr">Rechargement automatique (configurable) de fichiers modifiés (extérieurement) avec confirmation de l'utilisateur </li>
       <li xml:lang="gl">Permite cargar de novo automaticamente, previa confirmación por parte do usuario, ficheiros modificador de maneira externa.</li>
+      <li xml:lang="he">רענון אוטומטי מחדש עם אישור המשתמש של קבצים שנערכו (חיצונית - נתון להגדרה)</li>
       <li xml:lang="id">Memuat-ulang otomatis dengan konfirmasi pengguna dari (secara external) file-file yang dimodifikasi (dapatdikonfigurasi)</li>
       <li xml:lang="it">Ricaricamento automatico con conferma dell'utente dei file modificati da altri programmi (configurabile)</li>
       <li xml:lang="ka">(პროგრამის გარეთ) შეცვლილი ფაილების თავიდან ავტომატური თავიდან ჩატვირთვა მომხმარებლის დადასტურებით (მორგებადი)</li>
@@ -512,6 +520,7 @@
       <li xml:lang="fi">Avaa uudet instanssit uusiksi välilehdiksi vanhaan instanssiin (mukautettavissa)</li>
       <li xml:lang="fr">Ouvrir les nouvelles instances dans de nouveaux onglets (configurable)</li>
       <li xml:lang="gl">Permite abrir novas instancias como separadores da instancia anterior</li>
+      <li xml:lang="he">פתיחת מופעים חדשים כלשוניות חדשות בחלון הישן (נתון להגדרה)</li>
       <li xml:lang="id">Buka instansi baru sebagai tab-tab baru di dalam lawasnya (dapatdikonfigurasi) </li>
       <li xml:lang="it">Apertura di nuove istanze come nuove schede della preesistente (configurabile)</li>
       <li xml:lang="ka">გახსენით ახალი გაშვებული ასლები ძველ ფანჯარაში ახალი ჩანართების სახით (მორგებადი)</li>
