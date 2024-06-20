@@ -406,14 +406,12 @@ msgstr "Okänt fel vid körning av %1."
 
 #: part/dotgraphview.cpp:407
 #, kde-format
-#| msgid "Select Layout Algo"
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
 msgstr "Layoutalgoritm"
 
 #: part/dotgraphview.cpp:410
 #, kde-format
-#| msgid "Dot"
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
@@ -425,7 +423,6 @@ msgstr "Gör layout av grafen med programmet dot."
 
 #: part/dotgraphview.cpp:415
 #, kde-format
-#| msgid "Neato"
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -437,7 +434,6 @@ msgstr "Gör layout av grafen med programmet neato."
 
 #: part/dotgraphview.cpp:420
 #, kde-format
-#| msgid "Twopi"
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -449,7 +445,6 @@ msgstr "Gör layout av grafen med programmet twopi."
 
 #: part/dotgraphview.cpp:425
 #, kde-format
-#| msgid "Fdp"
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -461,7 +456,6 @@ msgstr "Gör layout av grafen med programmet fdp."
 
 #: part/dotgraphview.cpp:430
 #, kde-format
-#| msgid "Circo"
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -491,7 +485,6 @@ msgstr ""
 
 #: part/dotgraphview.cpp:453
 #, kde-format
-#| msgid "Export Graph"
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "Exportera graf"
@@ -512,7 +505,6 @@ msgstr ""
 
 #: part/dotgraphview.cpp:459
 #, kde-format
-#| msgid "As Image..."
 msgctxt "@action:inmenu"
 msgid "As Image…"
 msgstr "Som bild..."
@@ -534,7 +526,6 @@ msgstr "Zooma ut 10 % i grafen som för närvarande visas"
 
 #: part/dotgraphview.cpp:477
 #, kde-format
-#| msgid "Enable Bird's-eye View"
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
 msgstr "Aktivera översiktsvy"
@@ -546,7 +537,6 @@ msgstr "Aktiverar eller inaktiverar översiktsvyn"
 
 #: part/dotgraphview.cpp:484
 #, kde-format
-#| msgid "Birds-eye View"
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
 msgstr "Översiktsvyns position"
@@ -558,7 +548,6 @@ msgstr "Gör det möjligt att ställa in översiktsvyn."
 
 #: part/dotgraphview.cpp:487
 #, kde-format
-#| msgid "Top Left"
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "Uppe till vänster"
@@ -570,7 +559,6 @@ msgstr "Placerar översiktsvyn i hörnet längst upp till vänster."
 
 #: part/dotgraphview.cpp:493
 #, kde-format
-#| msgid "Top Right"
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "Uppe till höger"
@@ -582,7 +570,6 @@ msgstr "Placerar översiktsvyn i hörnet längst upp till höger."
 
 #: part/dotgraphview.cpp:499
 #, kde-format
-#| msgid "Bottom Left"
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "Nere till vänster"
@@ -594,7 +581,6 @@ msgstr "Placerar översiktsvyn i hörnet längst ner till vänster."
 
 #: part/dotgraphview.cpp:505
 #, kde-format
-#| msgid "Bottom Right"
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "Nere till höger"
@@ -606,7 +592,6 @@ msgstr "Placerar översiktsvyn i hörnet längst ner till höger."
 
 #: part/dotgraphview.cpp:511
 #, kde-format
-#| msgid "Automatic"
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "Automatisk"
@@ -619,14 +604,12 @@ msgstr "Låter Kgraphviewer automatiskt välja översiktsvyns placering."
 
 #: part/dotgraphview.cpp:557
 #, kde-format
-#| msgid "Layout"
 msgctxt "@title:menu"
 msgid "Layout"
 msgstr "Layout"
 
 #: part/dotgraphview.cpp:560
 #, kde-format
-#| msgid "Specify layout command"
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
 msgstr "Ange layoutkommando…"
@@ -642,7 +625,6 @@ msgstr ""
 
 #: part/dotgraphview.cpp:564
 #, kde-format
-#| msgid "Reset layout command to default"
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
 msgstr "Återställ layoutkommando till standardvärde"
@@ -767,7 +749,6 @@ msgstr "Öppna förhandsgranskningsfönstret av utskrift"
 
 #: part/kgraphviewer_part.cpp:92
 #, kde-format
-#| msgid "Page setup"
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
 msgstr "Sidinställning…"
@@ -1160,7 +1141,6 @@ msgstr "Anpassa till flera s&idor"
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
 #, kde-format
-#| msgid "Horizontally"
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
 msgstr "Horisontellt:"
@@ -1168,7 +1148,6 @@ msgstr "Horisontellt:"
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
 #, kde-format
-#| msgid "Vertically"
 msgctxt "@label:spinbox"
 msgid "Vertically:"
 msgstr "Vertikalt:"
@@ -1482,4 +1461,3 @@ msgstr "Öppna tidigare öppnade filer igen"
 
 #~ msgid "graph is getting loaded..."
 #~ msgstr "graf håller på att laddas..."
-
