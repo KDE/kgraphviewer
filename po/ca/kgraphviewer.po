@@ -1276,9 +1276,3 @@ msgstr "Pregunt&a"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Reobre els fitxers prèviament oberts"
-
-#~ msgid "Zoom In"
-#~ msgstr "Augmenta"
-
-#~ msgid "Zoom Out"
-#~ msgstr "Redueix"
