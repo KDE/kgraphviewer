@@ -550,6 +550,7 @@
   </screenshots>
   <project_group>KDE</project_group>
   <releases>
+    <release version="2.5.24080" date="2024-08-22"/>
     <release version="2.5.0" date="2024-05-08"/>
     <release version="2.4.3" date="2018-09-17"/>
     <release version="2.4.2" date="2017-09-27"/>
