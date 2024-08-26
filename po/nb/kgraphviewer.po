@@ -402,14 +402,12 @@ msgstr "Ukjent feil under kjøring av %1."
 
 #: part/dotgraphview.cpp:407
 #, fuzzy, kde-format
-#| msgid "Select Layout Algo"
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
 msgstr "Velg utformingsalgoritme"
 
 #: part/dotgraphview.cpp:410
 #, fuzzy, kde-format
-#| msgid "Dot"
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
@@ -421,7 +419,6 @@ msgstr "Lag grafen med dot-programmet."
 
 #: part/dotgraphview.cpp:415
 #, fuzzy, kde-format
-#| msgid "Neato"
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -433,7 +430,6 @@ msgstr "Lag grafen med neato-programmet."
 
 #: part/dotgraphview.cpp:420
 #, fuzzy, kde-format
-#| msgid "Twopi"
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -445,7 +441,6 @@ msgstr "Lag grafen med twopi-programmet."
 
 #: part/dotgraphview.cpp:425
 #, fuzzy, kde-format
-#| msgid "Fdp"
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -457,7 +452,6 @@ msgstr "Lag grafen med fdp-programmet."
 
 #: part/dotgraphview.cpp:430
 #, fuzzy, kde-format
-#| msgid "Circo"
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -483,7 +477,6 @@ msgstr ""
 
 #: part/dotgraphview.cpp:453
 #, fuzzy, kde-format
-#| msgid "Export Graph"
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "Eksporter graf"
@@ -504,7 +497,6 @@ msgstr ""
 
 #: part/dotgraphview.cpp:459
 #, fuzzy, kde-format
-#| msgid "As Image..."
 msgctxt "@action:inmenu"
 msgid "As Image…"
 msgstr "Som bilde …"
@@ -526,7 +518,6 @@ msgstr "Forminsk den grafen som nå vises med 10%"
 
 #: part/dotgraphview.cpp:477
 #, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
 msgstr "Slå på fugleperspektiv"
@@ -538,7 +529,6 @@ msgstr "Slår på eller av fugleperpektivet"
 
 #: part/dotgraphview.cpp:484
 #, fuzzy, kde-format
-#| msgid "Birds-eye View"
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
 msgstr "Fugleperspektiv"
@@ -550,7 +540,6 @@ msgstr "Brukes til å stille inn fugleperspektivet."
 
 #: part/dotgraphview.cpp:487
 #, fuzzy, kde-format
-#| msgid "Top Left"
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "Øvre venstre"
@@ -562,7 +551,6 @@ msgstr "Legger fugleperspektivet i øvre venstre hjørne."
 
 #: part/dotgraphview.cpp:493
 #, fuzzy, kde-format
-#| msgid "Top Right"
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "Øvre høyre"
@@ -574,7 +562,6 @@ msgstr "Legger fugleperspektivet i øvre høyre hjørne."
 
 #: part/dotgraphview.cpp:499
 #, fuzzy, kde-format
-#| msgid "Bottom Left"
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "Nedre venstre"
@@ -586,7 +573,6 @@ msgstr "Legger fugleperspektivet i nedre venstre hjørne."
 
 #: part/dotgraphview.cpp:505
 #, fuzzy, kde-format
-#| msgid "Bottom Right"
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "Nedre høyre"
@@ -598,7 +584,6 @@ msgstr "Legger fugleperspektivet i nedre høyre hjørne."
 
 #: part/dotgraphview.cpp:511
 #, fuzzy, kde-format
-#| msgid "Automatic"
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "Automatisk"
@@ -611,14 +596,12 @@ msgstr "Lar KGraphViewer automatisk velge plassering for fugleperspektivet."
 
 #: part/dotgraphview.cpp:557
 #, fuzzy, kde-format
-#| msgid "Layout"
 msgctxt "@title:menu"
 msgid "Layout"
 msgstr "Utforming"
 
 #: part/dotgraphview.cpp:560
 #, fuzzy, kde-format
-#| msgid "Specify layout command"
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
 msgstr "Oppgi utformingskommando"
@@ -634,7 +617,6 @@ msgstr ""
 
 #: part/dotgraphview.cpp:564
 #, fuzzy, kde-format
-#| msgid "Reset layout command to default"
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
 msgstr "Tilbakestill utformingskommando til standard"
@@ -743,7 +725,6 @@ msgstr "Åpne vindu med forhåndsvisning av utskrift"
 
 #: part/kgraphviewer_part.cpp:92
 #, fuzzy, kde-format
-#| msgid "Page setup"
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
 msgstr "Sideoppsett"
