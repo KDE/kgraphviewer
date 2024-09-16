@@ -418,8 +418,7 @@ msgid "Layout Algorithm"
 msgstr "Επιλογή αλγορίθμου διάταξης"
 
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
 msgstr "Dot"
@@ -430,8 +429,7 @@ msgid "Layout the graph using the dot program."
 msgstr "Διάταξη του γράφου με τη χρήση του προγράμματος dot."
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
 msgstr "Neato"
@@ -442,8 +440,7 @@ msgid "Layout the graph using the neato program."
 msgstr "Διάταξη του γράφου με τη χρήση του προγράμματος neato."
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
 msgstr "Twopi"
@@ -454,8 +451,7 @@ msgid "Layout the graph using the twopi program."
 msgstr "Διάταξη του γράφου με τη χρήση του προγράμματος twopi."
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
 msgstr "Fdp"
@@ -466,8 +462,7 @@ msgid "Layout the graph using the fdp program."
 msgstr "Διάταξη του γράφου με τη χρήση του προγράμματος fdp."
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
 msgstr "Circo"
@@ -497,8 +492,7 @@ msgstr ""
 "dot, πληκτρολογήστε: <tt>dot -Gname=MyGraphName -Txdot </tt>"
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
 msgstr "Εξαγωγή γράφου"
@@ -518,11 +512,10 @@ msgstr ""
 "Αυτή τη στιγμή υπάρχει υποστήριξη μόνο για τη μορφή: ως εικόνα PNG."
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "Ως εικόνα..."
+msgstr "Ως εικόνα…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -564,8 +557,7 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr "Ρύθμιση της πανοραμικής προβολής."
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
 msgstr "Πάνω αριστερά"
@@ -576,8 +568,7 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr "Τοποθέτηση της πανοραμικής προβολής στην πάνω αριστερή γωνία."
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
 msgstr "Πάνω δεξιά"
@@ -588,8 +579,7 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr "Τοποθέτηση της πανοραμικής προβολής στην πάνω δεξιά γωνία."
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
 msgstr "Κάτω αριστερά"
@@ -600,8 +590,7 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr "Τοποθέτηση της πανοραμικής προβολής στην κάτω αριστερή γωνία."
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
 msgstr "Κάτω δεξιά"
@@ -612,8 +601,7 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr "Τοποθέτηση της πανοραμικής προβολής στην κάτω δεξιά γωνία."
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
 msgstr "Αυτόματο"
@@ -626,18 +614,16 @@ msgstr ""
 "Αυτόματη επιλογή από το KGraphViewer της θέσης της πανοραμικής προβολής."
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
 msgstr "Διάταξη"
 
 #: part/dotgraphview.cpp:560
-#, fuzzy, kde-format
-#| msgid "Specify layout command"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "Καθορίστε εντολή διάταξης"
+msgstr "Καθορίστε εντολή διάταξης…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -648,8 +634,7 @@ msgstr ""
 "Επιλέξτε την εντολή διάταξης που θα χρησιμοποιηθεί. Δίνοντας ένα αρχείο dot, θα πρέπει να παραχθεί ένα αρχείο xdot στην τυπική έξοδο."
 
 #: part/dotgraphview.cpp:564
-#, fuzzy, kde-format
-#| msgid "Reset layout command to default"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
 msgstr "Επαναφορά εντολής στην προκαθορισμένη τιμή"
@@ -774,11 +759,10 @@ msgid "Open the print preview window"
 msgstr "Άνοιγμα παραθύρου προεπισκόπησης εκτύπωσης"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Ρύθμιση σελίδας"
+msgstr "Ρύθμιση σελίδας…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -1168,19 +1152,17 @@ msgstr "Π&ροσαρμογή σε πολλές σελίδες"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
-#, fuzzy, kde-format
-#| msgid "Horizontally"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "Οριζόντια"
+msgstr "Οριζόντια:"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
-#, fuzzy, kde-format
-#| msgid "Vertically"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "Κατακόρυφα"
+msgstr "Κατακόρυφα:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
