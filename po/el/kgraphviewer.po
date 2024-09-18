@@ -533,8 +533,7 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr "Σμίκρυνση κατά 10% στον τρέχοντα προβαλλόμενο γράφο"
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Enable Bird's-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
 msgstr "Ενεργοποίηση πανοραμικής προβολής"
