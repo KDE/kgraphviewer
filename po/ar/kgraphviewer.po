@@ -1,4 +1,5 @@
 # translation of kgraphviewer.po to
+# SPDX-FileCopyrightText: 2024 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 # محمد سعد  Mohamed SAAD <metehyi@free.fr>, 2006.
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
 msgid ""
@@ -6,30 +7,31 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2007-10-14 15:24+0000\n"
-"Last-Translator: Youssef Chahibi <chahibi@gmail.com>\n"
-"Language-Team: <en@li.org>\n"
+"PO-Revision-Date: 2024-09-19 09:55+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: ar\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "زايد السعيدي"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "zayed.alsaidi@gmail.com"
 
 #: kgrapheditor.cpp:126 kgraphviewer.cpp:107
-#, fuzzy, kde-format
+#, kde-format
 msgid "Session Restore"
-msgstr "توجيه الجلسة"
+msgstr "استعادة الجلسة"
 
 #: kgrapheditor.cpp:126
 #, fuzzy, kde-format
@@ -69,22 +71,22 @@ msgstr "احفظ الحالي مبيان إلى."
 #: kgrapheditorConfigDialog.cpp:48 kgraphviewerConfigDialog.cpp:55
 #, kde-format
 msgid "Parsing"
-msgstr ""
+msgstr "تجزئة"
 
 #: kgrapheditorConfigDialog.cpp:49 kgraphviewerConfigDialog.cpp:56
-#, fuzzy, kde-format
+#, kde-format
 msgid "Reloading"
-msgstr "إعادة تحميل"
+msgstr "إعادة التحميل"
 
 #: kgrapheditorConfigDialog.cpp:50 kgraphviewerConfigDialog.cpp:57
-#, fuzzy, kde-format
+#, kde-format
 msgid "Opening"
-msgstr "الإفتتاح"
+msgstr "يفتح"
 
 #: kgrapheditorConfigDialog.cpp:51 kgraphviewerConfigDialog.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgid "Session Management"
-msgstr "توجيه الجلسة"
+msgstr "إدارة الجلسات"
 
 #: KGraphEditorElementTreeWidget.cpp:50 KGraphEditorNodesTreeWidget.cpp:54
 #, fuzzy, kde-format
@@ -114,12 +116,12 @@ msgstr "C"
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "Path or URL to scan"
-msgstr ""
+msgstr "مسار أو عنون لمسحه"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "[url]"
-msgstr ""
+msgstr "[المسار]"
 
 #: kgrapheditormain.cpp:82 main.cpp:84
 #, fuzzy, kde-format
@@ -194,9 +196,9 @@ msgstr "شريط أدوات المساعدة"
 
 #. i18n: ectx: ToolBar (editToolBar)
 #: kgrapheditorui.rc:30
-#, fuzzy, kde-format
+#, kde-format
 msgid "Edit Toolbar"
-msgstr "تحرير شريط الأدوات"
+msgstr "حرر شريط الأدوات"
 
 #: kgraphviewer.cpp:106
 #, fuzzy, kde-format
@@ -204,10 +206,10 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "تنفيذ إلى إعادة التّحميل ملفات من السابق جلسة?"
 
 #: kgraphviewer.cpp:108
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "إعادة تحميل"
+msgstr "أعد التحميل"
 
 #: kgraphviewer.cpp:109
 #, kde-format
@@ -226,12 +228,11 @@ msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
 
 #: kgraphviewer.cpp:202
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "This lists files which you have opened recently, and allows you to easily "
 "open them again."
-msgstr ""
-"يسرد هذا الملفات التي قمت بفتحها مؤخراً، ويسمح لك بفتحها بسهولة مرة أخرى."
+msgstr "يسرد هذا الملفّات التي فتحتها حديثًا، ويسمح لك بفتحها مجدّدًا بسهولة."
 
 #: kgraphviewer.cpp:212
 #, fuzzy, kde-format
@@ -256,7 +257,7 @@ msgstr ""
 #: kgraphviewerConfigDialog.cpp:54
 #, kde-format
 msgid "Appearance"
-msgstr ""
+msgstr "المظهر"
 
 #. i18n: ectx: label, entry (backgroundColor), group (Appearance)
 #: kgraphviewersettings.kcfg:34
@@ -282,7 +283,7 @@ msgstr ""
 #: main.cpp:46
 #, kde-format
 msgid "Original Author and current maintainer"
-msgstr ""
+msgstr "المؤلف الأصلي و المتابع الحالي"
 
 #: main.cpp:47
 #, kde-format
@@ -292,7 +293,7 @@ msgstr ""
 #: main.cpp:47 main.cpp:48 main.cpp:49 main.cpp:50
 #, kde-format
 msgid "Contributor"
-msgstr ""
+msgstr "مساهم"
 
 #: main.cpp:48
 #, kde-format
@@ -307,12 +308,12 @@ msgstr ""
 #: main.cpp:50
 #, kde-format
 msgid "Milian Wolff"
-msgstr ""
+msgstr "Milian Wolff"
 
 #: main.cpp:51
 #, kde-format
 msgid "Martin Sandsmark"
-msgstr ""
+msgstr "Martin Sandsmark"
 
 #: main.cpp:51
 #, kde-format
@@ -396,7 +397,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
-msgstr ""
+msgstr "نقطة"
 
 #: part/dotgraphview.cpp:411
 #, kde-format
@@ -526,7 +527,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
-msgstr ""
+msgstr "أعلى اليسار"
 
 #: part/dotgraphview.cpp:488
 #, kde-format
@@ -537,7 +538,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
-msgstr ""
+msgstr "أعلى اليمين"
 
 #: part/dotgraphview.cpp:494
 #, kde-format
@@ -548,7 +549,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
-msgstr ""
+msgstr "أسفل اليسار"
 
 #: part/dotgraphview.cpp:500
 #, kde-format
@@ -559,7 +560,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
-msgstr ""
+msgstr "أسفل اليمين"
 
 #: part/dotgraphview.cpp:506
 #, kde-format
@@ -570,7 +571,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
-msgstr ""
+msgstr "تلقائي"
 
 #: part/dotgraphview.cpp:512
 #, kde-format
@@ -582,7 +583,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
-msgstr ""
+msgstr "التّخطيط"
 
 #: part/dotgraphview.cpp:560
 #, kde-format
@@ -613,7 +614,7 @@ msgstr ""
 #: part/dotgraphview.cpp:600
 #, kde-format
 msgid "Select file"
-msgstr ""
+msgstr "اختر ملفًّا"
 
 #: part/dotgraphview.cpp:614
 #, kde-format
@@ -687,7 +688,7 @@ msgstr ""
 #: part/dotgraphview.cpp:2182
 #, kde-format
 msgid "Failed to open %1"
-msgstr ""
+msgstr "فشل في فتح %1"
 
 #: part/kgraphviewer_part.cpp:84
 #, kde-format
@@ -700,10 +701,10 @@ msgid "Open the print preview window"
 msgstr "إفتح في النافذة الموجودة"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "قياس الصفحة و الهوامش"
+msgstr "إعداد الصفحة…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -717,25 +718,25 @@ msgstr "احفظ الحالي مبيان إلى."
 
 #. i18n: ectx: Menu (file)
 #: part/kgraphviewer_part.rc:4
-#, fuzzy, kde-format
+#, kde-format
 msgid "&File"
 msgstr "&ملف"
 
 #. i18n: ectx: Menu (view)
 #: part/kgraphviewer_part.rc:11
-#, fuzzy, kde-format
+#, kde-format
 msgid "&View"
-msgstr "ا&عرض"
+msgstr "&عرض"
 
 #: part/KgvPageLayout.cpp:69
 msgctxt "Page size"
 msgid "Screen"
-msgstr ""
+msgstr "الشاشة"
 
 #: part/KgvPageLayout.cpp:70
 msgctxt "Page size"
 msgid "Custom"
-msgstr ""
+msgstr "مخصّص"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: part/KgvPageLayoutColumnsBase.ui:27
@@ -745,9 +746,9 @@ msgstr "العواميد:"
 
 #. i18n: ectx: property (text), widget (QLabel, labelSpacing)
 #: part/KgvPageLayoutColumnsBase.ui:37
-#, fuzzy, kde-format
+#, kde-format
 msgid "Column spacing:"
-msgstr "عمود فصل:"
+msgstr "تباعد الأعمدة:"
 
 #: part/KgvPageLayoutDia.cpp:53
 #, kde-format
@@ -755,13 +756,13 @@ msgid "Page Preview"
 msgstr ""
 
 #: part/KgvPageLayoutDia.cpp:268
-#, fuzzy, kde-format
+#, kde-format
 msgid "Page Size & Margins"
-msgstr "قياس الصفحة و الهوامش"
+msgstr "حجم الصفحة والهوامش"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/KgvPageLayoutHeaderBase.ui:17
-#, fuzzy, kde-format
+#, kde-format
 msgid "Header"
 msgstr "ترويسة"
 
@@ -785,7 +786,7 @@ msgstr "التباعد بين عنوان رأسي و المتن:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
 #: part/KgvPageLayoutHeaderBase.ui:77
-#, fuzzy, kde-format
+#, kde-format
 msgid "Footer"
 msgstr "تذييل"
 
@@ -822,7 +823,7 @@ msgstr "التباعد بين تذييل و المتن:"
 #: part/KgvPageLayoutSize.cpp:58
 #, kde-format
 msgid "Unit:"
-msgstr ""
+msgstr "الوحدة:"
 
 #: part/KgvPageLayoutSize.cpp:71
 #, kde-format
@@ -830,44 +831,44 @@ msgid "All values are given in %1."
 msgstr ""
 
 #: part/KgvPageLayoutSize.cpp:76
-#, fuzzy, kde-format
+#, kde-format
 msgid "Page Size"
-msgstr "قياس الصفحة و الهوامش"
+msgstr "حجم الصفحة"
 
 #: part/KgvPageLayoutSize.cpp:85
 #, kde-format
 msgid "&Size:"
-msgstr ""
+msgstr "ال&حجم:"
 
 #: part/KgvPageLayoutSize.cpp:106
 #, kde-format
 msgid "&Width:"
-msgstr ""
+msgstr "ال&عرض:"
 
 #: part/KgvPageLayoutSize.cpp:117
 #, kde-format
 msgid "&Height:"
-msgstr ""
+msgstr "الار&تفاع:"
 
 #: part/KgvPageLayoutSize.cpp:131
 #, kde-format
 msgid "Orientation"
-msgstr ""
+msgstr "الاتجاه"
 
 #: part/KgvPageLayoutSize.cpp:135
 #, kde-format
 msgid "&Portrait"
-msgstr ""
+msgstr "بال&طّول"
 
 #: part/KgvPageLayoutSize.cpp:139
 #, kde-format
 msgid "La&ndscape"
-msgstr ""
+msgstr "بال&عرض"
 
 #: part/KgvPageLayoutSize.cpp:147
 #, kde-format
 msgid "Margins"
-msgstr ""
+msgstr "الهوامش"
 
 #: part/KgvPageLayoutSize.cpp:370 part/KgvPageLayoutSize.cpp:374
 #, kde-format
@@ -887,27 +888,27 @@ msgstr ""
 #: part/KgvUnit.cpp:52
 #, kde-format
 msgid "Millimeters (mm)"
-msgstr ""
+msgstr "مليميترات (مم)"
 
 #: part/KgvUnit.cpp:54
 #, kde-format
 msgid "Centimeters (cm)"
-msgstr ""
+msgstr "سنتيمترات (سم)"
 
 #: part/KgvUnit.cpp:56
 #, kde-format
 msgid "Decimeters (dm)"
-msgstr ""
+msgstr "ديسيمترات (دسم)"
 
 #: part/KgvUnit.cpp:58
 #, kde-format
 msgid "Inches (in)"
-msgstr ""
+msgstr "بوصات (in)"
 
 #: part/KgvUnit.cpp:60
 #, kde-format
 msgid "Pica (pi)"
-msgstr ""
+msgstr "بيكا (pi)"
 
 #: part/KgvUnit.cpp:62
 #, kde-format
@@ -917,17 +918,17 @@ msgstr ""
 #: part/KgvUnit.cpp:64
 #, kde-format
 msgid "Cicero (cc)"
-msgstr ""
+msgstr "سيسيرو (cc)"
 
 #: part/KgvUnit.cpp:66
 #, kde-format
 msgid "Points (pt)"
-msgstr ""
+msgstr "نقاط (pt)"
 
 #: part/KgvUnit.cpp:68
 #, kde-format
 msgid "Error."
-msgstr ""
+msgstr "خطأ."
 
 #: part/pannerview.cpp:59
 #, kde-format
@@ -946,29 +947,29 @@ msgstr ""
 #: part/simpleprintingcommand.cpp:78
 #, kde-format
 msgid "Print Preview"
-msgstr ""
+msgstr "معاينة الطّباعة"
 
 #: part/simpleprintingengine.cpp:190 part/simpleprintpreviewwindow.cpp:209
 #: part/simpleprintpreviewwindow.cpp:227
 #, kde-format
 msgctxt "Page (number) of (total)"
 msgid "Page %1 of %2"
-msgstr ""
+msgstr "الصفحة %1 من %2"
 
 #: part/simpleprintingengine.cpp:192
 #, kde-format
 msgid "Page %1"
-msgstr ""
+msgstr "الصفحة %1"
 
 #: part/simpleprintingpagesetup.cpp:85
 #, kde-format
 msgid "Print Preview..."
-msgstr ""
+msgstr "معاينة الطّباعة..."
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font..."
-msgstr ""
+msgstr "الخط..."
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1018,17 +1019,17 @@ msgstr ""
 #: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "Portrait"
-msgstr ""
+msgstr "بالطّول"
 
 #: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "Landscape"
-msgstr ""
+msgstr "بالعرض"
 
 #: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "margins:"
-msgstr ""
+msgstr "الهوامش:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: part/simpleprintingpagesetupbase.ui:64
@@ -1039,9 +1040,9 @@ msgstr "&محرف الصفحة:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/simpleprintingpagesetupbase.ui:93
-#, fuzzy, kde-format
+#, kde-format
 msgid "Page Size && Margins"
-msgstr "قياس الصفحة و الهوامش"
+msgstr "حجم الصفحة والهوامش"
 
 #. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
 #: part/simpleprintingpagesetupbase.ui:118
@@ -1088,24 +1089,24 @@ msgstr "ملائمة إلى"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "أفقياً"
+msgstr "أفقيًّا:"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "عامودياً"
+msgstr "رأسيا:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
 #, kde-format
 msgctxt "@option:check"
 msgid "Preserve aspect ratio:"
-msgstr ""
+msgstr "أبق التناسب:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: part/simpleprintingpagesetupbase.ui:228
@@ -1116,22 +1117,22 @@ msgstr "متعلق:"
 #: part/simpleprintpreviewwindow.cpp:58
 #, kde-format
 msgid "%1 - Print Preview - %2"
-msgstr ""
+msgstr "%1 - معاينة الطّباعة - %2"
 
 #: part/simpleprintpreviewwindow.cpp:73
 #, kde-format
 msgid "&Page setup"
-msgstr ""
+msgstr "إ&عداد الصفحة"
 
 #: part/simpleprintpreviewwindow.cpp:112
 #, kde-format
 msgid "Previous Page"
-msgstr ""
+msgstr "الصفحة السابقة"
 
 #: part/simpleprintpreviewwindow.cpp:122
 #, kde-format
 msgid "Next Page"
-msgstr ""
+msgstr "الصفحة التالية"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: preferencesAppearance.ui:19
@@ -1161,9 +1162,9 @@ msgstr "&نعم"
 #. i18n: ectx: property (text), widget (QRadioButton, no)
 #: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
 #: preferencesReopenPreviouslyOpenedFiles.ui:36
-#, fuzzy, kde-format
+#, kde-format
 msgid "&No"
-msgstr "لا"
+msgstr "&لا"
 
 #. i18n: ectx: property (text), widget (QRadioButton, ask)
 #: preferencesOpenInExistingWindow.ui:37
@@ -1200,7 +1201,7 @@ msgstr "أعد التحميل ملفات معدّل يعمل قرص"
 #: preferencesReload.ui:40
 #, kde-format
 msgid "&Ask"
-msgstr ""
+msgstr "ا&سأل"
 
 #. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
 #: preferencesReopenPreviouslyOpenedFiles.ui:17
