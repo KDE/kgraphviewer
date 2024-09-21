@@ -447,7 +447,7 @@
       <li xml:lang="ca-valencia">Possibilitat d'utilitzar un algorisme de disposició arbitrari si produïx un format «xdot»</li>
       <li xml:lang="da">Mulighed for at bruge en vilkårlig layout-algoritme når bare den producerer xdot-format</li>
       <li xml:lang="de">Es kann ein beliebiger Layout-Algorithmus verwendet werden, sofern die Ausgabe im Format „xdot“ möglich ist.</li>
-      <li xml:lang="el">Δυνατότητα χρήσης αλγορίθμου αυθαίρετης διατάξης με την παραγωγή αρχείου xdot</li>
+      <li xml:lang="el">Δυνατότητα χρήσης αλγορίθμου αυθαίρετης διάταξης με την παραγωγή αρχείου xdot</li>
       <li xml:lang="en-GB">Possibility to use an arbitrary layout algorithm as soon as it produces xdot format</li>
       <li xml:lang="eo">Ebleco uzi arbitran aranĝan algoritmon tuj kiam ĝi produktas xdot-formaton</li>
       <li xml:lang="es">Posibilidad de usar un algoritmo de disposición aleatorio en cuanto se genere un formato «xdot»</li>
@@ -479,7 +479,7 @@
       <li xml:lang="ca-valencia">Torna a carregar automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
       <li xml:lang="da">Automatisk genindlæsning med brugerbekræftelse af (eksternt) ændrede filer (konfigurerbart)</li>
       <li xml:lang="de">Erneutes Laden von (extern) geänderten Dateien - automatisch mit Bestätigung durch den Benutzer (einstellbar)</li>
-      <li xml:lang="el">Αυτόματη επαναφόρτωση με επιβεβαίωση από το χρήστη των (εξωτερικά) τροποιοιημένων αρχείων (διαμορφώσιμο)</li>
+      <li xml:lang="el">Αυτόματη επαναφόρτωση με επιβεβαίωση από το χρήστη των (εξωτερικά) τροποποιημένων αρχείων (διαμορφώσιμο)</li>
       <li xml:lang="en-GB">Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
       <li xml:lang="eo">Aŭtomata reŝargado kun konfirmo de uzanto de (ekstere) modifitaj dosieroj (agordeblaj)</li>
       <li xml:lang="es">Volver a cargar automáticamente con confirmación de usuario de archivos modificados externamente (configurable)</li>
