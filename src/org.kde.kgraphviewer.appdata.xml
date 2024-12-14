@@ -34,6 +34,7 @@
   <name xml:lang="pt-BR">KGraphViewer</name>
   <name xml:lang="ro">KGraphViewer</name>
   <name xml:lang="ru">KGraphViewer</name>
+  <name xml:lang="sa">KGraphViewer इति</name>
   <name xml:lang="sk">KGraphViewer</name>
   <name xml:lang="sl">KGraphViewer</name>
   <name xml:lang="sv">Kgraphviewer</name>
@@ -67,6 +68,7 @@
   <summary xml:lang="pt-BR">Um visualizador de grafos DOT do Graphviz</summary>
   <summary xml:lang="ro">Vizualizor de grafuri DOT Graphviz</summary>
   <summary xml:lang="ru">Программа просмотра графов Graphviz</summary>
+  <summary xml:lang="sa">एकः Graphviz DOT आलेखदर्शकः</summary>
   <summary xml:lang="sl">Pregledovalnik grafov Graphviz DOT</summary>
   <summary xml:lang="sv">Visning av Graphviz dot-grafer</summary>
   <summary xml:lang="tr">Graphviz DOT graf görüntüleyicisi</summary>
@@ -101,6 +103,7 @@
     <p xml:lang="pt">O KGraphViewer é um visualizador de ficheiros de grafos DOT do Graphviz, destinado a substituir as outras ferramentas desactualizadas do GraphViz. Os grafos são usados normalmente nos domínios científicos e, em particular, na informática.</p>
     <p xml:lang="pt-BR">KGraphViewer é um visualizador de arquivos de grafos DOT do Graphviz, com objetivo de substituir as outras ferramentas desatualizadas do Graphviz. Os grafos são normalmente usados em domínios científicos e, em particular, na ciência da computação.</p>
     <p xml:lang="ru">KGraphViewer — программа просмотра графов Graphviz, которая заменит устаревшие средства для работы с Graphviz. Графы широко используются в науке (в частности, в информатике).</p>
+    <p xml:lang="sa">KGraphViewer एकः Graphviz DOT graph file viewer अस्ति, यस्य उद्देश्यं अन्येषां पुरातन Graphviz उपकरणानां स्थाने अन्यं Graphviz उपकरणं प्रतिस्थापयितुं भवति । वैज्ञानिकक्षेत्रेषु विशेषतः सङ्गणकशास्त्रे च आलेखानां उपयोगः सामान्यतया भवति ।</p>
     <p xml:lang="sl">KGraphViewer je pregledovalnik datotek Graphviz DOT, namenjen kot nadomestek drugih zastarelih orodij Graphviz. Graf se pogosto uporabljajo pri znanstvenih področjih in zlasti v računalništvu.</p>
     <p xml:lang="sv">Kgraphviewer är ett visningsprogram av Graphviz dot-grafer, med målet att ersätta övriga föråldrade Graphviz-verktyg. Användning av grafer är vanligt i vetenskapliga områden, i synnerhet inom datavetenskap.</p>
     <p xml:lang="tr">K Grafik Görüntüleyicisi bir Graphiz DOT graf dosyası görüntüleyicisidir. Zamanı dolmuş diğer GraphViz araçlarının yerini alması amaçlanmıştır. Grafikler genel olarak bilimsel alanda ve bilgisayar bilişmlerinde kullanılmaktadır.</p>
@@ -136,6 +139,7 @@
     <p xml:lang="pt-BR">Funcionalidades:</p>
     <p xml:lang="ro">Caracteristici:</p>
     <p xml:lang="ru">Возможности:</p>
+    <p xml:lang="sa">गुणाः:</p>
     <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="sl">Zmožnosti:</p>
     <p xml:lang="sv">Funktioner:</p>
@@ -173,6 +177,7 @@
       <li xml:lang="pt-BR">Ampliação</li>
       <li xml:lang="ro">Apropiere</li>
       <li xml:lang="ru">Масштабирование</li>
+      <li xml:lang="sa">जूमिंग</li>
       <li xml:lang="sk">Priblíženie</li>
       <li xml:lang="sl">Zoomiranje</li>
       <li xml:lang="sv">Zoom</li>
@@ -206,6 +211,7 @@
       <li xml:lang="pt">Carregamento multi-tarefa de diversos grafos em páginas</li>
       <li xml:lang="pt-BR">Carregamento multitarefa de diversos grafos em abas</li>
       <li xml:lang="ru">Загрузка нескольких графов во вкладках с использованием отдельных вычислительных потоков</li>
+      <li xml:lang="sa">ट्याब्स् मध्ये अनेकानाम् आलेखानां थ्रेडेड् लोडिंग्</li>
       <li xml:lang="sk">Vláknové načítavanie niekoľkých grafov v kartách</li>
       <li xml:lang="sl">Nitno nalaganje več grafov v zavihkih</li>
       <li xml:lang="sv">Trådad inläsning av flera grafer under flikar</li>
@@ -240,6 +246,7 @@
       <li xml:lang="pt-BR">Gravação da lista de arquivos recentes</li>
       <li xml:lang="ro">Salvarea listei de fișiere recente</li>
       <li xml:lang="ru">Сохранение списка недавно открытых файлов</li>
+      <li xml:lang="sa">अद्यतनसञ्चिकासूचिकायाः रक्षणम्</li>
       <li xml:lang="sk">Ukladanie zoznamu nedávnych súborov</li>
       <li xml:lang="sl">Shranjevanje seznama zadnje uporabljenih datotek</li>
       <li xml:lang="sv">Sparar listan med senaste filer</li>
@@ -274,6 +281,7 @@
       <li xml:lang="pt-BR">Recarregamento manual dos arquivos</li>
       <li xml:lang="ro">Reîncărcarea manuală a fișierelor</li>
       <li xml:lang="ru">Перезагрузка файлов вручную</li>
+      <li xml:lang="sa">सञ्चिकानां मैनुअल् पुनः लोड्</li>
       <li xml:lang="sk">Ručné znovunačítanie súborov</li>
       <li xml:lang="sl">Ročno ponovno nalaganje datotek</li>
       <li xml:lang="sv">Manuell återinläsning av filer</li>
@@ -308,6 +316,7 @@
       <li xml:lang="pt-BR">Apresentação de uma visão geral do grafo</li>
       <li xml:lang="ro">Afișarea unei vizualizări sumare a grafului</li>
       <li xml:lang="ru">Просмотр общего вида графа</li>
+      <li xml:lang="sa">आलेखस्य पक्षिनेत्रदृश्यस्य प्रदर्शनम्</li>
       <li xml:lang="sk">Zobrazenie vtáčej perspektívy grafu</li>
       <li xml:lang="sl">Prikaz pogleda na graf s ptičje perspektive</li>
       <li xml:lang="sv">Visar en översiktsbild av grafen</li>
@@ -342,6 +351,7 @@
       <li xml:lang="pt-BR">Movimentação do grafo por arrastamento</li>
       <li xml:lang="ro">Mutarea grafului prin tragere</li>
       <li xml:lang="ru">Перемещение графа с помощью перетаскивания</li>
+      <li xml:lang="sa">कर्षणद्वारा आलेखस्य चालनम्</li>
       <li xml:lang="sk">Presun grafov posunom</li>
       <li xml:lang="sl">Premik grafa z vlečenjem</li>
       <li xml:lang="sv">Flytta grafen genom att dra</li>
@@ -376,6 +386,7 @@
       <li xml:lang="pt-BR">Impressão com todas as funcionalidades</li>
       <li xml:lang="ro">Tipărire cu funcționalitate completă</li>
       <li xml:lang="ru">Полнофункциональная печать</li>
+      <li xml:lang="sa">पूर्णविशेषतायुक्तं मुद्रणं</li>
       <li xml:lang="sk">Plne funkčná tlač</li>
       <li xml:lang="sl">Veliko možnosti tiskanja</li>
       <li xml:lang="sv">Fullständig utskriftsfunktion</li>
@@ -410,6 +421,7 @@
       <li xml:lang="pt-BR">Desenho perfeito de todos os grafos de exemplo do 'graphviz'</li>
       <li xml:lang="ro">Desenare perfectă a tuturor grafurilor</li>
       <li xml:lang="ru">Идеальная отрисовка всех примеров графов graphviz</li>
+      <li xml:lang="sa">सर्वेषां graphviz उदाहरण आलेखानां सम्यक् रेखाचित्रम्</li>
       <li xml:lang="sk">Výborné kreslenie všetkých ukážkových grafov graphviz</li>
       <li xml:lang="sl">Popoln izris vseh vzorčnih grafov graphviz</li>
       <li xml:lang="sv">Perfekt uppritning av alla exempelgrafer från Graphviz</li>
@@ -443,6 +455,7 @@
       <li xml:lang="pt">Escolha automática do 'dot' para grafos direccionados e do 'neato' para os não-direccionados</li>
       <li xml:lang="pt-BR">Escolha automática do 'dot' para grafos direcionados e do 'neato' para os não-direcionados</li>
       <li xml:lang="ru">Автоматический выбор формата dot для направленных графов и формата neato для ненаправленных</li>
+      <li xml:lang="sa">निर्देशितलेखानां कृते स्वयमेव बिन्दुः, अनिर्देशितानां कृते neato इति चिनोतु</li>
       <li xml:lang="sk">Automaticky vybrať bot pre riadený graf a neato pre neriadený</li>
       <li xml:lang="sl">Samodejno izberi DOT za usmerjene grafe in NEATO za neusmerjene</li>
       <li xml:lang="sv">Välj automatiskt dot för riktade grafer och neato för oriktade</li>
@@ -476,6 +489,7 @@
       <li xml:lang="pt">Possibilidade de utilização de um algoritmo de disposição arbitrário, desde que produza o formato 'xdot'</li>
       <li xml:lang="pt-BR">Possibilidade de usar um algoritmo de layout arbitrário, desde que produza o formato 'xdot'</li>
       <li xml:lang="ru">Возможность использования произвольного алгоритма компоновки, создающего данные в формате xdot</li>
+      <li xml:lang="sa">xdot प्रारूपं उत्पादयति एव मनमाना विन्यास-एल्गोरिदम् इत्यस्य उपयोगस्य सम्भावना</li>
       <li xml:lang="sk">Možnosť použitia ľubovoľného algoritmu rozloženia, ak generuje formát xdot</li>
       <li xml:lang="sl">Možnost uporabe algoritma poljubne postavitve takoj, ko ustvari format xdot</li>
       <li xml:lang="sv">Möjlighet att använda en godtycklig layout-algoritm så länge den skapar xdot-format</li>
@@ -509,6 +523,7 @@
       <li xml:lang="pt">Recarregamento automático com a confirmação do utilizador dos ficheiros modificados no exterior (configurável)</li>
       <li xml:lang="pt-BR">Carregamento automático, com confirmação do usuário, dos arquivos modificados externamente (configurável)</li>
       <li xml:lang="ru">Подтверждаемая пользователем автоматическая перезагрузка изменённых (в других программах) файлов (настраиваемая опция)</li>
+      <li xml:lang="sa">(बाह्यतः) परिवर्तितानां सञ्चिकानां उपयोक्तृपुष्ट्या सह स्वचालितं पुनः लोडीकरणं (विन्यासयोग्यम्)</li>
       <li xml:lang="sk">Automatické znovunačítanie s potvrdením používateľa (externe) zmení súbory (nastaviteľné)</li>
       <li xml:lang="sl">Samodejno ponovno nalaganje s potrditvijo uporabnika zaradi (zunaj) spremenjenih datotek (nastavljivo)</li>
       <li xml:lang="sv">Automatisk återinläsning med bekräftelse av användaren för (externt) ändrade filer (inställningsbart)</li>
@@ -542,6 +557,7 @@
       <li xml:lang="pt">Abertura de novas instâncias como páginas novas da janela actual (configurável)</li>
       <li xml:lang="pt-BR">Abertura de novas instâncias como novas abas da janela atual (configurável)</li>
       <li xml:lang="ru">Открытие новых экземпляров как новых вкладок в старом экземпляре (настраиваемая опция)</li>
+      <li xml:lang="sa">पुरातने (विन्यासयोग्ये) नूतनानि ट्याब्रूपेण नूतनानि उदाहरणानि उद्घाटयन्तु ।</li>
       <li xml:lang="sk">Otvoriť novú inštancie ako nové karty v starej (nastaviteľné)</li>
       <li xml:lang="sl">Odprite nove pojavke kot nove zavihke v starem (nastavljivo)</li>
       <li xml:lang="sv">Öppna nya instanser som nya flikar i den befintliga (inställningsbart)</li>
