@@ -1,0 +1,1245 @@
+# Sanskrit translations for kgraphviewer package.
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kgraphviewer package.
+# Kali <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kgraphviewer\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"PO-Revision-Date: 2024-12-13 19:09+0530\n"
+"Last-Translator: Kali <EMAIL@ADDRESS>\n"
+"Language-Team: Sanskrit\n"
+"Language: sa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#: kgrapheditor.cpp:126 kgraphviewer.cpp:107
+#, kde-format
+msgid "Session Restore"
+msgstr "सत्र पुनर्स्थापनम्"
+
+#: kgrapheditor.cpp:126
+#, kde-format
+msgid "Do you want to reload files from previous session?"
+msgstr "पूर्वसत्रस्य सञ्चिकाः पुनः लोड् कर्तुम् इच्छति वा?"
+
+#: kgrapheditor.cpp:142
+#, kde-format
+msgid "Unable to start"
+msgstr "आरम्भं कर्तुं असमर्थः"
+
+#: kgrapheditor.cpp:142 kgraphviewer.cpp:129
+#, kde-format
+msgid "Could not find the KGraphViewer part."
+msgstr "KGraphViewer भागं न प्राप्नोत् ।"
+
+#: kgrapheditor.cpp:223 kgraphviewer.cpp:208
+#, kde-format
+msgid "Closes the current file"
+msgstr "वर्तमानसञ्चिकां पिधायति"
+
+#: kgrapheditor.cpp:234
+#, kde-format
+msgid "Create a New Vertex"
+msgstr "एकं New Vertex रचयन्तु"
+
+#: kgrapheditor.cpp:239
+#, kde-format
+msgid "Create a New Edge"
+msgstr "एकं नवीनं धारं रचयन्तु"
+
+#: kgrapheditor.cpp:494
+#, kde-format
+msgid "Save current graph"
+msgstr "वर्तमान आलेखं रक्षन्तु"
+
+#: kgrapheditorConfigDialog.cpp:48 kgraphviewerConfigDialog.cpp:55
+#, kde-format
+msgid "Parsing"
+msgstr "पार्सिंग्"
+
+#: kgrapheditorConfigDialog.cpp:49 kgraphviewerConfigDialog.cpp:56
+#, kde-format
+msgid "Reloading"
+msgstr "पुनः लोडिंग"
+
+#: kgrapheditorConfigDialog.cpp:50 kgraphviewerConfigDialog.cpp:57
+#, kde-format
+msgid "Opening"
+msgstr "उद्घाटनम्"
+
+#: kgrapheditorConfigDialog.cpp:51 kgraphviewerConfigDialog.cpp:58
+#, kde-format
+msgid "Session Management"
+msgstr "सत्र प्रबन्धन"
+
+#: KGraphEditorElementTreeWidget.cpp:50 KGraphEditorNodesTreeWidget.cpp:54
+#, kde-format
+msgid "Add a new attribute"
+msgstr "नूतनं विशेषतां योजयन्तु"
+
+#: KGraphEditorElementTreeWidget.cpp:56 KGraphEditorNodesTreeWidget.cpp:60
+#, kde-format
+msgid "Remove this attribute"
+msgstr "एतत् विशेषणं निष्कासयन्तु"
+
+#: kgrapheditormain.cpp:40
+#, kde-format
+msgid "KGraphEditor"
+msgstr "केग्राफ सम्पादक"
+
+#: kgrapheditormain.cpp:42
+#, kde-format
+msgid "A Graphviz DOT graph editor by KDE"
+msgstr "तथा KDE द्वारा Graphviz DOT graph editor"
+
+#: kgrapheditormain.cpp:44 main.cpp:43
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2010 Gaël de Chalendar"
+
+#: kgrapheditormain.cpp:57 main.cpp:59
+#, kde-format
+msgid "Path or URL to scan"
+msgstr "स्कैन् कर्तुं मार्गः अथवा URL"
+
+#: kgrapheditormain.cpp:57 main.cpp:59
+#, kde-format
+msgid "[url]"
+msgstr "[उर्ल्] ९."
+
+#: kgrapheditormain.cpp:82 main.cpp:84
+#, kde-format
+msgid "Opening in new window confirmation"
+msgstr "नूतनविण्डो पुष्टिकरणे उद्घाटनम्"
+
+#: kgrapheditormain.cpp:82
+#, kde-format
+msgid ""
+"A KGraphEditor window is already open, do you want to open the file in it?"
+msgstr ""
+"KGraphEditor विण्डो पूर्वमेव उद्घाटितम् अस्ति, तस्मिन् सञ्चिकां उद्घाटयितुम् इच्छति वा?"
+
+#: KGraphEditorNodesTreeWidget.cpp:65
+#, kde-format
+msgid "Remove this node"
+msgstr "एतत् नोडं निष्कासयन्तु"
+
+#. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
+#, kde-format
+msgid "The answer to the question 'File modified, do you want to reload it'"
+msgstr "'सञ्चिका परिवर्तिता, पुनः लोड् कर्तुम् इच्छसि वा' इति प्रश्नस्य उत्तरम् ।"
+
+#. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
+#, kde-format
+msgid ""
+"To choose whether to parse using an external command (usually dot) or the "
+"graphviz library"
+msgstr "बाह्य आदेशस्य (प्रायः dot) अथवा graphviz पुस्तकालयस्य उपयोगेन विश्लेषणं कर्तुं"
+
+#. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
+#, kde-format
+msgid ""
+"The answer to the question 'If another window already exist when launching "
+"kgraphviewer, should we open in it, open a new window or ask?'"
+msgstr ""
+"'यदि kgraphviewer इत्यस्य प्रारम्भे अन्यत् विण्डो पूर्वमेव अस्ति तर्हि तस्मिन् उद्घाटयितुं, "
+"नूतनं विण्डो उद्घाटयितुं वा पृच्छितव्यम् वा?'"
+
+#. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
+#, kde-format
+msgid ""
+"The answer to the question 'Should the files that were opened in previous "
+"sessions be reopened at startup?'"
+msgstr "'पूर्वसत्रेषु ये सञ्चिकाः उद्घाटिताः आसन्, ताः आरम्भे पुनः उद्घाटिताः भवेयुः वा?'"
+
+#. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
+#: part/kgraphviewer_partsettings.kcfg:9
+#, kde-format
+msgid "If true, the bird's eye view will be shown if needed."
+msgstr "यदि सत्यं तर्हि आवश्यकतानुसारं पक्षिनेत्रदृश्यं दर्शितं भविष्यति।"
+
+#. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
+#, kde-format
+msgid "The list of files that were opened in past instances of kgraphviewer"
+msgstr "kgraphviewer इत्यस्य पूर्वप्रसङ्गेषु उद्घाटितानां सञ्चिकानां सूची"
+
+#. i18n: ectx: ToolBar (viewToolBar)
+#: kgrapheditorui.rc:22 kgraphviewerui.rc:16
+#, kde-format
+msgid "View Toolbar"
+msgstr "टूल्बारं पश्यन्तु"
+
+#. i18n: ectx: ToolBar (helpToolBar)
+#: kgrapheditorui.rc:25 kgraphviewerui.rc:19
+#, kde-format
+msgid "Help Toolbar"
+msgstr "सहायता साधनपट्टिका"
+
+#. i18n: ectx: ToolBar (editToolBar)
+#: kgrapheditorui.rc:30
+#, kde-format
+msgid "Edit Toolbar"
+msgstr "साधनपट्टिका सम्पादयतु"
+
+#: kgraphviewer.cpp:106
+#, kde-format
+msgid "Do you want to reload files from the previous session?"
+msgstr "पूर्वसत्रस्य सञ्चिकाः पुनः लोड् कर्तुम् इच्छति वा?"
+
+#: kgraphviewer.cpp:108
+#, kde-format
+msgctxt "@action:button"
+msgid "Reload"
+msgstr ""
+
+#: kgraphviewer.cpp:109
+#, kde-format
+msgctxt "@action:button"
+msgid "Do Not Reload"
+msgstr ""
+
+#: kgraphviewer.cpp:196
+#, kde-format
+msgid "Opens a new empty KGraphViewer window."
+msgstr "नूतनं रिक्तं KGraphViewer विण्डो उद्घाटयति ।"
+
+#: kgraphviewer.cpp:199
+#, kde-format
+msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
+msgstr "उद्घाटयितुं Graphviz DOT सञ्चिकां चिन्वितुं file open संवादं दर्शयति ।"
+
+#: kgraphviewer.cpp:202
+#, kde-format
+msgid ""
+"This lists files which you have opened recently, and allows you to easily "
+"open them again."
+msgstr ""
+"एतेन भवता अद्यतनतया उद्घाटिताः सञ्चिकाः सूचीबद्धाः सन्ति, पुनः सुलभतया उद्घाटयितुं च "
+"शक्यते ।"
+
+#: kgraphviewer.cpp:212
+#, kde-format
+msgid "Quits KGraphViewer."
+msgstr "KGraphViewer त्यजति।"
+
+#: kgraphviewer.cpp:215
+#, kde-format
+msgid "Shows or hides the status bar."
+msgstr "स्थितिपट्टिकां दर्शयति वा गोपयति वा ।"
+
+#: kgraphviewer.cpp:218
+#, kde-format
+msgid "Toolbar configuration."
+msgstr "टूलबार विन्यासः ।"
+
+#: kgraphviewer.cpp:221
+#, kde-format
+msgid "Main KGraphViewer configuration options."
+msgstr "मुख्य KGraphViewer विन्यासविकल्पाः।"
+
+#: kgraphviewerConfigDialog.cpp:54
+#, kde-format
+msgid "Appearance"
+msgstr "स्वरूपम्‌"
+
+#. i18n: ectx: label, entry (backgroundColor), group (Appearance)
+#: kgraphviewersettings.kcfg:34
+#, kde-format
+msgid "Background color of the graph view."
+msgstr "आलेखदृश्यस्य पृष्ठभूमिवर्णः ।"
+
+#: main.cpp:39
+#, kde-format
+msgid "KGraphViewer"
+msgstr "KGraphViewer इति"
+
+#: main.cpp:41
+#, kde-format
+msgid "A Graphviz DOT graph viewer"
+msgstr "एकः Graphviz DOT आलेखदर्शकः"
+
+#: main.cpp:46
+#, kde-format
+msgid "Gaël de Chalendar"
+msgstr "गेल डी चलेण्डर"
+
+#: main.cpp:46
+#, kde-format
+msgid "Original Author and current maintainer"
+msgstr "मूल लेखक एवं वर्तमान परिपालक"
+
+#: main.cpp:47
+#, kde-format
+msgid "Reimar Döffinger"
+msgstr "रेइमार डोफिंगर"
+
+#: main.cpp:47 main.cpp:48 main.cpp:49 main.cpp:50
+#, kde-format
+msgid "Contributor"
+msgstr "योगदानकर्ता"
+
+#: main.cpp:48
+#, kde-format
+msgid "Matthias Peinhardt"
+msgstr "मथियस पेनहार्ट्"
+
+#: main.cpp:49
+#, kde-format
+msgid "Sandro Andrade"
+msgstr "सान्द्रो आन्द्रे"
+
+#: main.cpp:50
+#, kde-format
+msgid "Milian Wolff"
+msgstr "मिलियन वोल्फ"
+
+#: main.cpp:51
+#, kde-format
+msgid "Martin Sandsmark"
+msgstr "मार्टिन् सैण्ड्स्मार्क"
+
+#: main.cpp:51
+#, kde-format
+msgid "Port to KF5"
+msgstr "KF5 यावत् पोर्ट्"
+
+#: main.cpp:84
+#, kde-format
+msgid ""
+"A KGraphViewer window is already open, where do you want to open this file "
+"in the existing window?"
+msgstr ""
+"KGraphViewer विण्डो पूर्वमेव उद्घाटितम् अस्ति, विद्यमानविण्डो मध्ये भवान् एतां सञ्चिकां कुत्र "
+"उद्घाटयितुम् इच्छति?"
+
+#: part/canvasedge.cpp:70
+#, kde-format
+msgid ""
+"%1 -> %2\n"
+"label='%3'"
+msgstr ""
+"%1 -> %2\n"
+"लेबल='%3'।"
+
+#: part/canvasedge.cpp:74
+#, kde-format
+msgid "Remove selected edge(s)"
+msgstr "चयनितं धारं (धारं) निष्कासयन्तु ."
+
+#: part/canvaselement.cpp:87
+#, kde-format
+msgid "Remove selected element(s)"
+msgstr "चयनितं तत्त्वं (तत्त्वानि) निष्कासयन्तु ."
+
+#: part/canvasnode.cpp:51
+#, kde-format
+msgid ""
+"id='%1'\n"
+"label='%2'"
+msgstr ""
+"id='%1'।\n"
+"लेबल='%2'।"
+
+#: part/dotgraph.cpp:260 part/dotgraph.cpp:263 part/dotgraph.cpp:266
+#: part/dotgraph.cpp:269 part/dotgraph.cpp:272 part/dotgraph.cpp:275
+#, kde-format
+msgid "Layout process failed"
+msgstr "विन्यासप्रक्रिया विफलम् अभवत्"
+
+#: part/dotgraph.cpp:260
+#, kde-format
+msgid "Unable to start %1."
+msgstr "%1 आरभ्यतुं असमर्थः ।"
+
+#: part/dotgraph.cpp:263
+#, kde-format
+msgid "%1 crashed."
+msgstr "%1 दुर्घटनाम् अभवत् ।"
+
+#: part/dotgraph.cpp:266
+#, kde-format
+msgid "%1 timed out."
+msgstr "%1 समयः समाप्तः ।"
+
+#: part/dotgraph.cpp:269
+#, kde-format
+msgid "Was not able to write data to the %1 process."
+msgstr "%1 प्रक्रियायां दत्तांशं लिखितुं न शक्तवान् ।"
+
+#: part/dotgraph.cpp:272
+#, kde-format
+msgid "Was not able to read data from the %1 process."
+msgstr "%1 प्रक्रियातः दत्तांशं पठितुं न शक्तवान् ।"
+
+#: part/dotgraph.cpp:275
+#, kde-format
+msgid "Unknown error running %1."
+msgstr "%1 चालयन् अज्ञातदोषः ।"
+
+#: part/dotgraphview.cpp:407
+#, kde-format
+msgctxt "@title:menu"
+msgid "Layout Algorithm"
+msgstr ""
+
+#: part/dotgraphview.cpp:410
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Dot"
+msgstr ""
+
+#: part/dotgraphview.cpp:411
+#, kde-format
+msgid "Layout the graph using the dot program."
+msgstr "dot program इत्यस्य उपयोगेन graph इत्यस्य लेआउट् कुर्वन्तु ।"
+
+#: part/dotgraphview.cpp:415
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Neato"
+msgstr ""
+
+#: part/dotgraphview.cpp:416
+#, kde-format
+msgid "Layout the graph using the neato program."
+msgstr "neato प्रोग्राम् इत्यस्य उपयोगेन ग्राफ् लेआउट् कुर्वन्तु ।"
+
+#: part/dotgraphview.cpp:420
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Twopi"
+msgstr ""
+
+#: part/dotgraphview.cpp:421
+#, kde-format
+msgid "Layout the graph using the twopi program."
+msgstr "twopi प्रोग्राम् इत्यस्य उपयोगेन ग्राफ् लेआउट् कुर्वन्तु ।"
+
+#: part/dotgraphview.cpp:425
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Fdp"
+msgstr ""
+
+#: part/dotgraphview.cpp:426
+#, kde-format
+msgid "Layout the graph using the fdp program."
+msgstr "fdp प्रोग्राम् इत्यस्य उपयोगेन ग्राफ् लेआउट् कुर्वन्तु ।"
+
+#: part/dotgraphview.cpp:430
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Circo"
+msgstr ""
+
+#: part/dotgraphview.cpp:431
+#, kde-format
+msgid "Layout the graph using the circo program."
+msgstr "circo program इत्यस्य उपयोगेन graph इत्यस्य लेआउट् कुर्वन्तु ।"
+
+#: part/dotgraphview.cpp:443
+#, kde-format
+msgid "Choose a Graphviz layout algorithm or edit your own one."
+msgstr "Graphviz layout algorithm चिनोतु अथवा स्वस्य सम्पादयतु ।"
+
+#: part/dotgraphview.cpp:445
+#, kde-format
+msgid ""
+"Choose a Graphviz layout algorithm or type in your own command that will "
+"generate a graph in the xdot format on its standard output. For example, to "
+"manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+msgstr ""
+"Graphviz लेआउट् एल्गोरिदम् चिनोतु अथवा स्वस्य आदेशं टङ्कयतु यत् स्वस्य मानकनिर्गमस्य xdot "
+"प्रारूपेण आलेखं जनयिष्यति । यथा, dot आदेशाय <tt>G</tt> विकल्पं स्वहस्तेन निर्दिष्टुं, "
+"टङ्कयन्तु: <tt>dot -Gname=MyGraphName -Txdot </tt>"
+
+#: part/dotgraphview.cpp:453
+#, kde-format
+msgctxt "@title:menu"
+msgid "Export Graph"
+msgstr ""
+
+#: part/dotgraphview.cpp:454
+#, kde-format
+msgid "Allows the graph to be exported in another format."
+msgstr "अन्यस्मिन् प्रारूपे आलेखस्य निर्यातं कर्तुं शक्नोति ।"
+
+#: part/dotgraphview.cpp:456
+#, kde-format
+msgid ""
+"Use the Export Graph menu to export the graph in another format. There is "
+"currently only one export format supported: as a PNG image."
+msgstr ""
+"अन्यस्मिन् प्रारूपेण ग्राफ् निर्यातयितुं Export Graph मेन्यू इत्यस्य उपयोगं कुर्वन्तु । सम्प्रति "
+"केवलं एकं निर्यातस्वरूपं समर्थितम् अस्ति: PNG प्रतिबिम्बरूपेण ।"
+
+#: part/dotgraphview.cpp:459
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "As Image…"
+msgstr ""
+
+#: part/dotgraphview.cpp:460
+#, kde-format
+msgid "Export the graph to an image file."
+msgstr "आलेखं चित्रसञ्चिकायां निर्यातयन्तु ।"
+
+#: part/dotgraphview.cpp:470
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "सम्प्रति दृष्टे आलेखे १०% जूम् इन कुर्वन्तु"
+
+#: part/dotgraphview.cpp:474
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "वर्तमानकाले दृष्टस्य आलेखात् १०% जूम आउट् कुर्वन्तु"
+
+#: part/dotgraphview.cpp:477
+#, kde-format
+msgctxt "@option:check"
+msgid "Enable Bird's-Eye View"
+msgstr ""
+
+#: part/dotgraphview.cpp:478
+#, kde-format
+msgid "Enables or disables the Bird's-eye View"
+msgstr "Bird's-eye View इत्येतत् सक्षमं निष्क्रियं वा करोति"
+
+#: part/dotgraphview.cpp:484
+#, kde-format
+msgctxt "@title:menu"
+msgid "Bird's-Eye View Position"
+msgstr ""
+
+#: part/dotgraphview.cpp:485
+#, kde-format
+msgid "Allows the Bird's-eye View to be setup."
+msgstr "Bird's-eye View इत्यस्य सेटअपं कर्तुं अनुमतिं ददाति ।"
+
+#: part/dotgraphview.cpp:487
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Top Left"
+msgstr ""
+
+#: part/dotgraphview.cpp:488
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-left corner."
+msgstr "Bird's-eye View इत्येतत् उपरि-वामकोणे स्थापयति ।"
+
+#: part/dotgraphview.cpp:493
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Top Right"
+msgstr ""
+
+#: part/dotgraphview.cpp:494
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-right corner."
+msgstr "Bird's-eye View इत्येतत् उपरि-दक्षिणकोणे स्थापयति ।"
+
+#: part/dotgraphview.cpp:499
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Bottom Left"
+msgstr ""
+
+#: part/dotgraphview.cpp:500
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-left corner."
+msgstr "Bird's-eye View इत्येतत् अधः वामकोणे स्थापयति ।"
+
+#: part/dotgraphview.cpp:505
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Bottom Right"
+msgstr ""
+
+#: part/dotgraphview.cpp:506
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-right corner."
+msgstr "Bird's-eye View इत्येतत् अधः-दक्षिणकोणे स्थापयति ।"
+
+#: part/dotgraphview.cpp:511
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Automatic"
+msgstr ""
+
+#: part/dotgraphview.cpp:512
+#, kde-format
+msgid ""
+"Let KGraphViewer automatically choose the position of the Bird's-eye View."
+msgstr "KGraphViewer स्वयमेव Bird's-eye View इत्यस्य स्थानं चिनोतु ।"
+
+#: part/dotgraphview.cpp:557
+#, kde-format
+msgctxt "@title:menu"
+msgid "Layout"
+msgstr ""
+
+#: part/dotgraphview.cpp:560
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Specify Layout Command…"
+msgstr ""
+
+#: part/dotgraphview.cpp:562
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"उपयोक्तुं लेआउट् आदेशं स्वयमेव निर्दिशन्तु । dot file दत्तं चेत्, तस्य मानकनिर्गमस्य उपरि xdot "
+"सञ्चिकां उत्पादयेत् ।"
+
+#: part/dotgraphview.cpp:564
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Reset Layout Command to Default"
+msgstr ""
+
+#: part/dotgraphview.cpp:566
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+"ग्राफ् प्रकारस्य (निर्देशितं वा न वा) आधारेण उपयोक्तुं लेआउट् आदेशं पूर्वनिर्धारितरूपेण पुनः सेट् "
+"करोति ।"
+
+#: part/dotgraphview.cpp:600
+#, kde-format
+msgid "Select file"
+msgstr "सञ्चिकां चिनोतु"
+
+#: part/dotgraphview.cpp:614
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer"
+msgstr "Graph SVG KGraphViewer द्वारा उत्पन्नम्"
+
+#: part/dotgraphview.cpp:615
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer."
+msgstr "Graph SVG KGraphViewer द्वारा उत्पन्नम् ।"
+
+#: part/dotgraphview.cpp:662
+#, kde-format
+msgid ""
+"<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
+"than the widget area, an overview panner is shown in one edge. Choose "
+"through the context menu if the optimal position of this overview should be "
+"automatically computed or put it where you want.</p><h2>How to work with it?"
+"</h2><ul><li>To move the graph, you can:  <ul>    <li>click & drag it</"
+"li>    <li>use the elevators</li>    <li>press the arrows keys</li>    "
+"<li>click somewhere in the panner view</li>    <li>use the mouse wheel (up "
+"and down with no modifier, left and right with the <Alt> key pressed)</"
+"li>    <li>or click & drag the panner view</li>  </ul></li><li>To zoom, you "
+"can either use the zoom in and zoom out toolbar buttons, or click on the "
+"<Shift> key while rolling your mouse wheel.</li><li>Try the contextual menu "
+"(usually by right-clicking) to discover other possibilities.</li><li>Try the "
+"<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
+"printing options.</li></ul>"
+msgstr ""
+"<h1>Graphviz DOT प्रारूप आलेख दृश्यीकरण</h1><p> यदि आलेखः विजेट् क्षेत्रात् बृहत्तरः अस्ति "
+"तर्हि एकस्मिन् धारायाम् अवलोकनपैनर् दर्शितः भवति । यदि अस्य अवलोकनस्य इष्टतमस्थानं स्वयमेव "
+"गणनीयं वा यत्र इच्छति तत्र स्थापयितव्यं वा इति सन्दर्भमेनूद्वारा चिनोतु ।</p><h2> तया सह "
+"कथं कार्यं कर्तव्यम् ?</h2><ul><li> आलेखं चालयितुं भवान् कर्तुं शक्नोति :<ul><li> क्लिक् "
+"कुर्वन्तु &amp; कर्षयन्तु</li><li> लिफ्टस्य उपयोगं कुर्वन्तु</li><li> बाणकीलानि नुदन्तु</"
+"li><li> panner view इत्यत्र कुत्रचित् क्लिक् कुर्वन्तु</li><li> मूषकचक्रस्य उपयोगं कुर्वन्तु "
+"(ऊर्ध्वं अधः च विशोधकं विना, वामदक्षिणयोः सह...<Alt> कीलं निपीडितम्) २.</li><li> "
+"अथवा panner view इत्यत्र क्लिक् &amp; कर्षन्तु</li></ul></li><li> जूम् कर्तुं भवान् जूम इन "
+"तथा जूम आउट् टूल्बार बटन् उपयोक्तुं शक्नोति, अथवा...<Shift> कीलं भवतः मूषकचक्रं रोल कुर्वन्।"
+"</li><li> अन्यसंभावनानां आविष्कारार्थं सन्दर्भमेनू (प्रायः दक्षिण-क्लिक् कृत्वा) प्रयतस्व ।</"
+"li><li> मुद्रणविकल्पान् अन्वेष्टुं <tt>Print पूर्वावलोकनं</tt> अथवा <tt>Page setup</tt> "
+"बटन् प्रयतस्व ।</li></ul>"
+
+#: part/dotgraphview.cpp:817
+#, kde-format
+msgid "no graph loaded"
+msgstr "न आलेखः भारितः"
+
+#: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
+#: part/dotgraphview.cpp:1001
+#, kde-format
+msgid "graph %1 is getting loaded..."
+msgstr "graph %1 लोड् भवति..."
+
+#: part/dotgraphview.cpp:941
+#, kde-format
+msgid "error parsing file %1"
+msgstr "त्रुटिः विश्लेषणं सञ्चिका %1"
+
+#: part/dotgraphview.cpp:1646
+#, kde-format
+msgid "Reload Confirmation"
+msgstr "पुनः लोड् पुष्टिः"
+
+#: part/dotgraphview.cpp:1646
+#, kde-format
+msgid ""
+"The file %1 has been modified on disk.\n"
+"Do you want to reload it?"
+msgstr ""
+"%1 इति सञ्चिका डिस्कमध्ये परिवर्तिता अस्ति ।\n"
+"किं भवन्तः पुनः लोड् कर्तुम् इच्छन्ति ?"
+
+#: part/dotgraphview.cpp:1732
+#, kde-format
+msgid "Layout Command"
+msgstr "लेआउट् आदेशः"
+
+#: part/dotgraphview.cpp:1733
+#, kde-format
+msgid ""
+"Specify here the command that will be used to layout the graph.\n"
+"The command MUST write its results on stdout in xdot format."
+msgstr ""
+"अत्र यत् आदेशं ग्राफस्य विन्यासार्थं उपयुज्यते तत् निर्दिशन्तु ।\n"
+"आदेशः stdout इत्यत्र स्वस्य परिणामान् xdot प्रारूपेण लिखितुं MUST ।"
+
+#: part/dotgraphview.cpp:2182
+#, kde-format
+msgid "Failed to open %1"
+msgstr "%1 उद्घाटयितुं असफलम्"
+
+#: part/kgraphviewer_part.cpp:84
+#, kde-format
+msgid "Print the graph using current page setup settings"
+msgstr "वर्तमानपृष्ठस्थापनसेटिंग्स् इत्यस्य उपयोगेन आलेखं मुद्रयन्तु"
+
+#: part/kgraphviewer_part.cpp:87
+#, kde-format
+msgid "Open the print preview window"
+msgstr "मुद्रणपूर्वावलोकनविण्डो उद्घाटयन्तु"
+
+#: part/kgraphviewer_part.cpp:92
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Page Setup…"
+msgstr ""
+
+#: part/kgraphviewer_part.cpp:93
+#, kde-format
+msgid "Opens the Page Setup dialog to allow graph printing to be setup"
+msgstr "आलेखमुद्रणं सेटअपं कर्तुं Page Setup संवादं उद्घाटयति"
+
+#: part/kgraphviewer_part.cpp:96
+#, kde-format
+msgid "Reload the current graph from file"
+msgstr "सञ्चिकातः वर्तमानं आलेखं पुनः लोड् कुर्वन्तु"
+
+#. i18n: ectx: Menu (file)
+#: part/kgraphviewer_part.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&संचिका"
+
+#. i18n: ectx: Menu (view)
+#: part/kgraphviewer_part.rc:11
+#, kde-format
+msgid "&View"
+msgstr "&दृश्यं"
+
+#: part/KgvPageLayout.cpp:69
+msgctxt "Page size"
+msgid "Screen"
+msgstr ""
+
+#: part/KgvPageLayout.cpp:70
+msgctxt "Page size"
+msgid "Custom"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: part/KgvPageLayoutColumnsBase.ui:27
+#, kde-format
+msgid "Columns:"
+msgstr "स्तम्भाः : १."
+
+#. i18n: ectx: property (text), widget (QLabel, labelSpacing)
+#: part/KgvPageLayoutColumnsBase.ui:37
+#, kde-format
+msgid "Column spacing:"
+msgstr "स्तम्भान्तरम् : १."
+
+#: part/KgvPageLayoutDia.cpp:53
+#, kde-format
+msgid "Page Preview"
+msgstr "पृष्ठ पूर्वावलोकन"
+
+#: part/KgvPageLayoutDia.cpp:268
+#, kde-format
+msgid "Page Size & Margins"
+msgstr "पृष्ठ आकार एवं मार्जिन"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/KgvPageLayoutHeaderBase.ui:17
+#, kde-format
+msgid "Header"
+msgstr "शीर्षकम्"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhFirst)
+#: part/KgvPageLayoutHeaderBase.ui:23
+#, kde-format
+msgid "Different header for the first page"
+msgstr "प्रथमपृष्ठस्य कृते भिन्नं शीर्षकम्"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:30
+#, kde-format
+msgid "Different header for even and odd pages"
+msgstr "सम-विषम-पृष्ठानां कृते भिन्नं शीर्षकम्"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: part/KgvPageLayoutHeaderBase.ui:55
+#, kde-format
+msgid "Spacing between header and body:"
+msgstr "शीर्षकस्य शरीरस्य च मध्ये अन्तरं : १."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/KgvPageLayoutHeaderBase.ui:77
+#, kde-format
+msgid "Footer"
+msgstr "पादलेखः"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfFirst)
+#: part/KgvPageLayoutHeaderBase.ui:83
+#, kde-format
+msgid "Different footer for the first page"
+msgstr "प्रथमपृष्ठस्य कृते भिन्नं पादलेखम्"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:90
+#, kde-format
+msgid "Different footer for even and odd pages"
+msgstr "समविषमपृष्ठानां कृते भिन्नं पादलेखम्"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: part/KgvPageLayoutHeaderBase.ui:115
+#, kde-format
+msgid "Spacing between footer and body:"
+msgstr "पादलेखस्य शरीरस्य च मध्ये अन्तरं : १."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/KgvPageLayoutHeaderBase.ui:137
+#, kde-format
+msgid "Footnote/Endnote"
+msgstr "पादटिप्पणी/अन्तटिप्पणी"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: part/KgvPageLayoutHeaderBase.ui:159
+#, kde-format
+msgid "Spacing between footnote and body:"
+msgstr "पादटिप्पण्याः शरीरस्य च मध्ये अन्तरं : १."
+
+#: part/KgvPageLayoutSize.cpp:58
+#, kde-format
+msgid "Unit:"
+msgstr "इंकाईं:"
+
+#: part/KgvPageLayoutSize.cpp:71
+#, kde-format
+msgid "All values are given in %1."
+msgstr "सर्वाणि मूल्यानि %1 मध्ये दत्तानि सन्ति ।"
+
+#: part/KgvPageLayoutSize.cpp:76
+#, kde-format
+msgid "Page Size"
+msgstr "पृष्ठ आकार"
+
+#: part/KgvPageLayoutSize.cpp:85
+#, kde-format
+msgid "&Size:"
+msgstr "&आकृति:"
+
+#: part/KgvPageLayoutSize.cpp:106
+#, kde-format
+msgid "&Width:"
+msgstr "&विस्तार:"
+
+#: part/KgvPageLayoutSize.cpp:117
+#, kde-format
+msgid "&Height:"
+msgstr "&औनत्यम्‌:"
+
+#: part/KgvPageLayoutSize.cpp:131
+#, kde-format
+msgid "Orientation"
+msgstr "आभिमुख्य"
+
+#: part/KgvPageLayoutSize.cpp:135
+#, kde-format
+msgid "&Portrait"
+msgstr "&चित्रम्"
+
+#: part/KgvPageLayoutSize.cpp:139
+#, kde-format
+msgid "La&ndscape"
+msgstr "भूप्रदेश"
+
+#: part/KgvPageLayoutSize.cpp:147
+#, kde-format
+msgid "Margins"
+msgstr "मार्जिन"
+
+#: part/KgvPageLayoutSize.cpp:370 part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "Page Layout Problem"
+msgstr "पृष्ठ विन्यास समस्या"
+
+#: part/KgvPageLayoutSize.cpp:370
+#, kde-format
+msgid "The page width is smaller than the left and right margins."
+msgstr "पृष्ठस्य विस्तारः वामदक्षिणयोः हाशियाभ्यः लघुः भवति ।"
+
+#: part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "The page height is smaller than the top and bottom margins."
+msgstr "पृष्ठस्य ऊर्ध्वता उपरि अधः च मार्जिनात् लघु भवति ।"
+
+#: part/KgvUnit.cpp:52
+#, kde-format
+msgid "Millimeters (mm)"
+msgstr "मिलीमीटर् (मि.मी.) २."
+
+#: part/KgvUnit.cpp:54
+#, kde-format
+msgid "Centimeters (cm)"
+msgstr "सेन्टिमीटर् (से.मी.) २."
+
+#: part/KgvUnit.cpp:56
+#, kde-format
+msgid "Decimeters (dm)"
+msgstr "डेसीमीटर (dm) २."
+
+#: part/KgvUnit.cpp:58
+#, kde-format
+msgid "Inches (in)"
+msgstr "इञ्च् (इञ्च) २."
+
+#: part/KgvUnit.cpp:60
+#, kde-format
+msgid "Pica (pi)"
+msgstr "पिका (पि) ९."
+
+#: part/KgvUnit.cpp:62
+#, kde-format
+msgid "Didot (dd)"
+msgstr "दिदोत् (च) ९."
+
+#: part/KgvUnit.cpp:64
+#, kde-format
+msgid "Cicero (cc)"
+msgstr "सिसेरो (cc) ९."
+
+#: part/KgvUnit.cpp:66
+#, kde-format
+msgid "Points (pt)"
+msgstr "बिन्दु (pt) 1 ."
+
+#: part/KgvUnit.cpp:68
+#, kde-format
+msgid "Error."
+msgstr "त्रुटि।"
+
+#: part/pannerview.cpp:59
+#, kde-format
+msgid "View of the complete graph. Click and drag to move the visible part."
+msgstr "सम्पूर्ण आलेखस्य दृश्यम्। दृश्यमानं भागं चालयितुं क्लिक् कृत्वा कर्षयन्तु ।"
+
+#: part/pannerview.cpp:61
+#, kde-format
+msgid ""
+"<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
+"red square will move the center of the view to where the mouse was clicked.</"
+"p><p>Clicking and dragging within the red square will cause the view to "
+"follow the movement.</p>"
+msgstr ""
+"<h1>सम्पूर्ण आलेखस्य दृश्यम्</h1><p> रक्तवर्गं विना कुत्रचित् एकवारं क्लिक् कृत्वा दृश्यस्य केन्द्रं "
+"यत्र मूषकं क्लिक् कृतम् आसीत् तत्र गमिष्यति ।</p><p> रक्तवर्गस्य अन्तः क्लिक् कृत्वा कर्षणं कृत्वा "
+"दृश्यं गतिं अनुसृत्य भविष्यति ।</p>"
+
+#: part/simpleprintingcommand.cpp:78
+#, kde-format
+msgid "Print Preview"
+msgstr "मुद्रण पूर्वावलोकनम्"
+
+#: part/simpleprintingengine.cpp:190 part/simpleprintpreviewwindow.cpp:209
+#: part/simpleprintpreviewwindow.cpp:227
+#, kde-format
+msgctxt "Page (number) of (total)"
+msgid "Page %1 of %2"
+msgstr ""
+
+#: part/simpleprintingengine.cpp:192
+#, kde-format
+msgid "Page %1"
+msgstr "पृष्ठं %1"
+
+#: part/simpleprintingpagesetup.cpp:85
+#, kde-format
+msgid "Print Preview..."
+msgstr "मुद्रण पूर्वावलोकन..."
+
+#: part/simpleprintingpagesetup.cpp:88
+#, kde-format
+msgid "Font..."
+msgstr "फॉन्ट..."
+
+#: part/simpleprintingpagesetup.cpp:89
+#, kde-format
+msgid "Changes font for title text."
+msgstr "शीर्षकपाठस्य कृते font परिवर्तयति ।"
+
+#: part/simpleprintingpagesetup.cpp:95
+#, kde-format
+msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
+msgstr "<qt><h2>&quot;%1&quot; आलेखस्य मुद्रणार्थं पृष्ठस्य सेटअप ।</h2></qt>"
+
+#: part/simpleprintingpagesetup.cpp:100
+#, kde-format
+msgid "Saves settings for this setup as default."
+msgstr "अस्य सेटअपस्य सेटिङ्ग्स् पूर्वनिर्धारितरूपेण रक्षति ।"
+
+#: part/simpleprintingpagesetup.cpp:103
+#, kde-format
+msgid "Adds date and time to the header."
+msgstr "शीर्षके तिथिं समयं च योजयति ।"
+
+#: part/simpleprintingpagesetup.cpp:104
+#, kde-format
+msgid "Adds page numbers to the footer."
+msgstr "पादलेखे पृष्ठसङ्ख्याः योजयति ।"
+
+#: part/simpleprintingpagesetup.cpp:105
+#, kde-format
+msgid "Adds table borders."
+msgstr "सारणीसीमाः योजयति ।"
+
+#: part/simpleprintingpagesetup.cpp:113
+#, kde-format
+msgid "Change Page Size and Margins..."
+msgstr "पृष्ठस्य आकारं मार्जिनं च परिवर्तयन्तु..."
+
+#: part/simpleprintingpagesetup.cpp:114
+#, kde-format
+msgid "Changes page size and margins."
+msgstr "पृष्ठस्य आकारं मार्जिनं च परिवर्तयति ।"
+
+#: part/simpleprintingpagesetup.cpp:164
+#, kde-format
+msgid "Chosen font looks like this"
+msgstr "चयनितः फन्ट् एतादृशः दृश्यते"
+
+#: part/simpleprintingpagesetup.cpp:180
+#, kde-format
+msgid "Portrait"
+msgstr "चित्रम्"
+
+#: part/simpleprintingpagesetup.cpp:180
+#, kde-format
+msgid "Landscape"
+msgstr "भूप्रदेश"
+
+#: part/simpleprintingpagesetup.cpp:180
+#, kde-format
+msgid "margins:"
+msgstr "हाशियाः : १."
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: part/simpleprintingpagesetupbase.ui:64
+#, kde-format
+msgid "Pa&ge font:"
+msgstr "पा&गे फन्ट्: १."
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/simpleprintingpagesetupbase.ui:93
+#, kde-format
+msgid "Page Size && Margins"
+msgstr "पृष्ठ आकार && मार्जिन"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:118
+#, kde-format
+msgid "Add &borders"
+msgstr "&सीमाः योजयन्तु"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
+#: part/simpleprintingpagesetupbase.ui:125
+#, kde-format
+msgid "Add date and time"
+msgstr "तिथिं समयं च योजयन्तु"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:148
+#, kde-format
+msgid "Add page numbers"
+msgstr "पृष्ठसङ्ख्याः योजयन्तु"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
+#: part/simpleprintingpagesetupbase.ui:159
+#, kde-format
+msgid "Number of pages to fit on"
+msgstr "पृष्ठानां संख्या यस्मिन् उपयुक्तं भवेत्"
+
+#. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
+#: part/simpleprintingpagesetupbase.ui:167
+#, kde-format
+msgid "&Natural size"
+msgstr "&प्राकृतिक आकार"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
+#: part/simpleprintingpagesetupbase.ui:174
+#, kde-format
+msgid "Fit &to one page"
+msgstr "एकस्मिन् पृष्ठे &फिट्"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
+#: part/simpleprintingpagesetupbase.ui:181
+#, kde-format
+msgid "F&it to several pages"
+msgstr "F&it to several pages"
+
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:192
+#, kde-format
+msgctxt "@label:spinbox"
+msgid "Horizontally:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:202
+#, kde-format
+msgctxt "@label:spinbox"
+msgid "Vertically:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
+#: part/simpleprintingpagesetupbase.ui:212
+#, kde-format
+msgctxt "@option:check"
+msgid "Preserve aspect ratio:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: part/simpleprintingpagesetupbase.ui:228
+#, kde-format
+msgid "Related actions:"
+msgstr "सम्बन्धित कर्म : १."
+
+#: part/simpleprintpreviewwindow.cpp:58
+#, kde-format
+msgid "%1 - Print Preview - %2"
+msgstr "%1 - मुद्रणपूर्वावलोकनम् - %2"
+
+#: part/simpleprintpreviewwindow.cpp:73
+#, kde-format
+msgid "&Page setup"
+msgstr "&पृष्ठस्य स्थापना"
+
+#: part/simpleprintpreviewwindow.cpp:112
+#, kde-format
+msgid "Previous Page"
+msgstr "पूर्व पृष्ठ"
+
+#: part/simpleprintpreviewwindow.cpp:122
+#, kde-format
+msgid "Next Page"
+msgstr "अग्रिमः पृष्ठः"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: preferencesAppearance.ui:19
+#, kde-format
+msgid "Default background color:"
+msgstr "पूर्वनिर्धारित पृष्ठभूमिवर्णः : १."
+
+#. i18n: ectx: property (text), widget (QLabel, note)
+#: preferencesAppearance.ui:51
+#, kde-format
+msgid "Note: this will be overridden if the graph has its own background color"
+msgstr "नोट्: यदि आलेखस्य स्वकीयः पृष्ठभूमिवर्णः अस्ति तर्हि एतत् अधिलिखितं भविष्यति"
+
+#. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
+#: preferencesOpenInExistingWindow.ui:17
+#, kde-format
+msgid "Open in existing window"
+msgstr "विद्यमानविण्डो मध्ये उद्घाटयन्तु"
+
+#. i18n: ectx: property (text), widget (QRadioButton, yes)
+#: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
+#: preferencesReopenPreviouslyOpenedFiles.ui:29
+#, kde-format
+msgid "&Yes"
+msgstr "&आम्‌"
+
+#. i18n: ectx: property (text), widget (QRadioButton, no)
+#: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
+#: preferencesReopenPreviouslyOpenedFiles.ui:36
+#, kde-format
+msgid "&No"
+msgstr "&नहि"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesOpenInExistingWindow.ui:37
+#: preferencesReopenPreviouslyOpenedFiles.ui:43
+#, kde-format
+msgid "As&k"
+msgstr "पृच्छतु"
+
+#. i18n: ectx: property (title), widget (QGroupBox, parsingMode)
+#: preferencesParsing.ui:17
+#, kde-format
+msgid "Parse using:"
+msgstr "उपयोगेन विश्लेषणं कुर्वन्तु:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, external)
+#: preferencesParsing.ui:26
+#, kde-format
+msgid "E&xternal command"
+msgstr "E&xternal आदेशः"
+
+#. i18n: ectx: property (text), widget (QRadioButton, internal)
+#: preferencesParsing.ui:33
+#, kde-format
+msgid "Internal &library"
+msgstr "आन्तरिक &पुस्तकालय"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
+#: preferencesReload.ui:17
+#, kde-format
+msgid "Reload files modified on disk"
+msgstr "डिस्क-मध्ये परिवर्तितानि सञ्चिकाः पुनः लोड् कुर्वन्तु"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesReload.ui:40
+#, kde-format
+msgid "&Ask"
+msgstr "&पृच्छतु"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
+#: preferencesReopenPreviouslyOpenedFiles.ui:17
+#, kde-format
+msgid "Reopen previously opened files"
+msgstr "पूर्वं उद्घाटितानि सञ्चिकाः पुनः उद्घाटयन्तु"
