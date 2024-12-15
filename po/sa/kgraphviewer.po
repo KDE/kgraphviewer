@@ -3,28 +3,31 @@
 # This file is distributed under the same license as the kgraphviewer package.
 # Kali <EMAIL@ADDRESS>, 2024.
 #
+# SPDX-FileCopyrightText: 2024 kali <skkalwar999@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-12-13 19:09+0530\n"
-"Last-Translator: Kali <EMAIL@ADDRESS>\n"
-"Language-Team: Sanskrit\n"
+"PO-Revision-Date: 2024-12-14 01:48+0530\n"
+"Last-Translator: kali <skkalwar999@gmail.com>\n"
+"Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "भवतः नामानि"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "भवतः ईमेलपत्राणि"
 
 #: kgrapheditor.cpp:126 kgraphviewer.cpp:107
 #, kde-format
@@ -210,13 +213,13 @@ msgstr "पूर्वसत्रस्य सञ्चिकाः पुन�
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr ""
+msgstr "पुनः लोड करें"
 
 #: kgraphviewer.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
-msgstr ""
+msgstr "पुनः लोडं न कुर्वन्तु"
 
 #: kgraphviewer.cpp:196
 #, kde-format
@@ -400,13 +403,13 @@ msgstr "%1 चालयन् अज्ञातदोषः ।"
 #, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr ""
+msgstr "लेआउट एल्गोरिदम"
 
 #: part/dotgraphview.cpp:410
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
-msgstr ""
+msgstr "बिन्दु"
 
 #: part/dotgraphview.cpp:411
 #, kde-format
@@ -417,7 +420,7 @@ msgstr "dot program इत्यस्य उपयोगेन graph इत्�
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
-msgstr ""
+msgstr "नेतो"
 
 #: part/dotgraphview.cpp:416
 #, kde-format
@@ -428,7 +431,7 @@ msgstr "neato प्रोग्राम् इत्यस्य उपयो�
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
-msgstr ""
+msgstr "Trope"
 
 #: part/dotgraphview.cpp:421
 #, kde-format
@@ -439,7 +442,7 @@ msgstr "twopi प्रोग्राम् इत्यस्य उपयो�
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
-msgstr ""
+msgstr "Fdp"
 
 #: part/dotgraphview.cpp:426
 #, kde-format
@@ -450,7 +453,7 @@ msgstr "fdp प्रोग्राम् इत्यस्य उपयोग
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
-msgstr ""
+msgstr "सर्कसः"
 
 #: part/dotgraphview.cpp:431
 #, kde-format
@@ -478,7 +481,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
-msgstr ""
+msgstr "निर्यात आलेख"
 
 #: part/dotgraphview.cpp:454
 #, kde-format
@@ -498,7 +501,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr ""
+msgstr "यथा इमेज…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -519,7 +522,7 @@ msgstr "वर्तमानकाले दृष्टस्य आलेख�
 #, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
-msgstr ""
+msgstr "पक्षि-नेत्र-दृश्यं सक्षमं कुर्वन्तु"
 
 #: part/dotgraphview.cpp:478
 #, kde-format
@@ -530,7 +533,7 @@ msgstr "Bird's-eye View इत्येतत् सक्षमं निष्
 #, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr ""
+msgstr "पक्षि-नेत्र-दृष्टि-स्थानम्"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -541,7 +544,7 @@ msgstr "Bird's-eye View इत्यस्य सेटअपं कर्तु
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
-msgstr ""
+msgstr "उपरि वामभागे"
 
 #: part/dotgraphview.cpp:488
 #, kde-format
@@ -552,7 +555,7 @@ msgstr "Bird's-eye View इत्येतत् उपरि-वामकोण
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
-msgstr ""
+msgstr "उपरि दक्षिणतः"
 
 #: part/dotgraphview.cpp:494
 #, kde-format
@@ -563,7 +566,7 @@ msgstr "Bird's-eye View इत्येतत् उपरि-दक्षिण
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
-msgstr ""
+msgstr "अधः वामभागे"
 
 #: part/dotgraphview.cpp:500
 #, kde-format
@@ -574,7 +577,7 @@ msgstr "Bird's-eye View इत्येतत् अधः वामकोणे
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
-msgstr ""
+msgstr "अधः दक्षिणतः"
 
 #: part/dotgraphview.cpp:506
 #, kde-format
@@ -585,7 +588,7 @@ msgstr "Bird's-eye View इत्येतत् अधः-दक्षिणक
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
-msgstr ""
+msgstr "स्वतः"
 
 #: part/dotgraphview.cpp:512
 #, kde-format
@@ -597,13 +600,13 @@ msgstr "KGraphViewer स्वयमेव Bird's-eye View इत्यस्य
 #, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
-msgstr ""
+msgstr "प्रारूपं"
 
 #: part/dotgraphview.cpp:560
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr ""
+msgstr "लेआउट् आदेशं निर्दिशन्तु…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -618,7 +621,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr ""
+msgstr "Layout Command इत्येतत् Default इत्यत्र पुनः सेट् कुर्वन्तु"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -738,7 +741,7 @@ msgstr "मुद्रणपूर्वावलोकनविण्डो �
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr ""
+msgstr "पृष्ठ सेटअप…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -765,12 +768,12 @@ msgstr "&दृश्यं"
 #: part/KgvPageLayout.cpp:69
 msgctxt "Page size"
 msgid "Screen"
-msgstr ""
+msgstr "पट"
 
 #: part/KgvPageLayout.cpp:70
 msgctxt "Page size"
 msgid "Custom"
-msgstr ""
+msgstr "आचारः"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: part/KgvPageLayoutColumnsBase.ui:27
@@ -991,7 +994,7 @@ msgstr "मुद्रण पूर्वावलोकनम्"
 #, kde-format
 msgctxt "Page (number) of (total)"
 msgid "Page %1 of %2"
-msgstr ""
+msgstr "पृष्ठ %1 के %2"
 
 #: part/simpleprintingengine.cpp:192
 #, kde-format
@@ -1127,21 +1130,21 @@ msgstr "F&it to several pages"
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr ""
+msgstr "क्षैतिजरूपेण : १."
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr ""
+msgstr "लम्बवत् : १."
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
 #, kde-format
 msgctxt "@option:check"
 msgid "Preserve aspect ratio:"
-msgstr ""
+msgstr "आस्पेक्ट रेश्यो संरक्षितुम् : १."
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: part/simpleprintingpagesetupbase.ui:228
