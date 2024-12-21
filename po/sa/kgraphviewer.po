@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-12-14 01:48+0530\n"
+"PO-Revision-Date: 2024-12-20 22:01+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
@@ -122,7 +122,7 @@ msgstr "स्कैन् कर्तुं मार्गः अथवा UR
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "[url]"
-msgstr "[उर्ल्] ९."
+msgstr "[उर्ल्]"
 
 #: kgrapheditormain.cpp:82 main.cpp:84
 #, kde-format
@@ -779,13 +779,13 @@ msgstr "आचारः"
 #: part/KgvPageLayoutColumnsBase.ui:27
 #, kde-format
 msgid "Columns:"
-msgstr "स्तम्भाः : १."
+msgstr "स्तम्भाः :"
 
 #. i18n: ectx: property (text), widget (QLabel, labelSpacing)
 #: part/KgvPageLayoutColumnsBase.ui:37
 #, kde-format
 msgid "Column spacing:"
-msgstr "स्तम्भान्तरम् : १."
+msgstr "स्तम्भान्तरम् :"
 
 #: part/KgvPageLayoutDia.cpp:53
 #, kde-format
@@ -819,7 +819,7 @@ msgstr "सम-विषम-पृष्ठानां कृते भिन�
 #: part/KgvPageLayoutHeaderBase.ui:55
 #, kde-format
 msgid "Spacing between header and body:"
-msgstr "शीर्षकस्य शरीरस्य च मध्ये अन्तरं : १."
+msgstr "शीर्षकस्य शरीरस्य च मध्ये अन्तरं :"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
 #: part/KgvPageLayoutHeaderBase.ui:77
@@ -843,7 +843,7 @@ msgstr "समविषमपृष्ठानां कृते भिन्�
 #: part/KgvPageLayoutHeaderBase.ui:115
 #, kde-format
 msgid "Spacing between footer and body:"
-msgstr "पादलेखस्य शरीरस्य च मध्ये अन्तरं : १."
+msgstr "पादलेखस्य शरीरस्य च मध्ये अन्तरं :"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
 #: part/KgvPageLayoutHeaderBase.ui:137
@@ -855,7 +855,7 @@ msgstr "पादटिप्पणी/अन्तटिप्पणी"
 #: part/KgvPageLayoutHeaderBase.ui:159
 #, kde-format
 msgid "Spacing between footnote and body:"
-msgstr "पादटिप्पण्याः शरीरस्य च मध्ये अन्तरं : १."
+msgstr "पादटिप्पण्याः शरीरस्य च मध्ये अन्तरं :"
 
 #: part/KgvPageLayoutSize.cpp:58
 #, kde-format
@@ -925,37 +925,37 @@ msgstr "पृष्ठस्य ऊर्ध्वता उपरि अधः
 #: part/KgvUnit.cpp:52
 #, kde-format
 msgid "Millimeters (mm)"
-msgstr "मिलीमीटर् (मि.मी.) २."
+msgstr "मिलीमीटर् (मि.मी.)"
 
 #: part/KgvUnit.cpp:54
 #, kde-format
 msgid "Centimeters (cm)"
-msgstr "सेन्टिमीटर् (से.मी.) २."
+msgstr "सेन्टिमीटर् (से.मी.)"
 
 #: part/KgvUnit.cpp:56
 #, kde-format
 msgid "Decimeters (dm)"
-msgstr "डेसीमीटर (dm) २."
+msgstr "डेसीमीटर (dm)"
 
 #: part/KgvUnit.cpp:58
 #, kde-format
 msgid "Inches (in)"
-msgstr "इञ्च् (इञ्च) २."
+msgstr "इञ्च् (इञ्च)"
 
 #: part/KgvUnit.cpp:60
 #, kde-format
 msgid "Pica (pi)"
-msgstr "पिका (पि) ९."
+msgstr "पिका (पि)"
 
 #: part/KgvUnit.cpp:62
 #, kde-format
 msgid "Didot (dd)"
-msgstr "दिदोत् (च) ९."
+msgstr "दिदोत् (च)"
 
 #: part/KgvUnit.cpp:64
 #, kde-format
 msgid "Cicero (cc)"
-msgstr "सिसेरो (cc) ९."
+msgstr "सिसेरो (cc)"
 
 #: part/KgvUnit.cpp:66
 #, kde-format
@@ -1069,13 +1069,13 @@ msgstr "भूप्रदेश"
 #: part/simpleprintingpagesetup.cpp:180
 #, kde-format
 msgid "margins:"
-msgstr "हाशियाः : १."
+msgstr "हाशियाः :"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: part/simpleprintingpagesetupbase.ui:64
 #, kde-format
 msgid "Pa&ge font:"
-msgstr "पा&गे फन्ट्: १."
+msgstr "पा&गे फन्ट्:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/simpleprintingpagesetupbase.ui:93
@@ -1130,27 +1130,27 @@ msgstr "F&it to several pages"
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "क्षैतिजरूपेण : १."
+msgstr "क्षैतिजरूपेण :"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "लम्बवत् : १."
+msgstr "लम्बवत् :"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
 #, kde-format
 msgctxt "@option:check"
 msgid "Preserve aspect ratio:"
-msgstr "आस्पेक्ट रेश्यो संरक्षितुम् : १."
+msgstr "आस्पेक्ट रेश्यो संरक्षितुम् :"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel6)
 #: part/simpleprintingpagesetupbase.ui:228
 #, kde-format
 msgid "Related actions:"
-msgstr "सम्बन्धित कर्म : १."
+msgstr "सम्बन्धित कर्म :"
 
 #: part/simpleprintpreviewwindow.cpp:58
 #, kde-format
@@ -1176,7 +1176,7 @@ msgstr "अग्रिमः पृष्ठः"
 #: preferencesAppearance.ui:19
 #, kde-format
 msgid "Default background color:"
-msgstr "पूर्वनिर्धारित पृष्ठभूमिवर्णः : १."
+msgstr "पूर्वनिर्धारित पृष्ठभूमिवर्णः :"
 
 #. i18n: ectx: property (text), widget (QLabel, note)
 #: preferencesAppearance.ui:51
