@@ -24,6 +24,7 @@
   <name xml:lang="gl">KGraphViewer</name>
   <name xml:lang="he">KGraphViewer</name>
   <name xml:lang="hu">KGraphViewer</name>
+  <name xml:lang="ia">KGraphViewer</name>
   <name xml:lang="id">KGraphViewer</name>
   <name xml:lang="it">KGraphViewer</name>
   <name xml:lang="ka">KGraphViewer</name>
@@ -126,6 +127,7 @@
     <p xml:lang="gl">Funcionalidades:</p>
     <p xml:lang="he">יכולות:</p>
     <p xml:lang="hu">Szolgáltatások:</p>
+    <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Caratteristiche:</p>
     <p xml:lang="ka">თვისებები:</p>
@@ -163,6 +165,7 @@
       <li xml:lang="gl">Ampliación.</li>
       <li xml:lang="he">תקריב</li>
       <li xml:lang="hu">Nagyítás</li>
+      <li xml:lang="ia">Facente zoom</li>
       <li xml:lang="id">Pengezooman</li>
       <li xml:lang="it">Ingrandimento</li>
       <li xml:lang="ka">გადიდება</li>
