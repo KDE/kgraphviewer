@@ -1,5 +1,5 @@
 # translation of kgraphviewer.po to
-# SPDX-FileCopyrightText: 2024 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2024, 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 # محمد سعد  Mohamed SAAD <metehyi@free.fr>, 2006.
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
 msgid ""
@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:37+0000\n"
-"PO-Revision-Date: 2024-09-19 09:55+0400\n"
+"PO-Revision-Date: 2025-01-18 17:07+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -753,7 +753,7 @@ msgstr "تباعد الأعمدة:"
 #: part/KgvPageLayoutDia.cpp:53
 #, kde-format
 msgid "Page Preview"
-msgstr ""
+msgstr "معاينة الصفحة"
 
 #: part/KgvPageLayoutDia.cpp:268
 #, kde-format
