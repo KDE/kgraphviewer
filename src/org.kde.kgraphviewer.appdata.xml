@@ -513,7 +513,7 @@
       <li xml:lang="fi">Automaattinen uudelleenlataus mutta käyttäjä vahvistaa (ulkoisesti) muuttuneet tiedostot (mukautettavissa)</li>
       <li xml:lang="fr">Rechargement automatique (configurable) de fichiers modifiés (extérieurement) avec confirmation de l'utilisateur </li>
       <li xml:lang="gl">Permite cargar de novo automaticamente, previa confirmación por parte do usuario, ficheiros modificador de maneira externa.</li>
-      <li xml:lang="he">רענון אוטומטי מחדש עם אישור המשתמש של קבצים שנערכו (חיצונית - נתון להגדרה)</li>
+      <li xml:lang="he">ריענון אוטומטי מחדש עם אישור המשתמש של קבצים שנערכו (חיצונית - נתון להגדרה)</li>
       <li xml:lang="id">Memuat-ulang otomatis dengan konfirmasi pengguna dari (secara external) file-file yang dimodifikasi (dapatdikonfigurasi)</li>
       <li xml:lang="it">Ricaricamento automatico con conferma dell'utente dei file modificati da altri programmi (configurabile)</li>
       <li xml:lang="ka">(პროგრამის გარეთ) შეცვლილი ფაილების თავიდან ავტომატური თავიდან ჩატვირთვა მომხმარებლის დადასტურებით (მორგებადი)</li>
