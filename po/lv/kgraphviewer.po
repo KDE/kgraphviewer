@@ -1,0 +1,1258 @@
+# Copyright (C) 2025 This file is copyright:
+# This file is distributed under the same license as the kgraphviewer package.
+#
+# SPDX-FileCopyrightText: 2025 Toms Trasuns <toms.trasuns@posteo.net>
+msgid ""
+msgstr ""
+"Project-Id-Version: kgraphviewer\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"PO-Revision-Date: 2025-05-22 17:05+0300\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+"X-Generator: Lokalize 25.04.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Toms Trasūns"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "toms.trasuns@posteo.net"
+
+#: kgrapheditor.cpp:126 kgraphviewer.cpp:107
+#, kde-format
+msgid "Session Restore"
+msgstr "Sesijas atjaunošana"
+
+#: kgrapheditor.cpp:126
+#, kde-format
+msgid "Do you want to reload files from previous session?"
+msgstr "Vai vēlaties no jauna ielādēt datnes no iepriekšējās sesijas?"
+
+#: kgrapheditor.cpp:142
+#, kde-format
+msgid "Unable to start"
+msgstr "Neizdodas palaist"
+
+#: kgrapheditor.cpp:142 kgraphviewer.cpp:129
+#, kde-format
+msgid "Could not find the KGraphViewer part."
+msgstr "Neizdodas atrast „KGraphViewer“ daļu."
+
+#: kgrapheditor.cpp:223 kgraphviewer.cpp:208
+#, kde-format
+msgid "Closes the current file"
+msgstr "Aizver pašreizējo datni"
+
+#: kgrapheditor.cpp:234
+#, kde-format
+msgid "Create a New Vertex"
+msgstr "Izveidot jaunu punktu"
+
+#: kgrapheditor.cpp:239
+#, kde-format
+msgid "Create a New Edge"
+msgstr "Izveidot jaunu malu"
+
+#: kgrapheditor.cpp:494
+#, kde-format
+msgid "Save current graph"
+msgstr "Saglabāt pašreizējo grafiku"
+
+#: kgrapheditorConfigDialog.cpp:48 kgraphviewerConfigDialog.cpp:55
+#, kde-format
+msgid "Parsing"
+msgstr "Parsēšana"
+
+#: kgrapheditorConfigDialog.cpp:49 kgraphviewerConfigDialog.cpp:56
+#, kde-format
+msgid "Reloading"
+msgstr "Pārlādēšana"
+
+#: kgrapheditorConfigDialog.cpp:50 kgraphviewerConfigDialog.cpp:57
+#, kde-format
+msgid "Opening"
+msgstr "Atvēršana"
+
+#: kgrapheditorConfigDialog.cpp:51 kgraphviewerConfigDialog.cpp:58
+#, kde-format
+msgid "Session Management"
+msgstr "Sesijas pārvaldība"
+
+#: KGraphEditorElementTreeWidget.cpp:50 KGraphEditorNodesTreeWidget.cpp:54
+#, kde-format
+msgid "Add a new attribute"
+msgstr "Pievienot jaunu atribūtu"
+
+#: KGraphEditorElementTreeWidget.cpp:56 KGraphEditorNodesTreeWidget.cpp:60
+#, kde-format
+msgid "Remove this attribute"
+msgstr "Noņemt šo atribūtu"
+
+#: kgrapheditormain.cpp:40
+#, kde-format
+msgid "KGraphEditor"
+msgstr "KGraphEditor"
+
+#: kgrapheditormain.cpp:42
+#, kde-format
+msgid "A Graphviz DOT graph editor by KDE"
+msgstr "„Graphviz DOT“ grafiku redaktors no KDE"
+
+#: kgrapheditormain.cpp:44 main.cpp:43
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005—2010 Gaël de Chalendar"
+
+#: kgrapheditormain.cpp:57 main.cpp:59
+#, kde-format
+msgid "Path or URL to scan"
+msgstr "Skenējamais ceļš vai URL"
+
+#: kgrapheditormain.cpp:57 main.cpp:59
+#, kde-format
+msgid "[url]"
+msgstr "[url]"
+
+#: kgrapheditormain.cpp:82 main.cpp:84
+#, kde-format
+msgid "Opening in new window confirmation"
+msgstr "Atver jaunu loga apstiprinājumu"
+
+#: kgrapheditormain.cpp:82
+#, kde-format
+msgid ""
+"A KGraphEditor window is already open, do you want to open the file in it?"
+msgstr "„KGraphEditor“ logs jau ir atvērts. Vai vēlaties tajā atvērt datni?"
+
+#: KGraphEditorNodesTreeWidget.cpp:65
+#, kde-format
+msgid "Remove this node"
+msgstr "Noņemt šo mezglu"
+
+#. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
+#, kde-format
+msgid "The answer to the question 'File modified, do you want to reload it'"
+msgstr "Atbilde uz jautājumu „Datne ir izmainīta, vai vēlaties to pārlādēt“"
+
+#. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
+#, kde-format
+msgid ""
+"To choose whether to parse using an external command (usually dot) or the "
+"graphviz library"
+msgstr ""
+"Lai izvēlētos, vai parsēt ar ārēju komandu (paraksti „dot“) vai „graphviz“ "
+"bibliotēku"
+
+#. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
+#, kde-format
+msgid ""
+"The answer to the question 'If another window already exist when launching "
+"kgraphviewer, should we open in it, open a new window or ask?'"
+msgstr ""
+"Atbilde uz jautājumu „Ja, palaižot „kgraphviewer“, tas jau ir atvērts citā "
+"logā, vai atvērt tajā, atvērt jaunā logā vai jautāt?“"
+
+#. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
+#, kde-format
+msgid ""
+"The answer to the question 'Should the files that were opened in previous "
+"sessions be reopened at startup?'"
+msgstr ""
+"Atbilde uz jautājumu „Vai datnes, kas bija atvērtas iepriekšējās sesijās, "
+"palaižot programmu, atvērt no jauna?“"
+
+#. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
+#: part/kgraphviewer_partsettings.kcfg:9
+#, kde-format
+msgid "If true, the bird's eye view will be shown if needed."
+msgstr "Ja patiess, nepieciešamības gadījumā parādīs putna aci."
+
+#. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
+#: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
+#, kde-format
+msgid "The list of files that were opened in past instances of kgraphviewer"
+msgstr "Datņu saraksts, kas bija atvērts iepriekšējā „kgraphviewer“ instancē"
+
+#. i18n: ectx: ToolBar (viewToolBar)
+#: kgrapheditorui.rc:22 kgraphviewerui.rc:16
+#, kde-format
+msgid "View Toolbar"
+msgstr "Skata rīkjosla"
+
+#. i18n: ectx: ToolBar (helpToolBar)
+#: kgrapheditorui.rc:25 kgraphviewerui.rc:19
+#, kde-format
+msgid "Help Toolbar"
+msgstr "Palīdzības rīkjosla"
+
+#. i18n: ectx: ToolBar (editToolBar)
+#: kgrapheditorui.rc:30
+#, kde-format
+msgid "Edit Toolbar"
+msgstr "Rediģēšanas rīkjosla"
+
+#: kgraphviewer.cpp:106
+#, kde-format
+msgid "Do you want to reload files from the previous session?"
+msgstr "Vai vēlaties pārlādēt datnes no iepriekšējās sesijas?"
+
+#: kgraphviewer.cpp:108
+#, kde-format
+msgctxt "@action:button"
+msgid "Reload"
+msgstr "Pārlādēt"
+
+#: kgraphviewer.cpp:109
+#, kde-format
+msgctxt "@action:button"
+msgid "Do Not Reload"
+msgstr "Nepārlādēt"
+
+#: kgraphviewer.cpp:196
+#, kde-format
+msgid "Opens a new empty KGraphViewer window."
+msgstr "Atver jaunu tukšu „KGrapphViewer“ logu."
+
+#: kgraphviewer.cpp:199
+#, kde-format
+msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
+msgstr ""
+"Rādīt datnes atvēršanas logu, lai izvēlētos atveramo „Graphviz“ DOT datni."
+
+#: kgraphviewer.cpp:202
+#, kde-format
+msgid ""
+"This lists files which you have opened recently, and allows you to easily "
+"open them again."
+msgstr "Parāda nesen atvērtās datnes un ļauj viegli tās atvērt atkal."
+
+#: kgraphviewer.cpp:212
+#, kde-format
+msgid "Quits KGraphViewer."
+msgstr "Iziet no „KGraphViewer“."
+
+#: kgraphviewer.cpp:215
+#, kde-format
+msgid "Shows or hides the status bar."
+msgstr "Parāda vai slēpj statusa joslu."
+
+#: kgraphviewer.cpp:218
+#, kde-format
+msgid "Toolbar configuration."
+msgstr "Rīkjoslas konfigurācija"
+
+#: kgraphviewer.cpp:221
+#, kde-format
+msgid "Main KGraphViewer configuration options."
+msgstr "Pamata „KGraphViewer“ konfigurācijas opcijas."
+
+#: kgraphviewerConfigDialog.cpp:54
+#, kde-format
+msgid "Appearance"
+msgstr "Izskats"
+
+#. i18n: ectx: label, entry (backgroundColor), group (Appearance)
+#: kgraphviewersettings.kcfg:34
+#, kde-format
+msgid "Background color of the graph view."
+msgstr "Grafika loga fona krāsa."
+
+#: main.cpp:39
+#, kde-format
+msgid "KGraphViewer"
+msgstr "KGraphViewer"
+
+#: main.cpp:41
+#, kde-format
+msgid "A Graphviz DOT graph viewer"
+msgstr "„Graphviz“ DOT grafiku skatītājs"
+
+#: main.cpp:46
+#, kde-format
+msgid "Gaël de Chalendar"
+msgstr "Gaël de Chalendar"
+
+#: main.cpp:46
+#, kde-format
+msgid "Original Author and current maintainer"
+msgstr "Sākotnējās versijas autors un pašreizējais uzturētājs"
+
+#: main.cpp:47
+#, kde-format
+msgid "Reimar Döffinger"
+msgstr "Reimar Döffinger"
+
+#: main.cpp:47 main.cpp:48 main.cpp:49 main.cpp:50
+#, kde-format
+msgid "Contributor"
+msgstr "Līdzautors"
+
+#: main.cpp:48
+#, kde-format
+msgid "Matthias Peinhardt"
+msgstr "Matthias Peinhardt"
+
+#: main.cpp:49
+#, kde-format
+msgid "Sandro Andrade"
+msgstr "Sandro Andrade"
+
+#: main.cpp:50
+#, kde-format
+msgid "Milian Wolff"
+msgstr "Milian Wolff"
+
+#: main.cpp:51
+#, kde-format
+msgid "Martin Sandsmark"
+msgstr "Martin Sandsmark"
+
+#: main.cpp:51
+#, kde-format
+msgid "Port to KF5"
+msgstr "KF5 ports"
+
+#: main.cpp:84
+#, kde-format
+msgid ""
+"A KGraphViewer window is already open, where do you want to open this file "
+"in the existing window?"
+msgstr ""
+"„KGraphViewer“ logs jau ir atvērts. Vai vēlaties šo datni atvērt jau esošajā "
+"programmas logā?"
+
+#: part/canvasedge.cpp:70
+#, kde-format
+msgid ""
+"%1 -> %2\n"
+"label='%3'"
+msgstr ""
+"%1 —> %2\n"
+"etiķete=„%3“"
+
+#: part/canvasedge.cpp:74
+#, kde-format
+msgid "Remove selected edge(s)"
+msgstr "Noņemt atlasīto malu(-as)"
+
+#: part/canvaselement.cpp:87
+#, kde-format
+msgid "Remove selected element(s)"
+msgstr "Noņemt atlasīto elementu(-us)"
+
+#: part/canvasnode.cpp:51
+#, kde-format
+msgid ""
+"id='%1'\n"
+"label='%2'"
+msgstr ""
+"id=„%1“\n"
+"etiķete=„%2“"
+
+#: part/dotgraph.cpp:260 part/dotgraph.cpp:263 part/dotgraph.cpp:266
+#: part/dotgraph.cpp:269 part/dotgraph.cpp:272 part/dotgraph.cpp:275
+#, kde-format
+msgid "Layout process failed"
+msgstr "Izkārtojuma apstrāde neizdevās"
+
+#: part/dotgraph.cpp:260
+#, kde-format
+msgid "Unable to start %1."
+msgstr "Neizdodas palaist „%1“"
+
+#: part/dotgraph.cpp:263
+#, kde-format
+msgid "%1 crashed."
+msgstr "„%1“ avarēja."
+
+#: part/dotgraph.cpp:266
+#, kde-format
+msgid "%1 timed out."
+msgstr "Iestājās „%1“ noildze."
+
+#: part/dotgraph.cpp:269
+#, kde-format
+msgid "Was not able to write data to the %1 process."
+msgstr "Neizdevās rakstīt datus „%1“ procesā."
+
+#: part/dotgraph.cpp:272
+#, kde-format
+msgid "Was not able to read data from the %1 process."
+msgstr "Neizdevās nolasīt datus no „%1“ procesa."
+
+#: part/dotgraph.cpp:275
+#, kde-format
+msgid "Unknown error running %1."
+msgstr "Nezināma kļūda, palaižot „%1“."
+
+#: part/dotgraphview.cpp:407
+#, kde-format
+msgctxt "@title:menu"
+msgid "Layout Algorithm"
+msgstr "Izkārtojuma algoritms"
+
+#: part/dotgraphview.cpp:410
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Dot"
+msgstr "Dot"
+
+#: part/dotgraphview.cpp:411
+#, kde-format
+msgid "Layout the graph using the dot program."
+msgstr "Izkārtot shēmu, izmantojot „dot“ programmu."
+
+#: part/dotgraphview.cpp:415
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Neato"
+msgstr "Neato"
+
+#: part/dotgraphview.cpp:416
+#, kde-format
+msgid "Layout the graph using the neato program."
+msgstr "Izkārtot shēmu, izmantot „neato“ programmu."
+
+#: part/dotgraphview.cpp:420
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Twopi"
+msgstr "Twopi"
+
+#: part/dotgraphview.cpp:421
+#, kde-format
+msgid "Layout the graph using the twopi program."
+msgstr "Izkārtot shēmu, izmantojot „twopi“ programmu."
+
+#: part/dotgraphview.cpp:425
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Fdp"
+msgstr "Fdp"
+
+#: part/dotgraphview.cpp:426
+#, kde-format
+msgid "Layout the graph using the fdp program."
+msgstr "Izkārtot shēmu, izmantojot „fdp“ programmu."
+
+#: part/dotgraphview.cpp:430
+#, kde-format
+msgctxt "@item:inmenu algorithm program"
+msgid "Circo"
+msgstr "Circo"
+
+#: part/dotgraphview.cpp:431
+#, kde-format
+msgid "Layout the graph using the circo program."
+msgstr "Izkārtot shēmu, izmantojot „circo“ programmu."
+
+#: part/dotgraphview.cpp:443
+#, kde-format
+msgid "Choose a Graphviz layout algorithm or edit your own one."
+msgstr "Izvēlieties „Graphviz“ izkārtojuma algoritmu vai rediģējiet savu."
+
+#: part/dotgraphview.cpp:445
+#, kde-format
+msgid ""
+"Choose a Graphviz layout algorithm or type in your own command that will "
+"generate a graph in the xdot format on its standard output. For example, to "
+"manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
+"Gname=MyGraphName -Txdot </tt>"
+msgstr ""
+"Izvēlieties „Graphviz“ izkārtojuma algoritmu vai ierakstiet savu komandu, "
+"kas standarta izvadē ģenerēs grafiku „xdot“ formātā. Piemēram, lai „dot“ "
+"komandai manuāli norādītu <tt>G</tt> opciju, ierakstiet: <tt>dot -"
+"Gname=MansGrafiks -Txdot </tt>"
+
+#: part/dotgraphview.cpp:453
+#, kde-format
+msgctxt "@title:menu"
+msgid "Export Graph"
+msgstr "Eksportēt shēmu"
+
+#: part/dotgraphview.cpp:454
+#, kde-format
+msgid "Allows the graph to be exported in another format."
+msgstr "Ļauj shēmu eksportēt citā formātā."
+
+#: part/dotgraphview.cpp:456
+#, kde-format
+msgid ""
+"Use the Export Graph menu to export the graph in another format. There is "
+"currently only one export format supported: as a PNG image."
+msgstr ""
+"Izmantojiet shēmas eksportēšanas izvēlni, lai eksportētu shēmu citā formātā. "
+"Šobrīd programma atbalsta tikai vienu eksporta formātu — PNG attēlu."
+
+#: part/dotgraphview.cpp:459
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "As Image…"
+msgstr "Kā attēlu…"
+
+#: part/dotgraphview.cpp:460
+#, kde-format
+msgid "Export the graph to an image file."
+msgstr "Eksportēt shēmas attēlu datnē."
+
+#: part/dotgraphview.cpp:470
+#, no-c-format, kde-format
+msgid "Zoom in by 10% on the currently viewed graph"
+msgstr "Tuvināt par 10 % šobrīd apskatītajā shēmā"
+
+#: part/dotgraphview.cpp:474
+#, no-c-format, kde-format
+msgid "Zoom out by 10% from the currently viewed graph"
+msgstr "Tālināt par 10 % šobrīd apskatītajā shēmā"
+
+#: part/dotgraphview.cpp:477
+#, kde-format
+msgctxt "@option:check"
+msgid "Enable Bird's-Eye View"
+msgstr "Ieslēgt putna lidojuma skatu"
+
+#: part/dotgraphview.cpp:478
+#, kde-format
+msgid "Enables or disables the Bird's-eye View"
+msgstr "Ieslēdz vai izslēdz putna lidojuma skatu"
+
+#: part/dotgraphview.cpp:484
+#, kde-format
+msgctxt "@title:menu"
+msgid "Bird's-Eye View Position"
+msgstr "Putna lidojuma skata pozīcija"
+
+#: part/dotgraphview.cpp:485
+#, kde-format
+msgid "Allows the Bird's-eye View to be setup."
+msgstr "Ļauj iestatīt putna lidojuma skatu."
+
+#: part/dotgraphview.cpp:487
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Top Left"
+msgstr "Augšā pa kreisi"
+
+#: part/dotgraphview.cpp:488
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-left corner."
+msgstr "Putna lidojuma skatu novieto augšējā kreisajā stūrī."
+
+#: part/dotgraphview.cpp:493
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Top Right"
+msgstr "Augšā pa labi"
+
+#: part/dotgraphview.cpp:494
+#, kde-format
+msgid "Puts the Bird's-eye View in the top-right corner."
+msgstr "Putna lidojuma skatu novieto augšējā labajā stūrī."
+
+#: part/dotgraphview.cpp:499
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Bottom Left"
+msgstr "Apakšā pa kreisi"
+
+#: part/dotgraphview.cpp:500
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-left corner."
+msgstr "Putna lidojuma skatu novieto apakšējā kreisajā stūrī."
+
+#: part/dotgraphview.cpp:505
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Bottom Right"
+msgstr "Apakšā pa labi"
+
+#: part/dotgraphview.cpp:506
+#, kde-format
+msgid "Puts the Bird's-eye View in the bottom-right corner."
+msgstr "Putna lidojuma skatu novieto apakšējā labajā stūrī."
+
+#: part/dotgraphview.cpp:511
+#, kde-format
+msgctxt "@item:inmenu bev position"
+msgid "Automatic"
+msgstr "Automātisks"
+
+#: part/dotgraphview.cpp:512
+#, kde-format
+msgid ""
+"Let KGraphViewer automatically choose the position of the Bird's-eye View."
+msgstr ""
+"Ļaut „KGraphViewer“ automātiski izvēlēties putna lidojuma skata atrašanās "
+"vietu."
+
+#: part/dotgraphview.cpp:557
+#, kde-format
+msgctxt "@title:menu"
+msgid "Layout"
+msgstr "Izkārtojums"
+
+#: part/dotgraphview.cpp:560
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Specify Layout Command…"
+msgstr "Norādīt izkārtojuma komandu…"
+
+#: part/dotgraphview.cpp:562
+#, kde-format
+msgid ""
+"Specify yourself the layout command to use. Given a dot file, it should "
+"produce an xdot file on its standard output."
+msgstr ""
+"Norādiet izmantojamo izkārtojuma komandu. „dot“ datnes gadījumā tai jābūt "
+"„xdot“ datnes rezultātam standarta izvadē."
+
+#: part/dotgraphview.cpp:564
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Reset Layout Command to Default"
+msgstr "Atiestatīt izkārtojuma komandu uz noklusējumu"
+
+#: part/dotgraphview.cpp:566
+#, kde-format
+msgid ""
+"Resets the layout command to use to the default depending on the graph type "
+"(directed or not)."
+msgstr ""
+"Atiestata izkārtojuma komandu, ko izmantot kā noklusējumu atkarībā no shēmas "
+"tipa (orientēta vai neorientēta)."
+
+#: part/dotgraphview.cpp:600
+#, kde-format
+msgid "Select file"
+msgstr "Atlasīt datni"
+
+#: part/dotgraphview.cpp:614
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer"
+msgstr "Shēmas SVG, ģenerēja „KGraphViewer“"
+
+#: part/dotgraphview.cpp:615
+#, kde-format
+msgid "Graph SVG Generated by KGraphViewer."
+msgstr "Shēmas SVG, ģenerēja „KGraphViewer“."
+
+#: part/dotgraphview.cpp:662
+#, kde-format
+msgid ""
+"<h1>Graphviz DOT format graph visualization</h1><p>If the graph is larger "
+"than the widget area, an overview panner is shown in one edge. Choose "
+"through the context menu if the optimal position of this overview should be "
+"automatically computed or put it where you want.</p><h2>How to work with it?"
+"</h2><ul><li>To move the graph, you can:  <ul>    <li>click & drag it</"
+"li>    <li>use the elevators</li>    <li>press the arrows keys</li>    "
+"<li>click somewhere in the panner view</li>    <li>use the mouse wheel (up "
+"and down with no modifier, left and right with the <Alt> key pressed)</"
+"li>    <li>or click & drag the panner view</li>  </ul></li><li>To zoom, you "
+"can either use the zoom in and zoom out toolbar buttons, or click on the "
+"<Shift> key while rolling your mouse wheel.</li><li>Try the contextual menu "
+"(usually by right-clicking) to discover other possibilities.</li><li>Try the "
+"<tt>Print preview</tt> or the <tt>Page setup</tt> buttons to explore the "
+"printing options.</li></ul>"
+msgstr ""
+"<h1>„Graphviz“ DOT formāta shēmu vizualizācija</h1><p>Ja shēma ir lielāka "
+"par logdaļas zonu, kādā no tās malām būs redzams pārskata bīdnis. Konteksta "
+"izvēlnē izvēlieties vēlamo šī pārskata novietojumu — automātisku vai arī "
+"jūsu norādītu.</p><h2>Kā ar to strādāt?</h2><ul><li>Lai shēmu pārvietotu, "
+"varat:  <ul>    <li>uz tās klikšķināt un vilkt</li>    <li>izmantot "
+"elevatorus</li>    <li>spiest bultiņu taustiņus</li>    <li>klikšķināt kaut "
+"kur bīdītāja skatā</li>    <li>izmantot peles rullīti (augšup un lejup bez "
+"modifikatora taustiņa, pa kreisi un pa labi ar nospiestu <Alt> taustiņu)</"
+"li>    <li>vai klikšķiniet un velciet bīdņa skatā</li>  </ul></li><li>Lai "
+"mainītu tālumu, varat vai nu izmantot tuvinājuma un tālinājuma pogas "
+"rīkjoslā, vai arī turēt nospiestu <Shift> taustiņu, vienlaikus ritinot peles "
+"rullīti.</li><li>Atklājiet arī citas iespējas, atverot konteksta izvēlni "
+"(parasti peles labās pogas klikšķis).</li><li>Drukas iespējas varat izpētīt, "
+"spiežot uz <tt>Drukas priekšskatījuma</tt> vai <tt>Lapas iestatīšanas</tt> "
+"pogām.</li></ul>"
+
+#: part/dotgraphview.cpp:817
+#, kde-format
+msgid "no graph loaded"
+msgstr "shēma nav ielādēta"
+
+#: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
+#: part/dotgraphview.cpp:1001
+#, kde-format
+msgid "graph %1 is getting loaded..."
+msgstr "notiek „%1“ shēma ielāde..."
+
+#: part/dotgraphview.cpp:941
+#, kde-format
+msgid "error parsing file %1"
+msgstr "kļūda, parsējot datni „%1“"
+
+#: part/dotgraphview.cpp:1646
+#, kde-format
+msgid "Reload Confirmation"
+msgstr "Pārlādēt apstiprinājumu"
+
+#: part/dotgraphview.cpp:1646
+#, kde-format
+msgid ""
+"The file %1 has been modified on disk.\n"
+"Do you want to reload it?"
+msgstr ""
+"Datne „%1“ ir izmainīta diskā.\n"
+"Vai vēlaties to pārlādēt?"
+
+#: part/dotgraphview.cpp:1732
+#, kde-format
+msgid "Layout Command"
+msgstr "Izkārtojuma komanda"
+
+#: part/dotgraphview.cpp:1733
+#, kde-format
+msgid ""
+"Specify here the command that will be used to layout the graph.\n"
+"The command MUST write its results on stdout in xdot format."
+msgstr ""
+"Norādiet komandu, ko izmantot shēmas izkārtošanai.\n"
+"Komandai OBLIGĀTI rezultāts jāizvada standarta izvadē („stdout“) „xdot“ "
+"formātā."
+
+#: part/dotgraphview.cpp:2182
+#, kde-format
+msgid "Failed to open %1"
+msgstr "Neizdevās atvērt „%1“"
+
+#: part/kgraphviewer_part.cpp:84
+#, kde-format
+msgid "Print the graph using current page setup settings"
+msgstr "Drukāt shēmu, izmantojot pašreizējos lapas iestatījumus"
+
+#: part/kgraphviewer_part.cpp:87
+#, kde-format
+msgid "Open the print preview window"
+msgstr "Atvērt drukas priekšskatījuma logu"
+
+#: part/kgraphviewer_part.cpp:92
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Page Setup…"
+msgstr "Lapas iestatījumi…"
+
+#: part/kgraphviewer_part.cpp:93
+#, kde-format
+msgid "Opens the Page Setup dialog to allow graph printing to be setup"
+msgstr "Atver lapas iestatījumu logu, lai shēmu sagatavotu drukāšanai"
+
+#: part/kgraphviewer_part.cpp:96
+#, kde-format
+msgid "Reload the current graph from file"
+msgstr "Pārlādēt pašreizējo shēmu no datnes"
+
+#. i18n: ectx: Menu (file)
+#: part/kgraphviewer_part.rc:4
+#, kde-format
+msgid "&File"
+msgstr "&Datne"
+
+#. i18n: ectx: Menu (view)
+#: part/kgraphviewer_part.rc:11
+#, kde-format
+msgid "&View"
+msgstr "&Skats"
+
+#: part/KgvPageLayout.cpp:69
+msgctxt "Page size"
+msgid "Screen"
+msgstr "Ekrāns"
+
+#: part/KgvPageLayout.cpp:70
+msgctxt "Page size"
+msgid "Custom"
+msgstr "Pielāgots"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel1)
+#: part/KgvPageLayoutColumnsBase.ui:27
+#, kde-format
+msgid "Columns:"
+msgstr "Kolonnas:"
+
+#. i18n: ectx: property (text), widget (QLabel, labelSpacing)
+#: part/KgvPageLayoutColumnsBase.ui:37
+#, kde-format
+msgid "Column spacing:"
+msgstr "Attālums starp kolonnām:"
+
+#: part/KgvPageLayoutDia.cpp:53
+#, kde-format
+msgid "Page Preview"
+msgstr "Lapas priekšskatījums"
+
+#: part/KgvPageLayoutDia.cpp:268
+#, kde-format
+msgid "Page Size & Margins"
+msgstr "Lapas izmērs un apmales"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/KgvPageLayoutHeaderBase.ui:17
+#, kde-format
+msgid "Header"
+msgstr "Galvene"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhFirst)
+#: part/KgvPageLayoutHeaderBase.ui:23
+#, kde-format
+msgid "Different header for the first page"
+msgstr "Atšķirīga galvena pirmajai lapai"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:30
+#, kde-format
+msgid "Different header for even and odd pages"
+msgstr "Atšķirīga galvene pāra un nepāra lapām"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel3)
+#: part/KgvPageLayoutHeaderBase.ui:55
+#, kde-format
+msgid "Spacing between header and body:"
+msgstr "Attālums starp galveni un pamata daļu"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
+#: part/KgvPageLayoutHeaderBase.ui:77
+#, kde-format
+msgid "Footer"
+msgstr "Kājene"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfFirst)
+#: part/KgvPageLayoutHeaderBase.ui:83
+#, kde-format
+msgid "Different footer for the first page"
+msgstr "Atšķirīga kājene pirmajai lapai"
+
+#. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
+#: part/KgvPageLayoutHeaderBase.ui:90
+#, kde-format
+msgid "Different footer for even and odd pages"
+msgstr "Atšķirīga kājene pāra un nepāra lapām"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel4)
+#: part/KgvPageLayoutHeaderBase.ui:115
+#, kde-format
+msgid "Spacing between footer and body:"
+msgstr "Attālums starp kājeni un pamata daļu"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
+#: part/KgvPageLayoutHeaderBase.ui:137
+#, kde-format
+msgid "Footnote/Endnote"
+msgstr "Vēre/beigu vēre"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel5)
+#: part/KgvPageLayoutHeaderBase.ui:159
+#, kde-format
+msgid "Spacing between footnote and body:"
+msgstr "Attālums starp vēri un pamata daļu:"
+
+#: part/KgvPageLayoutSize.cpp:58
+#, kde-format
+msgid "Unit:"
+msgstr "Vienība:"
+
+#: part/KgvPageLayoutSize.cpp:71
+#, kde-format
+msgid "All values are given in %1."
+msgstr "Visu vienību mērvienība ir %1."
+
+#: part/KgvPageLayoutSize.cpp:76
+#, kde-format
+msgid "Page Size"
+msgstr "Lapas izmērs"
+
+#: part/KgvPageLayoutSize.cpp:85
+#, kde-format
+msgid "&Size:"
+msgstr "&Izmērs:"
+
+#: part/KgvPageLayoutSize.cpp:106
+#, kde-format
+msgid "&Width:"
+msgstr "&Platums:"
+
+#: part/KgvPageLayoutSize.cpp:117
+#, kde-format
+msgid "&Height:"
+msgstr "&Augstums:"
+
+#: part/KgvPageLayoutSize.cpp:131
+#, kde-format
+msgid "Orientation"
+msgstr "Orientācija"
+
+#: part/KgvPageLayoutSize.cpp:135
+#, kde-format
+msgid "&Portrait"
+msgstr "&Portreta"
+
+#: part/KgvPageLayoutSize.cpp:139
+#, kde-format
+msgid "La&ndscape"
+msgstr "Ai&navas"
+
+#: part/KgvPageLayoutSize.cpp:147
+#, kde-format
+msgid "Margins"
+msgstr "Apmales"
+
+#: part/KgvPageLayoutSize.cpp:370 part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "Page Layout Problem"
+msgstr "Lapas izkārtojuma problēma"
+
+#: part/KgvPageLayoutSize.cpp:370
+#, kde-format
+msgid "The page width is smaller than the left and right margins."
+msgstr "Lapas platums ir mazāks par kreiso un labo apmali."
+
+#: part/KgvPageLayoutSize.cpp:374
+#, kde-format
+msgid "The page height is smaller than the top and bottom margins."
+msgstr "Lapas augstums ir mazāks par augšējo un apakšējo apmali."
+
+#: part/KgvUnit.cpp:52
+#, kde-format
+msgid "Millimeters (mm)"
+msgstr "Milimetri (mm)"
+
+#: part/KgvUnit.cpp:54
+#, kde-format
+msgid "Centimeters (cm)"
+msgstr "Centimetri (cm)"
+
+#: part/KgvUnit.cpp:56
+#, kde-format
+msgid "Decimeters (dm)"
+msgstr "Decimetri (dm)"
+
+#: part/KgvUnit.cpp:58
+#, kde-format
+msgid "Inches (in)"
+msgstr "Collas (in)"
+
+#: part/KgvUnit.cpp:60
+#, kde-format
+msgid "Pica (pi)"
+msgstr "Pika (pi)"
+
+#: part/KgvUnit.cpp:62
+#, kde-format
+msgid "Didot (dd)"
+msgstr "Dido (dd)"
+
+#: part/KgvUnit.cpp:64
+#, kde-format
+msgid "Cicero (cc)"
+msgstr "Cicero (cc)"
+
+#: part/KgvUnit.cpp:66
+#, kde-format
+msgid "Points (pt)"
+msgstr "Punkti (pt)"
+
+#: part/KgvUnit.cpp:68
+#, kde-format
+msgid "Error."
+msgstr "Kļūda."
+
+#: part/pannerview.cpp:59
+#, kde-format
+msgid "View of the complete graph. Click and drag to move the visible part."
+msgstr ""
+"Pilnas shēmas skats. Klikšķiniet un velciet, lai pārvietotu redzamo daļu."
+
+#: part/pannerview.cpp:61
+#, kde-format
+msgid ""
+"<h1>View of the Complete Graph</h1><p>Single clicking somewhere without the "
+"red square will move the center of the view to where the mouse was clicked.</"
+"p><p>Clicking and dragging within the red square will cause the view to "
+"follow the movement.</p>"
+msgstr ""
+"<h1>Pilnas shēmas skats</h1><p>Atsevišķa peles rādītāja noklikšķināšana kaut "
+"kur bez sarkanā kvadrāta skata centru pārvietos uz vietu, kurā "
+"noklikšķinājāt.</p><p>Sarkanā kvadrāta klikšķināšana un vilkšana skatu "
+"pārvietos līdz ar vilkšanu.</p>"
+
+#: part/simpleprintingcommand.cpp:78
+#, kde-format
+msgid "Print Preview"
+msgstr "Drukas priekšskatījums"
+
+#: part/simpleprintingengine.cpp:190 part/simpleprintpreviewwindow.cpp:209
+#: part/simpleprintpreviewwindow.cpp:227
+#, kde-format
+msgctxt "Page (number) of (total)"
+msgid "Page %1 of %2"
+msgstr "%1. lapa no %2"
+
+#: part/simpleprintingengine.cpp:192
+#, kde-format
+msgid "Page %1"
+msgstr "%1. lapa"
+
+#: part/simpleprintingpagesetup.cpp:85
+#, kde-format
+msgid "Print Preview..."
+msgstr "Drukas priekšskatījums..."
+
+#: part/simpleprintingpagesetup.cpp:88
+#, kde-format
+msgid "Font..."
+msgstr "Fonts..."
+
+#: part/simpleprintingpagesetup.cpp:89
+#, kde-format
+msgid "Changes font for title text."
+msgstr "Fonta izmaiņas virsraksta tekstam."
+
+#: part/simpleprintingpagesetup.cpp:95
+#, kde-format
+msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
+msgstr "<qt><h2>Lapas iestatīšana shēmas „%1“ drukāšanai</h2></qt>"
+
+#: part/simpleprintingpagesetup.cpp:100
+#, kde-format
+msgid "Saves settings for this setup as default."
+msgstr "Saglabā šos iestatījumus kā noklusējumu"
+
+#: part/simpleprintingpagesetup.cpp:103
+#, kde-format
+msgid "Adds date and time to the header."
+msgstr "Galvenei pievieno datumu un laiku."
+
+#: part/simpleprintingpagesetup.cpp:104
+#, kde-format
+msgid "Adds page numbers to the footer."
+msgstr "Kājenei pievieno lapu numurāciju"
+
+#: part/simpleprintingpagesetup.cpp:105
+#, kde-format
+msgid "Adds table borders."
+msgstr "Pievienot tabulas apmales."
+
+#: part/simpleprintingpagesetup.cpp:113
+#, kde-format
+msgid "Change Page Size and Margins..."
+msgstr "Maina lapas izmēru un apmales..."
+
+#: part/simpleprintingpagesetup.cpp:114
+#, kde-format
+msgid "Changes page size and margins."
+msgstr "Maina lapas izmēru un apmales."
+
+#: part/simpleprintingpagesetup.cpp:164
+#, kde-format
+msgid "Chosen font looks like this"
+msgstr "Izvēlētais fonts izskatās šādi"
+
+#: part/simpleprintingpagesetup.cpp:180
+#, kde-format
+msgid "Portrait"
+msgstr "Portrets"
+
+#: part/simpleprintingpagesetup.cpp:180
+#, kde-format
+msgid "Landscape"
+msgstr "Ainava"
+
+#: part/simpleprintingpagesetup.cpp:180
+#, kde-format
+msgid "margins:"
+msgstr "apmales:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel2)
+#: part/simpleprintingpagesetupbase.ui:64
+#, kde-format
+msgid "Pa&ge font:"
+msgstr "&Lapas fonts:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
+#: part/simpleprintingpagesetupbase.ui:93
+#, kde-format
+msgid "Page Size && Margins"
+msgstr "Lapas izmērs un apmales"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addTableBordersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:118
+#, kde-format
+msgid "Add &borders"
+msgstr "Pievienot ap&mali"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addDateTimeCheckbox)
+#: part/simpleprintingpagesetupbase.ui:125
+#, kde-format
+msgid "Add date and time"
+msgstr "Pievienot datumu un laiku"
+
+#. i18n: ectx: property (text), widget (QCheckBox, addPageNumbersCheckbox)
+#: part/simpleprintingpagesetupbase.ui:148
+#, kde-format
+msgid "Add page numbers"
+msgstr "Pievienot lapu numerāciju"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox4)
+#: part/simpleprintingpagesetupbase.ui:159
+#, kde-format
+msgid "Number of pages to fit on"
+msgstr "Ietilpināmo lapu skaits"
+
+#. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
+#: part/simpleprintingpagesetupbase.ui:167
+#, kde-format
+msgid "&Natural size"
+msgstr "&Dabīgais izmērs"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
+#: part/simpleprintingpagesetupbase.ui:174
+#, kde-format
+msgid "Fit &to one page"
+msgstr "Ietilpināt &vienā lapā"
+
+#. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
+#: part/simpleprintingpagesetupbase.ui:181
+#, kde-format
+msgid "F&it to several pages"
+msgstr "Ietilpi&nāt vairākās lapās"
+
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:192
+#, kde-format
+msgctxt "@label:spinbox"
+msgid "Horizontally:"
+msgstr "Horizontāli:"
+
+#. i18n: ectx: property (text), widget (QLabel)
+#: part/simpleprintingpagesetupbase.ui:202
+#, kde-format
+msgctxt "@label:spinbox"
+msgid "Vertically:"
+msgstr "Vertikāli:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
+#: part/simpleprintingpagesetupbase.ui:212
+#, kde-format
+msgctxt "@option:check"
+msgid "Preserve aspect ratio:"
+msgstr "Saglabāt malu attiecību:"
+
+#. i18n: ectx: property (text), widget (QLabel, textLabel6)
+#: part/simpleprintingpagesetupbase.ui:228
+#, kde-format
+msgid "Related actions:"
+msgstr "Saistītās darbības:"
+
+#: part/simpleprintpreviewwindow.cpp:58
+#, kde-format
+msgid "%1 - Print Preview - %2"
+msgstr "%1 — drukas priekšskatījums — %2"
+
+#: part/simpleprintpreviewwindow.cpp:73
+#, kde-format
+msgid "&Page setup"
+msgstr "&Lapas iestatīšana"
+
+#: part/simpleprintpreviewwindow.cpp:112
+#, kde-format
+msgid "Previous Page"
+msgstr "Iepriekšējā lapa"
+
+#: part/simpleprintpreviewwindow.cpp:122
+#, kde-format
+msgid "Next Page"
+msgstr "Nākamā lapa"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: preferencesAppearance.ui:19
+#, kde-format
+msgid "Default background color:"
+msgstr "Noklusējuma fona krāsa:"
+
+#. i18n: ectx: property (text), widget (QLabel, note)
+#: preferencesAppearance.ui:51
+#, kde-format
+msgid "Note: this will be overridden if the graph has its own background color"
+msgstr "Piezīme: šī opcija nebūs spēkā, ja grafikam būs sava fona krāsa"
+
+#. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
+#: preferencesOpenInExistingWindow.ui:17
+#, kde-format
+msgid "Open in existing window"
+msgstr "Atvērt jau pastāvošajā lokā"
+
+#. i18n: ectx: property (text), widget (QRadioButton, yes)
+#: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
+#: preferencesReopenPreviouslyOpenedFiles.ui:29
+#, kde-format
+msgid "&Yes"
+msgstr "&Jā"
+
+#. i18n: ectx: property (text), widget (QRadioButton, no)
+#: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
+#: preferencesReopenPreviouslyOpenedFiles.ui:36
+#, kde-format
+msgid "&No"
+msgstr "&Nē"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesOpenInExistingWindow.ui:37
+#: preferencesReopenPreviouslyOpenedFiles.ui:43
+#, kde-format
+msgid "As&k"
+msgstr "&Jautāt"
+
+#. i18n: ectx: property (title), widget (QGroupBox, parsingMode)
+#: preferencesParsing.ui:17
+#, kde-format
+msgid "Parse using:"
+msgstr "Parsēt ar:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, external)
+#: preferencesParsing.ui:26
+#, kde-format
+msgid "E&xternal command"
+msgstr "Ā&rēju komandu"
+
+#. i18n: ectx: property (text), widget (QRadioButton, internal)
+#: preferencesParsing.ui:33
+#, kde-format
+msgid "Internal &library"
+msgstr "Iekšēju &bibliotēku"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
+#: preferencesReload.ui:17
+#, kde-format
+msgid "Reload files modified on disk"
+msgstr "Pārlādēt diskā izmainītas datnes"
+
+#. i18n: ectx: property (text), widget (QRadioButton, ask)
+#: preferencesReload.ui:40
+#, kde-format
+msgid "&Ask"
+msgstr "&Jautāt"
+
+#. i18n: ectx: property (title), widget (QGroupBox, reopenPreviouslyOpenedFilesMode)
+#: preferencesReopenPreviouslyOpenedFiles.ui:17
+#, kde-format
+msgid "Reopen previously opened files"
+msgstr "No jauna atvērt iepriekš atvērtas datnes"
