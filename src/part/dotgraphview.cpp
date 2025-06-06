@@ -930,7 +930,7 @@ bool DotGraphView::loadDot(const QString &dotFileName)
     connect(newCanvas, &QGraphicsScene::selectionChanged, this, &DotGraphView::slotSelectionChanged);
     d->m_canvas = newCanvas;
 
-    QGraphicsSimpleTextItem *loadingLabel = newCanvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
+    QGraphicsSimpleTextItem *loadingLabel = newCanvas->addSimpleText(i18n("graph %1 is getting loaded…", dotFileName));
     loadingLabel->setZValue(100);
     centerOn(loadingLabel);
 
@@ -951,7 +951,7 @@ bool DotGraphView::loadLibrarySync(const QString &dotFileName)
     Q_D(DotGraphView);
     if (d->m_canvas)
         d->m_canvas->clear();
-    QGraphicsSimpleTextItem *loadingLabel = d->m_canvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
+    QGraphicsSimpleTextItem *loadingLabel = d->m_canvas->addSimpleText(i18n("graph %1 is getting loaded…", dotFileName));
     loadingLabel->setZValue(100);
     centerOn(loadingLabel);
 
@@ -998,7 +998,7 @@ bool DotGraphView::loadLibrary(const QString &dotFileName)
     Q_D(DotGraphView);
     if (d->m_canvas)
         d->m_canvas->clear();
-    QGraphicsSimpleTextItem *loadingLabel = d->m_canvas->addSimpleText(i18n("graph %1 is getting loaded...", dotFileName));
+    QGraphicsSimpleTextItem *loadingLabel = d->m_canvas->addSimpleText(i18n("graph %1 is getting loaded…", dotFileName));
     loadingLabel->setZValue(100);
     centerOn(loadingLabel);
 

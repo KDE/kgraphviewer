@@ -82,10 +82,10 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     connect(m_contents->printButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotPrint);
 
     m_contents->printPreviewButton->setIcon(QIcon::fromTheme(QStringLiteral("document-print-preview")));
-    m_contents->printPreviewButton->setText(i18n("Print Preview..."));
+    m_contents->printPreviewButton->setText(i18n("Print Preview…"));
     connect(m_contents->printPreviewButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotPrintPreview);
 
-    m_contents->headerTitleFontButton->setText(i18n("Font..."));
+    m_contents->headerTitleFontButton->setText(i18n("Font…"));
     m_contents->headerTitleFontButton->setWhatsThis(i18n("Changes font for title text."));
     connect(m_contents->headerTitleFontButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotChangeTitleFont);
 
@@ -110,7 +110,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
 #endif
 
     updatePageLayoutAndUnitInfo();
-    m_contents->changePageSizeAndMarginsButton->setText(i18n("Change Page Size and Margins..."));
+    m_contents->changePageSizeAndMarginsButton->setText(i18n("Change Page Size and Margins…"));
     m_contents->changePageSizeAndMarginsButton->setWhatsThis(i18n("Changes page size and margins."));
     connect(m_contents->changePageSizeAndMarginsButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotChangePageSizeAndMargins);
 

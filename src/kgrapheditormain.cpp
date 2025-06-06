@@ -41,7 +41,7 @@ int main(int argc, char **argv)
         QStringLiteral(KGRAPHVIEWER_VERSION_STRING),
         i18n("A Graphviz DOT graph editor by KDE"),
         KAboutLicense::GPL,
-        i18n("(C) 2005-2010 Gaël de Chalendar")
+        i18n("© 2005–2010 Gaël de Chalendar")
     );
 
     app.setOrganizationDomain(QStringLiteral("kde.org"));
