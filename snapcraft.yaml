@@ -66,7 +66,7 @@ parts:
       - bin/gpu-2404-wrapper
   cleanup:
     after:
-      - kgeotag
+      - kgraphviewer
     plugin: nil
     build-snaps:
       - core24
@@ -76,4 +76,3 @@ parts:
       for snap in "core24" "kf6-core24"; do
           cd "/snap/$snap/current" && find . -type f,l -exec rm -rf "${CRAFT_PRIME}/{}" \;
       done
-
