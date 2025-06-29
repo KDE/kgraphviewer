@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"POT-Creation-Date: 2025-06-29 00:41+0000\n"
 "PO-Revision-Date: 2024-04-19 06:49+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -108,9 +108,10 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Urejevalnik grafov Graphviz DOT iz KDE"
 
-#: kgrapheditormain.cpp:44 main.cpp:43
-#, kde-format
-msgid "(C) 2005-2010 Gaël de Chalendar"
+#: kgrapheditormain.cpp:44
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2010 Gaël de Chalendar"
+msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
@@ -286,6 +287,11 @@ msgstr "KGraphViewer"
 #, kde-format
 msgid "A Graphviz DOT graph viewer"
 msgstr "Pregledovalnik gradov Graphviz DOT"
+
+#: main.cpp:43
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2010 Gaël de Chalendar"
 
 #: main.cpp:46
 #, kde-format
@@ -693,8 +699,9 @@ msgstr "ni naloženega grafa"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, kde-format
-msgid "graph %1 is getting loaded..."
+#, fuzzy, kde-format
+#| msgid "graph %1 is getting loaded..."
+msgid "graph %1 is getting loaded…"
 msgstr "graf %1 se nalaga..."
 
 #: part/dotgraphview.cpp:941
@@ -1013,14 +1020,15 @@ msgid "Page %1"
 msgstr "Stran %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, kde-format
-msgid "Print Preview..."
-msgstr "Predogled tiskanja..."
+#, fuzzy, kde-format
+#| msgid "Print Preview"
+msgid "Print Preview…"
+msgstr "Predogled tiskanja"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
-msgid "Font..."
-msgstr "Pisava..."
+msgid "Font…"
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1053,8 +1061,9 @@ msgid "Adds table borders."
 msgstr "Doda obrobe tabel."
 
 #: part/simpleprintingpagesetup.cpp:113
-#, kde-format
-msgid "Change Page Size and Margins..."
+#, fuzzy, kde-format
+#| msgid "Change Page Size and Margins..."
+msgid "Change Page Size and Margins…"
 msgstr "Spremeni velikosti strani in robov..."
 
 #: part/simpleprintingpagesetup.cpp:114
@@ -1257,6 +1266,12 @@ msgstr "Vprašaj"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Ponovno odpri že prej odprte datoteke"
+
+#~ msgid "Print Preview..."
+#~ msgstr "Predogled tiskanja..."
+
+#~ msgid "Font..."
+#~ msgstr "Pisava..."
 
 #~ msgid "Zoom In"
 #~ msgstr "Povečaj"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer KDE4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"POT-Creation-Date: 2025-06-29 00:41+0000\n"
 "PO-Revision-Date: 2007-07-04 18:07+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -113,10 +113,10 @@ msgstr "Bộ xem đồ thị KDE"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Bộ xem đồ thị chấm GraphViz cho KDE"
 
-#: kgrapheditormain.cpp:44 main.cpp:43
+#: kgrapheditormain.cpp:44
 #, fuzzy, kde-format
 #| msgid "(C) 2005-2006 Gaël de Chalendar"
-msgid "(C) 2005-2010 Gaël de Chalendar"
+msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "© năm 2005-2006 của Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
@@ -287,6 +287,12 @@ msgstr "Bộ xem đồ thị KDE"
 #| msgid "A Graphviz dot graph viewer for KDE"
 msgid "A Graphviz DOT graph viewer"
 msgstr "Bộ xem đồ thị chấm GraphViz cho KDE"
+
+#: main.cpp:43
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2006 Gaël de Chalendar"
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© năm 2005-2006 của Gaël de Chalendar"
 
 #: main.cpp:46
 #, kde-format
@@ -668,7 +674,7 @@ msgstr "Đồ thị chấm cần mở"
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
 #, kde-format
-msgid "graph %1 is getting loaded..."
+msgid "graph %1 is getting loaded…"
 msgstr ""
 
 #: part/dotgraphview.cpp:941
@@ -982,14 +988,13 @@ msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:85
 #, kde-format
-msgid "Print Preview..."
+msgid "Print Preview…"
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:88
-#, fuzzy, kde-format
-#| msgid "Set Font..."
-msgid "Font..."
-msgstr "Đặt phông..."
+#, kde-format
+msgid "Font…"
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1029,7 +1034,7 @@ msgstr "Thêm &viền"
 #: part/simpleprintingpagesetup.cpp:113
 #, fuzzy, kde-format
 #| msgid "Page Size && Margins"
-msgid "Change Page Size and Margins..."
+msgid "Change Page Size and Margins…"
 msgstr "Cỡ và Lề Trang"
 
 #: part/simpleprintingpagesetup.cpp:114
@@ -1240,6 +1245,11 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Nạp lại tệp đã mở trước"
+
+#, fuzzy
+#~| msgid "Set Font..."
+#~ msgid "Font..."
+#~ msgstr "Đặt phông..."
 
 #, fuzzy
 #~| msgid "KGraphViewer"

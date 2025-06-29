@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"POT-Creation-Date: 2025-06-29 00:41+0000\n"
 "PO-Revision-Date: 2014-04-10 11:39+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -113,9 +113,10 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Et program til visning af Graphviz dot-grafer til KDE"
 
-#: kgrapheditormain.cpp:44 main.cpp:43
-#, kde-format
-msgid "(C) 2005-2010 Gaël de Chalendar"
+#: kgrapheditormain.cpp:44
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2010 Gaël de Chalendar"
+msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
@@ -294,6 +295,11 @@ msgstr "KGraphViewer"
 #| msgid "A Graphviz dot graph viewer for KDE"
 msgid "A Graphviz DOT graph viewer"
 msgstr "Et program til visning af Graphviz dot-grafer til KDE"
+
+#: main.cpp:43
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2010 Gaël de Chalendar"
 
 #: main.cpp:46
 #, kde-format
@@ -743,8 +749,9 @@ msgstr "ingen graf indlæst"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, kde-format
-msgid "graph %1 is getting loaded..."
+#, fuzzy, kde-format
+#| msgid "graph %1 is getting loaded..."
+msgid "graph %1 is getting loaded…"
 msgstr "grafen %1 indlæses..."
 
 #: part/dotgraphview.cpp:941
@@ -1062,13 +1069,14 @@ msgid "Page %1"
 msgstr "Side %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, kde-format
-msgid "Print Preview..."
-msgstr "Vis udskrift..."
+#, fuzzy, kde-format
+#| msgid "Print Preview"
+msgid "Print Preview…"
+msgstr "Vis udskrift"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
-msgid "Font..."
+msgid "Font…"
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:89
@@ -1104,7 +1112,7 @@ msgstr "Tilføjer tabelkanter."
 #: part/simpleprintingpagesetup.cpp:113
 #, fuzzy, kde-format
 #| msgid "Changes page size and margins."
-msgid "Change Page Size and Margins..."
+msgid "Change Page Size and Margins…"
 msgstr "Ændrer sidestørrelse og marginer."
 
 #: part/simpleprintingpagesetup.cpp:114
@@ -1317,6 +1325,9 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Genåbn tidligere åbnede filer"
+
+#~ msgid "Print Preview..."
+#~ msgstr "Vis udskrift..."
 
 #~ msgid "Zoom In"
 #~ msgstr "Zoom ind"

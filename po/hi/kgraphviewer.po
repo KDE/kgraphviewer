@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"POT-Creation-Date: 2025-06-29 00:41+0000\n"
 "PO-Revision-Date: 2008-03-28 09:12+0530\n"
 "Last-Translator: Ravishankar Shrivastava <aviratlami@aol.in>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -116,10 +116,10 @@ msgstr "केग्राफएडीटर"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "केडीई के लिए ग्राफ़विज डाट ग्राफ प्रदर्शत"
 
-#: kgrapheditormain.cpp:44 main.cpp:43
+#: kgrapheditormain.cpp:44
 #, fuzzy, kde-format
 #| msgid "(C) 2005-2006 Gaël de Chalendar"
-msgid "(C) 2005-2010 Gaël de Chalendar"
+msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "(c) 2005-2006 गेल दे चालेंदर"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
@@ -292,6 +292,12 @@ msgstr "केग्राफव्यूअर"
 #| msgid "A Graphviz dot graph viewer for KDE"
 msgid "A Graphviz DOT graph viewer"
 msgstr "केडीई के लिए ग्राफ़विज डाट ग्राफ प्रदर्शत"
+
+#: main.cpp:43
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2006 Gaël de Chalendar"
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(c) 2005-2006 गेल दे चालेंदर"
 
 #: main.cpp:46
 #, kde-format
@@ -672,7 +678,7 @@ msgstr "खोलने के लिए डॉट ग्राफ"
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
 #, kde-format
-msgid "graph %1 is getting loaded..."
+msgid "graph %1 is getting loaded…"
 msgstr ""
 
 #: part/dotgraphview.cpp:941
@@ -989,12 +995,12 @@ msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:85
 #, kde-format
-msgid "Print Preview..."
+msgid "Print Preview…"
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
-msgid "Font..."
+msgid "Font…"
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:89
@@ -1033,7 +1039,7 @@ msgstr "किनारा जोड़ें (&b)"
 #: part/simpleprintingpagesetup.cpp:113
 #, fuzzy, kde-format
 #| msgid "Page Size && Margins"
-msgid "Change Page Size and Margins..."
+msgid "Change Page Size and Margins…"
 msgstr "पृष्ठ आकार तथा हाशिए (&&)"
 
 #: part/simpleprintingpagesetup.cpp:114

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"POT-Creation-Date: 2025-06-29 00:41+0000\n"
 "PO-Revision-Date: 2009-02-25 00:07+0900\n"
 "Last-Translator: Yukiko Bando <ybando@k6.dion.ne.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -115,10 +115,10 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "KDE のための Graphviz DOT グラフビューア"
 
-#: kgrapheditormain.cpp:44 main.cpp:43
+#: kgrapheditormain.cpp:44
 #, fuzzy, kde-format
 #| msgid "(C) 2005-2006 Gaël de Chalendar"
-msgid "(C) 2005-2010 Gaël de Chalendar"
+msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "(C) 2005-2006 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
@@ -299,6 +299,12 @@ msgstr "KGraphViewer"
 #| msgid "A Graphviz dot graph viewer for KDE"
 msgid "A Graphviz DOT graph viewer"
 msgstr "KDE のための Graphviz DOT グラフビューア"
+
+#: main.cpp:43
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2006 Gaël de Chalendar"
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2006 Gaël de Chalendar"
 
 #: main.cpp:46
 #, kde-format
@@ -758,7 +764,7 @@ msgstr "開く DOT グラフ"
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
 #, kde-format
-msgid "graph %1 is getting loaded..."
+msgid "graph %1 is getting loaded…"
 msgstr ""
 
 #: part/dotgraphview.cpp:941
@@ -1095,13 +1101,14 @@ msgid "Page %1"
 msgstr "ページ %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, kde-format
-msgid "Print Preview..."
-msgstr "印刷プレビュー..."
+#, fuzzy, kde-format
+#| msgid "Print Preview"
+msgid "Print Preview…"
+msgstr "印刷プレビュー"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
-msgid "Font..."
+msgid "Font…"
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:89
@@ -1137,7 +1144,7 @@ msgstr "テーブルの枠線を追加します。"
 #: part/simpleprintingpagesetup.cpp:113
 #, fuzzy, kde-format
 #| msgid "Changes page size and margins."
-msgid "Change Page Size and Margins..."
+msgid "Change Page Size and Margins…"
 msgstr "ページサイズと余白を変更します。"
 
 #: part/simpleprintingpagesetup.cpp:114
@@ -1347,3 +1354,6 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "前回開いたファイルを開く"
+
+#~ msgid "Print Preview..."
+#~ msgstr "印刷プレビュー..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"POT-Creation-Date: 2025-06-29 00:41+0000\n"
 "PO-Revision-Date: 2024-05-13 22:47+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -108,9 +108,10 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Преглед на Graphviz-графики в KDE"
 
-#: kgrapheditormain.cpp:44 main.cpp:43
-#, kde-format
-msgid "(C) 2005-2010 Gaël de Chalendar"
+#: kgrapheditormain.cpp:44
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2010 Gaël de Chalendar"
+msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "(C) 2005-2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
@@ -275,6 +276,11 @@ msgstr "KGraphViewer"
 #, fuzzy, kde-format
 msgid "A Graphviz DOT graph viewer"
 msgstr "Преглед на Graphviz-графики в KDE"
+
+#: main.cpp:43
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2010 Gaël de Chalendar"
 
 #: main.cpp:46
 #, kde-format
@@ -667,7 +673,7 @@ msgstr "няма заредена графика"
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
 #, kde-format
-msgid "graph %1 is getting loaded..."
+msgid "graph %1 is getting loaded…"
 msgstr ""
 
 #: part/dotgraphview.cpp:941
@@ -977,13 +983,14 @@ msgid "Page %1"
 msgstr "Страница %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, kde-format
-msgid "Print Preview..."
-msgstr "Предпечатен преглед..."
+#, fuzzy, kde-format
+#| msgid "Print Preview"
+msgid "Print Preview…"
+msgstr "Предпечатен преглед"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
-msgid "Font..."
+msgid "Font…"
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:89
@@ -1018,7 +1025,7 @@ msgstr "Добавя контури на границите."
 
 #: part/simpleprintingpagesetup.cpp:113
 #, fuzzy, kde-format
-msgid "Change Page Size and Margins..."
+msgid "Change Page Size and Margins…"
 msgstr "Променя размера на страницата и полетата."
 
 #: part/simpleprintingpagesetup.cpp:114
@@ -1223,3 +1230,6 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr ""
+
+#~ msgid "Print Preview..."
+#~ msgstr "Предпечатен преглед..."

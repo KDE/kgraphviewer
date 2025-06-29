@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"POT-Creation-Date: 2025-06-29 00:41+0000\n"
 "PO-Revision-Date: 2024-04-21 00:25+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -111,9 +111,10 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Un editor de grafos DOT de Graphviz creado por KDE"
 
-#: kgrapheditormain.cpp:44 main.cpp:43
-#, kde-format
-msgid "(C) 2005-2010 Gaël de Chalendar"
+#: kgrapheditormain.cpp:44
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2010 Gaël de Chalendar"
+msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "© 2005-2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
@@ -292,6 +293,11 @@ msgstr "KGraphViewer"
 #, kde-format
 msgid "A Graphviz DOT graph viewer"
 msgstr "Un visor de grafos DOT de Graphviz"
+
+#: main.cpp:43
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© 2005-2010 Gaël de Chalendar"
 
 #: main.cpp:46
 #, kde-format
@@ -703,8 +709,9 @@ msgstr "no se ha cargado el grafo"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, kde-format
-msgid "graph %1 is getting loaded..."
+#, fuzzy, kde-format
+#| msgid "graph %1 is getting loaded..."
+msgid "graph %1 is getting loaded…"
 msgstr "el grafo %1 se está cargando..."
 
 #: part/dotgraphview.cpp:941
@@ -1027,14 +1034,15 @@ msgid "Page %1"
 msgstr "Página %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, kde-format
-msgid "Print Preview..."
-msgstr "Vista previa de la impresión..."
+#, fuzzy, kde-format
+#| msgid "Print Preview"
+msgid "Print Preview…"
+msgstr "Vista previa de la impresión"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
-msgid "Font..."
-msgstr "Tipo de letra..."
+msgid "Font…"
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1068,8 +1076,9 @@ msgid "Adds table borders."
 msgstr "Añade bordes a las tablas."
 
 #: part/simpleprintingpagesetup.cpp:113
-#, kde-format
-msgid "Change Page Size and Margins..."
+#, fuzzy, kde-format
+#| msgid "Change Page Size and Margins..."
+msgid "Change Page Size and Margins…"
 msgstr "Cambiar el tamaño y los márgenes de la página..."
 
 #: part/simpleprintingpagesetup.cpp:114
@@ -1274,6 +1283,12 @@ msgstr "&Preguntar"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Volver a abrir los archivos abiertos previamente"
+
+#~ msgid "Print Preview..."
+#~ msgstr "Vista previa de la impresión..."
+
+#~ msgid "Font..."
+#~ msgstr "Tipo de letra..."
 
 #~ msgid "Zoom In"
 #~ msgstr "Acercar"

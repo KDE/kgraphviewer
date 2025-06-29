@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"POT-Creation-Date: 2025-06-29 00:41+0000\n"
 "PO-Revision-Date: 2019-02-10 09:23-0800\n"
 "Last-Translator: A S Alam <alam.yellow@gmail.com>\n"
 "Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
@@ -111,10 +111,10 @@ msgstr "ਕੇ-ਗਰਾਫ਼-ਐਡੀਟਰ"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "KDE ਲਈ ਗਰਾਫ਼ਵਿਜ਼ ਡਾਟ ਗਰਾਫ਼ ਦਰਸ਼ਕ"
 
-#: kgrapheditormain.cpp:44 main.cpp:43
+#: kgrapheditormain.cpp:44
 #, fuzzy, kde-format
 #| msgid "(C) 2005-2006 Gaël de Chalendar"
-msgid "(C) 2005-2010 Gaël de Chalendar"
+msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "(C) 2005-2006 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
@@ -284,6 +284,12 @@ msgstr "ਕੇ-ਗਰਾਫ਼-ਦਰਸ਼ਕ"
 #| msgid "A Graphviz dot graph viewer for KDE"
 msgid "A Graphviz DOT graph viewer"
 msgstr "KDE ਲਈ ਗਰਾਫ਼ਵਿਜ਼ ਡਾਟ ਗਰਾਫ਼ ਦਰਸ਼ਕ"
+
+#: main.cpp:43
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2006 Gaël de Chalendar"
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "(C) 2005-2006 Gaël de Chalendar"
 
 #: main.cpp:46
 #, kde-format
@@ -664,7 +670,7 @@ msgstr "ਖੋਲ੍ਹਣ ਲਈ ਡਾਟ ਗਰਾਫ਼"
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
 #, kde-format
-msgid "graph %1 is getting loaded..."
+msgid "graph %1 is getting loaded…"
 msgstr ""
 
 #: part/dotgraphview.cpp:941
@@ -981,12 +987,12 @@ msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:85
 #, kde-format
-msgid "Print Preview..."
+msgid "Print Preview…"
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
-msgid "Font..."
+msgid "Font…"
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:89
@@ -1025,7 +1031,7 @@ msgstr "ਬਾਰਡਰ ਸ਼ਾਮਲ(&b)"
 #: part/simpleprintingpagesetup.cpp:113
 #, fuzzy, kde-format
 #| msgid "Page Size && Margins"
-msgid "Change Page Size and Margins..."
+msgid "Change Page Size and Margins…"
 msgstr "ਪੇਜ਼ ਸਾਈਜ਼ ਅਤੇ ਹਾਸ਼ੀਆ"
 
 #: part/simpleprintingpagesetup.cpp:114

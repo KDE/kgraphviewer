@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:37+0000\n"
+"POT-Creation-Date: 2025-06-29 00:41+0000\n"
 "PO-Revision-Date: 2014-03-31 16:26+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -112,9 +112,10 @@ msgstr "KGraphEditor"
 msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Graphviz pont gráf megjelenítő KDE-hez"
 
-#: kgrapheditormain.cpp:44 main.cpp:43
-#, kde-format
-msgid "(C) 2005-2010 Gaël de Chalendar"
+#: kgrapheditormain.cpp:44
+#, fuzzy, kde-format
+#| msgid "(C) 2005-2010 Gaël de Chalendar"
+msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "© Gaël de Chalendar, 2005-2010."
 
 #: kgrapheditormain.cpp:57 main.cpp:59
@@ -298,6 +299,11 @@ msgstr "KGraphViewer"
 #| msgid "A Graphviz dot graph viewer for KDE"
 msgid "A Graphviz DOT graph viewer"
 msgstr "Graphviz pont gráf megjelenítő KDE-hez"
+
+#: main.cpp:43
+#, kde-format
+msgid "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© Gaël de Chalendar, 2005-2010."
 
 #: main.cpp:46
 #, kde-format
@@ -720,8 +726,9 @@ msgstr "nincs gráf betöltve"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, kde-format
-msgid "graph %1 is getting loaded..."
+#, fuzzy, kde-format
+#| msgid "graph %1 is getting loaded..."
+msgid "graph %1 is getting loaded…"
 msgstr "a(z) %1 gráf betöltés alatt…"
 
 #: part/dotgraphview.cpp:941
@@ -1039,13 +1046,14 @@ msgid "Page %1"
 msgstr "%1. oldal"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, kde-format
-msgid "Print Preview..."
-msgstr "Nyomtatási előnézet…"
+#, fuzzy, kde-format
+#| msgid "Print Preview"
+msgid "Print Preview…"
+msgstr "Nyomtatási előnézet"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
-msgid "Font..."
+msgid "Font…"
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:89
@@ -1081,7 +1089,7 @@ msgstr "Hozzáadja a táblázatszegélyeket."
 #: part/simpleprintingpagesetup.cpp:113
 #, fuzzy, kde-format
 #| msgid "Changes page size and margins."
-msgid "Change Page Size and Margins..."
+msgid "Change Page Size and Margins…"
 msgstr "Módosítja az oldalméretet és a margókat."
 
 #: part/simpleprintingpagesetup.cpp:114
@@ -1293,6 +1301,9 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Az előzőleg megnyitott fájlok újratöltése"
+
+#~ msgid "Print Preview..."
+#~ msgstr "Nyomtatási előnézet…"
 
 #~ msgid "Zoom In"
 #~ msgstr "Nagyítás"
