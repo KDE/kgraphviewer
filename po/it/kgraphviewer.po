@@ -1,7 +1,7 @@
 # translation of kgraphviewer.po to Italian
 #
+# SPDX-FileCopyrightText: 2017, 2018, 2022, 2024, 2025 Luigi Toscano <luigi.toscano@tiscali.it>
 # Federico Zenith <federico.zenith@member.fsf.org>, 2006, 2007, 2008, 2009, 2010, 2011, 2014.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2017, 2018, 2022, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
