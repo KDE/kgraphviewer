@@ -3,27 +3,27 @@
 #
 # Jaap Woldringh <jjh.woldringh@planet.nl>, 2006, 2007.
 # Rinse de Vries <rinsedevries@kde.nl>, 2007, 2008, 2009.
-# SPDX-FileCopyrightText: 2009, 2024 Freek de Kruijf <f.de.kruijf@hetnet.nl>
+# SPDX-FileCopyrightText: 2009, 2024, 2025 Freek de Kruijf <f.de.kruijf@hetnet.nl>
 # Freek de Kruijf <freekdekruijf@kde.nl>, 2009, 2010, 2011, 2014, 2016, 2017, 2018, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-29 00:41+0000\n"
-"PO-Revision-Date: 2024-04-19 11:23+0200\n"
+"PO-Revision-Date: 2025-06-29 17:31+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 25.04.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Rinse de Vries,Freek de Kruijf - t/m 2024"
+msgstr "Rinse de Vries,Freek de Kruijf - t/m 2025"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -111,10 +111,9 @@ msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Een Graphviz DOT-grafiek-bewerker door KDE"
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© 2005–2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
@@ -706,10 +705,9 @@ msgstr "geen graaf geladen"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, fuzzy, kde-format
-#| msgid "graph %1 is getting loaded..."
+#, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr "graaf %1 wordt geladen..."
+msgstr "graaf %1 wordt geladen…"
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -1027,15 +1025,14 @@ msgid "Page %1"
 msgstr "Pagina %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Print Preview…"
-msgstr "Afdrukvoorbeeld"
+msgstr "Afdrukvoorbeeld…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font…"
-msgstr ""
+msgstr "Lettertype…"
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1069,10 +1066,9 @@ msgid "Adds table borders."
 msgstr "Tabelranden toevoegen."
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Change Page Size and Margins..."
+#, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "Paginagrootte en marges wijzigen..."
+msgstr "Paginagrootte en marges wijzigen…"
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format

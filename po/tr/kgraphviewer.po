@@ -12,15 +12,15 @@ msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-29 00:41+0000\n"
-"PO-Revision-Date: 2025-03-13 15:54+0300\n"
-"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
+"PO-Revision-Date: 2025-06-29 08:56+0300\n"
+"Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.07.70\n"
+"X-Generator: Lokalize 25.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -113,8 +113,7 @@ msgid "A Graphviz DOT graph editor by KDE"
 msgstr "KDE’den Graphviz DOT grafiği düzenleyicisi"
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
 msgstr "© 2005–2010 Gaël de Chalendar"
 
@@ -187,7 +186,7 @@ msgstr ""
 #: part/kgraphviewer_partsettings.kcfg:9
 #, kde-format
 msgid "If true, the bird's eye view will be shown if needed."
-msgstr "Eğer doğru ise, gerektiğinde kuş bakışı görünüm gösterilecek."
+msgstr "Eğer doğru ise gerekirse kuş bakışı görünüm gösterilir."
 
 #. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
@@ -545,7 +544,7 @@ msgstr "Kuşbakışı görünümü etkinleştir"
 #: part/dotgraphview.cpp:478
 #, kde-format
 msgid "Enables or disables the Bird's-eye View"
-msgstr "Kuş bakışı görünümü etkinleştirir ya da kapatır"
+msgstr "Kuşbakışı görünümü etkinleştirir veya kapatır"
 
 #: part/dotgraphview.cpp:484
 #, kde-format
@@ -556,7 +555,7 @@ msgstr "Kuşbakışı Görünüm Konumu"
 #: part/dotgraphview.cpp:485
 #, kde-format
 msgid "Allows the Bird's-eye View to be setup."
-msgstr "Kuş bakışı görünümün ayarlanabilmesine izin verir."
+msgstr "Kuşbakışı görünümün ayarlanabilmesine izin verir."
 
 #: part/dotgraphview.cpp:487
 #, kde-format
@@ -567,7 +566,7 @@ msgstr "Üst sol"
 #: part/dotgraphview.cpp:488
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-left corner."
-msgstr "Kuş bakışı görünümü sol üst köşeye koyar."
+msgstr "Kuşbakışı görünümü sol üst köşeye koyar."
 
 #: part/dotgraphview.cpp:493
 #, kde-format
@@ -578,7 +577,7 @@ msgstr "Üst sağ"
 #: part/dotgraphview.cpp:494
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-right corner."
-msgstr "Kuş bakışı görünümü sağ üst köşeye koyar."
+msgstr "Kuşbakışı görünümü sağ üst köşeye koyar."
 
 #: part/dotgraphview.cpp:499
 #, kde-format
@@ -589,7 +588,7 @@ msgstr "Alt sol"
 #: part/dotgraphview.cpp:500
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-left corner."
-msgstr "Kuş bakışı görünümü sol alt köşeye koyar."
+msgstr "Kuşbakışı görünümü sol alt köşeye koyar."
 
 #: part/dotgraphview.cpp:505
 #, kde-format
@@ -600,7 +599,7 @@ msgstr "Alt sağ"
 #: part/dotgraphview.cpp:506
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-right corner."
-msgstr "Sağ alt köşeye Kuş bakışı Görünümü koyar."
+msgstr "Kuşbakışı görünümü sağ alt köşeye koyar."
 
 #: part/dotgraphview.cpp:511
 #, kde-format
@@ -708,8 +707,7 @@ msgstr "yüklenmiş grafik yok"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, fuzzy, kde-format
-#| msgid "graph %1 is getting loaded..."
+#, kde-format
 msgid "graph %1 is getting loaded…"
 msgstr "%1 grafiği yükleniyor…"
 
@@ -1027,15 +1025,14 @@ msgid "Page %1"
 msgstr "Sayfa %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Print Preview…"
-msgstr "Yazdırma Önizlemesi"
+msgstr "Baskı Önizlemesi…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font…"
-msgstr ""
+msgstr "Yazıtipi…"
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1068,15 +1065,14 @@ msgid "Adds table borders."
 msgstr "Tablo kenarlıklarını ekler."
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Change Page Size and Margins..."
+#, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "Sayfa Ölçülerini ve Kenar Aralıklarını Değiştir…"
+msgstr "Sayfa Boyutunu ve Kenar Boşluklarını Değiştir…"
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
 msgid "Changes page size and margins."
-msgstr "Sayfa ölçülerini ve kenar aralıklarını değiştirir."
+msgstr "Sayfa boyutunu ve kenar boşluklarını değiştirir."
 
 #: part/simpleprintingpagesetup.cpp:164
 #, kde-format
@@ -1182,7 +1178,7 @@ msgstr "İlgili eylemler:"
 #: part/simpleprintpreviewwindow.cpp:58
 #, kde-format
 msgid "%1 - Print Preview - %2"
-msgstr "%1 — Yazdırma Önizlemesi — %2"
+msgstr "%1 — Baskı Önizlemesi — %2"
 
 #: part/simpleprintpreviewwindow.cpp:73
 #, kde-format

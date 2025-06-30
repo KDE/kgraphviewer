@@ -1,17 +1,17 @@
 # Translation of kgraphviewer.po to Catalan
-# Copyright (C) 2010-2024 This_file_is_part_of_KDE
+# Copyright (C) 2010-2025 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Manuel Tortosa <manutortosa@gmail.com>, 2010.
-# Josep M. Ferrer <txemaq@gmail.com>, 2010, 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022, 2024.
+# Josep M. Ferrer <txemaq@gmail.com>, 2010, 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022, 2024, 2025.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2014, 2017, 2020, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-29 00:41+0000\n"
-"PO-Revision-Date: 2024-04-19 09:01+0200\n"
+"PO-Revision-Date: 2025-06-29 09:05+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -114,10 +114,9 @@ msgstr ""
 "Un visualitzador de gràfics DOT del Graphviz, creat per la comunitat KDE"
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© 2005–2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
@@ -713,10 +712,9 @@ msgstr "no s'ha carregat cap gràfica"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, fuzzy, kde-format
-#| msgid "graph %1 is getting loaded..."
+#, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr "s'està carregant la gràfica %1..."
+msgstr "s'està carregant la gràfica %1…"
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -1037,15 +1035,14 @@ msgid "Page %1"
 msgstr "Pàgina %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Print Preview…"
-msgstr "Vista prèvia d'impressió"
+msgstr "Vista prèvia d'impressió…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font…"
-msgstr ""
+msgstr "Lletra…"
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1079,10 +1076,9 @@ msgid "Adds table borders."
 msgstr "Afegeix vores a la taula."
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Change Page Size and Margins..."
+#, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "Canvia la mida i els marges de la pàgina..."
+msgstr "Canvia la mida i els marges de la pàgina…"
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
@@ -1285,15 +1281,3 @@ msgstr "Pregunt&a"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Reobre els fitxers prèviament oberts"
-
-#~ msgid "Print Preview..."
-#~ msgstr "Vista prèvia d'impressió..."
-
-#~ msgid "Font..."
-#~ msgstr "Lletra..."
-
-#~ msgid "Zoom In"
-#~ msgstr "Augmenta"
-
-#~ msgid "Zoom Out"
-#~ msgstr "Redueix"
