@@ -1244,9 +1244,3 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Åpne på nytt filer som er åpnet før"
-
-#~ msgid "Print Preview..."
-#~ msgstr "Forhåndsvisning …"
-
-#~ msgid "Font..."
-#~ msgstr "Skrift …"
