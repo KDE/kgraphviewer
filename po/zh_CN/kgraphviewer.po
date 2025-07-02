@@ -109,10 +109,9 @@ msgid "A Graphviz DOT graph editor by KDE"
 msgstr "一款 KDE 的 Graphviz DOT 图编辑器"
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr "(C) 2005-2010 Gaël de Chalendar"
+msgstr ""
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
@@ -679,10 +678,9 @@ msgstr "未加载图表"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, fuzzy, kde-format
-#| msgid "graph %1 is getting loaded..."
+#, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr "正在载入图表 %1..."
+msgstr ""
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -996,10 +994,9 @@ msgid "Page %1"
 msgstr "第%1页"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Print Preview…"
-msgstr "打印预览"
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
@@ -1037,10 +1034,9 @@ msgid "Adds table borders."
 msgstr "添加表格边框。"
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Change Page Size and Margins..."
+#, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "更改页面大小和页边距..."
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
@@ -1242,9 +1238,3 @@ msgstr "&询问"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "重新打开上次打开的文件"
-
-#~ msgid "Print Preview..."
-#~ msgstr "打印预览..."
-
-#~ msgid "Font..."
-#~ msgstr "字体..."
