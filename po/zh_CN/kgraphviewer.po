@@ -680,7 +680,7 @@ msgstr "未加载图表"
 #: part/dotgraphview.cpp:1001
 #, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr ""
+msgstr "正在加载图表 %1…"
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -996,12 +996,12 @@ msgstr "第%1页"
 #: part/simpleprintingpagesetup.cpp:85
 #, kde-format
 msgid "Print Preview…"
-msgstr ""
+msgstr "打印预览…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font…"
-msgstr ""
+msgstr "字体…"
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1036,7 +1036,7 @@ msgstr "添加表格边框。"
 #: part/simpleprintingpagesetup.cpp:113
 #, kde-format
 msgid "Change Page Size and Margins…"
-msgstr ""
+msgstr "更改页面大小和页边距…"
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
