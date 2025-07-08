@@ -1066,7 +1066,7 @@ bool DotGraphView::displayGraph()
     viewport()->setUpdatesEnabled(false);
 
     if (d->m_graph->backColor().size() != 0) {
-        setBackgroundColor(QColor(d->m_graph->backColor()));
+        setBackgroundColor(Dot2QtConsts::componentData().qtColor(d->m_graph->backColor()));
     }
 
     if (d->m_graph->nodes().size() > KGV_MAX_PANNER_NODES) {
@@ -1081,7 +1081,7 @@ bool DotGraphView::displayGraph()
     d->m_yMargin = 50;
 
     //   m_canvas->setSceneRect(0,0,w+2*m_xMargin, h+2*m_yMargin);
-    //   m_canvas->setBackgroundBrush(QBrush(QColor(m_graph->backColor())));
+    //   m_canvas->setBackgroundBrush(QBrush(Dot2QtConsts::componentData().qtColor(m_graph->backColor())));
     d->m_canvas->setBackgroundBrush(QBrush(d->m_backgroundColor));
 
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << "sceneRect is now " << m_canvas->sceneRect();

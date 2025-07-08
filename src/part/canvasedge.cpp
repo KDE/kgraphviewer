@@ -306,8 +306,8 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
             }
             attributeIt = edge()->attributes().find(QStringLiteral("color"));
             if (attributeIt != edge()->attributes().constEnd()) {
-                qCDebug(KGRAPHVIEWERLIB_LOG) << "set edge color to " << QColor(*attributeIt).name();
-                lineColor = QColor(*attributeIt);
+                lineColor = Dot2QtConsts::componentData().qtColor(*attributeIt);
+                qCDebug(KGRAPHVIEWERLIB_LOG) << "set edge color to " << lineColor.name();
             }
             for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum == 0 && edge()->colors().count() == 0); splineNum++) {
                 if (splineNum != 0)
