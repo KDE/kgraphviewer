@@ -1042,7 +1042,7 @@ msgstr "<qt><h2>გვერდის მორგება გრაფიკ�
 #: part/simpleprintingpagesetup.cpp:100
 #, kde-format
 msgid "Saves settings for this setup as default."
-msgstr "ამ პარამეტრების ნაგულისხმებად შენახვა."
+msgstr "ამ პარამეტრების ნაგულისხმევად შენახვა."
 
 #: part/simpleprintingpagesetup.cpp:103
 #, kde-format
@@ -1194,7 +1194,7 @@ msgstr "შემდეგი გვერდი"
 #: preferencesAppearance.ui:19
 #, kde-format
 msgid "Default background color:"
-msgstr "ფონის ნაგულისხმები ფერი:"
+msgstr "ფონის ნაგულისხმევი ფერი:"
 
 #. i18n: ectx: property (text), widget (QLabel, note)
 #: preferencesAppearance.ui:51
