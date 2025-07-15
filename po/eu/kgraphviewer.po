@@ -1,17 +1,17 @@
 # Translation for kgraphviewer.po to Euskara/Basque (eu).
-# Copyright (C) 2010-2024 This file is copyright:
+# Copyright (C) 2010-2025 This file is copyright:
 # This file is distributed under the same license as the kgraphviewer package.
-# SPDX-FileCopyrightText: 2024 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
+# SPDX-FileCopyrightText: 2024, 2025 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
 #
 # Translators:
 # Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2010.
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2024.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-29 00:41+0000\n"
-"PO-Revision-Date: 2024-06-02 23:46+0200\n"
+"PO-Revision-Date: 2025-07-14 10:03+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 25.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -39,7 +39,7 @@ msgstr "Saio lehengoratzea"
 #: kgrapheditor.cpp:126
 #, kde-format
 msgid "Do you want to reload files from previous session?"
-msgstr "Nahi duzu aurreko saioko fitxategiak berriro kargatzea?"
+msgstr "Aurreko saioko fitxategiak birzamatu nahi dituzu?"
 
 #: kgrapheditor.cpp:142
 #, kde-format
@@ -79,7 +79,7 @@ msgstr "Analizatzen"
 #: kgrapheditorConfigDialog.cpp:49 kgraphviewerConfigDialog.cpp:56
 #, kde-format
 msgid "Reloading"
-msgstr "Birkargatzen"
+msgstr "Birzamatzen"
 
 #: kgrapheditorConfigDialog.cpp:50 kgraphviewerConfigDialog.cpp:57
 #, kde-format
@@ -112,10 +112,9 @@ msgid "A Graphviz DOT graph editor by KDE"
 msgstr "KDEren Graphviz DOT grafoen erakuslea"
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© 2005–2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
@@ -148,7 +147,7 @@ msgstr "Kendu nodo hau"
 #: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
 #, kde-format
 msgid "The answer to the question 'File modified, do you want to reload it'"
-msgstr "'Fitxategia aldatuta, nahi duzu birkargatzea' galderaren erantzuna"
+msgstr "'Fitxategia aldatu da, birzamatu nahi duzu' galderaren erantzuna"
 
 #. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
@@ -214,7 +213,7 @@ msgstr "Editatu tresna-barra"
 #: kgraphviewer.cpp:106
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
-msgstr "Nahi duzu aurreko saioko fitxategiak berriro kargatzea?"
+msgstr "Aurreko saioko fitxategiak birzamatu nahi dituzu?"
 
 #: kgraphviewer.cpp:108
 #, kde-format
@@ -699,14 +698,13 @@ msgstr ""
 #: part/dotgraphview.cpp:817
 #, kde-format
 msgid "no graph loaded"
-msgstr "ez da grafikorik kargatu"
+msgstr "ez da grafikorik zamatu"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, fuzzy, kde-format
-#| msgid "graph %1 is getting loaded..."
+#, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr "%1 grafikoa kargatzen ari da..."
+msgstr "%1 grafikoa zamatzen ari da..."
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -716,7 +714,7 @@ msgstr "errorea %1 fitxategia analizatzean"
 #: part/dotgraphview.cpp:1646
 #, kde-format
 msgid "Reload Confirmation"
-msgstr "Birkargatzeko berrespena"
+msgstr "Birzamatzeko baieztapena"
 
 #: part/dotgraphview.cpp:1646
 #, kde-format
@@ -773,7 +771,7 @@ msgstr ""
 #: part/kgraphviewer_part.cpp:96
 #, kde-format
 msgid "Reload the current graph from file"
-msgstr "Birkargatu uneko grafikoa fitxategitik"
+msgstr "Birzamatu uneko grafikoa fitxategitik"
 
 #. i18n: ectx: Menu (file)
 #: part/kgraphviewer_part.rc:4
@@ -1025,15 +1023,14 @@ msgid "Page %1"
 msgstr "Orria: %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Print Preview…"
-msgstr "Inprimatzeko aurrebista"
+msgstr "Inprimatze aurreikuspegia..."
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font…"
-msgstr ""
+msgstr "Letra-tipoa…"
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1066,10 +1063,9 @@ msgid "Adds table borders."
 msgstr "Taularen ertzak gehitzen ditu."
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Change Page Size and Margins..."
+#, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "Orriaren tamaina eta marjinak aldatzen ditu..."
+msgstr "Aldatu orriaren tamaina eta marjinak..."
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
@@ -1079,7 +1075,7 @@ msgstr "Orrialdearen tamaina eta marjinak aldatzen ditu."
 #: part/simpleprintingpagesetup.cpp:164
 #, kde-format
 msgid "Chosen font looks like this"
-msgstr "Aukeratutako letra-tipoa honelako itxura du"
+msgstr "Aukeratutako letra-tipoak itxura hau du"
 
 #: part/simpleprintingpagesetup.cpp:180
 #, kde-format
@@ -1259,7 +1255,7 @@ msgstr "Barneko &liburutegia"
 #: preferencesReload.ui:17
 #, kde-format
 msgid "Reload files modified on disk"
-msgstr "Birkargatu diskoan aldatutako fitxategiak"
+msgstr "Birzamatu diskoan aldatutako fitxategiak"
 
 #. i18n: ectx: property (text), widget (QRadioButton, ask)
 #: preferencesReload.ui:40
