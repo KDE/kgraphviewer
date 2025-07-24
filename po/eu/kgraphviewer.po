@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-29 00:41+0000\n"
-"PO-Revision-Date: 2025-07-14 10:03+0200\n"
+"PO-Revision-Date: 2025-07-23 14:01+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -514,7 +514,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "Irudi gisa..."
+msgstr "Irudi gisa…"
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -619,7 +619,7 @@ msgstr "Antolaera"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr "Zehaztu antolaeraren komandoa..."
+msgstr "Zehaztu antolaeraren komandoa…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -704,7 +704,7 @@ msgstr "ez da grafikorik zamatu"
 #: part/dotgraphview.cpp:1001
 #, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr "%1 grafikoa zamatzen ari da..."
+msgstr "%1 grafikoa zamatzen ari da…"
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -759,7 +759,7 @@ msgstr "Ireki inprimatzeko aurrebistaren leihoa"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Orri-ezarpena..."
+msgstr "Orri-ezarpena…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -1025,7 +1025,7 @@ msgstr "Orria: %1"
 #: part/simpleprintingpagesetup.cpp:85
 #, kde-format
 msgid "Print Preview…"
-msgstr "Inprimatze aurreikuspegia..."
+msgstr "Inprimatze aurreikuspegia…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
@@ -1065,7 +1065,7 @@ msgstr "Taularen ertzak gehitzen ditu."
 #: part/simpleprintingpagesetup.cpp:113
 #, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "Aldatu orriaren tamaina eta marjinak..."
+msgstr "Aldatu orriaren tamaina eta marjinak…"
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
