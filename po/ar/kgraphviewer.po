@@ -576,7 +576,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
-msgstr "تلقائي"
+msgstr "آليّ"
 
 #: part/dotgraphview.cpp:512
 #, kde-format
@@ -588,7 +588,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
-msgstr "التّخطيط"
+msgstr "التخطيط"
 
 #: part/dotgraphview.cpp:560
 #, kde-format
