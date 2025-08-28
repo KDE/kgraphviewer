@@ -110,10 +110,9 @@ msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Editor grafů DOT Graphviz pro KDE"
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr "(C) 2005-2010 Gaël de Chalendar"
+msgstr ""
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
@@ -703,10 +702,9 @@ msgstr "žádný graf není načten"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, fuzzy, kde-format
-#| msgid "graph %1 is getting loaded..."
+#, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr "graf %1 se načítá..."
+msgstr ""
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -1022,10 +1020,9 @@ msgid "Page %1"
 msgstr "Strana %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Print Preview…"
-msgstr "Náhled před tiskem"
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
@@ -1063,10 +1060,9 @@ msgid "Adds table borders."
 msgstr "Přidat okraje tabulky."
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Change Page Size and Margins..."
+#, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "Změnit velikost strany a okraje..."
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
@@ -1268,9 +1264,3 @@ msgstr "Dotáz&at se"
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "Znovu otevřít naposledy otevřené soubory"
-
-#~ msgid "Print Preview..."
-#~ msgstr "Náhled před tiskem..."
-
-#~ msgid "Font..."
-#~ msgstr "Písmo..."
