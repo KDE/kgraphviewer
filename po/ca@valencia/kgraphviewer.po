@@ -481,8 +481,7 @@ msgstr "Dissenya la gràfica utilitzant el programa «circo»."
 #: part/dotgraphview.cpp:443
 #, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
-msgstr ""
-"Seleccioneu un algoritme de disseny de Graphviz o editeu el vostre propi."
+msgstr "Trieu un algoritme de disseny de Graphviz o editeu el vostre propi."
 
 #: part/dotgraphview.cpp:445
 #, kde-format
@@ -492,10 +491,10 @@ msgid ""
 "manually specify the <tt>G</tt> option to the dot command, type in: <tt>dot -"
 "Gname=MyGraphName -Txdot </tt>"
 msgstr ""
-"Seleccioneu un algoritme de disseny de Graphviz o introduïu la vostra ordre "
-"que generarà una gràfica en el format «xdot» en la seua eixida estàndard. "
-"Per exemple, per a especificar manualment l'opció <tt>G</tt> a l'ordre "
-"«dot», introduïu: <tt>dot -Gname=NomGràficaMeva -Txdot </tt>"
+"Trieu un algoritme de disseny de Graphviz o introduïu la vostra ordre que "
+"generarà una gràfica en el format «xdot» en la seua eixida estàndard. Per "
+"exemple, per a especificar manualment l'opció <tt>G</tt> a l'ordre «dot», "
+"introduïu: <tt>dot -Gname=NomGràficaMeva -Txdot </tt>"
 
 #: part/dotgraphview.cpp:453
 #, kde-format
@@ -658,7 +657,7 @@ msgstr ""
 #: part/dotgraphview.cpp:600
 #, kde-format
 msgid "Select file"
-msgstr "Seleccioneu un fitxer"
+msgstr "Trieu un fitxer"
 
 #: part/dotgraphview.cpp:614
 #, kde-format
@@ -690,16 +689,16 @@ msgid ""
 msgstr ""
 "<h1>Visualització de gràfiques de Graphviz amb format DOT</h1><p>Si la "
 "gràfica és més gran que l'àrea del giny, es mostrarà un quadro de vista "
-"general en una vora. Seleccioneu a través del menú contextual si la posició "
-"òptima d'esta vista general s'ha de calcular automàticament o posicionar a "
-"on vós vulgueu.</p><h2>Com treballar amb ell?</h2><ul><li>Per a moure la "
-"gràfica, podeu:  <ul>    <li>Clicar-la i arrossegar-la</li>    <li>utilitzar "
-"els elevadors</li>    <li>prémer les tecles de fletxa</li>    <li>Clicar "
-"damunt d'algun lloc del quadro de la vista</li>    <li>utilitzar la roda del "
-"ratolí (amunt i avall sense modificador, a l'esquerra i a la dreta amb la "
-"tecla <Alt> pressionada)</li>    <li>o clicar i arrossegar el quadro de la "
-"vista</li>  </ul></li><li>Per a fer zoom, podeu utilitzar els botons acosta "
-"i allunya de la barra d'eines, o prémer la tecla <Majús> mentre feu gireu la "
+"general en una vora. Trieu a través del menú contextual si la posició òptima "
+"d'esta vista general s'ha de calcular automàticament o posicionar a on vós "
+"vulgueu.</p><h2>Com treballar amb ell?</h2><ul><li>Per a moure la gràfica, "
+"podeu:  <ul>    <li>Clicar-la i arrossegar-la</li>    <li>utilitzar els "
+"elevadors</li>    <li>prémer les tecles de fletxa</li>    <li>Clicar damunt "
+"d'algun lloc del quadro de la vista</li>    <li>utilitzar la roda del ratolí "
+"(amunt i avall sense modificador, a l'esquerra i a la dreta amb la tecla "
+"<Alt> pressionada)</li>    <li>o clicar i arrossegar el quadro de la vista</"
+"li>  </ul></li><li>Per a fer zoom, podeu utilitzar els botons acosta i "
+"allunya de la barra d'eines, o prémer la tecla <Majús> mentre feu gireu la "
 "roda del ratolí.</li><li>Proveu el menú contextual (normalment fent clic "
 "dret) per a descobrir altres possibilitats.</li><li>Proveu els botons "
 "<tt>Vista prèvia d'impressió</tt> o <tt>Configureu la pàgina</tt> per a "
