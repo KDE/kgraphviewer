@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=KGraphEditor
+Name[ar]=محرر الرسومات ك
 Name[bs]=KGraphEditor
 Name[ca]=KGraphEditor
 Name[ca@valencia]=KGraphEditor
@@ -54,6 +55,7 @@ Categories=Qt;KDE;Graphics;2DGraphics;DataVisualization;
 InitialPreference=9
 X-DocPath=kgrapheditor/kgrapheditor.html
 Comment=A Graphviz DOT graph editor
+Comment[ar]=محرر رسوم Graphviz DOT
 Comment[ca]=Un editor de gràfics DOT del Graphviz
 Comment[ca@valencia]=Un editor de gràfics DOT de Graphviz
 Comment[cs]=Editor bodových grafů Graphviz
