@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-29 00:41+0000\n"
-"PO-Revision-Date: 2025-04-16 11:47+0200\n"
+"PO-Revision-Date: 2025-09-02 18:00+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -108,10 +108,9 @@ msgid "A Graphviz DOT graph editor by KDE"
 msgstr ""
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© 2005–2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
@@ -973,15 +972,14 @@ msgid "Page %1"
 msgstr "Pagina %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Print Preview…"
-msgstr "Vista preliminar de imprimer"
+msgstr "Vista preliminar de imprimer…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font…"
-msgstr ""
+msgstr "Font..."
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1014,10 +1012,9 @@ msgid "Adds table borders."
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Page Size & Margins"
+#, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "Dimension de Pagina & Margines"
+msgstr "Cambia Dimension de Pagina e Margines..."
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
