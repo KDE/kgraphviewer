@@ -4,6 +4,7 @@
             {
                 "Email": "kleag@free.fr",
                 "Name": "Gaël de Chalendar",
+                "Name[ar]": "غايل دي شاليندار",
                 "Name[ca@valencia]": "Gaël de Chalendar",
                 "Name[ca]": "Gaël de Chalendar",
                 "Name[cs]": "Gaël de Chalendar",
@@ -35,6 +36,7 @@
             }
         ],
         "Copyright": "© 2005–2006 Gaël de Chalendar",
+        "Copyright[ar]": "© 2005–2006 غايل دي شاليندار",
         "Copyright[ca@valencia]": "© 2005–2006 Gaël de Chalendar",
         "Copyright[ca]": "© 2005–2006 Gaël de Chalendar",
         "Copyright[de]": "© 2005–2006 Gaël de Chalendar",
@@ -58,6 +60,7 @@
         "Copyright[zh_CN]": "© 2005–2006 Gaël de Chalendar",
         "Copyright[zh_TW]": "© 2005–2006 Gaël de Chalendar",
         "Description": "Graphviz DOT files viewer",
+        "Description[ar]": "عارض ملفات رسوم Graphviz DOT",
         "Description[ca@valencia]": "Visor de fitxers DOT de Graphviz",
         "Description[ca]": "Visualitzador de fitxers DOT del Graphviz",
         "Description[cs]": "Prohlížeč souborů DOT formátu Graphviz",
@@ -92,6 +95,7 @@
             "text/vnd.graphviz"
         ],
         "Name": "KGraphViewer",
+        "Name[ar]": "محرر الرسومات ك",
         "Name[bs]": "KGraphViewer",
         "Name[ca@valencia]": "KGraphViewer",
         "Name[ca]": "KGraphViewer",
