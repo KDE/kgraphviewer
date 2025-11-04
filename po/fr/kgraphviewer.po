@@ -250,7 +250,7 @@ msgstr "Ouvre une nouvelle fenêtre KGraphViewer vide."
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
-"Affiche la boîte de dialogue « Ouvrir un fichier » pour choisir un fichier "
+"Affiche la boite de dialogue « Ouvrir un fichier » pour choisir un fichier "
 "DOT au format « GraphViz » à ouvrir."
 
 #: kgraphviewer.cpp:202
@@ -791,7 +791,7 @@ msgstr "Configuration de la page..."
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr ""
-"Ouvre la boîte de dialogue « Configuration de la page » pour pouvoir mettre "
+"Ouvre la boite de dialogue « Configuration de la page » pour pouvoir mettre "
 "en place l'impression du graphe"
 
 #: part/kgraphviewer_part.cpp:96
