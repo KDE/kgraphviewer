@@ -1230,6 +1230,3 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr ""
-
-#~ msgid "Print Preview..."
-#~ msgstr "Предпечатен преглед..."
