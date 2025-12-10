@@ -1,6 +1,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# SPDX-FileCopyrightText: 2010, 2011, 2013, 2014, 2017, 2018, 2023 Vít Pelčák <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2010, 2011, 2013, 2014, 2017, 2018, 2023, 2025 Vít Pelčák <vit@pelcak.org>
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
 # SPDX-FileCopyrightText: 2024 Vit Pelcak <vit@pelcak.org>
 #
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2024-05-30 13:35+0200\n"
+"PO-Revision-Date: 2025-12-05 10:54+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 25.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -112,7 +112,7 @@ msgstr "Editor grafů DOT Graphviz pro KDE"
 #: kgrapheditormain.cpp:44
 #, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr ""
+msgstr "© 2005–2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
@@ -704,7 +704,7 @@ msgstr "žádný graf není načten"
 #: part/dotgraphview.cpp:1001
 #, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr ""
+msgstr "graf %1 je načítán…"
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -1022,12 +1022,12 @@ msgstr "Strana %1"
 #: part/simpleprintingpagesetup.cpp:85
 #, kde-format
 msgid "Print Preview…"
-msgstr ""
+msgstr "Náhled před tiskem…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font…"
-msgstr ""
+msgstr "Písmo…"
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1062,7 +1062,7 @@ msgstr "Přidat okraje tabulky."
 #: part/simpleprintingpagesetup.cpp:113
 #, kde-format
 msgid "Change Page Size and Margins…"
-msgstr ""
+msgstr "Změnit velikost strany a okraje…"
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
