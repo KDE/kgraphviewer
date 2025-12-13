@@ -1,10 +1,8 @@
 # Traducerea kgraphviewer.po în Română
 # translation of kgraphviewer to Romanian
-# Copyright (C) 2008 This_file_is_part_of_KDE
+# SPDX-FileCopyrightText: 2008, 2009, 2012, 2013, 2025 Sergiu Bivol <sergiu@cip.md>
 # This file is distributed under the same license as the kgraphviewer package.
 # Laurenţiu Buzdugan <lbuz@rolix.org>, 2008".
-# Sergiu Bivol <sergiu@cip.md>, 2008.
-# Sergiu Bivol <sergiu@cip.md>, 2008, 2009, 2012, 2013.
 # Cristian Oneț <onet.cristian@gmail.com>, 2011.
 #
 msgid ""
@@ -12,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2013-10-24 13:48+0300\n"
+"PO-Revision-Date: 2025-11-30 12:50+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -21,6 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -43,10 +42,9 @@ msgid "Do you want to reload files from previous session?"
 msgstr "Doriți să reîncărcați fișierele din sesiunea precedentă?"
 
 #: kgrapheditor.cpp:142
-#, fuzzy, kde-format
-#| msgid "Unable to start %1."
+#, kde-format
 msgid "Unable to start"
-msgstr "Nu se poate porni %1."
+msgstr "Nu se poate porni"
 
 #: kgrapheditor.cpp:142 kgraphviewer.cpp:129
 #, kde-format
@@ -54,10 +52,9 @@ msgid "Could not find the KGraphViewer part."
 msgstr "Nu s-a găsit componenta KGraphViewer."
 
 #: kgrapheditor.cpp:223 kgraphviewer.cpp:208
-#, fuzzy, kde-format
-#| msgid "Closes the current tab"
+#, kde-format
 msgid "Closes the current file"
-msgstr "Închide tabul curent"
+msgstr "Închide fișierul actual"
 
 #: kgrapheditor.cpp:234
 #, kde-format
@@ -117,20 +114,19 @@ msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Un vizualizator de grafuri dot în format Graphviz pentru KDE"
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© 2005–2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "Path or URL to scan"
-msgstr ""
+msgstr "Cale sau URL de citit"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
 msgid "[url]"
-msgstr ""
+msgstr "[url]"
 
 #: kgrapheditormain.cpp:82 main.cpp:84
 #, kde-format
@@ -228,17 +224,16 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "Doriți să reîncărcați fișierele din sesiunea precedentă?"
 
 #: kgraphviewer.cpp:108
-#, fuzzy, kde-format
-#| msgid "Reloading"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "Reîncărcare"
+msgstr "Reîncarcă"
 
 #: kgraphviewer.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Reload"
-msgstr ""
+msgstr "Nu reîncărca"
 
 #: kgraphviewer.cpp:196
 #, kde-format
@@ -346,12 +341,12 @@ msgstr "Milian Wolff"
 #: main.cpp:51
 #, kde-format
 msgid "Martin Sandsmark"
-msgstr ""
+msgstr "Martin Sandsmark"
 
 #: main.cpp:51
 #, kde-format
 msgid "Port to KF5"
-msgstr ""
+msgstr "Portarea la KF5"
 
 #: main.cpp:84
 #, fuzzy, kde-format
