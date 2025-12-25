@@ -2,25 +2,26 @@
 # translation of kgraphviewer.po to
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Jan Stożek <jasio@stozek.waw.pl>, 2007.
 # Marta Rybczyńska <kde-i18n@rybczynska.net>, 2007.
 # Michał Smoczyk <msmoczyk@wp.pl>, 2009.
-# SPDX-FileCopyrightText: 2011, 2014, 2017, 2018, 2021, 2023, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+# SPDX-FileCopyrightText: 2011, 2014, 2017, 2018, 2021, 2023, 2024, 2025 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 14:39+0000\n"
-"PO-Revision-Date: 2024-04-27 10:38+0200\n"
+"PO-Revision-Date: 2025-12-24 16:57+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
-"Language-Team: Polish <kde-i18n-doc@kde.org>\n"
+"Language-Team: pl\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -116,10 +117,9 @@ msgid "A Graphviz DOT graph editor by KDE"
 msgstr "Edytor grafów Graphviz DOT w ramach KDE"
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr "(C) 2005-2010 Gaël de Chalendar"
+msgstr "© 2005–2010 Gaël de Chalendar"
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
@@ -712,10 +712,9 @@ msgstr "nie wczytano grafu"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
-#, fuzzy, kde-format
-#| msgid "graph %1 is getting loaded..."
+#, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr "graf %1 jest właśnie wczytywany..."
+msgstr "graf %1 jest właśnie wczytywany…"
 
 #: part/dotgraphview.cpp:941
 #, kde-format
@@ -920,17 +919,17 @@ msgstr "&Wysokość:"
 #: part/KgvPageLayoutSize.cpp:131
 #, kde-format
 msgid "Orientation"
-msgstr "Orientacja"
+msgstr "Kierunek"
 
 #: part/KgvPageLayoutSize.cpp:135
 #, kde-format
 msgid "&Portrait"
-msgstr "&Portret"
+msgstr "W &pionie"
 
 #: part/KgvPageLayoutSize.cpp:139
 #, kde-format
 msgid "La&ndscape"
-msgstr "Pe&jzaż"
+msgstr "W pozio&mie"
 
 #: part/KgvPageLayoutSize.cpp:147
 #, kde-format
@@ -1034,15 +1033,14 @@ msgid "Page %1"
 msgstr "Strona %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Print Preview…"
-msgstr "Podgląd wydruku"
+msgstr "Podgląd wydruku…"
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
 msgid "Font…"
-msgstr ""
+msgstr "Czcionka…"
 
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
@@ -1075,10 +1073,9 @@ msgid "Adds table borders."
 msgstr "Dodaje ramkę tabeli."
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Change Page Size and Margins..."
+#, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "Zmienia rozmiar strony i marginesy..."
+msgstr "Zmień rozmiar strony i marginesy…"
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
