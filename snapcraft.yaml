@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024, 2025 Scarlett Moore <sgmoore@kde.org>
+# SPDX-FileCopyrightText: 2024-2026 Scarlett Moore <sgmoore@kde.org>
 #
 # SPDX-License-Identifier: CC0-1.0
 ---
@@ -27,7 +27,17 @@ parts:
     parse-info:
       - usr/share/metainfo/org.kde.kgraphviewer.appdata.xml
     plugin: cmake
+    build-snaps:
+      - kde-qt6-core24-sdk/latest/beta
+      - kf6-core24-sdk/latest/beta
     build-packages:
+      - libxml2-dev
+      - gettext
+      - doxygen
+      - graphviz
+      - libxml2-utils
+      - docbook-xml
+      - docbook-xsl
       - libgraphviz-dev
       - libboost-dev
     stage-packages:
