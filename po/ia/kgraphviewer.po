@@ -1,13 +1,13 @@
 # Copyright (C) 2025 This file is copyright:
 # This file is distributed under the same license as the kgraphviewer package.
 #
-# SPDX-FileCopyrightText: 2024, 2025 giovanni <g.sora@tiscali.it>
+# SPDX-FileCopyrightText: 2024, 2025, 2026 giovanni <g.sora@tiscali.it>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 14:39+0000\n"
-"PO-Revision-Date: 2025-09-02 18:00+0200\n"
+"PO-Revision-Date: 2026-02-11 16:32+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -35,7 +35,7 @@ msgstr "Restabili Session"
 #: kgrapheditor.cpp:126
 #, kde-format
 msgid "Do you want to reload files from previous session?"
-msgstr ""
+msgstr "Tu vole recargar files ex previe session?"
 
 #: kgrapheditor.cpp:142
 #, kde-format
@@ -45,12 +45,12 @@ msgstr "Incapace a startar"
 #: kgrapheditor.cpp:142 kgraphviewer.cpp:129
 #, kde-format
 msgid "Could not find the KGraphViewer part."
-msgstr ""
+msgstr "Non poteva trovar le parte de KGraphViewer."
 
 #: kgrapheditor.cpp:223 kgraphviewer.cpp:208
 #, kde-format
 msgid "Closes the current file"
-msgstr ""
+msgstr "Claude le file currente"
 
 #: kgrapheditor.cpp:234
 #, kde-format
@@ -90,12 +90,12 @@ msgstr "Gestion de Session"
 #: KGraphEditorElementTreeWidget.cpp:50 KGraphEditorNodesTreeWidget.cpp:54
 #, kde-format
 msgid "Add a new attribute"
-msgstr ""
+msgstr "Adde un nove attributo"
 
 #: KGraphEditorElementTreeWidget.cpp:56 KGraphEditorNodesTreeWidget.cpp:60
 #, kde-format
 msgid "Remove this attribute"
-msgstr ""
+msgstr "Remove iste attributo"
 
 #: kgrapheditormain.cpp:40
 #, kde-format
@@ -105,7 +105,7 @@ msgstr "KGraphEditor"
 #: kgrapheditormain.cpp:42
 #, kde-format
 msgid "A Graphviz DOT graph editor by KDE"
-msgstr ""
+msgstr "Un editor graphic de  Graphviz DOT  per KDE"
 
 #: kgrapheditormain.cpp:44
 #, kde-format
@@ -125,24 +125,25 @@ msgstr "[url]"
 #: kgrapheditormain.cpp:82 main.cpp:84
 #, kde-format
 msgid "Opening in new window confirmation"
-msgstr ""
+msgstr "Confirmation de aperir in nove fenestra"
 
 #: kgrapheditormain.cpp:82
 #, kde-format
 msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
 msgstr ""
+"Un fenestra de KGraphEditor es ja aperite, tu voleaperir le file in illo?"
 
 #: KGraphEditorNodesTreeWidget.cpp:65
 #, kde-format
 msgid "Remove this node"
-msgstr ""
+msgstr "Remove iste nodo"
 
 #. i18n: ectx: label, entry (reloadOnChangeMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:9 kgraphviewersettings.kcfg:9
 #, kde-format
 msgid "The answer to the question 'File modified, do you want to reload it'"
-msgstr ""
+msgstr "Le responsa al demanda 'File modificate, tu vole recargar lo?'"
 
 #. i18n: ectx: label, entry (parsingMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:13 kgraphviewersettings.kcfg:13
@@ -202,7 +203,7 @@ msgstr "Barra de instrumento de editar"
 #: kgraphviewer.cpp:106
 #, kde-format
 msgid "Do you want to reload files from the previous session?"
-msgstr ""
+msgstr "Tu vole recargar files ex le previe session?"
 
 #: kgraphviewer.cpp:108
 #, kde-format
@@ -219,7 +220,7 @@ msgstr "Non recarga"
 #: kgraphviewer.cpp:196
 #, kde-format
 msgid "Opens a new empty KGraphViewer window."
-msgstr ""
+msgstr "Aperi un nove fenestra vacue de KGraphViewer."
 
 #: kgraphviewer.cpp:199
 #, kde-format
@@ -264,7 +265,7 @@ msgstr "Apparentia"
 #: kgraphviewersettings.kcfg:34
 #, kde-format
 msgid "Background color of the graph view."
-msgstr ""
+msgstr "Color de fundo per le vista graphic"
 
 #: main.cpp:39
 #, kde-format
@@ -274,7 +275,7 @@ msgstr "KGraphViewer"
 #: main.cpp:41
 #, kde-format
 msgid "A Graphviz DOT graph viewer"
-msgstr ""
+msgstr "Un visor graphic de Graphviz DOT"
 
 #: main.cpp:43
 #, kde-format
@@ -345,12 +346,12 @@ msgstr ""
 #: part/canvasedge.cpp:74
 #, kde-format
 msgid "Remove selected edge(s)"
-msgstr ""
+msgstr "Remove margine(s) seligite"
 
 #: part/canvaselement.cpp:87
 #, kde-format
 msgid "Remove selected element(s)"
-msgstr ""
+msgstr "Remove elemento(s) Seligite"
 
 #: part/canvasnode.cpp:51
 #, kde-format
@@ -365,7 +366,7 @@ msgstr ""
 #: part/dotgraph.cpp:269 part/dotgraph.cpp:272 part/dotgraph.cpp:275
 #, kde-format
 msgid "Layout process failed"
-msgstr ""
+msgstr "Processo de disposition (layout) falleva"
 
 #: part/dotgraph.cpp:260
 #, kde-format
@@ -385,17 +386,17 @@ msgstr "%1 Expirate."
 #: part/dotgraph.cpp:269
 #, kde-format
 msgid "Was not able to write data to the %1 process."
-msgstr ""
+msgstr "Non poteva scriber datos in le processo  %1."
 
 #: part/dotgraph.cpp:272
 #, kde-format
 msgid "Was not able to read data from the %1 process."
-msgstr ""
+msgstr "Non poteva leger datos ab le processo  %1."
 
 #: part/dotgraph.cpp:275
 #, kde-format
 msgid "Unknown error running %1."
-msgstr ""
+msgstr "Error Incognite executante %1."
 
 #: part/dotgraphview.cpp:407
 #, kde-format
@@ -499,17 +500,17 @@ msgstr "Como imagine ..."
 #: part/dotgraphview.cpp:460
 #, kde-format
 msgid "Export the graph to an image file."
-msgstr ""
+msgstr "Exporta legraphico a un file de imagine."
 
 #: part/dotgraphview.cpp:470
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
-msgstr ""
+msgstr "Zoom in (Aggrandi) per10% sur le graphico vidite currentemente"
 
 #: part/dotgraphview.cpp:474
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
-msgstr ""
+msgstr "Zoom Out (Diminuer) per 10% ab le graphico currentemente vidite"
 
 #: part/dotgraphview.cpp:477
 #, kde-format
@@ -599,7 +600,7 @@ msgstr "Disposition"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr ""
+msgstr "Specifica Commando de Disposition (Layout)..."
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -658,7 +659,7 @@ msgstr ""
 #: part/dotgraphview.cpp:817
 #, kde-format
 msgid "no graph loaded"
-msgstr ""
+msgstr "necun graphico cargate"
 
 #: part/dotgraphview.cpp:933 part/dotgraphview.cpp:954
 #: part/dotgraphview.cpp:1001
@@ -780,7 +781,7 @@ msgstr "Capite"
 #: part/KgvPageLayoutHeaderBase.ui:23
 #, kde-format
 msgid "Different header for the first page"
-msgstr ""
+msgstr "Capite differente per le prime pagina"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
 #: part/KgvPageLayoutHeaderBase.ui:30
@@ -999,17 +1000,17 @@ msgstr "Salveguarda preferentia de iste configuration como predefinite."
 #: part/simpleprintingpagesetup.cpp:103
 #, kde-format
 msgid "Adds date and time to the header."
-msgstr ""
+msgstr "Adde data  e tempore al capite."
 
 #: part/simpleprintingpagesetup.cpp:104
 #, kde-format
 msgid "Adds page numbers to the footer."
-msgstr ""
+msgstr "Adde numeros de pagina al pede de paginas."
 
 #: part/simpleprintingpagesetup.cpp:105
 #, kde-format
 msgid "Adds table borders."
-msgstr ""
+msgstr "Adde margines de tabula."
 
 #: part/simpleprintingpagesetup.cpp:113
 #, kde-format
@@ -1146,7 +1147,7 @@ msgstr "Pagina Proxime"
 #: preferencesAppearance.ui:19
 #, kde-format
 msgid "Default background color:"
-msgstr ""
+msgstr "Color de fundo predefinite:"
 
 #. i18n: ectx: property (text), widget (QLabel, note)
 #: preferencesAppearance.ui:51
