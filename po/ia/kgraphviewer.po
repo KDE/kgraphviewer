@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 14:39+0000\n"
-"PO-Revision-Date: 2026-02-11 16:32+0100\n"
+"PO-Revision-Date: 2026-02-12 15:08+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -132,7 +132,7 @@ msgstr "Confirmation de aperir in nove fenestra"
 msgid ""
 "A KGraphEditor window is already open, do you want to open the file in it?"
 msgstr ""
-"Un fenestra de KGraphEditor es ja aperite, tu voleaperir le file in illo?"
+"Un fenestra de KGraphEditor es ja aperite, tu vole aperir le file in illo?"
 
 #: KGraphEditorNodesTreeWidget.cpp:65
 #, kde-format
@@ -152,6 +152,8 @@ msgid ""
 "To choose whether to parse using an external command (usually dot) or the "
 "graphviz library"
 msgstr ""
+"Seliger si analysar le syntaxe usante un commando externe (usualmente dot) o "
+"le bibliotheca de graphviz"
 
 #. i18n: ectx: label, entry (openInExistingWindowMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:17 kgraphviewersettings.kcfg:17
@@ -160,6 +162,8 @@ msgid ""
 "The answer to the question 'If another window already exist when launching "
 "kgraphviewer, should we open in it, open a new window or ask?'"
 msgstr ""
+"Le responsa al demanda 'Si un altere fenestra ja existe quando on lancea "
+"kgraphviewer, on debe aperir lo intra, aperir un nove fenestra o demandar?'"
 
 #. i18n: ectx: label, entry (reopenPreviouslyOpenedFilesMode), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:21 kgraphviewersettings.kcfg:21
@@ -168,19 +172,22 @@ msgid ""
 "The answer to the question 'Should the files that were opened in previous "
 "sessions be reopened at startup?'"
 msgstr ""
+"Le responsa al demanda 'Le files que esseva aperite in sessiones precedente "
+"deberea esser reaperite al re-initio?'"
 
 #. i18n: ectx: label, entry (birdsEyeViewEnabled), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:25 kgraphviewersettings.kcfg:25
 #: part/kgraphviewer_partsettings.kcfg:9
 #, kde-format
 msgid "If true, the bird's eye view will be shown if needed."
-msgstr ""
+msgstr "Si ver (true), le vista a volo de ave essera monstrate si necessari."
 
 #. i18n: ectx: label, entry (PreviouslyOpenedFiles), group (Notification Messages)
 #: kgrapheditorsettings.kcfg:29 kgraphviewersettings.kcfg:29
 #, kde-format
 msgid "The list of files that were opened in past instances of kgraphviewer"
 msgstr ""
+"Le lista de file que esseva aperite in le instantias passate de kgraphviewer"
 
 #. i18n: ectx: ToolBar (viewToolBar)
 #: kgrapheditorui.rc:22 kgraphviewerui.rc:16
@@ -226,6 +233,8 @@ msgstr "Aperi un nove fenestra vacue de KGraphViewer."
 #, kde-format
 msgid "Shows the file open dialog to choose a Graphviz DOT file to open."
 msgstr ""
+"Monstra le dialogo de aperir file per seliger un file de Graphviz DOT a "
+"aperir."
 
 #: kgraphviewer.cpp:202
 #, kde-format
@@ -239,7 +248,7 @@ msgstr ""
 #: kgraphviewer.cpp:212
 #, kde-format
 msgid "Quits KGraphViewer."
-msgstr "Quita KGaìraphViewer"
+msgstr "Quita KGraphViewer."
 
 #: kgraphviewer.cpp:215
 #, kde-format
@@ -265,7 +274,7 @@ msgstr "Apparentia"
 #: kgraphviewersettings.kcfg:34
 #, kde-format
 msgid "Background color of the graph view."
-msgstr "Color de fundo per le vista graphic"
+msgstr "Color de fundo per le vista graphic."
 
 #: main.cpp:39
 #, kde-format
@@ -333,6 +342,8 @@ msgid ""
 "A KGraphViewer window is already open, where do you want to open this file "
 "in the existing window?"
 msgstr ""
+"Un fenestra de KGraphViewer es ja aperite,ubi tu vole aperir iste file in le "
+"fenestra existente?"
 
 #: part/canvasedge.cpp:70
 #, kde-format
@@ -360,7 +371,7 @@ msgid ""
 "label='%2'"
 msgstr ""
 "id='%1'\n"
-"label='%2'"
+"etiquetta='%2'"
 
 #: part/dotgraph.cpp:260 part/dotgraph.cpp:263 part/dotgraph.cpp:266
 #: part/dotgraph.cpp:269 part/dotgraph.cpp:272 part/dotgraph.cpp:275
@@ -402,18 +413,18 @@ msgstr "Error Incognite executante %1."
 #, kde-format
 msgctxt "@title:menu"
 msgid "Layout Algorithm"
-msgstr ""
+msgstr "Algorithmo de disposition (layout)"
 
 #: part/dotgraphview.cpp:410
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
-msgstr "Puncto"
+msgstr "Dot"
 
 #: part/dotgraphview.cpp:411
 #, kde-format
 msgid "Layout the graph using the dot program."
-msgstr ""
+msgstr "Dispone le graphico usante le programma dot."
 
 #: part/dotgraphview.cpp:415
 #, kde-format
@@ -424,18 +435,18 @@ msgstr "Neato"
 #: part/dotgraphview.cpp:416
 #, kde-format
 msgid "Layout the graph using the neato program."
-msgstr ""
+msgstr "Dispone le graphico usante le programma neato."
 
 #: part/dotgraphview.cpp:420
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
-msgstr ""
+msgstr "Twopi"
 
 #: part/dotgraphview.cpp:421
 #, kde-format
 msgid "Layout the graph using the twopi program."
-msgstr ""
+msgstr "Dispone le graphico usante le programma twopi."
 
 #: part/dotgraphview.cpp:425
 #, kde-format
@@ -446,7 +457,7 @@ msgstr "Fdp"
 #: part/dotgraphview.cpp:426
 #, kde-format
 msgid "Layout the graph using the fdp program."
-msgstr ""
+msgstr "Dispone le graphico usante le programma fdp."
 
 #: part/dotgraphview.cpp:430
 #, kde-format
@@ -457,12 +468,14 @@ msgstr "Circo"
 #: part/dotgraphview.cpp:431
 #, kde-format
 msgid "Layout the graph using the circo program."
-msgstr ""
+msgstr "Dispone le graphico usante le programma circo."
 
 #: part/dotgraphview.cpp:443
 #, kde-format
 msgid "Choose a Graphviz layout algorithm or edit your own one."
 msgstr ""
+"Selige un algorithmo de disposition (layout) de Graphviz o edita un tu "
+"proprie."
 
 #: part/dotgraphview.cpp:445
 #, kde-format
@@ -477,12 +490,12 @@ msgstr ""
 #, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
-msgstr ""
+msgstr "Exporta graphico"
 
 #: part/dotgraphview.cpp:454
 #, kde-format
 msgid "Allows the graph to be exported in another format."
-msgstr ""
+msgstr "Permitte que le graphico es exportate in un altere formato."
 
 #: part/dotgraphview.cpp:456
 #, kde-format
@@ -500,7 +513,7 @@ msgstr "Como imagine ..."
 #: part/dotgraphview.cpp:460
 #, kde-format
 msgid "Export the graph to an image file."
-msgstr "Exporta legraphico a un file de imagine."
+msgstr "Exporta le graphico a un file de imagine."
 
 #: part/dotgraphview.cpp:470
 #, no-c-format, kde-format
@@ -516,45 +529,45 @@ msgstr "Zoom Out (Diminuer) per 10% ab le graphico currentemente vidite"
 #, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
-msgstr ""
+msgstr "Habilita Vista a Volo de Ave"
 
 #: part/dotgraphview.cpp:478
 #, kde-format
 msgid "Enables or disables the Bird's-eye View"
-msgstr ""
+msgstr "Habilita o dishabilita le Vista a Volo de Ave"
 
 #: part/dotgraphview.cpp:484
 #, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr ""
+msgstr "Position de Vista A Volo De Ave"
 
 #: part/dotgraphview.cpp:485
 #, kde-format
 msgid "Allows the Bird's-eye View to be setup."
-msgstr ""
+msgstr "Permitte que le Vista a Volo de Ave es configurate."
 
 #: part/dotgraphview.cpp:487
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
-msgstr "In alto sinistre"
+msgstr "Culmine a sinistra"
 
 #: part/dotgraphview.cpp:488
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-left corner."
-msgstr ""
+msgstr "Pone le Vista a Volo de Ave in le angulo al culmine sinistre. "
 
 #: part/dotgraphview.cpp:493
 #, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
-msgstr "In alto dextere"
+msgstr "Culmine a dextera"
 
 #: part/dotgraphview.cpp:494
 #, kde-format
 msgid "Puts the Bird's-eye View in the top-right corner."
-msgstr ""
+msgstr "Pone le Vista a Volo de Ave in le angulo al culmine dextere. "
 
 #: part/dotgraphview.cpp:499
 #, kde-format
@@ -565,7 +578,7 @@ msgstr "A basso sinistre"
 #: part/dotgraphview.cpp:500
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-left corner."
-msgstr ""
+msgstr "Pone le Vista a Volo de Ave in le angulo al basso sinistre. "
 
 #: part/dotgraphview.cpp:505
 #, kde-format
@@ -576,7 +589,7 @@ msgstr "A basso dextere"
 #: part/dotgraphview.cpp:506
 #, kde-format
 msgid "Puts the Bird's-eye View in the bottom-right corner."
-msgstr ""
+msgstr "Pone le Vista a Volo de Ave in le angulo al basso dextere. "
 
 #: part/dotgraphview.cpp:511
 #, kde-format
@@ -589,6 +602,8 @@ msgstr "Automatic"
 msgid ""
 "Let KGraphViewer automatically choose the position of the Bird's-eye View."
 msgstr ""
+"Lassa que KGraphViewer selige automaticamente le position del Vista a Volo "
+"de Ave."
 
 #: part/dotgraphview.cpp:557
 #, kde-format
@@ -608,12 +623,14 @@ msgid ""
 "Specify yourself the layout command to use. Given a dot file, it should "
 "produce an xdot file on its standard output."
 msgstr ""
+"Specifica te mesme le commando de disponer a usar. Date un file dot, il "
+"deberea producer un file xdot sur su exito standard. "
 
 #: part/dotgraphview.cpp:564
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr ""
+msgstr "Reinitialisa Commando de disponer a Predefinite"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -621,6 +638,8 @@ msgid ""
 "Resets the layout command to use to the default depending on the graph type "
 "(directed or not)."
 msgstr ""
+"Reinitialisa le commando de disponer per usar le predefinite in dependentia "
+"del typo de graphico (directe o non)."
 
 #: part/dotgraphview.cpp:600
 #, kde-format
@@ -630,12 +649,12 @@ msgstr "Selige File"
 #: part/dotgraphview.cpp:614
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer"
-msgstr ""
+msgstr "Graphico SVG Generate per KGraphViewer"
 
 #: part/dotgraphview.cpp:615
 #, kde-format
 msgid "Graph SVG Generated by KGraphViewer."
-msgstr ""
+msgstr "Graphico SVG Generate per KGraphViewer."
 
 #: part/dotgraphview.cpp:662
 #, kde-format
@@ -665,12 +684,12 @@ msgstr "necun graphico cargate"
 #: part/dotgraphview.cpp:1001
 #, kde-format
 msgid "graph %1 is getting loaded…"
-msgstr ""
+msgstr "graphico %1 es per esser cargate..."
 
 #: part/dotgraphview.cpp:941
 #, kde-format
 msgid "error parsing file %1"
-msgstr ""
+msgstr "error analysante file %1"
 
 #: part/dotgraphview.cpp:1646
 #, kde-format
@@ -683,6 +702,8 @@ msgid ""
 "The file %1 has been modified on disk.\n"
 "Do you want to reload it?"
 msgstr ""
+"Le file %1 ha essite modificate sur disco.\n"
+"Tu vole recargar lo?"
 
 #: part/dotgraphview.cpp:1732
 #, kde-format
@@ -695,6 +716,8 @@ msgid ""
 "Specify here the command that will be used to layout the graph.\n"
 "The command MUST write its results on stdout in xdot format."
 msgstr ""
+"Specifica hic le commando que essera usate per disponer le graphico.\n"
+"Le commando DEBE scriber su exitos in stdout in formato xdot."
 
 #: part/dotgraphview.cpp:2182
 #, kde-format
@@ -705,11 +728,13 @@ msgstr "Falleva aperir  %1"
 #, kde-format
 msgid "Print the graph using current page setup settings"
 msgstr ""
+"Imprime le graphico usante le preferentias de configuration currente de "
+"pagina"
 
 #: part/kgraphviewer_part.cpp:87
 #, kde-format
 msgid "Open the print preview window"
-msgstr ""
+msgstr "Aperi le fenestra de vista preliminar de imprimer"
 
 #: part/kgraphviewer_part.cpp:92
 #, kde-format
@@ -721,11 +746,13 @@ msgstr "Configuration de pagina…"
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
 msgstr ""
+"Aperi le dialogo de Configuratioin de Pagina per permitter que le imprimer "
+"de graphico es configurate"
 
 #: part/kgraphviewer_part.cpp:96
 #, kde-format
 msgid "Reload the current graph from file"
-msgstr ""
+msgstr "Recarga le graphico currente ab file"
 
 #. i18n: ectx: Menu (file)
 #: part/kgraphviewer_part.rc:4
@@ -787,13 +814,13 @@ msgstr "Capite differente per le prime pagina"
 #: part/KgvPageLayoutHeaderBase.ui:30
 #, kde-format
 msgid "Different header for even and odd pages"
-msgstr ""
+msgstr "Capite differente per paginas par e impare"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: part/KgvPageLayoutHeaderBase.ui:55
 #, kde-format
 msgid "Spacing between header and body:"
-msgstr ""
+msgstr "Spatiar inter capite e corpore:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox2)
 #: part/KgvPageLayoutHeaderBase.ui:77
@@ -805,31 +832,31 @@ msgstr "Pede de pagina"
 #: part/KgvPageLayoutHeaderBase.ui:83
 #, kde-format
 msgid "Different footer for the first page"
-msgstr ""
+msgstr "Pede de pagina differente per le prime pagina"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
 #: part/KgvPageLayoutHeaderBase.ui:90
 #, kde-format
 msgid "Different footer for even and odd pages"
-msgstr ""
+msgstr "Pede de pagina differente per paginas par e impare"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: part/KgvPageLayoutHeaderBase.ui:115
 #, kde-format
 msgid "Spacing between footer and body:"
-msgstr ""
+msgstr "Spatiar inter pede de pagina e corpore:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox3)
 #: part/KgvPageLayoutHeaderBase.ui:137
 #, kde-format
 msgid "Footnote/Endnote"
-msgstr ""
+msgstr "Nota de pede de pagina/Nota final"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel5)
 #: part/KgvPageLayoutHeaderBase.ui:159
 #, kde-format
 msgid "Spacing between footnote and body:"
-msgstr ""
+msgstr "Spatiar inter nota de pede de pagina e corpore:"
 
 #: part/KgvPageLayoutSize.cpp:58
 #, kde-format
@@ -839,7 +866,7 @@ msgstr "Unitate:"
 #: part/KgvPageLayoutSize.cpp:71
 #, kde-format
 msgid "All values are given in %1."
-msgstr ""
+msgstr "Omne valores es date in %1."
 
 #: part/KgvPageLayoutSize.cpp:76
 #, kde-format
@@ -889,12 +916,12 @@ msgstr "Problema de Disposition de Pagina"
 #: part/KgvPageLayoutSize.cpp:370
 #, kde-format
 msgid "The page width is smaller than the left and right margins."
-msgstr ""
+msgstr "Le largessa de pagina es minor que le margines sinistre e dextere."
 
 #: part/KgvPageLayoutSize.cpp:374
 #, kde-format
 msgid "The page height is smaller than the top and bottom margins."
-msgstr ""
+msgstr "Le altessa de pagina es minor que le margines de culmine e de basso."
 
 #: part/KgvUnit.cpp:52
 #, kde-format
@@ -945,6 +972,7 @@ msgstr "Error."
 #, kde-format
 msgid "View of the complete graph. Click and drag to move the visible part."
 msgstr ""
+"Vista del graphico complete. Pulsa e trahe per mover le parte visibile."
 
 #: part/pannerview.cpp:61
 #, kde-format
@@ -985,12 +1013,12 @@ msgstr "Font..."
 #: part/simpleprintingpagesetup.cpp:89
 #, kde-format
 msgid "Changes font for title text."
-msgstr ""
+msgstr "Cambia font per texto de titulo."
 
 #: part/simpleprintingpagesetup.cpp:95
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
-msgstr ""
+msgstr "<qt><h2>Configuration de Pagina per Imprimer Graphico \"%1\"</h2></qt>"
 
 #: part/simpleprintingpagesetup.cpp:100
 #, kde-format
@@ -1020,12 +1048,12 @@ msgstr "Cambia Dimension de Pagina e Margines..."
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
 msgid "Changes page size and margins."
-msgstr ""
+msgstr "Cambia Dimension de Pagina e Margines."
 
 #: part/simpleprintingpagesetup.cpp:164
 #, kde-format
 msgid "Chosen font looks like this"
-msgstr ""
+msgstr "Font seligite appare como isto"
 
 #: part/simpleprintingpagesetup.cpp:180
 #, kde-format
@@ -1076,7 +1104,7 @@ msgstr "Adde numeros de pagina"
 #: part/simpleprintingpagesetupbase.ui:159
 #, kde-format
 msgid "Number of pages to fit on"
-msgstr ""
+msgstr "Numero de paginas a adaptar"
 
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
 #: part/simpleprintingpagesetupbase.ui:167
@@ -1088,13 +1116,13 @@ msgstr "Grandor &Natural"
 #: part/simpleprintingpagesetupbase.ui:174
 #, kde-format
 msgid "Fit &to one page"
-msgstr ""
+msgstr "Adap&ta a un pagina"
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
 #: part/simpleprintingpagesetupbase.ui:181
 #, kde-format
 msgid "F&it to several pages"
-msgstr ""
+msgstr "Adapta a multe pag&inas"
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
@@ -1121,7 +1149,7 @@ msgstr "Mantene proportiones:"
 #: part/simpleprintingpagesetupbase.ui:228
 #, kde-format
 msgid "Related actions:"
-msgstr ""
+msgstr "Actiones cognate:"
 
 #: part/simpleprintpreviewwindow.cpp:58
 #, kde-format
@@ -1154,12 +1182,13 @@ msgstr "Color de fundo predefinite:"
 #, kde-format
 msgid "Note: this will be overridden if the graph has its own background color"
 msgstr ""
+"Nota: isto essera superscribite si le graphico ha su proprie color de fundo"
 
 #. i18n: ectx: property (title), widget (QGroupBox, openInExistingWindowMode)
 #: preferencesOpenInExistingWindow.ui:17
 #, kde-format
 msgid "Open in existing window"
-msgstr ""
+msgstr "Aperi in fenestra existente"
 
 #. i18n: ectx: property (text), widget (QRadioButton, yes)
 #: preferencesOpenInExistingWindow.ui:23 preferencesReload.ui:26
@@ -1186,19 +1215,19 @@ msgstr "D&emanda"
 #: preferencesParsing.ui:17
 #, kde-format
 msgid "Parse using:"
-msgstr ""
+msgstr "Analysa le syntaxe usante:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, external)
 #: preferencesParsing.ui:26
 #, kde-format
 msgid "E&xternal command"
-msgstr ""
+msgstr "Commando e$xterne"
 
 #. i18n: ectx: property (text), widget (QRadioButton, internal)
 #: preferencesParsing.ui:33
 #, kde-format
 msgid "Internal &library"
-msgstr ""
+msgstr "Bib&liotheca Interne"
 
 #. i18n: ectx: property (title), widget (QGroupBox, reloadOnChangeMode)
 #: preferencesReload.ui:17
@@ -1216,7 +1245,7 @@ msgstr "Dem&anda"
 #: preferencesReopenPreviouslyOpenedFiles.ui:17
 #, kde-format
 msgid "Reopen previously opened files"
-msgstr ""
+msgstr "Reaperi files aperite precedentemente"
 
 #~ msgid "Print Preview..."
 #~ msgstr "Vista preliminar de imprimer..."
