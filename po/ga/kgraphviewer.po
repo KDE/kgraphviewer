@@ -63,10 +63,9 @@ msgid "Create a New Edge"
 msgstr "Cruthaigh Ciumhais Nua"
 
 #: kgrapheditor.cpp:494
-#, fuzzy, kde-format
-#| msgid "Save current graph to..."
+#, kde-format
 msgid "Save current graph"
-msgstr "Sábháil an graf reatha i..."
+msgstr ""
 
 #: kgrapheditorConfigDialog.cpp:48 kgraphviewerConfigDialog.cpp:55
 #, kde-format
@@ -104,16 +103,14 @@ msgid "KGraphEditor"
 msgstr "KGraphEditor"
 
 #: kgrapheditormain.cpp:42
-#, fuzzy, kde-format
-#| msgid "A Graphviz dot graph viewer for KDE"
+#, kde-format
 msgid "A Graphviz DOT graph editor by KDE"
-msgstr "Amharcán graf Graphviz i bhformáid 'dot' le haghaidh KDE"
+msgstr ""
 
 #: kgrapheditormain.cpp:44
-#, fuzzy, kde-format
-#| msgid "(C) 2005-2010 Gaël de Chalendar"
+#, kde-format
 msgid "© 2005–2010 Gaël de Chalendar"
-msgstr "© 2005-2010 Gaël de Chalendar"
+msgstr ""
 
 #: kgrapheditormain.cpp:57 main.cpp:59
 #, kde-format
@@ -214,11 +211,10 @@ msgid "Do you want to reload files from the previous session?"
 msgstr "An bhfuil fonn ort comhaid a athluchtú ón seisiún roimhe seo?"
 
 #: kgraphviewer.cpp:108
-#, fuzzy, kde-format
-#| msgid "Reloading"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
-msgstr "Á Athluchtú"
+msgstr ""
 
 #: kgraphviewer.cpp:109
 #, kde-format
@@ -282,10 +278,9 @@ msgid "KGraphViewer"
 msgstr "KGraphViewer"
 
 #: main.cpp:41
-#, fuzzy, kde-format
-#| msgid "A Graphviz dot graph viewer for KDE"
+#, kde-format
 msgid "A Graphviz DOT graph viewer"
-msgstr "Amharcán graf Graphviz i bhformáid 'dot' le haghaidh KDE"
+msgstr ""
 
 #: main.cpp:43
 #, kde-format
@@ -412,13 +407,11 @@ msgctxt "@title:menu"
 msgid "Layout Algorithm"
 msgstr ""
 
-# program name here.
 #: part/dotgraphview.cpp:410
-#, fuzzy, kde-format
-#| msgid "Dot"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
-msgstr "Dot"
+msgstr ""
 
 #: part/dotgraphview.cpp:411
 #, kde-format
@@ -426,11 +419,10 @@ msgid "Layout the graph using the dot program."
 msgstr ""
 
 #: part/dotgraphview.cpp:415
-#, fuzzy, kde-format
-#| msgid "Neato"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
-msgstr "Neato"
+msgstr ""
 
 #: part/dotgraphview.cpp:416
 #, kde-format
@@ -438,11 +430,10 @@ msgid "Layout the graph using the neato program."
 msgstr ""
 
 #: part/dotgraphview.cpp:420
-#, fuzzy, kde-format
-#| msgid "Twopi"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
-msgstr "Twopi"
+msgstr ""
 
 #: part/dotgraphview.cpp:421
 #, kde-format
@@ -450,11 +441,10 @@ msgid "Layout the graph using the twopi program."
 msgstr ""
 
 #: part/dotgraphview.cpp:425
-#, fuzzy, kde-format
-#| msgid "Fdp"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
-msgstr "Fdp"
+msgstr ""
 
 #: part/dotgraphview.cpp:426
 #, kde-format
@@ -462,11 +452,10 @@ msgid "Layout the graph using the fdp program."
 msgstr ""
 
 #: part/dotgraphview.cpp:430
-#, fuzzy, kde-format
-#| msgid "Circo"
+#, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
-msgstr "Circo"
+msgstr ""
 
 #: part/dotgraphview.cpp:431
 #, kde-format
@@ -488,11 +477,10 @@ msgid ""
 msgstr ""
 
 #: part/dotgraphview.cpp:453
-#, fuzzy, kde-format
-#| msgid "Export Graph"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Export Graph"
-msgstr "Easpórtáil Graf"
+msgstr ""
 
 #: part/dotgraphview.cpp:454
 #, kde-format
@@ -507,11 +495,10 @@ msgid ""
 msgstr ""
 
 #: part/dotgraphview.cpp:459
-#, fuzzy, kde-format
-#| msgid "As Image..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "As Image…"
-msgstr "Mar Íomhá..."
+msgstr ""
 
 #: part/dotgraphview.cpp:460
 #, kde-format
@@ -529,11 +516,10 @@ msgid "Zoom out by 10% from the currently viewed graph"
 msgstr ""
 
 #: part/dotgraphview.cpp:477
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@option:check"
 msgid "Enable Bird's-Eye View"
-msgstr "Radharc Anuas"
+msgstr ""
 
 #: part/dotgraphview.cpp:478
 #, kde-format
@@ -541,11 +527,10 @@ msgid "Enables or disables the Bird's-eye View"
 msgstr ""
 
 #: part/dotgraphview.cpp:484
-#, fuzzy, kde-format
-#| msgid "Birds-eye View"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Bird's-Eye View Position"
-msgstr "Radharc Anuas"
+msgstr ""
 
 #: part/dotgraphview.cpp:485
 #, kde-format
@@ -553,11 +538,10 @@ msgid "Allows the Bird's-eye View to be setup."
 msgstr ""
 
 #: part/dotgraphview.cpp:487
-#, fuzzy, kde-format
-#| msgid "Top Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Left"
-msgstr "Barr ar Chlé"
+msgstr ""
 
 #: part/dotgraphview.cpp:488
 #, kde-format
@@ -565,11 +549,10 @@ msgid "Puts the Bird's-eye View in the top-left corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:493
-#, fuzzy, kde-format
-#| msgid "Top Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Top Right"
-msgstr "Barr ar Dheis"
+msgstr ""
 
 #: part/dotgraphview.cpp:494
 #, kde-format
@@ -577,11 +560,10 @@ msgid "Puts the Bird's-eye View in the top-right corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:499
-#, fuzzy, kde-format
-#| msgid "Bottom Left"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Left"
-msgstr "Bun ar Chlé"
+msgstr ""
 
 #: part/dotgraphview.cpp:500
 #, kde-format
@@ -589,11 +571,10 @@ msgid "Puts the Bird's-eye View in the bottom-left corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:505
-#, fuzzy, kde-format
-#| msgid "Bottom Right"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Bottom Right"
-msgstr "Bun ar dheis"
+msgstr ""
 
 #: part/dotgraphview.cpp:506
 #, kde-format
@@ -601,11 +582,10 @@ msgid "Puts the Bird's-eye View in the bottom-right corner."
 msgstr ""
 
 #: part/dotgraphview.cpp:511
-#, fuzzy, kde-format
-#| msgid "Automatic"
+#, kde-format
 msgctxt "@item:inmenu bev position"
 msgid "Automatic"
-msgstr "Uathoibríoch"
+msgstr ""
 
 #: part/dotgraphview.cpp:512
 #, kde-format
@@ -614,11 +594,10 @@ msgid ""
 msgstr ""
 
 #: part/dotgraphview.cpp:557
-#, fuzzy, kde-format
-#| msgid "Layout"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Layout"
-msgstr "Leagan Amach"
+msgstr ""
 
 #: part/dotgraphview.cpp:560
 #, kde-format
@@ -738,11 +717,10 @@ msgid "Open the print preview window"
 msgstr "Oscail fuinneog réamhamharc priontála"
 
 #: part/kgraphviewer_part.cpp:92
-#, fuzzy, kde-format
-#| msgid "Page setup"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Socrú leathanaigh"
+msgstr ""
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
@@ -1000,10 +978,9 @@ msgid "Page %1"
 msgstr "Leathanach %1"
 
 #: part/simpleprintingpagesetup.cpp:85
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Print Preview…"
-msgstr "Réamhamharc Priontála"
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:88
 #, kde-format
@@ -1041,10 +1018,9 @@ msgid "Adds table borders."
 msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:113
-#, fuzzy, kde-format
-#| msgid "Changes page size and margins."
+#, kde-format
 msgid "Change Page Size and Margins…"
-msgstr "Athraigh méid an leathanaigh agus imill."
+msgstr ""
 
 #: part/simpleprintingpagesetup.cpp:114
 #, kde-format
@@ -1073,10 +1049,9 @@ msgstr "imill:"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: part/simpleprintingpagesetupbase.ui:64
-#, fuzzy, kde-format
-#| msgid "Page &font:"
+#, kde-format
 msgid "Pa&ge font:"
-msgstr "&Cló an leathanaigh:"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox1)
 #: part/simpleprintingpagesetupbase.ui:93
@@ -1110,40 +1085,35 @@ msgstr "Oiriúnaigh do cé mhéad leathanach"
 
 #. i18n: ectx: property (text), widget (QRadioButton, naturalSizeRadioButton)
 #: part/simpleprintingpagesetupbase.ui:167
-#, fuzzy, kde-format
-#| msgid "Natural size"
+#, kde-format
 msgid "&Natural size"
-msgstr "Méid nádúrtha"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToOnePageRadioButton)
 #: part/simpleprintingpagesetupbase.ui:174
-#, fuzzy, kde-format
-#| msgid "Fit to one page"
+#, kde-format
 msgid "Fit &to one page"
-msgstr "Oiriúnaigh do leathanach amháin"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, fitToSeveralPagesRadioButton)
 #: part/simpleprintingpagesetupbase.ui:181
-#, fuzzy, kde-format
-#| msgid "Fit to several pages"
+#, kde-format
 msgid "F&it to several pages"
-msgstr "Oiriúnaigh do roinnt leathanach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:192
-#, fuzzy, kde-format
-#| msgid "Horizontally"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Horizontally:"
-msgstr "Go Cothrománach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel)
 #: part/simpleprintingpagesetupbase.ui:202
-#, fuzzy, kde-format
-#| msgid "Vertically"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "Go hIngearach"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
@@ -1210,10 +1180,9 @@ msgstr "&Tá"
 #. i18n: ectx: property (text), widget (QRadioButton, no)
 #: preferencesOpenInExistingWindow.ui:30 preferencesReload.ui:33
 #: preferencesReopenPreviouslyOpenedFiles.ui:36
-#, fuzzy, kde-format
-#| msgid "No"
+#, kde-format
 msgid "&No"
-msgstr "Níl"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, ask)
 #: preferencesOpenInExistingWindow.ui:37
@@ -1259,193 +1228,3 @@ msgstr ""
 #, kde-format
 msgid "Reopen previously opened files"
 msgstr "An bhfuil fonn ort comhaid a osclaíodh roimhe seo a athoscailt?"
-
-#~ msgid "Print Preview..."
-#~ msgstr "Réamhamharc Priontála..."
-
-#~ msgid "Zoom In"
-#~ msgstr "Súmáil Isteach"
-
-#~ msgid "Zoom Out"
-#~ msgstr "Súmáil Amach"
-
-#~ msgid "KGraphViewerPart"
-#~ msgstr "KGraphViewerPart"
-
-#, fuzzy
-#~| msgid "GraphViz dot files viewer"
-#~ msgid "Graphviz DOT files viewer"
-#~ msgstr "Amharcán comhad 'dot'de chuid  Graphviz"
-
-#, fuzzy
-#~| msgid "(c) 2005-2006, Gaël de Chalendar &lt;kleag@free.fr&gt;"
-#~ msgid "(c) 2005-2006, Gaël de Chalendar <kleag@free.fr>"
-#~ msgstr "© 2005-2006, Gaël de Chalendar &lt;kleag@free.fr&gt;"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A3"
-#~ msgstr "ISO A3"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A4"
-#~ msgstr "ISO A4"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A5"
-#~ msgstr "ISO A5"
-
-#~ msgctxt "Page size"
-#~ msgid "US Letter"
-#~ msgstr "Litir Mheiriceánach"
-
-#~ msgctxt "Page size"
-#~ msgid "US Legal"
-#~ msgstr "US Legal"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B5"
-#~ msgstr "ISO B5"
-
-#~ msgctxt "Page size"
-#~ msgid "US Executive"
-#~ msgstr "US Executive"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A0"
-#~ msgstr "ISO A0"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A1"
-#~ msgstr "ISO A1"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A2"
-#~ msgstr "ISO A2"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A6"
-#~ msgstr "ISO A6"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A7"
-#~ msgstr "ISO A7"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A8"
-#~ msgstr "ISO A8"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO A9"
-#~ msgstr "ISO A9"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B0"
-#~ msgstr "ISO B0"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B1"
-#~ msgstr "ISO B1"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B10"
-#~ msgstr "ISO B10"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B2"
-#~ msgstr "ISO B2"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B3"
-#~ msgstr "ISO B3"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B4"
-#~ msgstr "ISO B4"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO B6"
-#~ msgstr "ISO B6"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO C5"
-#~ msgstr "ISO C5"
-
-#~ msgctxt "Page size"
-#~ msgid "ISO DL"
-#~ msgstr "ISO DL"
-
-#~ msgctxt "Page size"
-#~ msgid "US Ledger"
-#~ msgstr "Litir Mheiriceánach"
-
-#~ msgctxt "Page size"
-#~ msgid "US Tabloid"
-#~ msgstr "Tablóid (SAM)"
-
-#~ msgid "."
-#~ msgstr "."
-
-#~ msgid "Ask"
-#~ msgstr "Fiafraigh díom"
-
-#~ msgid "Close"
-#~ msgstr "Dún"
-
-#~ msgid "Dot graph to open"
-#~ msgstr "Graf 'dot' le hoscailt"
-
-#~ msgctxt "Where to open a file"
-#~ msgid "Existing window"
-#~ msgstr "I bhfuinneog atá ann"
-
-#~ msgctxt "Where to open a file"
-#~ msgid "New window"
-#~ msgstr "I bhfuinneog nua"
-
-#~ msgid "&Edit"
-#~ msgstr "&Eagar"
-
-#~ msgid "&Settings"
-#~ msgstr "&Socruithe"
-
-#~ msgid "Main Toolbar"
-#~ msgstr "Príomhbharra Uirlisí"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid ""
-#~ "The answer to the question 'Should the files that where opened in "
-#~ "previous sessions be reopened at startup ?'"
-#~ msgstr ""
-#~ "Freagra ar an gceist 'An bhfuil fonn ort comhaid a bhí oscailt i seisiúin "
-#~ "roimhe seo a athoscailt ag am tosaithe?'"
-
-#~ msgid "Page Size && &Margins"
-#~ msgstr "&Méid an Leathanaigh agus Imill"
-
-#~ msgid "kgraphviewerPart"
-#~ msgstr "kgraphviewerPart"
-
-#~ msgid "(C) 2005-2006 Gael de Chalendar"
-#~ msgstr "© 2005-2006 Gaël de Chalendar"
-
-#~ msgid "Gael de Chalendar"
-#~ msgstr "Gaël de Chalendar"
-
-#~ msgid "There is already a KGraphEditor window opened. What's your choice ?"
-#~ msgstr ""
-#~ "Tá fuinneog KGraphEditor oscailte ann cheana. Cad is mian leat a dhéanamh?"
-
-#~ msgid "There is already a KGraphViewer window opened. What's your choice ?"
-#~ msgstr ""
-#~ "Tá fuinneog KGraphViewer oscailte ann cheana. Cad is mian leat a dhéanamh?"
-
-#~ msgid "Change..."
-#~ msgstr "Athraigh..."
-
-#~ msgid "Form1"
-#~ msgstr "Foirm1"
-
-#~ msgid "Alt+K"
-#~ msgstr "Alt+K"
