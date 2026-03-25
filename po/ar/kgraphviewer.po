@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2026-02-24 22:52+0400\n"
+"PO-Revision-Date: 2026-03-24 10:40+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -1139,7 +1139,7 @@ msgstr "أفقيًّا:"
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Vertically:"
-msgstr "رأسيا:"
+msgstr "عموديًا:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, maintainAspectCheckBox)
 #: part/simpleprintingpagesetupbase.ui:212
