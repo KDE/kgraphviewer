@@ -74,6 +74,7 @@
   <summary xml:lang="ro">Vizualizor de grafuri DOT Graphviz</summary>
   <summary xml:lang="ru">Программа просмотра графов Graphviz</summary>
   <summary xml:lang="sa">एकः Graphviz DOT आलेखदर्शकः</summary>
+  <summary xml:lang="sk">Graphviz, bodový grafický prehliadač pre KDE</summary>
   <summary xml:lang="sl">Pregledovalnik grafov Graphviz DOT</summary>
   <summary xml:lang="sv">Visning av Graphviz dot-grafer</summary>
   <summary xml:lang="tr">Graphviz DOT graf görüntüleyicisi</summary>
@@ -111,6 +112,7 @@
     <p xml:lang="pt-BR">KGraphViewer é um visualizador de arquivos de grafos DOT do Graphviz, com objetivo de substituir as outras ferramentas desatualizadas do Graphviz. Os grafos são normalmente usados em domínios científicos e, em particular, na ciência da computação.</p>
     <p xml:lang="ru">KGraphViewer — программа просмотра графов Graphviz, которая заменит устаревшие средства для работы с Graphviz. Графы широко используются в науке (в частности, в информатике).</p>
     <p xml:lang="sa">KGraphViewer एकः Graphviz DOT graph file viewer अस्ति, यस्य उद्देश्यं अन्येषां पुरातन Graphviz उपकरणानां स्थाने अन्यं Graphviz उपकरणं प्रतिस्थापयितुं भवति । वैज्ञानिकक्षेत्रेषु विशेषतः सङ्गणकशास्त्रे च आलेखानां उपयोगः सामान्यतया भवति ।</p>
+    <p xml:lang="sk">KGraphViewer je prehliadač súborov bodových grafov Graphviz, zameraný na nahradenie iných zastaralých nástrojov GraphViz. Grafy sa bežne používajú vo vede a hlavne v počítačovej vede.</p>
     <p xml:lang="sl">KGraphViewer je pregledovalnik datotek Graphviz DOT, namenjen kot nadomestek drugih zastarelih orodij Graphviz. Graf se pogosto uporabljajo pri znanstvenih področjih in zlasti v računalništvu.</p>
     <p xml:lang="sv">Kgraphviewer är ett visningsprogram av Graphviz dot-grafer, med målet att ersätta övriga föråldrade Graphviz-verktyg. Användning av grafer är vanligt i vetenskapliga områden, i synnerhet inom datavetenskap.</p>
     <p xml:lang="tr">K Grafik Görüntüleyicisi bir Graphiz DOT graf dosyası görüntüleyicisidir. Zamanı dolmuş diğer GraphViz araçlarının yerini alması amaçlanmıştır. Grafikler genel olarak bilimsel alanda ve bilgisayar bilişmlerinde kullanılmaktadır.</p>
