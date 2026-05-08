@@ -4,7 +4,6 @@ ecm_qt_declare_logging_category(kgraphviewerlib_LIB_DEBUG_SRCS
     HEADER kgraphviewerlib_debug.h
     IDENTIFIER KGRAPHVIEWERLIB_LOG
     CATEGORY_NAME org.kde.kgraphviewer.lib
-    DEFAULT_SEVERITY Warning
     DESCRIPTION "KGraphViewer (Library and KPart)"
     EXPORT KGRAPHVIEWER
 )
