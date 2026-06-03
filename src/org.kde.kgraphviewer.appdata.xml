@@ -42,6 +42,7 @@
   <name xml:lang="sl">KGraphViewer</name>
   <name xml:lang="sv">Kgraphviewer</name>
   <name xml:lang="tr">K Grafik Görüntüleyicisi</name>
+  <name xml:lang="ug">KGraphViewer</name>
   <name xml:lang="uk">KGraphViewer</name>
   <name xml:lang="zh-CN">KGraphViewer</name>
   <name xml:lang="zh-TW">KGraphViewer</name>
@@ -155,6 +156,7 @@
     <p xml:lang="sl">Zmožnosti:</p>
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="tr">Özellikler:</p>
+    <p xml:lang="ug">ئىقتىدار:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="zh-CN">功能：</p>
     <p xml:lang="zh-TW">功能：</p>
