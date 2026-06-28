@@ -358,7 +358,7 @@ msgid ""
 "%1 -> %2\n"
 "label='%3'"
 msgstr ""
-"%1 -> %2\n"
+"%1 → %2\n"
 "etiqueta=«%3»"
 
 # skip-rule: common-es_s
@@ -1188,7 +1188,7 @@ msgstr "Accions relacionades:"
 #: part/simpleprintpreviewwindow.cpp:58
 #, kde-format
 msgid "%1 - Print Preview - %2"
-msgstr "%1 - Imprimix la vista prèvia - %2"
+msgstr "%1 – Imprimix la vista prèvia – %2"
 
 #: part/simpleprintpreviewwindow.cpp:73
 #, kde-format
