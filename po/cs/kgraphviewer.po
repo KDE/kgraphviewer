@@ -3,31 +3,32 @@
 # SPDX-FileCopyrightText: 2010, 2011, 2013, 2014, 2017, 2018, 2023, 2025 Vít Pelčák <vit@pelcak.org>
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
 # SPDX-FileCopyrightText: 2024 Vit Pelcak <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2026 Libor Filípek <libor.filipek@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2025-12-05 10:54+0100\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"PO-Revision-Date: 2026-07-23 10:46+0200\n"
+"Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 25.08.3\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Vít Pelčák, Zdeněk Pech"
+msgstr "Vít Pelčák,Zdeněk Pech,Libor Filípek"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "vit@pelcak.org, dom.toretto@seznam.cz"
+msgstr "vit@pelcak.org,dom.toretto@seznam.cz,libor.filipek@gmail.com"
 
 #: kgrapheditor.cpp:126 kgraphviewer.cpp:107
 #, kde-format
@@ -250,7 +251,7 @@ msgstr ""
 #: kgraphviewer.cpp:212
 #, kde-format
 msgid "Quits KGraphViewer."
-msgstr "Ukončit KGraphViewer"
+msgstr "Ukončit KGraphViewer."
 
 #: kgraphviewer.cpp:215
 #, kde-format
@@ -421,7 +422,7 @@ msgstr "Algoritmus rozvržení"
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Dot"
-msgstr ""
+msgstr "Dot"
 
 #: part/dotgraphview.cpp:411
 #, kde-format
@@ -432,7 +433,7 @@ msgstr "Rozvržení grafu pomocí programu DOT."
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Neato"
-msgstr ""
+msgstr "Neato"
 
 #: part/dotgraphview.cpp:416
 #, kde-format
@@ -443,7 +444,7 @@ msgstr "Rozvržení grafu pomocí programu neato."
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Twopi"
-msgstr ""
+msgstr "Twopi"
 
 #: part/dotgraphview.cpp:421
 #, kde-format
@@ -454,7 +455,7 @@ msgstr "Rozvržení grafu pomocí programu twopi."
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Fdp"
-msgstr ""
+msgstr "Fdp"
 
 #: part/dotgraphview.cpp:426
 #, kde-format
@@ -465,7 +466,7 @@ msgstr "Rozvržení grafu pomocí programu fdp."
 #, kde-format
 msgctxt "@item:inmenu algorithm program"
 msgid "Circo"
-msgstr ""
+msgstr "Circo"
 
 #: part/dotgraphview.cpp:431
 #, kde-format
@@ -620,7 +621,7 @@ msgstr "Rozvržení"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Specify Layout Command…"
-msgstr ""
+msgstr "Zadat příkaz pro rozvržení…"
 
 #: part/dotgraphview.cpp:562
 #, kde-format
@@ -635,7 +636,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr ""
+msgstr "Obnovit příkaz rozvržení na výchozí"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -1251,7 +1252,7 @@ msgstr "Interní &knihovna"
 #: preferencesReload.ui:17
 #, kde-format
 msgid "Reload files modified on disk"
-msgstr "Znovu načíst soubory změněné na disku?"
+msgstr "Znovu načíst soubory změněné na disku"
 
 #. i18n: ectx: property (text), widget (QRadioButton, ask)
 #: preferencesReload.ui:40
