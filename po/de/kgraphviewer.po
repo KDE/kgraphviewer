@@ -493,7 +493,7 @@ msgid ""
 "Gname=MyGraphName -Txdot </tt>"
 msgstr ""
 "Wählen Sie den Graphviz-Algorithmus oder geben Sie einen Befehl ein, der "
-"einen Graphen im xdot-Format an der Standardausgabe ausgibt. Um z. B. die "
+"einen Graphen im xdot-Format an der Standardausgabe ausgibt. Um z. B. die "
 "Option <tt>G</tt> des dot-Befehls zu verwenden, geben Sie ein: <tt> dot -"
 "Gname=MeinGraphenName -Txdot</tt>"
 
