@@ -65,6 +65,11 @@ KgvConfigurationDialog::KgvConfigurationDialog(QWidget *parent, const QString &n
 
 KgvConfigurationDialog::~KgvConfigurationDialog()
 {
+    delete appearanceWidget;
+    delete reopeningWidget;
+    delete openingWidget;
+    delete reloadWidget;
+    delete parsingWidget;
 }
 
 void KgvConfigurationDialog::settingChanged(int)
