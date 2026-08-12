@@ -1247,7 +1247,7 @@ msgstr "ا&سأل"
 #: preferencesReopenPreviouslyOpenedFiles.ui:17
 #, kde-format
 msgid "Reopen previously opened files"
-msgstr "إفتح الملفات المفتوحة سابقاً عن جديد"
+msgstr "إفتح الملفات المفتوحة سابقًا عن جديد"
 
 #~ msgid "Print Preview..."
 #~ msgstr "معاينة الطّباعة..."
