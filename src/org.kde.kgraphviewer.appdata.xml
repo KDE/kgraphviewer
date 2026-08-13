@@ -467,7 +467,7 @@
       <li xml:lang="zh-CN">完美绘制所有 Graphviz 实例图表</li>
       <li xml:lang="zh-TW">能夠完美繪製 Graphviz 範例圖形</li>
       <li>Automatically choose dot for directed graphs and neato for undirected</li>
-      <li xml:lang="ar">اختيار dot للرسوم البيانية الموجهة آلياً و neato للرسوم البيانية غير الموجهة</li>
+      <li xml:lang="ar">اختيار dot للرسوم البيانية الموجهة آليًا و neato للرسوم البيانية غير الموجهة</li>
       <li xml:lang="bs">Automatski odabir za tačku za usmjerene grafove i neato za neusmjerene</li>
       <li xml:lang="ca">Selecció automàtica de «dot» per als gràfics dirigits i «neato» per als no dirigits</li>
       <li xml:lang="ca-valencia">Selecció automàtica de «dot» per als gràfics dirigits i «neato» per als no dirigits</li>
@@ -541,7 +541,7 @@
       <li xml:lang="zh-CN">是否可以在生成 xdot 格式时使用任意布局算法</li>
       <li xml:lang="zh-TW">能夠使用任何佈局演算法，只要能產生 xdot 格式</li>
       <li>Automatic reloading with user confirmation of (externally) modified files (configurable)</li>
-      <li xml:lang="ar">إعادة التحميل التلقائي مع تأكيد المستخدم للملفات المعدلة (خارجياً) (قابل للضبط)</li>
+      <li xml:lang="ar">إعادة التحميل التلقائي مع تأكيد المستخدم للملفات المعدلة (خارجيًا) (قابل للضبط)</li>
       <li xml:lang="bs">Automatsko ponovno učitavanje potvrdom korisnika o (izvana) modificiranim datotekama (podesivo)</li>
       <li xml:lang="ca">Recarrega automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
       <li xml:lang="ca-valencia">Torna a carregar automàticament amb confirmació d'usuari els fitxers (externament) modificats (configurable)</li>
