@@ -1,24 +1,24 @@
 # Translation of kgraphviewer.po to Catalan
-# Copyright (C) 2010-2025 This_file_is_part_of_KDE
+# Copyright (C) 2010-2026 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # SPDX-FileCopyrightText: 2010 Manuel Tortosa <manutortosa@gmail.com>
-# SPDX-FileCopyrightText: 2010-2012, 2014-2018, 2020-2022, 2024-2025 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2010-2012, 2014-2018, 2020-2022, 2024-2026 Josep M. Ferrer <txemaq@gmail.com>
 # SPDX-FileCopyrightText: 2014, 2017, 2020, 2022 Antoni Bella Pérez <antonibella5@yahoo.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2025-06-29 09:05+0200\n"
+"PO-Revision-Date: 2026-09-06 18:06+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 25.04.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -914,7 +914,7 @@ msgstr "&Amplada:"
 #: part/KgvPageLayoutSize.cpp:117
 #, kde-format
 msgid "&Height:"
-msgstr "A&lçada:"
+msgstr "A&ltura:"
 
 #: part/KgvPageLayoutSize.cpp:131
 #, kde-format
@@ -950,7 +950,7 @@ msgstr "L'amplada de la pàgina és més petita que els marges esquerre i dret."
 #, kde-format
 msgid "The page height is smaller than the top and bottom margins."
 msgstr ""
-"L'alçada de la pàgina és més petita que els marges inferior i superior."
+"L'altura de la pàgina és més petita que els marges inferior i superior."
 
 #: part/KgvUnit.cpp:52
 #, kde-format
