@@ -6,21 +6,21 @@
 # Engin Çağatay <engincagatay@yahoo.com>, 2006.
 # obsoleteman <tulliana@gmail.com>, 2008-2009,2012.
 # Volkan Gezer <volkangezer@gmail.com>, 2013.
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022-2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2025-06-29 08:56+0300\n"
-"Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
+"PO-Revision-Date: 2026-10-12 11:58+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.04.2\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -829,13 +829,13 @@ msgstr "Başlık"
 #: part/KgvPageLayoutHeaderBase.ui:23
 #, kde-format
 msgid "Different header for the first page"
-msgstr "İlk sayfa için ayrı üstbilgi"
+msgstr "İlk sayfa için ayrı üst bilgi"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rhEvenOdd)
 #: part/KgvPageLayoutHeaderBase.ui:30
 #, kde-format
 msgid "Different header for even and odd pages"
-msgstr "Tek ve çift sayfalar için farklı üstbilgiler"
+msgstr "Tek ve çift sayfalar için farklı üst bilgiler"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
 #: part/KgvPageLayoutHeaderBase.ui:55
@@ -853,13 +853,13 @@ msgstr "Dipnot"
 #: part/KgvPageLayoutHeaderBase.ui:83
 #, kde-format
 msgid "Different footer for the first page"
-msgstr "İlk sayfa için farklı altbilgi"
+msgstr "İlk sayfa için farklı alt bilgi"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rfEvenOdd)
 #: part/KgvPageLayoutHeaderBase.ui:90
 #, kde-format
 msgid "Different footer for even and odd pages"
-msgstr "Tek ve çift sayfalar için farklı altbilgi"
+msgstr "Tek ve çift sayfalar için farklı alt bilgi"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel4)
 #: part/KgvPageLayoutHeaderBase.ui:115
