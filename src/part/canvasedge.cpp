@@ -282,11 +282,6 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
                 lineWidth = attributeIt->toInt(&ok);
                 pen.setWidth(int(lineWidth * widthScaleFactor));
             }
-            attributeIt = edge()->attributes().find(QStringLiteral("color"));
-            if (attributeIt != edge()->attributes().constEnd()) {
-                lineColor = Dot2QtConsts::componentData().qtColor(*attributeIt);
-                qCDebug(KGRAPHVIEWERLIB_LOG) << "set edge color to " << lineColor.name();
-            }
             pen.setColor(lineColor);
             p->setBrush(Qt::NoBrush);
             p->setPen(pen);
