@@ -107,40 +107,18 @@ QPainterPath CanvasEdge::shape() const
 
     for (const DotRenderOp &dro : edge()->renderOperations()) {
         if (dro.renderop == QLatin1String("B")) {
-            for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum == 0 && edge()->colors().count() == 0); splineNum++) {
-                m_shape.addPath(pathForSpline(splineNum, dro));
-            }
+            m_shape.addPath(pathForSpline(dro));
         }
     }
     return m_shape;
 }
 
-QPainterPath CanvasEdge::pathForSpline(int splineNum, const DotRenderOp &dro) const
+QPainterPath CanvasEdge::pathForSpline(const DotRenderOp &dro) const
 {
     QPolygonF points(dro.integers[0]);
+    // dro.integers[0] holds the number of control points (pairs of x and y coordinates) that follow: https://graphviz.org/docs/outputs/canon/
     for (int i = 0; i < dro.integers[0]; i++) {
-        // computing of diffX and diffY to draw parallel edges
-        // when asked through the corresponding Graphviz feature
-        qreal nom = (dro.integers[2 * dro.integers[0]] - dro.integers[2]);
-        qreal denom = (dro.integers[2 * dro.integers[0] - 1] - dro.integers[1]);
-        qreal diffX, diffY;
-        if (nom == 0) {
-            diffX = 0;
-            diffY = 2 * (edge()->colors().count() / 2 - splineNum);
-        } else if (denom == 0) {
-            diffX = 2 * (edge()->colors().count() / 2 - splineNum);
-            diffY = 0;
-        } else {
-            double pente = nom / denom;
-            if (pente < 0) {
-                diffX = 2 * (edge()->colors().count() / 2 - splineNum);
-                diffY = edge()->colors().count() / 2 + splineNum;
-            } else {
-                diffX = 2 * (edge()->colors().count() / 2 - splineNum);
-                diffY = 2 * (edge()->colors().count() / 2 - splineNum);
-            }
-        }
-        QPointF p((dro.integers[2 * i + 1] /*%m_wdhcf*/ * m_scaleX) + m_xMargin + diffX, (m_gh - dro.integers[2 * i + 2] /*%m_hdvcf*/) * m_scaleY + m_yMargin + diffY);
+        QPointF p((dro.integers[2 * i + 1] * m_scaleX) + m_xMargin, (m_gh - dro.integers[2 * i + 2]) * m_scaleY + m_yMargin);
         points[i] = p;
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id()  << p;
     }
@@ -309,18 +287,13 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
                 lineColor = Dot2QtConsts::componentData().qtColor(*attributeIt);
                 qCDebug(KGRAPHVIEWERLIB_LOG) << "set edge color to " << lineColor.name();
             }
-            for (int splineNum = 0; splineNum < edge()->colors().count() || (splineNum == 0 && edge()->colors().count() == 0); splineNum++) {
-                if (splineNum != 0)
-                    lineColor = Dot2QtConsts::componentData().qtColor(edge()->color(splineNum));
-                pen.setColor(lineColor);
-                //         p->setBrush(Dot2QtConsts::componentData().qtColor(edge()->color(0)));
-                p->setBrush(Qt::NoBrush);
-                p->setPen(pen);
-                //         qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath" << edge()->color(splineNum) << points.first() << points.last();
-                p->drawPath(pathForSpline(splineNum, dro));
-                p->setPen(oldPen);
-                p->setBrush(oldBrush);
-            }
+            pen.setColor(lineColor);
+            p->setBrush(Qt::NoBrush);
+            p->setPen(pen);
+            //         qCDebug(KGRAPHVIEWERLIB_LOG) << edge()->fromNode()->id() << "->" << edge()->toNode()->id() << "drawPath";
+            p->drawPath(pathForSpline(dro));
+            p->setPen(oldPen);
+            p->setBrush(oldBrush);
         }
     }
     if (edge()->isSelected()) {

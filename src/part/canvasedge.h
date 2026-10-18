@@ -91,7 +91,7 @@ protected:
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
 
 private:
-    QPainterPath pathForSpline(int splineNum, const DotRenderOp &dro) const;
+    QPainterPath pathForSpline(const DotRenderOp &dro) const;
     qreal distance(const QPointF &point1, const QPointF &point2);
 
     qreal m_scaleX, m_scaleY;
