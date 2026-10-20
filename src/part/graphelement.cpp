@@ -150,7 +150,9 @@ QString GraphElement::backColor() const
 {
     auto it = m_attributes.find(KEY_FILLCOLOR);
     if (it != m_attributes.end()) {
-        return *it;
+        if (!it->isEmpty()) {
+            return *it;
+        }
     }
     it = m_attributes.find(KEY_COLOR);
     if ((it != m_attributes.end()) && (m_attributes[KEY_STYLE] == QLatin1String("filled"))) {
