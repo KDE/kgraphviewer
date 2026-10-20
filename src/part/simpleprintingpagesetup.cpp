@@ -82,7 +82,7 @@ KGVSimplePrintingPageSetup::KGVSimplePrintingPageSetup(KGVSimplePrintingCommand 
     connect(m_contents->printButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotPrint);
 
     m_contents->printPreviewButton->setIcon(QIcon::fromTheme(QStringLiteral("document-print-preview")));
-    m_contents->printPreviewButton->setText(i18n("Print Preview…"));
+    m_contents->printPreviewButton->setText(i18nc("@action:button", "Print Preview…"));
     connect(m_contents->printPreviewButton, &QPushButton::clicked, this, &KGVSimplePrintingPageSetup::slotPrintPreview);
 
     m_contents->headerTitleFontButton->setText(i18n("Font…"));
