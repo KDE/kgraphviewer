@@ -449,21 +449,10 @@ void DotGraphViewPrivate::setupActions()
     QObject::connect(m_layoutAlgoSelectAction, &KSelectAction::textTriggered,
                      q, &DotGraphView::slotSelectLayoutAlgo);
 
-    auto *file_exportMenu = new KActionMenu(QIcon::fromTheme(QStringLiteral("document-export")),
-                                            i18nc("@title:menu", "Export Graph"), actionCollection());
-    file_exportMenu->setToolTip(i18n("Allows the graph to be exported in another format."));
-    file_exportMenu->setWhatsThis(
-        i18n("Use the Export Graph menu to export the graph in another format. "
-             "There is currently only one export format supported: as a PNG image."));
-
-    auto *exportToImageAction = new QAction(i18nc("@action:inmenu", "As Image…"), q);
+    auto *exportToImageAction = new QAction(QIcon::fromTheme(QStringLiteral("document-export")), i18nc("@action:inmenu", "Export As Image…"), q);
     exportToImageAction->setWhatsThis(i18n("Export the graph to an image file."));
     QObject::connect(exportToImageAction, &QAction::triggered, q, &DotGraphView::slotExportImage);
     actionCollection()->addAction(QStringLiteral("export_image"), exportToImageAction);
-
-    file_exportMenu->addAction(exportToImageAction);
-
-    actionCollection()->addAction(QStringLiteral("file_export"), file_exportMenu);
 
     QAction *zoomInAct = KStandardAction::zoomIn(q, &DotGraphView::zoomIn, actionCollection());
     // xgettext: no-c-format
@@ -573,8 +562,8 @@ void DotGraphViewPrivate::setupPopup()
 
     m_popup->addSeparator();
 
-    QAction *file_exportMenu = actionCollection()->action(QStringLiteral("file_export"));
-    m_popup->addAction(file_exportMenu);
+    QAction *exportToImageAction = actionCollection()->action(QStringLiteral("export_image"));
+    m_popup->addAction(exportToImageAction);
 
     m_popup->addSeparator();
 

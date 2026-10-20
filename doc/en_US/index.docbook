@@ -508,15 +508,8 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 </varlistentry>
 
 <varlistentry>
-<term><guisubmenu>Export Graph</guisubmenu></term>
-<listitem><para>
-	<variablelist>
-	<varlistentry>
-	<term><guimenuitem>As Image…</guimenuitem></term>
+<term><guimenuitem>Export As Image…</guimenuitem></term>
 	<listitem><para>Allows to export the full graph to all supported image formats.</para></listitem>
-	</varlistentry>
-	</variablelist>
-</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -588,7 +581,7 @@ or the internal library for parsing &graphviz; &dot; files.</para>
 	</varlistentry>
 
 	<varlistentry>
-	<term><menuchoice><guimenu>File</guimenu><guisubmenu>Export Graph</guisubmenu><guimenuitem>As Image…</guimenuitem></menuchoice></term>
+	<term><menuchoice><guimenu>File</guimenu><guimenuitem>Export As Image…</guimenuitem></menuchoice></term>
 	<listitem><para>Allows to <action>export</action> the full graph to all supported image formats.</para></listitem>
 	</varlistentry>
 
