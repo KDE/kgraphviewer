@@ -74,7 +74,6 @@ target_link_libraries(kgraphviewerlib
     PRIVATE
         Qt6::Svg
         Qt6::PrintSupport
-        Qt6::Core5Compat
         KF6::WidgetsAddons
         KF6::XmlGui
         KF6::I18n

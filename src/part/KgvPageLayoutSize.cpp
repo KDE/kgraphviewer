@@ -34,6 +34,7 @@
 // KF
 #include <KLocalizedString>
 // Qt
+#include <QComboBox>
 #include <QGridLayout>
 #include <QMessageBox>
 #include <QGroupBox>
