@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:50+0000\n"
+"POT-Creation-Date: 2026-10-24 00:47+0000\n"
 "PO-Revision-Date: 2025-12-24 16:57+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
@@ -886,67 +886,67 @@ msgstr "Przypisy "
 msgid "Spacing between footnote and body:"
 msgstr "Odstęp pomiędzy treścią a przypisami:"
 
-#: part/KgvPageLayoutSize.cpp:58
+#: part/KgvPageLayoutSize.cpp:59
 #, kde-format
 msgid "Unit:"
 msgstr "Jednostka:"
 
-#: part/KgvPageLayoutSize.cpp:71
+#: part/KgvPageLayoutSize.cpp:72
 #, kde-format
 msgid "All values are given in %1."
 msgstr "Wszystkie wartości są podane w %1."
 
-#: part/KgvPageLayoutSize.cpp:76
+#: part/KgvPageLayoutSize.cpp:77
 #, kde-format
 msgid "Page Size"
 msgstr "Rozmiar papieru"
 
-#: part/KgvPageLayoutSize.cpp:85
+#: part/KgvPageLayoutSize.cpp:86
 #, kde-format
 msgid "&Size:"
 msgstr "&Rozmiar:"
 
-#: part/KgvPageLayoutSize.cpp:106
+#: part/KgvPageLayoutSize.cpp:107
 #, kde-format
 msgid "&Width:"
 msgstr "&Szerokość:"
 
-#: part/KgvPageLayoutSize.cpp:117
+#: part/KgvPageLayoutSize.cpp:118
 #, kde-format
 msgid "&Height:"
 msgstr "&Wysokość:"
 
-#: part/KgvPageLayoutSize.cpp:131
+#: part/KgvPageLayoutSize.cpp:132
 #, kde-format
 msgid "Orientation"
 msgstr "Kierunek"
 
-#: part/KgvPageLayoutSize.cpp:135
+#: part/KgvPageLayoutSize.cpp:136
 #, kde-format
 msgid "&Portrait"
 msgstr "W &pionie"
 
-#: part/KgvPageLayoutSize.cpp:139
+#: part/KgvPageLayoutSize.cpp:140
 #, kde-format
 msgid "La&ndscape"
 msgstr "W pozio&mie"
 
-#: part/KgvPageLayoutSize.cpp:147
+#: part/KgvPageLayoutSize.cpp:148
 #, kde-format
 msgid "Margins"
 msgstr "Marginesy"
 
-#: part/KgvPageLayoutSize.cpp:370 part/KgvPageLayoutSize.cpp:374
+#: part/KgvPageLayoutSize.cpp:371 part/KgvPageLayoutSize.cpp:375
 #, kde-format
 msgid "Page Layout Problem"
 msgstr "Problem układu strony"
 
-#: part/KgvPageLayoutSize.cpp:370
+#: part/KgvPageLayoutSize.cpp:371
 #, kde-format
 msgid "The page width is smaller than the left and right margins."
 msgstr "Rozmiar strony jest mniejszy niż lewy i prawy margines."
 
-#: part/KgvPageLayoutSize.cpp:374
+#: part/KgvPageLayoutSize.cpp:375
 #, kde-format
 msgid "The page height is smaller than the top and bottom margins."
 msgstr "Wysokość strony jest mniejsza niż margines górny i dolny."
