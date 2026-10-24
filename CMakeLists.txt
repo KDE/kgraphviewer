@@ -64,8 +64,8 @@ set_package_properties(DOT PROPERTIES
 option(BUILD_GRAPHEDITOR "Build the graph editor app (WIP, not yet functional). [default=OFF]" OFF)
 
 ecm_set_disabled_deprecation_versions(
-    QT 6.5
-    KF 6.0
+    QT 6.12
+    KF 6.31
 )
 
 add_subdirectory(src)
