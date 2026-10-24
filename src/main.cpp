@@ -53,7 +53,7 @@ int main(int argc, char **argv)
     app.setOrganizationName(QStringLiteral("KDE"));
     KAboutData::setApplicationData(about);
 
-    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kgraphviewer"), app.windowIcon()));
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("org.kde.kgraphviewer"), app.windowIcon()));
 
     QCommandLineParser options;
     options.addPositionalArgument(QStringLiteral("url"), i18n("Path or URL to scan"), i18n("[url]"));
