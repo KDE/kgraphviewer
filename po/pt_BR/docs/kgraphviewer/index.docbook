@@ -107,7 +107,7 @@
 
 <abstract>
 <para
->O &kgraphviewer; é um visualizador de gráficos do &dot; do &graphviz;. Ele foi desenvolvido pela comunidade do &kde;. Os programas do &graphviz; são motores de disposição de gráficos em 'software' livre. Os gráficos são normalmente usados em domínios científicos e, em particular, na ciência da computação. </para>
+>O &kgraphviewer; é um visualizador de gráficos do &dot; do &graphviz;. Ele foi desenvolvido pela comunidade &kde;. Os programas do &graphviz; são motores de disposição de gráficos em 'software' livre. Os gráficos são normalmente usados em domínios científicos e, em particular, na ciência da computação. </para>
 <para
 >O &kgraphviewer; exibe os gráficos em uma &GUI; moderna e fácil de usar. </para>
 </abstract>
