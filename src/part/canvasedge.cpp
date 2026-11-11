@@ -327,12 +327,12 @@ void CanvasEdge::paint(QPainter *p, const QStyleOptionGraphicsItem *option, QWid
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "draw square";
         //     p->drawRect(m_boundingRect);
         qreal maxDist = 0;
-        QPair<QPointF, QPointF> pointsPair;
+        std::pair<QPointF, QPointF> pointsPair;
         for (const QPointF &point1 : allPoints) {
             for (const QPointF &point2 : allPoints) {
                 if (distance(point1, point2) > maxDist) {
                     maxDist = distance(point1, point2);
-                    pointsPair = qMakePair(point1, point2);
+                    pointsPair = std::make_pair(point1, point2);
                 }
             }
         }

@@ -28,6 +28,8 @@
 #include <QAbstractGraphicsShapeItem>
 #include <QPen>
 #include <QBrush>
+// Std
+#include <utility>
 
 namespace KGraphViewer
 {
@@ -80,7 +82,7 @@ protected:
     bool m_hovered;
 
     quint32 m_lastRenderOpRev;
-    typedef QHash<int, QPair<int, int>> FontSizeCache;
+    typedef QHash<int, std::pair<int, int>> FontSizeCache;
     FontSizeCache m_fontSizeCache;
 Q_SIGNALS:
     void selected(CanvasElement *, Qt::KeyboardModifiers);

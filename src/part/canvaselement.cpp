@@ -421,7 +421,7 @@ void CanvasElement::paint(QPainter *p, const QStyleOptionGraphicsItem *option, Q
                     fm = QFontMetrics(*m_font);
                     fontWidth = fm.horizontalAdvance(dro.str);
                 }
-                m_fontSizeCache[num_T] = qMakePair(fontSize, fontWidth);
+                m_fontSizeCache[num_T] = std::make_pair(fontSize, fontWidth);
             }
 
             p->setFont(*m_font);

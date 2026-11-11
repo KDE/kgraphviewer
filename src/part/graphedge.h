@@ -98,9 +98,9 @@ public:
         m_toNode = n;
     }
 
-    //   inline const QList< QPair< float, float > >& edgePoints() const {return m_edgePoints;}
-    //   inline QList< QPair< float, float > >& edgePoints() {return m_edgePoints;}
-    //   inline void edgePoints(const QList< QPair< float, float > >& ep) {m_edgePoints = ep;}
+    //   inline const QList< std::pair< float, float > >& edgePoints() const {return m_edgePoints;}
+    //   inline QList< std::pair< float, float > >& edgePoints() {return m_edgePoints;}
+    //   inline void edgePoints(const QList< std::pair< float, float > >& ep) {m_edgePoints = ep;}
 
     inline const QStringList &colors() const
     {
@@ -142,7 +142,7 @@ private:
     bool m_visible;
     QStringList m_colors;
     QString m_dir;
-    //   QList< QPair< float, float > > m_edgePoints;
+    //   QList< std::pair< float, float > > m_edgePoints;
     //   float m_labelX, m_labelY;
 
     QList<DotRenderOp> m_arrowheads;

@@ -355,12 +355,12 @@ bool parse_integers(char const *str, std::vector<int> &v)
     return parse(str, (int_p[push_back_a(v)] >> *(',' >> int_p[push_back_a(v)])), +space_p).full;
 }
 
-bool parse_spline(char const *str, QList<QPair<float, float>> &points)
+bool parse_spline(char const *str, QList<std::pair<float, float>> &points)
 {
     //   qCDebug(KGRAPHVIEWERLIB_LOG) << "Parsing spline..." << QString::fromStdString(str);
     char e = 'n', s = 'n';
     int sx, sy, ex, ey;
-    QPair<float, float> p;
+    std::pair<float, float> p;
     bool res;
     res = parse(str,
                 (!(ch_p('e')[assign_a(e)] >> ',' >> int_p[assign_a(ex)] >> ',' >> int_p[assign_a(ey)]) >> !(ch_p('s')[assign_a(s)] >> ',' >> int_p[assign_a(sx)] >> ',' >> int_p[assign_a(sy)]) >>
@@ -373,10 +373,10 @@ bool parse_spline(char const *str, QList<QPair<float, float>> &points)
         return false;
     if (s == 's') {
         //     qCDebug(KGRAPHVIEWERLIB_LOG) << "inserting the s point";
-        points.insert(points.begin(), qMakePair(float(sx), float(sy)));
+        points.insert(points.begin(), std::make_pair(float(sx), float(sy)));
     }
     if (e == 'e') {
-        //     points.insert(points.begin(), qMakePair(float(ex),float(ey)));
+        //     points.insert(points.begin(), std::make_pair(float(ex),float(ey)));
     }
     return true;
 }
