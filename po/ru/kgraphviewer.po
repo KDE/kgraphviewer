@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kgraphviewer\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-08 00:11+0000\n"
-"PO-Revision-Date: 2025-08-22 18:45+0300\n"
+"PO-Revision-Date: 2026-11-11 20:46+0200\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
@@ -527,12 +527,12 @@ msgstr "Экспорт графа в файл изображения."
 #: part/dotgraphview.cpp:470
 #, no-c-format, kde-format
 msgid "Zoom in by 10% on the currently viewed graph"
-msgstr "Приблизить текущий просматриваемый граф на 10%"
+msgstr "Приблизить текущий просматриваемый граф на 10 %"
 
 #: part/dotgraphview.cpp:474
 #, no-c-format, kde-format
 msgid "Zoom out by 10% from the currently viewed graph"
-msgstr "Отдалить текущий просматриваемый граф на 10%"
+msgstr "Отдалить текущий просматриваемый граф на 10 %"
 
 #: part/dotgraphview.cpp:477
 #, kde-format

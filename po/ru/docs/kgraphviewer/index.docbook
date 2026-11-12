@@ -1177,7 +1177,7 @@
 ><para
 ><action
 >Увеличивает</action
-> масштаб текущего графа на 10%.</para
+> масштаб текущего графа на 10 %.</para
 ></listitem>
 	</varlistentry>
 
@@ -1200,7 +1200,7 @@
 ><para
 ><action
 >Уменьшает</action
-> масштаб текущего графа на 10%.</para
+> масштаб текущего графа на 10 %.</para
 ></listitem>
 	</varlistentry>
 
@@ -1508,7 +1508,7 @@
 ><para
 ><action
 >Увеличивает</action
-> масштаб текущего графа на 10%.</para
+> масштаб текущего графа на 10 %.</para
 ></listitem>
 	</varlistentry>
 
@@ -1526,7 +1526,7 @@
 ><para
 ><action
 >Уменьшает</action
-> масштаб текущего графа на 10%.</para
+> масштаб текущего графа на 10 %.</para
 ></listitem>
 	</varlistentry>
 </variablelist>
