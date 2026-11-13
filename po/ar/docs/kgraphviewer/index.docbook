@@ -1,0 +1,1660 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY graphviz "<application
+><ulink url=&#034;https://www.graphviz.org&#034;
+>Graphviz</ulink
+></application
+>">
+  <!ENTITY boost "<ulink url=&#034;https://www.boost.org&#034;
+>Boost</ulink
+>">
+  <!ENTITY qanava "<application
+>Qanava</application
+>">
+  <!ENTITY kcachegrind "<application
+>KCacheGrind</application
+>"
+> <!--not in kdoctools 5.16-->
+  <!ENTITY dot "<application
+>DOT</application
+>">
+  <!ENTITY neato "<application
+>NEATO</application
+>">
+  <!ENTITY twopi "<application
+>TWOPI</application
+>">
+  <!ENTITY fdp "<application
+>FDP</application
+>">
+  <!ENTITY circo "<application
+>CIRCO</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Arabic "INCLUDE"
+><!-- change language only here -->
+]>
+
+
+<book id="kgraphviewer" lang="&language;">
+
+<bookinfo>
+<title
+>دليل محرر الرسومات ك</title>
+
+<authorgroup>
+<author
+><firstname
+>Gaël</firstname
+> <othername
+></othername
+> <surname
+>de Chalendar</surname
+> <affiliation
+> <address
+><email
+>kleag@free.fr</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Federico</firstname
+> <othername
+></othername
+> <surname
+>Zenith</surname
+> <affiliation
+> <address
+><email
+>federico.zenith@member.fsf.org</email
+></address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>غايل دي شاليندار</holder>
+</copyright>
+<!-- Translators: put here the copyright notice of the translation -->
+<!-- Put here the FDL notice.  Read the explanation in fdl-notice.docbook
+     and in the FDL itself on how to use it. -->
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2020-12-14</date>
+<releaseinfo
+>محرر الرسومات ك 2.4.3</releaseinfo>
+
+<abstract>
+<para
+>محرر الرسومات ك هو عارض رسوم بيانية لـ &graphviz; &dot;. طُوّر في مجتمع كيدي. برامج &graphviz; هي محركات تخطيط حرة للرسوم البيانية. تُستخدم الرسوم البيانية عادة في المجالات العلمية وخصوصًا في علوم الحاسوب. </para>
+<para
+>محرر الرسومات ك يعرض الرسوم البيانية في &GUI; حديث وسهل الاستخدام. </para>
+</abstract>
+
+<keywordset>
+<keyword
+>كيدي</keyword>
+<keyword
+>محرر الرسومات ك</keyword>
+<keyword
+>graphviz</keyword>
+<keyword
+>dot</keyword>
+<keyword
+>neato</keyword>
+<keyword
+>مستعرض</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>مقدمة</title>
+
+<para
+>محرر الرسومات ك هو عارض رسوم بيانية لـ &graphviz; &dot;. برامج &graphviz; هي محركات تخطيط حرة للرسوم البيانية. محرر الرسومات ك يعرض الرسوم البيانية في &GUI; حديث وسهل الاستخدام. يتميز بالخصائص التالية: <screenshot>
+<screeninfo
+>هذه لقطة شاشة لـ محرر الرسومات ك</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>النافذة الرئيسة لـ محرر الرسومات ك تعرض أحد أمثلة &graphviz;</phrase>
+    </textobject>
+  </mediaobject>
+</screenshot>
+<itemizedlist>
+  <listitem
+><para
+>التكبير،</para
+></listitem>
+  <listitem
+><para
+>تحميل عدة رسوم بيانية في ألسنة في نفس الوقت؛</para
+></listitem>
+  <listitem
+><para
+>تخزين قائمة بالملفات الحديثة؛</para
+></listitem>
+  <listitem
+><para
+>منظر علوي للرسم البياني؛</para
+></listitem>
+  <listitem
+><para
+>تحريك الرسم البياني بسحب الفأرة؛</para
+></listitem>
+  <listitem
+><para
+>طباعة كاملة الميزات،</para
+></listitem>
+  <listitem
+><para
+>رسم مثالي لجميع الرسوم البيانية النموذجية لـ graphviz</para
+></listitem>
+  <listitem
+><para
+>ألوان العقد والحواف وجميع أشكال العقد مدعومة؛</para
+></listitem>
+  <listitem
+><para
+>اختيار آلي لـ &dot; للرسوم البيانية الموجهة و &neato; للرسوم غير الموجهة؛</para
+></listitem>
+  <listitem
+><para
+>إعادة تحميل يدوي أو آلي مع تأكيد المستخدم للملفات المُعدّلة (خارجيًا) (قابل للضبط)؛</para
+></listitem>
+  <listitem
+><para
+>فتح نسخ جديدة من البرنامج كألسنة جديدة في نسخة موجودة (قابل للضبط)؛</para
+></listitem>
+  <listitem
+><para
+>نظام المساعدة،</para
+></listitem>
+  <listitem
+><para
+>تعدد اللغات.</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>الخصائص المخطط لها هي: <itemizedlist>
+	<listitem
+><para
+>استخدام مكتبة &qanava; لاحقًا لدعم تمثيل الرسوم البيانية الداخلي؛</para
+></listitem>
+	<listitem
+><para
+>حفظ بيانات الجلسة حول الرسوم البيانية (برنامج التخطيط المستخدم، عامل التكبير، إلخ…)</para
+></listitem>
+	<listitem
+><para
+>التكامل في &kate; و &konqueror; (بحيث يؤدي تغيير في عرض &kate; للرسم البياني إلى إعادة تخطيط وإعادة تحميل الملف في محرر الرسومات ك)؛</para
+></listitem>
+	<listitem
+><para
+>قائمة لفتح الملف في &kate; <emphasis
+>أو</emphasis
+> لفتح جزء katepart داخل نافذة محرر الرسومات ك؛</para
+></listitem>
+	<listitem
+><para
+>تحميل الرسوم البيانية الكبيرة والضخمة (حاليًا، توجد مشاكل أداء عند حوالي 1000 عقدة، واختراق لتجاهل العقد فوق حد محدد)؛</para
+></listitem>
+	<listitem
+><para
+>دعم تدريجي لمزيد من سمات وقيم &dot;؛</para
+></listitem>
+	<listitem
+><para
+>التخطيط في الخلفية (باستخدام خيوط المعالجة لعدم حظر الواجهة، مع شريط تقدم).</para
+></listitem>
+</itemizedlist
+></para>
+
+<note
+><para
+>لاحظ أن هذا البرنامج يتضمن كودًا من الأداة GPL &kcachegrind; بقلم Josef Weidendorfer، بإذنه.</para
+></note>
+<note
+><para
+>لاحظ أيضًا أن نظام الطباعة مأخوذ من تطبيق قاعدة البيانات &kexi; التابع لـ &calligra;.</para
+></note>
+
+<para
+>البرامج الأخرى المطلوبة: محرر الرسومات ك هو برنامج يستخدم أداة &graphviz; &dot; لتخطيط الرسوم البيانية. تبعياته هي: <itemizedlist>
+	<listitem
+><para
+>مكتبات &Qt; و &kde-frameworks; الإصدار 5.x؛</para
+></listitem>
+	<listitem
+><para
+>أدوات &graphviz; كبرامج خارجية (مُختبرة مع الإصدار 2.8)؛</para
+></listitem>
+	<listitem
+><para
+>مكتبة &boost; الإصدار 1.36.</para
+></listitem>
+</itemizedlist
+></para>
+
+</chapter>
+
+<chapter id="using-kgraphviewer">
+<title
+>استخدام محرر الرسومات ك</title>
+
+<sect1 id="using-kgraphviewer-mainwin">
+<title
+>النافذة الرئيسة</title>
+
+<para
+>النافذة الرئيسة تعرض الرسوم البيانية المحملة، كل منها في لسان خاص بها. بداية، إذا بدأت محرر الرسومات ك بدون وسائط، ستكون نافذته الرئيسة فارغة كما في لقطة الشاشة أدناه. في هذه الحالة، يحتوي شريط الأدوات فقط على زر <guibutton
+>فتح...</guibutton
+> وزر <guibutton
+>فتح حديث</guibutton
+> (الفارغ). انقر على الأول لفتح حوار <guilabel
+>فتح ملف</guilabel
+> القياسي.</para>
+
+<screenshot>
+<screeninfo
+>النافذة الرئيسة الأولية عند فتح محرر الرسومات ك لأول مرة</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-init.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>النافذة الرئيسة عند فتح محرر الرسومات ك لأول مرة</phrase>
+    </textobject>
+    <caption
+><para
+>النافذة الرئيسة عند فتح محرر الرسومات ك لأول مرة</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>بعد اختيار ملف أو عدة ملفات &dot;، تبدو النافذة الرئيسة كما في اللقطة التالية:</para>
+
+<screenshot>
+<screeninfo
+>النافذة الرئيسة لـ محرر الرسومات ك مع فتح عدة ملفات</screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="kgraphviewer-snap-main.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>النافذة الرئيسة لـ محرر الرسومات ك مع فتح عدة ملفات</phrase>
+    </textobject>
+    <caption
+><para
+>النافذة الرئيسة لـ محرر الرسومات ك مع فتح عدة ملفات</para
+></caption>
+  </mediaobject>
+</screenshot>
+
+<para
+>كما ترى، إذا كان الرسم البياني أكبر من المساحة المتاحة، تظهر نافذة عين الطائر في إحدى الزوايا. يمكنك اختيار من قائمة السياق ما إذا كان الموقع الأمثل لهذه النظرة العامة سيُحسب آليًا لك، أو تضعه حيث تريد بنفسك.</para>
+
+<sect2>
+<title
+>تحريك الرسم البياني داخل النافذة</title>
+
+<para
+>لتحريك الرسم البياني، يمكنك: <itemizedlist>
+	<listitem
+><para
+>النقر عليه وسحبه؛</para
+></listitem>
+	<listitem
+><para
+>استخدام أشرطة التمرير؛</para
+></listitem>
+	<listitem
+><para
+>الضغط على مفاتيح الأسهم؛</para
+></listitem>
+	<listitem
+><para
+>النقر في مكان ما في نافذة عين الطائر؛</para
+></listitem>
+	<listitem
+><para
+>استخدام عجلة الفأرة (لأعلى ولأسفل بدون معدّل، ولليسار ولليمين مع الضغط على مفتاح &Alt;)؛</para
+></listitem>
+	<listitem
+><para
+>أو النقر والسحب في نافذة عين الطائر.</para
+></listitem>
+</itemizedlist
+></para>
+</sect2>
+
+<sect2>
+<title
+>التكبير</title>
+
+<para
+>للتكبير/التصغير، يمكنك إما استخدام زري شريط الأدوات <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> و <guibutton
+><inlinemediaobject
+> <imageobject
+> <imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/> </imageobject
+> </inlinemediaobject
+> </guibutton
+> للتكبير والتصغير، أو الضغط باستمرار على مفتاح &Shift; أثناء تدوير عجلة الفأرة. أثناء التكبير، يصبح المستطيل الأحمر في نافذة عين الطائر الذي يشير إلى المنطقة المعروضة أصغر فأصغر. إذا أصبح أصغر من 10 بكسل في جانبه الأقصر، سيُستبدل بمستطيل أحمر ممتلئ ليبقى مرئيًا. يمكنك رؤية ذلك في اللقطة أدناه.</para>
+
+<screenshot>
+<screeninfo
+>رسم بياني عند أقصى مستوى تكبير</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmax.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>رسم بياني عند أقصى مستوى تكبير</phrase>
+</textobject>
+<caption
+><para
+>رسم بياني عند أقصى مستوى تكبير</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>التكبير/التصغير محدود في كلا الاتجاهين بعامل 10. يمكنك رؤية أدناه أقصى عامل تصغير على رسم بياني.</para>
+
+<screenshot>
+<screeninfo
+>رسم بياني عند أقصى مستوى تصغير</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-zmin.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>رسم بياني عند أقصى مستوى تصغير</phrase>
+</textobject>
+<caption
+><para
+>رسم بياني عند أقصى مستوى تصغير</para
+></caption>
+</mediaobject>
+</screenshot>
+</sect2>
+
+<sect2>
+<title
+>معالجة ملفات الرسم البياني</title>
+
+<sect3>
+<title
+>الملفات المعدلة على القرص</title>
+
+<para
+>إذا عُدّل ملف محمّل حاليًا في محرر الرسومات ك بواسطة برنامج آخر، يُعرض الحوار التالي:</para>
+
+<screenshot>
+<screeninfo
+>حوار لإعادة تحميل ملف معدّل على القرص</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>حوار لإعادة تحميل ملف معدّل على القرص</phrase>
+</textobject>
+<caption
+><para
+>حوار لإعادة تحميل ملف معدّل على القرص</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>يمكنك اختيار إعادة تحميل الرسم البياني أو تجاهل التغيير. يمكنك أيضًا جعل محرر الرسومات ك يتذكر اختيارك، ليفعل الشيء نفسه في المرة القادمة. إذا أردت لاحقًا تعديل اختيارك، اختر عنصر القائمة <menuchoice
+><guimenu
+>الإعدادات</guimenu
+><guimenuitem
+>اضبط محرر الرسومات ك...</guimenuitem
+></menuchoice
+>. انظر <xref linkend="kgraphviewer-configuration"/>.</para>
+</sect3>
+
+<sect3
+><title
+>الملفات والنوافذ</title>
+<para
+>عند فتح ملف رسم بياني من خارج مثيل محرر الرسومات ك قيد التشغيل، مثلًا من متصفح ملفات أو سطر الأوامر، لديك خيار فتح نافذة محرر الرسومات ك جديدة أو فتح الرسم البياني في لسان جديد في النافذة الحالية. يتم ذلك عبر الحوار أدناه.</para>
+
+<screenshot>
+<screeninfo
+>حوار فتح نافذة جديدة</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>حوار فتح نافذة جديدة</phrase>
+</textobject>
+<caption
+><para
+>حوار فتح نافذة جديدة</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>بالنسبة للخيار السابق، يمكنك حفظ اختيارك كمبدئي وتعديله لاحقًا في حوار الضبط.</para>
+
+</sect3>
+
+<sect3>
+<title
+>معالجة الجلسة</title>
+
+<para
+>عند بدء التشغيل، يمكنك اختيار إعادة فتح الرسوم البيانية التي فتحتها في المرة السابقة. مرة أخرى، يمكنك حفظ اختيارك وتغييره لاحقًا.</para>
+
+<screenshot>
+<screeninfo
+>حوار إعادة تحميل الرسم البياني للجلسة السابقة عند بدء التشغيل</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ask3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>حوار إعادة تحميل الرسم البياني للجلسة السابقة عند بدء التشغيل</phrase>
+</textobject>
+<caption
+><para
+>حوار إعادة تحميل الرسم البياني للجلسة السابقة عند بدء التشغيل</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect3>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="kgraphviewer-printing">
+<title
+>طباعة الرسم البياني</title>
+<para
+>جرّب زرّي <guibutton
+>معاينة الطباعة</guibutton
+> أو <guibutton
+>إعداد الصفحة</guibutton
+> لاستكشاف خيارات الطباعة.</para>
+
+<screenshot>
+<screeninfo
+>حوار إعداد الصفحة</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-psetup1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>حوار إعداد الصفحة</phrase>
+</textobject>
+<caption
+><para
+>حوار إعداد الصفحة</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>يمكنك ضبط خيارات الطباعة لملاءمة الرسم البياني على صفحة واحدة تمامًا، كما يلي:</para>
+
+<screenshot>
+<screeninfo
+>إعداد معاينة الصفحة للملاءمة على صفحة واحدة</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>إعداد معاينة الصفحة للملاءمة على صفحة واحدة</phrase>
+</textobject>
+<caption
+><para
+>إعداد معاينة الصفحة للملاءمة على صفحة واحدة</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>يمكنك أيضًا اختيار كيفية تقسيم الرسم البياني على صفحات متعددة. يمكن اختيار عدد الصفحات الأفقية والعمودية بشكل مستقل.</para>
+
+<screenshot>
+<screeninfo
+>إعداد معاينة الصفحة للملاءمة على صفحات متعددة وملئها</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>إعداد معاينة الصفحة للملاءمة على صفحات متعددة وملئها</phrase>
+</textobject>
+<caption
+><para
+>إعداد معاينة الصفحة للملاءمة على صفحات متعددة وملئها</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>أخيرًا، عند استخدام صفحات متعددة، يمكنك اختيار جعل جزء الرسم البياني في كل صفحة يلائم صفحته كما سبق، دون الحفاظ على نسبة العرض إلى الارتفاع، أو الحفاظ عليها. في الحالة الأخيرة، لن تُملأ الصفحات.</para>
+
+<para
+>يمكنك تغيير حجم الصفحات والهوامش:</para>
+
+<screenshot>
+<screeninfo
+>حوار حجم الصفحة والهوامش</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-pagesmarges.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>حوار حجم الصفحة والهوامش</phrase>
+</textobject>
+<caption
+><para
+>حوار حجم الصفحة والهوامش</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>يمكنك أيضًا تغيير الخط والترويسات والتذييلات:</para>
+
+<screenshot>
+<screeninfo
+>إعداد معاينة الصفحة للملاءمة على صفحات متعددة بدون ترويسة وبخط مختلف</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-ppview3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>إعداد معاينة الصفحة للملاءمة على صفحات متعددة بدون ترويسة وبخط مختلف</phrase>
+</textobject>
+<caption
+><para
+>إعداد معاينة الصفحة لتناسب صفحات متعددة دون ترويسة وبخط مختلف</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="kgraphviewer-configuration">
+<title
+>ضبط محرر الرسومات ك</title>
+
+<para
+>تتيح صفحة <guilabel
+>المظهر</guilabel
+> تغيير لون الخلفية المبدئي المستخدم في محرر الرسومات ك إذا لم يكن للرسم البياني لون خلفية خاص به.</para>
+
+<screenshot>
+<screeninfo
+>صفحة لتغيير مظهر رسم بياني</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-appearance.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>صفحة لتغيير مظهر رسم بياني</phrase>
+</textobject>
+<caption
+><para
+>صفحة لتغيير مظهر رسم بياني</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>تتيح صفحة <guilabel
+>الإعراب</guilabel
+> اختيار أمر خارجي أو المكتبة الداخلية لإعراب ملفات &graphviz; &dot;.</para>
+
+<screenshot>
+<screeninfo
+>صفحة لإعادة تحميل الملفات المعدلة على القرص في حوار الضبط</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config-parsing.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>صفحة لإعادة تحميل الملفات المعدلة على القرص في حوار الضبط</phrase>
+</textobject>
+<caption
+><para
+>صفحة لإعادة تحميل الملفات المعدلة على القرص في حوار الضبط</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>تتيح صفحة <guilabel
+>إعادة التحميل</guilabel
+> تغيير سلوك محرر الرسومات ك عند تغيير ملف على القرص بواسطة تطبيق آخر. يمكنك اختيار إجراء مبدئي (إعادة التحميل آلي أو تجاهل التغييرات)، أو أن يُسأل في كل مرة.</para>
+
+<screenshot>
+<screeninfo
+>صفحة لإعادة تحميل الملفات المعدلة على القرص في حوار الضبط</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config1.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>صفحة لإعادة تحميل الملفات المعدلة على القرص في حوار الضبط</phrase>
+</textobject>
+<caption
+><para
+>صفحة لإعادة تحميل الملفات المعدلة على القرص في حوار الضبط</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>تتيح صفحة <guilabel
+>الفتح</guilabel
+> تغيير سلوك محرر الرسومات ك عند فتح ملف رسم بياني من خارج الجلسة الحالية. يمكنك اختيار إجراء مبدئي (الفتح في نافذة موجودة أو في نافذة جديدة)، أو أن يُسأل في كل مرة.</para>
+
+<screenshot>
+<screeninfo
+>صفحة لفتح ملفات جديدة في نافذة موجودة في حوار الضبط</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config2.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>صفحة لفتح ملفات جديدة في نافذة موجودة في حوار الضبط</phrase>
+</textobject>
+<caption
+><para
+>صفحة لفتح ملفات جديدة في نافذة موجودة في حوار الضبط</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>تتيح صفحة <guilabel
+>إدارة الجلسات</guilabel
+> تغيير سلوك بدء تشغيل محرر الرسومات ك. يمكنك اختيار إجراء مبدئي (إعادة فتح ملفات الجلسة السابقة أم لا)، أو أن يُسأل في كل مرة.</para>
+
+<screenshot>
+<screeninfo
+>صفحة لإعادة فتح ملفات الجلسة السابقة في حوار الضبط</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kgraphviewer-snap-config3.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>صفحة لإعادة فتح ملفات الجلسة السابقة في حوار الضبط</phrase>
+</textobject>
+<caption
+><para
+>صفحة لإعادة فتح ملفات الجلسة السابقة في حوار الضبط</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect1>
+
+<sect1 id="using-kgraphviewer-misc">
+<title
+>وظائف متنوعة</title>
+
+<para
+>تقدم القائمة السياقية، التي تُحصل عادة بالنقر بالزر الأيمن للفأرة في عرض الرسم البياني، بعض الاحتمالات الأخرى: <variablelist>
+<varlistentry>
+<term
+><guisubmenu
+>التخطيط</guisubmenu
+></term>
+<listitem
+><para
+>يتيح هذا الاختيار بين خوارزميات تخطيط &graphviz; المختلفة أو اختيار خوارزمية خاصة بك. الإدخالات، كما هو موصوف في الصفحة الرئيسة لـ &graphviz;، هي التالية: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>&dot;</guimenuitem
+></term>
+	<listitem
+><para
+>خوارزمية &dot;، المبدئية للرسوم البيانية الموجهة. تنتج رسومات <quote
+>هرمية</quote
+> أو متعددة الطبقات للرسوم البيانية الموجهة. تضع خوارزمية التخطيط الحواف في نفس الاتجاه (من الأعلى إلى الأسفل، أو من اليسار إلى اليمين)، ثم تحاول تجنب تقاطعات الحواف وتقليل طول الحافة.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&neato;</guimenuitem
+></term>
+	<listitem
+><para
+>خوارزمية &neato;، المبدئية للرسوم البيانية غير الموجهة. تنتج تخطيطات <quote
+>نموذج الزنبرك</quote
+>. تستخدم خوارزمية كامادا-كاواي، التي تعادل القياس متعدد الأبعاد الإحصائي.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&twopi;</guimenuitem
+></term>
+	<listitem
+><para
+>خوارزمية &twopi;، للرسوم البيانية الموجهة وغير الموجهة. تخطيط شعاعي، بعد غراهام ويلز 1997.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&fdp;</guimenuitem
+></term>
+	<listitem
+><para
+>خوارزمية &fdp;، للرسوم البيانية غير الموجهة. تنتج تخطيطات <quote
+>نموذج الزنبرك</quote
+>. تنفذ إرشاد فروخترمان-راينغولد بما في ذلك محلل شبكات متعددة يعالج الرسوم البيانية الأكبر والرسوم البيانية غير الموجهة المجمعة.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>&circo;</guimenuitem
+></term>
+	<listitem
+><para
+>خوارزمية &circo;. تُنتج تخطيطًا دائريًا، وفقًا لـ Six وTollis 1999، وKauffman وWiese 2002. مناسبة لبعض المخططات ذات الهياكل الدورية المتعددة.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>حدد أمر التخطيط...</guimenuitem
+></term>
+	<listitem
+><para
+>يفتح حوارًا يسمح لك بتحديد أمر تخطيط يُنفذ بواسطة الصدفة. يجب أن يقبل هذا الأمر معاملًا واحدًا، وهو اسم ملف الرسم البياني، وأن يكتب تخطيطه على stdout بلغة xdot. بهذه الطريقة، يمكنك إعطاء خيارات محددة لأحد الأوامر السابقة، أو تطبيق مرشح يعدّل رسمك البياني قبل تشغيله عبر &dot;.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>أعد أمر التخطيط إلى المبدئي</guimenuitem
+></term>
+	<listitem
+><para
+>حدد نوع الرسم البياني (موجه أم لا) وطبق الخوارزمية المبدئية عليه، حاليًا &dot; و&neato; على التوالي.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+	</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>صدّر الرسم البياني</guisubmenu
+></term>
+<listitem
+><para>
+	<variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>كصورة...</guimenuitem
+></term>
+	<listitem
+><para
+>يسمح بتصدير الرسم البياني الكامل إلى جميع صيغ الصور المدعومة.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guimenu
+>فعل رؤية عين الطائر</guimenu
+></term>
+<listitem
+><para
+>عند التأشير، تُعرض نافذة الطائر عند الضرورة. وإلا، فهي مخفية وقائمة وضعها معطلة.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guisubmenu
+>وضع رؤية عين الطائر</guisubmenu
+></term>
+<listitem
+><para
+>اضبط مكان وضع نافذة الطائر في عرض الرسم البياني. الخيارات الممكنة هي: <variablelist>
+	<varlistentry>
+	<term
+><guimenuitem
+>أعلى اليسار</guimenuitem
+></term>
+	<listitem
+><para
+>تضع نافذة الطائر في الزاوية العليا اليسرى؛</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>أعلى اليمين</guimenuitem
+></term>
+	<listitem
+><para
+>تضع نافذة الطائر في الزاوية العليا اليمنى؛</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>أسفل اليسار</guimenuitem
+></term>
+	<listitem
+><para
+>تضع نافذة الطائر في الزاوية السفلى اليسرى؛</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>أسفل اليمين</guimenuitem
+></term>
+	<listitem
+><para
+>تضع نافذة الطائر في الزاوية السفلى اليمنى؛</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><guimenuitem
+>آليّ</guimenuitem
+></term>
+	<listitem
+><para
+>اختر آليًا أفضل وضع لإخفاء أقل قدر ممكن من الرسم البياني.</para
+></listitem>
+	</varlistentry>
+	</variablelist>
+</para
+></listitem>
+</varlistentry>
+
+</variablelist
+></para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commands">
+<title
+>مرجع الأوامر</title>
+
+<sect1 id="kgraphviewer-commands-menus">
+<title
+>قوائم محرر الرسومات ك</title>
+
+<sect2>
+<title
+>قائمة ملف</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>جديد</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>يفتح</action
+> نافذة محرر الرسومات ك جديدة.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>افتح</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>يعرض</action
+> حوار <guilabel
+>فتح ملف</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>ملف</guimenu
+> <guimenuitem
+>افتح الأخير</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>يعرض</action
+> قائمة بأحدث عشرة ملفات رسم بياني فُتحت مؤخرًا.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>ملف</guimenu
+><guisubmenu
+>تصدير الرسم البياني</guisubmenu
+><guimenuitem
+>كصورة…</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>يسمح <action
+>بتصدير</action
+> الرسم البياني الكامل إلى جميع صيغ الصور المدعومة.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>اطبع</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>يطبع</action
+> الرسم البياني الحالي باستخدام معاملات الطباعة المضبوطة حاليًا.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>P</keycap
+></keycombo
+></shortcut
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>معاينة الطباعة...</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>يفتح</action
+> نافذة <guilabel
+>معاينة الطباعة</guilabel
+> للرسم البياني الحالي.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>إعداد الصفحة…</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>يفتح</action
+> حوار <guilabel
+>إعداد الصفحة</guilabel
+> للرسم البياني الحالي.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>ملف</guimenu
+> <guimenuitem
+>أنهِ</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>يغلق</action
+> محرر الرسومات ك.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>قائمة عرض</title>
+
+<variablelist>
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+><guimenuitem
+>قرب</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>كبّر</action
+> الرسم البياني الحالي بنسبة 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></shortcut
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>بعد</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>صغّر</action
+> الرسم البياني الحالي بنسبة 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>حدث</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+><action
+>يعيد تحميل</action
+> الرسم البياني الحالي.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>عرض</guimenu
+><guisubmenu
+>خوارزمية التخطيط</guisubmenu
+></menuchoice
+></term>
+	<listitem
+><para
+>يفتح قائمة فرعية بخوارزميات تخطيط &graphviz; متنوعة للرسم البياني الحالي.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+></shortcut
+><guimenu
+>عرض</guimenu
+><guimenuitem
+>تمكين نافذة الطائر</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>عند التأشير، تُعرض نافذة الطائر عند الضرورة. وإلا، فهي مخفية وقائمة وضعها معطلة.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><menuchoice
+><guimenu
+>عرض</guimenu
+><guimenuitem
+>وضع نافذة الطائر</guimenuitem
+></menuchoice
+></term>
+	<listitem
+><para
+>اضبط مكان عرض منظر عين الطائر في عرض الرسم البياني. الخيارات هي: <variablelist>
+		<varlistentry>
+		<term
+><guimenuitem
+>أعلى اليسار</guimenuitem
+></term>
+		<listitem
+><para
+>تضع نافذة الطائر في الزاوية العليا اليسرى؛</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>أعلى اليمين</guimenuitem
+></term>
+		<listitem
+><para
+>تضع نافذة الطائر في الزاوية العليا اليمنى؛</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>أسفل اليسار</guimenuitem
+></term>
+		<listitem
+><para
+>تضع نافذة الطائر في الزاوية السفلى اليسرى؛</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>أسفل اليمين</guimenuitem
+></term>
+		<listitem
+><para
+>تضع نافذة الطائر في الزاوية السفلى اليمنى؛</para
+></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term
+><guimenuitem
+>آليّ</guimenuitem
+></term>
+		<listitem
+><para
+>اختر آليًا أفضل وضع لإخفاء أقل قدر ممكن من الرسم البياني.</para
+></listitem>
+		</varlistentry>
+	</variablelist
+></para
+></listitem>
+	</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2>
+<title
+>قائمة الإعدادات والمساعدة</title>
+
+<para
+>يحتوي محرر الرسومات ك على عناصر القائمة المألوفة في كيدي: <guimenu
+>الإعدادات</guimenu
+> و<guimenu
+>المساعدة</guimenu
+>. لمزيد من المعلومات، اقرأ الأقسام حول <ulink url="help:/fundamentals/menus.html#menus-settings"
+>قائمة الإعدادات</ulink
+> و<ulink url="help:/fundamentals/menus.html#menus-help"
+>قائمة المساعدة</ulink
+> من أساسيات كيدي. </para>
+
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-commands-toolbars">
+<title
+>أشرطة أدوات محرر الرسومات ك</title>
+
+<sect2>
+<title
+>شريط الأدوات الرئيسي</title>
+<!--document-new-->
+<variablelist>
+	<varlistentry
+><!--document-open-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-open.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>يُظهر</action
+> حوار <guilabel
+>فتح ملف</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--document-open-recent-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-prev.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>يُظهر</action
+> قائمة الملفات المفتوحة حديثًا.</para
+></listitem>
+	</varlistentry>
+<!--document-close-->
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-print.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Prints the graph</action
+> using current setup.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-preview.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>يُظهر</action
+> حوار <guilabel
+>معاينة الطباعة</guilabel
+>.</para
+></listitem>
+	</varlistentry>
+
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-psetup.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Shows</action
+> the <guilabel
+>Page Setup</guilabel
+> dialog.</para
+></listitem>
+	</varlistentry-->
+</variablelist>
+</sect2>
+
+<sect2>
+<title
+>شريط أدوات العرض</title>
+
+<variablelist>
+	<!--varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-reload.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>Reloads</action
+> the current graph.</para
+></listitem>
+	</varlistentry-->
+
+	<varlistentry>
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-layout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>يُحرّر</action
+> أمر التخطيط أو <action
+>يُظهر</action
+> قائمة خوارزميات التخطيط المضبوطة مسبقًا.</para
+></listitem>
+	</varlistentry>
+	
+	<varlistentry
+><!--zoom-in-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomin.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>كبّر</action
+> الرسم البياني الحالي بنسبة 10%.</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry
+><!--zoom-out-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-zoomout.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>صغّر</action
+> الرسم البياني الحالي بنسبة 10%.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+<!--kgraphviewer-bev "Enable Bird's-eye View"-->
+</sect2>
+
+<sect2>
+<title
+>شريط أدوات المساعدة</title>
+
+<variablelist>
+	<varlistentry
+><!--help-contextual-->
+	<term
+><guibutton
+><inlinemediaobject
+><imageobject
+><imagedata fileref="kgraphviewer-but-whatsthis.png" format="PNG"/></imageobject
+></inlinemediaobject
+></guibutton
+></term>
+	<listitem
+><para
+><action
+>يُظهر</action
+> مؤشر الفأرة <guilabel
+>ما هذا؟</guilabel
+>. انقر به على عنصر واجهة المستخدم الرسومية للحصول على مساعدة حول استخدامه (إذا توفرت هذه المساعدة).</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect2>
+
+</sect1>
+</chapter>
+
+<chapter id="credits">
+<title
+>الحقوق والترخيص</title>
+
+<sect1 id="kgraphviewer-credits-program">
+<title
+>البرنامج</title>
+
+<sect2>
+<title
+>المؤلفون الرئيسون</title>
+<para
+>حقوق نشر البرنامج 2005-2006 Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+</sect2>
+
+<sect2>
+<title
+>المساهمون (يُستكمل)</title>
+<itemizedlist>
+	<listitem
+><para
+>Reimar Döffinger <email
+>Reimar.Doeffinger@stud.uni-karlsruhe.de</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-userguide">
+<title
+>دليل المستخدم</title>
+<para
+>حقوق نشر الوثائق 2006 Gaël de Chalendar <email
+>kleag@free.fr</email
+></para>
+<sect2>
+<title
+>المساهمون</title>
+<itemizedlist>
+  <listitem
+><para
+>Federico Zenith <email
+>federico.zenith@member.fsf.org</email
+></para
+></listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-other">
+<title
+>اعتمادات أخرى</title>
+<para
+>يحتوي هذا البرنامج على كود مُعاد استخدامه من مشاريع البرمجيات الحرة التالية:</para>
+<variablelist>
+	<varlistentry>
+	<term
+><ulink url="https://kcachegrind.github.io/html/Home.html"
+>&kcachegrind;</ulink
+></term>
+	<listitem
+><para
+>فئات نموذج الرسم البياني والعرض الأولية؛</para
+></listitem>
+	</varlistentry>
+
+	<varlistentry>
+	<term
+><ulink url="http://www.kexi-project.org/"
+>&kexi;</ulink
+></term>
+	<listitem
+><para
+>فئات إعداد الطباعة والمعاينة.</para
+></listitem>
+	</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="kgraphviewer-credits-licenses"
+><title
+>الرّخص</title>
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underFDL; &underGPL; </sect1>
+
+</chapter>
+
+&documentation.index;
+</book>
