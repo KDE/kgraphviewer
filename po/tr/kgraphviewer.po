@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-08 00:11+0000\n"
-"PO-Revision-Date: 2026-11-16 18:43+0300\n"
+"PO-Revision-Date: 2026-11-18 19:28+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -752,7 +752,7 @@ msgstr "%1 açılamadı"
 #: part/kgraphviewer_part.cpp:84
 #, kde-format
 msgid "Print the graph using current page setup settings"
-msgstr "Grafiği geçerli sayfa ayarlarıyla yazdır"
+msgstr "Grafiği geçerli sayfa düzeniyle yazdır"
 
 #: part/kgraphviewer_part.cpp:87
 #, kde-format
@@ -763,12 +763,13 @@ msgstr "Yazdırma önizlemesi penceresini aç"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Page Setup…"
-msgstr "Sayfa Yerleşimi…"
+msgstr "Sayfa Düzeni…"
 
 #: part/kgraphviewer_part.cpp:93
 #, kde-format
 msgid "Opens the Page Setup dialog to allow graph printing to be setup"
-msgstr "Grafik yazdırmasını yapılandırmak üzere Sayfa Yapısı penceresini açar"
+msgstr ""
+"Grafik baskısını yapılandırmak üzere Sayfa Düzeni iletişim kutusunu açar"
 
 #: part/kgraphviewer_part.cpp:96
 #, kde-format
@@ -1042,7 +1043,7 @@ msgstr "Başlık metninin yazıtipini değiştirir."
 #: part/simpleprintingpagesetup.cpp:95
 #, kde-format
 msgid "<qt><h2>Page Setup for Printing Graph \"%1\"</h2></qt>"
-msgstr "<qt><h2>“%1” Grafiğinin Yazdırılması için Sayfa Ayarları</h2></qt>"
+msgstr "<qt><h2>“%1” Grafiğinin Baskısı için Sayfa Düzeni</h2></qt>"
 
 #: part/simpleprintingpagesetup.cpp:100
 #, kde-format
@@ -1183,7 +1184,7 @@ msgstr "%1 — Baskı Önizlemesi — %2"
 #: part/simpleprintpreviewwindow.cpp:73
 #, kde-format
 msgid "&Page setup"
-msgstr "&Sayfa ayarları"
+msgstr "&Sayfa Düzeni"
 
 #: part/simpleprintpreviewwindow.cpp:112
 #, kde-format
