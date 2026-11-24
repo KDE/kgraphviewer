@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-08 02:55+0000\n"
-"PO-Revision-Date: 2026-11-18 19:28+0300\n"
+"PO-Revision-Date: 2026-11-23 18:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -640,7 +640,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reset Layout Command to Default"
-msgstr "Yerleşim Komutunu Öntanımlıya Sıfırla"
+msgstr "Yerleşim Komutunu Varsayılana Sıfırla"
 
 #: part/dotgraphview.cpp:566
 #, kde-format
@@ -648,8 +648,8 @@ msgid ""
 "Resets the layout command to use to the default depending on the graph type "
 "(directed or not)."
 msgstr ""
-"Grafik tipine bağlı olarak öntanımlı kullanılacak yerleşim komutunu sıfırlar "
-"(doğrudan veya değil)."
+"Grafik tipine bağlı olarak varsayılan kullanılacak yerleşim komutunu "
+"sıfırlar (doğrudan veya değil)."
 
 #: part/dotgraphview.cpp:600
 #, kde-format
@@ -1048,7 +1048,7 @@ msgstr "<qt><h2>“%1” Grafiğinin Baskısı için Sayfa Düzeni</h2></qt>"
 #: part/simpleprintingpagesetup.cpp:100
 #, kde-format
 msgid "Saves settings for this setup as default."
-msgstr "Bu ayarları öntanımlı olarak kaydeder."
+msgstr "Bu ayarları varsayılan olarak kaydeder."
 
 #: part/simpleprintingpagesetup.cpp:103
 #, kde-format
@@ -1200,7 +1200,7 @@ msgstr "Sonraki Sayfa"
 #: preferencesAppearance.ui:19
 #, kde-format
 msgid "Default background color:"
-msgstr "Öntanımlı arka plan rengi:"
+msgstr "Varsayılan arka plan rengi:"
 
 #. i18n: ectx: property (text), widget (QLabel, note)
 #: preferencesAppearance.ui:51
